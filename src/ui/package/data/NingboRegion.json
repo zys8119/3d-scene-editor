@@ -1,0 +1,2196 @@
+[
+  {
+    "citycode": "0574",
+    "adcode": "330206",
+    "name": "北仑区",
+    "center": {
+      "P": 29.90944,
+      "Q": 121.83130299999999,
+      "lng": 121.831303,
+      "lat": 29.90944
+    },
+    "level": "district",
+    "boundaries": [
+      {
+        "citycode": "0574",
+        "adcode": "330206",
+        "name": "白峰镇",
+        "center": {
+          "P": 29.8593,
+          "Q": 122.10199999999998,
+          "lng": 122.102,
+          "lat": 29.8593
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330206",
+        "name": "霞浦街道",
+        "center": {
+          "P": 29.8852,
+          "Q": 121.83699999999999,
+          "lng": 121.837,
+          "lat": 29.8852
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330206",
+        "name": "春晓镇",
+        "center": {
+          "P": 29.7359,
+          "Q": 121.93799999999999,
+          "lng": 121.938,
+          "lat": 29.7359
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330206",
+        "name": "梅山乡",
+        "center": {
+          "P": 29.8038,
+          "Q": 122.04200000000003,
+          "lng": 122.042,
+          "lat": 29.8038
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330206",
+        "name": "戚家山街道",
+        "center": {
+          "P": 29.9521,
+          "Q": 121.79700000000003,
+          "lng": 121.797,
+          "lat": 29.9521
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330206",
+        "name": "大碶街道",
+        "center": {
+          "P": 29.8932,
+          "Q": 121.74900000000002,
+          "lng": 121.749,
+          "lat": 29.8932
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330206",
+        "name": "柴桥街道",
+        "center": {
+          "P": 29.8903,
+          "Q": 121.983,
+          "lng": 121.983,
+          "lat": 29.8903
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330206",
+        "name": "小港街道",
+        "center": {
+          "P": 29.9409,
+          "Q": 121.733,
+          "lng": 121.733,
+          "lat": 29.9409
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330206",
+        "name": "保税区",
+        "center": {
+          "P": 29.9351,
+          "Q": 121.82600000000002,
+          "lng": 121.826,
+          "lat": 29.9351
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330206",
+        "name": "大榭街道",
+        "center": {
+          "P": 29.908,
+          "Q": 122.02499999999998,
+          "lng": 122.025,
+          "lat": 29.908
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330206",
+        "name": "新碶街道",
+        "center": {
+          "P": 29.9465,
+          "Q": 121.78300000000002,
+          "lng": 121.783,
+          "lat": 29.9465
+        },
+        "level": "street",
+        "boundaries": []
+      }
+    ]
+  },
+  {
+    "citycode": "0574",
+    "adcode": "330225",
+    "name": "象山县",
+    "center": {
+      "P": 29.470206,
+      "Q": 121.87709100000001,
+      "lng": 121.877091,
+      "lat": 29.470206
+    },
+    "level": "district",
+    "boundaries": [
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "黄避岙乡",
+        "center": {
+          "P": 29.59,
+          "Q": 121.82799999999997,
+          "lng": 121.828,
+          "lat": 29.59
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "石浦镇",
+        "center": {
+          "P": 29.1872,
+          "Q": 122.084,
+          "lng": 122.084,
+          "lat": 29.1872
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "泗洲头镇",
+        "center": {
+          "P": 29.3897,
+          "Q": 121.72399999999999,
+          "lng": 121.724,
+          "lat": 29.3897
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "鹤浦镇",
+        "center": {
+          "P": 29.0852,
+          "Q": 121.98500000000001,
+          "lng": 121.985,
+          "lat": 29.0852
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "丹东街道",
+        "center": {
+          "P": 29.4056,
+          "Q": 121.97300000000001,
+          "lng": 121.973,
+          "lat": 29.4056
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "丹西街道",
+        "center": {
+          "P": 29.4601,
+          "Q": 121.85000000000002,
+          "lng": 121.85,
+          "lat": 29.4601
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "定塘镇",
+        "center": {
+          "P": 29.2579,
+          "Q": 121.90800000000002,
+          "lng": 121.908,
+          "lat": 29.2579
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "墙头镇",
+        "center": {
+          "P": 29.4689,
+          "Q": 121.74900000000002,
+          "lng": 121.749,
+          "lat": 29.4689
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "爵溪街道",
+        "center": {
+          "P": 29.5043,
+          "Q": 122.084,
+          "lng": 122.084,
+          "lat": 29.5043
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "涂茨镇",
+        "center": {
+          "P": 29.5712,
+          "Q": 121.99900000000002,
+          "lng": 121.999,
+          "lat": 29.5712
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "高塘岛乡",
+        "center": {
+          "P": 29.0724,
+          "Q": 121.84500000000003,
+          "lng": 121.845,
+          "lat": 29.0724
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "晓塘乡",
+        "center": {
+          "P": 29.1889,
+          "Q": 121.85500000000002,
+          "lng": 121.855,
+          "lat": 29.1889
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "东陈乡",
+        "center": {
+          "P": 29.3796,
+          "Q": 122.19299999999998,
+          "lng": 122.193,
+          "lat": 29.3796
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "茅洋乡",
+        "center": {
+          "P": 29.4497,
+          "Q": 121.80099999999999,
+          "lng": 121.801,
+          "lat": 29.4497
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "新桥镇",
+        "center": {
+          "P": 29.346,
+          "Q": 121.88400000000001,
+          "lng": 121.884,
+          "lat": 29.346
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "西周镇",
+        "center": {
+          "P": 29.4214,
+          "Q": 121.745,
+          "lng": 121.745,
+          "lat": 29.4214
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "大徐镇",
+        "center": {
+          "P": 29.5554,
+          "Q": 121.86199999999997,
+          "lng": 121.862,
+          "lat": 29.5554
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330225",
+        "name": "贤庠镇",
+        "center": {
+          "P": 29.6516,
+          "Q": 121.928,
+          "lng": 121.928,
+          "lat": 29.6516
+        },
+        "level": "street",
+        "boundaries": []
+      }
+    ]
+  },
+  {
+    "citycode": "0574",
+    "adcode": "330211",
+    "name": "镇海区",
+    "center": {
+      "P": 29.952107,
+      "Q": 121.71316200000001,
+      "lng": 121.713162,
+      "lat": 29.952107
+    },
+    "level": "district",
+    "boundaries": [
+      {
+        "citycode": "0574",
+        "adcode": "330211",
+        "name": "九龙湖镇",
+        "center": {
+          "P": 30.0531,
+          "Q": 121.49900000000002,
+          "lng": 121.499,
+          "lat": 30.0531
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330211",
+        "name": "招宝山街道",
+        "center": {
+          "P": 29.9935,
+          "Q": 121.78399999999999,
+          "lng": 121.784,
+          "lat": 29.9935
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330211",
+        "name": "庄市街道",
+        "center": {
+          "P": 29.9508,
+          "Q": 121.61199999999997,
+          "lng": 121.612,
+          "lat": 29.9508
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330211",
+        "name": "蛟川街道",
+        "center": {
+          "P": 29.9969,
+          "Q": 121.76300000000003,
+          "lng": 121.763,
+          "lat": 29.9969
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330211",
+        "name": "骆驼街道",
+        "center": {
+          "P": 30.0091,
+          "Q": 121.57600000000002,
+          "lng": 121.576,
+          "lat": 30.0091
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330211",
+        "name": "澥浦镇",
+        "center": {
+          "P": 30.0379,
+          "Q": 121.57400000000001,
+          "lng": 121.574,
+          "lat": 30.0379
+        },
+        "level": "street",
+        "boundaries": []
+      }
+    ]
+  },
+  {
+    "citycode": "0574",
+    "adcode": "330205",
+    "name": "江北区",
+    "center": {
+      "P": 29.888361,
+      "Q": 121.559282,
+      "lng": 121.559282,
+      "lat": 29.888361
+    },
+    "level": "district",
+    "boundaries": [
+      {
+        "citycode": "0574",
+        "adcode": "330205",
+        "name": "白沙街道",
+        "center": {
+          "P": 29.8844,
+          "Q": 121.56600000000003,
+          "lng": 121.566,
+          "lat": 29.8844
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330205",
+        "name": "孔浦街道",
+        "center": {
+          "P": 29.9121,
+          "Q": 121.61199999999997,
+          "lng": 121.612,
+          "lat": 29.9121
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330205",
+        "name": "洪塘街道",
+        "center": {
+          "P": 29.9865,
+          "Q": 121.505,
+          "lng": 121.505,
+          "lat": 29.9865
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330205",
+        "name": "慈城镇",
+        "center": {
+          "P": 30.0507,
+          "Q": 121.45100000000002,
+          "lng": 121.451,
+          "lat": 30.0507
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330205",
+        "name": "庄桥街道",
+        "center": {
+          "P": 29.9435,
+          "Q": 121.52699999999999,
+          "lng": 121.527,
+          "lat": 29.9435
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330205",
+        "name": "甬江街道",
+        "center": {
+          "P": 29.8996,
+          "Q": 121.53300000000002,
+          "lng": 121.533,
+          "lat": 29.8996
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330205",
+        "name": "中马街道",
+        "center": {
+          "P": 29.8792,
+          "Q": 121.55399999999997,
+          "lng": 121.554,
+          "lat": 29.8792
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330205",
+        "name": "文教街道",
+        "center": {
+          "P": 29.8986,
+          "Q": 121.54599999999999,
+          "lng": 121.546,
+          "lat": 29.8986
+        },
+        "level": "street",
+        "boundaries": []
+      }
+    ]
+  },
+  {
+    "citycode": "0574",
+    "adcode": "330213",
+    "name": "奉化区",
+    "center": {
+      "P": 29.662348,
+      "Q": 121.41089,
+      "lng": 121.41089,
+      "lat": 29.662348
+    },
+    "level": "district",
+    "boundaries": [
+      {
+        "citycode": "0574",
+        "adcode": "330213",
+        "name": "锦屏街道",
+        "center": {
+          "P": 29.6601,
+          "Q": 121.35699999999997,
+          "lng": 121.357,
+          "lat": 29.6601
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330213",
+        "name": "西坞街道",
+        "center": {
+          "P": 29.7092,
+          "Q": 121.52800000000002,
+          "lng": 121.528,
+          "lat": 29.7092
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330213",
+        "name": "松岙镇",
+        "center": {
+          "P": 29.6098,
+          "Q": 121.65499999999997,
+          "lng": 121.655,
+          "lat": 29.6098
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330213",
+        "name": "溪口镇",
+        "center": {
+          "P": 29.6731,
+          "Q": 121.31299999999999,
+          "lng": 121.313,
+          "lat": 29.6731
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330213",
+        "name": "裘村镇",
+        "center": {
+          "P": 29.5964,
+          "Q": 121.57499999999999,
+          "lng": 121.575,
+          "lat": 29.5964
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330213",
+        "name": "莼湖镇",
+        "center": {
+          "P": 29.6248,
+          "Q": 121.553,
+          "lng": 121.553,
+          "lat": 29.6248
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330213",
+        "name": "岳林街道",
+        "center": {
+          "P": 29.6888,
+          "Q": 121.43299999999999,
+          "lng": 121.433,
+          "lat": 29.6888
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330213",
+        "name": "江口街道",
+        "center": {
+          "P": 29.7175,
+          "Q": 121.38499999999999,
+          "lng": 121.385,
+          "lat": 29.7175
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330213",
+        "name": "尚田镇",
+        "center": {
+          "P": 29.6226,
+          "Q": 121.36900000000003,
+          "lng": 121.369,
+          "lat": 29.6226
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330213",
+        "name": "大堰镇",
+        "center": {
+          "P": 29.5768,
+          "Q": 121.27999999999997,
+          "lng": 121.28,
+          "lat": 29.5768
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330213",
+        "name": "萧王庙街道",
+        "center": {
+          "P": 29.6967,
+          "Q": 121.40199999999999,
+          "lng": 121.402,
+          "lat": 29.6967
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330213",
+        "name": "方桥街道",
+        "center": {
+          "P": 29.7615,
+          "Q": 121.43099999999998,
+          "lng": 121.431,
+          "lat": 29.7615
+        },
+        "level": "street",
+        "boundaries": []
+      }
+    ]
+  },
+  {
+    "citycode": "0574",
+    "adcode": "330226",
+    "name": "宁海县",
+    "center": {
+      "P": 29.299836,
+      "Q": 121.43260600000002,
+      "lng": 121.432606,
+      "lat": 29.299836
+    },
+    "level": "district",
+    "boundaries": [
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "茶院乡",
+        "center": {
+          "P": 29.3564,
+          "Q": 121.53700000000003,
+          "lng": 121.537,
+          "lat": 29.3564
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "越溪乡",
+        "center": {
+          "P": 29.2691,
+          "Q": 121.50900000000001,
+          "lng": 121.509,
+          "lat": 29.2691
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "黄坛镇",
+        "center": {
+          "P": 29.3582,
+          "Q": 121.322,
+          "lng": 121.322,
+          "lat": 29.3582
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "长街镇",
+        "center": {
+          "P": 29.3017,
+          "Q": 121.74700000000001,
+          "lng": 121.747,
+          "lat": 29.3017
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "一市镇",
+        "center": {
+          "P": 29.2178,
+          "Q": 121.41899999999998,
+          "lng": 121.419,
+          "lat": 29.2178
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "前童镇",
+        "center": {
+          "P": 29.2714,
+          "Q": 121.303,
+          "lng": 121.303,
+          "lat": 29.2714
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "深甽镇",
+        "center": {
+          "P": 29.4631,
+          "Q": 121.38900000000001,
+          "lng": 121.389,
+          "lat": 29.4631
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "力洋镇",
+        "center": {
+          "P": 29.3888,
+          "Q": 121.596,
+          "lng": 121.596,
+          "lat": 29.3888
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "桑洲镇",
+        "center": {
+          "P": 29.1816,
+          "Q": 121.32499999999999,
+          "lng": 121.325,
+          "lat": 29.1816
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "胡陈乡",
+        "center": {
+          "P": 29.3783,
+          "Q": 121.685,
+          "lng": 121.685,
+          "lat": 29.3783
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "岔路镇",
+        "center": {
+          "P": 29.1605,
+          "Q": 121.25,
+          "lng": 121.25,
+          "lat": 29.1605
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "梅林街道",
+        "center": {
+          "P": 29.4101,
+          "Q": 121.39499999999998,
+          "lng": 121.395,
+          "lat": 29.4101
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "大佳何镇",
+        "center": {
+          "P": 29.4604,
+          "Q": 121.58100000000002,
+          "lng": 121.581,
+          "lat": 29.4604
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "桥头胡街道",
+        "center": {
+          "P": 29.3958,
+          "Q": 121.46699999999998,
+          "lng": 121.467,
+          "lat": 29.3958
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "跃龙街道",
+        "center": {
+          "P": 29.3139,
+          "Q": 121.363,
+          "lng": 121.363,
+          "lat": 29.3139
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "强蛟镇",
+        "center": {
+          "P": 29.4342,
+          "Q": 121.493,
+          "lng": 121.493,
+          "lat": 29.4342
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "西店镇",
+        "center": {
+          "P": 29.4651,
+          "Q": 121.382,
+          "lng": 121.382,
+          "lat": 29.4651
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330226",
+        "name": "桃源街道",
+        "center": {
+          "P": 29.3767,
+          "Q": 121.50799999999998,
+          "lng": 121.508,
+          "lat": 29.3767
+        },
+        "level": "street",
+        "boundaries": []
+      }
+    ]
+  },
+  {
+    "citycode": "0574",
+    "adcode": "330281",
+    "name": "余姚市",
+    "center": {
+      "P": 30.045404,
+      "Q": 121.156294,
+      "lng": 121.156294,
+      "lat": 30.045404
+    },
+    "level": "district",
+    "boundaries": [
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "黄家埠镇",
+        "center": {
+          "P": 30.1245,
+          "Q": 120.93700000000001,
+          "lng": 120.937,
+          "lat": 30.1245
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "三七市镇",
+        "center": {
+          "P": 30.0736,
+          "Q": 121.32499999999999,
+          "lng": 121.325,
+          "lat": 30.0736
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "鹿亭乡",
+        "center": {
+          "P": 29.8472,
+          "Q": 121.13900000000001,
+          "lng": 121.139,
+          "lat": 29.8472
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "牟山镇",
+        "center": {
+          "P": 30.0611,
+          "Q": 120.99200000000002,
+          "lng": 120.992,
+          "lat": 30.0611
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "低塘街道",
+        "center": {
+          "P": 30.1735,
+          "Q": 121.197,
+          "lng": 121.197,
+          "lat": 30.1735
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "丈亭镇",
+        "center": {
+          "P": 30.0703,
+          "Q": 121.24099999999999,
+          "lng": 121.241,
+          "lat": 30.0703
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "梁弄镇",
+        "center": {
+          "P": 29.9487,
+          "Q": 121.12299999999999,
+          "lng": 121.123,
+          "lat": 29.9487
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "四明山镇",
+        "center": {
+          "P": 29.7675,
+          "Q": 121.036,
+          "lng": 121.036,
+          "lat": 29.7675
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "朗霞街道",
+        "center": {
+          "P": 30.1634,
+          "Q": 121.07799999999997,
+          "lng": 121.078,
+          "lat": 30.1634
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "泗门镇",
+        "center": {
+          "P": 30.1912,
+          "Q": 120.97899999999998,
+          "lng": 120.979,
+          "lat": 30.1912
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "梨洲街道",
+        "center": {
+          "P": 29.9087,
+          "Q": 121.17200000000003,
+          "lng": 121.172,
+          "lat": 29.9087
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "临山镇",
+        "center": {
+          "P": 30.1468,
+          "Q": 120.964,
+          "lng": 120.964,
+          "lat": 30.1468
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "大岚镇",
+        "center": {
+          "P": 29.8405,
+          "Q": 121.12799999999999,
+          "lng": 121.128,
+          "lat": 29.8405
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "凤山街道",
+        "center": {
+          "P": 30.0917,
+          "Q": 121.18399999999997,
+          "lng": 121.184,
+          "lat": 30.0917
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "河姆渡镇",
+        "center": {
+          "P": 29.9358,
+          "Q": 121.351,
+          "lng": 121.351,
+          "lat": 29.9358
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "大隐镇",
+        "center": {
+          "P": 29.9112,
+          "Q": 121.29000000000002,
+          "lng": 121.29,
+          "lat": 29.9112
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "马渚镇",
+        "center": {
+          "P": 30.1253,
+          "Q": 121.02800000000002,
+          "lng": 121.028,
+          "lat": 30.1253
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "兰江街道",
+        "center": {
+          "P": 30.0162,
+          "Q": 121.05000000000001,
+          "lng": 121.05,
+          "lat": 30.0162
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "陆埠镇",
+        "center": {
+          "P": 29.9673,
+          "Q": 121.21600000000001,
+          "lng": 121.216,
+          "lat": 29.9673
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "小曹娥镇",
+        "center": {
+          "P": 30.2071,
+          "Q": 120.98500000000001,
+          "lng": 120.985,
+          "lat": 30.2071
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330281",
+        "name": "阳明街道",
+        "center": {
+          "P": 30.1217,
+          "Q": 121.09000000000003,
+          "lng": 121.09,
+          "lat": 30.1217
+        },
+        "level": "street",
+        "boundaries": []
+      }
+    ]
+  },
+  {
+    "citycode": "0574",
+    "adcode": "330212",
+    "name": "鄞州区",
+    "center": {
+      "P": 29.831662,
+      "Q": 121.55843600000003,
+      "lng": 121.558436,
+      "lat": 29.831662
+    },
+    "level": "district",
+    "boundaries": [
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "明楼街道",
+        "center": {
+          "P": 29.8902,
+          "Q": 121.57900000000001,
+          "lng": 121.579,
+          "lat": 29.8902
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "中河街道",
+        "center": {
+          "P": 29.8472,
+          "Q": 121.55899999999997,
+          "lng": 121.559,
+          "lat": 29.8472
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "首南街道",
+        "center": {
+          "P": 29.8108,
+          "Q": 121.51999999999998,
+          "lng": 121.52,
+          "lat": 29.8108
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "姜山镇",
+        "center": {
+          "P": 29.7052,
+          "Q": 121.488,
+          "lng": 121.488,
+          "lat": 29.7052
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "咸祥镇",
+        "center": {
+          "P": 29.7037,
+          "Q": 121.80599999999998,
+          "lng": 121.806,
+          "lat": 29.7037
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "钟公庙街道",
+        "center": {
+          "P": 29.8408,
+          "Q": 121.53399999999999,
+          "lng": 121.534,
+          "lat": 29.8408
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "塘溪镇",
+        "center": {
+          "P": 29.7099,
+          "Q": 121.702,
+          "lng": 121.702,
+          "lat": 29.7099
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "东钱湖镇",
+        "center": {
+          "P": 29.8198,
+          "Q": 121.65199999999999,
+          "lng": 121.652,
+          "lat": 29.8198
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "百丈街道",
+        "center": {
+          "P": 29.8694,
+          "Q": 121.565,
+          "lng": 121.565,
+          "lat": 29.8694
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "邱隘镇",
+        "center": {
+          "P": 29.8144,
+          "Q": 121.63900000000001,
+          "lng": 121.639,
+          "lat": 29.8144
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "东郊街道",
+        "center": {
+          "P": 29.8472,
+          "Q": 121.54599999999999,
+          "lng": 121.546,
+          "lat": 29.8472
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "瞻岐镇",
+        "center": {
+          "P": 29.7355,
+          "Q": 121.76300000000003,
+          "lng": 121.763,
+          "lat": 29.7355
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "下应街道",
+        "center": {
+          "P": 29.7909,
+          "Q": 121.60399999999998,
+          "lng": 121.604,
+          "lat": 29.7909
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "潘火街道",
+        "center": {
+          "P": 29.8306,
+          "Q": 121.59500000000003,
+          "lng": 121.595,
+          "lat": 29.8306
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "白鹤街道",
+        "center": {
+          "P": 29.8619,
+          "Q": 121.56299999999999,
+          "lng": 121.563,
+          "lat": 29.8619
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "东柳街道",
+        "center": {
+          "P": 29.8522,
+          "Q": 121.582,
+          "lng": 121.582,
+          "lat": 29.8522
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "东胜街道",
+        "center": {
+          "P": 29.8729,
+          "Q": 121.56100000000004,
+          "lng": 121.561,
+          "lat": 29.8729
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "横溪镇",
+        "center": {
+          "P": 29.6987,
+          "Q": 121.57999999999998,
+          "lng": 121.58,
+          "lat": 29.6987
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "东吴镇",
+        "center": {
+          "P": 29.8028,
+          "Q": 121.69600000000003,
+          "lng": 121.696,
+          "lat": 29.8028
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "五乡镇",
+        "center": {
+          "P": 29.8258,
+          "Q": 121.67099999999999,
+          "lng": 121.671,
+          "lat": 29.8258
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "新明街道",
+        "center": {
+          "P": 29.8871,
+          "Q": 121.60500000000002,
+          "lng": 121.605,
+          "lat": 29.8871
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "福明街道",
+        "center": {
+          "P": 29.8841,
+          "Q": 121.58100000000002,
+          "lng": 121.581,
+          "lat": 29.8841
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "云龙镇",
+        "center": {
+          "P": 29.751,
+          "Q": 121.61199999999997,
+          "lng": 121.612,
+          "lat": 29.751
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "聚贤街道",
+        "center": {
+          "P": 29.868,
+          "Q": 121.65699999999998,
+          "lng": 121.657,
+          "lat": 29.868
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330212",
+        "name": "梅墟街道",
+        "center": {
+          "P": 29.8787,
+          "Q": 121.65800000000002,
+          "lng": 121.658,
+          "lat": 29.8787
+        },
+        "level": "street",
+        "boundaries": []
+      }
+    ]
+  },
+  {
+    "citycode": "0574",
+    "adcode": "330203",
+    "name": "海曙区",
+    "center": {
+      "P": 29.874452,
+      "Q": 121.53969799999999,
+      "lng": 121.539698,
+      "lat": 29.874452
+    },
+    "level": "district",
+    "boundaries": [
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "鼓楼街道",
+        "center": {
+          "P": 29.8767,
+          "Q": 121.53899999999999,
+          "lng": 121.539,
+          "lat": 29.8767
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "古林镇",
+        "center": {
+          "P": 29.829,
+          "Q": 121.38900000000001,
+          "lng": 121.389,
+          "lat": 29.829
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "章水镇",
+        "center": {
+          "P": 29.8463,
+          "Q": 121.29700000000003,
+          "lng": 121.297,
+          "lat": 29.8463
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "龙观乡",
+        "center": {
+          "P": 29.8024,
+          "Q": 121.24700000000001,
+          "lng": 121.247,
+          "lat": 29.8024
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "集士港镇",
+        "center": {
+          "P": 29.8756,
+          "Q": 121.40699999999998,
+          "lng": 121.407,
+          "lat": 29.8756
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "洞桥镇",
+        "center": {
+          "P": 29.7882,
+          "Q": 121.38400000000001,
+          "lng": 121.384,
+          "lat": 29.7882
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "高桥镇",
+        "center": {
+          "P": 29.9023,
+          "Q": 121.43700000000001,
+          "lng": 121.437,
+          "lat": 29.9023
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "石碶街道",
+        "center": {
+          "P": 29.8055,
+          "Q": 121.45100000000002,
+          "lng": 121.451,
+          "lat": 29.8055
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "白云街道",
+        "center": {
+          "P": 29.8759,
+          "Q": 121.512,
+          "lng": 121.512,
+          "lat": 29.8759
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "南门街道",
+        "center": {
+          "P": 29.8716,
+          "Q": 121.52600000000001,
+          "lng": 121.526,
+          "lat": 29.8716
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "望春街道",
+        "center": {
+          "P": 29.8787,
+          "Q": 121.48599999999999,
+          "lng": 121.486,
+          "lat": 29.8787
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "月湖街道",
+        "center": {
+          "P": 29.8746,
+          "Q": 121.54000000000002,
+          "lng": 121.54,
+          "lat": 29.8746
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "鄞江镇",
+        "center": {
+          "P": 29.8251,
+          "Q": 121.39100000000002,
+          "lng": 121.391,
+          "lat": 29.8251
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "段塘街道",
+        "center": {
+          "P": 29.8477,
+          "Q": 121.51099999999997,
+          "lng": 121.511,
+          "lat": 29.8477
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "西门街道",
+        "center": {
+          "P": 29.9106,
+          "Q": 121.60699999999997,
+          "lng": 121.607,
+          "lat": 29.9106
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "江厦街道",
+        "center": {
+          "P": 29.8719,
+          "Q": 121.548,
+          "lng": 121.548,
+          "lat": 29.8719
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330203",
+        "name": "横街镇",
+        "center": {
+          "P": 29.9193,
+          "Q": 121.31,
+          "lng": 121.31,
+          "lat": 29.9193
+        },
+        "level": "street",
+        "boundaries": []
+      }
+    ]
+  },
+  {
+    "citycode": "0574",
+    "adcode": "330282",
+    "name": "慈溪市",
+    "center": {
+      "P": 30.177142,
+      "Q": 121.24805200000003,
+      "lng": 121.248052,
+      "lat": 30.177142
+    },
+    "level": "district",
+    "boundaries": [
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "慈东工业区",
+        "center": {
+          "P": 30.1257,
+          "Q": 121.54399999999998,
+          "lng": 121.544,
+          "lat": 30.1257
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "附海镇",
+        "center": {
+          "P": 30.2287,
+          "Q": 121.38599999999997,
+          "lng": 121.386,
+          "lat": 30.2287
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "慈溪市农垦场",
+        "center": {
+          "P": 30.2521,
+          "Q": 121.082,
+          "lng": 121.082,
+          "lat": 30.2521
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "胜山镇",
+        "center": {
+          "P": 30.2324,
+          "Q": 121.28899999999999,
+          "lng": 121.289,
+          "lat": 30.2324
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "新浦镇",
+        "center": {
+          "P": 30.2501,
+          "Q": 121.34100000000001,
+          "lng": 121.341,
+          "lat": 30.2501
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "逍林镇",
+        "center": {
+          "P": 30.161,
+          "Q": 121.31,
+          "lng": 121.31,
+          "lat": 30.161
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "古塘街道",
+        "center": {
+          "P": 30.2091,
+          "Q": 121.25799999999998,
+          "lng": 121.258,
+          "lat": 30.2091
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "观海卫镇",
+        "center": {
+          "P": 30.1894,
+          "Q": 121.375,
+          "lng": 121.375,
+          "lat": 30.1894
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "桥头镇",
+        "center": {
+          "P": 30.1656,
+          "Q": 121.33299999999997,
+          "lng": 121.333,
+          "lat": 30.1656
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "匡堰镇",
+        "center": {
+          "P": 30.1565,
+          "Q": 121.33799999999997,
+          "lng": 121.338,
+          "lat": 30.1565
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "横河镇",
+        "center": {
+          "P": 30.0656,
+          "Q": 121.22199999999998,
+          "lng": 121.222,
+          "lat": 30.0656
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "掌起镇",
+        "center": {
+          "P": 30.1601,
+          "Q": 121.49099999999999,
+          "lng": 121.491,
+          "lat": 30.1601
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "崇寿镇",
+        "center": {
+          "P": 30.278,
+          "Q": 121.32600000000002,
+          "lng": 121.326,
+          "lat": 30.278
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "浒山街道",
+        "center": {
+          "P": 30.1683,
+          "Q": 121.27300000000002,
+          "lng": 121.273,
+          "lat": 30.1683
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "宗汉街道",
+        "center": {
+          "P": 30.2503,
+          "Q": 121.21500000000003,
+          "lng": 121.215,
+          "lat": 30.2503
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "庵东镇",
+        "center": {
+          "P": 30.2468,
+          "Q": 121.12099999999998,
+          "lng": 121.121,
+          "lat": 30.2468
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "慈溪市林场",
+        "center": {
+          "P": 30.0986,
+          "Q": 121.351,
+          "lng": 121.351,
+          "lat": 30.0986
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "龙山镇",
+        "center": {
+          "P": 30.0729,
+          "Q": 121.46500000000003,
+          "lng": 121.465,
+          "lat": 30.0729
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "周巷镇",
+        "center": {
+          "P": 30.1749,
+          "Q": 121.10899999999998,
+          "lng": 121.109,
+          "lat": 30.1749
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "长河镇",
+        "center": {
+          "P": 30.2716,
+          "Q": 121.19900000000001,
+          "lng": 121.199,
+          "lat": 30.2716
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "白沙路街道",
+        "center": {
+          "P": 30.1696,
+          "Q": 121.26999999999998,
+          "lng": 121.27,
+          "lat": 30.1696
+        },
+        "level": "street",
+        "boundaries": []
+      },
+      {
+        "citycode": "0574",
+        "adcode": "330282",
+        "name": "坎墩街道",
+        "center": {
+          "P": 30.2365,
+          "Q": 121.233,
+          "lng": 121.233,
+          "lat": 30.2365
+        },
+        "level": "street",
+        "boundaries": []
+      }
+    ]
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "name": "aa",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.3.0"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.169",
+    "@types/node": "^15.3.0",
+    "@vitejs/plugin-vue": "^1.2.2",
+    "@vue/compiler-sfc": "^3.0.11",
+    "axios": "^0.21.1",
+    "echarts": "^5.1.1",
+    "element-plus": "^1.0.2-beta.44",
+    "less": "^4.1.1",
+    "lodash": "^4.17.21",
+    "swiper": "^6.7.0",
+    "vue": "^3.0.11",
+    "vue-router": "^4.0.8",
+    "vuedraggable": "^4.0.1",
+    "vuex": "^4.0.0",
+    "wangeditor": "^4.7.1"
+  }
+}
