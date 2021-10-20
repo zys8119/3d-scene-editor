@@ -1,5 +1,6 @@
 import {createRouter,createWebHashHistory} from "vue-router"
 import Empty from "../view/System/Layout/Empty.vue"
+import Layout from "../view/System/Layout/Layout.vue"
 export default createRouter({
     history:createWebHashHistory(),
     routes:[
@@ -8,12 +9,16 @@ export default createRouter({
             redirect:"/login",
         },
         {
+            path:"/login",
+            component:()=>import("../view/System/Login.vue")
+        },
+        {
             path:"/",
-            component:Empty,
+            component:Layout,
             children:[
                 {
-                    path:"login",
-                    component:()=>import("../view/System/Login.vue")
+                    path:"home",
+                    component:()=>import("../view/Home/Home.vue")
                 }
             ]
         }
