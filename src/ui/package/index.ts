@@ -17,6 +17,8 @@ import Print from  "./Print.vue"
 import Annotation from  "./Annotation.vue"
 import Transfer from  "./Transfer.vue"
 import TransferTree from  "./Transfer/TransferTree.vue"
+import Loading from  "./Loading.vue"
+import LayoutSplit from  "./LayoutSplit.vue"
 export default (vue:App)=>{
     vue.component("ContentTable", <any>ContentTable);
     vue.component("ContentTableItem", <any>ContentTableItem);
@@ -36,5 +38,7 @@ export default (vue:App)=>{
     vue.component("Annotation", <any>Annotation);
     vue.component("TransferTree", <any>TransferTree);
     vue.component("Transfer", <any>Transfer);
+    vue.component("Loading", <any>Loading);
+    vue.component("LayoutSplit", <any>LayoutSplit);
 }
 

@@ -12,3 +12,5 @@ export { default as Print } from "./UiTypes/Print";
 export { default as Annotation } from "./UiTypes/Annotation";
 export { default as TransferTree } from "./UiTypes/TransferTree";
 export { default as Transfer } from "./UiTypes/Transfer";
+export { default as Loading } from "./UiTypes/Loading";
+export { default as LayoutSplit } from "./UiTypes/LayoutSplit";
