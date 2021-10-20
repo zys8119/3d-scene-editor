@@ -5,6 +5,9 @@
             <div class="load">
                 <div v-for="(it,k) in arr" :key="k">{{it}}</div>
             </div>
+            <div class="footer">
+                <slot name="footer"></slot>
+            </div>
         </slot>
     </div>
 </template>
@@ -44,19 +47,6 @@ export default {
         font-weight: bold;
         text-shadow: 0 4px 3px #94979a;
         animation: focus-in-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-        @keyframes focus-in-expand {
-            0% {
-                letter-spacing: -0.5em;
-                -webkit-filter: blur(12px);
-                filter: blur(12px);
-                opacity: 0;
-            }
-            100% {
-                -webkit-filter: blur(0px);
-                filter: blur(0px);
-                opacity: 1;
-            }
-        }
     }
     .load {
         position: fixed;
@@ -67,6 +57,21 @@ export default {
         overflow: visible;
         user-select: none;
         cursor: default;
+    }
+    .footer{
+        position: fixed;
+        width: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        overflow: visible;
+        user-select: none;
+        cursor: default;
+        animation: focus-in-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 150px;
     }
 
     .load div {
@@ -106,6 +111,19 @@ export default {
     .init(21);
     .init(22);
 
+    @keyframes focus-in-expand {
+        0% {
+            letter-spacing: -0.5em;
+            -webkit-filter: blur(12px);
+            filter: blur(12px);
+            opacity: 0;
+        }
+        100% {
+            -webkit-filter: blur(0px);
+            filter: blur(0px);
+            opacity: 1;
+        }
+    }
 
     @keyframes move {
         0% {

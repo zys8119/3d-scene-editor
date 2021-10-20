@@ -5,6 +5,7 @@ const Loading:DefineComponent<{
 },any,any,any, {
 }, {
     default?():VNode | VNode[];
+    footer?():VNode | VNode[];
 },any, {
 
 },any,any,any, any> = {};
