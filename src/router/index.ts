@@ -15,6 +15,7 @@ export default createRouter({
         {
             path:"/",
             component:Layout,
+            redirect:"/login",
             children:[
                 {
                     path:"home",
