@@ -67,6 +67,7 @@
 |- ViteCconfig ------//Vite业务配置
     |- plug ------//插件
         |- lessPlug.ts ------//less插件，实现vue文件lees全局变量注入插件
+        |- htmlTransformPlug.ts ------//对index.html的相关处理
 |- .gitignore ------//git忽略
 |- declare.ts ------//全局声明
 |- favicon.svg ------//favicon
