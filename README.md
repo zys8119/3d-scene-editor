@@ -4,8 +4,21 @@
 
 ## 使用必读
 
-* 维护业务层的组员需要关注的目录
-* 除关注以外的项目资源视为项目底层，无权限人员禁止修改，如果修改请提交项目PR或联系相关管理人员
+> 1、维护业务层的组员需要关注的目录<br/>
+> D:\work\vue3-framework\src\api\api.ts
+> D:\work\vue3-framework\src\assets
+> D:\work\vue3-framework\src\data
+> D:\work\vue3-framework\src\directive
+> D:\work\vue3-framework\src\router
+> D:\work\vue3-framework\src\store\airforceStateInit.ts
+> D:\work\vue3-framework\src\store\index.ts
+> D:\work\vue3-framework\src\ui\package\UiTypes
+> D:\work\vue3-framework\src\ui\package\ui.ts
+> D:\work\vue3-framework\src\utils\index.ts
+> D:\work\vue3-framework\src\view
+> D:\work\vue3-framework\src\App.vue
+
+> 2、除关注以外的项目资源视为项目底层，无权限人员禁止修改，如果修改请提交项目PR或联系相关管理人员
 
 ## 目录说明
 
