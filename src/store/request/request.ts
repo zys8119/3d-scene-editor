@@ -121,7 +121,7 @@ class AxiosClass implements AxiosClassInterface{
 export default class request{
     constructor(requestBaseOptions:WindowCommonAxiosRequestConfig) {
         window.common = {
-            postUrl:"https://snpctest.zhijiasoft.com",
+            postUrl:"/",
             Axios:(options:WindowCommonAxiosRequestConfig)=>(<any>new AxiosClass(_.merge(requestBaseOptions || {}, options))),
             baseURL(){
                 // @ts-ignore

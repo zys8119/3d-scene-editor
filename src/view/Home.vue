@@ -215,6 +215,9 @@ export default {
         //     {name:"asdada", b:"阿松大萨达阿萨阿松大萨达阿萨阿松大萨达阿萨阿松大萨达阿萨阿松大萨达阿萨阿松大萨达阿萨阿松大萨达阿萨",c:{b:{a:"阿萨大大"}}},
         // ];
         this.$refs.table.init();
+        this.axios({
+            url:"/aaa",
+        })
     },
     methods:{
         selection(v,row,item){

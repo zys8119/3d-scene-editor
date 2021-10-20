@@ -9,6 +9,10 @@ import airforcePlug from "./src/store/plug/airforcePlug"
 import alertPlug from "./src/store/plug/alertPlug"
 import uiPlug from "./src/ui"
 import apiPlug from "./src/api"
+import "./src/mock/index"
+if(import.meta.env.DEV){
+    window.baseURL = "/"
+}
 createApp(<any>App)
     .use(ElementPlus,{locale})
     .use(router)
