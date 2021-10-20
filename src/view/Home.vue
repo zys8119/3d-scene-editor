@@ -217,6 +217,8 @@ export default {
         this.$refs.table.init();
         this.axios({
             url:"/aaa",
+        }).then(res=>{
+            console.log(res.data)
         })
     },
     methods:{
