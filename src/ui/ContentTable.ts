@@ -102,10 +102,12 @@ export default <ComponentOptions<ContentTable>>{
                         this.currentPagination_pageNo = 1;
                         this.$nextTick(()=>{
                             this.currentPagination_pageNo = currentPagination_pageNo;
+                            // @ts-ignore
                             resolve();
                         });
                     }else {
                         this.currentPagination_pageNo = 1;
+                        // @ts-ignore
                         resolve();
                     }
                 });
