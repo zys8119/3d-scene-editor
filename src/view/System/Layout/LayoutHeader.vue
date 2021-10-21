@@ -28,7 +28,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1px @unit20;
+    padding: 8px @unit20;
     border-bottom: 1px solid #e3e7ec;
     .Logo{
         display: flex;

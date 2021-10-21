@@ -342,148 +342,10 @@
       }
     },
     "esbuild": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild/download/esbuild-0.13.8.tgz",
-      "integrity": "sha1-vXzFG4gasGd4n4jhe6ynRyTB7E8=",
-      "dev": true,
-      "requires": {
-        "esbuild-android-arm64": "0.13.8",
-        "esbuild-darwin-64": "0.13.8",
-        "esbuild-darwin-arm64": "0.13.8",
-        "esbuild-freebsd-64": "0.13.8",
-        "esbuild-freebsd-arm64": "0.13.8",
-        "esbuild-linux-32": "0.13.8",
-        "esbuild-linux-64": "0.13.8",
-        "esbuild-linux-arm": "0.13.8",
-        "esbuild-linux-arm64": "0.13.8",
-        "esbuild-linux-mips64le": "0.13.8",
-        "esbuild-linux-ppc64le": "0.13.8",
-        "esbuild-netbsd-64": "0.13.8",
-        "esbuild-openbsd-64": "0.13.8",
-        "esbuild-sunos-64": "0.13.8",
-        "esbuild-windows-32": "0.13.8",
-        "esbuild-windows-64": "0.13.8",
-        "esbuild-windows-arm64": "0.13.8"
-      }
-    },
-    "esbuild-android-arm64": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-android-arm64/download/esbuild-android-arm64-0.13.8.tgz",
-      "integrity": "sha1-wg6HXDyYFksf+6myhje9+W9ennw=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-darwin-64": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-darwin-64/download/esbuild-darwin-64-0.13.8.tgz",
-      "integrity": "sha1-9G5rRx3b9iJlI0gIpqGqkd8YpBc=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-darwin-arm64": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-darwin-arm64/download/esbuild-darwin-arm64-0.13.8.tgz",
-      "integrity": "sha1-qZEVemAT+s1PLhQVm32lJibJAVQ=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-freebsd-64": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-freebsd-64/download/esbuild-freebsd-64-0.13.8.tgz",
-      "integrity": "sha1-MBYB0uRDrUWJYONZtAKhfZUAvp0=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-freebsd-arm64": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-freebsd-arm64/download/esbuild-freebsd-arm64-0.13.8.tgz",
-      "integrity": "sha1-A5pjrMEuwIkgBsFH6iIeVfkSWp8=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-linux-32": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-linux-32/download/esbuild-linux-32-0.13.8.tgz",
-      "integrity": "sha1-xTe2fX5pS2C/onhlgUEoOMa6AoQ=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-linux-64": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-linux-64/download/esbuild-linux-64-0.13.8.tgz",
-      "integrity": "sha1-AJL8igZAAad3v6DjtCW7i+j5bmo=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-linux-arm": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-linux-arm/download/esbuild-linux-arm-0.13.8.tgz",
-      "integrity": "sha1-rWNPlr8pdVNpB665/bdaMZT03c4=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-linux-arm64": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-linux-arm64/download/esbuild-linux-arm64-0.13.8.tgz",
-      "integrity": "sha1-XNPyu5JCEpcUgujbwlxK/QmygRA=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-linux-mips64le": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-linux-mips64le/download/esbuild-linux-mips64le-0.13.8.tgz",
-      "integrity": "sha1-V4V+3+v5v2V2bci+FjfyF5yZBXI=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-linux-ppc64le": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-linux-ppc64le/download/esbuild-linux-ppc64le-0.13.8.tgz",
-      "integrity": "sha1-/bgqBZpbhrsQ+0IJG0689Ii5zUY=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-netbsd-64": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-netbsd-64/download/esbuild-netbsd-64-0.13.8.tgz",
-      "integrity": "sha1-14eecSPTssBHVOzovQYapoZt7v8=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-openbsd-64": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-openbsd-64/download/esbuild-openbsd-64-0.13.8.tgz",
-      "integrity": "sha1-iLKAtssKP2rbYKvyf8UGxQajXPA=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-sunos-64": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-sunos-64/download/esbuild-sunos-64-0.13.8.tgz",
-      "integrity": "sha1-Iprnx3AxlqWKzQ8Cka2b69qBXWM=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-windows-32": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-windows-32/download/esbuild-windows-32-0.13.8.tgz",
-      "integrity": "sha1-iS0JPjKiHAyRNeWg/9w4Cutw52M=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-windows-64": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-windows-64/download/esbuild-windows-64-0.13.8.tgz",
-      "integrity": "sha1-fe/Y15rju35vU7ZacZC+fa+QFoY=",
-      "dev": true,
-      "optional": true
-    },
-    "esbuild-windows-arm64": {
-      "version": "0.13.8",
-      "resolved": "https://r.cnpmjs.org/esbuild-windows-arm64/download/esbuild-windows-arm64-0.13.8.tgz",
-      "integrity": "sha1-5ZrgBElv2KWrZ7/HlFouR0gNb7k=",
-      "dev": true,
-      "optional": true
+      "version": "0.11.23",
+      "resolved": "https://r.cnpmjs.org/esbuild/download/esbuild-0.11.23.tgz",
+      "integrity": "sha1-xCU09jLhZRIGcdZNtniDY0MztLg=",
+      "dev": true
     },
     "estree-walker": {
       "version": "2.0.2",
@@ -910,16 +772,16 @@
       "integrity": "sha1-gNW1ztJxu5r2xEXyGhoExgbO++I="
     },
     "vite": {
-      "version": "2.6.0",
-      "resolved": "https://r.cnpmjs.org/vite/download/vite-2.6.0.tgz",
-      "integrity": "sha1-kTkt5RiCV+JvxMDdn7kdf8rSpy0=",
+      "version": "2.3.0",
+      "resolved": "https://r.cnpmjs.org/vite/download/vite-2.3.0.tgz",
+      "integrity": "sha1-ArAHx6pKyIzBj4VLnGjk++duPvQ=",
       "dev": true,
       "requires": {
-        "esbuild": "^0.13.2",
-        "fsevents": "~2.3.2",
-        "postcss": "^8.3.8",
-        "resolve": "^1.20.0",
-        "rollup": "^2.57.0"
+        "esbuild": "^0.11.19",
+        "fsevents": "~2.3.1",
+        "postcss": "^8.2.1",
+        "resolve": "^1.19.0",
+        "rollup": "^2.38.5"
       }
     },
     "vue": {
