@@ -1,8 +1,11 @@
 <template>
     <div class="Layout">
         <LayoutHeader></LayoutHeader>
+        <LayoutNav></LayoutNav>
         <div class="LayoutContainer">
-            <LayoutNav></LayoutNav>
+            <div class="LayoutContainerBox">
+
+            </div>
             <router-view></router-view>
         </div>
 <!--        <Loading class="LayoutLoading" v-if="show"></Loading>-->
@@ -30,5 +33,13 @@ export default {
 
 <style scoped lang="less">
 .Layout{
+    .LayoutContainer{
+        position: fixed;
+        top: @LayoutHeader;
+        right: 0;
+        width: calc(100% - @LayoutNav);
+        height: 100%;
+        overflow-x: hidden;
+    }
 }
 </style>
