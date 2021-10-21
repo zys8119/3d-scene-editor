@@ -9,8 +9,11 @@ import airforcePlug from "./src/store/plug/airforcePlug"
 import alertPlug from "./src/store/plug/alertPlug"
 import uiPlug from "./src/ui"
 import apiPlug from "./src/api"
+import "./src/assets/less/style.less"
 import "./src/mock/index"
+// @ts-ignore
 if(import.meta.env.DEV){
+    // @ts-ignore
     window.baseURL = "/"
 }
 createApp(<any>App)

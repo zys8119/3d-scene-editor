@@ -5,7 +5,7 @@
             <LayoutNav></LayoutNav>
             <router-view></router-view>
         </div>
-        <Loading class="LayoutLoading" v-if="show"></Loading>
+<!--        <Loading class="LayoutLoading" v-if="show"></Loading>-->
     </div>
 </template>
 
