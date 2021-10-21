@@ -15,7 +15,11 @@
 
 <script lang="ts">
 export default {
-    name: "LayoutHeader"
+    name: "LayoutHeader",
+    data(){
+        return {
+        }
+    }
 }
 </script>
 
@@ -24,7 +28,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px @unit20;
+    padding: 1px @unit20;
     border-bottom: 1px solid #e3e7ec;
     .Logo{
         display: flex;

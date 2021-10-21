@@ -30,8 +30,5 @@ export default {
 
 <style scoped lang="less">
 .Layout{
-    .LayoutLoading{
-        background-color: #ffffff;
-    }
 }
 </style>
