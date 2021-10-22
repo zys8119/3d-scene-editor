@@ -4,7 +4,7 @@ class mockData {
     userId = uuid();
     constructor(){
 
-    };
+    }
     success(data){
         return {
             code:0,
