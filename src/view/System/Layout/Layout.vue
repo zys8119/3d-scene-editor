@@ -4,9 +4,8 @@
         <LayoutNav></LayoutNav>
         <div class="LayoutContainer">
             <div class="LayoutContainerBox">
-
+                <router-view v-if="airforce.reload"></router-view>
             </div>
-            <router-view></router-view>
         </div>
 <!--        <Loading class="LayoutLoading" v-if="show"></Loading>-->
     </div>

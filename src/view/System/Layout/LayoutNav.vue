@@ -76,9 +76,24 @@ export default {
         },
         nodeClick(data){
             if((!data[this.airforce.navMenusConfig.prop.children] || data[this.airforce.navMenusConfig.prop.children].length === 0) && data.path){
-                this.$router.push({
+                if(/^(http|\/\/\:)/.test(data.path)){
+                    window.open(data.path)
+                    return;
+                }
+                const conifg = {
                     path:data.path,
-                })
+                    query:this.$router.resolve(data.path).query
+                }
+                this.$router.push(conifg).then((err)=>{
+                    if(err && err.type === 16){
+                        console.log(err)
+                        // 重复导航
+                        this.airforce.input("reload", false)
+                        this.$nextTick(()=>{
+                            this.airforce.input("reload", true)
+                        })
+                    }
+                });
             }
         }
     }

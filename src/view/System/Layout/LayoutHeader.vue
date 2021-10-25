@@ -6,23 +6,26 @@
                 {{ airforce.docTitle }}
             </div>
             <div class="LayoutHeaderContent">
-                <div class="LayoutHeaderContentItem iconfont"
-                     v-for="(item,key) in airforce.LayoutHeaderConfig.btns"
-                     v-html="item.icon"
-                     @click.stop="(e)=>typeof item.click === 'function' ? item.click.call(vm,e, item) :void (0)"
-                     :title="item.name"
-                     :key="key" ></div>
+                <template v-for="(item,key) in airforce.LayoutHeaderConfig.btns" :key="key" >
+                    <div class="LayoutHeaderContentItem iconfont"
+                         v-html="item.icon"
+                         @click.stop="(e)=>typeof item.click === 'function' ? item.click.call(vm,e, item) :void (0)"
+                         :title="item.name"
+                         v-if="typeof item.show === 'function' ? item.show.call(vm, item) : true"
+                    ></div>
+                </template>
                 <div class="LayoutHeaderContentItem iconfont" v-if="airforce.userInfo">
                     <el-dropdown>
                         <img class="img" :src="airforce.userInfo.avatar"/>
                         <template #dropdown>
                             <el-dropdown-menu>
-                                <el-dropdown-item :divided="item.divided"
-                                                  v-for="(item,key) in airforce.LayoutHeaderConfig.dropdown"
-                                                  :key="key"
-                                                  v-if="true"
-                                                  @click.stop="(e)=>typeof item.click === 'function' ? item.click.call(vm,e, item) :void (0)"
-                                >{{typeof item.name === 'function' ? item.name.call(vm, item) : item.name}}</el-dropdown-item>
+                                <template v-for="(item,key) in airforce.LayoutHeaderConfig.dropdown"
+                                          :key="key">
+                                    <el-dropdown-item :divided="item.divided"
+                                                      v-if="typeof item.show === 'function' ? item.show.call(vm, item) : true"
+                                                      @click.stop="(e)=>typeof item.click === 'function' ? item.click.call(vm,e, item) :void (0)"
+                                    >{{typeof item.name === 'function' ? item.name.call(vm, item) : item.name}}</el-dropdown-item>
+                                </template>
                             </el-dropdown-menu>
                         </template>
                     </el-dropdown>
@@ -50,7 +53,7 @@ export default {
                 return res.data;
             }
         })
-    }
+    },
 }
 </script>
 

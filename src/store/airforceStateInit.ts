@@ -21,9 +21,8 @@ export default <airforceStateInit>{
     LayoutHeaderConfig:{
         btns:[
             {icon:"&#xe607;", click(){
-                console.log(this,this.airforce)
+                console.log(this)
             }},
-            {icon:"&#xe607;", name:"我是测试按钮"},
         ],
         dropdown:[
             {name(){return this.airforce.userInfo.name}},
@@ -36,6 +35,7 @@ export default <airforceStateInit>{
     routePath:[],
     hideHeader:false,
     hideNav:false,
+    reload:true,
 }
 
 export interface airforceStateInit {
@@ -48,6 +48,7 @@ export interface airforceStateInit {
     routePath:any[];// 当前路由深度
     hideHeader:boolean;// 是否显示头部
     hideNav:boolean;// 是否显示菜单导航
+    reload:boolean;// 是否重新加载入口
 }
 
 export interface LayoutHeaderConfig {

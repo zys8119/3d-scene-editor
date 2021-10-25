@@ -10,6 +10,11 @@
 <script lang="ts">
 export default {
     name: "App",
+    data(){
+        return {
+            a:1222
+        }
+    },
     created() {
         window._this = this;
     },
@@ -18,6 +23,6 @@ export default {
 
 <style scoped lang="less">
 .App{
-    
+
 }
 </style>

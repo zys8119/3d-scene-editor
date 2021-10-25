@@ -9,6 +9,7 @@
 export default {
     name: "Test",
     mounted() {
+        console.log(Date.now())
     }
 }
 </script>

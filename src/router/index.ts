@@ -24,6 +24,10 @@ export default createRouter({
                 {
                     path:"test",
                     component:()=>import("../view/Test/Test.vue")
+                },
+                {
+                    path:"iframe",
+                    component:()=>import("../view/System/iframePage.vue")
                 }
             ]
         }

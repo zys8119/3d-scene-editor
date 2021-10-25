@@ -77,6 +77,18 @@ class mockData {
                         },
                     ]
                 },
+                {
+                    path:"/iframe?url="+encodeURIComponent("http://www.baidu.com"),
+                    name:"打开百度",
+                    id:uuid(),
+                    is_child_page:1,
+                },
+                {
+                    path:"https://www.baidu.com",
+                    name:"新窗口打开百度",
+                    id:uuid(),
+                    is_child_page:1,
+                },
             ]
         })
     }
