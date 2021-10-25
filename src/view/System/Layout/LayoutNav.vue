@@ -86,7 +86,6 @@ export default {
                 }
                 this.$router.push(conifg).then((err)=>{
                     if(err && err.type === 16){
-                        console.log(err)
                         // 重复导航
                         this.airforce.input("reload", false)
                         this.$nextTick(()=>{
