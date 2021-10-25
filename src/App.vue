@@ -9,6 +9,15 @@ export default {
     name: "App",
     created() {
         window._this = this;
+    },
+    mounted() {
+        this.axios({
+            url:"/getUserInfo",
+            method:"get",
+            ModuleName:"userInfo"
+        }).then(res=>{
+            console.log(res)
+        })
     }
 }
 </script>

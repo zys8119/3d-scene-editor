@@ -1,7 +1,7 @@
 import {Module} from "vuex"
 import store from "./index"
 import _ from "lodash"
-import airforceStateInit from "./airforceStateInit"
+import airforceStateInit,{getters} from "./airforceStateInit"
 import {windowCommon,WindowCommonAxiosRequestConfig} from "./request/AxiosClassInterface"
 declare const window:windowCommon;
 export type airforceStateType =  {
@@ -80,8 +80,9 @@ export default <Module<any,any>>{
                 if(options.ModuleName){
                     injectee.state.input(options.ModuleName, undefined);
                 }
-                return err;
+                return Promise.reject(err);
             })
         }
-    }
+    },
+    getters:getters || {}
 }
