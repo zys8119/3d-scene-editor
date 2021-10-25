@@ -5,9 +5,6 @@
 <script>
 export default {
     name: "iframePage",
-    mounted() {
-        console.log(111)
-    }
 }
 </script>
 
