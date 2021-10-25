@@ -11,11 +11,15 @@ import uiPlug from "./src/ui"
 import apiPlug from "./src/api"
 import "./src/assets/less/style.less"
 import "./src/mock/index"
+import Devtools from "./src/store/plug/Devtools"
 // @ts-ignore
 if(import.meta.env.DEV){
     // @ts-ignore
     window.baseURL = "/"
 }
+router.beforeEach((to, from, next) => {
+    next();
+})
 createApp(<any>App)
     .use(ElementPlus,{locale})
     .use(router)
@@ -24,4 +28,5 @@ createApp(<any>App)
     .use(alertPlug)
     .use(uiPlug)
     .use(apiPlug)
+    .use(Devtools)
     .mount("#app")

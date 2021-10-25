@@ -2,14 +2,31 @@
     <div class="LayoutHeader">
         <div class="LayoutHeaderBox">
             <div class="Logo">
-                <span>阅</span>
-                无纸化会议系统
+                <span v-if="airforce.logo">{{airforce.logo}}</span>
+                {{ airforce.docTitle }}
             </div>
             <div class="LayoutHeaderContent">
-                <div class="LayoutHeaderContentItem iconfont">&#xe607;</div>
-                <div class="LayoutHeaderContentItem iconfont">&#xe607;</div>
-                <div class="LayoutHeaderContentItem iconfont">&#xe607;</div>
-                <div class="LayoutHeaderContentItem iconfont img">牛逼</div>
+                <div class="LayoutHeaderContentItem iconfont"
+                     v-for="(item,key) in airforce.LayoutHeaderConfig.btns"
+                     v-html="item.icon"
+                     @click.stop="(e)=>typeof item.click === 'function' ? item.click.call(vm,e, item) :void (0)"
+                     :title="item.name"
+                     :key="key" ></div>
+                <div class="LayoutHeaderContentItem iconfont" v-if="airforce.userInfo">
+                    <el-dropdown>
+                        <img class="img" :src="airforce.userInfo.avatar"/>
+                        <template #dropdown>
+                            <el-dropdown-menu>
+                                <el-dropdown-item :divided="item.divided"
+                                                  v-for="(item,key) in airforce.LayoutHeaderConfig.dropdown"
+                                                  :key="key"
+                                                  v-if="true"
+                                                  @click.stop="(e)=>typeof item.click === 'function' ? item.click.call(vm,e, item) :void (0)"
+                                >{{typeof item.name === 'function' ? item.name.call(vm, item) : item.name}}</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </template>
+                    </el-dropdown>
+                </div>
             </div>
         </div>
     </div>
@@ -20,7 +37,19 @@ export default {
     name: "LayoutHeader",
     data(){
         return {
+            vm:this,
         }
+    },
+    mounted() {
+        this.axios({
+            url:"/getUserInfo",
+            method:"get",
+            ModuleName:"userInfo",
+            ModuleFilter(res) {
+                sessionStorage.setItem("userInfo", JSON.stringify(res.data));
+                return res.data;
+            }
+        })
     }
 }
 </script>
@@ -34,6 +63,7 @@ export default {
     height: @LayoutHeader;
     overflow: hidden;
     border-bottom: 1px solid #e3e7ec;
+    transition: @transition;
     .LayoutHeaderBox{
         display: flex;
         justify-content: center;
@@ -69,21 +99,18 @@ export default {
                 font-size: 16px;
                 color:#606C80;
                 cursor: pointer;
+                user-select: none;
                 &:hover{
                     color: @themeColor;
                 }
                 &+.LayoutHeaderContentItem{
                     margin-left: 34px;
                 }
-                &.img{
+                .img{
                     width: 30px;
                     height: 30px;
-                    font-size: 12px;
                     background-color: #636e81;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: #ffffff;
+                    object-fit:cover;
                 }
             }
         }

@@ -27,7 +27,7 @@ export default {
         setTimeout(()=>{
             this.show = false;
         },1500)
-    }
+    },
 }
 </script>
 
@@ -38,8 +38,9 @@ export default {
         top: @LayoutHeader;
         right: 0;
         width: calc(100% - @LayoutNav);
-        height: 100%;
+        height: calc(100% -  @LayoutHeader);
         overflow-x: hidden;
+        transition: @transition;
     }
 }
 </style>

@@ -46,7 +46,10 @@ export default {
     },
     computed:{
         findPath(){
-            const findPath = this.$utils.findPath(this.$store.getters.navMenus,{path:this.$route.path},this.airforce.navMenusConfig.prop.children);
+            const findPath = this.$utils.findPath(this.$store.getters.navMenus,{
+                path:this.$route.path
+            },this.airforce.navMenusConfig.prop.children);
+            this.airforce.input("routePath",findPath || []);
             return findPath;
         },
         defaultExpandedKeys(){
@@ -72,7 +75,11 @@ export default {
             })
         },
         nodeClick(data){
-            console.log(data)
+            if((!data[this.airforce.navMenusConfig.prop.children] || data[this.airforce.navMenusConfig.prop.children].length === 0) && data.path){
+                this.$router.push({
+                    path:data.path,
+                })
+            }
         }
     }
 }
@@ -87,6 +94,7 @@ export default {
     width: @LayoutNav;
     overflow-x: hidden;
     background-color: @bj-color;
+    transition: @transition;
     .LayoutNavBox{
         .LayoutNavTitle{
             font-size: 18px;

@@ -51,7 +51,14 @@ class mockData {
                     children:[
                         {
                             path:"/home",
-                            name:"会议管理",
+                            name:"首页测试",
+                            icon:"&#xe607;",
+                            id:uuid(),
+                            is_child_page:1,
+                        },
+                        {
+                            path:"/test",
+                            name:"测试页面",
                             icon:"&#xe607;",
                             id:uuid(),
                             is_child_page:1,

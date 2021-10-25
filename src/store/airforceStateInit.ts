@@ -4,6 +4,7 @@ export default <airforceStateInit>{
     test(...args) {
         console.log(...args)
     },
+    logo:"阅",
     docTitle:"vue3的基础框架仓库",
     navMenusConfig:{
         prop:{
@@ -17,14 +18,52 @@ export default <airforceStateInit>{
             "node-key":'id',
         }
     },
+    LayoutHeaderConfig:{
+        btns:[
+            {icon:"&#xe607;", click(){
+                console.log(this,this.airforce)
+            }},
+            {icon:"&#xe607;", name:"我是测试按钮"},
+        ],
+        dropdown:[
+            {name(){return this.airforce.userInfo.name}},
+            {name:"退出登录", divided:true, click(args: any[]) {
+                console.log(args)
+            }}
+        ]
+    },
     userInfo:{},
+    routePath:[],
+    hideHeader:false,
+    hideNav:false,
 }
 
 export interface airforceStateInit {
     test?(...args:any[]):void;// 测试函数.
     docTitle?:string;// 文档标题.
     navMenusConfig: navMenusConfig;// 左侧菜单配置
+    LayoutHeaderConfig: LayoutHeaderConfig;// 头部配置
     userInfo:userInfo;// 用户信息
+    logo:string;// 标志
+    routePath:any[];// 当前路由深度
+    hideHeader:boolean;// 是否显示头部
+    hideNav:boolean;// 是否显示菜单导航
+}
+
+export interface LayoutHeaderConfig {
+    btns:LayoutHeaderConfigBtns[]
+    dropdown:LayoutHeaderConfigDropdown[]
+}
+
+export interface LayoutHeaderConfigBtns{
+    icon?:string;
+    click?(this:any, args:any[]):void;
+    show?:((this:any, args:any[])=>any);
+}
+
+export  interface LayoutHeaderConfigDropdown  extends  LayoutHeaderConfigBtns{
+    divided?:boolean;
+    name?:string | ((this:any, args:any[])=>any);
 }
 
 export interface userInfo{
@@ -52,6 +91,10 @@ export type navMenusConfig = {
 
 export const getters:GetterTree<any,any> = {
     navMenus(s){
-        return  s?.userInfo?.data?.menus || []
+        return  s?.userInfo?.menus || []
+    },
+    currentRoute(s){
+        const routePath = s.routePath || [];
+        return routePath[routePath.length - 1]
     }
 }

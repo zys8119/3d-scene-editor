@@ -1,5 +1,8 @@
 <template>
-    <div class="App">
+    <div class="App" :class="{
+        hideNav:airforce.hideNav,
+        hideHeader:airforce.hideHeader,
+    }">
         <router-view></router-view>
     </div>
 </template>
@@ -10,17 +13,11 @@ export default {
     created() {
         window._this = this;
     },
-    mounted() {
-        this.axios({
-            url:"/getUserInfo",
-            method:"get",
-            ModuleName:"userInfo"
-        })
-    }
 }
 </script>
 
 <style scoped lang="less">
 .App{
+    
 }
 </style>

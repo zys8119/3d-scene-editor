@@ -1,0 +1,25 @@
+#app{
+  .App{
+    &.hideHeader{
+      .LayoutHeader{
+        display:none;
+      }
+      .LayoutNav{
+        top: 0;
+        height: 100%;
+      }
+      .LayoutContainer{
+        top: 0;
+        height: 100%;
+      }
+    }
+    &.hideNav{
+      .LayoutNav{
+        display:none;
+      }
+      .LayoutContainer{
+        width:100%;
+      }
+    }
+  }
+}
