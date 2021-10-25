@@ -103,8 +103,8 @@ export default {
 .LayoutNav{
     position: fixed;
     left: 0;
-    top:  @LayoutHeader;
-    height: calc(100% -  @LayoutHeader);
+    top:  @LayoutHeader + 1px;
+    height: calc(100% - @LayoutHeader - 1px);
     width: @LayoutNav;
     overflow-x: hidden;
     background-color: @bj-color;
