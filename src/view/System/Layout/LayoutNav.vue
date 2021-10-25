@@ -3,12 +3,15 @@
         <div class="LayoutNavBox">
             <div class="LayoutNavTitle">无纸化山东版本</div>
             <el-tree class="el-tree"
+                     v-if="show"
                      :data="$store.getters.navMenus"
                      :props="airforce.navMenusConfig.prop"
                      v-bind="airforce.navMenusConfig.bind"
+                     :default-expanded-keys="defaultExpandedKeys"
+                     :current-node-key="currentNodeKey"
+                     @node-click="nodeClick"
             >
                 <template #default="{node,data}">
-                    {{airforce.test(node,data)}}
                     <div class="LayoutNavItem" :style="{paddingLeft: `${(node.level - 1) * 18}px`}">
                         <div class="LayoutNavItemBox">
                             <template v-if="data.icon && airforce.navMenusConfig.showIcon">
@@ -33,12 +36,45 @@
 </template>
 
 <script lang="ts">
+
 export default {
     name: "LayoutNav",
     data(){
         return {
+            show:true,
         }
     },
+    computed:{
+        findPath(){
+            const findPath = this.$utils.findPath(this.$store.getters.navMenus,{path:this.$route.path},this.airforce.navMenusConfig.prop.children);
+            return findPath;
+        },
+        defaultExpandedKeys(){
+            return (this.findPath || []).slice(1).map(e=>e.id)
+        },
+        currentNodeKey(){
+            return (this.findPath || []).map(e=>e.id).reverse()[0]
+        },
+    },
+    watch:{
+        findPath:{
+            immediate:true,
+            handler(){
+                this.init();
+            }
+        },
+    },
+    methods:{
+        init(){
+            this.show = false;
+            this.$nextTick(()=>{
+                this.show = true;
+            })
+        },
+        nodeClick(data){
+            console.log(data)
+        }
+    }
 }
 </script>
 

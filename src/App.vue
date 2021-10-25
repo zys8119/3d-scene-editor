@@ -15,8 +15,6 @@ export default {
             url:"/getUserInfo",
             method:"get",
             ModuleName:"userInfo"
-        }).then(res=>{
-            console.log(res)
         })
     }
 }

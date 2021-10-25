@@ -17,6 +17,7 @@ class mockData {
             name:"管理员",
             id:this.userId,
             token:this.userId,
+            avatar:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201712%2F15%2F20171215221023_KiYWM.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637725323&t=4c69eca377f3146abdbfae5af6293e50",
             menus:[
                 {
                     path:"/",

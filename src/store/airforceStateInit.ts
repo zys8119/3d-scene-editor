@@ -1,4 +1,5 @@
 import {GetterTree} from "vuex"
+import {userInfo} from "os";
 export default <airforceStateInit>{
     test(...args) {
         console.log(...args)
@@ -7,20 +8,32 @@ export default <airforceStateInit>{
     navMenusConfig:{
         prop:{
             label:"name",
+            children:"children",
         },
         showArrow:false,
         showIcon:true,
         bind:{
             "default-expand-all":true,
-            "default-checked-keys":null,
+            "node-key":'id',
         }
     },
+    userInfo:{},
 }
 
 export interface airforceStateInit {
     test?(...args:any[]):void;// 测试函数.
     docTitle?:string;// 文档标题.
     navMenusConfig: navMenusConfig;// 左侧菜单配置
+    userInfo:userInfo;// 用户信息
+}
+
+export interface userInfo{
+    [key:string]:any;
+    id?:string;// 用户id
+    token?:string;// 令牌
+    name?:string;// 用户名称
+    menus?:any[];// 菜单
+    avatar?:string;// 头像
 }
 
 export type navMenusConfig = {
