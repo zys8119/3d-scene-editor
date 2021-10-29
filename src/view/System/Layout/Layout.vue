@@ -4,7 +4,15 @@
         <LayoutNav></LayoutNav>
         <div class="LayoutContainer">
             <div class="LayoutContainerBox">
-                <div class="LayoutContainerBoxTitle">{{($store.getters.currentRoute || {})[airforce.navMenusConfig.prop.label]}}</div>
+                <div class="LayoutContainerBoxTitle">
+                    <el-button v-if="airforce.breadcrumbConfig.showBack" class="goBackBtn" @click="$router.back()">返回</el-button>
+                    <div v-if="airforce.breadcrumbConfig.currentPage">
+                        {{($store.getters.currentRoute || {})[airforce.navMenusConfig.prop.label]}}
+                    </div>
+                    <el-breadcrumb separator-class="el-icon-arrow-right">
+                        <el-breadcrumb-item v-for="(item,key) in airforce.routePath" :key="key" >{{ item[airforce.navMenusConfig.prop.label] }}</el-breadcrumb-item>
+                    </el-breadcrumb>
+                </div>
                 <router-view v-if="airforce.reload"></router-view>
             </div>
         </div>
@@ -49,6 +57,12 @@ export default {
                 color: #202D40;
                 line-height: 25px;
                 margin-bottom: @unit15;
+                display: flex;
+                justify-content:flex-start;
+                align-items: center;
+                .goBackBtn{
+                    margin-right: @unit10;
+                }
             }
         }
     }

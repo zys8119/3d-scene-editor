@@ -31,6 +31,11 @@ export default <airforceStateInit>{
             }}
         ]
     },
+    breadcrumbConfig:{
+        showBack:true,
+        currentPage:true,
+        data:[],
+    },
     userInfo:{},
     routePath:[],
     hideHeader:false,
