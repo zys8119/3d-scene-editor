@@ -1,8 +1,1137 @@
 {
   "name": "aa",
   "version": "0.0.0",
-  "lockfileVersion": 1,
+  "lockfileVersion": 2,
   "requires": true,
+  "packages": {
+    "": {
+      "name": "aa",
+      "version": "0.0.0",
+      "dependencies": {
+        "@types/lodash": "^4.14.175",
+        "@types/mockjs": "^1.0.4",
+        "@types/node": "^15.14.9",
+        "@types/uuid": "^8.3.1",
+        "@vitejs/plugin-vue": "^1.2.2",
+        "@vue/compiler-sfc": "^3.0.11",
+        "axios": "^0.21.4",
+        "echarts": "^5.2.1",
+        "element-plus": "^1.0.2-beta.71",
+        "less": "^4.1.2",
+        "lodash": "^4.17.21",
+        "mockjs": "^1.1.0",
+        "swiper": "^6.8.4",
+        "uuid": "^8.3.2",
+        "vue": "^3.2.20",
+        "vue-router": "^4.0.12",
+        "vuedraggable": "^4.1.0",
+        "vuex": "^4.0.2",
+        "wangeditor": "^4.7.9"
+      },
+      "devDependencies": {
+        "vite": "^2.3.0"
+      }
+    },
+    "node_modules/@babel/helper-validator-identifier": {
+      "version": "7.15.7",
+      "resolved": "https://r.cnpmjs.org/@babel/helper-validator-identifier/download/@babel/helper-validator-identifier-7.15.7.tgz",
+      "integrity": "sha1-Ig35k7/pBKSmsCq08zhaXr9uI4k=",
+      "engines": {
+        "node": ">=6.9.0"
+      }
+    },
+    "node_modules/@babel/parser": {
+      "version": "7.15.8",
+      "resolved": "https://r.cnpmjs.org/@babel/parser/download/@babel/parser-7.15.8.tgz",
+      "integrity": "sha1-e6zcvnG9w/+TbVEMFdzqfPC5kBY=",
+      "bin": {
+        "parser": "bin/babel-parser.js"
+      },
+      "engines": {
+        "node": ">=6.0.0"
+      }
+    },
+    "node_modules/@babel/runtime": {
+      "version": "7.15.4",
+      "resolved": "https://r.cnpmjs.org/@babel/runtime/download/@babel/runtime-7.15.4.tgz",
+      "integrity": "sha1-/RfRa/34eObdAtGXU6OfqKjZyEo=",
+      "dependencies": {
+        "regenerator-runtime": "^0.13.4"
+      },
+      "engines": {
+        "node": ">=6.9.0"
+      }
+    },
+    "node_modules/@babel/runtime-corejs3": {
+      "version": "7.15.4",
+      "resolved": "https://r.cnpmjs.org/@babel/runtime-corejs3/download/@babel/runtime-corejs3-7.15.4.tgz",
+      "integrity": "sha1-QDE5ryYrmm6Pm6BKb9zr+N5pK/E=",
+      "dependencies": {
+        "core-js-pure": "^3.16.0",
+        "regenerator-runtime": "^0.13.4"
+      },
+      "engines": {
+        "node": ">=6.9.0"
+      }
+    },
+    "node_modules/@babel/types": {
+      "version": "7.15.6",
+      "resolved": "https://r.cnpmjs.org/@babel/types/download/@babel/types-7.15.6.tgz",
+      "integrity": "sha1-mavcSCGLKIHAWN0KerBbmcm+dY8=",
+      "dependencies": {
+        "@babel/helper-validator-identifier": "^7.14.9",
+        "to-fast-properties": "^2.0.0"
+      },
+      "engines": {
+        "node": ">=6.9.0"
+      }
+    },
+    "node_modules/@element-plus/icons": {
+      "version": "0.0.11",
+      "resolved": "https://r.cnpmjs.org/@element-plus/icons/download/@element-plus/icons-0.0.11.tgz",
+      "integrity": "sha1-mxh8ACd0VIuRGFDRf6X8L5pRX1c="
+    },
+    "node_modules/@popperjs/core": {
+      "version": "2.10.2",
+      "resolved": "https://r.cnpmjs.org/@popperjs/core/download/@popperjs/core-2.10.2.tgz",
+      "integrity": "sha1-B5jAM1Hw3qGlpMq93yalWny+5ZA=",
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/popperjs"
+      }
+    },
+    "node_modules/@types/lodash": {
+      "version": "4.14.176",
+      "resolved": "https://r.cnpmjs.org/@types/lodash/download/@types/lodash-4.14.176.tgz",
+      "integrity": "sha1-ZBFQ/BzaNvv6Mp3mA7uxddfuIMA="
+    },
+    "node_modules/@types/mockjs": {
+      "version": "1.0.4",
+      "resolved": "https://r.cnpmjs.org/@types/mockjs/download/@types/mockjs-1.0.4.tgz",
+      "integrity": "sha1-5waVHV4ztPCku3Ox+LEk4m8IHeA="
+    },
+    "node_modules/@types/node": {
+      "version": "15.14.9",
+      "resolved": "https://r.cnpmjs.org/@types/node/download/@types/node-15.14.9.tgz",
+      "integrity": "sha1-vEPJkMPJvnKBhou8e4/dbitXrfo="
+    },
+    "node_modules/@types/uuid": {
+      "version": "8.3.1",
+      "resolved": "https://r.cnpmjs.org/@types/uuid/download/@types/uuid-8.3.1.tgz",
+      "integrity": "sha1-GjKWnPjwNks9jIr5zDVVt4Bd8U8="
+    },
+    "node_modules/@vitejs/plugin-vue": {
+      "version": "1.2.2",
+      "resolved": "https://r.cnpmjs.org/@vitejs/plugin-vue/download/@vitejs/plugin-vue-1.2.2.tgz",
+      "integrity": "sha1-sAOPwRuQmfTNAfy/DuQZrdpBe1I=",
+      "engines": {
+        "node": ">=12.0.0"
+      },
+      "peerDependencies": {
+        "@vue/compiler-sfc": "^3.0.6"
+      }
+    },
+    "node_modules/@vue/compiler-core": {
+      "version": "3.2.20",
+      "resolved": "https://r.cnpmjs.org/@vue/compiler-core/download/@vue/compiler-core-3.2.20.tgz",
+      "integrity": "sha1-r1o8UjeBiDWw0L6DfrWIWo0hwWA=",
+      "dependencies": {
+        "@babel/parser": "^7.15.0",
+        "@vue/shared": "3.2.20",
+        "estree-walker": "^2.0.2",
+        "source-map": "^0.6.1"
+      }
+    },
+    "node_modules/@vue/compiler-dom": {
+      "version": "3.2.20",
+      "resolved": "https://r.cnpmjs.org/@vue/compiler-dom/download/@vue/compiler-dom-3.2.20.tgz",
+      "integrity": "sha1-jg7zVEScD69BUZsAv8IEXq4B3LU=",
+      "dependencies": {
+        "@vue/compiler-core": "3.2.20",
+        "@vue/shared": "3.2.20"
+      }
+    },
+    "node_modules/@vue/compiler-sfc": {
+      "version": "3.0.11",
+      "resolved": "https://r.cnpmjs.org/@vue/compiler-sfc/download/@vue/compiler-sfc-3.0.11.tgz",
+      "integrity": "sha1-zYyiFUuIlntSH1rTsQ9fi2tmVnk=",
+      "dependencies": {
+        "@babel/parser": "^7.13.9",
+        "@babel/types": "^7.13.0",
+        "@vue/compiler-core": "3.0.11",
+        "@vue/compiler-dom": "3.0.11",
+        "@vue/compiler-ssr": "3.0.11",
+        "@vue/shared": "3.0.11",
+        "consolidate": "^0.16.0",
+        "estree-walker": "^2.0.1",
+        "hash-sum": "^2.0.0",
+        "lru-cache": "^5.1.1",
+        "magic-string": "^0.25.7",
+        "merge-source-map": "^1.1.0",
+        "postcss": "^8.1.10",
+        "postcss-modules": "^4.0.0",
+        "postcss-selector-parser": "^6.0.4",
+        "source-map": "^0.6.1"
+      },
+      "peerDependencies": {
+        "vue": "3.0.11"
+      }
+    },
+    "node_modules/@vue/compiler-sfc/node_modules/@vue/compiler-core": {
+      "version": "3.0.11",
+      "resolved": "https://r.cnpmjs.org/@vue/compiler-core/download/@vue/compiler-core-3.0.11.tgz",
+      "integrity": "sha1-XvV55G17M2uHNSKHWNHCxQWq5po=",
+      "dependencies": {
+        "@babel/parser": "^7.12.0",
+        "@babel/types": "^7.12.0",
+        "@vue/shared": "3.0.11",
+        "estree-walker": "^2.0.1",
+        "source-map": "^0.6.1"
+      }
+    },
+    "node_modules/@vue/compiler-sfc/node_modules/@vue/compiler-dom": {
+      "version": "3.0.11",
+      "resolved": "https://r.cnpmjs.org/@vue/compiler-dom/download/@vue/compiler-dom-3.0.11.tgz",
+      "integrity": "sha1-sV/ByQk3H9ZxdGAgulW12rSnMO4=",
+      "dependencies": {
+        "@vue/compiler-core": "3.0.11",
+        "@vue/shared": "3.0.11"
+      }
+    },
+    "node_modules/@vue/compiler-sfc/node_modules/@vue/compiler-ssr": {
+      "version": "3.0.11",
+      "resolved": "https://r.cnpmjs.org/@vue/compiler-ssr/download/@vue/compiler-ssr-3.0.11.tgz",
+      "integrity": "sha1-rFoF/RJXQS+mYHnII9ggO2qImhM=",
+      "dependencies": {
+        "@vue/compiler-dom": "3.0.11",
+        "@vue/shared": "3.0.11"
+      }
+    },
+    "node_modules/@vue/compiler-sfc/node_modules/@vue/shared": {
+      "version": "3.0.11",
+      "resolved": "https://r.cnpmjs.org/@vue/shared/download/@vue/shared-3.0.11.tgz",
+      "integrity": "sha1-INIt0Np9NYuyHBf5vehigVJkLHc="
+    },
+    "node_modules/@vue/compiler-ssr": {
+      "version": "3.2.20",
+      "resolved": "https://r.cnpmjs.org/@vue/compiler-ssr/download/@vue/compiler-ssr-3.2.20.tgz",
+      "integrity": "sha1-nM62Jh2ZMstVaCAmEMHCj4bF5SE=",
+      "dependencies": {
+        "@vue/compiler-dom": "3.2.20",
+        "@vue/shared": "3.2.20"
+      }
+    },
+    "node_modules/@vue/devtools-api": {
+      "version": "6.0.0-beta.19",
+      "resolved": "https://r.cnpmjs.org/@vue/devtools-api/download/@vue/devtools-api-6.0.0-beta.19.tgz",
+      "integrity": "sha1-+OiAWdqkJFFZkkJqDH6lzeB+mb8="
+    },
+    "node_modules/@vue/reactivity": {
+      "version": "3.2.20",
+      "resolved": "https://r.cnpmjs.org/@vue/reactivity/download/@vue/reactivity-3.2.20.tgz",
+      "integrity": "sha1-gf4cNo5/ILwOwd7BBFu+4lNYLeg=",
+      "dependencies": {
+        "@vue/shared": "3.2.20"
+      }
+    },
+    "node_modules/@vue/ref-transform": {
+      "version": "3.2.20",
+      "resolved": "https://r.cnpmjs.org/@vue/ref-transform/download/@vue/ref-transform-3.2.20.tgz",
+      "integrity": "sha1-KlnskMr45cczZ3agkAv/CouBwJA=",
+      "dependencies": {
+        "@babel/parser": "^7.15.0",
+        "@vue/compiler-core": "3.2.20",
+        "@vue/shared": "3.2.20",
+        "estree-walker": "^2.0.2",
+        "magic-string": "^0.25.7"
+      }
+    },
+    "node_modules/@vue/runtime-core": {
+      "version": "3.2.20",
+      "resolved": "https://r.cnpmjs.org/@vue/runtime-core/download/@vue/runtime-core-3.2.20.tgz",
+      "integrity": "sha1-j2PpVqP4j7dyVBRDxFp3ASEQEss=",
+      "dependencies": {
+        "@vue/reactivity": "3.2.20",
+        "@vue/shared": "3.2.20"
+      }
+    },
+    "node_modules/@vue/runtime-dom": {
+      "version": "3.2.20",
+      "resolved": "https://r.cnpmjs.org/@vue/runtime-dom/download/@vue/runtime-dom-3.2.20.tgz",
+      "integrity": "sha1-iqVq5sMPnNSnHKDp7DxL3GcUjRU=",
+      "dependencies": {
+        "@vue/runtime-core": "3.2.20",
+        "@vue/shared": "3.2.20",
+        "csstype": "^2.6.8"
+      }
+    },
+    "node_modules/@vue/server-renderer": {
+      "version": "3.2.20",
+      "resolved": "https://r.cnpmjs.org/@vue/server-renderer/download/@vue/server-renderer-3.2.20.tgz",
+      "integrity": "sha1-cF4HrpQlEysrYifTCKUaE/TU7IE=",
+      "dependencies": {
+        "@vue/compiler-ssr": "3.2.20",
+        "@vue/shared": "3.2.20"
+      },
+      "peerDependencies": {
+        "vue": "3.2.20"
+      }
+    },
+    "node_modules/@vue/shared": {
+      "version": "3.2.20",
+      "resolved": "https://r.cnpmjs.org/@vue/shared/download/@vue/shared-3.2.20.tgz",
+      "integrity": "sha1-U3RpYfcxqOpmbjMWJx6UQjjcMds="
+    },
+    "node_modules/async-validator": {
+      "version": "3.5.2",
+      "resolved": "https://r.cnpmjs.org/async-validator/download/async-validator-3.5.2.tgz",
+      "integrity": "sha1-aOhmqWgk6LJpT/eoMcGiXETV5QA="
+    },
+    "node_modules/axios": {
+      "version": "0.21.4",
+      "resolved": "https://r.cnpmjs.org/axios/download/axios-0.21.4.tgz",
+      "integrity": "sha1-xnuQ3AVo5cHPKwuFjEO6KOLtpXU=",
+      "dependencies": {
+        "follow-redirects": "^1.14.0"
+      }
+    },
+    "node_modules/big.js": {
+      "version": "5.2.2",
+      "resolved": "https://r.cnpmjs.org/big.js/download/big.js-5.2.2.tgz",
+      "integrity": "sha1-ZfCvOC9Xi83HQr2cKB6cstd2gyg=",
+      "engines": {
+        "node": "*"
+      }
+    },
+    "node_modules/bluebird": {
+      "version": "3.7.2",
+      "resolved": "https://r.cnpmjs.org/bluebird/download/bluebird-3.7.2.tgz",
+      "integrity": "sha1-nyKcFb4nJFT/qXOs4NvueaGww28="
+    },
+    "node_modules/commander": {
+      "version": "8.2.0",
+      "resolved": "https://r.cnpmjs.org/commander/download/commander-8.2.0.tgz",
+      "integrity": "sha1-N/4r3jAdh9R6U63v+LWRXbE4HKg=",
+      "engines": {
+        "node": ">= 12"
+      }
+    },
+    "node_modules/consolidate": {
+      "version": "0.16.0",
+      "resolved": "https://r.cnpmjs.org/consolidate/download/consolidate-0.16.0.tgz",
+      "integrity": "sha1-oRhkdokw8vGUMWYKZZBmaPX73BY=",
+      "dependencies": {
+        "bluebird": "^3.7.2"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      }
+    },
+    "node_modules/copy-anything": {
+      "version": "2.0.3",
+      "resolved": "https://r.cnpmjs.org/copy-anything/download/copy-anything-2.0.3.tgz",
+      "integrity": "sha1-hCQHugJGaw34RIGbvjuuu+XUXYc=",
+      "dependencies": {
+        "is-what": "^3.12.0"
+      }
+    },
+    "node_modules/core-js-pure": {
+      "version": "3.18.3",
+      "resolved": "https://r.cnpmjs.org/core-js-pure/download/core-js-pure-3.18.3.tgz",
+      "integrity": "sha1-fu133M4URato/WhxWFZjPi+zuQw=",
+      "hasInstallScript": true,
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/core-js"
+      }
+    },
+    "node_modules/cssesc": {
+      "version": "3.0.0",
+      "resolved": "https://r.cnpmjs.org/cssesc/download/cssesc-3.0.0.tgz",
+      "integrity": "sha1-N3QZGZA7hoVl4cCep0dEXNGJg+4=",
+      "bin": {
+        "cssesc": "bin/cssesc"
+      },
+      "engines": {
+        "node": ">=4"
+      }
+    },
+    "node_modules/csstype": {
+      "version": "2.6.18",
+      "resolved": "https://r.cnpmjs.org/csstype/download/csstype-2.6.18.tgz",
+      "integrity": "sha1-mAqLUwhfNK8xNBCvBk8r0kF4Qhg="
+    },
+    "node_modules/dayjs": {
+      "version": "1.10.7",
+      "resolved": "https://r.cnpmjs.org/dayjs/download/dayjs-1.10.7.tgz",
+      "integrity": "sha1-LPX5Gt0oEWdIRAhmoKHSbzps5Gg="
+    },
+    "node_modules/debug": {
+      "version": "3.2.7",
+      "resolved": "https://r.cnpmjs.org/debug/download/debug-3.2.7.tgz",
+      "integrity": "sha1-clgLfpFF+zm2Z2+cXl+xALk0F5o=",
+      "optional": true,
+      "dependencies": {
+        "ms": "^2.1.1"
+      }
+    },
+    "node_modules/dom7": {
+      "version": "3.0.0",
+      "resolved": "https://r.cnpmjs.org/dom7/download/dom7-3.0.0.tgz",
+      "integrity": "sha1-uGHOXWemvs16qjrQKUL/FLEkAzE=",
+      "dependencies": {
+        "ssr-window": "^3.0.0-alpha.1"
+      }
+    },
+    "node_modules/echarts": {
+      "version": "5.2.1",
+      "resolved": "https://r.cnpmjs.org/echarts/download/echarts-5.2.1.tgz",
+      "integrity": "sha1-vVjsARzYLe9KcU5AOO9Lc7hBe8M=",
+      "dependencies": {
+        "tslib": "2.3.0",
+        "zrender": "5.2.1"
+      }
+    },
+    "node_modules/element-plus": {
+      "version": "1.0.2-beta.71",
+      "resolved": "https://r.cnpmjs.org/element-plus/download/element-plus-1.0.2-beta.71.tgz",
+      "integrity": "sha1-FI8W1aCoAFSZifeGm79NZWxlLTY=",
+      "dependencies": {
+        "@element-plus/icons": "^0.0.11",
+        "@popperjs/core": "^2.4.4",
+        "async-validator": "^3.4.0",
+        "dayjs": "1.x",
+        "lodash": "^4.17.20",
+        "mitt": "^2.1.0",
+        "normalize-wheel": "^1.0.1",
+        "resize-observer-polyfill": "^1.5.1"
+      },
+      "peerDependencies": {
+        "vue": "3.1.x"
+      }
+    },
+    "node_modules/emojis-list": {
+      "version": "3.0.0",
+      "resolved": "https://r.cnpmjs.org/emojis-list/download/emojis-list-3.0.0.tgz",
+      "integrity": "sha1-VXBmIEatKeLpFucariYKvf9Pang=",
+      "engines": {
+        "node": ">= 4"
+      }
+    },
+    "node_modules/errno": {
+      "version": "0.1.8",
+      "resolved": "https://r.cnpmjs.org/errno/download/errno-0.1.8.tgz",
+      "integrity": "sha1-i7Ppx9Rjvkl2/4iPdrSAnrwugR8=",
+      "optional": true,
+      "dependencies": {
+        "prr": "~1.0.1"
+      },
+      "bin": {
+        "errno": "cli.js"
+      }
+    },
+    "node_modules/esbuild": {
+      "version": "0.11.23",
+      "resolved": "https://r.cnpmjs.org/esbuild/download/esbuild-0.11.23.tgz",
+      "integrity": "sha1-xCU09jLhZRIGcdZNtniDY0MztLg=",
+      "dev": true,
+      "hasInstallScript": true,
+      "bin": {
+        "esbuild": "bin/esbuild"
+      }
+    },
+    "node_modules/estree-walker": {
+      "version": "2.0.2",
+      "resolved": "https://r.cnpmjs.org/estree-walker/download/estree-walker-2.0.2.tgz",
+      "integrity": "sha1-UvAQF4wqTBF6d1fP6UKtt9LaTKw="
+    },
+    "node_modules/follow-redirects": {
+      "version": "1.14.4",
+      "resolved": "https://r.cnpmjs.org/follow-redirects/download/follow-redirects-1.14.4.tgz",
+      "integrity": "sha1-g4/fSKi73XnlLuUfsclOPtmLk3k=",
+      "funding": [
+        {
+          "type": "individual",
+          "url": "https://github.com/sponsors/RubenVerborgh"
+        }
+      ],
+      "engines": {
+        "node": ">=4.0"
+      },
+      "peerDependenciesMeta": {
+        "debug": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/fsevents": {
+      "version": "2.3.2",
+      "resolved": "https://r.cnpmjs.org/fsevents/download/fsevents-2.3.2.tgz",
+      "integrity": "sha1-ilJveLj99GI7cJ4Ll1xSwkwC/Ro=",
+      "dev": true,
+      "hasInstallScript": true,
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "engines": {
+        "node": "^8.16.0 || ^10.6.0 || >=11.0.0"
+      }
+    },
+    "node_modules/function-bind": {
+      "version": "1.1.1",
+      "resolved": "https://r.cnpmjs.org/function-bind/download/function-bind-1.1.1.tgz",
+      "integrity": "sha1-pWiZ0+o8m6uHS7l3O3xe3pL0iV0=",
+      "dev": true
+    },
+    "node_modules/generic-names": {
+      "version": "2.0.1",
+      "resolved": "https://r.cnpmjs.org/generic-names/download/generic-names-2.0.1.tgz",
+      "integrity": "sha1-+KN46tLMqno08DF7BVVIMq5BuHI=",
+      "dependencies": {
+        "loader-utils": "^1.1.0"
+      }
+    },
+    "node_modules/graceful-fs": {
+      "version": "4.2.8",
+      "resolved": "https://r.cnpmjs.org/graceful-fs/download/graceful-fs-4.2.8.tgz",
+      "integrity": "sha1-5BK40z9eAGWTy9PO5t+fLOu+gCo=",
+      "optional": true
+    },
+    "node_modules/has": {
+      "version": "1.0.3",
+      "resolved": "https://r.cnpmjs.org/has/download/has-1.0.3.tgz",
+      "integrity": "sha1-ci18v8H2qoJB8W3YFOAR4fQeh5Y=",
+      "dev": true,
+      "dependencies": {
+        "function-bind": "^1.1.1"
+      },
+      "engines": {
+        "node": ">= 0.4.0"
+      }
+    },
+    "node_modules/hash-sum": {
+      "version": "2.0.0",
+      "resolved": "https://r.cnpmjs.org/hash-sum/download/hash-sum-2.0.0.tgz",
+      "integrity": "sha1-gdAbtd6OpKIUrV1urRtSNGCwtFo="
+    },
+    "node_modules/iconv-lite": {
+      "version": "0.4.24",
+      "resolved": "https://r.cnpmjs.org/iconv-lite/download/iconv-lite-0.4.24.tgz",
+      "integrity": "sha1-ICK0sl+93CHS9SSXSkdKr+czkIs=",
+      "optional": true,
+      "dependencies": {
+        "safer-buffer": ">= 2.1.2 < 3"
+      },
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/icss-replace-symbols": {
+      "version": "1.1.0",
+      "resolved": "https://r.cnpmjs.org/icss-replace-symbols/download/icss-replace-symbols-1.1.0.tgz",
+      "integrity": "sha1-Bupvg2ead0njhs/h/oEq5dsiPe0="
+    },
+    "node_modules/icss-utils": {
+      "version": "5.1.0",
+      "resolved": "https://r.cnpmjs.org/icss-utils/download/icss-utils-5.1.0.tgz",
+      "integrity": "sha1-xr5oWKvQE9do6YNmrkfiXViHsa4=",
+      "engines": {
+        "node": "^10 || ^12 || >= 14"
+      },
+      "peerDependencies": {
+        "postcss": "^8.1.0"
+      }
+    },
+    "node_modules/image-size": {
+      "version": "0.5.5",
+      "resolved": "https://r.cnpmjs.org/image-size/download/image-size-0.5.5.tgz",
+      "integrity": "sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=",
+      "optional": true,
+      "bin": {
+        "image-size": "bin/image-size.js"
+      },
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/is-core-module": {
+      "version": "2.8.0",
+      "resolved": "https://r.cnpmjs.org/is-core-module/download/is-core-module-2.8.0.tgz",
+      "integrity": "sha1-AyEzbD0JJeSX/Zf12VyxFKXM1Ug=",
+      "dev": true,
+      "dependencies": {
+        "has": "^1.0.3"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/is-what": {
+      "version": "3.14.1",
+      "resolved": "https://r.cnpmjs.org/is-what/download/is-what-3.14.1.tgz",
+      "integrity": "sha1-4SIvRt3ahd6tD9HJ3xMXYOd3VcE="
+    },
+    "node_modules/json5": {
+      "version": "1.0.1",
+      "resolved": "https://r.cnpmjs.org/json5/download/json5-1.0.1.tgz",
+      "integrity": "sha1-d5+wAYYE+oVOrL9iUhgNg1Q+Pb4=",
+      "dependencies": {
+        "minimist": "^1.2.0"
+      },
+      "bin": {
+        "json5": "lib/cli.js"
+      }
+    },
+    "node_modules/less": {
+      "version": "4.1.2",
+      "resolved": "https://r.cnpmjs.org/less/download/less-4.1.2.tgz",
+      "integrity": "sha1-YJnuWEmZdQwmJLZfgBRfhnTktLA=",
+      "dependencies": {
+        "copy-anything": "^2.0.1",
+        "parse-node-version": "^1.0.1",
+        "tslib": "^2.3.0"
+      },
+      "bin": {
+        "lessc": "bin/lessc"
+      },
+      "engines": {
+        "node": ">=6"
+      },
+      "optionalDependencies": {
+        "errno": "^0.1.1",
+        "graceful-fs": "^4.1.2",
+        "image-size": "~0.5.0",
+        "make-dir": "^2.1.0",
+        "mime": "^1.4.1",
+        "needle": "^2.5.2",
+        "source-map": "~0.6.0"
+      }
+    },
+    "node_modules/loader-utils": {
+      "version": "1.4.0",
+      "resolved": "https://r.cnpmjs.org/loader-utils/download/loader-utils-1.4.0.tgz",
+      "integrity": "sha1-xXm140yzSxp07cbB+za/o3HVphM=",
+      "dependencies": {
+        "big.js": "^5.2.2",
+        "emojis-list": "^3.0.0",
+        "json5": "^1.0.1"
+      },
+      "engines": {
+        "node": ">=4.0.0"
+      }
+    },
+    "node_modules/lodash": {
+      "version": "4.17.21",
+      "resolved": "https://r.cnpmjs.org/lodash/download/lodash-4.17.21.tgz",
+      "integrity": "sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw="
+    },
+    "node_modules/lodash.camelcase": {
+      "version": "4.3.0",
+      "resolved": "https://r.cnpmjs.org/lodash.camelcase/download/lodash.camelcase-4.3.0.tgz",
+      "integrity": "sha1-soqmKIorn8ZRA1x3EfZathkDMaY="
+    },
+    "node_modules/lru-cache": {
+      "version": "5.1.1",
+      "resolved": "https://r.cnpmjs.org/lru-cache/download/lru-cache-5.1.1.tgz",
+      "integrity": "sha1-HaJ+ZxAnGUdpXa9oSOhH8B2EuSA=",
+      "dependencies": {
+        "yallist": "^3.0.2"
+      }
+    },
+    "node_modules/magic-string": {
+      "version": "0.25.7",
+      "resolved": "https://r.cnpmjs.org/magic-string/download/magic-string-0.25.7.tgz",
+      "integrity": "sha1-P0l9b9NMZpxnmNy4IfLvMfVEUFE=",
+      "dependencies": {
+        "sourcemap-codec": "^1.4.4"
+      }
+    },
+    "node_modules/make-dir": {
+      "version": "2.1.0",
+      "resolved": "https://r.cnpmjs.org/make-dir/download/make-dir-2.1.0.tgz",
+      "integrity": "sha1-XwMQ4YuL6JjMBwCSlaMK5B6R5vU=",
+      "optional": true,
+      "dependencies": {
+        "pify": "^4.0.1",
+        "semver": "^5.6.0"
+      },
+      "engines": {
+        "node": ">=6"
+      }
+    },
+    "node_modules/merge-source-map": {
+      "version": "1.1.0",
+      "resolved": "https://r.cnpmjs.org/merge-source-map/download/merge-source-map-1.1.0.tgz",
+      "integrity": "sha1-L93n5gIJOfcJBqaPLXrmheTIxkY=",
+      "dependencies": {
+        "source-map": "^0.6.1"
+      }
+    },
+    "node_modules/mime": {
+      "version": "1.6.0",
+      "resolved": "https://r.cnpmjs.org/mime/download/mime-1.6.0.tgz",
+      "integrity": "sha1-Ms2eXGRVO9WNGaVor0Uqz/BJgbE=",
+      "optional": true,
+      "bin": {
+        "mime": "cli.js"
+      },
+      "engines": {
+        "node": ">=4"
+      }
+    },
+    "node_modules/minimist": {
+      "version": "1.2.5",
+      "resolved": "https://r.cnpmjs.org/minimist/download/minimist-1.2.5.tgz",
+      "integrity": "sha1-Z9ZgFLZqaoqqDAg8X9WN9OTpdgI="
+    },
+    "node_modules/mitt": {
+      "version": "2.1.0",
+      "resolved": "https://r.cnpmjs.org/mitt/download/mitt-2.1.0.tgz",
+      "integrity": "sha1-90BXfCMXbGIFsSGylzUU6t4bIjA="
+    },
+    "node_modules/mockjs": {
+      "version": "1.1.0",
+      "resolved": "https://r.cnpmjs.org/mockjs/download/mockjs-1.1.0.tgz",
+      "integrity": "sha1-5qDDeOkZBtuv8gkRzAJzs8fXWwY=",
+      "dependencies": {
+        "commander": "*"
+      },
+      "bin": {
+        "random": "bin/random"
+      }
+    },
+    "node_modules/ms": {
+      "version": "2.1.3",
+      "resolved": "https://r.cnpmjs.org/ms/download/ms-2.1.3.tgz",
+      "integrity": "sha1-V0yBOM4dK1hh8LRFedut1gxmFbI=",
+      "optional": true
+    },
+    "node_modules/nanoid": {
+      "version": "3.1.30",
+      "resolved": "https://r.cnpmjs.org/nanoid/download/nanoid-3.1.30.tgz",
+      "integrity": "sha1-Y/k8xUjSoRPcXfvGO/oJ4rm2Q2I=",
+      "bin": {
+        "nanoid": "bin/nanoid.cjs"
+      },
+      "engines": {
+        "node": "^10 || ^12 || ^13.7 || ^14 || >=15.0.1"
+      }
+    },
+    "node_modules/needle": {
+      "version": "2.9.1",
+      "resolved": "https://r.cnpmjs.org/needle/download/needle-2.9.1.tgz",
+      "integrity": "sha1-ItHf++NJDCuD4wH3cJtnNs2PJoQ=",
+      "optional": true,
+      "dependencies": {
+        "debug": "^3.2.6",
+        "iconv-lite": "^0.4.4",
+        "sax": "^1.2.4"
+      },
+      "bin": {
+        "needle": "bin/needle"
+      },
+      "engines": {
+        "node": ">= 4.4.x"
+      }
+    },
+    "node_modules/normalize-wheel": {
+      "version": "1.0.1",
+      "resolved": "https://r.cnpmjs.org/normalize-wheel/download/normalize-wheel-1.0.1.tgz",
+      "integrity": "sha1-rsiGr/2wRQcNhWRH32Ls+GFG7EU="
+    },
+    "node_modules/parse-node-version": {
+      "version": "1.0.1",
+      "resolved": "https://r.cnpmjs.org/parse-node-version/download/parse-node-version-1.0.1.tgz",
+      "integrity": "sha1-4rXb7eAOf6m8NjYH9TMn6LBzGJs=",
+      "engines": {
+        "node": ">= 0.10"
+      }
+    },
+    "node_modules/path-parse": {
+      "version": "1.0.7",
+      "resolved": "https://r.cnpmjs.org/path-parse/download/path-parse-1.0.7.tgz",
+      "integrity": "sha1-+8EUtgykKzDZ2vWFjkvWi77bZzU=",
+      "dev": true
+    },
+    "node_modules/picocolors": {
+      "version": "1.0.0",
+      "resolved": "https://r.cnpmjs.org/picocolors/download/picocolors-1.0.0.tgz",
+      "integrity": "sha1-y1vcdP8/UYkiNur3nWi8RFZKuBw="
+    },
+    "node_modules/pify": {
+      "version": "4.0.1",
+      "resolved": "https://r.cnpmjs.org/pify/download/pify-4.0.1.tgz",
+      "integrity": "sha1-SyzSXFDVmHNcUCkiJP2MbfQeMjE=",
+      "optional": true,
+      "engines": {
+        "node": ">=6"
+      }
+    },
+    "node_modules/postcss": {
+      "version": "8.3.10",
+      "resolved": "https://r.cnpmjs.org/postcss/download/postcss-8.3.10.tgz",
+      "integrity": "sha1-TWFOEIzMacZcL23GzsI91chbc68=",
+      "dependencies": {
+        "nanoid": "^3.1.30",
+        "picocolors": "^1.0.0",
+        "source-map-js": "^0.6.2"
+      },
+      "engines": {
+        "node": "^10 || ^12 || >=14"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/postcss/"
+      }
+    },
+    "node_modules/postcss-modules": {
+      "version": "4.2.2",
+      "resolved": "https://r.cnpmjs.org/postcss-modules/download/postcss-modules-4.2.2.tgz",
+      "integrity": "sha1-Xnd3xaiWTqF2kZ2QsuVO+JEyHOU=",
+      "dependencies": {
+        "generic-names": "^2.0.1",
+        "icss-replace-symbols": "^1.1.0",
+        "lodash.camelcase": "^4.3.0",
+        "postcss-modules-extract-imports": "^3.0.0",
+        "postcss-modules-local-by-default": "^4.0.0",
+        "postcss-modules-scope": "^3.0.0",
+        "postcss-modules-values": "^4.0.0",
+        "string-hash": "^1.1.1"
+      },
+      "peerDependencies": {
+        "postcss": "^8.0.0"
+      }
+    },
+    "node_modules/postcss-modules-extract-imports": {
+      "version": "3.0.0",
+      "resolved": "https://r.cnpmjs.org/postcss-modules-extract-imports/download/postcss-modules-extract-imports-3.0.0.tgz",
+      "integrity": "sha1-zaHwR8CugMl9vijD52pDuIAldB0=",
+      "engines": {
+        "node": "^10 || ^12 || >= 14"
+      },
+      "peerDependencies": {
+        "postcss": "^8.1.0"
+      }
+    },
+    "node_modules/postcss-modules-local-by-default": {
+      "version": "4.0.0",
+      "resolved": "https://r.cnpmjs.org/postcss-modules-local-by-default/download/postcss-modules-local-by-default-4.0.0.tgz",
+      "integrity": "sha1-67tU+uFZjuz99pGgKz/zs5ClpRw=",
+      "dependencies": {
+        "icss-utils": "^5.0.0",
+        "postcss-selector-parser": "^6.0.2",
+        "postcss-value-parser": "^4.1.0"
+      },
+      "engines": {
+        "node": "^10 || ^12 || >= 14"
+      },
+      "peerDependencies": {
+        "postcss": "^8.1.0"
+      }
+    },
+    "node_modules/postcss-modules-scope": {
+      "version": "3.0.0",
+      "resolved": "https://r.cnpmjs.org/postcss-modules-scope/download/postcss-modules-scope-3.0.0.tgz",
+      "integrity": "sha1-nvMVFFbTu/oSDKRImN/Kby+gHwY=",
+      "dependencies": {
+        "postcss-selector-parser": "^6.0.4"
+      },
+      "engines": {
+        "node": "^10 || ^12 || >= 14"
+      },
+      "peerDependencies": {
+        "postcss": "^8.1.0"
+      }
+    },
+    "node_modules/postcss-modules-values": {
+      "version": "4.0.0",
+      "resolved": "https://r.cnpmjs.org/postcss-modules-values/download/postcss-modules-values-4.0.0.tgz",
+      "integrity": "sha1-18Xn5ow7s8myfL9Iyguz/7RgLJw=",
+      "dependencies": {
+        "icss-utils": "^5.0.0"
+      },
+      "engines": {
+        "node": "^10 || ^12 || >= 14"
+      },
+      "peerDependencies": {
+        "postcss": "^8.1.0"
+      }
+    },
+    "node_modules/postcss-selector-parser": {
+      "version": "6.0.6",
+      "resolved": "https://r.cnpmjs.org/postcss-selector-parser/download/postcss-selector-parser-6.0.6.tgz",
+      "integrity": "sha1-LFu6gXSsL2mBq2MaQqsO5UrzMuo=",
+      "dependencies": {
+        "cssesc": "^3.0.0",
+        "util-deprecate": "^1.0.2"
+      },
+      "engines": {
+        "node": ">=4"
+      }
+    },
+    "node_modules/postcss-value-parser": {
+      "version": "4.1.0",
+      "resolved": "https://r.cnpmjs.org/postcss-value-parser/download/postcss-value-parser-4.1.0.tgz",
+      "integrity": "sha1-RD9qIM7WSBor2k+oUypuVdeJoss="
+    },
+    "node_modules/prr": {
+      "version": "1.0.1",
+      "resolved": "https://r.cnpmjs.org/prr/download/prr-1.0.1.tgz",
+      "integrity": "sha1-0/wRS6BplaRexok/SEzrHXj19HY=",
+      "optional": true
+    },
+    "node_modules/regenerator-runtime": {
+      "version": "0.13.9",
+      "resolved": "https://r.cnpmjs.org/regenerator-runtime/download/regenerator-runtime-0.13.9.tgz",
+      "integrity": "sha1-iSV0Kpj/2QgUmI11Zq0wyjsmO1I="
+    },
+    "node_modules/resize-observer-polyfill": {
+      "version": "1.5.1",
+      "resolved": "https://r.cnpmjs.org/resize-observer-polyfill/download/resize-observer-polyfill-1.5.1.tgz",
+      "integrity": "sha1-DpAg3T0hAkRY1OvSfiPkAmmBBGQ="
+    },
+    "node_modules/resolve": {
+      "version": "1.20.0",
+      "resolved": "https://r.cnpmjs.org/resolve/download/resolve-1.20.0.tgz",
+      "integrity": "sha1-YpoBP7P3B1XW8LeTXMHCxTeLGXU=",
+      "dev": true,
+      "dependencies": {
+        "is-core-module": "^2.2.0",
+        "path-parse": "^1.0.6"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/rollup": {
+      "version": "2.58.0",
+      "resolved": "https://r.cnpmjs.org/rollup/download/rollup-2.58.0.tgz",
+      "integrity": "sha1-pkOYM2Xnv39bfGKoMxuYO3xMZ/s=",
+      "dev": true,
+      "bin": {
+        "rollup": "dist/bin/rollup"
+      },
+      "engines": {
+        "node": ">=10.0.0"
+      },
+      "optionalDependencies": {
+        "fsevents": "~2.3.2"
+      }
+    },
+    "node_modules/safer-buffer": {
+      "version": "2.1.2",
+      "resolved": "https://r.cnpmjs.org/safer-buffer/download/safer-buffer-2.1.2.tgz",
+      "integrity": "sha1-RPoWGwGHuVSd2Eu5GAL5vYOFzWo=",
+      "optional": true
+    },
+    "node_modules/sax": {
+      "version": "1.2.4",
+      "resolved": "https://r.cnpmjs.org/sax/download/sax-1.2.4.tgz",
+      "integrity": "sha1-KBYjTiN4vdxOU1T6tcqold9xANk=",
+      "optional": true
+    },
+    "node_modules/semver": {
+      "version": "5.7.1",
+      "resolved": "https://r.cnpmjs.org/semver/download/semver-5.7.1.tgz",
+      "integrity": "sha1-qVT5Ma66UI0we78Gnv8MAclhFvc=",
+      "optional": true,
+      "bin": {
+        "semver": "bin/semver"
+      }
+    },
+    "node_modules/sortablejs": {
+      "version": "1.14.0",
+      "resolved": "https://r.cnpmjs.org/sortablejs/download/sortablejs-1.14.0.tgz",
+      "integrity": "sha1-bS4XzL2yX0ZHNN9iHU811Ks1s9g="
+    },
+    "node_modules/source-map": {
+      "version": "0.6.1",
+      "resolved": "https://r.cnpmjs.org/source-map/download/source-map-0.6.1.tgz",
+      "integrity": "sha1-dHIq8y6WFOnCh6jQu95IteLxomM=",
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/source-map-js": {
+      "version": "0.6.2",
+      "resolved": "https://r.cnpmjs.org/source-map-js/download/source-map-js-0.6.2.tgz",
+      "integrity": "sha1-C7XeYxtBz72mz7qL0FqA79/SOF4=",
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/sourcemap-codec": {
+      "version": "1.4.8",
+      "resolved": "https://r.cnpmjs.org/sourcemap-codec/download/sourcemap-codec-1.4.8.tgz",
+      "integrity": "sha1-6oBL2UhXQC5pktBaOO8a41qatMQ="
+    },
+    "node_modules/ssr-window": {
+      "version": "3.0.0",
+      "resolved": "https://r.cnpmjs.org/ssr-window/download/ssr-window-3.0.0.tgz",
+      "integrity": "sha1-/VuCgBY4lD4MxwTEaRgBQ1r3rDc="
+    },
+    "node_modules/string-hash": {
+      "version": "1.1.3",
+      "resolved": "https://r.cnpmjs.org/string-hash/download/string-hash-1.1.3.tgz",
+      "integrity": "sha1-6Kr8CsGFW0Zmkp7X3RJ1311sgRs="
+    },
+    "node_modules/swiper": {
+      "version": "6.8.4",
+      "resolved": "https://r.cnpmjs.org/swiper/download/swiper-6.8.4.tgz",
+      "integrity": "sha1-k4/tQUT015Uvv5xE5YMtEzpN55Q=",
+      "funding": [
+        {
+          "type": "patreon",
+          "url": "https://www.patreon.com/vladimirkharlampidi"
+        },
+        {
+          "type": "open_collective",
+          "url": "http://opencollective.com/swiper"
+        }
+      ],
+      "hasInstallScript": true,
+      "dependencies": {
+        "dom7": "^3.0.0",
+        "ssr-window": "^3.0.0"
+      },
+      "engines": {
+        "node": ">= 4.7.0"
+      }
+    },
+    "node_modules/to-fast-properties": {
+      "version": "2.0.0",
+      "resolved": "https://r.cnpmjs.org/to-fast-properties/download/to-fast-properties-2.0.0.tgz",
+      "integrity": "sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=",
+      "engines": {
+        "node": ">=4"
+      }
+    },
+    "node_modules/tslib": {
+      "version": "2.3.0",
+      "resolved": "https://r.cnpmjs.org/tslib/download/tslib-2.3.0.tgz",
+      "integrity": "sha1-gDuM2rPhK6WBpMpByIObuw2ssJ4="
+    },
+    "node_modules/util-deprecate": {
+      "version": "1.0.2",
+      "resolved": "https://r.cnpmjs.org/util-deprecate/download/util-deprecate-1.0.2.tgz",
+      "integrity": "sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8="
+    },
+    "node_modules/uuid": {
+      "version": "8.3.2",
+      "resolved": "https://r.cnpmjs.org/uuid/download/uuid-8.3.2.tgz",
+      "integrity": "sha1-gNW1ztJxu5r2xEXyGhoExgbO++I=",
+      "bin": {
+        "uuid": "dist/bin/uuid"
+      }
+    },
+    "node_modules/vite": {
+      "version": "2.3.0",
+      "resolved": "https://r.cnpmjs.org/vite/download/vite-2.3.0.tgz",
+      "integrity": "sha1-ArAHx6pKyIzBj4VLnGjk++duPvQ=",
+      "dev": true,
+      "dependencies": {
+        "esbuild": "^0.11.19",
+        "postcss": "^8.2.1",
+        "resolve": "^1.19.0",
+        "rollup": "^2.38.5"
+      },
+      "bin": {
+        "vite": "bin/vite.js"
+      },
+      "engines": {
+        "node": ">=12.0.0"
+      },
+      "optionalDependencies": {
+        "fsevents": "~2.3.1"
+      }
+    },
+    "node_modules/vue": {
+      "version": "3.2.20",
+      "resolved": "https://r.cnpmjs.org/vue/download/vue-3.2.20.tgz",
+      "integrity": "sha1-lA+KqL8+O+eCQ8pYK61B/NRa4+Y=",
+      "dependencies": {
+        "@vue/compiler-dom": "3.2.20",
+        "@vue/compiler-sfc": "3.2.20",
+        "@vue/runtime-dom": "3.2.20",
+        "@vue/server-renderer": "3.2.20",
+        "@vue/shared": "3.2.20"
+      }
+    },
+    "node_modules/vue-router": {
+      "version": "4.0.12",
+      "resolved": "https://r.cnpmjs.org/vue-router/download/vue-router-4.0.12.tgz",
+      "integrity": "sha1-jceSzd9bsavMOQj5BkE23n4TxGA=",
+      "dependencies": {
+        "@vue/devtools-api": "^6.0.0-beta.18"
+      },
+      "peerDependencies": {
+        "vue": "^3.0.0"
+      }
+    },
+    "node_modules/vue/node_modules/@vue/compiler-sfc": {
+      "version": "3.2.20",
+      "resolved": "https://r.cnpmjs.org/@vue/compiler-sfc/download/@vue/compiler-sfc-3.2.20.tgz",
+      "integrity": "sha1-LXZo528GbFZt18CcFcmszk6Hbgo=",
+      "dependencies": {
+        "@babel/parser": "^7.15.0",
+        "@vue/compiler-core": "3.2.20",
+        "@vue/compiler-dom": "3.2.20",
+        "@vue/compiler-ssr": "3.2.20",
+        "@vue/ref-transform": "3.2.20",
+        "@vue/shared": "3.2.20",
+        "estree-walker": "^2.0.2",
+        "magic-string": "^0.25.7",
+        "postcss": "^8.1.10",
+        "source-map": "^0.6.1"
+      }
+    },
+    "node_modules/vuedraggable": {
+      "version": "4.1.0",
+      "resolved": "https://r.cnpmjs.org/vuedraggable/download/vuedraggable-4.1.0.tgz",
+      "integrity": "sha1-7ezmituKTZ4GrM/538kEDmaFInA=",
+      "dependencies": {
+        "sortablejs": "1.14.0"
+      },
+      "peerDependencies": {
+        "vue": "^3.0.1"
+      }
+    },
+    "node_modules/vuex": {
+      "version": "4.0.2",
+      "resolved": "https://r.cnpmjs.org/vuex/download/vuex-4.0.2.tgz",
+      "integrity": "sha1-+Jbb1b8qDpY/AMZ+m2EN50nMrMk=",
+      "dependencies": {
+        "@vue/devtools-api": "^6.0.0-beta.11"
+      },
+      "peerDependencies": {
+        "vue": "^3.0.2"
+      }
+    },
+    "node_modules/wangeditor": {
+      "version": "4.7.9",
+      "resolved": "https://r.cnpmjs.org/wangeditor/download/wangeditor-4.7.9.tgz",
+      "integrity": "sha1-wJIsAzdznVCoMQ/Kwwt6bOI4tQ0=",
+      "dependencies": {
+        "@babel/runtime": "^7.11.2",
+        "@babel/runtime-corejs3": "^7.11.2",
+        "tslib": "^2.1.0"
+      }
+    },
+    "node_modules/yallist": {
+      "version": "3.1.1",
+      "resolved": "https://r.cnpmjs.org/yallist/download/yallist-3.1.1.tgz",
+      "integrity": "sha1-27fa+b/YusmrRev2ArjLrQ1dCP0="
+    },
+    "node_modules/zrender": {
+      "version": "5.2.1",
+      "resolved": "https://r.cnpmjs.org/zrender/download/zrender-5.2.1.tgz",
+      "integrity": "sha1-X0u9qRW6bUErCxncJDG+qtBUF7s=",
+      "dependencies": {
+        "tslib": "2.3.0"
+      }
+    }
+  },
   "dependencies": {
     "@babel/helper-validator-identifier": {
       "version": "7.15.7",
@@ -73,7 +1202,8 @@
     "@vitejs/plugin-vue": {
       "version": "1.2.2",
       "resolved": "https://r.cnpmjs.org/@vitejs/plugin-vue/download/@vitejs/plugin-vue-1.2.2.tgz",
-      "integrity": "sha1-sAOPwRuQmfTNAfy/DuQZrdpBe1I="
+      "integrity": "sha1-sAOPwRuQmfTNAfy/DuQZrdpBe1I=",
+      "requires": {}
     },
     "@vue/compiler-core": {
       "version": "3.2.20",
@@ -415,7 +1545,8 @@
     "icss-utils": {
       "version": "5.1.0",
       "resolved": "https://r.cnpmjs.org/icss-utils/download/icss-utils-5.1.0.tgz",
-      "integrity": "sha1-xr5oWKvQE9do6YNmrkfiXViHsa4="
+      "integrity": "sha1-xr5oWKvQE9do6YNmrkfiXViHsa4=",
+      "requires": {}
     },
     "image-size": {
       "version": "0.5.5",
@@ -617,7 +1748,8 @@
     "postcss-modules-extract-imports": {
       "version": "3.0.0",
       "resolved": "https://r.cnpmjs.org/postcss-modules-extract-imports/download/postcss-modules-extract-imports-3.0.0.tgz",
-      "integrity": "sha1-zaHwR8CugMl9vijD52pDuIAldB0="
+      "integrity": "sha1-zaHwR8CugMl9vijD52pDuIAldB0=",
+      "requires": {}
     },
     "postcss-modules-local-by-default": {
       "version": "4.0.0",
