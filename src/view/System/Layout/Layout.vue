@@ -9,7 +9,7 @@
                     <div v-if="airforce.breadcrumbConfig.currentPage">
                         {{($store.getters.currentRoute || {})[airforce.navMenusConfig.prop.label]}}
                     </div>
-                    <el-breadcrumb separator-class="el-icon-arrow-right">
+                    <el-breadcrumb class="el-breadcrumb" separator-class="el-icon-arrow-right">
                         <el-breadcrumb-item v-for="(item,key) in airforce.routePath" :key="key" >{{ item[airforce.navMenusConfig.prop.label] }}</el-breadcrumb-item>
                     </el-breadcrumb>
                 </div>
@@ -62,6 +62,19 @@ export default {
                 align-items: center;
                 .goBackBtn{
                     margin-right: @unit10;
+                }
+                ::v-deep(.el-breadcrumb){
+                    .el-breadcrumb__inner{
+                        color: @themeColor;
+                        font-size: 18px;
+                    }
+                    .el-breadcrumb__item{
+                        &:last-child{
+                            .el-breadcrumb__inner{
+                                color: #202D40;
+                            }
+                        }
+                    }
                 }
             }
         }
