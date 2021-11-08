@@ -14,6 +14,7 @@
         "@types/uuid": "^8.3.1",
         "@vitejs/plugin-vue": "^1.2.2",
         "@vue/compiler-sfc": "^3.0.11",
+        "@vueuse/core": "^6.8.0",
         "axios": "^0.21.4",
         "echarts": "^5.2.1",
         "element-plus": "^1.0.2-beta.71",
@@ -281,6 +282,78 @@
       "version": "3.2.20",
       "resolved": "https://r.cnpmjs.org/@vue/shared/download/@vue/shared-3.2.20.tgz",
       "integrity": "sha1-U3RpYfcxqOpmbjMWJx6UQjjcMds="
+    },
+    "node_modules/@vueuse/core": {
+      "version": "6.8.0",
+      "resolved": "https://registry.npmjs.org/@vueuse/core/-/core-6.8.0.tgz",
+      "integrity": "sha512-C6KMBus29L/mVtA5eK26WAqj6tyPlugrKaPLi2uLtbV//BHjbxe1uo3gVXCc5SwouDEdc7zswlGPw/l0/++NRg==",
+      "dependencies": {
+        "@vueuse/shared": "6.8.0",
+        "vue-demi": "*"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/antfu"
+      },
+      "peerDependencies": {
+        "@vue/composition-api": "^1.1.0",
+        "vue": "^2.6.0 || ^3.2.0"
+      },
+      "peerDependenciesMeta": {
+        "@vue/composition-api": {
+          "optional": true
+        },
+        "vue": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@vueuse/core/node_modules/@vueuse/shared": {
+      "version": "6.8.0",
+      "resolved": "https://registry.npmjs.org/@vueuse/shared/-/shared-6.8.0.tgz",
+      "integrity": "sha512-+YjehQ8Qe4Qgyq8iTToVOzp4sZBAZvScv3AGJSMi6HYbe54+nyjrRfS8DN4fA0eUahyftHKZ00WKgMe7TS5N0w==",
+      "dependencies": {
+        "vue-demi": "*"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/antfu"
+      },
+      "peerDependencies": {
+        "@vue/composition-api": "^1.1.0",
+        "vue": "^2.6.0 || ^3.2.0"
+      },
+      "peerDependenciesMeta": {
+        "@vue/composition-api": {
+          "optional": true
+        },
+        "vue": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@vueuse/core/node_modules/vue-demi": {
+      "version": "0.12.1",
+      "resolved": "https://registry.npmjs.org/vue-demi/-/vue-demi-0.12.1.tgz",
+      "integrity": "sha512-QL3ny+wX8c6Xm1/EZylbgzdoDolye+VpCXRhI2hug9dJTP3OUJ3lmiKN3CsVV3mOJKwFi0nsstbgob0vG7aoIw==",
+      "hasInstallScript": true,
+      "bin": {
+        "vue-demi-fix": "bin/vue-demi-fix.js",
+        "vue-demi-switch": "bin/vue-demi-switch.js"
+      },
+      "engines": {
+        "node": ">=12"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/antfu"
+      },
+      "peerDependencies": {
+        "@vue/composition-api": "^1.0.0-rc.1",
+        "vue": "^3.0.0-0 || ^2.6.0"
+      },
+      "peerDependenciesMeta": {
+        "@vue/composition-api": {
+          "optional": true
+        }
+      }
     },
     "node_modules/async-validator": {
       "version": "3.5.2",
@@ -1351,6 +1424,31 @@
       "version": "3.2.20",
       "resolved": "https://r.cnpmjs.org/@vue/shared/download/@vue/shared-3.2.20.tgz",
       "integrity": "sha1-U3RpYfcxqOpmbjMWJx6UQjjcMds="
+    },
+    "@vueuse/core": {
+      "version": "6.8.0",
+      "resolved": "https://registry.npmjs.org/@vueuse/core/-/core-6.8.0.tgz",
+      "integrity": "sha512-C6KMBus29L/mVtA5eK26WAqj6tyPlugrKaPLi2uLtbV//BHjbxe1uo3gVXCc5SwouDEdc7zswlGPw/l0/++NRg==",
+      "requires": {
+        "@vueuse/shared": "6.8.0",
+        "vue-demi": "*"
+      },
+      "dependencies": {
+        "@vueuse/shared": {
+          "version": "6.8.0",
+          "resolved": "https://registry.npmjs.org/@vueuse/shared/-/shared-6.8.0.tgz",
+          "integrity": "sha512-+YjehQ8Qe4Qgyq8iTToVOzp4sZBAZvScv3AGJSMi6HYbe54+nyjrRfS8DN4fA0eUahyftHKZ00WKgMe7TS5N0w==",
+          "requires": {
+            "vue-demi": "*"
+          }
+        },
+        "vue-demi": {
+          "version": "0.12.1",
+          "resolved": "https://registry.npmjs.org/vue-demi/-/vue-demi-0.12.1.tgz",
+          "integrity": "sha512-QL3ny+wX8c6Xm1/EZylbgzdoDolye+VpCXRhI2hug9dJTP3OUJ3lmiKN3CsVV3mOJKwFi0nsstbgob0vG7aoIw==",
+          "requires": {}
+        }
+      }
     },
     "async-validator": {
       "version": "3.5.2",
