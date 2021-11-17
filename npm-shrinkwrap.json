@@ -839,11 +839,6 @@
         }
       }
     },
-    "vue-demi": {
-      "version": "0.12.1",
-      "resolved": "https://registry.npmjs.org/vue-demi/-/vue-demi-0.12.1.tgz",
-      "integrity": "sha512-QL3ny+wX8c6Xm1/EZylbgzdoDolye+VpCXRhI2hug9dJTP3OUJ3lmiKN3CsVV3mOJKwFi0nsstbgob0vG7aoIw=="
-    },
     "vue-router": {
       "version": "4.0.12",
       "resolved": "https://r.cnpmjs.org/vue-router/download/vue-router-4.0.12.tgz",
