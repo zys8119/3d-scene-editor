@@ -17,6 +17,7 @@ export default {
     },
     created() {
         window["_this"] = this;
+
     },
 }
 </script>
