@@ -24,9 +24,9 @@ export default (options:remOptions)=>{
                 ctx.server.ws.send({
                     type: 'full-reload'
                 })
-                // return [
-                //     ctx.server.moduleGraph.urlToModuleMap.get(RelationshipFile[ctx.file])
-                // ];
+                return [
+                    ctx.server.moduleGraph.urlToModuleMap.get(RelationshipFile[ctx.file])
+                ];
             }
             return ctx.modules;
         }

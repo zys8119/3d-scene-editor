@@ -1,6 +1,7 @@
 <template>
     <div class="SizeTest">
         <div class="aa">字体大小测试</div>
+        <div>asdaasdasd5545646464646499999</div>
     </div>
 </template>
 

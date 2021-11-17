@@ -27,6 +27,7 @@ export default {
 .Test{
     .aa{
         font-size: size(60);
+        color: #f00;
     }
 }
 </style>
