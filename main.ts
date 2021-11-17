@@ -12,6 +12,7 @@ import apiPlug from "./src/api"
 import "./src/assets/less/style.less"
 import "./src/mock/index"
 import Devtools from "./src/store/plug/Devtools"
+import rem from "./src/store/plug/rem"
 // @ts-ignore
 if(import.meta.env.DEV){
     // @ts-ignore
@@ -29,4 +30,5 @@ createApp(<any>App)
     .use(uiPlug)
     .use(apiPlug)
     .use(Devtools)
+    .use(rem)
     .mount("#app")

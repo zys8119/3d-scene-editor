@@ -10,20 +10,13 @@
 <script lang="ts">
 export default {
     name: "App",
-    data(){
-        return {
-            a:1222
-        }
-    },
-    created() {
+    mounted() {
         window["_this"] = this;
-
     },
 }
 </script>
 
 <style scoped lang="less">
 .App{
-
 }
 </style>

@@ -2,6 +2,7 @@ import {UserConfig} from 'vite'
 import pluginVue from '@vitejs/plugin-vue'
 import lessPlug from './ViteCconfig/plug/lessPlug'
 import htmlTransformPlug from './ViteCconfig/plug/htmlTransformPlug'
+import remPlug from './ViteCconfig/plug/remPlug'
 import {resolve} from "path"
 
 export default <UserConfig>{
@@ -12,6 +13,9 @@ export default <UserConfig>{
             resolve(__dirname,"./src/assets/less/publicFun.less"),
         ]),
         htmlTransformPlug(),
+        remPlug({
+            base:1440
+        }),
     ],
     resolve:{
         // 别名注入
