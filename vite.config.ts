@@ -8,12 +8,14 @@ import {resolve} from "path"
 export default <UserConfig>{
     plugins: [
         pluginVue(),
+        remPlug([
+            resolve(__dirname,"./src/assets/less/public.less"),
+        ]),
         lessPlug([
             resolve(__dirname,"./src/assets/less/constant.less"),
             resolve(__dirname,"./src/assets/less/publicFun.less"),
         ]),
         htmlTransformPlug(),
-        remPlug(),
     ],
     resolve:{
         // 别名注入

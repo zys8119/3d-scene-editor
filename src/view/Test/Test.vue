@@ -37,7 +37,7 @@ export default {
 <style scoped lang="less">
 .Test{
     .aa{
-        font-size: size(60);
+        font-size: size(50);
         color: #f00;
     }
 }

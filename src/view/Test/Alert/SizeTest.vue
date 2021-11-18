@@ -23,7 +23,7 @@ const css__rem__base = ref(477)
 <style scoped lang="less">
 .SizeTest {
     .aa{
-        font-size: size(14);
+        font-size: size(50);
     }
 }
 </style>
