@@ -10,8 +10,8 @@ export default <Plugin>{
         app.mixin({
             data(){
                 return {
-                    __rem__:rem,
-                    __remBase__:base,
+                    css__rem:rem,
+                    css__rem__base:base,
                 }
             }
         })

@@ -11,7 +11,7 @@ export default ()=>{
                 RelationshipFile[id] = id.replace( resolve(__dirname,"../../").replace(/\\/g,"/"),"");
                 code = code.replace(/size\(?[0-9.]*\)/img,(s)=>{
                     const fontSize = s.replace(/^size\(|\)$/img,"");
-                    return `calc(v-bind(__rem__) / v-bind(__remBase__) * ${fontSize}px)`;
+                    return `calc(v-bind(css__rem) / v-bind(css__rem__base) * ${fontSize}px)`;
                 });
             }
             return {
