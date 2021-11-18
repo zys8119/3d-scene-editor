@@ -3,6 +3,7 @@ import {Plugin, ref} from "vue";
 export default <Plugin>{
     install(app, opts){
         const rem = ref(0);
+        const base = ref(opts && opts.base ?  opts.base :  0);
         const $$remInit = () => {
             rem.value = window.innerWidth;
         }
@@ -10,6 +11,7 @@ export default <Plugin>{
             data(){
                 return {
                     __rem__:rem,
+                    __remBase__:base,
                 }
             }
         })

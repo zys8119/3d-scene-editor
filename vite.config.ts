@@ -13,9 +13,7 @@ export default <UserConfig>{
             resolve(__dirname,"./src/assets/less/publicFun.less"),
         ]),
         htmlTransformPlug(),
-        remPlug({
-            base:1440
-        }),
+        remPlug(),
     ],
     resolve:{
         // 别名注入

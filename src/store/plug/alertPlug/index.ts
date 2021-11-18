@@ -63,7 +63,7 @@ const plugin:Plugin = {
                         .use(store)
                         .use(airforcePlug)
                         .use(uiPlug)
-                        .use(rem, {plug:true})
+                        .use(rem, {plug:true, base:1440})
                         .use({
                             install($vmVue){
                                 $vmVue.config.globalProperties.$ZAlert = $ZXDialogAlert;
@@ -114,6 +114,7 @@ const plugin:Plugin = {
                 }
                 return new Promise(resolve=>{
                     $vm.$nextTick(()=>{
+                        // @ts-ignore
                         resolve();
                     })
                 });
@@ -129,6 +130,7 @@ const plugin:Plugin = {
                         }
                     }
                     setTimeout(()=>{
+                        // @ts-ignore
                         resolve();
                     })
                 })

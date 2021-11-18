@@ -240,8 +240,14 @@ export default {
                         _vm[temp] = shallowRef(currentView);
                         _vm.$nextTick(()=>{
                             // runtime-core.cjs.prod vue核心代码，function emit，位置【line：355】
-                            _vm.$refs[ref]._.vnode.props = {
-                                ..._vm.$refs[ref]._.vnode.props,
+                            let vnode = null;
+                            try {
+                                vnode = _vm.$refs[ref]._.vnode;
+                            }catch (e){
+                                vnode = _vm.getVnode(currentView, this._.vnode);
+                            }
+                            vnode.props = {
+                                ...vnode.props,
                                 ...(currentView.emits || {}),
                                 ..._emits
                             }
@@ -252,6 +258,24 @@ export default {
                     // err
                 }
             })()
+        },
+        getVnode(target,vnode){
+            if(vnode.type === target){
+                return vnode
+            }else if(vnode.component && vnode.component.subTree){
+                return this.getVnode(target, vnode.component.subTree)
+            }else if(Object.prototype.toString.call(vnode.children) === "[object Array]"){
+                let result = null;
+                for(let i = 0; i < vnode.children.length; i++){
+                    result = this.getVnode(target, vnode.children[i])
+                    if(result){
+                        break;
+                    }
+                }
+                return result;
+            }else {
+                return  null
+            }
         },
         getRefs(keyName,callback){
             if(this.$refs[keyName]){

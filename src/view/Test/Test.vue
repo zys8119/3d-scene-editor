@@ -16,9 +16,20 @@ export default {
             this.$ZAlert.show({
                 title:"弹框测试",
                 props:{},
-                _components:()=>import("./Alert/SizeTest.vue")
+                _components:()=>import("./Alert/SizeTest.vue"),
+                _event:{
+                    onAaa(e){
+                        console.log(e,this)
+                    }
+                }
             })
         }
+    },
+    mounted() {
+        setTimeout(()=>{
+            console.log(111)
+            this.airforce.input("aaa",5555)
+        },5000)
     }
 }
 </script>

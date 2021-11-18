@@ -1,7 +1,7 @@
 import {HmrContext, ModuleNode, PluginOption, TransformResult} from "vite";
 import {resolve} from "path";
 
-export default (options:remOptions)=>{
+export default ()=>{
     const RelationshipFile = {};
     return <PluginOption>{
         enforce:"pre",
@@ -11,7 +11,7 @@ export default (options:remOptions)=>{
                 RelationshipFile[id] = id.replace( resolve(__dirname,"../../").replace(/\\/g,"/"),"");
                 code = code.replace(/size\(?[0-9.]*\)/img,(s)=>{
                     const fontSize = s.replace(/^size\(|\)$/img,"");
-                    return `calc(v-bind(__rem__) / ${options.base} * ${fontSize}px)`;
+                    return `calc(v-bind(__rem__) / v-bind(__remBase__) * ${fontSize}px)`;
                 });
             }
             return {
@@ -31,8 +31,4 @@ export default (options:remOptions)=>{
             return ctx.modules;
         }
     }
-}
-
-export interface remOptions{
-    base:number;// 设计稿尺寸的基数
 }

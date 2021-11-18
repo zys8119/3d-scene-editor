@@ -30,5 +30,7 @@ createApp(<any>App)
     .use(uiPlug)
     .use(apiPlug)
     .use(Devtools)
-    .use(rem)
+    .use(rem,{
+        base:1440
+    })
     .mount("#app")
