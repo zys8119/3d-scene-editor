@@ -34,13 +34,6 @@ export default (options:string[])=>{
                     }
                 });
             }
-            // if(/\.vue$/.test(id) && code.match(/size\([0-9.]{1,}?\)/img)){
-            //     RelationshipFile[id] = id.replace( resolve(__dirname,"../../").replace(/\\/g,"/"),"");
-            //     code = code.replace(/size\([0-9.]*?\)/img,(s)=>{
-            //         const fontSize = s.replace(/^size\(|\)$/img,"");
-            //         return `calc(v-bind(css__rem) / v-bind(css__rem__base) * ${fontSize}px)`;
-            //     });
-            // }
             return {
                 code,
                 map:null
