@@ -9,7 +9,7 @@ export default <UserConfig>{
     plugins: [
         pluginVue(),
         remPlug([
-            resolve(__dirname,"./src/assets/less/public.less"),
+            resolve(__dirname,"./src/assets/less/remPublic.less"),
         ]),
         lessPlug([
             resolve(__dirname,"./src/assets/less/constant.less"),
