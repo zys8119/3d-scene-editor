@@ -50,7 +50,12 @@ export default (options:string[])=>{
             if((options || []).includes(ctx.file)){
                 publicCss = getCssStr(options);
                 const result = Object.values(RelationshipFile).map((key:string)=>ctx.server.moduleGraph.urlToModuleMap.get(key)).filter(e=>e)
-                return result;
+                ctx.server.ws.send({
+                    type: 'full-reload'
+                })
+                return result.reduce((a,b)=>{
+                    return a.concat([...b.importedModules].filter(e=>/\.less$/.test(e.id)));
+                },[]);
             }
             if(RelationshipFile[ctx.file]){
                 ctx.server.ws.send({
