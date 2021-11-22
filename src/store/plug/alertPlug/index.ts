@@ -6,7 +6,7 @@ import ElementPlus from 'element-plus';
 import airforcePlug from '../airforcePlug';
 import store from '../../index';
 import uiPlug from '../../../ui';
-import rem from '../../../store/plug/rem';
+import rem from 'vitejs-plugin-rem-px';
 const optsInitData:$ZAlertOptions = {
     _components:null,
     _props: {},

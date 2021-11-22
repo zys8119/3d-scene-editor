@@ -12,7 +12,7 @@ import apiPlug from "./src/api"
 import "./src/assets/less/style.less"
 import "./src/mock/index"
 import Devtools from "./src/store/plug/Devtools"
-import rem from "./src/store/plug/rem"
+import rem from "vitejs-plugin-rem-px"
 // @ts-ignore
 if(import.meta.env.DEV){
     // @ts-ignore

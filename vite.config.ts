@@ -1,8 +1,8 @@
 import {UserConfig} from 'vite'
 import pluginVue from '@vitejs/plugin-vue'
-import lessPlug from './ViteCconfig/plug/lessPlug'
 import htmlTransformPlug from './ViteCconfig/plug/htmlTransformPlug'
-import remPlug from './ViteCconfig/plug/remPlug'
+import lessPlug from 'vitejs-plugin-less-global'
+import remPlug from 'vitejs-plugin-rem-px/dist/remPlug'
 import {resolve} from "path"
 
 export default <UserConfig>{
