@@ -4760,9 +4760,9 @@
       }
     },
     "vitejs-plugin-rem-px": {
-      "version": "0.0.16",
-      "resolved": "https://registry.npmjs.org/vitejs-plugin-rem-px/-/vitejs-plugin-rem-px-0.0.16.tgz",
-      "integrity": "sha512-zS+pRCUSzkaRTxHBijW682cSNCzG20SeGQooQQGDkfh0e6yYHpkGxWg4DFtW9Ir3MlPvTv0mJXtCqtypBte7lQ=="
+      "version": "0.0.17",
+      "resolved": "https://registry.npmjs.org/vitejs-plugin-rem-px/-/vitejs-plugin-rem-px-0.0.17.tgz",
+      "integrity": "sha512-Aa+T1egMjQ/buM7N1GaMflsdCTeuK7AdwgfDfxo0yomcvNboUqUAF21TQmAqUy/lrg7Q5sL43rM7lDNswPtIvA=="
     },
     "vue": {
       "version": "3.2.22",
