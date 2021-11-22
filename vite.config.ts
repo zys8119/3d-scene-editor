@@ -2,7 +2,7 @@ import {UserConfig} from 'vite'
 import pluginVue from '@vitejs/plugin-vue'
 import htmlTransformPlug from './ViteCconfig/plug/htmlTransformPlug'
 import lessPlug from 'vitejs-plugin-less-global'
-import remPlug from 'vitejs-plugin-rem-px/dist/remPlug'
+import {remPlug} from 'vitejs-plugin-rem-px'
 import {resolve} from "path"
 
 export default <UserConfig>{
