@@ -1,8 +1,5 @@
-import ok from './ok'
 export default {
-    test(data?: {
-        info: string
-    }) {
+    test() {
         return window.common.axios({
             url: ''
         })
@@ -11,6 +8,5 @@ export default {
         return window.common.axios({
             url: ''
         })
-    },
-    ok
+    }
 }

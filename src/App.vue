@@ -21,8 +21,22 @@ const promise2 = () => new Promise((resolve, reject) => {
     }, 3000)
 })
 
+const promise3 = () => new Promise((resolve, reject) => {
+    setTimeout(() => {
+        ElMessage('请求3结束')
+        resolve({ code: 200, data: 'ok' })
+    }, 5000)
+})
+
+const promise4 = () => new Promise((resolve, reject) => {
+    setTimeout(() => {
+        ElMessage('请求4结束')
+        resolve({ code: 200, data: 'ok' })
+    }, 10000)
+})
+
 const startLoading = () => {
-    window.common.requestAll([promise(), promise2()])
+    window.common.requestAll([promise(), promise2(), promise3(), promise4()])
         .then(res => {
             ElMessage(`返回了${res.length}个内容`)
         })
