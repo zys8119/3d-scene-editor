@@ -4,8 +4,6 @@ module.exports = {
         'es6': true
     },
     'extends': [
-        // "eslint:recommended",
-        // "plugin:vue/essential",
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:vue/vue3-essential',
         'plugin:vue/base'
@@ -48,6 +46,7 @@ module.exports = {
         'vue3-jsx/prefer-render-in-setup': 2,
         'vue3-jsx/component-name': 2,
         'vue3-jsx/no-reactivity-in-render': 2,
-        'vue3-jsx/no-fragment-in-return-root': 2
+        'vue3-jsx/no-fragment-in-return-root': 2,
+        'key-spacing': ["error", { "beforeColon": true }]
     }
 }
