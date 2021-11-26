@@ -5,7 +5,6 @@ import HelloWorld from './components/HelloWorld.vue'
 import test from './test'
 import useStore from './store'
 
-import { requestAll } from '@/request'
 import { ElMessage } from 'element-plus'
 
 const promise = () => new Promise((resolve) => {
@@ -23,7 +22,7 @@ const promise2 = () => new Promise((resolve, reject) => {
 })
 
 const startLoading = () => {
-    requestAll([promise(), promise2()])
+    window.common.requestAll([promise(), promise2()])
         .then(res => {
             ElMessage(`返回了${res.length}个内容`)
         })

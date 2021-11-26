@@ -3,6 +3,24 @@ import App from './App.vue'
 
 const app = createApp(App)
 
+/**
+ * 类型定义
+ */
+
+import request, { requestAll, download } from '@/request'
+
+app.config.globalProperties.axios = request
+app.config.globalProperties.requestAll = requestAll
+app.config.globalProperties.download = download
+
+declare module '@vue/runtime-core'  {
+    export interface ComponentCustomProperties {
+        axios: typeof request;
+        download: typeof download;
+        requestAll: typeof requestAll;
+    }
+}
+
 import router from "./router"
 app.use(router)
 

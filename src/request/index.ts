@@ -103,9 +103,19 @@ export interface ResponseType<T = any> {
     success?: boolean;
 }
 
-const request = async <T = any>(config: AxiosRequestConfig): Promise<ResponseType<T>> => {
-    const { data } = await service.request<ResponseType<T>>(config)
-    return data
+const request = async <T = any>(config: AxiosRequestConfig, setLoading = true): Promise<ResponseType<T>> => {
+    if (setLoading) {
+        if (!store) store = useStore()
+        store.loading = true
+    }
+    try {
+        const { data } = await service.request<ResponseType<T>>(config)
+        return data
+    } catch (err: unknown) {
+        throw err
+    } finally {
+        if (setLoading) store.loading = false
+    }
 }
 
 export const $http = service
@@ -124,7 +134,7 @@ export const requestAll = (requests: Promise<any>[], setLoading = true) => {
     return Promise.all(requests).then(values => {
         return values
     }).finally(() => {
-        store.loading = false
+        if (setLoading) store.loading = false
     })
 }
 
@@ -156,6 +166,25 @@ export function download(url: string, params: Record<string, any>, filename: str
     }).catch((r) => {
         console.error(r)
     })
+}
+
+/**
+ * 附加到 vue 原型上和
+ */
+declare global {
+    interface Window {
+        common: {
+            axios: typeof request,
+            requestAll: typeof requestAll,
+            download: typeof download
+        }
+    }
+}
+
+window.common = {
+    axios: request,
+    requestAll,
+    download
 }
 
 export default request

@@ -1,11 +1,3 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-defineProps<{ msg: string }>()
-
-const count = ref(0)
-</script>
-
 <template>
   <h1>{{ msg }}</h1>
 
@@ -32,6 +24,24 @@ const count = ref(0)
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue"
+export default defineComponent({
+    data() {
+        this.axios({
+            data: {
+                a: 'ok'
+            },
+            url: 'okokok'
+        })
+        return {
+            msg: 'okok',
+            count: 0
+        }
+    }
+})
+</script>
 
 <style scoped>
 a {
