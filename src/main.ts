@@ -8,16 +8,19 @@ const app = createApp(App)
  */
 
 import request, { requestAll, download } from '@/request'
+import api from '@/api'
 
 app.config.globalProperties.axios = request
 app.config.globalProperties.requestAll = requestAll
 app.config.globalProperties.download = download
+app.config.globalProperties.api = api
 
 declare module '@vue/runtime-core'  {
     export interface ComponentCustomProperties {
         axios: typeof request;
         download: typeof download;
         requestAll: typeof requestAll;
+        api: typeof api;
     }
 }
 

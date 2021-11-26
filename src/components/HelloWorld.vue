@@ -29,6 +29,8 @@
 import { defineComponent } from "vue"
 export default defineComponent({
     data() {
+        window.api.v1.test()
+        this.api.v1.test()
         this.axios({
             data: {
                 a: 'ok'
