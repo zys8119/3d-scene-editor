@@ -1,0 +1,35 @@
+{
+    "name": "wisdom-plus-basic",
+    "version": "0.0.0",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc --noEmit && vite build",
+        "serve": "vite preview",
+        "lint": "eslint src",
+        "lint:fix": "eslint src --fix --ext .ts,.tsx"
+    },
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.4.0",
+        "@typescript-eslint/parser": "^5.4.0",
+        "axios": "^0.24.0",
+        "element-plus": "^1.2.0-beta.3",
+        "eslint": "^8.3.0",
+        "eslint-plugin-vue": "^8.1.1",
+        "path": "^0.12.7",
+        "pinia": "^2.0.4",
+        "vue": "^3.2.16",
+        "vue-router": "^4.0.12"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^1.9.3",
+        "@vitejs/plugin-vue-jsx": "^1.3.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "less": "^4.1.2",
+        "less-loader": "^10.2.0",
+        "prettier": "^2.5.0",
+        "typescript": "^4.4.3",
+        "vite": "^2.6.4",
+        "vue-tsc": "^0.3.0"
+    }
+}
