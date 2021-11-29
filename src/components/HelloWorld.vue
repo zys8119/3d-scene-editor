@@ -21,6 +21,7 @@
     <button type="button" @click="count++">count is: {{ count }}</button>
     <p>
         Edit
+        {{ loading }}
         <code>components/HelloWorld.vue</code> to test hot module replacement.
     </p>
 </template>

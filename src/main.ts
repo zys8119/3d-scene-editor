@@ -28,13 +28,13 @@ declare module '@vue/runtime-core'  {
 
 import useStore from '@/store/index'
 
-declare module '@vue/runtime-core'  {
-    export interface ComponentCustomProperties {
-        $store: {
-            index: ReturnType<typeof useStore>
-        }
-    }
-}
+// declare module '@vue/runtime-core'  {
+//     export interface ComponentCustomProperties {
+//         $store: {
+//             index: ReturnType<typeof useStore>
+//         }
+//     }
+// }
 
 declare global {
     interface Window {

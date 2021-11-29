@@ -61,9 +61,9 @@ export default defineComponent({
             startLoading
         }
     },
-    created() {
-        this.$store = Object.assign(window.store)
-    }
+    // created() {
+    //     this.$store = Object.assign(window.store)
+    // }
 })
 </script>
 
@@ -73,7 +73,7 @@ export default defineComponent({
     <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
     {{ store.name }}
     {{ store.requests }}
-    {{ $store.index }}
+    <!-- {{ $store.index.requests }} -->
     <el-button @click="startLoading" :loading="store.loading">点我看看多个请求会有什么效果</el-button>
     <router-view />
 </template>
