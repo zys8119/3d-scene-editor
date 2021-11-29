@@ -10,7 +10,12 @@ export default defineStore('main', {
             name: 'Eduardo',
             isAdmin: true,
             token: '',
-            loading: false
+            requests: new Set() as Set<Promise<any>>
+        }
+    },
+    getters: {
+        loading(state) {
+            return state.requests.size > 0
         }
     }
 })

@@ -8,7 +8,7 @@ export default {
         })
     },
     test2() {
-        return window.common.axios({
+        return window.common.axios<string>({
             url: ''
         })
     },

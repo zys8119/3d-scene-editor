@@ -8,7 +8,7 @@
         <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
     </p>
 
-    <p>See <code>README.md</code> for more information.</p>
+    <p>See <code>README.md</code> for more information. {{ loading }}</p>
 
     <p>
         <a href="https://vitejs.dev/guide/features.html" target="_blank">
@@ -43,6 +43,11 @@ export default defineComponent({
         return {
             msg: 'okok',
             count: 0
+        }
+    },
+    computed: {
+        loading() {
+            return window.store.index.loading
         }
     }
 })

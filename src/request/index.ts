@@ -104,18 +104,23 @@ export interface ResponseType<T = any> {
 }
 
 const request = async <T = any>(config: AxiosRequestConfig, setLoading = true): Promise<ResponseType<T>> => {
+    const request = service.request<ResponseType<T>>(config)
     if (setLoading) {
         if (!store) store = useStore()
-        store.loading = true
+        store.requests.add(request)
     }
-    try {
-        const { data } = await service.request<ResponseType<T>>(config)
-        return data
-    } catch (err: unknown) {
-        throw err
-    } finally {
-        if (setLoading) store.loading = false
-    }
+    return new Promise<ResponseType<T>>((resolve, reject) => {
+        request
+            .then(({ data }) => {
+                resolve(data)
+            })
+            .catch((err: unknown) => {
+                reject(err)
+            })
+            .finally(() => {
+                if (setLoading) store.requests.delete(request)
+            })
+    })
 }
 
 export const $http = service
@@ -127,14 +132,22 @@ export const $http = service
  * 
  */
 export const requestAll = (requests: Promise<any>[], setLoading = true) => {
+    const request = Promise.all(requests)
     if (setLoading) {
         if (!store) store = useStore()
-        store.loading = true
+        store.requests.add(request)
     }
-    return Promise.all(requests).then(values => {
-        return values
-    }).finally(() => {
-        if (setLoading) store.loading = false
+    return new Promise<any[]>((resolve, reject) => {
+        request
+            .then((values) => {
+                resolve(values)
+            })
+            .catch((err: unknown) => {
+                reject(err)
+            })
+            .finally(() => {
+                if (setLoading) store.requests.delete(request)
+            })
     })
 }
 
