@@ -216,18 +216,18 @@ export function mount(app: App<Element>, optionsOverride?: Partial<Options>) {
 declare global {
     interface Window {
         common: {
-            axios: typeof request,
-            requestAll: typeof requestAll,
-            download: typeof download
+            readonly axios: typeof request,
+            readonly requestAll: typeof requestAll,
+            readonly download: typeof download
         }
     }
 }
 
 declare module '@vue/runtime-core'  {
     export interface ComponentCustomProperties {
-        axios: typeof request;
-        download: typeof download;
-        requestAll: typeof requestAll;
+        readonly axios: typeof request;
+        readonly download: typeof download;
+        readonly requestAll: typeof requestAll;
     }
 }
 
