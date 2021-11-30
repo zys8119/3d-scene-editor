@@ -29,6 +29,12 @@ import router from './router'
 app.use(router)
 
 router.beforeEach((to, from, next) => {
+    const store = useStore()
+    if (!store.token) store.token = localStorage.getItem('token') || ''
+    if (!store.token && to.name !== 'login') {
+        next('./login')
+        return
+    }
     console.log('路由')
     next()
 })
@@ -38,6 +44,7 @@ app.use(createPinia())
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import '@/assets/css/normalize.css'
 
 app.use(ElementPlus)
 app.mount('#app')

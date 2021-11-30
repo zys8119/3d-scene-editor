@@ -17,5 +17,29 @@ export default defineStore('main', {
         loading(state) {
             return state.requests.size > 0
         }
+    },
+    actions: {
+        setToken(token = '') {
+            this.token = token
+            localStorage.setItem('token', token)
+        },
+        login(username: string, password: string) {
+            return new Promise<void>(reslove => {
+                this.setToken(username + password)
+                this.getUserinfo()
+                    .then(() => {
+                        reslove()
+                    })
+            })
+        },
+        getUserinfo() {
+            return new Promise<void>(resolve => {
+                this.name = 'Test'
+                resolve()
+            })
+        },
+        logout() {
+            this.setToken()
+        }
     }
 })

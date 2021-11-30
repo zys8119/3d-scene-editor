@@ -1,3 +1,40 @@
+<script lang="ts">
+import { defineComponent } from 'vue'
+import useStore from '@/store'
+import { mapActions } from 'pinia'
+export default defineComponent({
+    data() {
+        // window.api.v1.ok.test2()
+        // this.api.v1.test2()
+        //     .then(res => {
+        //         console.log(res.data)
+        //     })
+        // this.axios({
+        //     data: {
+        //         a: 'ok'
+        //     },
+        //     url: 'okokok'
+        // })
+        return {
+            msg: 'okok',
+            count: 0
+        }
+    },
+    computed: {
+        loading() {
+            return window.store.index.loading
+        }
+    },
+    methods: {
+        ...mapActions(useStore, ['logout']),
+        handleLogout() {
+            this.logout()
+            this.$router.push({ name: 'login' })
+        }
+    }
+})
+</script>
+
 <template>
     <h1>{{ msg }}</h1>
 
@@ -23,36 +60,9 @@
         Edit
         {{ loading }}
         <code>components/HelloWorld.vue</code> to test hot module replacement.
+        <el-button @click="handleLogout">注销</el-button>
     </p>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue"
-export default defineComponent({
-    data() {
-        // window.api.v1.ok.test2()
-        // this.api.v1.test2()
-        //     .then(res => {
-        //         console.log(res.data)
-        //     })
-        // this.axios({
-        //     data: {
-        //         a: 'ok'
-        //     },
-        //     url: 'okokok'
-        // })
-        return {
-            msg: 'okok',
-            count: 0
-        }
-    },
-    computed: {
-        loading() {
-            return window.store.index.loading
-        }
-    }
-})
-</script>
 
 <style scoped>
 a {
