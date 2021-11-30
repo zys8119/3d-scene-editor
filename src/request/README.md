@@ -3,7 +3,7 @@ Quick Start
 
 ```javascript
 /**
-** /main.ts
+** main.ts
 **/
 import { createApp } from 'vue'
 const app = createApp(App)
@@ -12,7 +12,7 @@ import { mount as requestMount } from '@/request'
 import useStore from '@/store' // require a pinia store
 
 requestMount(app, {
-    useStore: useStore
+    useStore
 })
 
 import { mount as apiMount } from '@/api'
@@ -23,7 +23,7 @@ app.use(createPinia())
 app.mount('#app')
 
 /**
-** /api/main.ts
+** api/main.ts
 **/
 import v1 from './v1'
 

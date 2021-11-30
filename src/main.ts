@@ -11,7 +11,7 @@ import { mount as requestMount } from '@/request'
 import useStore from '@/store'
 requestMount(app, {
     baseURL: '',
-    useStore: useStore
+    useStore
 })
 
 import { mount as apiMount } from '@/api'
