@@ -4,12 +4,27 @@ import { ElMessage } from 'element-plus'
 /**
  * 基础配置
  */
-const apiPrefixDevelopment = '/'
-const apiPrefixProduction = '/'
-const baseURL = import.meta.env.MODE === 'development' ? apiPrefixDevelopment : apiPrefixProduction
+// const apiPrefixDevelopment = '/'
+// const apiPrefixProduction = '/'
+// const baseURL = import.meta.env.MODE === 'development' ? apiPrefixDevelopment : apiPrefixProduction
+interface Store {
+    token: string;
+    loading: boolean;
+    requests: Set<Promise<any>>;
+}
+interface Options {
+    baseURL: string;
+    useStore: null | (() => Store);
+    successCode: number[];
+}
+const options: Options = {
+    baseURL: '',
+    useStore: null,
+    successCode: [200, 2000]
+}
 
 const service = axios.create({
-    baseURL: baseURL,
+    baseURL: '',
     // withCredentials: true, // send cookies when cross-domain requests
     timeout: 25000
 })
@@ -18,26 +33,25 @@ export function transParams(params: Record<string, any>) {
     let result = ''
     Object.keys(params).forEach((key) => {
         if (!Object.is(params[key], undefined) && !Object.is(params[key], null) && !Object.is(JSON.stringify(params[key]), '{}')) {
-        result += encodeURIComponent(key) + '=' + encodeURIComponent(params[key]) + '&'
+            result += encodeURIComponent(key) + '=' + encodeURIComponent(params[key]) + '&'
         }
     })
     return result
 }
 
-import useStore from '@/store'
-let store: ReturnType<typeof useStore>
+let store: Store
 /**
  * 请求重构
  */
 service.interceptors.request.use(
     config => {
         // do something before request is sent
-        if (!store) store = useStore()
+        if (!store && options.useStore) store = options.useStore()
         if (!config.headers) config.headers = {}
-        if (import.meta.env.MODE !== 'development') config.headers['Authorization'] = `Bearer ${store.token}`
+        if (store) config.headers['Authorization'] = `Bearer ${store.token}`
         // get请求映射params参数
         if (config.method === 'get' && config.params) {
-            config.url = config.url + '?' + transParams(config.params)
+            config.url = options.baseURL + config.url + '?' + transParams(config.params)
             config.params = {}
         }
         return config
@@ -56,7 +70,7 @@ service.interceptors.response.use(
 
         // if the custom code is not 20000, it is judged as an error.
         if (!(res?.code)) return response
-        if (res.code !== 20000 && res.code !== 200) {
+        if (options.successCode.includes(res.code)) {
         const messageInfo = res.errorMsg || res.msg || res.message || '接口调用时遇到错误，请重试'
 
         ElMessage({
@@ -95,7 +109,6 @@ service.interceptors.response.use(
     }
 )
 
-// @/types/index.ts
 export interface ResponseType<T = any> {
     code: number;
     errorMsg?: string;
@@ -103,11 +116,14 @@ export interface ResponseType<T = any> {
     success?: boolean;
 }
 
+/**
+ * 请求，第二个参数可以设置是否改变全局Loading
+ */
 const request = async <T = any>(config: AxiosRequestConfig, setLoading = true): Promise<ResponseType<T>> => {
     const request = service.request<ResponseType<T>>(config)
     if (setLoading) {
-        if (!store) store = useStore()
-        store.requests.add(request)
+        if (!store && options.useStore) store = options.useStore()
+        if (store) store.requests.add(request)
     }
     return new Promise<ResponseType<T>>((resolve, reject) => {
         request
@@ -118,7 +134,7 @@ const request = async <T = any>(config: AxiosRequestConfig, setLoading = true): 
                 reject(err)
             })
             .finally(() => {
-                if (setLoading) store.requests.delete(request)
+                if (store && setLoading) store.requests.delete(request)
             })
     })
 }
@@ -126,16 +142,13 @@ const request = async <T = any>(config: AxiosRequestConfig, setLoading = true): 
 export const $http = service
 
 /**
- * 
- * @author chentao
  * 传入多个 promise 对象，最终只修改一次 loading
- * 
  */
 export const requestAll = (requests: Promise<any>[], setLoading = true) => {
     const request = Promise.all(requests)
     if (setLoading) {
-        if (!store) store = useStore()
-        store.requests.add(request)
+        if (!store && options.useStore) store = options.useStore()
+        if (store) store.requests.add(request)
     }
     return new Promise<any[]>((resolve, reject) => {
         request
@@ -146,12 +159,14 @@ export const requestAll = (requests: Promise<any>[], setLoading = true) => {
                 reject(err)
             })
             .finally(() => {
-                if (setLoading) store.requests.delete(request)
+                if (store && setLoading) store.requests.delete(request)
             })
     })
 }
 
-// 通用下载方法
+/**
+ * 通用下载方法
+ */
 export function download(url: string, params: Record<string, any>, filename: string) {
     return service.post(url, params, {
         transformRequest: [(params) => {
@@ -181,8 +196,22 @@ export function download(url: string, params: Record<string, any>, filename: str
     })
 }
 
+import { App } from 'vue'
+
+export function mount(app: App<Element>, optionsOverride?: Partial<Options>) {
+    app.config.globalProperties.axios = request
+    app.config.globalProperties.requestAll = requestAll
+    app.config.globalProperties.download = download
+    window.common = {
+        axios: request,
+        requestAll,
+        download
+    }
+    if (optionsOverride) Object.assign(options, optionsOverride)
+}
+
 /**
- * 附加到 vue 原型上和
+ * 附加到 vue 原型上和 window 对象上
  */
 declare global {
     interface Window {
@@ -194,10 +223,12 @@ declare global {
     }
 }
 
-window.common = {
-    axios: request,
-    requestAll,
-    download
+declare module '@vue/runtime-core'  {
+    export interface ComponentCustomProperties {
+        axios: typeof request;
+        download: typeof download;
+        requestAll: typeof requestAll;
+    }
 }
 
 export default request

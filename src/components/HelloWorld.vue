@@ -30,17 +30,17 @@
 import { defineComponent } from "vue"
 export default defineComponent({
     data() {
-        window.api.v1.ok.test2()
-        this.api.v1.test2()
-            .then(res => {
-                console.log(res.data)
-            })
-        this.axios({
-            data: {
-                a: 'ok'
-            },
-            url: 'okokok'
-        })
+        // window.api.v1.ok.test2()
+        // this.api.v1.test2()
+        //     .then(res => {
+        //         console.log(res.data)
+        //     })
+        // this.axios({
+        //     data: {
+        //         a: 'ok'
+        //     },
+        //     url: 'okokok'
+        // })
         return {
             msg: 'okok',
             count: 0
