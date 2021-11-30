@@ -47,7 +47,7 @@ const login = () => {
                     required: true,
                     message: '请输入密码'
                 }]
-            }">
+            }" @keyup.enter="login">
                 <el-form-item label="账号" prop="username" required>
                     <el-input v-model="user.username" placeholder="请输入账号" />
                 </el-form-item>

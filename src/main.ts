@@ -42,7 +42,7 @@ router.beforeEach((to, from, next) => {
      * 如果仍然拿不到 token，这里排除 login 避免无限循环
      */
     if (!store.token && to.name !== 'login') {
-        next('./login')
+        next({ name: 'login' })
         return
     }
     console.log('路由跳转')

@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia'
+import { RouteRecordRaw } from 'vue-router'
+import { asyncRoutes } from '@/router'
 
 // useStore could be anything like useUser, useCart
 // the first argument is a unique id of the store across your application
@@ -10,7 +12,8 @@ export default defineStore('main', {
             name: 'Eduardo',
             isAdmin: true,
             token: '',
-            requests: new Set() as Set<Promise<any>>
+            requests: new Set() as Set<Promise<any>>,
+            routes: [] as RouteRecordRaw[]
         }
     },
     getters: {
@@ -37,7 +40,11 @@ export default defineStore('main', {
                 this.name = 'Test'
                 resolve()
             })
+                .then(() => {
+                    this.routes = asyncRoutes
+                })
                 .catch(() => {
+                    // token 可能失效了，清除一下
                     this.setToken()
                 })
         },
