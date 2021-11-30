@@ -14,34 +14,56 @@ const handleLogout = () => {
 }
 
 import {
-    Setting
+    ArrowDown
 } from '@element-plus/icons'
 </script>
 
 <template>
-    <el-container style="height: 100vh; border: 1px solid #eee">
-        <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+    <el-container class="main">
+        <!-- 侧边 -->
+        <el-aside width="200px">
             <layout-menu />
         </el-aside>
-
+        <!-- 主 -->
         <el-container>
-            <el-header style="text-align: right; font-size: 12px">
+            <!-- 头 -->
+            <el-header class="main-header">
                 <el-dropdown>
-                    {{ store.name }} <el-icon style="margin-right: 15px"><setting /></el-icon>
+                    <span class="el-dropdown-link">
+                        {{ store.name }}
+                        <el-icon class="el-icon--right">
+                            <arrow-down />
+                        </el-icon>
+                    </span>
                     <template #dropdown>
                         <el-dropdown-menu>
-                        <el-dropdown-item>View</el-dropdown-item>
-                        <el-dropdown-item>Add</el-dropdown-item>
-                        <el-dropdown-item>Delete</el-dropdown-item>
+                            <el-dropdown-item>View</el-dropdown-item>
+                            <el-dropdown-item>Add</el-dropdown-item>
+                            <el-dropdown-item>Delete</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
                 <el-button size="small" @click="handleLogout">注销</el-button>
             </el-header>
-
+            <!-- 主 -->
             <el-main>
                 <router-view />
             </el-main>
         </el-container>
     </el-container>
 </template>
+
+<style lang="less" scoped>
+.main {
+    height: 100vh;
+    :deep(.el-menu) {
+        height: 100%;
+    }
+    .main-header {
+        background-color: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}
+</style>
