@@ -37,6 +37,9 @@ export default defineStore('main', {
                 this.name = 'Test'
                 resolve()
             })
+                .catch(() => {
+                    this.setToken()
+                })
         },
         logout() {
             this.setToken()

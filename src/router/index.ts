@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory, RouteRecordRaw, RouterView } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import Layout from '@/components/Layout/Layout.vue'
 
 const routes: RouteRecordRaw[] = [
     {
@@ -21,7 +22,7 @@ const asyncRoutes: RouteRecordRaw[] = [
         name: 'index',
         path: '/',
         redirect: '/home',
-        component: RouterView,
+        component: Layout,
         children: [
             {
                 path: 'home',

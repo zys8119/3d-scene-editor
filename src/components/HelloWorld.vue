@@ -1,7 +1,5 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import useStore from '@/store'
-import { mapActions } from 'pinia'
 export default defineComponent({
     data() {
         // window.api.v1.ok.test2()
@@ -23,13 +21,6 @@ export default defineComponent({
     computed: {
         loading() {
             return window.store.index.loading
-        }
-    },
-    methods: {
-        ...mapActions(useStore, ['logout']),
-        handleLogout() {
-            this.logout()
-            this.$router.push({ name: 'login' })
         }
     }
 })
@@ -60,7 +51,6 @@ export default defineComponent({
         Edit
         {{ loading }}
         <code>components/HelloWorld.vue</code> to test hot module replacement.
-        <el-button @click="handleLogout">注销</el-button>
     </p>
 </template>
 
