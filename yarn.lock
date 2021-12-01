@@ -2440,6 +2440,12 @@ word-wrap@^1.2.3:
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
 
+"wp-request@git+https://gitlab.zhijiasoft.com/chentao/wp-request.git":
+  version "1.0.0"
+  resolved "git+https://gitlab.zhijiasoft.com/chentao/wp-request.git#8d47b4705a0aa93c05142ee3995faa9735149c55"
+  dependencies:
+    axios "^0.24.0"
+
 wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"

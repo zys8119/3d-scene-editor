@@ -7,7 +7,7 @@ const app = createApp(App)
  * 类型定义
  */
 
-import { mount as requestMount } from '@/request'
+import { mount as requestMount } from 'wp-request'
 import useStore from '@/store'
 requestMount(app, {
     baseURL: '',
