@@ -16,7 +16,7 @@
         "pinia": "^2.0.4",
         "vue": "^3.2.16",
         "vue-router": "^4.0.12",
-        "wp-request": "git+https://gitlab.zhijiasoft.com/chentao/wp-request.git"
+        "wp-request": "git+https://gitlab.zhijiasoft.com/wp-request/wp-request.git"
     },
     "devDependencies": {
         "@types/node": "^16.11.11",
