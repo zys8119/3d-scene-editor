@@ -699,8 +699,8 @@ async-validator@^4.0.7:
 
 axios@^0.24.0:
   version "0.24.0"
-  resolved "https://registry.npmmirror.com/axios/download/axios-0.24.0.tgz#804e6fa1e4b9c5288501dd9dff56a7a0940d20d6"
-  integrity sha1-gE5voeS5xSiFAd2d/1anoJQNINY=
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.24.0.tgz#804e6fa1e4b9c5288501dd9dff56a7a0940d20d6"
+  integrity sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==
   dependencies:
     follow-redirects "^1.14.4"
 
@@ -1310,8 +1310,8 @@ flatted@^3.1.0:
 
 follow-redirects@^1.14.4:
   version "1.14.5"
-  resolved "https://registry.npmmirror.com/follow-redirects/download/follow-redirects-1.14.5.tgz?cache=0&sync_timestamp=1635857764332&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Ffollow-redirects%2Fdownload%2Ffollow-redirects-1.14.5.tgz#f09a5848981d3c772b5392309778523f8d85c381"
-  integrity sha1-8JpYSJgdPHcrU5Iwl3hSP42Fw4E=
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.5.tgz#f09a5848981d3c772b5392309778523f8d85c381"
+  integrity sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==
 
 fs.realpath@^1.0.0:
   version "1.0.0"
@@ -2440,9 +2440,9 @@ word-wrap@^1.2.3:
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
 
-"wp-request@git+https://gitlab.zhijiasoft.com/chentao/wp-request.git":
-  version "1.0.0"
-  resolved "git+https://gitlab.zhijiasoft.com/chentao/wp-request.git#8d47b4705a0aa93c05142ee3995faa9735149c55"
+"wp-request@git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git":
+  version "1.0.1"
+  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git#a1a5fa7486d6d31ad1d8b2370098bae5f382c5e0"
   dependencies:
     axios "^0.24.0"
 
