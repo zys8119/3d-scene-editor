@@ -24,9 +24,9 @@ onBeforeUnmount(() => view.value && removeResizeListener(view.value, setH5))
 </script>
 
 <template>
-    <div id="view" ref="view">
+    <div id="view" ref="view" v-loading="store.loading">
         <el-config-provider :locale="zhCn">
-            <router-view v-loading="store.loading" />
+            <router-view />
         </el-config-provider>
     </div>
 </template>

@@ -7,32 +7,6 @@ import {
     Histogram
 } from '@element-plus/icons'
 
-declare module 'vue-router' {
-    interface RouteMeta {
-        title?: string;
-        /**
-         * 是否在菜单中隐藏
-         */
-        hidden?: boolean;
-        /**
-         * 是否在菜单中禁用
-         */
-        disabled?: boolean;
-        /**
-         * 图标，要求是一个 Vue Component
-         */
-        icon?: Component;
-        /**
-         * 是否全屏
-         */
-        isFullPage?: boolean;
-        /**
-         * 是否外链，点击后会跳转到这个 url
-         */
-        url?: string;
-    }
-}
-
 /**
  * 使用 markRaw 为了避免原始 ref 造成的性能损耗
  * markRaw 可以使一个对象永远是原始对象
@@ -42,6 +16,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
         path: 'home',
         name: 'home',
         meta: {
+            title: '首页',
             icon: markRaw(HomeFilled)
         },
         component: () => import('@/components/HelloWorld.vue')
@@ -50,7 +25,9 @@ export const asyncRoutes: RouteRecordRaw[] = [
         path: 'home2',
         name: 'home2',
         meta: {
-            icon: markRaw(Histogram)
+            title: '被封印的首页',
+            icon: markRaw(Histogram),
+            disabled: true
         },
         component: () => import('@/components/HelloWorld.vue')
     },
@@ -59,7 +36,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
         name: 'home3',
         redirect: '/home3/home4',
         meta: {
-            type: 'home2'
+            title: '特殊页面'
         },
         component: RouterView,
         children: [
@@ -109,5 +86,31 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 })
+
+declare module 'vue-router' {
+    interface RouteMeta {
+        title?: string;
+        /**
+         * 是否在菜单中隐藏
+         */
+        hidden?: boolean;
+        /**
+         * 是否在菜单中禁用
+         */
+        disabled?: boolean;
+        /**
+         * 图标，要求是一个 Vue Component
+         */
+        icon?: Component;
+        /**
+         * 是否全屏
+         */
+        isFullPage?: boolean;
+        /**
+         * 是否外链，点击后会跳转到这个 url
+         */
+        url?: string;
+    }
+}
 
 export default router
