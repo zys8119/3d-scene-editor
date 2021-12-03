@@ -51,7 +51,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
                 redirect: '/home3',
                 meta: {
                     title: '我是个外链',
-                    url: 'http://www.baidu.com'
+                    url: 'http://www.google.com'
                 }
             }
         ]
