@@ -15,7 +15,8 @@ export default defineComponent({
         // })
         return {
             msg: 'okok',
-            count: 0
+            count: 0,
+            value: ''
         }
     },
     computed: {
@@ -52,6 +53,17 @@ export default defineComponent({
         {{ loading }}
         <code>components/HelloWorld.vue</code> to test hot module replacement.
     </p>
+    <el-select-v2 v-model="value" :options="[{
+        value: 'a',
+        label: 'a'
+    }, {
+        value: 'b',
+        label: 'b'
+    }, {
+        value: 'c',
+        label: 'c'
+    }]" clearable>
+    </el-select-v2>
 </template>
 
 <style scoped>

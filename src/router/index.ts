@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw, RouterView } from 'vue-router'
+import { markRaw } from 'vue'
 import Layout from '@/components/Layout/Layout.vue'
 
 import {
@@ -7,13 +8,17 @@ import {
     Histogram
 } from '@element-plus/icons'
 
+/**
+ * 使用 markRaw 为了避免原始 ref 造成的性能损耗
+ * markRaw 可以使一个对象永远是原始对象
+ */
 export const asyncRoutes: RouteRecordRaw[] = [
     {
         path: 'home',
         name: 'home',
         meta: {
             type: 'home',
-            icon: HomeFilled
+            icon: markRaw(HomeFilled)
         },
         component: () => import('@/components/HelloWorld.vue')
     },
@@ -22,7 +27,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
         name: 'home2',
         meta: {
             type: 'home2',
-            icon: Histogram
+            icon: markRaw(Histogram)
         },
         component: () => import('@/components/HelloWorld.vue')
     },
