@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import useStore from '@/store'
-import { useRoute, useRouter, RouteLocationNormalizedLoaded } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import LayoutMenuItem from './MenuItem.vue'
 
@@ -28,6 +28,6 @@ const handleSelect = (index: string) => {
 
 <template>
     <el-menu :default-active="route.path" @select="index => handleSelect(index)">
-        <layout-menu-item v-for="$route in store.routes" :key="$route.name" :index="getPath($route.path, $route.meta?.url ? String($route.meta.url) : '')" :route="$route" />
+        <layout-menu-item v-for="$route in store.routes" :key="$route.name" :index="getPath($route.path, $route.meta?.url)" :route="$route" />
     </el-menu>
 </template>

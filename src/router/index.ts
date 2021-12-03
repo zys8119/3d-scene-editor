@@ -1,12 +1,37 @@
 import { createRouter, createWebHistory, RouteRecordRaw, RouterView } from 'vue-router'
-import { markRaw } from 'vue'
+import { markRaw, Component } from 'vue'
 import Layout from '@/components/Layout/Layout.vue'
 
 import {
-    Setting,
     HomeFilled,
     Histogram
 } from '@element-plus/icons'
+
+declare module 'vue-router' {
+    interface RouteMeta {
+        title?: string;
+        /**
+         * 是否在菜单中隐藏
+         */
+        hidden?: boolean;
+        /**
+         * 是否在菜单中禁用
+         */
+        disabled?: boolean;
+        /**
+         * 图标，要求是一个 Vue Component
+         */
+        icon?: Component;
+        /**
+         * 是否全屏
+         */
+        isFullPage?: boolean;
+        /**
+         * 是否外链，点击后会跳转到这个 url
+         */
+        url?: string;
+    }
+}
 
 /**
  * 使用 markRaw 为了避免原始 ref 造成的性能损耗
@@ -17,7 +42,6 @@ export const asyncRoutes: RouteRecordRaw[] = [
         path: 'home',
         name: 'home',
         meta: {
-            type: 'home',
             icon: markRaw(HomeFilled)
         },
         component: () => import('@/components/HelloWorld.vue')
@@ -26,7 +50,6 @@ export const asyncRoutes: RouteRecordRaw[] = [
         path: 'home2',
         name: 'home2',
         meta: {
-            type: 'home2',
             icon: markRaw(Histogram)
         },
         component: () => import('@/components/HelloWorld.vue')
@@ -73,13 +96,10 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/login',
         name: 'login',
-        meta: {
-        type: 'login',
-        },
         component: () => import('@/components/Common/Login.vue'),
     },
     {
-        path: '/:pathMatch(.*)*', // 注意此处 404页面匹配规则和以前不相同，得采用这种配置方式才行
+        path: '/:pathMatch(.*)*',
         name: '404',
         component: () => import('@/components/Common/404.vue'),
     }

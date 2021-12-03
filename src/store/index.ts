@@ -20,9 +20,11 @@ export default defineStore('main', {
             routes: [] as RouteRecordRaw[],
             /**
              * 是否是 H5 页面
-             * isH5Max 代表 H5 页面的最大宽度
              */
             isH5: false,
+            /**
+             * H5 页面的最大宽度
+             */
             isH5Max: 700
         }
     },
