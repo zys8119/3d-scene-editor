@@ -14,7 +14,9 @@ export default defineStore('main', {
             token: '',
             requests: new Set() as Set<Promise<any>>,
             routes: [] as RouteRecordRaw[],
-            requestResults: {} as Record<string, any>
+            requestResults: {} as Record<string, any>,
+            isH5: false,
+            isH5Max: 700
         }
     },
     getters: {

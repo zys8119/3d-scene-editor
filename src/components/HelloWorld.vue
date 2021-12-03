@@ -21,7 +21,7 @@ export default defineComponent({
     },
     computed: {
         loading() {
-            return window.store.index.loading
+            return window.store.index.isH5
         }
     }
 })
