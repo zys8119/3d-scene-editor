@@ -11,6 +11,11 @@ import { mount as requestMount } from 'wp-request'
 import useStore from '@/store'
 requestMount(app, {
     baseURL: '',
+    afterEach(config, data) {
+        if (!config) return
+        const store = useStore()
+        store.requestResults[`${(config.method || 'get').toUpperCase()}@${config.url}}`] = data
+    },
     useStore
 })
 

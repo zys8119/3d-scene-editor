@@ -13,7 +13,8 @@ export default defineStore('main', {
             isAdmin: true,
             token: '',
             requests: new Set() as Set<Promise<any>>,
-            routes: [] as RouteRecordRaw[]
+            routes: [] as RouteRecordRaw[],
+            requestResults: {} as Record<string, any>
         }
     },
     getters: {
