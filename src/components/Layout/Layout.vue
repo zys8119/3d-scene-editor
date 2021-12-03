@@ -3,9 +3,10 @@ import { RouterView } from 'vue-router'
 import LayoutMenu from './Menu/Menu.vue'
 
 import useStore from '@/store'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const store = useStore()
+const route = useRoute()
 const router = useRouter()
 
 const handleLogout = () => {
@@ -19,7 +20,8 @@ import {
 </script>
 
 <template>
-    <el-container class="main">
+    <router-view v-if="route.meta?.isFullPage" />
+    <el-container v-else class="main">
         <!-- 侧边 -->
         <el-aside width="200px">
             <layout-menu />

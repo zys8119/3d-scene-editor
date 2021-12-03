@@ -15,7 +15,7 @@ window.store = { index: store }
  */
 import { addResizeListener, removeResizeListener } from 'element-plus/lib/utils/resize-event'
 
-const view = ref<HTMLElement>()
+const view = ref<HTMLDivElement>()
 const setH5 = () => store.isH5 = window.innerWidth < store.isH5Max
 
 watch(() => store.isH5Max, setH5, { immediate: true })

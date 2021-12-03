@@ -2,19 +2,26 @@ import { defineStore } from 'pinia'
 import { RouteRecordRaw } from 'vue-router'
 import { asyncRoutes } from '@/router'
 
-// useStore could be anything like useUser, useCart
-// the first argument is a unique id of the store across your application
 export default defineStore('main', {
     state: () => {
         return {
-            // all these properties will have their type inferred automatically
             counter: 0,
             name: 'Eduardo',
             isAdmin: true,
+            /**
+             * 请求相关
+             */
             token: '',
             requests: new Set() as Set<Promise<any>>,
-            routes: [] as RouteRecordRaw[],
             requestResults: {} as Record<string, any>,
+            /**
+             * 有权限的路由，用于菜单的生成
+             */
+            routes: [] as RouteRecordRaw[],
+            /**
+             * 是否是 H5 页面
+             * isH5Max 代表 H5 页面的最大宽度
+             */
             isH5: false,
             isH5Max: 700
         }

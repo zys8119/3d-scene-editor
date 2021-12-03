@@ -43,7 +43,11 @@ export const asyncRoutes: RouteRecordRaw[] = [
             {
                 path: 'home4',
                 name: 'home4',
-                component: () => import('@/components/HelloWorld.vue')
+                component: () => import('@/components/HelloWorld.vue'),
+                meta: {
+                    title: '全屏页面',
+                    isFullPage: true
+                }
             },
             {
                 path: 'baidu',
