@@ -24,6 +24,14 @@ const testRoutes: RouteRecordRaw[] = [
                     title: '数据请求'
                 },
                 component: () => import('@/components/views/Test/DataRequest.vue')
+            },
+            {
+                path: 'tsx',
+                name: 'Tsx',
+                meta: {
+                    title: 'TSX'
+                },
+                component: () => import('@/components/views/Test/Tsx')
             }
         ]
     }    
