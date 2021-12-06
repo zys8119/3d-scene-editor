@@ -7,7 +7,7 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import * as MenuItemComponent from './menuItem.vue'
+import * as MenuItemComponent from './item.vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 const { default: MenuItemChild } = MenuItemComponent

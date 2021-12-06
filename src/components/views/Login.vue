@@ -11,11 +11,24 @@ const user = reactive({
 
 const form = ref<null | InstanceType<typeof ElForm>>(null)
 const router = useRouter()
-const login = () => {
+
+const login = (username: string, password: string) => {
+    return new Promise<void>(reslove => {
+        store.setToken(username + password)
+            .then(res => {
+                store.getUserinfo()
+                    .then(() => {
+                        reslove()
+                    })
+            })
+    })
+}
+
+const handleLogin = () => {
     if (!form.value) return
     form.value.validate(vaild => {
         if (vaild) {
-            store.login(user.username, user.password)
+            login(user.username, user.password)
                 .then(() => {
                     router.push('/')
                 })
@@ -47,7 +60,7 @@ const login = () => {
                     required: true,
                     message: '请输入密码'
                 }]
-            }" @keyup.enter="login">
+            }" @keyup.enter="handleLogin">
                 <el-form-item label="账号" prop="username" required>
                     <el-input v-model="user.username" placeholder="请输入账号" />
                 </el-form-item>
@@ -55,7 +68,7 @@ const login = () => {
                     <el-input v-model="user.password" type="password" placeholder="请输入密码" />
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="login">登录</el-button>
+                    <el-button type="primary" @click="handleLogin">登录</el-button>
                 </el-form-item>
             </el-form>
         </div>

@@ -14,7 +14,7 @@
 import useStore from '@/store'
 import { useRoute, useRouter, RouteRecordRaw } from 'vue-router'
 
-import LayoutMenuItem from './menuItem.vue'
+import LayoutMenuItem from './item.vue'
 
 const store = useStore()
 const route = useRoute()

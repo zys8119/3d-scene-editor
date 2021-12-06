@@ -21,15 +21,12 @@ import {
 
 <template>
     <router-view v-if="route.meta?.isFullPage" />
-    <el-container v-else class="main">
-        <!-- 侧边 -->
-        <el-aside width="200px">
+    <div v-else class="main">
+        <div class="main-aside">
             <layout-menu />
-        </el-aside>
-        <!-- 主 -->
-        <el-container>
-            <!-- 头 -->
-            <el-header class="main-header">
+        </div>
+        <div class="main-container">
+            <div class="main-header">
                 <el-dropdown>
                     <span class="el-dropdown-link">
                         {{ store.name }}
@@ -46,26 +43,36 @@ import {
                     </template>
                 </el-dropdown>
                 <el-button size="small" @click="handleLogout">注销</el-button>
-            </el-header>
-            <!-- 主 -->
-            <el-main>
+            </div>
+            <div class="main-content">
                 <router-view />
-            </el-main>
-        </el-container>
-    </el-container>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style lang="less" scoped>
 .main {
     height: 100vh;
-    :deep(.el-menu) {
-        height: 100%;
+    display: flex;
+    .main-aside {
+        width: 200px;
+    }
+    .main-container {
+        flex: 1;
     }
     .main-header {
         background-color: #f5f5f5;
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        height: 55px;
+    }
+    .main-content {
+        padding: 10px;
+    }
+    :deep(.el-menu) {
+        height: 100%;
     }
 }
 </style>
