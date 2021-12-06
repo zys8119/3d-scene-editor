@@ -1,11 +1,9 @@
 import { defineStore } from 'pinia'
 import { RouteRecordRaw } from 'vue-router'
-import { asyncRoutes } from '@/router'
 
-export default defineStore('main', {
+const useStore = defineStore('main', {
     state: () => {
         return {
-            counter: 0,
             name: 'Eduardo',
             isAdmin: true,
             /**
@@ -40,22 +38,16 @@ export default defineStore('main', {
                 localStorage.setItem('token', token)
                 resolve()
             })
-        },
-        getUserinfo() {
-            return new Promise<void>(resolve => {
-                this.name = 'Test'
-                resolve()
-            })
-                .then(() => {
-                    this.routes = asyncRoutes
-                })
-                .catch(() => {
-                    // token 可能失效了，清除一下
-                    this.setToken()
-                })
-        },
-        logout() {
-            this.setToken()
         }
     }
 })
+
+export default useStore
+
+declare global {
+    interface Window {
+        store: {
+            index: ReturnType<typeof useStore>
+        }
+    }
+}

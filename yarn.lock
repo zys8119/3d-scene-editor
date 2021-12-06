@@ -2441,8 +2441,8 @@ word-wrap@^1.2.3:
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
 
 "wp-request@git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git":
-  version "1.0.4"
-  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git#182b28b6bd78dd9297162fca7b121ee0c73a913f"
+  version "1.0.5"
+  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git#4a7170d8e9717eeb20cd5d763701dabab82d3a1b"
   dependencies:
     axios "^0.24.0"
 

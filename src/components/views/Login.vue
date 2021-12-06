@@ -3,6 +3,8 @@ import { ref, reactive } from 'vue'
 import { ElMessage, ElForm } from 'element-plus'
 import useStore from '@/store'
 import { useRouter } from 'vue-router'
+import { asyncRoutes, commonRoutes } from '@/router'
+import { getUserinfo } from '@/router/permission'
 const store = useStore()
 const user = reactive({
     username: '',
@@ -12,11 +14,24 @@ const user = reactive({
 const form = ref<null | InstanceType<typeof ElForm>>(null)
 const router = useRouter()
 
+const logout = () => {
+    /**
+     * 删除动态路由和公共路由
+     */
+    asyncRoutes.forEach(route => route.name && router.removeRoute(route.name))
+    commonRoutes.forEach(route => route.name && router.removeRoute(route.name))
+    /**
+     * 清空 token
+     */
+    store.setToken()
+}
+logout()
+
 const login = (username: string, password: string) => {
     return new Promise<void>(reslove => {
         store.setToken(username + password)
             .then(res => {
-                store.getUserinfo()
+                getUserinfo()
                     .then(() => {
                         reslove()
                     })

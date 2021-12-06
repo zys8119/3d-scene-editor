@@ -10,7 +10,6 @@ const route = useRoute()
 const router = useRouter()
 
 const handleLogout = () => {
-    store.logout()
     router.push({ name: 'login' })
 }
 
@@ -60,6 +59,8 @@ import {
     }
     .main-container {
         flex: 1;
+        display: flex;
+        flex-direction: column;
     }
     .main-header {
         background-color: #f5f5f5;
@@ -69,7 +70,8 @@ import {
         height: 55px;
     }
     .main-content {
-        padding: 10px;
+        flex: 1;
+        padding: 10px 20px;
     }
     :deep(.el-menu) {
         height: 100%;
