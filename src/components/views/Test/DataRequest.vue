@@ -23,7 +23,8 @@ const data = ref<{
 }[]>()
 const init = async(error = false) => {
     try {
-        const res = await window.api.v1.test[error ? 'getTestInfoError' : 'getTestInfo']()
+        const method = error ? window.api.v1.test.getTestInfoError : window.api.v1.test.getTestInfo
+        const res = await method()
         data.value = res.data.map(item => {
             return {
                 title: item[0].value,
