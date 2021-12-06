@@ -45,7 +45,13 @@ const getIndex = (path: string,  url?: string) => {
                 @select="(index: string, route: RouteRecordRaw) => $emit('select', index, route)"
             />
         </el-sub-menu>
-        <el-menu-item v-else :route="route" :index="String(index)" :disabled="route.meta?.disabled" @click="$emit('select', String(index), route)">
+        <el-menu-item
+            v-else
+            :route="route"
+            :index="String(index)"
+            :disabled="route.meta?.disabled"
+            @click="$emit('select', String(index), route)"
+        >
             <el-icon v-if="route.meta?.icon"><component :is="route.meta.icon" /></el-icon>
             {{ route.meta?.title || route.name }}
         </el-menu-item>
