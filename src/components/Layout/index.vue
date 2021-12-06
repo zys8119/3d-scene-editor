@@ -1,23 +1,3 @@
-<script lang="ts" setup>
-import { RouterView } from 'vue-router'
-import LayoutMenu from './menu/index.vue'
-
-import useStore from '@/store'
-import { useRoute, useRouter } from 'vue-router'
-
-const store = useStore()
-const route = useRoute()
-const router = useRouter()
-
-const handleLogout = () => {
-    router.push({ name: 'login' })
-}
-
-import {
-    ArrowDown
-} from '@element-plus/icons'
-</script>
-
 <template>
     <router-view v-if="route.meta?.isFullPage" />
     <div v-else class="main">
@@ -49,6 +29,26 @@ import {
         </div>
     </div>
 </template>
+
+<script lang="ts" setup>
+import { RouterView } from 'vue-router'
+import LayoutMenu from './menu/index.vue'
+
+import useStore from '@/store'
+import { useRoute, useRouter } from 'vue-router'
+
+const store = useStore()
+const route = useRoute()
+const router = useRouter()
+
+const handleLogout = () => {
+    router.push({ name: 'login' })
+}
+
+import {
+    ArrowDown
+} from '@element-plus/icons'
+</script>
 
 <style lang="less" scoped>
 .main {

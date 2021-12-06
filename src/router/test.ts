@@ -15,7 +15,7 @@ const testRoutes: RouteRecordRaw[] = [
                 meta: {
                     title: '我是H5吗'
                 },
-                component: () => import('@/components/views/TestCase/IsH5.vue')
+                component: () => import('@/components/views/Test/IsH5.vue')
             },
             {
                 path: 'data-request',
@@ -23,7 +23,7 @@ const testRoutes: RouteRecordRaw[] = [
                 meta: {
                     title: '数据请求'
                 },
-                component: () => import('@/components/views/TestCase/DataRequest.vue')
+                component: () => import('@/components/views/Test/DataRequest.vue')
             }
         ]
     }    

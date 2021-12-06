@@ -1,32 +1,3 @@
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-    data() {
-        // window.api.v1.ok.test2()
-        // this.api.v1.test2()
-        //     .then(res => {
-        //         console.log(res.data)
-        //     })
-        // this.axios({
-        //     data: {
-        //         a: 'ok'
-        //     },
-        //     url: 'okokok'
-        // })
-        return {
-            msg: 'okok',
-            count: 0,
-            value: ''
-        }
-    },
-    computed: {
-        loading() {
-            return window.store.index.isH5Max
-        }
-    }
-})
-</script>
-
 <template>
     <h1>{{ msg }}</h1>
 
@@ -65,6 +36,35 @@ export default defineComponent({
     }]" clearable>
     </el-select-v2>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+    data() {
+        // window.api.v1.ok.test2()
+        // this.api.v1.test2()
+        //     .then(res => {
+        //         console.log(res.data)
+        //     })
+        // this.axios({
+        //     data: {
+        //         a: 'ok'
+        //     },
+        //     url: 'okokok'
+        // })
+        return {
+            msg: 'okok',
+            count: 0,
+            value: ''
+        }
+    },
+    computed: {
+        loading() {
+            return window.store.index.isH5Max
+        }
+    }
+})
+</script>
 
 <style scoped>
 a {

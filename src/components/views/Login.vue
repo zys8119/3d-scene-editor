@@ -1,3 +1,30 @@
+<template>
+    <div class="login">
+        <div class="login-form">
+            <el-form ref="form" label-width="70px" :model="user" :rules="{
+                username: [{
+                    required: true,
+                    message: '请输入账号'
+                }],
+                password: [{
+                    required: true,
+                    message: '请输入密码'
+                }]
+            }" @keyup.enter="handleLogin">
+                <el-form-item label="账号" prop="username" required>
+                    <el-input v-model="user.username" placeholder="请输入账号" />
+                </el-form-item>
+                <el-form-item label="密码" prop="password" required>
+                    <el-input v-model="user.password" type="password" placeholder="请输入密码" />
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="handleLogin">登录</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+    </div>
+</template>
+
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
 import { ElMessage, ElForm } from 'element-plus'
@@ -62,33 +89,6 @@ const handleLogin = () => {
     })
 }
 </script>
-
-<template>
-    <div class="login">
-        <div class="login-form">
-            <el-form ref="form" label-width="70px" :model="user" :rules="{
-                username: [{
-                    required: true,
-                    message: '请输入账号'
-                }],
-                password: [{
-                    required: true,
-                    message: '请输入密码'
-                }]
-            }" @keyup.enter="handleLogin">
-                <el-form-item label="账号" prop="username" required>
-                    <el-input v-model="user.username" placeholder="请输入账号" />
-                </el-form-item>
-                <el-form-item label="密码" prop="password" required>
-                    <el-input v-model="user.password" type="password" placeholder="请输入密码" />
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="handleLogin">登录</el-button>
-                </el-form-item>
-            </el-form>
-        </div>
-    </div>
-</template>
 
 <style lang="less" scoped>
 .login {
