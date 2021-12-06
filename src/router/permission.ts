@@ -11,11 +11,6 @@ export const getUserinfo = () => {
             commonRoutes.forEach(route => router.addRoute(route))
             store.routes = asyncRoutes
         })
-        .catch(() => {
-            // 请求出问题了？
-            // token 可能失效了，清除一下
-            store.setToken()
-        })
 }
 
 /**
@@ -50,6 +45,8 @@ router.beforeEach(async(to, from, next) => {
             next()
         }
     } catch {
-        next('/404')
+        // 请求出问题了？
+        // token 可能失效了，清除一下
+        next({ name: 'login' })
     }
 })

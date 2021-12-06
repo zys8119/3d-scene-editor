@@ -18,5 +18,16 @@ export default {
             },
             method: 'get'
         })
+    },
+    getTestInfoError() {
+        // 代表履职
+        const nodeID = '006a6d06-50c0-11ec-8059-00163e01019c'
+        return window.common.axios<CellInfo[][]>({
+            url: `${host}/data/searchSheetDataByKey/`,
+            params: {
+                'node_id': nodeID
+            },
+            method: 'get'
+        })
     }
 }
