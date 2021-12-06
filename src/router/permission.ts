@@ -20,6 +20,7 @@ let registerRouteFresh = true
 
 router.beforeEach(async(to, from, next) => {
     try {
+        if (to.meta?.title) document.title = to.meta.title
         const store = useStore()
         /**
          * localStorage 检查是否有 token
