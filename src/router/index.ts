@@ -45,8 +45,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
                 name: 'home4',
                 component: () => import('@/components/HelloWorld.vue'),
                 meta: {
-                    title: '全屏页面',
-                    isFullPage: true
+                    title: '全屏页面'
                 }
             },
             {
@@ -56,6 +55,16 @@ export const asyncRoutes: RouteRecordRaw[] = [
                 meta: {
                     title: '我是个外链',
                     url: 'http://www.google.com'
+                }
+            },
+            {
+                path: 'baidu2',
+                name: 'baidu2',
+                redirect: '/home3',
+                meta: {
+                    title: '新链接打开',
+                    url: 'http://www.google.com',
+                    target: '_blank'
                 }
             }
         ]
@@ -110,6 +119,7 @@ declare module 'vue-router' {
          * 是否外链，点击后会跳转到这个 url
          */
         url?: string;
+        target?: string;
     }
 }
 

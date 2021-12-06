@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import useStore from '@/store'
-import { useRoute, useRouter } from 'vue-router'
+import { MenuItemClicked } from 'element-plus'
+import { useRoute, useRouter, RouteMeta, RouteRecordRaw } from 'vue-router'
 
 import LayoutMenuItem from './MenuItem.vue'
 
@@ -17,17 +18,26 @@ const getPath = (path: string, url?: string) => {
     }
 }
 
-const handleSelect = (index: string) => {
+const handleSelect = (index: string, route?: RouteRecordRaw) => {
     if (index.startsWith('/')) {
         router.push(index)
     } else {
-        location.href = index
+        if (route) {
+            const meta = route.meta
+            if (meta?.target) {
+                window.open(index, meta.target)
+            } else {
+                location.href = index
+            }
+        } else {
+            location.href = index
+        }
     }
 }
 </script>
 
 <template>
-    <el-menu :default-active="route.path" @select="index => handleSelect(index)">
-        <layout-menu-item v-for="$route in store.routes" :key="$route.name" :index="getPath($route.path, $route.meta?.url)" :route="$route" />
+    <el-menu :default-active="route.path">
+        <layout-menu-item v-for="$route in store.routes" :key="$route.name" :index="getPath($route.path, $route.meta?.url)" :route="$route" @select="handleSelect" />
     </el-menu>
 </template>

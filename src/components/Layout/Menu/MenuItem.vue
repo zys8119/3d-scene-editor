@@ -16,6 +16,9 @@ const props = defineProps<{
     route: RouteRecordRaw,
     index: number | string
 }>()
+defineEmits<{
+    (e: 'select', index: string, route?: RouteRecordRaw): void
+}>()
 
 const getIndex = (path: string,  url?: string) => {
     if (url) return url
@@ -34,9 +37,15 @@ const getIndex = (path: string,  url?: string) => {
                 <el-icon v-if="route.meta?.icon"><component :is="route.meta.icon" /></el-icon>
                 {{ route.meta?.title || route.name }}
             </template>
-            <menu-item-child v-for="child in route.children" :key="child.name" :route="child" :index="getIndex(child.path, child.meta?.url)" />
+            <menu-item-child
+                v-for="child in route.children"
+                :key="child.name"
+                :route="child"
+                :index="getIndex(child.path, child.meta?.url)"
+                @select="(index: string, route: RouteRecordRaw) => $emit('select', index, route)"
+            />
         </el-sub-menu>
-        <el-menu-item v-else :route="route" :index="String(index)" :disabled="route.meta?.disabled">
+        <el-menu-item v-else :route="route" :index="String(index)" :disabled="route.meta?.disabled" @click="$emit('select', String(index), route)">
             <el-icon v-if="route.meta?.icon"><component :is="route.meta.icon" /></el-icon>
             {{ route.meta?.title || route.name }}
         </el-menu-item>
