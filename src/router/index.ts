@@ -9,8 +9,6 @@ import homeRoutes from './home'
 import testRoutes from './test'
 
 /**
- * 使用 markRaw 为了避免原始 ref 造成的性能损耗
- * markRaw 可以使一个对象永远是原始对象
  * 动态路由
  */
 export const asyncRoutes: RouteRecordRaw[] = [
