@@ -16,6 +16,7 @@ requestMount(app, {
         const store = useStore()
         store.requestResults[`${(config.method || 'get').toUpperCase()}@${config.url}}`] = data
     },
+    successField: 'success',
     useStore
 })
 

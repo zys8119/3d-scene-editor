@@ -2,7 +2,11 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { Component } from 'vue'
 import Layout from '@/components/layout/index.vue'
 
+/**
+ * 路由模块
+ */
 import homeRoutes from './home'
+import testRoutes from './test'
 
 /**
  * 使用 markRaw 为了避免原始 ref 造成的性能损耗
@@ -10,7 +14,8 @@ import homeRoutes from './home'
  * 动态路由
  */
 export const asyncRoutes: RouteRecordRaw[] = [
-    ...homeRoutes
+    ...homeRoutes,
+    ...testRoutes
 ]
 
 /**

@@ -1,16 +1,11 @@
 import ok from './ok'
+import test from './test'
 export default {
-    test(data?: {
-        info: string
-    }) {
-        return window.common.axios({
-            url: ''
-        })
-    },
     test2() {
         return window.common.axios<string>({
             url: ''
         })
     },
-    ok
+    ok,
+    test
 }

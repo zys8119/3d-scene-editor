@@ -71,7 +71,7 @@ import {
     }
     .main-content {
         flex: 1;
-        padding: 10px 20px;
+        padding: 20px;
     }
     :deep(.el-menu) {
         height: 100%;
