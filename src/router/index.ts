@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw, RouterView } from 'vue-router'
 import { markRaw, Component } from 'vue'
-import Layout from '@/components/Layout/Layout.vue'
+import Layout from '@/components/layout/index.vue'
 
 import {
     HomeFilled,
@@ -19,7 +19,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
             title: '首页',
             icon: markRaw(HomeFilled)
         },
-        component: () => import('@/components/HelloWorld.vue')
+        component: () => import('@/components/views/HelloWorld.vue')
     },
     {
         path: 'home2',
@@ -29,7 +29,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
             icon: markRaw(Histogram),
             disabled: true
         },
-        component: () => import('@/components/HelloWorld.vue')
+        component: () => import('@/components/views/HelloWorld.vue')
     },
     {
         path: 'home3',
@@ -43,9 +43,10 @@ export const asyncRoutes: RouteRecordRaw[] = [
             {
                 path: 'home4',
                 name: 'home4',
-                component: () => import('@/components/HelloWorld.vue'),
+                component: () => import('@/components/views/HelloWorld.vue'),
                 meta: {
-                    title: '全屏页面'
+                    title: '全屏页面',
+                    isFullPage: true
                 }
             },
             {
@@ -82,12 +83,12 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/login',
         name: 'login',
-        component: () => import('@/components/Common/Login.vue'),
+        component: () => import('@/components/views/Login.vue'),
     },
     {
         path: '/:pathMatch(.*)*',
         name: '404',
-        component: () => import('@/components/Common/404.vue'),
+        component: () => import('@/components/common/404.vue'),
     }
 ]
 

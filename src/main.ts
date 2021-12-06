@@ -62,4 +62,5 @@ import 'element-plus/dist/index.css'
 import '@/assets/css/normalize.css'
 
 app.use(ElementPlus)
+
 app.mount('#app')

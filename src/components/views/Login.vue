@@ -72,7 +72,7 @@ const login = () => {
     .login-form {
         background-color: #fff;
         padding: 30px;
-        width: 300px;;
+        width: 300px;
     }
 }
 </style>

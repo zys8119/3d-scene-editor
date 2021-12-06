@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { RouterView } from 'vue-router'
-import LayoutMenu from './Menu/Menu.vue'
+import LayoutMenu from './menu/index.vue'
 
 import useStore from '@/store'
 import { useRoute, useRouter } from 'vue-router'
