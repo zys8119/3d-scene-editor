@@ -8,7 +8,7 @@ const app = createApp(App)
  */
 
 import { mount as requestMount } from 'wp-request'
-import useStore from '@/store'
+import useStore from '@/store/main'
 requestMount(app, {
     baseURL: '',
     afterEach(config, data) {
@@ -30,6 +30,9 @@ app.use(router)
 
 import { createPinia } from 'pinia'
 app.use(createPinia())
+
+import storeInstall from '@/store'
+storeInstall(app)
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'

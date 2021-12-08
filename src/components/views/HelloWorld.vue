@@ -60,7 +60,7 @@ export default defineComponent({
     },
     computed: {
         loading() {
-            return window.store.index.isH5Max
+            return window.store.main.isH5Max
         }
     }
 })

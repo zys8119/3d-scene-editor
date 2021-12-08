@@ -2,13 +2,7 @@
 import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 
-/**
- * 添加 store 到 window 上
- */
-import useStore from './store'
-
-const store = useStore()
-window.store = { index: store }
+const store = window.store.main
 
 /**
  * 监听 resize 事件，修改 store 的 isH5 属性

@@ -12,6 +12,15 @@
     </div>
 </template>
 
+<script lang='ts'>
+import { defineComponent } from 'vue'
+export default defineComponent({
+    data() {
+        this.$store.main.loading
+    }
+})
+</script>
+
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 /**
@@ -39,8 +48,8 @@ init()
 /**
  * 请求是否进行中
  */
-const loading = computed(() => window.store.index.loading)
-const requestsSize = computed(() => window.store.index.requests.size)
+const loading = computed(() => window.store.main.loading)
+const requestsSize = computed(() => window.store.main.requests.size)
 </script>
 
 <style lang="less" scoped>

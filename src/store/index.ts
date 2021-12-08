@@ -1,53 +1,37 @@
-import { defineStore } from 'pinia'
-import { RouteRecordRaw } from 'vue-router'
+/**
+ * 挂载 store
+ */
+import useMainStore from './main'
+import { App } from 'vue'
 
-const useStore = defineStore('main', {
-    state: () => {
-        return {
-            name: 'Eduardo',
-            isAdmin: true,
-            /**
-             * 请求相关
-             */
-            token: '',
-            requests: new Set() as Set<Promise<any>>,
-            requestResults: {} as Record<string, any>,
-            /**
-             * 有权限的路由，用于菜单的生成
-             */
-            routes: [] as RouteRecordRaw[],
-            /**
-             * 是否是 H5 页面
-             */
-            isH5: false,
-            /**
-             * H5 页面的最大宽度
-             */
-            isH5Max: 700
-        }
-    },
-    getters: {
-        loading(state) {
-            return state.requests.size > 0
-        }
-    },
-    actions: {
-        setToken(token = '') {
-            return new Promise<void>(resolve => {
-                this.token = token
-                localStorage.setItem('token', token)
-                resolve()
-            })
-        }
+/**
+ * 把导入的模块放到这里
+ */
+const getStores = () => {
+    const mainStore = useMainStore()
+    const stores = {
+        main: mainStore
     }
-})
+    return stores
+}
 
-export default useStore
+/**
+ * 一般情况下不需要维护这里
+ */
+export default function(app: App<Element>): void {
+    const stores = getStores()
+    app.config.globalProperties.$store = stores
+    window.store = stores
+}
+
+declare module '@vue/runtime-core'  {
+    export interface ComponentCustomProperties {
+        readonly $store: ReturnType<typeof getStores>
+    }
+}
 
 declare global {
     interface Window {
-        store: {
-            index: ReturnType<typeof useStore>
-        }
+        store: ReturnType<typeof getStores>
     }
 }

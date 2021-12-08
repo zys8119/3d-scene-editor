@@ -1,5 +1,5 @@
 import router, { asyncRoutes, commonRoutes } from './index'
-import useStore from '@/store'
+import useStore from '@/store/main'
 
 export const getUserinfo = () => {
     const store = useStore()

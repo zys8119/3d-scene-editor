@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import useStore from '@/store'
+import useStore from '@/store/main'
 import { useRoute, useRouter, RouteRecordRaw } from 'vue-router'
 
 import LayoutMenuItem from './item.vue'

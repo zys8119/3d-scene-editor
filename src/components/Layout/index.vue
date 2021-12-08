@@ -34,7 +34,7 @@
 import { RouterView } from 'vue-router'
 import LayoutMenu from './menu/index.vue'
 
-import useStore from '@/store'
+import useStore from '@/store/main'
 import { useRoute, useRouter } from 'vue-router'
 
 const store = useStore()
