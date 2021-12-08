@@ -18,10 +18,12 @@ const getStores = () => {
 /**
  * 一般情况下不需要维护这里
  */
-export default function(app: App<Element>): void {
-    const stores = getStores()
-    app.config.globalProperties.$store = stores
-    window.store = stores
+export default {
+    install(app: App<Element>) {
+        const stores = getStores()
+        app.config.globalProperties.$store = stores
+        window.store = stores
+    }
 }
 
 declare module '@vue/runtime-core'  {

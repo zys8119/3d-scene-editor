@@ -20,8 +20,8 @@ requestMount(app, {
     useStore
 })
 
-import { mount as apiMount } from '@/api'
-apiMount(app)
+import api from '@/api'
+app.use(api)
 
 import '@/router/permission'
 
@@ -30,9 +30,11 @@ app.use(router)
 
 import { createPinia } from 'pinia'
 app.use(createPinia())
-
-import storeInstall from '@/store'
-storeInstall(app)
+/**
+ * store 一定要在 createPinia 之后
+ */
+import stores from '@/store'
+app.use(stores)
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
