@@ -32,6 +32,14 @@ const testRoutes: RouteRecordRaw[] = [
                     title: 'TSX'
                 },
                 component: () => import('@/components/views/Test/Tsx')
+            },
+            {
+                path: 'components',
+                name: 'Components',
+                meta: {
+                    title: '组件们'
+                },
+                component: () => import('@/components/views/Test/Components.vue')
             }
         ]
     }    
