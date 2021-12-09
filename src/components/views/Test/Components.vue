@@ -33,11 +33,20 @@
             sdds
         </grid-item>
     </grid>
-    sd
+    <el-button @click="a = !a"></el-button>
+    <CollapseTransition>
+        <div v-if="a">
+            sdsd
+        </div>
+    </CollapseTransition>
+    <div>sdsd</div>
 </template>
 
 <script lang="ts" setup>
 import Space from '@/components/common/Space'
 import Grid from '@/components/common/Grid'
 import GridItem from '@/components/common/GridItem'
+import CollapseTransition from '@/components/common/CollapseTransition'
+import { ref } from 'vue'
+const a = ref(true)
 </script>

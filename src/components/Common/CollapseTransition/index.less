@@ -1,0 +1,78 @@
+.collapse-transition-width-leave-from,
+.collapse-transition-width-enter-to {
+    opacity: 1;
+}
+.collapse-transition-width-leave-to,
+.collapse-transition-width-enter-from {
+    opacity: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.collapse-transition-width-leave-active {
+    --currentDuration: var(--duration, .2s);
+    --currentCubicBezierEaseInOut: var(--cubicBezierEaseInOut, cubic-bezier(.4, 0, .2, 1));
+    --currentDelay: var(--delay, .1s);
+    overflow: hidden;
+    transition: opacity var(--currentDuration) var(--currentCubicBezierEaseInOut),
+      max-width var(--currentDuration) var(--currentCubicBezierEaseInOut) var(--currentDelay),
+      margin-left var(--currentDuration) var(--currentCubicBezierEaseInOut) var(--currentDelay),
+      margin-right var(--currentDuration) var(--currentCubicBezierEaseInOut) var(--currentDelay);
+}
+.collapse-transition-width-enter-active {
+    --currentDuration: var(--duration, .2s);
+    --currentCubicBezierEaseInOut: var(--cubicBezierEaseInOut, cubic-bezier(.4, 0, .2, 1));
+    --currentDelay: var(--delay, .1s);
+    overflow: hidden;
+    transition:
+      opacity var(--currentDuration) var(--currentCubicBezierEaseInOut) var(--currentDelay),
+      max-width var(--currentDuration) var(--currentCubicBezierEaseInOut),
+      margin-left var(--currentDuration) var(--currentCubicBezierEaseInOut),
+      margin-right var(--currentDuration) var(--currentCubicBezierEaseInOut);
+}
+
+.collapse-transition-leave-from,
+.collapse-transition-enter-to,
+.collapse-transition-reverse-enter-from,
+.collapse-transition-reverse-leave-to {
+    opacity: 1
+}
+
+.collapse-transition-leave-to,
+.collapse-transition-enter-from,
+.collapse-transition-reverse-enter-to,
+.collapse-transition-reverse-leave-from  {
+    opacity: 0;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.collapse-transition-leave-active,
+.collapse-transition-reverse-enter-active {
+    --currentDuration: var(--duration, .2s);
+    --currentCubicBezierEaseInOut: var(--cubicBezierEaseInOut, cubic-bezier(.4, 0, .2, 1));
+    --currentDelay: var(--delay, .1s);
+    overflow: hidden;
+    transition:
+      max-height var(--currentDuration) var(--currentCubicBezierEaseInOut) var(--currentDelay),
+      opacity var(--currentDuration) var(--cubicBezierEaseOut, cubic-bezier(0, 0, .2, 1)) var(--currentDelay),
+      margin-top var(--currentDuration) var(--currentCubicBezierEaseInOut) var(--currentDelay),
+      margin-bottom var(--currentDuration) var(--currentCubicBezierEaseInOut) var(--currentDelay),
+      padding-top var(--currentDuration) var(--currentCubicBezierEaseInOut) var(--currentDelay),
+      padding-bottom var(--currentDuration) var(--currentCubicBezierEaseInOut) var(--currentDelay)
+}
+
+.collapse-transition-enter-active,
+.collapse-transition-reverse-enter-active {
+    --currentDuration: var(--duration, .2s);
+    --currentCubicBezierEaseInOut: var(--cubicBezierEaseInOut, cubic-bezier(.4, 0, .2, 1));
+    overflow: hidden;
+    transition:
+      max-height var(--currentDuration) var(--currentCubicBezierEaseInOut),
+      opacity var(--currentDuration) var(--cubicBezierEaseIn, cubic-bezier(.4, 0, 1, 1)),
+      margin-top var(--currentDuration) var(--currentCubicBezierEaseInOut),
+      margin-bottom var(--currentDuration) var(--currentCubicBezierEaseInOut),
+      padding-top var(--currentDuration) var(--currentCubicBezierEaseInOut),
+      padding-bottom var(--currentDuration) var(--currentCubicBezierEaseInOut);
+}
