@@ -13,7 +13,8 @@ const gridProps = {
     defaultSpan: {
         type: Number,
         default: 1
-    }
+    },
+    dense: Boolean
 }
 
 export default defineComponent({
@@ -41,8 +42,9 @@ export default defineComponent({
         provide('defaultSpan', props.defaultSpan || 1)
         return () => (
             <div class="wp-grid" style={{
-                gridGap: gapMap.value.join(' '),
-                gridTemplateColumns: `repeat(${props.cols}, 1fr)`
+                gridGap: `${gapMap.value[1]} ${gapMap.value[0]}`,
+                gridTemplateColumns: `repeat(${props.cols}, minmax(0px, 1fr))`,
+                gridAutoFlow: props.dense ? 'row dense' : ''
             }}>
                 { slots.default?.() }
             </div>

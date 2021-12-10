@@ -21,6 +21,9 @@
         <el-button>
             取消
         </el-button>
+        <el-button type="primary" @click="testText = testText === '点我' ? '我变了' : '点我'">
+            {{ testText }}
+        </el-button>
         <el-button type="primary">
             确认
         </el-button>
@@ -52,7 +55,7 @@
     </space>
     <el-slider v-model="slider"></el-slider>
     <h1>布局 Grid</h1>
-    <grid class="grid-demo" :default-span="6" :gap="[20, slider2]">
+    <grid class="grid-demo" :default-span="6" :gap="[slider2, 20]" :dense="dense">
         <grid-item>
             我占六格
         </grid-item>
@@ -77,8 +80,8 @@
         <grid-item>
             我占六格
         </grid-item>
-        <grid-item :span="6">
-            我占六格
+        <grid-item :span="6" :row-span="2">
+            我占六格，竖着占两格
         </grid-item>
         <grid-item :offset="5">
             我占四格，左边有五格
@@ -92,8 +95,12 @@
         <grid-item :span="24">
             我占二十四格
         </grid-item>
+        <grid-item :span="7">
+            我占奇数格
+        </grid-item>
     </grid>
     <el-slider v-model="slider2" :max="60"></el-slider>
+    稠密 <el-switch v-model="dense" />
     <h1>折叠渐变 CollapseTransition</h1>
     <el-button @click="show = !show">{{ show ? '折叠' : '展示' }}</el-button>
     <CollapseTransition>
@@ -119,6 +126,9 @@ import { ref } from 'vue'
 const show = ref(true)
 const slider = ref(20)
 const slider2 = ref(20)
+
+const testText = ref('点我')
+const dense = ref(false)
 </script>
 
 <style lang="less" scoped>

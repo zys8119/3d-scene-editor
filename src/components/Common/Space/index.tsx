@@ -1,4 +1,4 @@
-import { computed, defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType, onBeforeUpdate } from 'vue'
 import './index.less'
 
 const props = {
@@ -28,7 +28,6 @@ export default defineComponent({
     name: 'WpSpace',
     props,
     setup(props, context) {
-        const slotElements = context.slots.default?.() || []
         /**
          * 获取统一的 size
          */
@@ -64,13 +63,22 @@ export default defineComponent({
         }
         const parentAlignItems = computed(() => getFlexOption(props.align))
         const parentJustifyContent = computed(() => getFlexOption(props.justify))
+        /**
+         * @url https://v3.cn.vuejs.org/guide/composition-api-setup.html#context
+         * 如果你打算根据 attrs 或 slots 的更改应用副作用
+         * 那么应该在 onBeforeUpdate 生命周期钩子中执行此操作
+         */
+        let slotElements = context.slots.default?.() || []
+        onBeforeUpdate(() => {
+            slotElements = context.slots.default?.() || []
+        })
         return () => (
             <div class={{
                 'wp-space': true,
                 'wp-space-column': props.vertical,
                 'wp-space-wrap': props.wrap
             }} style={{
-                marginBottom: parentMarginBottom.value,
+                marginBottom: slotElements.length > 0 ? parentMarginBottom.value : '',
                 alignItems: parentAlignItems.value,
                 justifyContent: parentJustifyContent.value
             }}>
