@@ -20,6 +20,8 @@
         "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git"
     },
     "devDependencies": {
+        "@commitlint/cli": "^15.0.0",
+        "@commitlint/config-conventional": "^15.0.0",
         "@types/node": "^16.11.11",
         "@typescript-eslint/eslint-plugin": "^5.5.0",
         "@typescript-eslint/parser": "^5.5.0",
@@ -27,11 +29,26 @@
         "@vitejs/plugin-vue-jsx": "^1.3.0",
         "eslint": "^8.3.0",
         "eslint-plugin-vue": "^8.1.1",
+        "husky": "^7.0.4",
         "less": "^4.1.2",
         "less-loader": "^10.2.0",
+        "lint-staged": "^12.1.2",
         "path": "^0.12.7",
         "typescript": "^4.4.3",
         "vite": "^2.6.4",
         "vue-tsc": "^0.3.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged",
+            "commit-msg": "commitlint -x @commitlint/config-conventional -E HUSKY_GIT_PARAMS"
+        }
+    },
+    "lint-staged": {
+        "src/**/*.{ts,vue}": [
+            "pretty-quick --staged",
+            "eslint --fix",
+            "git add"
+        ]
     }
 }
