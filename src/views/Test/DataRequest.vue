@@ -12,17 +12,9 @@
     </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent } from 'vue'
-export default defineComponent({
-    data() {
-        this.$store.main.loading
-    }
-})
-</script>
-
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
+
 /**
  * 数据获取
  */
