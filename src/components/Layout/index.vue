@@ -7,7 +7,7 @@
         <div class="main-container">
             <div class="main-header">
                 <div class="main-header-left">
-                    <el-button v-if="!store.isH5" :icon="Menu" @click="store.collapse = !store.collapse" />
+                    <el-button v-if="!store.isH5" :icon="Expand" :class="{ expand: store.collapse}" @click="store.collapse = !store.collapse" />
                     <el-breadcrumb separator="/">
                         <el-breadcrumb-item v-for="route in routeMatched" :key="route.name" :to="{ path: route.path }">{{ route.meta.title || route.name }}</el-breadcrumb-item>
                     </el-breadcrumb>
@@ -43,7 +43,7 @@ import LayoutMenu from './menu/index.vue'
 
 import useStore from '@/store/main'
 import { useRoute, useRouter } from 'vue-router'
-import { Menu } from '@element-plus/icons'
+import { Expand } from '@element-plus/icons'
 
 const store = useStore()
 const route = useRoute()
@@ -98,6 +98,11 @@ import {
                 background-color: transparent;
                 padding: 0;
                 margin-right: 10px;
+                transform: rotate(-180deg);
+                transition: transform .2s;
+                &.expand {
+                    transform: rotate(0);
+                }
                 /deep/ .el-icon {
                     font-size: 20px;
                 }
