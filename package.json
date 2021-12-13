@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "scripts": {
         "dev": "vite",
-        "build": "eslint src --fix && vite build",
+        "build": "vue-tsc --noEmit && eslint src --fix && vite build",
         "tsc": "vue-tsc --noEmit",
         "serve": "vite preview",
         "lint": "eslint src",

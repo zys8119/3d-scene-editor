@@ -4,7 +4,10 @@ export interface Config {
     base: {
         title: string
     },
-    request: Partial<Options>
+    request: Partial<Options>,
+    route: {
+        history: boolean
+    }
 }
 
 import type { RouteRecordRaw, RouteLocationNormalized } from 'vue-router'

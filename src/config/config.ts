@@ -10,5 +10,8 @@ export default {
         successField: 'success',
         logoutCode: [401],
         useStore
+    },
+    route: {
+        history: true
     }
 } as Config

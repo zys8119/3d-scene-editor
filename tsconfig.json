@@ -16,7 +16,8 @@
         },
         "skipLibCheck": true,
         "types": [
-            "element-plus/global",
+            "vite/client",
+            "./node_modules/element-plus/global",
             "obsession-ui/lib/global"
         ]
     },

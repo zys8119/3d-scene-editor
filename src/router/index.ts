@@ -1,6 +1,7 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { Component } from 'vue'
 import Layout from '@/components/layout/index.vue'
+import config from '@/config/config'
 
 /**
  * 动态路由
@@ -46,7 +47,7 @@ export const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: config.route.history ? createWebHistory() : createWebHashHistory(),
     routes
 })
 
