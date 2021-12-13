@@ -18,6 +18,7 @@ export default defineConfig({
         target: 'es2015'
     },
     server: {
+        port: 8888,
         hmr: {
             overlay: false
         }
