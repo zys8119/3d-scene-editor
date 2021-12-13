@@ -28,6 +28,7 @@ export const getUserinfo = () => {
             const asyncRoutesWithName = setRoutesName(asyncRoutes)
             const asyncRoutesFilter = configHooks.router.routesFilter(asyncRoutesWithName)
             asyncRoutesFilter.forEach(route => router.addRoute('index', route))
+            commonRoutes.forEach(route => router.addRoute(route))
             store.routes = asyncRoutesFilter
         })
 }
