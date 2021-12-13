@@ -1,3 +1,3 @@
 <template>
-    <el-empty @ok="() => {}" description="啥也没有" :sd="20"/>
+    <el-empty description="啥也没有" :sd="20" @ok="() => {}"/>
 </template>

@@ -43,12 +43,5 @@
             "pre-commit": "lint-staged",
             "commit-msg": "commitlint -x @commitlint/config-conventional -E HUSKY_GIT_PARAMS"
         }
-    },
-    "lint-staged": {
-        "src/**/*.{ts,vue}": [
-            "pretty-quick --staged",
-            "eslint --fix",
-            "git add"
-        ]
     }
 }
