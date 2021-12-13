@@ -1,6 +1,7 @@
 import useStore from '@/store/main'
 import router from '../router'
 import type { ConfigHooks } from './typings'
+import { ElMessage } from 'element-plus'
 
 export default {
     /**
@@ -16,6 +17,12 @@ export default {
             if (!config) return
             const store = useStore()
             store.requestResults[`${(config.method || 'get').toUpperCase()}@${config.url}}`] = data
+        },
+        errorHandle(msg) {
+            ElMessage({
+                type: 'error',
+                message: msg
+            })
         },
         logout() {
             router.push({ name: 'login' })

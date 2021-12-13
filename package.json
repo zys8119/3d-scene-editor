@@ -19,7 +19,7 @@
         "pinia": "^2.0.4",
         "vue": "^3.2.16",
         "vue-router": "^4.0.12",
-        "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git"
+        "wp-request": "^1.0.13"
     },
     "devDependencies": {
         "@commitlint/cli": "^15.0.0",

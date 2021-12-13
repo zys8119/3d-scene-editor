@@ -22,7 +22,7 @@ export interface GlobalError {
 }
 
 export interface ConfigHooks {
-    request: Pick<Options, 'afterEach' | 'beforeEach' | 'logout'>,
+    request: Pick<Options, 'afterEach' | 'beforeEach' | 'logout' | 'errorHandle'>,
     layout: {
         menuSelect: (path: string, route?: RouteRecordRaw) => void
     },
