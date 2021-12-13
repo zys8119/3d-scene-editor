@@ -6,6 +6,12 @@
         </div>
         <div class="main-container">
             <div class="main-header">
+                <div class="main-header-left">
+                    <el-button v-if="!store.isH5" :icon="Menu" @click="store.collapse = !store.collapse" />
+                    <el-breadcrumb separator="/">
+                        <el-breadcrumb-item v-for="route in routeMatched" :key="route.name" :to="{ path: route.path }">{{ route.meta.title || route.name }}</el-breadcrumb-item>
+                    </el-breadcrumb>
+                </div>
                 <el-dropdown>
                     <span class="el-dropdown-link">
                         {{ store.name }}
@@ -31,11 +37,13 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
 import { RouterView } from 'vue-router'
 import LayoutMenu from './menu/index.vue'
 
 import useStore from '@/store/main'
 import { useRoute, useRouter } from 'vue-router'
+import { Menu } from '@element-plus/icons'
 
 const store = useStore()
 const route = useRoute()
@@ -44,6 +52,10 @@ const router = useRouter()
 const handleLogout = () => {
     router.push({ name: 'login' })
 }
+
+const routeMatched = computed(() => {
+    return route.matched.slice(1)
+})
 
 import {
     ArrowDown
@@ -55,7 +67,16 @@ import {
     height: 100vh;
     display: flex;
     .main-aside {
-        width: 200px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border-right: solid 1px #e6e6e6;
+        :deep(.el-menu) {
+            width: 200px;
+            border: 0;
+            &.el-menu--collapse {
+                width: 64px;
+            }
+        }
     }
     .main-container {
         flex: 1;
@@ -66,8 +87,22 @@ import {
         background-color: #f5f5f5;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
         height: 55px;
+        padding: 0 20px;
+        .main-header-left {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            .el-button {
+                border: 0;
+                background-color: transparent;
+                padding: 0;
+                margin-right: 10px;
+                /deep/ .el-icon {
+                    font-size: 20px;
+                }
+            }
+        }
     }
     .main-content {
         flex: 1;

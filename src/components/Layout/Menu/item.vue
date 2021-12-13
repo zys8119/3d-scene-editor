@@ -53,7 +53,9 @@ const getIndex = (path: string,  url?: string) => {
             @click="$emit('select', String(index), route)"
         >
             <el-icon v-if="route.meta?.icon"><component :is="route.meta.icon" /></el-icon>
-            {{ route.meta?.title || route.name }}
+            <template #title>
+                {{ route.meta?.title || route.name }}
+            </template>
         </el-menu-item>
     </template>
 </template>

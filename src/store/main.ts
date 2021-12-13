@@ -7,6 +7,10 @@ const useStore = defineStore('main', {
             name: 'Eduardo',
             isAdmin: true,
             /**
+             * 菜单是否折叠
+             */
+            collapse: false,
+            /**
              * 请求相关
              */
             token: '',

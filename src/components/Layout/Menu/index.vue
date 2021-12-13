@@ -1,5 +1,5 @@
 <template>
-    <el-menu :default-active="route.path">
+    <el-menu :default-active="route.path" :collapse="store.isH5 || store.collapse">
         <layout-menu-item
             v-for="$route in store.routes"
             :key="$route.name"

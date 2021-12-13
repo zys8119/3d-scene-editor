@@ -4,6 +4,7 @@ const testRoutes: RouteRecordRaw[] = [
     {
         path: 'test',
         name: 'test',
+        redirect: '/test/if-h5',
         meta: {
             title: '测试案例'
         },
