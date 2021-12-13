@@ -1,7 +1,7 @@
 /**
  * 挂载 store
  */
-import useMainStore from './main'
+import useMainStore from './modules/main'
 import { App } from 'vue'
 
 /**

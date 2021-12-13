@@ -28,7 +28,7 @@
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
 import { ElMessage, ElForm } from 'element-plus'
-import useStore from '@/store/main'
+import useStore from '@/store/modules/main'
 import { useRouter } from 'vue-router'
 import { commonRoutes } from '@/router'
 import { getUserinfo } from '@/router/permission'

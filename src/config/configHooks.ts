@@ -1,4 +1,4 @@
-import useStore from '@/store/main'
+import useStore from '@/store/modules/main'
 import router from '../router'
 import type { ConfigHooks } from './typings'
 import { ElMessage } from 'element-plus'

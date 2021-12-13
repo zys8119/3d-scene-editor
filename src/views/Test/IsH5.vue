@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import useStore from '@/store/main'
+import useStore from '@/store/modules/main'
 const store = useStore()
 </script>
 

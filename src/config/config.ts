@@ -1,4 +1,4 @@
-import useStore from '@/store/main'
+import useStore from '@/store/modules/main'
 import type { Config } from './typings'
 
 export default {

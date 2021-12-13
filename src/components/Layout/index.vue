@@ -21,7 +21,6 @@ import LayoutMenu from './menu/index.vue'
 import LayoutHeader from './header.vue'
 
 import { useRoute } from 'vue-router'
-import useStore from '@/store/main'
 const route = useRoute()
 </script>
 

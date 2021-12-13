@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import useStore from '@/store/main'
+import useStore from '@/store/modules/main'
 import { useRoute, RouteRecordRaw } from 'vue-router'
 import configHooks from '@/config/configHooks'
 
