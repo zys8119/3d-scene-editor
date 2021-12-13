@@ -1,5 +1,23 @@
 import router, { asyncRoutes, commonRoutes } from './index'
 import useStore from '@/store/main'
+import configHooks from '@/config/configHooks'
+import type { RouteRecordRaw } from 'vue-router'
+
+/**
+ * 自动给路由 name
+ */
+export const setRoutesName = (routes: RouteRecordRaw[]) => {
+    return routes.map(route => {
+        const routeMap: RouteRecordRaw = {
+            name: Symbol('AnonymousRouter'),
+            ...route
+        }
+        if (Array.isArray(route.children) && route.children.length > 0) {
+            routeMap.children = setRoutesName(route.children)
+        }
+        return routeMap
+    })
+}
 
 export const getUserinfo = () => {
     const store = useStore()
@@ -7,9 +25,10 @@ export const getUserinfo = () => {
         resolve()
     })
         .then(() => {
-            asyncRoutes.forEach(route => router.addRoute('index', route))
-            commonRoutes.forEach(route => router.addRoute(route))
-            store.routes = asyncRoutes
+            const asyncRoutesWithName = setRoutesName(asyncRoutes)
+            const asyncRoutesFilter = configHooks.router.routesFilter(asyncRoutesWithName)
+            asyncRoutesFilter.forEach(route => router.addRoute('index', route))
+            store.routes = asyncRoutesFilter
         })
 }
 
@@ -20,6 +39,7 @@ let registerRouteFresh = true
 
 router.beforeEach(async(to, from, next) => {
     try {
+        configHooks.router.beforeEach(to, from)
         if (to.meta?.title) document.title = to.meta.title
         const store = useStore()
         /**

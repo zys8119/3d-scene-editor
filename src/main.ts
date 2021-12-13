@@ -4,20 +4,14 @@ import App from './App.vue'
 const app = createApp(App)
 
 /**
- * 类型定义
+ * 请求初始化
  */
-
-import { mount as requestMount } from 'wp-request'
-import useStore from '@/store/main'
-requestMount(app, {
-    baseURL: '',
-    afterEach(config, data) {
-        if (!config) return
-        const store = useStore()
-        store.requestResults[`${(config.method || 'get').toUpperCase()}@${config.url}}`] = data
-    },
-    successField: 'success',
-    useStore
+import request from 'wp-request'
+import config from './config/config'
+import configHooks from './config/configHooks'
+app.use(request, {
+    ...config.request,
+    ...configHooks.request
 })
 
 import api from '@/api'

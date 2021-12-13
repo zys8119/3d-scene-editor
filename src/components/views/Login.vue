@@ -30,7 +30,7 @@ import { ref, reactive } from 'vue'
 import { ElMessage, ElForm } from 'element-plus'
 import useStore from '@/store/main'
 import { useRouter } from 'vue-router'
-import { asyncRoutes, commonRoutes } from '@/router'
+import { commonRoutes } from '@/router'
 import { getUserinfo } from '@/router/permission'
 const store = useStore()
 const user = reactive({
@@ -45,7 +45,7 @@ const logout = () => {
     /**
      * 删除动态路由和公共路由
      */
-    asyncRoutes.forEach(route => route.name && router.removeRoute(route.name))
+    store.routes.forEach(route => route.name && router.removeRoute(route.name))
     commonRoutes.forEach(route => route.name && router.removeRoute(route.name))
     /**
      * 清空 token

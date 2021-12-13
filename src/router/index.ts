@@ -3,18 +3,21 @@ import { Component } from 'vue'
 import Layout from '@/components/layout/index.vue'
 
 /**
- * 路由模块
- */
-import homeRoutes from './home'
-import testRoutes from './test'
-
-/**
  * 动态路由
  */
-export const asyncRoutes: RouteRecordRaw[] = [
-    ...homeRoutes,
-    ...testRoutes
-]
+ export const asyncRoutes: RouteRecordRaw[] = []
+
+/**
+ * 添加整个文件夹的 modules
+ */
+const modules = import.meta.globEager('./modules/*.ts')
+for (const module of Object.values(modules)) {
+    if (!module.default) continue
+    if (!Array.isArray(module.default)) continue
+    module.default.forEach(route => {
+        asyncRoutes.push(route)
+    })
+}
 
 /**
  * 公共路由，例如404，要在路由动态加载完成之后再加载
