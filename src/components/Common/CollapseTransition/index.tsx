@@ -15,8 +15,8 @@ export default defineComponent({
         duration: String,
         delay: String
     },
-    setup (props, { slots }) {
-        function handleBeforeLeave (el: HTMLElement): void {
+    setup(props, { slots }) {
+        function handleBeforeLeave(el: HTMLElement): void {
             if (props.width) {
                 el.style.maxWidth = `${el.offsetWidth}px`
             } else {
@@ -24,7 +24,7 @@ export default defineComponent({
             }
             void el.offsetWidth
         }
-        function handleLeave (el: HTMLElement): void {
+        function handleLeave(el: HTMLElement): void {
             if (props.width) {
                 el.style.maxWidth = '0'
             } else {
@@ -34,7 +34,7 @@ export default defineComponent({
             const { onLeave } = props
             if (onLeave) onLeave()
         }
-        function handleAfterLeave (el: HTMLElement): void {
+        function handleAfterLeave(el: HTMLElement): void {
             if (props.width) {
                 el.style.maxWidth = ''
             } else {
@@ -43,7 +43,7 @@ export default defineComponent({
             const { onAfterLeave } = props
             if (onAfterLeave) onAfterLeave()
         }
-        function handleEnter (el: HTMLElement): void {
+        function handleEnter(el: HTMLElement): void {
             el.style.transition = 'none'
             if (props.width) {
                 const memorizedWidth = el.offsetWidth
@@ -67,7 +67,7 @@ export default defineComponent({
             }
             void el.offsetWidth
         }
-        function handleAfterEnter (el: HTMLElement): void {
+        function handleAfterEnter(el: HTMLElement): void {
             if (props.width) {
                 el.style.maxWidth = ''
             } else {

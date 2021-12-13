@@ -3,11 +3,12 @@
     "version": "0.0.0",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "eslint src --fix && vite build",
         "tsc": "vue-tsc --noEmit",
         "serve": "vite preview",
         "lint": "eslint src",
-        "lint:fix": "eslint src --fix --ext .ts,.tsx"
+        "lint:fix": "eslint src --fix --ext .ts,.tsx,.vue",
+        "prepare": "husky install"
     },
     "dependencies": {
         "@element-plus/icons": "^0.0.11",

@@ -55,5 +55,13 @@ export default {
         routesFilter(routes) {
             return routes
         }
+    },
+    /**
+     * 错误处理
+     */
+    error: {
+        handle(error) {
+            console.log(error)
+        }
     }
 } as ConfigHooks

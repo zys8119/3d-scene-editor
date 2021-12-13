@@ -3,6 +3,9 @@ import App from './App.vue'
 
 const app = createApp(App)
 
+import errorHandle from './error'
+app.use(errorHandle)
+
 /**
  * 请求初始化
  */
