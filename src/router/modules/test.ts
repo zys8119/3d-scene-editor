@@ -16,7 +16,7 @@ const testRoutes: RouteRecordRaw[] = [
                 meta: {
                     title: '我是H5吗'
                 },
-                component: () => import('@/components/views/Test/IsH5.vue')
+                component: () => import('@/views/Test/IsH5.vue')
             },
             {
                 path: 'data-request',
@@ -24,7 +24,7 @@ const testRoutes: RouteRecordRaw[] = [
                 meta: {
                     title: '数据请求'
                 },
-                component: () => import('@/components/views/Test/DataRequest.vue')
+                component: () => import('@/views/Test/DataRequest.vue')
             },
             {
                 path: 'tsx',
@@ -32,7 +32,7 @@ const testRoutes: RouteRecordRaw[] = [
                 meta: {
                     title: 'TSX'
                 },
-                component: () => import('@/components/views/Test/Tsx')
+                component: () => import('@/views/Test/Tsx')
             },
             {
                 path: 'components',
@@ -40,7 +40,7 @@ const testRoutes: RouteRecordRaw[] = [
                 meta: {
                     title: '组件们'
                 },
-                component: () => import('@/components/views/Test/Components.vue')
+                component: () => import('@/views/Test/Components.vue')
             }
         ]
     }    

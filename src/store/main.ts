@@ -33,6 +33,9 @@ const useStore = defineStore('main', {
     getters: {
         loading(state) {
             return state.requests.size > 0
+        },
+        isCollapse(state) {
+            return state.isH5 || state.collapse
         }
     },
     actions: {

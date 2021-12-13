@@ -40,4 +40,8 @@ import 'element-plus/dist/index.css'
 import '@/assets/css/normalize.css'
 app.use(ElementPlus)
 
+import Obsession from 'obsession-ui'
+import 'obsession-ui/lib/index.css'
+app.use(Obsession)
+
 app.mount('#app')

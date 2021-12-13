@@ -13,7 +13,7 @@ const homeRoutes: RouteRecordRaw[] = [
             title: '首页',
             icon: markRaw(HomeFilled)
         },
-        component: () => import('@/components/views/HelloWorld.vue')
+        component: () => import('@/views/HelloWorld.vue')
     },
     {
         path: 'home2',
@@ -23,7 +23,7 @@ const homeRoutes: RouteRecordRaw[] = [
             icon: markRaw(Histogram),
             disabled: true
         },
-        component: () => import('@/components/views/HelloWorld.vue')
+        component: () => import('@/views/HelloWorld.vue')
     },
     {
         path: 'home3',
@@ -36,7 +36,7 @@ const homeRoutes: RouteRecordRaw[] = [
         children: [
             {
                 path: 'home4',
-                component: () => import('@/components/views/HelloWorld.vue'),
+                component: () => import('@/views/HelloWorld.vue'),
                 meta: {
                     title: '全屏页面',
                     isFullPage: true

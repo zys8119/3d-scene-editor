@@ -15,7 +15,10 @@
             "@/*": ["./src/*"]
         },
         "skipLibCheck": true,
-        "types": ["element-plus/global"]
+        "types": [
+            "element-plus/global",
+            "obsession-ui/lib/global"
+        ]
     },
     "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
