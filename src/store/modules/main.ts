@@ -7,7 +7,7 @@ const useStore = defineStore('main', {
             name: 'Eduardo',
             isAdmin: true,
             /**
-             * 菜单是否折叠
+             * 可编辑，菜单是否折叠
              */
             collapse: false,
             /**
@@ -34,6 +34,9 @@ const useStore = defineStore('main', {
         loading(state) {
             return state.requests.size > 0
         },
+        /**
+         * 只读，菜单是否折叠，在 H5 页面下永远为 true
+         */
         isCollapse(state) {
             return state.isH5 || state.collapse
         }

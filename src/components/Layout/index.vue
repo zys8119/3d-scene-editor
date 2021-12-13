@@ -9,7 +9,9 @@
                 <layout-header />
             </div>
             <div class="main-content">
-                <router-view />
+                <div class="main-content-in">
+                    <router-view />
+                </div>
             </div>
         </div>
     </div>
