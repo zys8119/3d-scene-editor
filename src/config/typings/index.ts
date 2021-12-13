@@ -5,7 +5,7 @@ export interface Config {
         title: string
     },
     request: Partial<Options>,
-    route: {
+    router: {
         history: boolean
     }
 }

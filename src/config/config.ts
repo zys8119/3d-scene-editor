@@ -11,7 +11,7 @@ export default {
         logoutCode: [401],
         useStore
     },
-    route: {
+    router: {
         history: true
     }
 } as Config
