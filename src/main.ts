@@ -35,10 +35,7 @@ app.use(createPinia())
 import stores from '@/store'
 app.use(stores)
 
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
 import '@/assets/css/normalize.css'
-app.use(ElementPlus)
 
 import Obsession from 'obsession-ui'
 import 'obsession-ui/lib/index.css'
