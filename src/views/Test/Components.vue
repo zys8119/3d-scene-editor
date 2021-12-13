@@ -115,7 +115,7 @@ const dense = ref(false)
 
 <style lang="less" scoped>
 .demo {
-    p { 
+    p {
         line-height: 25px;
     }
 }

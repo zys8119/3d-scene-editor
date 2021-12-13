@@ -43,7 +43,7 @@ const testRoutes: RouteRecordRaw[] = [
                 component: () => import('@/views/Test/Components.vue')
             }
         ]
-    }    
+    }
 ]
 
 export default testRoutes

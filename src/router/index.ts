@@ -6,7 +6,7 @@ import config from '@/config/config'
 /**
  * 动态路由
  */
- export const asyncRoutes: RouteRecordRaw[] = []
+export const asyncRoutes: RouteRecordRaw[] = []
 
 /**
  * 添加整个文件夹的 modules
