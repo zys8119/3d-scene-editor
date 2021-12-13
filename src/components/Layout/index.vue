@@ -62,10 +62,8 @@ const route = useRoute()
                 background-color: transparent;
                 padding: 0;
                 margin-right: 10px;
-                transform: rotate(-180deg);
-                transition: transform .2s;
                 &.expand {
-                    transform: rotate(0);
+                    transform: rotate(-180deg);
                 }
                 .el-icon {
                     font-size: 20px;
