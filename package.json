@@ -19,7 +19,7 @@
         "pinia": "^2.0.4",
         "vue": "^3.2.16",
         "vue-router": "^4.0.12",
-        "wp-request": "^1.0.13"
+        "wp-request": "^1.0.14"
     },
     "devDependencies": {
         "@commitlint/cli": "^15.0.0",
