@@ -3,9 +3,6 @@ import App from './App.vue'
 
 const app = createApp(App)
 
-import errorHandle from './error'
-app.use(errorHandle)
-
 /**
  * 请求初始化
  */
@@ -15,6 +12,11 @@ import configHooks from './config/configHooks'
 app.use(request, {
     ...config.request,
     ...configHooks.request
+})
+
+import errorHandle from './error'
+app.use(errorHandle, {
+    errorHandler: configHooks.error.handle
 })
 
 import api from '@/api'
