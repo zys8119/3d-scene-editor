@@ -2,7 +2,8 @@ import type { Options } from 'wp-request'
 
 export interface Config {
     base: {
-        title: string
+        title: string,
+        [x: string]: any
     },
     request: Partial<Options>,
     router: {
