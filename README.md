@@ -1,6 +1,6 @@
 ## 关于基于本框架进行开发的 Git 相关操作
 
-首先在远端点击 Fork ，选择指定的 namespace 进行 Fork，然后将其 clone 到本地，即可开始开发。在开发的过程如，如果需要拉取上游变动，请执行以下操作。
+首先在远端点击 Fork ，选择指定的 namespace 进行 Fork，然后将其 clone 到本地，即可开始开发。在开发的过程，如果需要拉取上游变动，请执行以下操作。
 
 #### 添加上游仓库
 
@@ -22,6 +22,7 @@ git fetch upstream
 git rebase upstream/milestone-1
 # git merge upstream/milestone-1
 # 如果使用 merge ，将会新增一条 merge 相关的 commit
+```
 
 #### 更新远端仓库
 
