@@ -47,6 +47,7 @@ module.exports = {
         'no-var': 2,
         'prefer-const': 2,
         'object-shorthand': 2,
-        'no-trailing-spaces': 2
+        'no-trailing-spaces': 2,
+        'no-undef': 0
     }
 }

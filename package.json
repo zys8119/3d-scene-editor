@@ -24,6 +24,7 @@
     "devDependencies": {
         "@commitlint/cli": "^15.0.0",
         "@commitlint/config-conventional": "^15.0.0",
+        "@originjs/vite-plugin-commonjs": "^1.0.1",
         "@types/node": "^16.11.11",
         "@typescript-eslint/eslint-plugin": "^5.5.0",
         "@typescript-eslint/parser": "^5.5.0",
@@ -40,6 +41,7 @@
         "unplugin-auto-import": "^0.5.3",
         "unplugin-vue-components": "^0.17.8",
         "vite": "^2.6.4",
+        "vite-plugin-style-import": "^1.4.0",
         "vue-tsc": "^0.3.0"
     },
     "husky": {

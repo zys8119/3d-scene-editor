@@ -53,6 +53,9 @@ export default {
      * 全局路由相关
      */
     router: {
+        firstTimeEnter() {
+
+        },
         beforeEach(to, from) {
             // 每个路由进入前发起一个请求
         },

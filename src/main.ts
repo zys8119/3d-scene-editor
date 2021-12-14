@@ -1,7 +1,9 @@
-import { createApp } from 'vue'
 import App from './App.vue'
 
 const app = createApp(App)
+
+import global from './global'
+app.use(global)
 
 /**
  * 请求初始化
@@ -27,7 +29,6 @@ import '@/router/permission'
 import router from './router'
 app.use(router)
 
-import { createPinia } from 'pinia'
 app.use(createPinia())
 /**
  * store 一定要在 createPinia 之后
@@ -35,10 +36,6 @@ app.use(createPinia())
 import stores from '@/store'
 app.use(stores)
 
-import '@/assets/css/normalize.css'
-
-import Obsession from 'obsession-ui'
-import 'obsession-ui/lib/index.css'
-app.use(Obsession)
+import '@/assets/less/index.less'
 
 app.mount('#app')

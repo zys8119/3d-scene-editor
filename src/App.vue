@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 
 const store = window.store.main

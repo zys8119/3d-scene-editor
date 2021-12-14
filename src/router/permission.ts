@@ -37,9 +37,14 @@ export const getUserinfo = () => {
  * 是否已经加载好路由了
  */
 let registerRouteFresh = true
+let firstTimeEnter = true
 
 router.beforeEach(async(to, from, next) => {
     try {
+        if (firstTimeEnter) {
+            configHooks.router.firstTimeEnter()
+            firstTimeEnter = false
+        }
         configHooks.router.beforeEach(to, from)
         if (to.meta?.title) document.title = to.meta.title
         const store = useStore()

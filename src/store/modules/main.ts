@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia'
 import { RouteRecordRaw } from 'vue-router'
 
 const useStore = defineStore('main', {

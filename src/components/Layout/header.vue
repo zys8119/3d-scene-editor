@@ -21,8 +21,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 import useStore from '@/store/modules/main'
 import { Expand } from '@element-plus/icons'
 

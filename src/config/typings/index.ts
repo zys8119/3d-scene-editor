@@ -28,7 +28,8 @@ export interface ConfigHooks {
     },
     router: {
         beforeEach: (to: RouteLocationNormalized, from: RouteLocationNormalized) => void,
-        routesFilter: (routes: RouteRecordRaw[]) => RouteRecordRaw[]
+        routesFilter: (routes: RouteRecordRaw[]) => RouteRecordRaw[],
+        firstTimeEnter: () => void
     },
     error: {
         handle: (error: GlobalError) => void

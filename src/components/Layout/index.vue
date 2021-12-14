@@ -22,7 +22,6 @@ import { RouterView } from 'vue-router'
 import LayoutMenu from './menu/index.vue'
 import LayoutHeader from './header.vue'
 
-import { useRoute } from 'vue-router'
 const route = useRoute()
 </script>
 
@@ -39,6 +38,9 @@ const route = useRoute()
             border: 0;
             &.el-menu--collapse {
                 width: 64px;
+                .el-sub-menu__title {
+                    justify-content: center;
+                }
             }
         }
     }

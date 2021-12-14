@@ -1,8 +1,7 @@
 import { RouteRecordRaw, RouterView } from 'vue-router'
 import { markRaw } from 'vue'
 import {
-    HomeFilled,
-    Histogram
+    HomeFilled
 } from '@element-plus/icons'
 
 const homeRoutes: RouteRecordRaw[] = [
@@ -16,48 +15,21 @@ const homeRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/HelloWorld.vue')
     },
     {
-        path: 'home2',
-        name: 'home2',
+        path: 'parent',
+        name: 'parent',
+        redirect: '/home',
         meta: {
-            title: '被封印的首页',
-            icon: markRaw(Histogram),
-            disabled: true
-        },
-        component: () => import('@/views/HelloWorld.vue')
-    },
-    {
-        path: 'home3',
-        name: 'home3',
-        redirect: '/home3/home4',
-        meta: {
-            title: '特殊页面'
+            title: '父级菜单'
         },
         component: RouterView,
         children: [
             {
-                path: 'home4',
-                component: () => import('@/views/HelloWorld.vue'),
-                meta: {
-                    title: '全屏页面',
-                    isFullPage: true
-                }
-            },
-            {
                 path: 'baidu',
                 name: 'baidu',
-                redirect: '/home3',
-                meta: {
-                    title: '我是个外链',
-                    url: 'http://www.google.com'
-                }
-            },
-            {
-                path: 'baidu2',
-                name: 'baidu2',
-                redirect: '/home3',
+                redirect: '/home',
                 meta: {
                     title: '新链接打开',
-                    url: 'http://www.google.com',
+                    url: 'http://www.baidu.com',
                     target: '_blank'
                 }
             }

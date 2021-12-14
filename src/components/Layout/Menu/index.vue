@@ -12,7 +12,7 @@
 
 <script lang="ts" setup>
 import useStore from '@/store/modules/main'
-import { useRoute, RouteRecordRaw } from 'vue-router'
+import { RouteRecordRaw } from 'vue-router'
 import configHooks from '@/config/configHooks'
 
 import LayoutMenuItem from './item.vue'
