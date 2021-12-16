@@ -3853,6 +3853,20 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
+wisdom-plus@^0.0.0-beta.1:
+  version "0.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/wisdom-plus/-/wisdom-plus-0.0.0-beta.1.tgz#29057912d420b83737099f039efc58972b243531"
+  integrity sha512-jc46TFsjTwlqBIp578+TS6dIkZ3j5Z8nO+Bb66wa9034LOQE9+QsXce8sPUJcT9Smwk0kZp/ZtVhqcQli1R/uA==
+  dependencies:
+    "@element-plus/icons" "^0.0.11"
+    "@popperjs/core" "^2.10.2"
+    "@vueuse/core" "^7.0.0"
+    async-validator "^4.0.7"
+    dayjs "^1.10.7"
+    lodash "^4.17.21"
+    memoize-one "^6.0.0"
+    normalize-wheel-es "^1.1.1"
+
 with@^7.0.0:
   version "7.0.2"
   resolved "https://registry.npm.taobao.org/with/download/with-7.0.2.tgz"

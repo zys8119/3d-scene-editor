@@ -38,4 +38,9 @@ app.use(stores)
 
 import '@/assets/less/index.less'
 
+// 全局引入 WisdomPlus
+// import WisdomPlus from 'wisdom-plus'
+// app.use(WisdomPlus)
+// import 'wisdom-plus/dist/index.css'
+
 app.mount('#app')
