@@ -1,21 +1,12 @@
 <template>
     <h1>
-      <WpTooltip title="232323">
-        <div>
-            sdds
-        </div>
-      </WpTooltip>
       Hello, World.
     </h1>
 </template>
 
 <script lang="ts">
-import { WpTooltip } from 'wisdom-plus'
 export default defineComponent({
-    name: 'Home',
-    components: {
-        WpTooltip
-    }
+    name: 'Home'
 })
 </script>
 
