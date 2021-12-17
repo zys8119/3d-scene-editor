@@ -6,6 +6,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
+import { htmlTransform } from './src/utils'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -31,7 +32,8 @@ export default defineConfig({
         }),
         Components({
             resolvers: [ElementPlusResolver()]
-        })
+        }),
+        htmlTransform()
     ],
     resolve: {
         alias: {
