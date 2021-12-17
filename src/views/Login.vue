@@ -26,34 +26,24 @@
 </template>
 
 <script lang="ts" setup>
-import { ElMessage } from 'element-plus'
-import type { ElForm } from 'element-plus'
-import useStore from '@/store/modules/main'
-import { commonRoutes } from '@/router'
-import { getUserinfo } from '@/router/permission'
-const store = useStore()
-const user = reactive({
+/**
+ * dev 环境设置默认账号密码
+ */
+const userTemplate = import.meta.env.DEV ? {
+    username: 'admin',
+    password: 'zj123456,,'
+} : {
     username: '',
     password: ''
-})
-
-const form = ref<InstanceType<typeof ElForm> | null>(null)
-const router = useRouter()
-
-const logout = () => {
-    /**
-     * 删除动态路由和公共路由
-     */
-    store.routes.forEach(route => route.name && router.removeRoute(route.name))
-    commonRoutes.forEach(route => route.name && router.removeRoute(route.name))
-    /**
-     * 清空 token
-     */
-    store.setToken()
-    store.setUserinfo()
 }
-logout()
+const user = reactive(userTemplate)
 
+/**
+ * 登录
+ */
+import useStore from '@/store/modules/main'
+
+const store = useStore()
 const login = (username: string, password: string) => {
     return window.api.v1.user.login({
         username,
@@ -64,6 +54,16 @@ const login = (username: string, password: string) => {
             store.setUserinfo(res.data.user)
         })
 }
+
+/**
+ * 登录验证
+ */
+import { getUserinfo } from '@/router/permission'
+import { ElMessage } from 'element-plus'
+import type { ElForm } from 'element-plus'
+
+const router = useRouter()
+const form = ref<InstanceType<typeof ElForm> | null>(null)
 
 const handleLogin = () => {
     if (!form.value) return
@@ -82,6 +82,25 @@ const handleLogin = () => {
         }
     })
 }
+
+/**
+ * 注销
+ */
+import { commonRoutes } from '@/router'
+
+const logout = () => {
+    /**
+     * 删除动态路由和公共路由
+     */
+    store.routes.forEach(route => route.name && router.removeRoute(route.name))
+    commonRoutes.forEach(route => route.name && router.removeRoute(route.name))
+    /**
+     * 清空 token
+     */
+    store.setToken()
+    store.setUserinfo()
+}
+logout()
 </script>
 
 <style lang="less" scoped>
