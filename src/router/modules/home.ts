@@ -9,7 +9,7 @@ const homeRoutes: RouteRecordRaw[] = [
         path: 'home',
         name: 'home',
         meta: {
-            title: '文创AR系统',
+            title: '文创AR系统'
         },
         component: () => import('@/views/HelloWorld.vue')
     },
@@ -17,7 +17,8 @@ const homeRoutes: RouteRecordRaw[] = [
         path: 'platform-manage',
         name: 'platform-manage',
         meta: {
-            title: '平台管理'
+            title: '平台管理',
+            icon: HomeFilled
         },
         component: RouterView,
         children: [

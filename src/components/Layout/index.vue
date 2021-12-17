@@ -33,7 +33,9 @@ const route = useRoute()
         overflow-x: hidden;
         overflow-y: auto;
         border-right: solid 1px #e6e6e6;
+        flex-shrink: 0;
         :deep(.el-menu) {
+            width: 100%;
             width: 250px;
             border: 0;
             &.el-menu--collapse {
@@ -41,13 +43,18 @@ const route = useRoute()
                 .el-sub-menu__title {
                     justify-content: center;
                 }
+                .el-menu-item > div {
+                    text-align: center;
+                }
             }
         }
     }
     .main-container {
         flex: 1;
+        flex-basis: auto;
         display: flex;
         flex-direction: column;
+        overflow: auto;
     }
     .main-header {
         background-color: #f5f5f5;

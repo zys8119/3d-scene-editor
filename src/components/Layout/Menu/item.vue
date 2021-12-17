@@ -41,7 +41,7 @@ const getFirstWord = (words: string | number | symbol) => {
         <el-sub-menu v-if="route.children && route.children.length > 0" :index="String(index)">
             <template #title>
                 <el-icon v-if="route.meta?.icon"><component :is="route.meta.icon" /></el-icon>
-                {{ store.isCollapse ? getFirstWord(route.meta?.title || route.name) : (route.meta?.title || route.name) }}
+                {{ store.isCollapse ? route.meta?.icon ? '' : getFirstWord(route.meta?.title || route.name) : (route.meta?.title || route.name) }}
             </template>
             <menu-item-child
                 v-for="child in route.children"
@@ -60,13 +60,11 @@ const getFirstWord = (words: string | number | symbol) => {
             @click="$emit('select', String(index), route)"
         >
             <el-icon v-if="route.meta?.icon"><component :is="route.meta.icon" /></el-icon>
+            <template v-else-if="store.isCollapse && !isChild">
+                {{ getFirstWord(route.meta?.title || route.name) }}
+            </template>
             <template #title>
-                <template v-if="isChild || route.meta?.icon">
-                    {{ route.meta?.title || route.name }}
-                </template>
-                <template v-else>
-                    {{ store.isCollapse ? getFirstWord(route.meta?.title || route.name) : (route.meta?.title || route.name) }}
-                </template>
+                {{ route.meta?.title || route.name }}
             </template>
         </el-menu-item>
     </template>
