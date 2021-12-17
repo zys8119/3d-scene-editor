@@ -46,6 +46,9 @@ const route = useRoute()
                 .el-menu-item > div {
                     text-align: center;
                 }
+                .is-active .el-sub-menu__title {
+                    color: var(--el-menu-active-color);
+                }
             }
         }
     }
