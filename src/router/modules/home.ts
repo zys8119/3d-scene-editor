@@ -17,8 +17,7 @@ const homeRoutes: RouteRecordRaw[] = [
         path: 'platform-manage',
         name: 'platform-manage',
         meta: {
-            title: '平台管理',
-            icon: HomeFilled
+            title: '平台管理'
         },
         component: RouterView,
         children: [
