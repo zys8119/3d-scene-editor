@@ -1,5 +1,4 @@
 import App from './App.vue'
-
 const app = createApp(App)
 
 import global from './global'
@@ -29,10 +28,6 @@ import '@/router/permission'
 import router from './router'
 app.use(router)
 
-app.use(createPinia())
-/**
- * store 一定要在 createPinia 之后
- */
 import stores from '@/store'
 app.use(stores)
 

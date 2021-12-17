@@ -3691,9 +3691,9 @@ word-wrap@^1.2.3:
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
 
 wp-request@^1.0.14:
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/wp-request/-/wp-request-1.0.15.tgz#c78490c06a97eff7ee1e911851bc4ec76e2839f2"
-  integrity sha512-NkwkX6RdyrXgaydq082qyvffOTigHLPFjBdJ2OqTvQ5Ig9kGxWKFoteVZapgQJNcaVvtEodigk5LtR81WsTn+A==
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/wp-request/-/wp-request-1.0.18.tgz#dccb74cb7e4e8ec1c18d368fdaa30c724c342576"
+  integrity sha512-udUl5eG+rCramKpxkObNTK9pSlDG12qKkGBa8YCYCWGS/L5IaNMkPtxkjUP5+xzp5AOT3uAQmThHbNA01Z1Wag==
   dependencies:
     axios "^0.24.0"
     crypto-js "^4.1.1"

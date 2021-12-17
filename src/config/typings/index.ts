@@ -1,10 +1,13 @@
 import type { Options } from 'wp-request'
 
+export interface BaseConfig {
+    title: string,
+    lang: string,
+    favicon: string,
+    [x: string]: any
+}
+
 export interface Config {
-    base: {
-        title: string,
-        [x: string]: any
-    },
     request: Partial<Options>,
     router: {
         history: boolean
