@@ -34,7 +34,7 @@ const route = useRoute()
         overflow-y: auto;
         border-right: solid 1px #e6e6e6;
         :deep(.el-menu) {
-            width: 200px;
+            width: 250px;
             border: 0;
             &.el-menu--collapse {
                 width: 64px;
