@@ -1,4 +1,4 @@
-import base from '../config/base'
+import base from '../../config/base'
 
 export const htmlTransform = () => {
     return {

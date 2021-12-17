@@ -1,1 +1,1 @@
-export * from './htmlTransform'
+export * from './vite/htmlTransform'
