@@ -1,5 +1,6 @@
 import ok from './ok'
 import test from './test'
+import user from './user'
 export default {
     test2() {
         return window.common.axios<string>({
@@ -7,5 +8,6 @@ export default {
         })
     },
     ok,
-    test
+    test,
+    user
 }

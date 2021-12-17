@@ -15,7 +15,6 @@
         "@vueuse/core": "^7.3.0",
         "element-plus": "^1.2.0-beta.3",
         "eslint-plugin-vue3-jsx": "^0.0.3-beta.3",
-        "obsession-ui": "^1.0.11",
         "pinia": "^2.0.4",
         "vue": "^3.2.16",
         "vue-router": "^4.0.12",
@@ -42,7 +41,6 @@
         "unplugin-auto-import": "^0.5.3",
         "unplugin-vue-components": "^0.17.8",
         "vite": "^2.6.4",
-        "vite-plugin-style-import": "^1.4.0",
         "vue-tsc": "^0.3.0"
     },
     "husky": {

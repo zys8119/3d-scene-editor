@@ -7,7 +7,8 @@ export default {
     },
     request: {
         baseURL: '',
-        successField: 'success',
+        successCode: [0],
+        // successField: 'success',
         logoutCode: [401],
         useStore
     },

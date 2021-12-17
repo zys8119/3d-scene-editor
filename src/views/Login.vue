@@ -26,7 +26,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ElMessage, ElForm } from 'element-plus'
+import { ElMessage } from 'element-plus'
+import type { ElForm } from 'element-plus'
 import useStore from '@/store/modules/main'
 import { commonRoutes } from '@/router'
 import { getUserinfo } from '@/router/permission'
@@ -36,7 +37,7 @@ const user = reactive({
     password: ''
 })
 
-const form = ref<null | InstanceType<typeof ElForm>>(null)
+const form = ref<InstanceType<typeof ElForm> | null>(null)
 const router = useRouter()
 
 const logout = () => {
@@ -49,19 +50,19 @@ const logout = () => {
      * 清空 token
      */
     store.setToken()
+    store.setUserinfo()
 }
 logout()
 
 const login = (username: string, password: string) => {
-    return new Promise<void>(reslove => {
-        store.setToken(username + password)
-            .then(() => {
-                getUserinfo()
-                    .then(() => {
-                        reslove()
-                    })
-            })
+    return window.api.v1.user.login({
+        username,
+        password
     })
+        .then(res => {
+            store.setToken(res.data.authorization)
+            store.setUserinfo(res.data.user)
+        })
 }
 
 const handleLogin = () => {
@@ -70,13 +71,8 @@ const handleLogin = () => {
         if (vaild) {
             login(user.username, user.password)
                 .then(() => {
-                    router.push('/')
-                })
-                .catch(err => {
-                    ElMessage({
-                        type: 'error',
-                        message: err
-                    })
+                    getUserinfo()
+                        .then(() => router.push('/'))
                 })
         } else {
             ElMessage({

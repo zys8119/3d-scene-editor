@@ -7,7 +7,7 @@
     </div>
     <el-dropdown>
         <span class="el-dropdown-link">
-            {{ store.name }}
+            {{ store.userinfo.username }}
         </span>
         <template #dropdown>
             <el-dropdown-menu>

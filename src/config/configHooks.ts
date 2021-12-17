@@ -11,7 +11,7 @@ export default {
         beforeEach(config) {
             if (!config) return
             if (!config.headers) config.headers = {}
-            config.headers['unit'] = 'it is a test'
+            // config.headers['unit'] = 'it is a test'
         },
         afterEach(config, data) {
             if (!config) return
@@ -54,7 +54,11 @@ export default {
      */
     router: {
         firstTimeEnter() {
-
+            const userinfo = localStorage.getItem('userinfo')
+            if (userinfo) {
+                const store = useStore()
+                store.userinfo = JSON.parse(userinfo)
+            }
         },
         beforeEach(to, from) {
             // 每个路由进入前发起一个请求

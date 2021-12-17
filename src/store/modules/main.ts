@@ -3,6 +3,9 @@ import { RouteRecordRaw } from 'vue-router'
 const useStore = defineStore('main', {
     state: () => {
         return {
+            userinfo: {
+                username: ''
+            } as Record<any, string>,
             name: 'Eduardo',
             isAdmin: true,
             /**
@@ -47,6 +50,15 @@ const useStore = defineStore('main', {
                 localStorage.setItem('token', token)
                 resolve()
             })
+        },
+        setUserinfo(userinfo?: Record<any, string>) {
+            if (!userinfo) {
+                this.userinfo = {}
+                localStorage.removeItem('userinfo')
+            } else {
+                this.userinfo = userinfo
+                localStorage.setItem('userinfo', JSON.stringify(userinfo))
+            }
         }
     }
 })
