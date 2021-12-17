@@ -20,6 +20,7 @@ const getStores = () => {
  */
 export default {
     install(app: App<Element>) {
+        app.use(createPinia())
         const stores = getStores()
         app.config.globalProperties.$store = stores
         window.store = stores
