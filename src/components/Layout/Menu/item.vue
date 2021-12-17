@@ -30,7 +30,8 @@ const getIndex = (path: string,  url?: string) => {
     }
 }
 
-const getFirstWord = (words: string | number | symbol) => {
+const getFirstWord = (words?: string | number | symbol) => {
+    if (!words) return ''
     const wordsTrans = String(words)
     return wordsTrans.slice(0, 1)
 }
