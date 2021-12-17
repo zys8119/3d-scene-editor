@@ -44,15 +44,13 @@ const user = reactive(userTemplate)
 import useStore from '@/store/modules/main'
 
 const store = useStore()
-const login = (username: string, password: string) => {
-    return window.api.v1.user.login({
+const login = async(username: string, password: string) => {
+    const res = await window.api.v1.user.login({
         username,
         password
     })
-        .then(res => {
-            store.setToken(res.data.authorization)
-            store.setUserinfo(res.data.user)
-        })
+    await store.setToken(res.data.authorization)
+    store.setUserinfo(res.data.user)
 }
 
 /**
@@ -67,13 +65,11 @@ const form = ref<InstanceType<typeof ElForm> | null>(null)
 
 const handleLogin = () => {
     if (!form.value) return
-    form.value.validate(vaild => {
+    form.value.validate(async(vaild) => {
         if (vaild) {
-            login(user.username, user.password)
-                .then(() => {
-                    getUserinfo()
-                        .then(() => router.push('/'))
-                })
+            await login(user.username, user.password)
+            await getUserinfo()
+            router.push('/')
         } else {
             ElMessage({
                 type: 'error',
