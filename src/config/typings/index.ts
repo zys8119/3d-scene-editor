@@ -1,4 +1,5 @@
 import type { Options } from 'wp-request'
+import type { RouteRecordName } from 'vue-router'
 
 export interface BaseConfig {
     title: string,
@@ -10,7 +11,9 @@ export interface BaseConfig {
 export interface Config {
     request: Partial<Options>,
     router: {
-        history: boolean
+        history: boolean,
+        needLogin: boolean,
+        whiteList: RouteRecordName[]
     }
 }
 

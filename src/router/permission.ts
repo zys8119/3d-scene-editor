@@ -1,6 +1,7 @@
 import router, { asyncRoutes, commonRoutes } from './index'
 import useStore from '@/store/modules/main'
 import configHooks from '@/config/configHooks'
+import config from '@/config/config'
 import type { RouteRecordRaw } from 'vue-router'
 
 /**
@@ -19,17 +20,24 @@ export const setRoutesName = (routes: RouteRecordRaw[]) => {
     })
 }
 
-export const getUserinfo = () => {
+export const setRoutes = (filter = true) => {
     const store = useStore()
+    /**
+     * 存储路由
+     */
+    const asyncRoutesWithName = setRoutesName(asyncRoutes)
+    const asyncRoutesFilter = filter ? configHooks.router.routesFilter(asyncRoutesWithName) : asyncRoutesWithName
+    asyncRoutesFilter.forEach(route => router.addRoute('index', route))
+    commonRoutes.forEach(route => router.addRoute(route))
+    store.routes = asyncRoutesFilter
+}
+
+export const getUserinfo = () => {
     return new Promise<void>(resolve => {
         resolve()
     })
         .then(() => {
-            const asyncRoutesWithName = setRoutesName(asyncRoutes)
-            const asyncRoutesFilter = configHooks.router.routesFilter(asyncRoutesWithName)
-            asyncRoutesFilter.forEach(route => router.addRoute('index', route))
-            commonRoutes.forEach(route => router.addRoute(route))
-            store.routes = asyncRoutesFilter
+            setRoutes()
         })
 }
 
@@ -47,27 +55,43 @@ router.beforeEach(async(to, from, next) => {
             firstTimeEnter = false
         }
         configHooks.router.beforeEach(to, from)
-        const store = useStore()
         /**
-         * localStorage 检查是否有 token
-         * 有的话说明是第一次访问页面，则调用 getUserInfo 获取用户信息
+         * 需要登录才需要判断 token 是否存在
          */
-        if (!store.token) {
-            store.token = localStorage.getItem('token') || ''
-        }
-        /**
-         * 如果仍然拿不到 token，这里排除 login 避免无限循环
-         */
-        if (!store.token && to.name !== 'login') {
-            return next({ name: 'login' })
+        if (config.router.needLogin) {
+            const store = useStore()
+            /**
+             * localStorage 检查是否有 token
+             * 有的话说明是第一次访问页面，则调用 getUserInfo 获取用户信息
+             */
+            if (!store.token) {
+                store.token = localStorage.getItem('token') || ''
+            }
+            /**
+             * 如果仍然拿不到 token，这里排除白名单避免无限循环
+             * @tip 不取名字的统统当作需要登录处理
+             */
+            if (
+                !store.token &&
+                (
+                    to.name &&
+                    !config.router.whiteList.includes(to.name)
+                )
+            ) {
+                return next({ name: 'login' })
+            }
         }
         /**
          * 第一次进入，一般会先获取权限
          */
         if (registerRouteFresh) {
-            await getUserinfo()
-            next({ ...to, replace: true })
+            if (config.router.needLogin) {
+                await getUserinfo()
+            } else {
+                setRoutes(false)
+            }
             registerRouteFresh = false
+            next({ ...to, replace: true })
         } else {
             next()
         }

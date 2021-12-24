@@ -10,6 +10,14 @@ export default {
         useStore
     },
     router: {
-        history: true
+        history: true,
+        /**
+         * 系统是否需要登录
+         */
+        needLogin: true,
+        /**
+         * 白名单，用于排除不需要登录的页面
+         */
+        whiteList: ['login']
     }
 } as Config
