@@ -95,6 +95,7 @@ const logout = () => {
      */
     store.setToken()
     store.setUserinfo()
+    window.store.tagViews.clear()
 }
 logout()
 </script>

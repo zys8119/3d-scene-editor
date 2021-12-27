@@ -1,5 +1,6 @@
 import router, { asyncRoutes, commonRoutes } from './index'
 import useStore from '@/store/modules/main'
+import useTagViewsStore from '@/store/modules/tagViews'
 import configHooks from '@/config/configHooks'
 import config from '@/config/config'
 import type { RouteRecordRaw } from 'vue-router'
@@ -55,6 +56,14 @@ router.beforeEach(async(to, from, next) => {
             firstTimeEnter = false
         }
         configHooks.router.beforeEach(to, from)
+        /**
+         * 页签
+         */
+        if (!config.tagViews.disabled) {
+            const tagViewsStore = useTagViewsStore()
+            if (typeof to.name === 'string') tagViewsStore.push(to)
+            tagViewsStore.active = String(to.name)
+        }
         /**
          * 需要登录才需要判断 token 是否存在
          */

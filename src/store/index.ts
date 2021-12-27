@@ -2,6 +2,7 @@
  * 挂载 store
  */
 import useMainStore from './modules/main'
+import usetagViewsStore from './modules/tagViews'
 import { App } from 'vue'
 
 /**
@@ -9,8 +10,10 @@ import { App } from 'vue'
  */
 const getStores = () => {
     const mainStore = useMainStore()
+    const tagViewsStore = usetagViewsStore()
     const stores = {
-        main: mainStore
+        main: mainStore,
+        tagViews: tagViewsStore
     }
     return stores
 }

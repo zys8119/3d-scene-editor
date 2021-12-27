@@ -9,8 +9,14 @@
                 <layout-header />
             </div>
             <div class="main-content">
+                <tag-views v-if="!config.tagViews.disabled" />
                 <div class="main-content-in">
-                    <router-view />
+                    <router-view v-if="config.router.keepAlive" v-slot="{ Component }">
+                        <keep-alive :include="keepAliveInclude" :max="config.tagViews.disabled ? undefined : config.tagViews.max">
+                            <component :is="Component" />
+                        </keep-alive>
+                    </router-view>
+                    <router-view v-else />
                 </div>
             </div>
         </div>
@@ -21,8 +27,20 @@
 import { RouterView } from 'vue-router'
 import LayoutMenu from './menu/index.vue'
 import LayoutHeader from './header.vue'
+import config from '@/config/config'
 
+import TagViews from './tagViews/index.vue'
+
+import useTagViewsStore from '@/store/modules/tagViews'
+const tagViewsStore = useTagViewsStore()
 const route = useRoute()
+
+const keepAliveInclude = computed(() => {
+    if (config.tagViews.disabled) return undefined
+    return tagViewsStore.tags.map(tag => {
+        return String(tag.name)
+    })
+})
 </script>
 
 <style lang="less" scoped>

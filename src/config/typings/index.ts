@@ -13,7 +13,12 @@ export interface Config {
     router: {
         history: boolean,
         needLogin: boolean,
-        whiteList: RouteRecordName[]
+        whiteList: RouteRecordName[],
+        keepAlive: boolean
+    },
+    tagViews: {
+        disabled?: boolean,
+        max?: number
     }
 }
 

@@ -9,7 +9,8 @@ const homeRoutes: RouteRecordRaw[] = [
         path: 'home',
         name: 'home',
         meta: {
-            title: '文创AR系统'
+            title: '文创AR系统',
+            fixed: true
         },
         component: () => import('@/views/HelloWorld.vue')
     },

@@ -78,6 +78,7 @@ declare module 'vue-router' {
          */
         url?: string;
         target?: string;
+        fixed?: boolean;
     }
 }
 
