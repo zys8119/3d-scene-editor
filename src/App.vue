@@ -4,8 +4,6 @@ import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 /**
  * 监听 resize 事件，修改 store 的 isH5 属性
  */
-import { useResizeObserver } from '@vueuse/core'
-
 const store = window.store.main
 const view = ref<HTMLDivElement>()
 const setH5 = () => store.isH5 = window.innerWidth < store.isH5Max
