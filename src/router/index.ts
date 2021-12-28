@@ -95,6 +95,10 @@ declare module 'vue-router' {
         url?: string;
         target?: string;
         /**
+         * 页签标题，优先级高于 title
+         */
+        tagTitle?: String;
+        /**
          * 面包屑，不需要手动定义
          */
         breadcrumbs?: RouteRecordRaw[];

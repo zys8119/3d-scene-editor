@@ -11,7 +11,7 @@
                 @click.middle="!tag.meta.fixed && store.remove(String(tag.name))"
                 @click.right.prevent="store.refresh(tag)"
             >
-                {{ tag.meta.title || tag.name }}
+                {{ tag.meta.tagTitle || tag.meta.title || tag.name }}
             </el-tag>
         </el-space>
     </div>
