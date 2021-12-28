@@ -6,8 +6,6 @@ const useStore = defineStore('main', {
             userinfo: {
                 username: ''
             } as Record<any, string>,
-            name: 'Eduardo',
-            isAdmin: true,
             /**
              * 可编辑，菜单是否折叠
              */
