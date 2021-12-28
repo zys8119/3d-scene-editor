@@ -69,6 +69,9 @@ const router = createRouter({
 
 declare module 'vue-router' {
     interface RouteMeta {
+        /**
+         * 页面标题
+         */
         title?: string;
         /**
          * 是否在菜单中隐藏
@@ -91,6 +94,9 @@ declare module 'vue-router' {
          */
         url?: string;
         target?: string;
+        /**
+         * 面包屑，不需要手动定义
+         */
         breadcrumbs?: RouteRecordRaw[];
         /**
          * 是否在页签中固定，禁止关闭
@@ -100,6 +106,9 @@ declare module 'vue-router' {
          * 是否在页签中隐藏
          */
         hiddenInTag?: boolean;
+        /**
+         * 在 keepAlive 模式下，是否禁用缓存
+         */
         noCache?: boolean;
     }
 }
