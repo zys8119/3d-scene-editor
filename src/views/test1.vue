@@ -2,6 +2,7 @@
     <div id="test1">
         <div style="display: flex; justify-content: space-between">
             <el-input
+                v-model="input"
                 style="width: 300px"
                 placeholder="请输入关键词搜索"
                 class="input-with-select"
@@ -28,9 +29,16 @@
     </div>
 </template>
 
+<script lang="ts">
+export default defineComponent({
+    name: 'test1'
+})
+</script>
+
 <script setup lang="ts">
 import {reactive} from 'vue'
 import {Search} from '@element-plus/icons'
+const input = ref('a')
 
 const tableData = reactive([
     {

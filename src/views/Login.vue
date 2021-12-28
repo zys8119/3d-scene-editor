@@ -88,8 +88,10 @@ const logout = () => {
     /**
      * 删除动态路由和公共路由
      */
-    store.routes.forEach(route => route.name && router.removeRoute(route.name))
+    store.flatRoutes.forEach(route => route.name && router.removeRoute(route.name))
     commonRoutes.forEach(route => route.name && router.removeRoute(route.name))
+    store.routes = []
+    store.flatRoutes = []
     /**
      * 清空 token
      */

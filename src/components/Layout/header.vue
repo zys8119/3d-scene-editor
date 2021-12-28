@@ -2,7 +2,7 @@
     <div class="main-header-left">
         <el-button v-if="!store.isH5" :icon="Expand" :class="{ expand: store.collapse }" @click="store.collapse = !store.collapse" />
         <el-breadcrumb v-if="!store.isH5" separator="/">
-            <el-breadcrumb-item v-for="route in routeMatched" :key="route.name" :to="{ path: route.path }">{{ route.meta.title || route.name }}</el-breadcrumb-item>
+            <el-breadcrumb-item v-for="route in routeMatched" :key="route.name" :to="{ path: route.path }">{{ route.meta?.title || route.name }}</el-breadcrumb-item>
         </el-breadcrumb>
     </div>
     <el-dropdown>
@@ -33,7 +33,7 @@ const handleLogout = () => {
 }
 
 const routeMatched = computed(() => {
-    return route.matched.slice(1)
+    return route.meta.breadcrumbs || []
 })
 </script>
 

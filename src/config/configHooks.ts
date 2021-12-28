@@ -64,7 +64,15 @@ export default {
             // 每个路由进入前发起一个请求
         },
         /**
-         * 过滤路由
+         * 用于 登录 / 第一次进入页面时获取权限
+         */
+        getUserinfo() {
+            return new Promise<void>(resolve => {
+                resolve()
+            })
+        },
+        /**
+         * 过滤路由，流程在 getUserinfo 之后
          */
         routesFilter(routes) {
             return routes

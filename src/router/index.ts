@@ -27,7 +27,10 @@ export const commonRoutes: RouteRecordRaw[] = [
     {
         path: '/:pathMatch(.*)*',
         name: '404',
-        component: () => import('@/components/common/404.vue')
+        component: () => import('@/components/common/404.vue'),
+        meta: {
+            hiddenInTag: true
+        }
     }
 ]
 
@@ -44,7 +47,8 @@ export const routes: RouteRecordRaw[] = [
         name: 'login',
         component: () => import('@/views/Login.vue'),
         meta: {
-            title: '登录'
+            title: '登录',
+            hiddenInTag: true
         }
     }
 ]
@@ -78,7 +82,15 @@ declare module 'vue-router' {
          */
         url?: string;
         target?: string;
+        breadcrumbs?: RouteRecordRaw[];
+        /**
+         * 是否在页签中固定，禁止关闭
+         */
         fixed?: boolean;
+        /**
+         * 是否在页签中隐藏
+         */
+        hiddenInTag?: boolean;
     }
 }
 

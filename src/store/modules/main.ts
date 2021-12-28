@@ -22,6 +22,7 @@ const useStore = defineStore('main', {
              * 有权限的路由，用于菜单的生成
              */
             routes: [] as RouteRecordRaw[],
+            flatRoutes: [] as RouteRecordRaw[],
             /**
              * 是否是 H5 页面
              */

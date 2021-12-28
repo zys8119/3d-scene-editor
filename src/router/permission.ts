@@ -21,6 +21,33 @@ export const setRoutesName = (routes: RouteRecordRaw[]) => {
     })
 }
 
+/**
+ * 扁平化路由
+ */
+export const flatRoutes = (routes: RouteRecordRaw[]) => {
+    const finalRoutes: (RouteRecordRaw)[] = []
+    const flatRoutes = (routes: RouteRecordRaw[], path = '', breadcrumbs: RouteRecordRaw[] = []) => {
+        routes.forEach(route => {
+            const getPath = route.path.indexOf('/') === 0 ? route.path : path + '/' + route.path
+            const newRoute = {
+                ...route,
+                children: undefined,
+                path: getPath,
+                meta: route.meta ? {
+                    ...route.meta
+                } : {}
+            }
+            newRoute.meta.breadcrumbs = [...breadcrumbs, newRoute]
+            if (route.children) {
+                flatRoutes(route.children, getPath, newRoute.meta.breadcrumbs)
+            }
+            finalRoutes.push(newRoute)
+        })
+    }
+    flatRoutes(routes)
+    return finalRoutes
+}
+
 export const setRoutes = (filter = true) => {
     const store = useStore()
     /**
@@ -28,15 +55,14 @@ export const setRoutes = (filter = true) => {
      */
     const asyncRoutesWithName = setRoutesName(asyncRoutes)
     const asyncRoutesFilter = filter ? configHooks.router.routesFilter(asyncRoutesWithName) : asyncRoutesWithName
-    asyncRoutesFilter.forEach(route => router.addRoute('index', route))
-    commonRoutes.forEach(route => router.addRoute(route))
     store.routes = asyncRoutesFilter
+    store.flatRoutes = flatRoutes(asyncRoutesFilter)
+    store.flatRoutes.forEach(route => router.addRoute('index', route))
+    commonRoutes.forEach(route => router.addRoute(route))
 }
 
 export const getUserinfo = () => {
-    return new Promise<void>(resolve => {
-        resolve()
-    })
+    return configHooks.router.getUserinfo()
         .then(() => {
             setRoutes()
         })
@@ -59,7 +85,7 @@ router.beforeEach(async(to, from, next) => {
         /**
          * 页签
          */
-        if (!config.tagViews.disabled) {
+        if (!config.tagViews.disabled && !to.meta.hiddenInTag) {
             const tagViewsStore = useTagViewsStore()
             if (typeof to.name === 'string') tagViewsStore.push(to)
             tagViewsStore.active = String(to.name)

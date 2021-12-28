@@ -29,6 +29,6 @@ export default {
      */
     tagViews: {
         disabled: true,
-        max: 10
+        // max: 10
     }
 } as Config

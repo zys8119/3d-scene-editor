@@ -41,6 +41,7 @@ export interface ConfigHooks {
     router: {
         beforeEach: (to: RouteLocationNormalized, from: RouteLocationNormalized) => void,
         routesFilter: (routes: RouteRecordRaw[]) => RouteRecordRaw[],
+        getUserinfo: () => Promise<void>,
         firstTimeEnter: () => void
     },
     error: {

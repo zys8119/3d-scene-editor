@@ -8,7 +8,7 @@
                 :effect="tagViewsStore.active !== tag.name ? 'plain' : 'dark'"
                 @click="$router.push(tag)"
                 @close="tagViewsStore.remove(String(tag.name))"
-                @click.middle="tagViewsStore.remove(String(tag.name))"
+                @click.middle="!tag.meta.fixed && tagViewsStore.remove(String(tag.name))"
             >
                 {{ tag.meta.title || tag.name }}
             </el-tag>
