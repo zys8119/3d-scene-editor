@@ -27,6 +27,19 @@ export default defineStore('tagViews', {
                     return Router.push(this.tags[this.tags.length - 1])
                 }
             }
+        },
+        refresh(record: RouteLocationNormalized) {
+            const routeRag = this.tags.find(tag => tag.name === record.name)
+            if (!routeRag) {
+                this.push(record)
+            } else {
+                const originNoCache = routeRag.meta.noCache
+                routeRag.meta.noCache = true
+                Router.replace({ name: 'redirect', query: { url: record.fullPath } })
+                    .then(() => {
+                        routeRag.meta.noCache = originNoCache
+                    })
+            }
         }
     }
 })

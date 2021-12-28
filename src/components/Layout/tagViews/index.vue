@@ -2,13 +2,14 @@
     <div class="tag-views">
         <el-space>
             <el-tag
-                v-for="tag in tagViewsStore.tags"
+                v-for="tag in store.tags"
                 :key="tag.name || ''"
                 :closable="!tag.meta.fixed"
-                :effect="tagViewsStore.active !== tag.name ? 'plain' : 'dark'"
+                :effect="store.active !== tag.name ? 'plain' : 'dark'"
                 @click="$router.push(tag)"
-                @close="tagViewsStore.remove(String(tag.name))"
-                @click.middle="!tag.meta.fixed && tagViewsStore.remove(String(tag.name))"
+                @close="store.remove(String(tag.name))"
+                @click.middle="!tag.meta.fixed && store.remove(String(tag.name))"
+                @click.right.prevent="store.refresh(tag)"
             >
                 {{ tag.meta.title || tag.name }}
             </el-tag>
@@ -17,12 +18,15 @@
 </template>
 
 <script lang="ts" setup>
-import useTagViewsStore from '@/store/modules/tagViews'
-const tagViewsStore = useTagViewsStore()
+import useStore from '@/store/modules/tagViews'
+const store = useStore()
 </script>
 
 <style lang="less" scoped>
 .tag-views {
     margin-bottom: 20px;
+    .el-tag {
+        cursor: default;
+    }
 }
 </style>

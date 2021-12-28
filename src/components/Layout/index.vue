@@ -37,7 +37,9 @@ const route = useRoute()
 
 const keepAliveInclude = computed(() => {
     if (config.tagViews.disabled) return undefined
-    return tagViewsStore.tags.map(tag => {
+    return tagViewsStore.tags.filter(item => {
+        return !item.meta.noCache
+    }).map(tag => {
         return String(tag.name)
     })
 })

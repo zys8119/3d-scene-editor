@@ -50,6 +50,15 @@ export const routes: RouteRecordRaw[] = [
             title: '登录',
             hiddenInTag: true
         }
+    },
+    {
+        path: '/redirect',
+        name: 'redirect',
+        component: () => import('@/components/common/Redirect.vue'),
+        meta: {
+            hiddenInTag: true,
+            noCache: true
+        }
     }
 ]
 
@@ -91,6 +100,7 @@ declare module 'vue-router' {
          * 是否在页签中隐藏
          */
         hiddenInTag?: boolean;
+        noCache?: boolean;
     }
 }
 
