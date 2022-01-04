@@ -1,15 +1,70 @@
 import router, { asyncRoutes, commonRoutes } from './index'
-import useStore from '@/store/main'
+import useStore from '@/store/modules/main'
+import useTagViewsStore from '@/store/modules/tagViews'
+import configHooks from '@/config/configHooks'
+import config from '@/config/config'
+import type { RouteRecordRaw } from 'vue-router'
+
+/**
+ * 自动给路由 name
+ */
+export const setRoutesName = (routes: RouteRecordRaw[]) => {
+    return routes.map(route => {
+        const routeMap: RouteRecordRaw = {
+            name: Symbol('AnonymousRouter'),
+            ...route
+        }
+        if (Array.isArray(route.children) && route.children.length > 0) {
+            routeMap.children = setRoutesName(route.children)
+        }
+        return routeMap
+    })
+}
+
+/**
+ * 扁平化路由
+ */
+export const flatRoutes = (routes: RouteRecordRaw[]) => {
+    const finalRoutes: (RouteRecordRaw)[] = []
+    const flatRoutes = (routes: RouteRecordRaw[], path = '', breadcrumbs: RouteRecordRaw[] = []) => {
+        routes.forEach(route => {
+            const getPath = route.path.indexOf('/') === 0 ? route.path : path + '/' + route.path
+            const newRoute = {
+                ...route,
+                children: undefined,
+                path: getPath,
+                meta: route.meta ? {
+                    ...route.meta
+                } : {}
+            }
+            newRoute.meta.breadcrumbs = [...breadcrumbs, newRoute]
+            if (route.children) {
+                flatRoutes(route.children, getPath, newRoute.meta.breadcrumbs)
+            }
+            finalRoutes.push(newRoute)
+        })
+    }
+    flatRoutes(routes)
+    return finalRoutes
+}
+
+export const setRoutes = (filter = true) => {
+    const store = useStore()
+    /**
+     * 存储路由
+     */
+    const asyncRoutesWithName = setRoutesName(asyncRoutes)
+    const asyncRoutesFilter = filter ? configHooks.router.routesFilter(asyncRoutesWithName) : asyncRoutesWithName
+    store.routes = asyncRoutesFilter
+    store.flatRoutes = flatRoutes(asyncRoutesFilter)
+    store.flatRoutes.forEach(route => router.addRoute('index', route))
+    commonRoutes.forEach(route => router.addRoute(route))
+}
 
 export const getUserinfo = () => {
-    const store = useStore()
-    return new Promise<void>(resolve => {
-        resolve()
-    })
+    return configHooks.router.getUserinfo()
         .then(() => {
-            asyncRoutes.forEach(route => router.addRoute('index', route))
-            commonRoutes.forEach(route => router.addRoute(route))
-            store.routes = asyncRoutes
+            setRoutes()
         })
 }
 
@@ -17,31 +72,61 @@ export const getUserinfo = () => {
  * 是否已经加载好路由了
  */
 let registerRouteFresh = true
+let firstTimeEnter = true
 
 router.beforeEach(async(to, from, next) => {
     try {
         if (to.meta?.title) document.title = to.meta.title
-        const store = useStore()
+        if (firstTimeEnter) {
+            configHooks.router.firstTimeEnter()
+            firstTimeEnter = false
+        }
+        configHooks.router.beforeEach(to, from)
         /**
-         * localStorage 检查是否有 token
-         * 有的话说明是第一次访问页面，则调用 getUserInfo 获取用户信息
+         * 页签
          */
-        if (!store.token) {
-            store.token = localStorage.getItem('token') || ''
+        if (!config.tagViews.disabled && !to.meta.hiddenInTag) {
+            const tagViewsStore = useTagViewsStore()
+            if (typeof to.name === 'string') tagViewsStore.push(to)
+            tagViewsStore.active = String(to.name)
         }
         /**
-         * 如果仍然拿不到 token，这里排除 login 避免无限循环
+         * 需要登录才需要判断 token 是否存在
          */
-        if (!store.token && to.name !== 'login') {
-            return next({ name: 'login' })
+        if (config.router.needLogin) {
+            const store = useStore()
+            /**
+             * localStorage 检查是否有 token
+             * 有的话说明是第一次访问页面，则调用 getUserInfo 获取用户信息
+             */
+            if (!store.token) {
+                store.token = localStorage.getItem('token') || ''
+            }
+            /**
+             * 如果仍然拿不到 token，这里排除白名单避免无限循环
+             * @tip 不取名字的统统当作需要登录处理
+             */
+            if (
+                !store.token &&
+                (
+                    to.name &&
+                    !config.router.whiteList.includes(to.name)
+                )
+            ) {
+                return next({ name: 'login' })
+            }
         }
         /**
          * 第一次进入，一般会先获取权限
          */
         if (registerRouteFresh) {
-            await getUserinfo()
-            next({ ...to, replace: true })
+            if (config.router.needLogin) {
+                await getUserinfo()
+            } else {
+                setRoutes(false)
+            }
             registerRouteFresh = false
+            next({ ...to, replace: true })
         } else {
             next()
         }

@@ -1,6 +1,4 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-
 export default defineComponent({
     name: 'MenuItem'
 })
@@ -9,12 +7,15 @@ export default defineComponent({
 <script lang="ts" setup>
 import * as MenuItemComponent from './item.vue'
 import type { RouteRecordRaw } from 'vue-router'
+import useStore from '@/store/modules/main'
 
+const store = useStore()
 const { default: MenuItemChild } = MenuItemComponent
 
 const props = defineProps<{
     route: RouteRecordRaw,
-    index: number | string
+    index: number | string,
+    isChild?: boolean
 }>()
 defineEmits<{
     (e: 'select', index: string, route?: RouteRecordRaw): void
@@ -28,6 +29,12 @@ const getIndex = (path: string,  url?: string) => {
         return String(props.index) + '/' + path
     }
 }
+
+const getFirstWord = (words?: string | number | symbol) => {
+    if (!words) return ''
+    const wordsTrans = String(words)
+    return wordsTrans.slice(0, 1)
+}
 </script>
 
 <template>
@@ -35,13 +42,14 @@ const getIndex = (path: string,  url?: string) => {
         <el-sub-menu v-if="route.children && route.children.length > 0" :index="String(index)">
             <template #title>
                 <el-icon v-if="route.meta?.icon"><component :is="route.meta.icon" /></el-icon>
-                {{ route.meta?.title || route.name }}
+                {{ store.isCollapse ? route.meta?.icon ? '' : getFirstWord(route.meta?.title || route.name) : (route.meta?.title || route.name) }}
             </template>
             <menu-item-child
                 v-for="child in route.children"
                 :key="child.name"
                 :route="child"
                 :index="getIndex(child.path, child.meta?.url)"
+                :is-child="true"
                 @select="(index: string, route: RouteRecordRaw) => $emit('select', index, route)"
             />
         </el-sub-menu>
@@ -53,7 +61,12 @@ const getIndex = (path: string,  url?: string) => {
             @click="$emit('select', String(index), route)"
         >
             <el-icon v-if="route.meta?.icon"><component :is="route.meta.icon" /></el-icon>
-            {{ route.meta?.title || route.name }}
+            <template v-else-if="store.isCollapse && !isChild">
+                {{ getFirstWord(route.meta?.title || route.name) }}
+            </template>
+            <template #title>
+                {{ route.meta?.title || route.name }}
+            </template>
         </el-menu-item>
     </template>
 </template>

@@ -15,7 +15,10 @@
             "@/*": ["./src/*"]
         },
         "skipLibCheck": true,
-        "types": ["element-plus/global"]
+        "types": [
+            "vite/client",
+            "./node_modules/element-plus/global"
+        ]
     },
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "auto-imports.d.ts"]
 }

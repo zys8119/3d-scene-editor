@@ -1,7 +1,8 @@
 /**
  * 挂载 store
  */
-import useMainStore from './main'
+import useMainStore from './modules/main'
+import usetagViewsStore from './modules/tagViews'
 import { App } from 'vue'
 
 /**
@@ -9,8 +10,10 @@ import { App } from 'vue'
  */
 const getStores = () => {
     const mainStore = useMainStore()
+    const tagViewsStore = usetagViewsStore()
     const stores = {
-        main: mainStore
+        main: mainStore,
+        tagViews: tagViewsStore
     }
     return stores
 }
@@ -20,6 +23,7 @@ const getStores = () => {
  */
 export default {
     install(app: App<Element>) {
+        app.use(createPinia())
         const stores = getStores()
         app.config.globalProperties.$store = stores
         window.store = stores

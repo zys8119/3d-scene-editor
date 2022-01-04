@@ -1,5 +1,5 @@
 <template>
-    <el-menu :default-active="route.path">
+    <el-menu :default-active="route.path" :collapse="store.isCollapse">
         <layout-menu-item
             v-for="$route in store.routes"
             :key="$route.name"
@@ -11,14 +11,14 @@
 </template>
 
 <script lang="ts" setup>
-import useStore from '@/store/main'
-import { useRoute, useRouter, RouteRecordRaw } from 'vue-router'
+import useStore from '@/store/modules/main'
+import { RouteRecordRaw } from 'vue-router'
+import configHooks from '@/config/configHooks'
 
 import LayoutMenuItem from './item.vue'
 
 const store = useStore()
 const route = useRoute()
-const router = useRouter()
 
 const getPath = (path: string, url?: string) => {
     if (url) return url
@@ -30,19 +30,6 @@ const getPath = (path: string, url?: string) => {
 }
 
 const handleSelect = (index: string, route?: RouteRecordRaw) => {
-    if (index.startsWith('/')) {
-        router.push(index)
-    } else {
-        if (route) {
-            const meta = route.meta
-            if (meta?.target) {
-                window.open(index, meta.target)
-            } else {
-                location.href = index
-            }
-        } else {
-            location.href = index
-        }
-    }
+    configHooks.layout.menuSelect(index, route)
 }
 </script>

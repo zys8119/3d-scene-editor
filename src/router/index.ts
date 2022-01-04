@@ -1,20 +1,24 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { Component } from 'vue'
 import Layout from '@/components/layout/index.vue'
-
-/**
- * 路由模块
- */
-import homeRoutes from './home'
-import testRoutes from './test'
+import config from '@/config/config'
 
 /**
  * 动态路由
  */
-export const asyncRoutes: RouteRecordRaw[] = [
-    ...homeRoutes,
-    ...testRoutes
-]
+export const asyncRoutes: RouteRecordRaw[] = []
+
+/**
+ * 添加整个文件夹的 modules
+ */
+const modules = import.meta.globEager('./modules/*.ts')
+for (const module of Object.values(modules)) {
+    if (!module.default) continue
+    if (!Array.isArray(module.default)) continue
+    module.default.forEach(route => {
+        asyncRoutes.push(route)
+    })
+}
 
 /**
  * 公共路由，例如404，要在路由动态加载完成之后再加载
@@ -23,7 +27,10 @@ export const commonRoutes: RouteRecordRaw[] = [
     {
         path: '/:pathMatch(.*)*',
         name: '404',
-        component: () => import('@/components/common/404.vue')
+        component: () => import('@/components/common/404.vue'),
+        meta: {
+            hiddenInTag: true
+        }
     }
 ]
 
@@ -38,17 +45,33 @@ export const routes: RouteRecordRaw[] = [
     {
         path: '/login',
         name: 'login',
-        component: () => import('@/components/views/Login.vue'),
+        component: () => import('@/views/Login.vue'),
+        meta: {
+            title: '登录',
+            hiddenInTag: true
+        }
+    },
+    {
+        path: '/redirect',
+        name: 'redirect',
+        component: () => import('@/components/common/Redirect.vue'),
+        meta: {
+            hiddenInTag: true,
+            noCache: true
+        }
     }
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: config.router.history ? createWebHistory() : createWebHashHistory(),
     routes
 })
 
 declare module 'vue-router' {
     interface RouteMeta {
+        /**
+         * 页面标题
+         */
         title?: string;
         /**
          * 是否在菜单中隐藏
@@ -71,6 +94,26 @@ declare module 'vue-router' {
          */
         url?: string;
         target?: string;
+        /**
+         * 页签标题，优先级高于 title
+         */
+        tagTitle?: String;
+        /**
+         * 面包屑，不需要手动定义
+         */
+        breadcrumbs?: RouteRecordRaw[];
+        /**
+         * 是否在页签中固定，禁止关闭
+         */
+        fixed?: boolean;
+        /**
+         * 是否在页签中隐藏
+         */
+        hiddenInTag?: boolean;
+        /**
+         * 在 keepAlive 模式下，是否禁用缓存
+         */
+        noCache?: boolean;
     }
 }
 
