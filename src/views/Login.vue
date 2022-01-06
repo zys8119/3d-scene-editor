@@ -1,5 +1,6 @@
 <template>
     <div class="login">
+        <img :src="`./images/1.png`" alt="">
         <div class="login-form">
             <el-form ref="form" label-width="70px" :model="user" :rules="{
                 username: [{
