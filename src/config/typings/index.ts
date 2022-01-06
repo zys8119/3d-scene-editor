@@ -2,6 +2,12 @@ import type { Options } from 'wp-request'
 import type { RouteRecordName } from 'vue-router'
 
 export interface BaseConfig {
+    /**
+    * 基础地址，router和vite均会采用此项配置
+    * 使用空字符串设置可以使用相对地址
+    * 如果使用 history api，可能需要配置此项
+    */
+    base: string,
     title: string,
     lang: string,
     favicon: string,

@@ -62,8 +62,10 @@ export const routes: RouteRecordRaw[] = [
     }
 ]
 
+import baseConfig from '../config/base'
+
 const router = createRouter({
-    history: config.router.history ? createWebHistory() : createWebHashHistory(),
+    history: config.router.history ? createWebHistory(baseConfig.base) : createWebHashHistory(),
     routes
 })
 
