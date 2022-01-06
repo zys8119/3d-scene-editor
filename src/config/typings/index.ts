@@ -20,7 +20,8 @@ export interface Config {
         history: boolean,
         needLogin: boolean,
         whiteList: RouteRecordName[],
-        keepAlive: boolean
+        keepAlive: boolean,
+        session: boolean
     },
     tagViews: {
         disabled?: boolean,

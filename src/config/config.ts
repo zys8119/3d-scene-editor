@@ -16,6 +16,11 @@ export default {
          */
         needLogin: true,
         /**
+         * 是否使用 SessionStorage 记录登录状态
+         * 如果为 false 则使用 LocalStorage
+         */
+        session: true,
+        /**
          * 白名单，用于排除不需要登录的页面
          */
         whiteList: ['login'],

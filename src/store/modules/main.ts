@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router'
+import config from '@/config/config'
 
 const useStore = defineStore('main', {
     state: () => {
@@ -44,19 +45,21 @@ const useStore = defineStore('main', {
     },
     actions: {
         setToken(token = '') {
+            const storage = config.router.session ? sessionStorage : localStorage
             return new Promise<void>(resolve => {
                 this.token = token
-                localStorage.setItem('token', token)
+                storage.setItem('token', token)
                 resolve()
             })
         },
         setUserinfo(userinfo?: Record<any, string>) {
+            const storage = config.router.session ? sessionStorage : localStorage
             if (!userinfo) {
                 this.userinfo = {}
-                localStorage.removeItem('userinfo')
+                storage.removeItem('userinfo')
             } else {
                 this.userinfo = userinfo
-                localStorage.setItem('userinfo', JSON.stringify(userinfo))
+                storage.setItem('userinfo', JSON.stringify(userinfo))
             }
         }
     }

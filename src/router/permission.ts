@@ -96,11 +96,12 @@ router.beforeEach(async(to, from, next) => {
         if (config.router.needLogin) {
             const store = useStore()
             /**
-             * localStorage 检查是否有 token
+             * Storage 检查是否有 token
              * 有的话说明是第一次访问页面，则调用 getUserInfo 获取用户信息
              */
             if (!store.token) {
-                store.token = localStorage.getItem('token') || ''
+                const storage = config.router.session ? sessionStorage : localStorage
+                store.token = storage.getItem('token') || ''
             }
             /**
              * 如果仍然拿不到 token，这里排除白名单避免无限循环

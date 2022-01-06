@@ -3,6 +3,8 @@ import router from '../router'
 import type { ConfigHooks } from './typings'
 import { ElMessage } from 'element-plus'
 
+import config from './config'
+
 export default {
     /**
      * 请求相关
@@ -54,7 +56,8 @@ export default {
      */
     router: {
         firstTimeEnter() {
-            const userinfo = localStorage.getItem('userinfo')
+            const storage = config.router.session ? sessionStorage : localStorage
+            const userinfo = storage.getItem('userinfo')
             if (userinfo) {
                 const store = useStore()
                 store.userinfo = JSON.parse(userinfo)
