@@ -3678,7 +3678,7 @@ which@^2.0.1:
 
 "wisdom-plus@git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git":
   version "0.0.0-beta.1"
-  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git#d764c68933407ae2265da5e84e0447fc7fe0185a"
+  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git#54f380470015e71062729f13ad6f0db94d6ab2fa"
   dependencies:
     "@element-plus/icons" "^0.0.11"
     "@popperjs/core" "^2.10.2"
@@ -3704,10 +3704,10 @@ word-wrap@^1.2.3:
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
 
-wp-request@^1.0.14:
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/wp-request/-/wp-request-1.0.18.tgz#dccb74cb7e4e8ec1c18d368fdaa30c724c342576"
-  integrity sha512-udUl5eG+rCramKpxkObNTK9pSlDG12qKkGBa8YCYCWGS/L5IaNMkPtxkjUP5+xzp5AOT3uAQmThHbNA01Z1Wag==
+wp-request@^1.0.20:
+  version "1.0.20"
+  resolved "https://registry.yarnpkg.com/wp-request/-/wp-request-1.0.20.tgz#47db1ef683651e1244d5827da4683a85d38ecd78"
+  integrity sha512-yfykEE/FIPwYtWwa7zuEgigOM5UmqD9gAd919FuNb48E3/Q3+HtzuNQG08hCMYwqviO8wTEcO+KFIr1libvUaw==
   dependencies:
     axios "^0.24.0"
     crypto-js "^4.1.1"
