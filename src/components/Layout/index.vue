@@ -25,7 +25,7 @@
 
 <script lang="ts" setup>
 import { RouterView } from 'vue-router'
-import LayoutMenu from './menu/index.vue'
+import LayoutMenu from './Menu/index.vue'
 import LayoutHeader from './header.vue'
 import config from '@/config/config'
 

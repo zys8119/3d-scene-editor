@@ -27,7 +27,7 @@ export const commonRoutes: RouteRecordRaw[] = [
     {
         path: '/:pathMatch(.*)*',
         name: '404',
-        component: () => import('@/components/common/404.vue'),
+        component: () => import('@/components/Common/404.vue'),
         meta: {
             hiddenInTag: true
         }
@@ -54,7 +54,7 @@ export const routes: RouteRecordRaw[] = [
     {
         path: '/redirect',
         name: 'redirect',
-        component: () => import('@/components/common/Redirect.vue'),
+        component: () => import('@/components/Common/Redirect.vue'),
         meta: {
             hiddenInTag: true,
             noCache: true
