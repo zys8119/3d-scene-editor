@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { Component } from 'vue'
-import Layout from '@/components/layout/index.vue'
+import Layout from '@/components/Layout/index.vue'
 import config from '@/config/config'
 
 /**
