@@ -1,7 +1,7 @@
 <template>
     <div class="tag-views">
         <wp-x-scroll smooth>
-            <wp-space>
+            <wp-space :wrap="false">
                 <wp-tag
                     v-for="tag in store.tags"
                     :key="tag.name || ''"
@@ -20,7 +20,6 @@
 </template>
 
 <script lang="ts" setup>
-import { WpXScroll, WpSpace, WpTag } from 'wisdom-plus'
 import useStore from '@/store/modules/tagViews'
 const store = useStore()
 </script>
@@ -28,7 +27,7 @@ const store = useStore()
 <style lang="less" scoped>
 .tag-views {
     margin-bottom: 20px;
-    .el-tag {
+    .wp-tag {
         cursor: default;
     }
 }

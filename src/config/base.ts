@@ -12,5 +12,5 @@ export default {
      */
     title: '无纸化',
     lang: 'zh-cn',
-    favicon: 'favicon.ico'
+    favicon: '/favicon.ico'
 } as BaseConfig

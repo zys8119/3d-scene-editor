@@ -5,6 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { WisdomPlusResolver } from './src/resolver'
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import { htmlTransform } from './src/utils'
 import baseConfig from './src/config/base'
@@ -32,7 +33,10 @@ export default defineConfig({
             resolvers: [ElementPlusResolver()],
         }),
         Components({
-            resolvers: [ElementPlusResolver()]
+            resolvers: [
+                ElementPlusResolver(),
+                WisdomPlusResolver()
+            ]
         }),
         htmlTransform()
     ],
