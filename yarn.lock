@@ -3661,10 +3661,9 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
-wisdom-plus@^0.0.0-beta.1:
+"wisdom-plus@git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git":
   version "0.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/wisdom-plus/-/wisdom-plus-0.0.0-beta.1.tgz#29057912d420b83737099f039efc58972b243531"
-  integrity sha512-jc46TFsjTwlqBIp578+TS6dIkZ3j5Z8nO+Bb66wa9034LOQE9+QsXce8sPUJcT9Smwk0kZp/ZtVhqcQli1R/uA==
+  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git#076eecbbc72c6899b4b62f9780606f4e331748c9"
   dependencies:
     "@element-plus/icons" "^0.0.11"
     "@popperjs/core" "^2.10.2"

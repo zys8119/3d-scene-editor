@@ -1,23 +1,26 @@
 <template>
     <div class="tag-views">
-        <el-space>
-            <el-tag
-                v-for="tag in store.tags"
-                :key="tag.name || ''"
-                :closable="!tag.meta.fixed"
-                :effect="store.active !== tag.name ? 'plain' : 'dark'"
-                @click="$router.push(tag)"
-                @close="store.remove(String(tag.name))"
-                @click.middle="!tag.meta.fixed && store.remove(String(tag.name))"
-                @click.right.prevent="store.refresh(tag)"
-            >
-                {{ tag.meta.tagTitle || tag.meta.title || tag.name }}
-            </el-tag>
-        </el-space>
+        <wp-x-scroll smooth>
+            <wp-space>
+                <wp-tag
+                    v-for="tag in store.tags"
+                    :key="tag.name || ''"
+                    :closable="!tag.meta.fixed"
+                    :color="store.active !== tag.name ? ['#000', '#fff'] : ['rgb(99, 111, 190)', 'rgb(237, 233, 233)']"
+                    @click="$router.push(tag)"
+                    @close="store.remove(String(tag.name))"
+                    @click.middle="!tag.meta.fixed && store.remove(String(tag.name))"
+                    @click.right.prevent="store.refresh(tag)"
+                >
+                    {{ tag.meta.tagTitle || tag.meta.title || tag.name }}
+                </wp-tag>
+            </wp-space>
+        </wp-x-scroll>
     </div>
 </template>
 
 <script lang="ts" setup>
+import { WpXScroll, WpSpace, WpTag } from 'wisdom-plus'
 import useStore from '@/store/modules/tagViews'
 const store = useStore()
 </script>

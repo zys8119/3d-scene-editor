@@ -18,7 +18,7 @@
         "pinia": "^2.0.4",
         "vue": "^3.2.16",
         "vue-router": "^4.0.12",
-        "wisdom-plus": "^0.0.0-beta.1",
+        "wisdom-plus": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git",
         "wp-request": "^1.0.14"
     },
     "devDependencies": {

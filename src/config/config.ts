@@ -27,13 +27,13 @@ export default {
         /**
          * 是否保持 alive 状态，如果启用 tagViews，则只会缓存页签中的类目
          */
-        keepAlive: false
+        keepAlive: true
     },
     /**
      * 页签配置
      */
     tagViews: {
-        disabled: true,
+        disabled: false,
         // max: 10
     }
 } as Config
