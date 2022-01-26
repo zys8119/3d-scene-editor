@@ -12,10 +12,6 @@ export const htmlTransform = () => {
                 /<html lang="(.*?)">/,
                 `<html lang="${base.lang}">`
             )
-            html = html.replace(
-                /<link rel="icon" href="(.*?)" \/>/,
-                `<link rel="icon" href="${base.favicon}" />`
-            )
             return html
         }
     }

@@ -10,7 +10,6 @@ export interface BaseConfig {
     base: string,
     title: string,
     lang: string,
-    favicon: string,
     [x: string]: any
 }
 
