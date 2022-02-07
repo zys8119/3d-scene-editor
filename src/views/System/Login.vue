@@ -42,8 +42,8 @@ import { commonRoutes } from '@/router'
  * dev 环境设置默认账号密码
  */
 const userTemplate = import.meta.env.DEV ? {
-    username: '18300000000',
-    password: '000000'
+    username: 'admin2',
+    password: 'zj123456,.'
 } : {
     username: '',
     password: ''

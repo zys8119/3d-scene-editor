@@ -32,7 +32,7 @@ declare module 'vue' {
     PersonTree: typeof import('./src/components/Person/PersonTree.vue')['default']
     Redirect: typeof import('./src/components/Common/Redirect.vue')['default']
     SelectOption: typeof import('./src/components/DataForm/SelectOption.vue')['default']
-    TagViews: typeof import('./src/components/Layout/TagViews/index.vue')['default']
+    TagViews: typeof import('./src/components/Layout/tagViews/index.vue')['default']
     Upload: typeof import('./src/components/Upload.vue')['default']
     WpCheckbox: typeof import('wisdom-plus/es')['WpCheckbox']
     WpDropdown: typeof import('wisdom-plus/es')['WpDropdown']

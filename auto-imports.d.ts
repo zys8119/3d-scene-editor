@@ -31,7 +31,6 @@ declare global {
   const ElMessageBox: typeof import('element-plus/es')['ElMessageBox']
   const ElNotification: typeof import('element-plus/es')['ElNotification']
   const ElSwitch: typeof import('element-plus/es')['ElSwitch']
-  const ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
