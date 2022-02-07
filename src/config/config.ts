@@ -3,14 +3,15 @@ import type { Config } from './typings'
 
 export default {
     request: {
-        baseURL: '',
+        baseURL: import.meta.env.VITE_API,
         successCode: [0],
         // successField: 'success',
-        logoutCode: [401],
-        useStore
+        logoutCode: [2],
+        useStore,
+        trim: true
     },
     router: {
-        history: true,
+        history: false,
         /**
          * 系统是否需要登录
          */
@@ -19,7 +20,7 @@ export default {
          * 是否使用 SessionStorage 记录登录状态
          * 如果为 false 则使用 LocalStorage
          */
-        session: true,
+        session: false,
         /**
          * 白名单，用于排除不需要登录的页面
          */
@@ -34,6 +35,6 @@ export default {
      */
     tagViews: {
         disabled: false,
-        // max: 10
+        max: 10
     }
 } as Config

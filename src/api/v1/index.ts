@@ -1,4 +1,8 @@
-import user from './user'
+import user from './system/user'
+import common from './common'
+import system from './system'
 export default {
-    user
+    user,
+    common,
+    system
 }

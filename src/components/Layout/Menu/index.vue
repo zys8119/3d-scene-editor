@@ -1,13 +1,12 @@
 <template>
-    <el-menu :default-active="route.path" :collapse="store.isCollapse">
-        <layout-menu-item
-            v-for="$route in store.routes"
-            :key="$route.name"
-            :index="getPath($route.path, $route.meta?.url)"
-            :route="$route"
-            @select="handleSelect"
-        />
-    </el-menu>
+    <wp-menu
+        :model-value="route.name || ''"
+        :list="routesMap"
+        :collapse="store.isCollapse"
+        :click="handleClick"
+        width="250px"
+        vertical
+    />
 </template>
 
 <script lang="ts" setup>
@@ -15,21 +14,53 @@ import useStore from '@/store/modules/main'
 import { RouteRecordRaw } from 'vue-router'
 import configHooks from '@/config/configHooks'
 
-import LayoutMenuItem from './item.vue'
+import type { MenuProps, MenuRecord } from 'wisdom-plus'
 
 const store = useStore()
 const route = useRoute()
 
-const getPath = (path: string, url?: string) => {
-    if (url) return url
-    if (path.startsWith('/')) {
-        return path
-    } else {
-        return '/' + path
+const routesMap = computed<MenuProps['list']>(() => {
+    const routesMapper = (routes: RouteRecordRaw[]): MenuProps['list'] => {
+        return routes.map(route => {
+            return {
+                index: route.name,
+                title: route.meta?.title || route.name,
+                children: route.children ? routesMapper(route.children) : undefined,
+                info: route,
+                icon: route.meta?.icon
+            }
+        })
     }
-}
+    return routesMapper(store.routes)
+})
 
-const handleSelect = (index: string, route?: RouteRecordRaw) => {
-    configHooks.layout.menuSelect(index, route)
+const handleClick = (record: MenuRecord) => {
+    if (!record.children || record.children.length > 0) return
+    configHooks.layout.menuSelect(record.info as RouteRecordRaw)
 }
 </script>
+
+<style lang="less" scoped>
+.wp-menu {
+    --wp-menu-padding-left-right: 20px;
+    --wp-menu-padding-top-bottom: 15px;
+    :deep(.wp-collapse-item__title .wp-menu-item__text) {
+        font-size: 14px;
+    }
+    :deep(.wp-menu-item-title) {
+        font-size: 14px;
+        line-height: 20px;
+        &.wp-menu-item__active {
+            font-size: 15px;
+        }
+    }
+    :deep(.wp-menu-item .wp-collapse-item__title:not(.wp-menu-item__diabeld):hover),
+    :deep(.wp-menu-item-title:not(.wp-menu-item__diabeld):hover) {
+        color: var(--primary-color);
+        background-color: initial;
+    }
+    &.wp-menu__collapse {
+        font-size: 14px;
+    }
+}
+</style>

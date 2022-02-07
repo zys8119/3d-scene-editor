@@ -1,9 +1,6 @@
 import App from './App.vue'
 const app = createApp(App)
 
-import global from './global'
-app.use(global)
-
 /**
  * 请求初始化
  */
@@ -31,11 +28,14 @@ app.use(router)
 import stores from '@/store'
 app.use(stores)
 
-import '@/assets/less/index.less'
-
 // 全局引入 WisdomPlus
 // import WisdomPlus from 'wisdom-plus'
 // app.use(WisdomPlus)
 import 'wisdom-plus/dist/index.css'
+
+import '@/assets/less/index.less'
+
+import global from './global'
+app.use(global)
 
 app.mount('#app')

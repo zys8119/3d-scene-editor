@@ -7,8 +7,8 @@
         "strict": true,
         "jsx": "preserve",
         "sourceMap": true,
-        "resolveJsonModule": true,
         "esModuleInterop": true,
+        "resolveJsonModule": true,
         "lib": ["esnext", "dom"],
         "baseUrl": "./",
         "paths": {
@@ -18,8 +18,21 @@
         "types": [
             "vite/client",
             "./node_modules/element-plus/global",
-            "./node_modules/wisdom-plus/global"
-        ]
+            "./node_modules/wisdom-plus/global",
+            "unplugin-auto-import-element-plus-preset/type"
+        ],
+        "allowSyntheticDefaultImports": true
     },
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "auto-imports.d.ts"]
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "src/**/**/*.vue",
+        "src/**/**/*.ts",
+        "src/**/**/*.d.ts",
+        "src/**/**/*.tsx",
+        "auto-imports.d.ts",
+        "components.d.ts"
+    ]
 }

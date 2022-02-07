@@ -3,6 +3,7 @@ import useStore from '@/store/modules/main'
 import useTagViewsStore from '@/store/modules/tagViews'
 import configHooks from '@/config/configHooks'
 import config from '@/config/config'
+import baseConfig from '@/config/base'
 import type { RouteRecordRaw } from 'vue-router'
 
 /**
@@ -101,7 +102,7 @@ router.beforeEach(async(to, from, next) => {
              */
             if (!store.token) {
                 const storage = config.router.session ? sessionStorage : localStorage
-                store.token = storage.getItem('token') || ''
+                store.token = storage.getItem(baseConfig.unique + 'token') || ''
             }
             /**
              * 如果仍然拿不到 token，这里排除白名单避免无限循环

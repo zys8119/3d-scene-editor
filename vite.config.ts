@@ -9,6 +9,8 @@ import { WisdomPlusResolver } from './src/resolver'
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import { htmlTransform } from './src/utils'
 import baseConfig from './src/config/base'
+import legacy from '@vitejs/plugin-legacy'
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,6 +19,7 @@ export default defineConfig({
         vue(),
         vueJsx(),
         viteCommonjs(),
+        vueSetupExtend(),
         AutoImport({
             include: [
                 /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
@@ -30,7 +33,9 @@ export default defineConfig({
                 '@vueuse/core',
                 'pinia'
             ],
-            resolvers: [ElementPlusResolver()],
+            resolvers: [
+                ElementPlusResolver()
+            ]
         }),
         Components({
             resolvers: [
@@ -38,7 +43,15 @@ export default defineConfig({
                 WisdomPlusResolver()
             ]
         }),
-        htmlTransform()
+        htmlTransform(),
+        legacy({
+            targets: ['defaults', 'not IE 11'],
+            /**
+             * For chrome >= 61
+             * global-this is vaild from chrome 70
+             */
+            modernPolyfills: ['es.global-this']
+        })
     ],
     resolve: {
         alias: {

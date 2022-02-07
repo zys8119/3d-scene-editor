@@ -10,6 +10,7 @@ export interface BaseConfig {
     base: string,
     title: string,
     lang: string,
+    unique?: string,
     [x: string]: any
 }
 
@@ -42,7 +43,7 @@ export interface GlobalError {
 export interface ConfigHooks {
     request: Pick<Options, 'afterEach' | 'beforeEach' | 'logout' | 'errorHandle'>,
     layout: {
-        menuSelect: (path: string, route?: RouteRecordRaw) => void
+        menuSelect: (route?: RouteRecordRaw) => void
     },
     router: {
         beforeEach: (to: RouteLocationNormalized, from: RouteLocationNormalized) => void,

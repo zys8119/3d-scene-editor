@@ -13,7 +13,7 @@ useResizeObserver(view, setH5)
 </script>
 
 <template>
-    <div id="view" ref="view" v-loading="store.loading">
+    <div id="view" ref="view" v-loading.body.fullscreen.lock="store.loading">
         <el-config-provider :locale="zhCn">
             <router-view />
         </el-config-provider>

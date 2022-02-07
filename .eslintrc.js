@@ -33,7 +33,6 @@ module.exports = {
         'vue3-jsx'
     ],
     rules: {
-        'indent': ['error', 4],
         'vue/attributes-order': 1,
         'quotes': [1, 'single'],
         'semi': [1, 'never'],

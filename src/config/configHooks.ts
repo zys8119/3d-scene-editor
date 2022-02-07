@@ -1,9 +1,10 @@
 import useStore from '@/store/modules/main'
 import router from '../router'
 import type { ConfigHooks } from './typings'
-import { ElMessage } from 'element-plus'
 
+import baseConfig from './base'
 import config from './config'
+import { closeAllModals } from 'wisdom-plus'
 
 export default {
     /**
@@ -17,8 +18,8 @@ export default {
         },
         afterEach(config, data) {
             if (!config) return
-            const store = useStore()
-            store.requestResults[`${(config.method || 'get').toUpperCase()}@${config.url}}`] = data
+            // const store = useStore()
+            // store.requestResults[`${(config.method || 'get').toUpperCase()}@${config.url}}`] = data
         },
         errorHandle(msg) {
             ElMessage({
@@ -34,20 +35,17 @@ export default {
      * 布局相关
      */
     layout: {
-        menuSelect(path, route) {
-            if (path.startsWith('/')) {
-                router.push(path)
-            } else {
-                if (route) {
-                    const meta = route.meta
-                    if (meta?.target) {
-                        window.open(path, meta.target)
-                    } else {
-                        location.href = path
-                    }
+        menuSelect(route) {
+            if (!route) return
+            if (route?.meta?.url) {
+                const meta = route.meta
+                if (meta?.target) {
+                    window.open(meta.url, meta.target)
                 } else {
-                    location.href = path
+                    location.href = meta.url || '#'
                 }
+            } else {
+                router.push({ name: route.name })
             }
         }
     },
@@ -57,7 +55,7 @@ export default {
     router: {
         firstTimeEnter() {
             const storage = config.router.session ? sessionStorage : localStorage
-            const userinfo = storage.getItem('userinfo')
+            const userinfo = storage.getItem(baseConfig.unique + 'userinfo')
             if (userinfo) {
                 const store = useStore()
                 store.userinfo = JSON.parse(userinfo)
@@ -65,6 +63,7 @@ export default {
         },
         beforeEach(to, from) {
             // 每个路由进入前发起一个请求
+            closeAllModals()
         },
         /**
          * 用于 登录 / 第一次进入页面时获取权限

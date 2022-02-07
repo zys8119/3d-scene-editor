@@ -1,37 +1,48 @@
 <template>
     <router-view v-if="route.meta?.isFullPage" />
     <div v-else class="main">
-        <div class="main-aside">
-            <layout-menu />
-        </div>
-        <div class="main-container">
-            <div class="main-header">
+        <wp-layout>
+            <wp-layout-aside class="main-header">
                 <layout-header />
-            </div>
-            <div class="main-content">
-                <tag-views v-if="!config.tagViews.disabled" />
-                <div class="main-content-in">
-                    <router-view v-if="config.router.keepAlive" v-slot="{ Component }">
-                        <keep-alive :include="keepAliveInclude" :max="config.tagViews.disabled ? undefined : config.tagViews.max">
-                            <component :is="Component" />
-                        </keep-alive>
-                    </router-view>
-                    <router-view v-else />
-                </div>
-            </div>
-        </div>
+            </wp-layout-aside>
+            <wp-layout-content>
+                <wp-layout row>
+                    <wp-layout-aside class="main-aside">
+                        <layout-menu />
+                    </wp-layout-aside>
+                    <wp-layout-content class="main-content">
+                        <tag-views v-if="!config.tagViews.disabled" />
+                        <div ref="contentRef" class="main-content-in">
+                            <div class="main-content-in-title">
+                                <el-breadcrumb v-if="!store.isH5" separator="/">
+                                    <el-breadcrumb-item v-for="route in routeMatched" :key="route.name" :to="{ path: route.path }">{{ route.meta?.title || route.name }}</el-breadcrumb-item>
+                                </el-breadcrumb>
+                            </div>
+                            <router-view v-if="config.router.keepAlive" v-slot="{ Component }">
+                                <keep-alive :include="keepAliveInclude" :max="config.tagViews.disabled ? undefined : config.tagViews.max">
+                                    <component :is="Component" />
+                                </keep-alive>
+                            </router-view>
+                            <router-view v-else />
+                        </div>
+                    </wp-layout-content>
+                </wp-layout>
+            </wp-layout-content>
+        </wp-layout>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { RouterView } from 'vue-router'
+import { onBeforeRouteUpdate, RouterView } from 'vue-router'
 import LayoutMenu from './Menu/index.vue'
-import LayoutHeader from './header.vue'
+import LayoutHeader from './Header/index.vue'
 import config from '@/config/config'
 
 import TagViews from './tagViews/index.vue'
+import useStore from '@/store/modules/main'
 
-import useTagViewsStore from '@/store/modules/tagViews'
+import useTagViewsStore from '@/store/modules/TagViews'
+
 const tagViewsStore = useTagViewsStore()
 const route = useRoute()
 
@@ -43,6 +54,17 @@ const keepAliveInclude = computed(() => {
         return String(tag.name)
     })
 })
+
+const store = useStore()
+const routeMatched = computed(() => {
+    return route.meta.breadcrumbs || []
+})
+
+const contentRef = ref<HTMLDivElement | null>(null)
+onBeforeRouteUpdate(() => {
+    // 自动滚动到顶部
+    if (contentRef.value) contentRef.value.scrollTop = 0
+})
 </script>
 
 <style lang="less" scoped>
@@ -50,14 +72,34 @@ const keepAliveInclude = computed(() => {
     height: 100vh;
     display: flex;
     .main-aside {
+        flex-shrink: 0;
         overflow-x: hidden;
         overflow-y: auto;
-        border-right: solid 1px #e6e6e6;
-        flex-shrink: 0;
+        overflow-y: overlay;
+        scrollbar-width: none;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        z-index: 1;
         :deep(.el-menu) {
-            width: 100%;
-            width: 250px;
             border: 0;
+            width: 250px;
+            --el-menu-active-color: #fff;
+            --el-menu-hover-bg-color: var(--primary-color);
+            --el-menu-hover-color: #fff;
+            .el-menu-item {
+                transition: font-size .2s;
+                &.is-active {
+                    font-size: 15px;
+                    color: var(--primary-color);
+                }
+            }
+            .el-sub-menu__title {
+                font-size: 15px;
+            }
+            .el-menu-item:hover,
+            .el-sub-menu__title:hover {
+                color: var(--primary-color);
+                background-color: transparent;
+            }
             &.el-menu--collapse {
                 width: 64px;
                 .el-sub-menu__title {
@@ -67,7 +109,7 @@ const keepAliveInclude = computed(() => {
                     text-align: center;
                 }
                 .is-active .el-sub-menu__title {
-                    color: var(--el-menu-active-color);
+                    color: var(--primary-color);
                 }
             }
         }
@@ -80,11 +122,12 @@ const keepAliveInclude = computed(() => {
         overflow: auto;
     }
     .main-header {
-        background-color: #f5f5f5;
+        background-color: var(--primary-color);
         display: flex;
         align-items: center;
         height: 55px;
         padding: 0 20px;
+        color: #fff;
         :deep(.main-header-left) {
             flex: 1;
             display: flex;
@@ -105,8 +148,24 @@ const keepAliveInclude = computed(() => {
     }
     .main-content {
         flex: 1;
-        padding: 20px;
         overflow: auto;
+        height: calc(100vh - 55px);
+        display: flex;
+        flex-direction: column;
+        &-in {
+            background-color: rgb(240, 240, 240);
+            padding: 15px 20px;
+            flex: 1;
+            overflow: auto;
+            &-title {
+                color: var(--primary-color);
+                padding-left: 10px;
+                border-left: 5px solid;
+                margin-bottom: 15px;
+                font-size: 16px;
+                font-weight: bold;
+            }
+        }
     }
     :deep(.el-menu) {
         height: 100%;
