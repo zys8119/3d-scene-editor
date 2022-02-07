@@ -1,5 +1,7 @@
 import { PropType } from 'vue'
 
+const TableColumn = ElTableColumn
+
 export default defineComponent({
     props: {
         slots: {
@@ -7,7 +9,7 @@ export default defineComponent({
             default: () => ({})
         },
         columns: {
-            type: Array as PropType<(ExtractProps<typeof ElTableColumn> & Record<string, any>)[]>,
+            type: Array as PropType<(ExtractProps<typeof TableColumn> & Record<string, any>)[]>,
             default: () => []
         }
     },
@@ -16,7 +18,7 @@ export default defineComponent({
             <>
                 {
                     this.columns.map(column => (
-                        <ElTableColumn
+                        <TableColumn
                             key={column.prop}
                             align="center"
                             { ...column as any }
