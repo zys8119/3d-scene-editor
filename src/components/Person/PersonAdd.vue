@@ -8,7 +8,7 @@
                 等{{ checkedItemsMap.length }}人
             </span>
         </template>
-        <el-button circle size="mini" :icon="Plus" :disabled="disabeld" @click="handleAdd" />
+        <el-button circle size="small" :icon="Plus" :disabled="disabeld" @click="handleAdd" />
     </wp-space>
 </template>
 

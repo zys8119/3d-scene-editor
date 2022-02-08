@@ -64,3 +64,9 @@ const handleDelete = async(file: UploadFile, initiative: boolean) => {
     void file
 }
 </script>
+
+<style lang="less" scoped>
+.wp-upload {
+    flex: 1;
+}
+</style>

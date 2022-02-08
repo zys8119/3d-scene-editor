@@ -279,7 +279,7 @@ export default defineComponent({
         overflow: hidden;
         margin-right: 20px;
         .el-button {
-            min-width: 100px;
+            min-width: 80px;
         }
         .el-input {
             max-width: 240px;
@@ -292,17 +292,14 @@ export default defineComponent({
             --el-table-header-bg-color: rgb(246, 248, 253);
             --el-table-header-text-color: #333;
             --el-table-text-color: #666;
-            :deep(th.el-table__cell) {
-                padding: 5px 0;
-            }
         }
     }
     &-pagination {
-        text-align: right;
         margin-top: 15px;
         .el-pagination {
             --el-pagination-button-disabled-bg-color: transparent;
             --el-pagination-bg-color: transparent;
+            justify-content: end;
         }
     }
 }

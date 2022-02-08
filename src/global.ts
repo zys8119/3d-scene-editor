@@ -18,14 +18,14 @@ export default {
     }
 }
 
-declare module '@vue/runtime-core'  {
+declare module '@vue/runtime-core' {
     export interface ComponentCustomProperties {
-        readonly $message: typeof ElMessage,
-        readonly $msgbox: typeof ElMessageBox,
-        readonly $alert: typeof ElMessageBox.alert,
-        readonly $confirm: typeof ElMessageBox.confirm,
-        readonly $prompt: typeof ElMessageBox.prompt,
-        readonly $notify: typeof ElNotification
+        $message: typeof ElMessage,
+        $msgbox: typeof ElMessageBox,
+        $alert: typeof ElMessageBox.alert,
+        $confirm: typeof ElMessageBox.confirm,
+        $prompt: typeof ElMessageBox.prompt,
+        $notify: typeof ElNotification
     }
 }
 
