@@ -56,7 +56,11 @@ const handleDelete = async(file: UploadFile, initiative: boolean) => {
         await Dialog({
             content: '确定要删除这个文件吗？',
             confirmProps: {
-                type: 'danger'
+                type: 'danger',
+                size: 'small'
+            },
+            cancelProps: {
+                size: 'small'
             }
         })
     }

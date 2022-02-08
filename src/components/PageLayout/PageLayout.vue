@@ -211,7 +211,11 @@ export default defineComponent({
             await Dialog({
                 content: '确定要删除本条记录吗？',
                 confirmProps: {
-                    type: 'danger'
+                    type: 'danger',
+                    size: 'small'
+                },
+                cancelProps: {
+                    size: 'small'
                 }
             })
             await props.delete?.([row])
@@ -222,7 +226,11 @@ export default defineComponent({
             await Dialog({
                 content: '确定要删除选中的记录吗？',
                 confirmProps: {
-                    type: 'danger'
+                    type: 'danger',
+                    size: 'small'
+                },
+                cancelProps: {
+                    size: 'small'
                 }
             })
             await props.delete?.(selections.value)
