@@ -26,7 +26,7 @@
                 <div class="page-layout-buttons">
                     <wp-space :vertical="store.isH5">
                         <slot name="buttons" />
-                        <el-button v-if="showCheckedDelete && showDelete" type="danger" :disabled="selections.length === 0" @click="handleDeleteSelect">
+                        <el-button v-if="showCheckedDelete" type="danger" :disabled="selections.length === 0" @click="handleDeleteSelect">
                             批量删除
                         </el-button>
                     </wp-space>
@@ -59,12 +59,15 @@
                     </el-table-column>
                 </el-table>
                 <wp-x-scroll class="page-layout-pagination" smooth>
-                    <el-pagination
-                        v-model:currentPage="page.page"
-                        v-model:page-size="page.size"
-                        :page-sizes="[10, 20, 40, 60, 100]"
-                        layout="total, sizes, prev, pager, next, jumper"
+                    <wp-pagination
+                        v-model:page="page.page"
+                        v-model:size="page.size"
+                        :sizes="[10, 20, 40, 60, 100]"
                         :total="total"
+                        :layout="['total', 'sizes', 'prev', 'pager', 'next', 'jumper']"
+                        :space-props="{
+                            justify: 'right'
+                        }"
                     />
                 </wp-x-scroll>
             </div>
