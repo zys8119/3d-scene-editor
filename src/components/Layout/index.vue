@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import { onBeforeRouteUpdate, RouterView } from 'vue-router'
 import LayoutMenu from './Menu/index.vue'
-import LayoutHeader from './header.vue'
+import LayoutHeader from './Header/index.vue'
 import config from '@/config/config'
 
 import TagViews from './tagViews/index.vue'

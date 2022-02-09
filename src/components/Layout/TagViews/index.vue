@@ -23,9 +23,9 @@
 
 <script lang="ts" setup>
 import useStore from '@/store/modules/tagViews'
-const store = useStore()
-
 import type { WpXScroll } from 'wisdom-plus'
+
+const store = useStore()
 
 const xScroll = ref<InstanceType<typeof WpXScroll> | null>(null)
 
