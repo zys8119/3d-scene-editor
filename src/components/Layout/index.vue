@@ -38,10 +38,10 @@ import LayoutMenu from './Menu/index.vue'
 import LayoutHeader from './Header/index.vue'
 import config from '@/config/config'
 
-import TagViews from './tagViews/index.vue'
+import TagViews from './TagViews/index.vue'
 import useStore from '@/store/modules/main'
 
-import useTagViewsStore from '@/store/modules/TagViews'
+import useTagViewsStore from '@/store/modules/tagViews'
 
 const tagViewsStore = useTagViewsStore()
 const route = useRoute()
