@@ -41,7 +41,7 @@ import config from '@/config/config'
 import TagViews from './tagViews/index.vue'
 import useStore from '@/store/modules/main'
 
-import useTagViewsStore from '@/store/modules/tagViews'
+import useTagViewsStore from '@/store/modules/TagViews'
 
 const tagViewsStore = useTagViewsStore()
 const route = useRoute()
