@@ -26,7 +26,7 @@
                 <div class="page-layout-buttons">
                     <wp-space :vertical="store.isH5">
                         <slot name="buttons" />
-                        <el-button v-if="showCheckedDelete && showDelete" type="danger" :disabled="selections.length === 0" @click="handleDeleteSelect">
+                        <el-button v-if="showCheckedDelete" type="danger" :disabled="selections.length === 0" @click="handleDeleteSelect">
                             批量删除
                         </el-button>
                     </wp-space>
@@ -59,12 +59,15 @@
                     </el-table-column>
                 </el-table>
                 <wp-x-scroll class="page-layout-pagination" smooth>
-                    <el-pagination
-                        v-model:currentPage="page.page"
-                        v-model:page-size="page.size"
-                        :page-sizes="[10, 20, 40, 60, 100]"
-                        layout="total, sizes, prev, pager, next, jumper"
+                    <wp-pagination
+                        v-model:page="page.page"
+                        v-model:size="page.size"
+                        :sizes="[10, 20, 40, 60, 100]"
                         :total="total"
+                        :layout="['total', 'sizes', 'prev', 'pager', 'next', 'jumper']"
+                        :space-props="{
+                            justify: 'right'
+                        }"
                     />
                 </wp-x-scroll>
             </div>
@@ -211,7 +214,11 @@ export default defineComponent({
             await Dialog({
                 content: '确定要删除本条记录吗？',
                 confirmProps: {
-                    type: 'danger'
+                    type: 'danger',
+                    size: 'small'
+                },
+                cancelProps: {
+                    size: 'small'
                 }
             })
             await props.delete?.([row])
@@ -222,7 +229,11 @@ export default defineComponent({
             await Dialog({
                 content: '确定要删除选中的记录吗？',
                 confirmProps: {
-                    type: 'danger'
+                    type: 'danger',
+                    size: 'small'
+                },
+                cancelProps: {
+                    size: 'small'
                 }
             })
             await props.delete?.(selections.value)
@@ -279,7 +290,7 @@ export default defineComponent({
         overflow: hidden;
         margin-right: 20px;
         .el-button {
-            min-width: 100px;
+            min-width: 80px;
         }
         .el-input {
             max-width: 240px;
@@ -292,17 +303,14 @@ export default defineComponent({
             --el-table-header-bg-color: rgb(246, 248, 253);
             --el-table-header-text-color: #333;
             --el-table-text-color: #666;
-            :deep(th.el-table__cell) {
-                padding: 5px 0;
-            }
         }
     }
     &-pagination {
-        text-align: right;
         margin-top: 15px;
         .el-pagination {
             --el-pagination-button-disabled-bg-color: transparent;
             --el-pagination-bg-color: transparent;
+            justify-content: end;
         }
     }
 }

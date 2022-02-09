@@ -1,26 +1,18 @@
 :root {
     --primary-color: #626aef;
+    --danger-color: #e00218;
+    --success-color: #38c83a;
     --el-color-primary: var(--primary-color);
-    --el-color-danger: #e00218;
-    --el-color-success: #38c83a;
+    --el-color-danger: var(--danger-color);
+    --el-color-success: var(--success-color);
+    --wp-color-primary: var(--primary-color);
+    --wp-color-danger: var(--danger-color);
+    --wp-color-success: var(--success-color);
     --wp-checkbox-checked-color: var(--primary-color);
     --wp-radio-checked-color: var(--primary-color);
     --wp-menu-active-color: var(--primary-color);
     --wp-dropdown-min-width: 80px;
     --wp-dropdown-font-size: 14px;
-}
-
-.el-input__suffix {
-    justify-content: center;
-    align-items: center;
-    margin-right: 5px;
-}
-
-.el-input__prefix {
-    justify-content: center;
-    align-items: center;
-    left: 5px;
-    width: 25px;
 }
 
 .el-form-item__label::after {
@@ -37,24 +29,6 @@
     text-align: left !important;
 }
 
-.el-date-editor .el-range__icon {
-    margin-left: 0 !important;
-}
-
-.wp-button--primary {
-    --wp-button-bg-color: #626aef !important;
-    --wp-button-border-color: #626aef !important;
-    --wp-button-hover-bg-color: rgb(129, 136, 242) !important;
-    --wp-button-hover-border-color: rgb(129, 136, 242) !important;
-    --wp-button-active-bg-color: rgb(88, 95, 215) !important;
-    --wp-button-active-border-color: rgb(88, 95, 215) !important;
-}
-
-.wp-button--danger {
-    --wp-button-bg-color: #e00218 !important;
-    --wp-button-border-color: #e00218 !important;
-    --wp-button-hover-bg-color: rgb(230, 53, 70) !important;
-    --wp-button-hover-border-color: rgb(230, 53, 70) !important;
-    --wp-button-active-bg-color: rgb(202, 2, 22) !important;
-    --wp-button-active-border-color: rgb(202, 2, 22) !important;
+.el-input__prefix-inner {
+    align-items: center;
 }

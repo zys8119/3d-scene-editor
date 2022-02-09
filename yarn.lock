@@ -432,10 +432,15 @@
   dependencies:
     "chalk" "^4.0.0"
 
-"@element-plus/icons-vue@^0.2.2":
-  "integrity" "sha512-RsJNyL58rwxtsjeMy34o8txkL6UlME1stWsUlRpTac6UE9Bx9gdJvnDXbIKhOJqBLX17fBjmposdrn6VTqim2w=="
-  "resolved" "https://registry.npmjs.org/@element-plus/icons-vue/-/icons-vue-0.2.4.tgz"
-  "version" "0.2.4"
+"@ctrl/tinycolor@^3.4.0":
+  "integrity" "sha512-JZButFdZ1+/xAfpguQHoabIXkcqRRKpMrWKBkpEZZyxfY9C1DpADFB8PEqGSTeFr135SaTRfKqGKx5xSCLI7ZQ=="
+  "resolved" "https://registry.npmjs.org/@ctrl/tinycolor/-/tinycolor-3.4.0.tgz"
+  "version" "3.4.0"
+
+"@element-plus/icons-vue@^0.2.6":
+  "integrity" "sha512-S8kDbfVaWkQvbUYQE1ui448tzaHfUvyESCep9J6uPRlViyQPXjdIfwLBhV6AmQSOfFS8rL+xehJGhvzPXLrSBg=="
+  "resolved" "https://registry.npmjs.org/@element-plus/icons-vue/-/icons-vue-0.2.7.tgz"
+  "version" "0.2.7"
 
 "@element-plus/icons@^0.0.11":
   "integrity" "sha512-iKQXSxXu131Ai+I9Ymtcof9WId7kaXvB1+WRfAfpQCW7UiAMYgdNDqb/u0hgTo2Yq3MwC4MWJnNuTBEpG8r7+A=="
@@ -528,7 +533,7 @@
   dependencies:
     "esbuild" "^0.13.15"
 
-"@popperjs/core@^2.10.2":
+"@popperjs/core@^2.10.2", "@popperjs/core@^2.11.2":
   "integrity" "sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA=="
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.2.tgz"
   "version" "2.11.2"
@@ -927,18 +932,18 @@
   "resolved" "https://registry.npmjs.org/@vue/shared/-/shared-3.2.27.tgz"
   "version" "3.2.27"
 
-"@vueuse/core@*", "@vueuse/core@^7.0.0", "@vueuse/core@^7.3.0":
-  "integrity" "sha512-D9j5ymHFMFRXQqCp0yZJkf/bvBGiz0MrKUa364p+L8dMyd5zyq2K1JmHyvoBd4xbTFRfmQ1h878u6YE5LCkDVQ=="
-  "resolved" "https://registry.npmjs.org/@vueuse/core/-/core-7.5.3.tgz"
-  "version" "7.5.3"
+"@vueuse/core@*", "@vueuse/core@^7.0.0", "@vueuse/core@^7.3.0", "@vueuse/core@^7.5.5":
+  "integrity" "sha512-gTkTYbOO19AnhmbH39mMlfoOOcxSSOtXeI69Ixm7gE/C0eT8Vnpb7VE9KGrobCr4sUqE5fmwAdPIYkdB/NJIzQ=="
+  "resolved" "https://registry.npmjs.org/@vueuse/core/-/core-7.6.0.tgz"
+  "version" "7.6.0"
   dependencies:
-    "@vueuse/shared" "7.5.3"
+    "@vueuse/shared" "7.6.0"
     "vue-demi" "*"
 
-"@vueuse/shared@7.5.3":
-  "integrity" "sha512-BJ71cxHN5VByW1S58Gl85NFJaQu93F7Vs7K/MuAKsIIuHm9PBbkR5Vxkg9ko9cBdiKVt+FNoo13BhdbA+Vwycg=="
-  "resolved" "https://registry.npmjs.org/@vueuse/shared/-/shared-7.5.3.tgz"
-  "version" "7.5.3"
+"@vueuse/shared@7.6.0":
+  "integrity" "sha512-+Q0XVQHX/Low2dQMZfrkZcOOY6oB5+JNOEsM2HJFCjAvhotujpGnQiwyfGKb35wxynlmR97oCCZmGuVMgv/9dg=="
+  "resolved" "https://registry.npmjs.org/@vueuse/shared/-/shared-7.6.0.tgz"
+  "version" "7.6.0"
   dependencies:
     "vue-demi" "*"
 
@@ -1639,14 +1644,15 @@
   "resolved" "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.49.tgz"
   "version" "1.4.49"
 
-"element-plus@^1.2.0-beta.3":
-  "integrity" "sha512-8EdSIR/5/FHcSB8w1diAh+gJMHgxIvxuZoayY99k6taAR1QyEFHuPTgFccZLopJ1+iP4UEsZFz49l57qS08Utw=="
-  "resolved" "https://registry.npmjs.org/element-plus/-/element-plus-1.2.0-beta.6.tgz"
-  "version" "1.2.0-beta.6"
+"element-plus@^2.0.0":
+  "integrity" "sha512-Cdx3JhbMNGwVsU12DUewIltJ1hUYVSgx2iBB8AuNzzOxAqcxSA9e7p2lfNp8oCBQeh4ThRSaOkdLnJyO4mS3qQ=="
+  "resolved" "https://registry.npmjs.org/element-plus/-/element-plus-2.0.1.tgz"
+  "version" "2.0.1"
   dependencies:
-    "@element-plus/icons-vue" "^0.2.2"
-    "@popperjs/core" "^2.10.2"
-    "@vueuse/core" "^7.0.0"
+    "@ctrl/tinycolor" "^3.4.0"
+    "@element-plus/icons-vue" "^0.2.6"
+    "@popperjs/core" "^2.11.2"
+    "@vueuse/core" "^7.5.5"
     "async-validator" "^4.0.7"
     "dayjs" "^1.10.7"
     "lodash" "^4.17.21"
@@ -4041,7 +4047,7 @@
     "isexe" "^2.0.0"
 
 "wisdom-plus@git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git":
-  "resolved" "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git"
+  "resolved" "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git#32e30813fdf25d7f21f6cfa5f29523cd3c307e38"
   "version" "0.0.0-beta.1"
   dependencies:
     "@element-plus/icons" "^0.0.11"

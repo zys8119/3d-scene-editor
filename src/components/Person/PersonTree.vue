@@ -1,6 +1,6 @@
 <template>
     <div class="person-tree">
-        <el-input v-model="filter" :prefix-icon="Search" size="medium" placeholder="请输入关键词" :validate-event="false" />
+        <el-input v-model="filter" :prefix-icon="Search" placeholder="请输入关键词" :validate-event="false" />
         <wp-space class="person-tree-bar" align="center" :item-style="{
             common: {
                 marginTop: '10px',
@@ -22,7 +22,7 @@
             </template>
             <el-button
                 v-if="useRadio || handleDelete"
-                size="mini"
+                size="small"
                 type="text"
                 :disabled="useRadio ? checked.length === 0 : count === 0"
                 @click="useRadio ? ( checked = [] ) : handleDelete?.()"
@@ -169,6 +169,7 @@ if (!props.list) {
         padding: 0;
         height: 20px;
         min-height: 0px;
+        font-size: 12px;
     }
 }
 </style>

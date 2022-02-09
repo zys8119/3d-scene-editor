@@ -25,8 +25,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ArrowDown } from '@element-plus/icons'
 import useStore from '@/store/modules/main'
+import { ArrowDown } from '@element-plus/icons'
 import baseConfig from '@/config/base'
 
 const router = useRouter()

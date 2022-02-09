@@ -1,5 +1,5 @@
 <template>
-    <div :id="editorId" :style="{ minHeight: (height || 0 + 42) + `px` }" />
+    <div :id="editorId" :style="{ minHeight: (height || 0 + 42) + `px` }" class="editor" />
 </template>
 
 <script lang="ts" setup>
@@ -61,3 +61,9 @@ onBeforeUnmount(() => {
     editor = null
 })
 </script>
+
+<style lang="less" scoped>
+.editor {
+    flex: 1;
+}
+</style>

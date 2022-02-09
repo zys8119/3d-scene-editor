@@ -248,7 +248,11 @@ const handleDeleteOrg = async(deleteId: number) => {
     await Dialog({
         content: '确定要删除吗？',
         confirmProps: {
-            type: 'danger'
+            type: 'danger',
+            size: 'small'
+        },
+        cancelProps: {
+            size: 'small'
         }
     })
     await api.deleteOrganization(deleteId)

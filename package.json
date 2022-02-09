@@ -15,7 +15,7 @@
         "@element-plus/icons": "^0.0.11",
         "@vitejs/plugin-legacy": "^1.6.4",
         "@vueuse/core": "^7.3.0",
-        "element-plus": "^1.2.0-beta.3",
+        "element-plus": "^2.0.0",
         "eslint-plugin-vue3-jsx": "^0.0.3-beta.3",
         "pinia": "^2.0.4",
         "vue": "^3.2.16",
