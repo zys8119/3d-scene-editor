@@ -39,7 +39,7 @@
                     border
                     stripe
                     row-key="id"
-                    v-bind="(table?.props as any)"
+                    v-bind="tableProps"
                     @selection-change="handleSelectionChange"
                 >
                     <el-table-column v-if="!table?.hideSelection" reserve-selection type="selection" width="55" align="center" />
@@ -256,6 +256,10 @@ export default defineComponent({
             handleQuery()
         })
 
+        const tableProps = computed<any>(() => {
+            return props.table?.props
+        })
+
         return {
             tableRef,
             store,
@@ -269,6 +273,7 @@ export default defineComponent({
             handleDelete,
             handleDeleteSelect,
             handleQuery,
+            tableProps,
             page,
             refresh: (resetPage = false, backup?: boolean) => handleQuery(resetPage, backup, true),
             getSelections: () => selections.value
