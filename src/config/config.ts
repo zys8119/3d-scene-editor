@@ -1,4 +1,3 @@
-import useStore from '@/store/modules/main'
 import type { Config } from './typings'
 
 export default {
@@ -7,7 +6,7 @@ export default {
         successCode: [0],
         // successField: 'success',
         logoutCode: [2],
-        useStore,
+        useStore: () => window.store.main,
         trim: true
     },
     router: {
