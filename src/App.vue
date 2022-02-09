@@ -6,7 +6,7 @@ import zhCn from 'element-plus/lib/locale/lang/zh-cn'
  */
 const store = window.store.main
 const view = ref<HTMLDivElement>()
-const setH5 = () => store.isH5 = window.innerWidth < store.isH5Max
+const setH5 = () => store.isH5 = window.outerWidth < store.isH5Max
 
 watch(() => store.isH5Max, setH5, { immediate: true })
 useResizeObserver(view, setH5)
