@@ -34,6 +34,7 @@ const role = props.site ? '轮值站长' : 'default'
 
 const emit = defineEmits<{
     (e: 'update:modelValue', value: (string | number | symbol)[]): void,
+    (e: 'change', value: (string | number | symbol)[]): void,
     (e: 'checked', value: TreeListItemCustom[]): void
 }>()
 
@@ -82,6 +83,7 @@ const handleAdd = async() => {
             width: '400px'
         }
     })
+    emit('change', selections.value)
     emit('update:modelValue', selections.value)
 }
 
