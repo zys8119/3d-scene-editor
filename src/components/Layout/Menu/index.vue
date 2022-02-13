@@ -21,7 +21,7 @@ const route = useRoute()
 
 const routesMap = computed<MenuProps['list']>(() => {
     const routesMapper = (routes: RouteRecordRaw[]): MenuProps['list'] => {
-        return routes.map(route => {
+        return routes.filter(route => !route.meta?.hidden).map(route => {
             return {
                 index: route.name,
                 title: route.meta?.title || route.name,
