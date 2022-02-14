@@ -58,7 +58,7 @@
                         </wp-space>
                     </el-table-column>
                 </el-table>
-                <wp-x-scroll class="page-layout-pagination" smooth>
+                <wp-x-scroll v-if="showPagination" class="page-layout-pagination" smooth>
                     <wp-pagination
                         v-model:page="page.page"
                         v-model:size="page.size"
@@ -101,6 +101,10 @@ export default defineComponent({
             default: true
         },
         showDelete: {
+            type: Boolean,
+            default: true
+        },
+        showPagination: {
             type: Boolean,
             default: true
         },
