@@ -1,13 +1,14 @@
 import { FileItem } from '@/typings'
 
 export default {
-    upload(file: File) {
+    upload(file: File, extra?: Record<string, any>) {
         return window.common.axios<FileItem>({
             url: '/v1/file/upload/',
             method: 'post',
             isFormData: true,
             data: {
-                file
+                file,
+                ...extra
             }
         })
     },

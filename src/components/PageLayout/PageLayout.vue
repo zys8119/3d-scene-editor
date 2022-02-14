@@ -222,6 +222,10 @@ export default defineComponent({
                 }
             })
             await props.delete?.([row])
+            ElMessage({
+                message: '删除成功！',
+                type: 'success'
+            })
             handleQuery(false)
         }
 
@@ -238,6 +242,10 @@ export default defineComponent({
             })
             await props.delete?.(selections.value)
             tableRef.value?.clearSelection()
+            ElMessage({
+                message: '删除成功！',
+                type: 'success'
+            })
             handleQuery(false)
         }
 

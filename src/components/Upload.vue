@@ -23,7 +23,8 @@ const props = withDefaults(defineProps<{
     accept?: string,
     modelValue: (FileItem & UploadFile)[],
     limit?: number,
-    allowRemove?: boolean
+    allowRemove?: boolean,
+    extra?: Record<string, any>
 }>(), {
     multiple: true,
     allowRemove: true
@@ -42,7 +43,7 @@ const handleUpload = (files: UploadFile[]) => {
     files.forEach(async(file) => {
         if (!file.file) return
         try {
-            const res = await window.api.v1.common.upload(file.file)
+            const res = await window.api.v1.common.upload(file.file, props.extra)
             Object.assign(file, res.data)
             file.status = 0
         } catch {
