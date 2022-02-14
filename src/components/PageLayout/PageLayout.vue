@@ -35,11 +35,11 @@
             <div class="page-layout-table">
                 <el-table
                     ref="tableRef"
-                    :data="tableData"
+                    :data="dataShow"
                     border
                     stripe
                     row-key="id"
-                    v-bind="tableProps"
+                    v-bind="(table?.props as any)"
                     @selection-change="handleSelectionChange"
                 >
                     <el-table-column v-if="!table?.hideSelection" reserve-selection type="selection" width="55" align="center" />
@@ -63,7 +63,7 @@
                         v-model:page="page.page"
                         v-model:size="page.size"
                         :sizes="[10, 20, 40, 60, 100]"
-                        :total="total"
+                        :total="totalShow"
                         :layout="['total', 'sizes', 'prev', 'pager', 'next', 'jumper']"
                         :space-props="{
                             justify: 'right'
@@ -80,6 +80,8 @@ import type { SpaceProps } from 'wisdom-plus'
 import { Dialog } from 'wisdom-plus'
 import useStore from '@/store/modules/main'
 import { PropType } from 'vue'
+import type { List } from '@/api/config'
+import type { ResponseType } from 'wp-request'
 import PageLayoutColumns from '../PageLayout/PageLayoutColumns'
 
 export default defineComponent({
@@ -107,8 +109,7 @@ export default defineComponent({
             default: 0
         },
         data: {
-            type: Array as PropType<unknown[]>,
-            required: true
+            type: Array as PropType<unknown[]>
         },
         table: {
             type: Object as PropType<{
@@ -134,6 +135,13 @@ export default defineComponent({
         queryOnActive: {
             type: Boolean,
             default: true
+        },
+        apis: {
+            type: Object as PropType<{
+                list?: (data: Record<string, any>, page: PageMap) => Promise<ResponseType<List<any>>>,
+                delete?: (ids: (number | string)[]) => Promise<ResponseType<any>>
+            }>,
+            default: () => ({})
         }
     },
     emits: {
@@ -144,7 +152,8 @@ export default defineComponent({
         },
         'update:data': (data: unknown[]) => {
             return Array.isArray(data)
-        }
+        },
+        reset: () => true
     },
     setup(props, { emit }) {
         const store = useStore()
@@ -169,26 +178,57 @@ export default defineComponent({
             })
         })
 
+        const tableData = useVModel(props, 'data', emit, {
+            passive: true,
+            deep: true
+        })
+
+        const dataRef = ref<unknown[]>([])
+        const dataShow = computed(() => {
+            if (tableData.value) {
+                return tableData.value
+            } else {
+                return dataRef.value
+            }
+        })
+
         /**
          * 搜索表单
          */
 
         const formData = ref<Record<string, any>>({})
-
         const selections = ref<unknown[]>([])
-
         const handleSelectionChange = (currentSelections: unknown[]) => {
             selections.value = currentSelections
         }
 
+        const totalRef = ref(0)
+        const totalShow = computed(() => {
+            if (props.apis.list) {
+                return totalRef.value
+            } else {
+                return props.total
+            }
+        })
+
         const formDataBackup = ref<Record<string, any>>({})
-        const handleQuery = (resetPage = true, backup = false, refresh = false) => {
+        const handleQuery = async(resetPage = true, backup = false, refresh = false) => {
             if (resetPage) page.page = 1
             if (backup) formDataBackup.value = { ...formData.value }
             if (!refresh && !props.table?.keepSelection) {
                 tableRef.value?.clearSelection()
             }
-            emit('query', formDataBackup.value, page)
+            if (props.apis.list) {
+                const res = await props.apis.list(formDataBackup.value, page)
+                totalRef.value = res.data.total
+                if (tableData.value) {
+                    tableData.value = res.data.list
+                } else {
+                    dataRef.value = res.data.list
+                }
+            } else {
+                emit('query', formDataBackup.value, page)
+            }
         }
 
         const reset = () => {
@@ -199,17 +239,12 @@ export default defineComponent({
                 page.size = 20
                 handleQuery(true, true)
             }
+            emit('reset')
         }
 
         /**
          * 表格
          */
-
-        const tableData = useVModel(props, 'data', emit, {
-            passive: true,
-            deep: true
-        })
-
         const handleDelete = async(row: unknown) => {
             await Dialog({
                 content: '确定要删除本条记录吗？',
@@ -221,7 +256,11 @@ export default defineComponent({
                     size: 'small'
                 }
             })
-            await props.delete?.([row])
+            if (props.apis.delete) {
+                await props.apis.delete([(row as { id: number | string }).id])
+            } else {
+                await props.delete?.([row])
+            }
             ElMessage({
                 message: '删除成功！',
                 type: 'success'
@@ -240,7 +279,11 @@ export default defineComponent({
                     size: 'small'
                 }
             })
-            await props.delete?.(selections.value)
+            if (props.apis.delete) {
+                await props.apis.delete((selections.value as { id: number | string }[]).map(item => item.id))
+            } else {
+                await props.delete?.(selections.value)
+            }
             tableRef.value?.clearSelection()
             ElMessage({
                 message: '删除成功！',
@@ -264,10 +307,6 @@ export default defineComponent({
             handleQuery()
         })
 
-        const tableProps = computed<any>(() => {
-            return props.table?.props
-        })
-
         return {
             tableRef,
             store,
@@ -281,7 +320,8 @@ export default defineComponent({
             handleDelete,
             handleDeleteSelect,
             handleQuery,
-            tableProps,
+            totalShow,
+            dataShow,
             page,
             refresh: (resetPage = false, backup?: boolean) => handleQuery(resetPage, backup, true),
             getSelections: () => selections.value
