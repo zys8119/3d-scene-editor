@@ -50,9 +50,8 @@ export const deleteSome = (id: (string | number)[]) => {
         return window.common.axios({
             url: `${prefix}/bulk-delete`,
             method: 'post',
-            isFormData: true,
             data: {
-                ids: id.join(',')
+                ids: id
             }
         })
     }
