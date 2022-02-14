@@ -51,11 +51,11 @@
                     :space-props="{
                         size: 0
                     }"
-                    :data="tableData"
-                    :total="total"
                     :show-checked-delete="false"
-                    :delete="handleDelete"
-                    @query="query"
+                    :apis="{
+                        list: (data, page) => api.list(Number(id), page, data.search),
+                        delete: (ids) => api.delete(ids.join(','))
+                    }"
                 >
                     <template #buttons>
                         <el-button type="primary" @click="handleAdd">新增用户</el-button>
@@ -155,15 +155,6 @@ getOrganizationList()
 const layoutRef = ref<PageLayoutInstance | null>(null)
 
 const id = ref<string | number | symbol>('')
-const total = ref(0)
-const tableData = ref<TableUser[]>([])
-const query = async(form: {
-    search?: string
-}, page: { page: number, size: number }) => {
-    const res = await api.list(Number(id.value), page, form?.search)
-    tableData.value = res.data.list
-    total.value = res.data.total
-}
 
 watch(id, (after, before) => {
     if (before === '') return
@@ -184,10 +175,6 @@ const columns: TableColumns<TableUser> = [
         label: '绑定角色'
     }
 ]
-
-const handleDelete = (items: TableUser[]) => {
-    return api.delete(items.map(item => item.id).join(','))
-}
 
 /**
  * 新增组织架构

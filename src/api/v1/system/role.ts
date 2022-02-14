@@ -40,7 +40,7 @@ export const update = (id: number, data: Partial<Detail>) => {
     })
 }
 
-export const deleteSome = (id: number[]) => {
+export const deleteSome = (id: (string | number)[]) => {
     if (id.length === 1) {
         return window.common.axios({
             url: `${prefix}/delete/${id.join(',')}`,

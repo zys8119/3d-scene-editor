@@ -1,7 +1,6 @@
 <template>
     <page-layout
         ref="layoutRef"
-        v-model:data="tableData"
         :form="{
             placeholder: '请输入角色关键字',
             queryAfterReset: true
@@ -9,9 +8,10 @@
         :table="{
             columns: tableColumns
         }"
-        :total="total"
-        :delete="handleDelete"
-        @query="query"
+        :apis="{
+            list: api.list,
+            delete: api.deleteSome
+        }"
     >
         <template #buttons>
             <el-button type="primary" :icon="Plus" @click="handleAdd">新建角色</el-button>
@@ -153,7 +153,6 @@ import { hasGotten } from '@/components/Person/data'
 const api = window.api.v1.system.role
 const layoutRef = ref<PageLayoutInstance | null>(null)
 
-const tableData = ref<TableData[]>([])
 const tableColumns: TableColumns<TableData> = [
     {
         prop: 'name',
@@ -168,17 +167,6 @@ const tableColumns: TableColumns<TableData> = [
         label: '是否有效'
     }
 ]
-
-const total = ref(0)
-const query = async(form: { search?: string }, page: { page: number, size: number }) => {
-    const res = await api.list(form, page)
-    tableData.value = res.data.list
-    total.value = res.data.total
-}
-
-const handleDelete = (items: TableData[]) => {
-    return api.deleteSome(items.map(item => item.id))
-}
 
 /**
  * 修改新增角色

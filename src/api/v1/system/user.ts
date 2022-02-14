@@ -1,4 +1,5 @@
 import { PageMap } from '@/typings'
+import { type List } from '../../config'
 
 export default {
     login(data: { username: string, password: string }) {
@@ -53,10 +54,7 @@ export default {
         // })
     },
     list(organization_id: number, page: PageMap, search?: string) {
-        return window.common.axios<{
-            list: TableUser[],
-            total: number
-        }>({
+        return window.common.axios<List<TableUser>>({
             url: '/v1/organization/user-organization/list',
             method: 'get',
             params: {
