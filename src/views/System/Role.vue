@@ -72,7 +72,7 @@
                             no-filter-count
                         >
                             <template #checked="{ checked }">
-                                已选：{{ checked.length }} 人
+                                已选：{{ checked?.length }} 人
                             </template>
                         </PersonTree>
                     </wp-gi>

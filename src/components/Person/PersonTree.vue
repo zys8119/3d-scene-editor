@@ -15,16 +15,16 @@
             }
         }">
             <template v-if="!useRadio">
-                <wp-checkbox v-model="checkedAll" size="small" :disabled="count === 0" :indeterminate="checked.length > 0 && checked.length !== listComputed.length">全选</wp-checkbox>
+                <wp-checkbox v-model="checkedAll" size="small" :disabled="count === 0" :indeterminate="checked && checked.length > 0 && checked.length !== listComputed.length">全选</wp-checkbox>
                 <slot name="checked" :checked="checked" :list="listComputed" :count="count" :itemsCount="listComputed.length">
-                    已选：{{ checked.length }}/{{ count }}
+                    已选：{{ checked?.length || 0 }}/{{ count }}
                 </slot>
             </template>
             <el-button
                 v-if="useRadio || handleDelete"
                 size="small"
                 type="text"
-                :disabled="useRadio ? checked.length === 0 : count === 0"
+                :disabled="useRadio ? checked && checked.length === 0 : count === 0"
                 @click="useRadio ? ( checked = [] ) : handleDelete?.()"
             >
                 {{ useRadio ? '取消选中' : '全部删除'}}
@@ -65,7 +65,7 @@ import { getData, userData } from './data'
 const filter = ref('')
 
 const props = defineProps<{
-    modelValue: (string | number | symbol)[],
+    modelValue?: (string | number | symbol)[],
     checkedItems?: TreeListItemCustom[],
     useRadio?: boolean,
     handleDelete?: () => void,
@@ -85,6 +85,12 @@ const treeRef = ref<InstanceType<typeof WpTree> | null>(null)
 
 const checked = useVModel(props, 'modelValue', emit, { passive: true, deep: true })
 const expends = ref<string[]>(['street'])
+
+watchEffect(() => {
+    if (!checked.value) {
+        checked.value = []
+    }
+})
 
 const listComputed = computed(() => {
     return props.list || userData.value[role]
@@ -121,6 +127,7 @@ defineExpose({
 
 const checkedAll = computed<boolean>({
     get() {
+        if (!checked.value) return false
         if (checked.value.length === 0) return false
         return checked.value.length >= count.value - (props.exclude?.length || 0)
     },

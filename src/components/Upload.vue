@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<{
     drag?: boolean,
     multiple?: boolean,
     accept?: string,
-    modelValue: (FileItem & UploadFile)[],
+    modelValue?: (FileItem & UploadFile)[],
     limit?: number,
     allowRemove?: boolean,
     extra?: Record<string, any>
@@ -37,6 +37,12 @@ const emit = defineEmits<{
 const fileItems = useVModel(props, 'modelValue', emit, {
     passive: true,
     deep: true
+})
+
+watchEffect(() => {
+    if (!fileItems.value) {
+        fileItems.value = []
+    }
 })
 
 const handleUpload = (files: UploadFile[]) => {

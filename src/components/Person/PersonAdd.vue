@@ -22,7 +22,7 @@ import { getData, flattenSet } from './data'
 import { User } from '@/api/v1/common'
 
 const props = defineProps<{
-    modelValue: (string | number | symbol)[],
+    modelValue?: (string | number | symbol)[],
     useRadio?: boolean,
     disabeld?: boolean,
     showUsers?: boolean,
@@ -62,8 +62,14 @@ watch(checkedItemsMap, () => {
     immediate: true
 })
 
+watchEffect(() => {
+    if (!props.modelValue) {
+        emit('update:modelValue', [])
+    }
+})
+
 const handleAdd = async() => {
-    selections.value = [ ...props.modelValue ]
+    selections.value = props.modelValue ? [ ...props.modelValue ] : []
     await Dialog({
         title: '请选择',
         content: () => (
