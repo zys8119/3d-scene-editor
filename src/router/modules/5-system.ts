@@ -16,7 +16,7 @@ const homeRoutes: RouteRecordRaw[] = [
                 meta: {
                     title: '组织架构管理',
                 },
-                component: () => import('@/views/System/Organization.vue')
+                component: () => import('@/views/System/Organization/index.vue')
             },
             {
                 path: 'role',
@@ -24,7 +24,7 @@ const homeRoutes: RouteRecordRaw[] = [
                 meta: {
                     title: '角色管理',
                 },
-                component: () => import('@/views/System/Role.vue')
+                component: () => import('@/views/System/Role/index.vue')
             },
 
         ]
