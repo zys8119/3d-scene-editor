@@ -13,8 +13,12 @@ const errorReport = (e: unknown) => {
             message: e.message,
             type: e.type
         })
-    }
-    if (typeof e === 'string') {
+    } else if (e instanceof Error) {
+        ElMessage({
+            message: e.message,
+            type: 'error'
+        })
+    } else if (typeof e === 'string') {
         ElMessage({
             message: e,
             type: 'error'
