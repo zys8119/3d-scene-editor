@@ -142,4 +142,7 @@ defineExpose({ open })
 .arrow-space {
     height: 100%;
 }
+.wp-grid {
+    flex: 1;
+}
 </style>
