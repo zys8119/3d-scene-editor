@@ -26,9 +26,13 @@ const errorReport = (e: unknown) => {
     }
 }
 
-export const validate = async(call: () => any) => {
+export const is = {
+    array: (array?: any) => Array.isArray(array) && array.length !== 0
+}
+
+export const validate = async(call: (checking?: typeof is) => any) => {
     try {
-        await call()
+        await call(is)
     } catch (e) {
         if (Array.isArray(e)) {
             e.forEach(error => errorReport(error))
