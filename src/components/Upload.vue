@@ -45,7 +45,7 @@ watchEffect(() => {
     }
 })
 
-const handleUpload = (files: UploadFile[]) => {
+const handleUpload = async(files: UploadFile[]) => {
     files.forEach(async(file) => {
         if (!file.file) return
         try {
@@ -58,7 +58,7 @@ const handleUpload = (files: UploadFile[]) => {
     })
 }
 
-const handleDelete = async(file: UploadFile, initiative: boolean) => {
+const handleDelete = async(file: UploadFile, initiative?: boolean) => {
     if (initiative) {
         await Dialog({
             content: '确定要删除这个文件吗？',

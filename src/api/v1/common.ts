@@ -1,7 +1,7 @@
 import { FileItem } from '@/typings'
 
 export default {
-    upload(file: File, extra?: Record<string, any>) {
+    upload(file: File | Blob, extra?: Record<string, any>) {
         return window.common.axios<FileItem>({
             url: '/v1/file/upload/',
             method: 'post',
