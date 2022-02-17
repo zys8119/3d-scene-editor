@@ -28,7 +28,6 @@
 <script lang="ts" setup>
 import type { TableUser, RegisterUser } from '@/api/v1/system/user'
 import { hasGotten } from '@/components/Person/data'
-import { mobilePhone } from '@/utils/pattern'
 
 const api = window.api.v1.user
 const props = defineProps<{
@@ -59,7 +58,7 @@ const schemas = computed<Schemas<RegisterUser | TableUser>>(() => [
         rules: [
             {
                 required: true,
-                pattern: mobilePhone,
+                pattern: validateRules.mobilePhone,
                 message: '请输入正确的联系电话'
             }
         ],
