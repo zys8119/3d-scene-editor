@@ -31,6 +31,14 @@ export default {
             router.push({ name: 'login' })
         }
     },
+    validate: {
+        alert(message, type: 'info' | 'success' | 'warning' | 'error') {
+            ElMessage({
+                message,
+                type
+            })
+        }
+    },
     /**
      * 布局相关
      */

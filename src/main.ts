@@ -11,6 +11,7 @@ app.use(request, {
     ...config.request,
     ...configHooks.request
 })
+app.use(validate, configHooks.validate)
 
 import errorHandle from './error'
 app.use(errorHandle, {

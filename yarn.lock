@@ -3803,6 +3803,11 @@ wp-request@^1.0.20:
     axios "^0.24.0"
     crypto-js "^4.1.1"
 
+wp-validate@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/wp-validate/-/wp-validate-0.0.3.tgz#fa6510f982bf1833c549a89aabaf390c170a58c6"
+  integrity sha512-Cj05zXwkopU29UJ2EPUxenc6Y6pgjNqxyUZlVbO+jRg4dI3IMsgAKOatAltW9z+oGcN6kyr8hNEUY/QyeILzRQ==
+
 wrap-ansi@^6.2.0:
   version "6.2.0"
   resolved "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-6.2.0.tgz"

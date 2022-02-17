@@ -11,6 +11,7 @@ import { htmlTransform } from './src/utils'
 import baseConfig from './src/config/base'
 import legacy from '@vitejs/plugin-legacy'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+import validatePreset from 'wp-validate/dist/preset'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -27,6 +28,7 @@ export default defineConfig({
                 /\.md$/, // .md
             ],
             imports: [
+                validatePreset,
                 // presets
                 'vue',
                 'vue-router',
