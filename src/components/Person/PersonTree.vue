@@ -159,7 +159,7 @@ if (!props.list) {
     line-height: 1em;
     :deep(.wp-tree-nodes) {
         .wp-tree-node {
-            height: 20px;
+            height: 30px;
         }
         .wp-tree-node__content {
             font-size: 12px;

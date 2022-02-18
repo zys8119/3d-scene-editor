@@ -911,20 +911,20 @@
   resolved "https://registry.npmjs.org/@vue/shared/-/shared-3.2.29.tgz"
   integrity sha512-BjNpU8OK6Z0LVzGUppEk0CMYm/hKDnZfYdjSmPOs0N+TR1cLKJAkDwW8ASZUvaaSLEi6d3hVM7jnWnX+6yWnHw==
 
-"@vueuse/core@^7.0.0", "@vueuse/core@^7.3.0":
-  version "7.6.0"
-  resolved "https://registry.npmjs.org/@vueuse/core/-/core-7.6.0.tgz"
-  integrity sha512-gTkTYbOO19AnhmbH39mMlfoOOcxSSOtXeI69Ixm7gE/C0eT8Vnpb7VE9KGrobCr4sUqE5fmwAdPIYkdB/NJIzQ==
-  dependencies:
-    "@vueuse/shared" "7.6.0"
-    vue-demi "*"
-
-"@vueuse/core@^7.6.0":
+"@vueuse/core@^7.0.0", "@vueuse/core@^7.6.0":
   version "7.6.2"
   resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-7.6.2.tgz#1b9aa92048991189fac31577ff439296efa5fb4a"
   integrity sha512-bjAbXJVJO6aElMaZtDz2B70C0L6jFk/jGVqJxWZS5huffxA6dW5DN6tQQJwzOnx9B9rDhePHJIFKsix0qZIH2Q==
   dependencies:
     "@vueuse/shared" "7.6.2"
+    vue-demi "*"
+
+"@vueuse/core@^7.3.0":
+  version "7.6.0"
+  resolved "https://registry.npmjs.org/@vueuse/core/-/core-7.6.0.tgz"
+  integrity sha512-gTkTYbOO19AnhmbH39mMlfoOOcxSSOtXeI69Ixm7gE/C0eT8Vnpb7VE9KGrobCr4sUqE5fmwAdPIYkdB/NJIzQ==
+  dependencies:
+    "@vueuse/shared" "7.6.0"
     vue-demi "*"
 
 "@vueuse/shared@7.6.0":
@@ -3769,7 +3769,7 @@ which@^2.0.1:
 
 "wisdom-plus@git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git":
   version "0.0.0-beta.1"
-  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git#32e30813fdf25d7f21f6cfa5f29523cd3c307e38"
+  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git#0c246c7aa556a5e8bd9829fe8894508a974604e3"
   dependencies:
     "@element-plus/icons" "^0.0.11"
     "@popperjs/core" "^2.10.2"
