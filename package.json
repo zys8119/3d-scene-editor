@@ -22,7 +22,7 @@
         "vue-router": "^4.0.12",
         "wangeditor": "^4.7.11",
         "wisdom-plus": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git",
-        "wp-request": "^1.0.29",
+        "wp-request": "^1.0.30",
         "wp-validate": "^0.0.3"
     },
     "devDependencies": {
