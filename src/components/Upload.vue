@@ -49,7 +49,9 @@ const handleUpload = async(files: UploadFile[]) => {
     files.forEach(async(file) => {
         if (!file.file) return
         try {
-            const res = await window.api.v1.common.upload(file.file, props.extra)
+            const res = await window.api.v1.common.upload(file.file, props.extra, progress => {
+                file.progress = progress
+            })
             Object.assign(file, res.data)
             file.status = 0
         } catch {

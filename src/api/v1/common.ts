@@ -1,7 +1,7 @@
 import { FileItem } from '@/typings'
 
 export default {
-    upload(file: File | Blob, extra?: Record<string, any>) {
+    upload(file: File | Blob, extra?: Record<string, any>, onProgress?: (progress: number) => void) {
         return window.common.axios<FileItem>({
             url: '/v1/file/upload/',
             method: 'post',
@@ -9,6 +9,9 @@ export default {
             data: {
                 file,
                 ...extra
+            },
+            onUploadProgress(progressEvent: { loaded: number, total: number }) {
+                onProgress?.(progressEvent.loaded / progressEvent.total * 100 | 0)
             }
         })
     },
@@ -27,6 +30,7 @@ export default {
             method: 'get',
             params: {
                 role_name: role,
+                is_simpleness: !role,
                 no_page: true
             }
         })
