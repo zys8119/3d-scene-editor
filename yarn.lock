@@ -3795,10 +3795,10 @@ word-wrap@^1.2.3:
   resolved "https://registry.npmjs.org/word-wrap/-/word-wrap-1.2.3.tgz"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
 
-wp-request@^1.0.30:
-  version "1.0.30"
-  resolved "https://registry.yarnpkg.com/wp-request/-/wp-request-1.0.30.tgz#b790b2e8ba557e9a3ef203aefcb71cdaed251985"
-  integrity sha512-hIaSDyPoJs3HUevxG/C8btR7fSMfW5ogws+lIHnCigsOauznCaaYvTrDGS0B3M18M6LNJcO36Boq9tDkStYIVQ==
+wp-request@^1.0.31:
+  version "1.0.31"
+  resolved "https://registry.yarnpkg.com/wp-request/-/wp-request-1.0.31.tgz#1eedde4793e1f2cea1606cbd1a432a230951d2ff"
+  integrity sha512-r3mE7h925apHVkeRkPm/EhlZRSCQaSTEuYrVFixR7OEt5hVRpfiGS9EaxCYlAo+MruP08agOHRVXHGhW79Sk+g==
   dependencies:
     axios "^0.24.0"
     crypto-js "^4.1.1"
