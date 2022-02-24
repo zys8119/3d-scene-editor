@@ -13,6 +13,7 @@ export type Schema<T extends string | object = string> = ColumnSchema & {
     plain?: boolean,
     hide?: boolean,
     raw?: boolean,
-    noVaild?: boolean
+    noVaild?: boolean,
+    model?: string
 } & Record<string, any>
 export type Schemas<T extends string | object = string> = Schema<T>[]

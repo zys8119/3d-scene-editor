@@ -10,12 +10,15 @@
         <wp-g :default-span="24" v-bind="grid">
             <wp-gi v-for="schema in schemasMap" :key="schema.prop" v-bind="schema.grid">
                 <template v-if="!schema.hide">
-                    <el-form-item v-if="!schema.raw" :labelWidth="labelWidth" v-bind="schema.formItemProp" :prop="schema.noVaild ? '' : schema.prop">
+                    <el-form-item v-if="!schema.raw" :labelWidth="labelWidth" v-bind="schema.formItemProp" :prop="schema.noVaild ? '' : schema.prop" >
                         <slot v-if="'plain' in schema ? !schema.plain : !plain" :name="getSlotName(schema)">
                             <component
                                 :is="schema.component"
-                                v-model="data[schema.prop]"
-                                v-bind="schema.componentProps"
+                                v-bind="{
+                                    ...schema.componentProps,
+                                    [schema.model || 'modelValue']: data[schema.prop],
+                                    [`onUpdate:${schema.model || 'modelValue'}`]: (value: unknown) => data[schema.prop] = value
+                                }"
                             />
                         </slot>
                         <template v-else>
@@ -28,8 +31,11 @@
                         <component
                             :is="schema.component"
                             v-if="'plain' in schema ? !schema.plain : !plain"
-                            v-model="data[schema.prop]"
-                            v-bind="schema.componentProps"
+                            v-bind="{
+                                ...schema.componentProps,
+                                [schema.model || 'modelValue']: data[schema.prop],
+                                [`onUpdate:${schema.model || 'modelValue'}`]: (value: unknown) => data[schema.prop] = value
+                            }"
                         />
                         <template v-else>
                             <slot :name="schema.prop + '_plain'">
