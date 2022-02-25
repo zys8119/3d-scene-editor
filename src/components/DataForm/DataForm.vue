@@ -132,6 +132,7 @@ export default defineComponent({
             return newRules
         })
         const reset = () => {
+            formRef.value?.resetFields()
             for (const schema of props.schemas) {
                 if (typeof schema.defaultValue === 'function') {
                     data.value[schema.prop] = schema.defaultValue()
@@ -139,7 +140,6 @@ export default defineComponent({
                     data.value[schema.prop] = schema.defaultValue
                 }
             }
-            formRef.value?.clearValidate()
         }
         const submit = (isEnter = false, e?: Event) => {
             e?.preventDefault()
@@ -152,9 +152,6 @@ export default defineComponent({
         const getSlotName = (schema: Schema) => {
             return schema.prop
         }
-        watch(() => props.schemas, () => {
-            formRef.value?.clearValidate()
-        })
         if (props.initReset) reset()
         return {
             reset,
