@@ -133,7 +133,6 @@ export default defineComponent({
         })
         const reset = () => {
             for (const schema of props.schemas) {
-                if (!schema.defaultValue) continue
                 if (typeof schema.defaultValue === 'function') {
                     data.value[schema.prop] = schema.defaultValue()
                 } else {
