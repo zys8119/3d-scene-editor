@@ -4,14 +4,14 @@
             <wp-space :wrap="false" :size="0">
                 <wp-tag
                     v-for="tag in store.tags"
-                    :id="`tagview_${String(tag.name)}`"
-                    :key="tag.name || ''"
-                    :class="store.active === tag.name ? 'tag-active' : null"
+                    :id="`tagview_${tag.fullPath}`"
+                    :key="tag.fullPath || ''"
+                    :class="store.active === tag.fullPath ? 'tag-active' : null"
                     :closable="!tag.meta.fixed"
-                    :color="store.active !== tag.name ? ['#000', '#fff'] : ['var(--primary-color)', 'rgb(240, 240, 240)']"
+                    :color="store.active !== tag.fullPath ? ['#000', '#fff'] : ['var(--primary-color)', 'rgb(240, 240, 240)']"
                     @click="$router.push(tag)"
-                    @close="store.remove(String(tag.name))"
-                    @click.middle="!tag.meta.fixed && store.remove(String(tag.name))"
+                    @close="store.remove(tag.fullPath)"
+                    @click.middle="!tag.meta.fixed && store.remove(tag.fullPath)"
                     @click.right.prevent="store.refresh(tag)"
                 >
                     {{ tag.meta.tagTitle || tag.meta.title || tag.name }}

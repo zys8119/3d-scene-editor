@@ -3,7 +3,7 @@ import type { Config } from './typings'
 export default {
     request: {
         baseURL: import.meta.env.VITE_API,
-        successCode: [0],
+        successCode: [0, 200],
         // successField: 'success',
         logoutCode: [2],
         useStore: () => window.store.main,

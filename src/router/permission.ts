@@ -49,6 +49,13 @@ export const flatRoutes = (routes: RouteRecordRaw[]) => {
     return finalRoutes
 }
 
+/**
+ * 是否已经加载好路由了
+ */
+export const status = {
+    registerRouteFresh: true
+}
+
 export const setRoutes = (filter = true) => {
     const store = useStore()
     /**
@@ -60,19 +67,13 @@ export const setRoutes = (filter = true) => {
     store.flatRoutes = flatRoutes(asyncRoutesFilter)
     store.flatRoutes.forEach(route => router.addRoute('index', route))
     commonRoutes.forEach(route => router.addRoute(route))
+    status.registerRouteFresh = false
 }
 
-export const getUserinfo = () => {
-    return configHooks.router.getUserinfo()
-        .then(() => {
-            setRoutes()
-        })
+export const getUserinfo = async() => {
+    await configHooks.router.getUserinfo()
 }
 
-/**
- * 是否已经加载好路由了
- */
-let registerRouteFresh = true
 let firstTimeEnter = true
 
 router.beforeEach(async(to, from, next) => {
@@ -83,14 +84,6 @@ router.beforeEach(async(to, from, next) => {
             firstTimeEnter = false
         }
         configHooks.router.beforeEach(to, from)
-        /**
-         * 页签
-         */
-        if (!config.tagViews.disabled && !to.meta.hiddenInTag) {
-            const tagViewsStore = useTagViewsStore()
-            if (typeof to.name === 'string') tagViewsStore.push(to)
-            tagViewsStore.active = String(to.name)
-        }
         /**
          * 需要登录才需要判断 token 是否存在
          */
@@ -119,15 +112,26 @@ router.beforeEach(async(to, from, next) => {
             }
         }
         /**
+         * 页签
+         */
+        if (!config.tagViews.disabled && !to.meta.hiddenInTag) {
+            const tagViewsStore = useTagViewsStore()
+            if (typeof to.fullPath === 'string') tagViewsStore.push(to)
+            tagViewsStore.active = to.fullPath
+        }
+        /**
          * 第一次进入，一般会先获取权限
          */
-        if (registerRouteFresh && !config.router.whiteList.includes(to.name || '')) {
+        if (
+            status.registerRouteFresh &&
+            !config.router.whiteList.includes(to.name || '')
+        ) {
             if (config.router.needLogin) {
                 await getUserinfo()
+                setRoutes()
             } else {
                 setRoutes(false)
             }
-            registerRouteFresh = false
             next({ ...to, replace: true })
         } else {
             next()

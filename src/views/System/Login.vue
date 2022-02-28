@@ -27,7 +27,7 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" round @click="handleLogin">登录</el-button>
+                    <el-button type="primary" round size="large" @click="handleLogin">登录</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -36,14 +36,14 @@
 
 <script lang="ts" setup>
 import useStore from '@/store/modules/main'
-import { getUserinfo } from '@/router/permission'
+import { setRoutes } from '@/router/permission'
 import { commonRoutes } from '@/router'
 /**
  * dev 环境设置默认账号密码
  */
 const userTemplate = import.meta.env.DEV ? {
-    username: 'admin2',
-    password: 'zj123456,.'
+    username: '18300000000',
+    password: '000000'
 } : {
     username: '',
     password: ''
@@ -59,8 +59,11 @@ const login = async(username: string, password: string) => {
         username,
         password
     })
-    await store.setToken(res.data.authorization?.authorization)
-    store.setUserinfo(res.data.user)
+    await store.setToken(res.data.authorization.authorization)
+    store.setUserinfo({
+        ...res.data.user,
+        ...res.data.authorization
+    })
 }
 
 /**
@@ -75,6 +78,7 @@ const handleLogin = () => {
     form.value.validate(async(vaild) => {
         if (vaild) {
             await login(user.username, user.password)
+            setRoutes()
             router.push('/')
         } else {
             ElMessage({

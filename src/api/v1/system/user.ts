@@ -25,6 +25,28 @@ export default {
             data
         })
     },
+    verify(access_token: string) {
+        return window.common.axios<{
+            token_validated: boolean
+        }>({
+            url: '/v1/auth/token/verify/',
+            method: 'post',
+            data: {
+                access_token
+            }
+        })
+    },
+    tokenRefresh(refresh_token: string) {
+        return window.common.axios<{
+            access_token: string
+        }>({
+            url: '/v1/auth/token/refresh/',
+            method: 'post',
+            data: {
+                refresh_token
+            }
+        })
+    },
     delete(id: number | string) {
         return window.common.axios({
             url: `/v1/organization/user-organization/delete/${id}`,

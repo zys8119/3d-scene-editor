@@ -10,15 +10,18 @@ export default defineStore('tagViews', {
     },
     actions: {
         push(record: RouteLocationNormalized) {
-            if (!this.tags.find(tag => tag.name === record.name)) {
+            const index = this.tags.findIndex(tag => tag.fullPath === record.fullPath)
+            if (index === -1) {
                 this.tags.push(record)
+            } else {
+                this.tags[index] = record
             }
         },
         clear() {
             this.tags = []
         },
         remove(tagName: string) {
-            const index = this.tags.findIndex(tag => String(tag.name) === tagName)
+            const index = this.tags.findIndex(tag => tag.fullPath === tagName)
             this.tags.splice(index, 1)
             if (this.tags.length === 0) {
                 return Router.push('/')
@@ -29,7 +32,7 @@ export default defineStore('tagViews', {
             }
         },
         refresh(record: RouteLocationNormalized) {
-            const routeRag = this.tags.find(tag => tag.name === record.name)
+            const routeRag = this.tags.find(tag => tag.fullPath === record.fullPath)
             if (!routeRag) {
                 this.push(record)
             } else {

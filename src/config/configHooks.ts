@@ -76,10 +76,19 @@ export default {
         /**
          * 用于 登录 / 第一次进入页面时获取权限
          */
-        getUserinfo() {
-            return new Promise<void>(resolve => {
-                resolve()
-            })
+        async getUserinfo() {
+            const store = useStore()
+            if (!store.token || !store.userinfo.refresh_token) throw new Error('Token 不存在')
+            /**
+             * 验证 token 是否有效
+             */
+            const { data: { token_validated } } = await window.api.v1.user.verify(store.token.split(' ')[1])
+            if (token_validated) return
+            /**
+             * 如果 token 无效，尝试续期
+             */
+            const { data: { access_token: token } } = await window.api.v1.user.tokenRefresh(store.userinfo.refresh_token)
+            store.setToken(token)
         },
         /**
          * 过滤路由，流程在 getUserinfo 之后
