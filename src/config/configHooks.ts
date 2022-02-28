@@ -87,7 +87,7 @@ export default {
             /**
              * 如果 token 无效，尝试续期
              */
-            const { data: { access_token: token } } = await window.api.v1.user.tokenRefresh(store.userinfo.refresh_token)
+            const { data: { authorization: token } } = await window.api.v1.user.tokenRefresh(store.userinfo.refresh_token)
             store.setToken(token)
         },
         /**

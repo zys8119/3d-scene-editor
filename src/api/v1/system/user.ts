@@ -38,7 +38,8 @@ export default {
     },
     tokenRefresh(refresh_token: string) {
         return window.common.axios<{
-            access_token: string
+            access_token: string,
+            authorization: string
         }>({
             url: '/v1/auth/token/refresh/',
             method: 'post',
