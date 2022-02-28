@@ -121,7 +121,7 @@ router.beforeEach(async(to, from, next) => {
         /**
          * 第一次进入，一般会先获取权限
          */
-        if (registerRouteFresh) {
+        if (registerRouteFresh && !config.router.whiteList.includes(to.name || '')) {
             if (config.router.needLogin) {
                 await getUserinfo()
             } else {
@@ -135,6 +135,6 @@ router.beforeEach(async(to, from, next) => {
     } catch {
         // 请求出问题了？
         // token 可能失效了，清除一下
-        next({ name: 'login' })
+        return next({ name: 'login' })
     }
 })

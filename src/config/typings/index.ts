@@ -49,7 +49,7 @@ export interface ConfigHooks {
     router: {
         beforeEach: (to: RouteLocationNormalized, from: RouteLocationNormalized) => void,
         routesFilter: (routes: RouteRecordRaw[]) => RouteRecordRaw[],
-        getUserinfo: () => Promise<void>,
+        getUserinfo: () => Promise<any>,
         firstTimeEnter: () => void
     },
     error: {

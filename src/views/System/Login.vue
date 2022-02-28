@@ -59,7 +59,7 @@ const login = async(username: string, password: string) => {
         username,
         password
     })
-    await store.setToken(res.data.authorization)
+    await store.setToken(res.data.authorization?.authorization)
     store.setUserinfo(res.data.user)
 }
 
@@ -75,7 +75,6 @@ const handleLogin = () => {
     form.value.validate(async(vaild) => {
         if (vaild) {
             await login(user.username, user.password)
-            await getUserinfo()
             router.push('/')
         } else {
             ElMessage({
