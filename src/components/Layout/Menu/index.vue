@@ -1,6 +1,6 @@
 <template>
     <wp-menu
-        :model-value="route.name || ''"
+        :model-value="activeMenu"
         :list="routesMap"
         :collapse="store.isCollapse"
         :click="handleClick"
@@ -18,6 +18,23 @@ import type { MenuProps, MenuRecord } from 'wisdom-plus'
 
 const store = useStore()
 const route = useRoute()
+
+const activeMenu = computed(() => {
+    if (!route.meta?.hidden) {
+        return route.name || ''
+    } else {
+        if (!route.meta.breadcrumbs || route.meta.breadcrumbs.length === 0) return ''
+        for (const index in route.meta.breadcrumbs) {
+            const breadcrumb = route.meta.breadcrumbs[index]
+            if (breadcrumb.meta?.hidden) {
+                const newIndex = Number(index) - 1
+                if (newIndex >= 0) {
+                    return route.meta.breadcrumbs[newIndex].name || ''
+                }
+            }
+        }
+    }
+})
 
 const routesMap = computed<MenuProps['list']>(() => {
     const routesMapper = (routes: RouteRecordRaw[]): MenuProps['list'] => {
