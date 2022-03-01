@@ -78,7 +78,8 @@ export default {
          */
         async getUserinfo() {
             const store = useStore()
-            if (!store.token || !store.userinfo.refresh_token) throw new Error('Token 不存在')
+            if (!store.token) throw new Error('Token 不存在')
+            if (!store.userinfo.refresh_token) return
             /**
              * 验证 token 是否有效
              */
