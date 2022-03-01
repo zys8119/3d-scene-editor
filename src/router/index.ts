@@ -111,11 +111,12 @@ declare module 'vue-router' {
          * 是否在页签中隐藏
          */
         hiddenInTag?: boolean;
-        /**
-         * 在 keepAlive 模式下，是否禁用缓存
-         */
+        /** 在 keepAlive 模式下，是否禁用缓存  */
         noCache?: boolean;
+        /** 是否隐藏面包屑 */
+        hideBreadcrumbs?: boolean;
     }
 }
 
 export default router
+

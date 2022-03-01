@@ -13,7 +13,7 @@
                     <wp-layout-content class="main-content">
                         <tag-views v-if="!config.tagViews.disabled" />
                         <div ref="contentRef" class="main-content-in">
-                            <div class="main-content-in-title">
+                            <div v-if="!route.meta?.hideBreadcrumbs" class="main-content-in-title">
                                 <el-breadcrumb v-if="!store.isH5" separator="/">
                                     <el-breadcrumb-item v-for="route in routeMatched" :key="route.name" :to="{ path: route.path }">{{ route.meta?.title || route.name }}</el-breadcrumb-item>
                                 </el-breadcrumb>
