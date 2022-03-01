@@ -15,6 +15,6 @@ export default {
     /**
      * 全局标题，改变这里的标题会最终改变 index.html 的标题
      */
-    title: '文创AR系统',
+    title: '',
     lang: 'zh-cn'
 } as BaseConfig
