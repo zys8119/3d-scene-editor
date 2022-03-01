@@ -59,10 +59,10 @@ const login = async(username: string, password: string) => {
         username,
         password
     })
-    await store.setToken(res.data.authorization.authorization)
+    await store.setToken(res.data.authorization)
     store.setUserinfo({
         ...res.data.user,
-        ...res.data.authorization
+        refresh_token: res.data.refresh_token
     })
 }
 

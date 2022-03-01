@@ -8,14 +8,15 @@
         }" v-bind="spaceProps">
             <div class="page-layout-top">
                 <div class="page-layout-form" @keydown.enter="handleQuery(true, true)">
-                    <wp-space :vertical="store.isH5">
+                    <wp-space :vertical="store.isH5" align="center">
                         <el-input
+                            v-if="!form?.hideInput"
                             v-model="formData[field]"
                             :placeholder="form?.placeholder"
                             clearable
                         />
                         <slot name="form" :formData="formData" />
-                        <el-button type="primary" @click="handleQuery(true, true)">
+                        <el-button v-if="!form?.hideSearch" type="primary" @click="handleQuery(true, true)">
                             搜索
                         </el-button>
                         <el-button v-if="!form?.hideReset" @click="reset">
@@ -94,7 +95,9 @@ export default defineComponent({
             field?: string,
             placeholder?: string,
             queryAfterReset?: boolean,
-            hideReset?: boolean
+            hideReset?: boolean,
+            hideInput?: boolean,
+            hideSearch?: boolean
         }>,
         showCheckedDelete: {
             type: Boolean,
@@ -349,6 +352,7 @@ export default defineComponent({
         flex: 1;
         overflow: hidden;
         margin-right: 20px;
+        font-size: 13px;
         .el-button {
             min-width: 80px;
         }
