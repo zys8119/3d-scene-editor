@@ -4,7 +4,7 @@
             <wp-space :wrap="false" :size="0">
                 <wp-tag
                     v-for="tag in store.tags"
-                    :id="`tagview${tag.fullPath}`.replace(/\//, '_')"
+                    :id="`tagview${tag.fullPath}`.replace(/\//g, '_')"
                     :key="tag.fullPath || ''"
                     :class="store.active === tag.fullPath ? 'tag-active' : null"
                     :closable="!tag.meta.fixed"
@@ -31,7 +31,7 @@ const xScroll = ref<InstanceType<typeof WpXScroll> | null>(null)
 
 watch(() => store.active, () => {
     nextTick(() => {
-        const element = document.querySelector(`#tagview${store.active}`.replace(/\//, '_')) as HTMLDivElement
+        const element = document.querySelector(`#tagview${store.active}`.replace(/\//g, '_')) as HTMLDivElement
         if (!element || !xScroll.value) return
         const boundingRect = element.getBoundingClientRect()
         const deltaX = boundingRect.x - xScroll.value.$el.offsetLeft
