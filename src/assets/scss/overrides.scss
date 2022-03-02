@@ -1,10 +1,25 @@
+$primary-color: #626aef;
+$danger-color: #e00218;
+$success-color: #38c83a;
+
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+    $colors: (
+        'primary': (
+            'base': $primary-color,
+        ),
+        'danger': (
+            'base': $danger-color
+        ),
+        'success': (
+            'base': $success-color
+        )
+    ),
+);
+
 :root {
-    --primary-color: #626aef;
-    --danger-color: #e00218;
-    --success-color: #38c83a;
-    --el-color-primary: var(--primary-color);
-    --el-color-danger: var(--danger-color);
-    --el-color-success: var(--success-color);
+    --primary-color: #{$primary-color};
+    --danger-color: #{$danger-color};
+    --success-color: #{$success-color};
     --wp-color-primary: var(--primary-color);
     --wp-color-danger: var(--danger-color);
     --wp-color-success: var(--success-color);

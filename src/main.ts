@@ -33,7 +33,6 @@ app.use(stores)
 // import WisdomPlus from 'wisdom-plus'
 // app.use(WisdomPlus)
 import 'wisdom-plus/dist/index.css'
-
 import '@/assets/less/index.less'
 
 import global from './global'

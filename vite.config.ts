@@ -36,12 +36,16 @@ export default defineConfig({
                 'pinia'
             ],
             resolvers: [
-                ElementPlusResolver()
+                ElementPlusResolver({
+                    importStyle: 'sass'
+                })
             ]
         }),
         Components({
             resolvers: [
-                ElementPlusResolver(),
+                ElementPlusResolver({
+                    importStyle: 'sass'
+                }),
                 WisdomPlusResolver()
             ]
         }),
@@ -59,6 +63,13 @@ export default defineConfig({
         alias: {
             '@': path.resolve(__dirname, 'src'),
         }
+    },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: '@use "./src/assets/scss/overrides.scss" as *;',
+            },
+        },
     },
     build: {
         target: 'es2015',
