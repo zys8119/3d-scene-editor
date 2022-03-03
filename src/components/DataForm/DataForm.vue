@@ -97,7 +97,7 @@ export default defineComponent({
         const schemasMap = computed(() => {
             return props.schemas.map(schema => {
                 const componentProps = schema.componentProps || {}
-                if (!('placehoder' in componentProps) && schema.label) componentProps.placeholder = `请输入${schema.label}`
+                if (!('placeholder' in componentProps) && schema.label) componentProps.placeholder = `请输入${schema.label}`
                 let component = schema.component
                 if (component && typeof component === 'object') {
                     component = markRaw(component)
