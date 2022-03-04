@@ -299,10 +299,15 @@ export default defineComponent({
             handleQuery(false)
         }
 
+        const mounted = ref(false)
         onActivated(() => {
-            if (props.queryOnActive) handleQuery(false, false, true)
+            if (!mounted.value) {
+                mounted.value = true
+                return
+            }
+            if (props.queryOnActive && mounted.value) handleQuery(false, false, true)
         })
-        if (!props.queryOnActive) handleQuery()
+        handleQuery()
 
         /**
          * 分页
