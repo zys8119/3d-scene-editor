@@ -1,6 +1,7 @@
-import { createRouter, createWebHistory, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import { Component } from 'vue'
+import {createRouter, createWebHashHistory, createWebHistory, RouteMeta, RouteRecordRaw} from 'vue-router'
+import {Component} from 'vue'
 import config from '@/config/config'
+import baseConfig from '../config/base'
 
 /**
  * 动态路由
@@ -27,7 +28,7 @@ export const commonRoutes: RouteRecordRaw[] = [
         path: '/:pathMatch(.*)*',
         name: '404',
         component: () => import('@/components/Common/404.vue'),
-        meta: {
+        meta: <RouteMeta>{
             hiddenInTag: true
         }
     }
@@ -37,16 +38,15 @@ export const routes: RouteRecordRaw[] = [
     {
         name: 'index',
         path: '/',
-        redirect: '/home',
         component: () => import('@/components/Layout/index.vue'),
         children: []
     },
     {
-        path: '/login',
-        name: 'login',
-        component: () => import('@/views/System/Login.vue'),
-        meta: {
-            title: '登录',
+        path: '/demo/test1',
+        name: 'test1',
+        component: () => import('@/views/Demo/Test1.vue'),
+        meta: <RouteMeta>{
+            title: 'Demo',
             hiddenInTag: true
         }
     },
@@ -54,14 +54,12 @@ export const routes: RouteRecordRaw[] = [
         path: '/redirect',
         name: 'redirect',
         component: () => import('@/components/Common/Redirect.vue'),
-        meta: {
+        meta: <RouteMeta>{
             hiddenInTag: true,
-            noCache: true
+            noCache: true,
         }
     }
 ]
-
-import baseConfig from '../config/base'
 
 const router = createRouter({
     history: config.router.history ? createWebHistory(baseConfig.base) : createWebHashHistory(),

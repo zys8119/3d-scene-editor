@@ -1,14 +1,12 @@
-import type { App } from 'vue'
+import type {App} from 'vue'
 
-import type { Schemas as SchemasType } from '@/components/DataForm/interface'
+import type {Schemas as SchemasType, WpProForm, WpProPageLayout} from 'wisdom-plus'
 import type {
-    TableColumn as TableColumnType,
-    TableColumns as TableColumnsType,
+    FileItem as FileItemType,
     PageMap as PageMapType,
-    FileItem as FileItemType
+    TableColumn as TableColumnType,
+    TableColumns as TableColumnsType
 } from '@/typings'
-import type DataForm from '@/components/DataForm/DataForm.vue'
-import type PageLayout from '@/components/PageLayout/PageLayout.vue'
 
 export default {
     install(app: App<Element>) {
@@ -34,8 +32,8 @@ declare global {
     type TableColumns<T extends (string | object) = string> = TableColumnsType<T>
     type PageMap = PageMapType
     type FileItem = FileItemType
-    type DataFormInstance = InstanceType<typeof DataForm>
-    type PageLayoutInstance = InstanceType<typeof PageLayout>
+    type DataFormInstance = InstanceType<typeof WpProForm>
+    type PageLayoutInstance = InstanceType<typeof WpProPageLayout>
     type Schemas<T extends string | object = string> = SchemasType<T>
     type ExtractProps<T extends abstract new (...args: any) => any, P extends boolean = true> = P extends true ? Partial<(InstanceType<T>)['$props']> : (InstanceType<T>)['$props']
 }

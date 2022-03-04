@@ -961,27 +961,12 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.31.tgz#c90de7126d833dcd3a4c7534d534be2fb41faa4e"
   integrity sha512-ymN2pj6zEjiKJZbrf98UM2pfDd6F2H7ksKw7NDt/ZZ1fh5Ei39X5tABugtT03ZRlWd9imccoK0hE8hpjpU7irQ==
 
-"@vueuse/core@^7.0.0":
-  version "7.6.2"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-7.6.2.tgz#1b9aa92048991189fac31577ff439296efa5fb4a"
-  integrity sha512-bjAbXJVJO6aElMaZtDz2B70C0L6jFk/jGVqJxWZS5huffxA6dW5DN6tQQJwzOnx9B9rDhePHJIFKsix0qZIH2Q==
-  dependencies:
-    "@vueuse/shared" "7.6.2"
-    vue-demi "*"
-
-"@vueuse/core@^7.3.0", "@vueuse/core@^7.7.0":
+"@vueuse/core@^7.0.0", "@vueuse/core@^7.3.0", "@vueuse/core@^7.7.0":
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-7.7.0.tgz#ddc5bbc910fbe0e2eda2cc823998dcf4a13265b4"
   integrity sha512-DS8+dg758CiWnswebYHjS05PqTtc1ZLomsDlkFjG/KC0iFRgFIsGC66AAGuSXLqWCoirp2xN6N2mkrp1aHdI7A==
   dependencies:
     "@vueuse/shared" "7.7.0"
-    vue-demi "*"
-
-"@vueuse/shared@7.6.2":
-  version "7.6.2"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-7.6.2.tgz#6d83bdb003cd8a56dc779fe501e73a4cb755b802"
-  integrity sha512-ThDld4Mx501tahRuHV6qJGkwCr17GknZrOzlD02Na9qJcH7Pq0quNTLx5cNDou7b1CKNvE3BXi2w/hz9KuPNTQ==
-  dependencies:
     vue-demi "*"
 
 "@vueuse/shared@7.7.0":
@@ -1438,9 +1423,9 @@ dargs@^7.0.0:
   integrity sha512-2iy1EkLdlBzQGvbweYRFxmFath8+K7+AKB0TlhHWkNuH+TmovaMH/Wp7V7R4u7f4SnX3OgLsU9t1NI9ioDnUpg==
 
 dayjs@^1.10.7:
-  version "1.10.7"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.7.tgz#2cf5f91add28116748440866a0a1d26f3a6ce468"
-  integrity sha512-P6twpd70BcPK34K26uJ1KT3wlhpuOAPoMwJzpsIWUxHZ7wpmbdZL/hQqBDfz7hGurYSa5PhzdhDHtt319hL3ig==
+  version "1.10.8"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.8.tgz#267df4bc6276fcb33c04a6735287e3f429abec41"
+  integrity sha512-wbNwDfBHHur9UOzNUjeKUOJ0fCb0a52Wx0xInmQ7Y8FstyajiV1NmK1e00cxsr9YrE9r7yAChE0VvpuY5Rnlow==
 
 debug@^3.2.6:
   version "3.2.7"
@@ -3866,7 +3851,7 @@ which@^2.0.1:
 
 "wisdom-plus@git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git":
   version "0.0.0-beta.1"
-  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git#0c246c7aa556a5e8bd9829fe8894508a974604e3"
+  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git#7afcfa5e7e1af33f1f8eea11e47861f0fe9f9af2"
   dependencies:
     "@element-plus/icons" "^0.0.11"
     "@popperjs/core" "^2.10.2"

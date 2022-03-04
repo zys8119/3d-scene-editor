@@ -6,7 +6,7 @@
         :list="[
             {
                 index: 'logout',
-                title: '退出',
+                title: '退出登录',
                 click: handleLogout
             }
         ]"
@@ -15,18 +15,19 @@
         }"
     >
         <el-button type="text">
-            {{ store.userinfo.name || store.userinfo.username }}，你好！
+            {{ store.userinfo.name || store.userinfo.username }}
+            <span v-if="store.userinfo.name || store.userinfo.username">，</span>
+            你好！
             <wp-icon>
-                <arrow-down />
+                <arrow-down/>
             </wp-icon>
         </el-button>
     </wp-dropdown>
-    <el-button type="text" class="logout-button" @click="handleLogout">退出</el-button>
 </template>
 
 <script lang="ts" setup>
 import useStore from '@/store/modules/main'
-import { ArrowDown } from '@element-plus/icons'
+import {ArrowDown} from '@element-plus/icons'
 import baseConfig from '@/config/base'
 
 const router = useRouter()

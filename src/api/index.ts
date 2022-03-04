@@ -1,10 +1,9 @@
-import v1 from './v1'
+import demo from './demo'
+import {App} from 'vue'
 
 const api = {
-    v1
+    demo
 }
-
-import { App } from 'vue'
 
 declare global {
     interface Window {
@@ -12,7 +11,7 @@ declare global {
     }
 }
 
-declare module '@vue/runtime-core'  {
+declare module '@vue/runtime-core' {
     export interface ComponentCustomProperties {
         readonly api: typeof api;
     }

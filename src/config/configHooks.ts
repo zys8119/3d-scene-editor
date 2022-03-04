@@ -1,10 +1,10 @@
 import useStore from '@/store/modules/main'
 import router from '../router'
-import type { ConfigHooks } from './typings'
+import type {ConfigHooks} from './typings'
 
 import baseConfig from './base'
 import config from './config'
-import { closeAllModals } from 'wisdom-plus'
+import {closeAllModals} from 'wisdom-plus'
 
 export default {
     /**
@@ -16,10 +16,8 @@ export default {
             if (!config.headers) config.headers = {}
             // config.headers['unit'] = 'it is a test'
         },
-        afterEach(config, data) {
+        afterEach(config) {
             if (!config) return
-            // const store = useStore()
-            // store.requestResults[`${(config.method || 'get').toUpperCase()}@${config.url}}`] = data
         },
         errorHandle(msg) {
             ElMessage({
@@ -69,27 +67,18 @@ export default {
                 store.userinfo = JSON.parse(userinfo)
             }
         },
-        beforeEach(to, from) {
+        beforeEach() {
             // 每个路由进入前发起一个请求
             closeAllModals()
         },
         /**
          * 用于 登录 / 第一次进入页面时获取权限
+         * 可验证token是否有效及续期
          */
         async getUserinfo() {
             const store = useStore()
             if (!store.token) throw new Error('Token 不存在')
             if (!store.userinfo.refresh_token) return
-            /**
-             * 验证 token 是否有效
-             */
-            const { data: { token_validated } } = await window.api.v1.user.verify(store.token.split(' ')[1])
-            if (token_validated) return
-            /**
-             * 如果 token 无效，尝试续期
-             */
-            const { data: { authorization: token } } = await window.api.v1.user.tokenRefresh(store.userinfo.refresh_token)
-            store.setToken(token)
         },
         /**
          * 过滤路由，流程在 getUserinfo 之后
