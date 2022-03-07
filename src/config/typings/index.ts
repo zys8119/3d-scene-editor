@@ -18,6 +18,7 @@ export interface BaseConfig {
 export interface Config {
     request: Partial<Options>,
     router: {
+        remote: boolean,
         history: boolean,
         needLogin: boolean,
         whiteList: RouteRecordName[],

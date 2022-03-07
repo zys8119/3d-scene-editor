@@ -38,7 +38,8 @@ export default defineConfig({
             resolvers: [
                 ElementPlusResolver({
                     importStyle: 'sass'
-                })
+                }),
+                WisdomPlusResolver()
             ]
         }),
         Components({

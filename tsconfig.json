@@ -19,6 +19,7 @@
             "vite/client",
             "./node_modules/element-plus/global",
             "./node_modules/wisdom-plus/global",
+            "./node_modules/wisdom-plus/global-var",
             "unplugin-auto-import-element-plus-preset/type"
         ],
         "allowSyntheticDefaultImports": true
