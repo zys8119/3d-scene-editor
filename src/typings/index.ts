@@ -1,7 +1,9 @@
+import { TableProps } from 'wisdom-plus'
+
 /**
  * ElementPlus 相关
  */
-export type TableColumn<T extends (string | object) = string> = ExtractProps<typeof ElTableColumn> & Record<string, any> & {
+export type TableColumn<T extends (string | object) = string> = ExtractProps<TableProps['columns']> & Record<string, any> & {
     prop?: T extends object ? keyof T : T
 }
 export type TableColumns<T extends (string | object) = string> = TableColumn<T>[]
@@ -9,7 +11,7 @@ export type TableColumns<T extends (string | object) = string> = TableColumn<T>[
 /**
  * ElementPlus 实例
  */
-export type FormInstace<Required extends boolean = false> = Required extends false ? (InstanceType<typeof ElForm> | null) : InstanceType<typeof ElForm>
+export type FormInstace<Required extends boolean = false> = Required extends false ? (InstanceType<typeof WpForm> | null) : InstanceType<typeof WpForm>
 
 /**
  * 公共类型
