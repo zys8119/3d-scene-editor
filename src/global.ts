@@ -1,6 +1,11 @@
-import type {App} from 'vue'
+import type { App } from 'vue'
 
-import type {Schemas as SchemasType, WpProForm, WpProPageLayout} from 'wisdom-plus'
+import {
+    type Schemas as SchemasType,
+    type WpProForm,
+    type WpProPageLayout,
+    proFormGenerate
+} from 'wisdom-plus'
 import type {
     FileItem as FileItemType,
     PageMap as PageMapType,
@@ -8,11 +13,14 @@ import type {
     TableColumns as TableColumnsType
 } from '@/typings'
 
+const ProElForm = proFormGenerate('ProElForm', ElForm, ElFormItem)
+
 export default {
     install(app: App<Element>) {
         app.use(ElMessage)
         app.use(ElMessageBox)
         app.use(ElNotification)
+        app.component('ProElForm', ProElForm)
     }
 }
 
@@ -24,6 +32,12 @@ declare module '@vue/runtime-core' {
         $confirm: typeof ElMessageBox.confirm,
         $prompt: typeof ElMessageBox.prompt,
         $notify: typeof ElNotification
+    }
+}
+
+declare module 'vue' {
+    export interface GlobalComponents {
+        ProElForm: typeof ProElForm
     }
 }
 
