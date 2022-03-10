@@ -128,9 +128,9 @@ router.beforeEach(async(to, from, next) => {
         ) {
             if (config.router.needLogin) {
                 await getUserinfo()
-                setRoutes()
+                await setRoutes()
             } else {
-                setRoutes(false)
+                await setRoutes(false)
             }
             next({ ...to, replace: true })
         } else {
