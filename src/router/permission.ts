@@ -56,13 +56,13 @@ export const status = {
     registerRouteFresh: true
 }
 
-export const setRoutes = (filter = true) => {
+export const setRoutes = async(filter = true) => {
     const store = useStore()
     /**
      * 存储路由
      */
     const asyncRoutesWithName = setRoutesName(asyncRoutes)
-    const asyncRoutesFilter = filter ? configHooks.router.routesFilter(asyncRoutesWithName) : asyncRoutesWithName
+    const asyncRoutesFilter = filter ? await configHooks.router.routesFilter(asyncRoutesWithName) : asyncRoutesWithName
     store.routes = asyncRoutesFilter
     store.flatRoutes = flatRoutes(asyncRoutesFilter)
     store.flatRoutes.forEach(route => router.addRoute('index', route))
