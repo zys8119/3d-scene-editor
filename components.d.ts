@@ -23,6 +23,7 @@ declare module 'vue' {
     WpLayoutAside: typeof import('wisdom-plus/es')['WpLayoutAside']
     WpLayoutContent: typeof import('wisdom-plus/es')['WpLayoutContent']
     WpMenu: typeof import('wisdom-plus/es')['WpMenu']
+    WpProPageLayout: typeof import('wisdom-plus/es')['WpProPageLayout']
     WpSpace: typeof import('wisdom-plus/es')['WpSpace']
     WpTag: typeof import('wisdom-plus/es')['WpTag']
     WpXScroll: typeof import('wisdom-plus/es')['WpXScroll']
