@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 /**
  * 监听 resize 事件，修改 store 的 isH5 属性
