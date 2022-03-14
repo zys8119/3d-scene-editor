@@ -114,9 +114,11 @@ router.beforeEach(async(to, from, next) => {
         /**
          * 页签
          */
-        if (!config.tagViews.disabled && !to.meta.hiddenInTag) {
+        if (!config.tagViews.disabled && (to.meta?.title || (to.name && to.name !== 'index'))) {
             const tagViewsStore = useTagViewsStore()
-            if (typeof to.fullPath === 'string') tagViewsStore.push(to)
+            if (!to.meta.hiddenInTag) {
+                if (typeof to.fullPath === 'string') tagViewsStore.push(to)
+            }
             tagViewsStore.active = to.fullPath
         }
         /**
