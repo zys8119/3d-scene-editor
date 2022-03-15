@@ -13,7 +13,8 @@ useResizeObserver(view, setH5)
 </script>
 
 <template>
-    <div id="view" ref="view" v-loading.body.fullscreen.lock="store.loading">
+    <div id="view" ref="view">
+        <wp-spin :loading="store.loading" fullscreen size="36px" />
         <el-config-provider :locale="zhCn">
             <router-view />
         </el-config-provider>
