@@ -1,5 +1,12 @@
 <template>
-    <router-view v-if="route.meta?.isFullPage" />
+    <template v-if="route.meta?.isFullPage">
+        <router-view v-if="config.router.keepAlive" v-slot="{ Component }">
+            <keep-alive :include="keepAliveInclude" :max="config.tagViews.disabled ? undefined : config.tagViews.max">
+                <component :is="Component" />
+            </keep-alive>
+        </router-view>
+        <router-view v-else />
+    </template>
     <div v-else class="main">
         <wp-layout>
             <wp-layout-aside class="main-header">
