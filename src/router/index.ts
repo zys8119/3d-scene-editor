@@ -3,6 +3,10 @@ import {Component} from 'vue'
 import config from '@/config/config'
 import baseConfig from '../config/base'
 
+import Page404 from '@/components/Common/404.vue'
+import Layout from '@/components/Layout/index.vue'
+import Redirect from '@/components/Common/Redirect.vue'
+
 /**
  * 动态路由
  */
@@ -27,8 +31,8 @@ export const commonRoutes: RouteRecordRaw[] = [
     {
         path: '/:pathMatch(.*)*',
         name: '404',
-        component: () => import('@/components/Common/404.vue'),
-        meta: <RouteMeta>{
+        component: Page404,
+        meta: {
             hiddenInTag: true
         }
     }
@@ -38,7 +42,7 @@ export const routes: RouteRecordRaw[] = [
     {
         name: 'index',
         path: '/',
-        component: () => import('@/components/Layout/index.vue'),
+        component: Layout,
         children: []
     },
     {
@@ -53,7 +57,7 @@ export const routes: RouteRecordRaw[] = [
     {
         path: '/redirect',
         name: 'redirect',
-        component: () => import('@/components/Common/Redirect.vue'),
+        component: Redirect,
         meta: {
             hiddenInTag: true,
             noCache: true
