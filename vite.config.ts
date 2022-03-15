@@ -57,7 +57,7 @@ export default defineConfig({
              * For chrome >= 61
              * global-this is vaild from chrome 70
              */
-            modernPolyfills: ['es.global-this']
+            modernPolyfills: ['es.global-this', 'es.array.flat']
         })
     ],
     resolve: {
