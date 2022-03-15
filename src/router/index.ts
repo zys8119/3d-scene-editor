@@ -45,7 +45,7 @@ export const routes: RouteRecordRaw[] = [
         path: '/demo/test1',
         name: 'test1',
         component: () => import('@/views/Demo/Test1.vue'),
-        meta: <RouteMeta>{
+        meta: {
             title: 'Demo',
             hiddenInTag: true
         }
@@ -54,9 +54,9 @@ export const routes: RouteRecordRaw[] = [
         path: '/redirect',
         name: 'redirect',
         component: () => import('@/components/Common/Redirect.vue'),
-        meta: <RouteMeta>{
+        meta: {
             hiddenInTag: true,
-            noCache: true,
+            noCache: true
         }
     }
 ]

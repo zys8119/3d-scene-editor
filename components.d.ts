@@ -12,7 +12,7 @@ declare module 'vue' {
     ElEmpty: typeof import('element-plus/es')['ElEmpty']
     Header: typeof import('./src/components/Layout/Header/index.vue')['default']
     Layout: typeof import('./src/components/Layout/index.vue')['default']
-    Loading: typeof import('element-plus/es')['ElLoadingDirective']
+    Loading: typeof import('./src/components/Common/Loading.vue')['default']
     Menu: typeof import('./src/components/Layout/Menu/index.vue')['default']
     Redirect: typeof import('./src/components/Common/Redirect.vue')['default']
     TagViews: typeof import('./src/components/Layout/TagViews/index.vue')['default']
@@ -24,7 +24,9 @@ declare module 'vue' {
     WpLayoutContent: typeof import('wisdom-plus/es')['WpLayoutContent']
     WpMenu: typeof import('wisdom-plus/es')['WpMenu']
     WpProPageLayout: typeof import('wisdom-plus/es')['WpProPageLayout']
+    WpProPermission: typeof import('wisdom-plus/es')['WpProPermission']
     WpSpace: typeof import('wisdom-plus/es')['WpSpace']
+    WpSpin: typeof import('wisdom-plus/es')['WpSpin']
     WpTag: typeof import('wisdom-plus/es')['WpTag']
     WpXScroll: typeof import('wisdom-plus/es')['WpXScroll']
   }

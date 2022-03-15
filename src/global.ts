@@ -4,7 +4,8 @@ import {
     type Schemas as SchemasType,
     type WpProForm,
     type WpProPageLayout,
-    proFormGenerate
+    proFormGenerate,
+    permissionConfig
 } from 'wisdom-plus'
 import type {
     FileItem as FileItemType,
@@ -14,6 +15,7 @@ import type {
 } from '@/typings'
 
 const ProElForm = proFormGenerate('ProElForm', ElForm, ElFormItem)
+permissionConfig.useRoute = useRoute
 
 export default {
     install(app: App<Element>) {
