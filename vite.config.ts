@@ -71,6 +71,20 @@ export default defineConfig({
                 additionalData: '@use "./src/assets/scss/overrides.scss" as *;',
             },
         },
+        postcss: {
+            plugins: [
+                {
+                postcssPlugin: 'internal:charset-removal',
+                AtRule: {
+                    charset: (atRule) => {
+                    if (atRule.name === 'charset') {
+                        atRule.remove()
+                    }
+                    }
+                }
+                }
+            ],
+        }
     },
     build: {
         target: 'es2015',
