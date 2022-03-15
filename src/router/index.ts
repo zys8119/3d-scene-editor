@@ -113,6 +113,8 @@ declare module 'vue-router' {
         noCache?: boolean;
         /** 是否隐藏面包屑 */
         hideBreadcrumbs?: boolean;
+        /** 按钮权限 */
+        permissions?: string[];
     }
 }
 
