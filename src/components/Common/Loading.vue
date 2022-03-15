@@ -1,9 +1,9 @@
 <template>
-    <el-empty description="啥也没有"/>
+    <wp-spin text="加载中" :size="36" />
 </template>
 
 <style lang="less" scoped>
-.el-empty {
+.wp-spin {
     margin-top: 20vh;
 }
 </style>
