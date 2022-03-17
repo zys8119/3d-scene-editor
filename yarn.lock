@@ -3897,6 +3897,11 @@ word-wrap@^1.2.3:
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
 
+wp-preprocessor@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/wp-preprocessor/-/wp-preprocessor-1.0.2.tgz#8f0395f3f11af186ade00737b33f4aea84851f86"
+  integrity sha512-KtnTK0vazf4DD/qfeMzFBuBDkXEhXAZE8Zi/b54/TE+Efk4GXN39WiIaC47FAja+TMQ/FvY2Rf5EyBoTLn5G2g==
+
 wp-request@^1.0.31:
   version "1.0.32"
   resolved "https://registry.yarnpkg.com/wp-request/-/wp-request-1.0.32.tgz#17e3eddefdcc7cf4fcfa49eef9f14b58e48034b9"

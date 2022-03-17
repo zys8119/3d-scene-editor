@@ -66,6 +66,7 @@ declare global {
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
+  const preprocessor: typeof import('wp-preprocessor')['preprocessor']
   const provide: typeof import('vue')['provide']
   const reactify: typeof import('@vueuse/core')['reactify']
   const reactifyObject: typeof import('@vueuse/core')['reactifyObject']

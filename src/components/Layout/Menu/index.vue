@@ -67,9 +67,6 @@ const handleClick = (record: MenuRecord) => {
     :deep(.wp-menu-item-title) {
         font-size: 14px;
         line-height: 20px;
-        &.wp-menu-item__active {
-            font-size: 15px;
-        }
     }
     :deep(.wp-menu-item .wp-collapse-item__title:not(.wp-menu-item__diabeld):hover),
     :deep(.wp-menu-item-title:not(.wp-menu-item__diabeld):hover) {

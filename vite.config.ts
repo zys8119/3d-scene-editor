@@ -12,6 +12,7 @@ import baseConfig from './src/config/base'
 import legacy from '@vitejs/plugin-legacy'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import validatePreset from 'wp-validate/dist/preset'
+import preprocessorPreset from 'wp-preprocessor/dist/preset'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -29,6 +30,7 @@ export default defineConfig({
             ],
             imports: [
                 validatePreset,
+                preprocessorPreset,
                 // presets
                 'vue',
                 'vue-router',
