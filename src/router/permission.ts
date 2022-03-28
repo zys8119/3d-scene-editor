@@ -5,6 +5,7 @@ import configHooks from '@/config/configHooks'
 import config from '@/config/config'
 import baseConfig from '@/config/base'
 import type { RouteRecordRaw } from 'vue-router'
+import { createAsyncComponent } from '@/utils/route'
 
 /**
  * 自动给路由 name
@@ -12,9 +13,10 @@ import type { RouteRecordRaw } from 'vue-router'
 export const setRoutesName = (routes: RouteRecordRaw[]) => {
     return routes.map(route => {
         const routeMap: RouteRecordRaw = {
-            name: Symbol('AnonymousRouter'),
+            name: route.meta?.title || Symbol('AnonymousRouter'),
             ...route
         }
+        if (routeMap.component) routeMap.component = createAsyncComponent(routeMap.name, routeMap.component)
         if (Array.isArray(route.children) && route.children.length > 0) {
             routeMap.children = setRoutesName(route.children)
         }
