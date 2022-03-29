@@ -21,9 +21,14 @@
                         <tag-views v-if="!config.tagViews.disabled" />
                         <div ref="contentRef" class="main-content-in">
                             <div v-if="!route.meta?.hideBreadcrumbs" class="main-content-in-title">
-                                <el-breadcrumb v-if="!store.isH5" separator="/">
-                                    <el-breadcrumb-item v-for="route in routeMatched" :key="route.name" :to="{ path: route.path }">{{ route.meta?.title || route.name }}</el-breadcrumb-item>
-                                </el-breadcrumb>
+                                <wp-breadcrumb :list="routeMatchedMap">
+                                    <template #item="{ title, to, link }">
+                                        <router-link v-if="link" :to="to">{{ title }}</router-link>
+                                        <template v-else>
+                                            {{ title }}
+                                        </template>
+                                    </template>
+                                </wp-breadcrumb>
                             </div>
                             <router-view v-if="config.router.keepAlive" v-slot="{ Component }">
                                 <keep-alive :include="keepAliveInclude" :max="config.tagViews.disabled ? undefined : config.tagViews.max">
@@ -49,6 +54,7 @@ import TagViews from './TagViews/index.vue'
 import useStore from '@/store/modules/main'
 
 import useTagViewsStore from '@/store/modules/tagViews'
+import type { BreadcrumbList } from 'wisdom-plus'
 
 const tagViewsStore = useTagViewsStore()
 const route = useRoute()
@@ -65,6 +71,19 @@ const keepAliveInclude = computed(() => {
 const store = useStore()
 const routeMatched = computed(() => {
     return route.meta.breadcrumbs || []
+})
+
+const routeMatchedMap = computed(() => {
+    const result: BreadcrumbList[] = route.meta.breadcrumbs?.map<BreadcrumbList>((item, index) => {
+        return {
+            index: item.name,
+            to: item,
+            title: String(item.meta?.title || item.name),
+            link: index !== (route.meta.breadcrumbs?.length || 0) - 1
+        }
+    }) || []
+    // BreadcrumbList
+    return result
 })
 
 const contentRef = ref<HTMLDivElement | null>(null)
@@ -171,6 +190,14 @@ onBeforeRouteUpdate(() => {
                 margin-bottom: 15px;
                 font-size: 16px;
                 font-weight: bold;
+                overflow: hidden;
+                a {
+                    text-decoration: none;
+                }
+                :deep(.wp-breadcrumb-item) {
+                    font-size: 14px;
+                    font-weight: normal;
+                }
             }
         }
     }

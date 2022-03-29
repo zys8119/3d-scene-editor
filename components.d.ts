@@ -16,6 +16,7 @@ declare module 'vue' {
     Menu: typeof import('./src/components/Layout/Menu/index.vue')['default']
     Redirect: typeof import('./src/components/Common/Redirect.vue')['default']
     TagViews: typeof import('./src/components/Layout/TagViews/index.vue')['default']
+    WpBreadcrumb: typeof import('wisdom-plus/es')['WpBreadcrumb']
     WpButton: typeof import('wisdom-plus/es')['WpButton']
     WpDropdown: typeof import('wisdom-plus/es')['WpDropdown']
     WpIcon: typeof import('wisdom-plus/es')['WpIcon']

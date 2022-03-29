@@ -5,8 +5,8 @@ import Page404 from '@/components/Common/404.vue'
 import Loading from '@/components/Common/Loading.vue'
 
 export const createAsyncComponent = (name: RouteRecordRaw['name'], component?: RouteRecordRaw['component'] | AsyncComponentLoader) => {
-    if (!component) return Page404
-    if (typeof component !== 'function') return component
+    if (!component) return markRaw(Page404)
+    if (typeof component !== 'function') return markRaw(component)
     const result = defineAsyncComponent({
         loader: component as AsyncComponentLoader,
         errorComponent: Page404,
