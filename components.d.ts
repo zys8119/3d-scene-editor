@@ -26,6 +26,7 @@ declare module 'vue' {
     WpMenu: typeof import('wisdom-plus/es')['WpMenu']
     WpProPageLayout: typeof import('wisdom-plus/es')['WpProPageLayout']
     WpProPermission: typeof import('wisdom-plus/es')['WpProPermission']
+    WpResult: typeof import('wisdom-plus/es')['WpResult']
     WpSpace: typeof import('wisdom-plus/es')['WpSpace']
     WpSpin: typeof import('wisdom-plus/es')['WpSpin']
     WpTag: typeof import('wisdom-plus/es')['WpTag']

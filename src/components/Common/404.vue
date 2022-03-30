@@ -1,9 +1,9 @@
 <template>
-    <el-empty description="啥也没有"/>
+    <wp-result description="啥也没有" />
 </template>
 
 <style lang="less" scoped>
-.el-empty {
+.wp-result {
     margin-top: 20vh;
 }
 </style>
