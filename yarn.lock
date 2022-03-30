@@ -3893,9 +3893,9 @@ wp-preprocessor@^1.0.2:
   integrity sha512-+/xnE2Y6ud330Ro1bScI3r+ZoIt3uuI6+YhaLMRLSZzkulp0sUTgfcb64v2k1N3quyFXSKecwbzdtniD33mDpA==
 
 wp-request@^1.0.31:
-  version "1.0.33"
-  resolved "https://registry.yarnpkg.com/wp-request/-/wp-request-1.0.33.tgz#5495722a7e4e848e33e8958ddd8a258a76df6cbf"
-  integrity sha512-aBxbQ3ENNTEPtyqV3/lCuvaMSIGejk/u2O+p0sLQQnFwDLC15dm1WtoyBhfB5+At/QX1NZlegC+wENqbdTfUew==
+  version "1.0.34"
+  resolved "https://registry.yarnpkg.com/wp-request/-/wp-request-1.0.34.tgz#3bba683c39ff31412054a3246596ed504876296a"
+  integrity sha512-GUAwdh28FCMG/eiiZBZ+lREYDGQIa7av48hnUjVEV+KlBME2UE+RSBqBbv7ZUYXTWilXI8IHtk7F3d3qIlflbQ==
   dependencies:
     axios "^0.24.0"
     crypto-js "^4.1.1"
