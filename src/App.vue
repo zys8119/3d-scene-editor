@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 /**
  * 监听 resize 事件，修改 store 的 isH5 属性
@@ -15,8 +14,6 @@ useResizeObserver(view, setH5)
 <template>
     <div id="view" ref="view">
         <wp-spin :loading="store.loading" fullscreen size="36px" />
-        <el-config-provider :locale="zhCn">
-            <router-view />
-        </el-config-provider>
+        <router-view />
     </div>
 </template>

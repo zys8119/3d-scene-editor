@@ -152,18 +152,6 @@ onBeforeRouteUpdate(() => {
             flex: 1;
             display: flex;
             align-items: center;
-            .el-button {
-                border: 0;
-                background-color: transparent;
-                padding: 0;
-                margin-right: 10px;
-                &.expand {
-                    transform: rotate(-180deg);
-                }
-                .el-icon {
-                    font-size: 20px;
-                }
-            }
         }
     }
     .main-content {

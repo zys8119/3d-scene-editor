@@ -29,11 +29,6 @@ declare global {
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const EffectScope: typeof import('vue')['EffectScope']
-  const ElForm: typeof import('element-plus/es')['ElForm']
-  const ElFormItem: typeof import('element-plus/es')['ElFormItem']
-  const ElMessage: typeof import('element-plus/es')['ElMessage']
-  const ElMessageBox: typeof import('element-plus/es')['ElMessageBox']
-  const ElNotification: typeof import('element-plus/es')['ElNotification']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
@@ -240,5 +235,6 @@ declare global {
   const watchOnce: typeof import('@vueuse/core')['watchOnce']
   const watchWithFilter: typeof import('@vueuse/core')['watchWithFilter']
   const whenever: typeof import('@vueuse/core')['whenever']
+  const WpToast: typeof import('wisdom-plus/es')['WpToast']
 }
 export {}

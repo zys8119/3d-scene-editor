@@ -34,8 +34,8 @@ app.use(stores)
 // app.use(WisdomPlus)
 import 'wisdom-plus/dist/index.css'
 import '@/assets/less/index.less'
+import '@/assets/less/overrides.less'
 
-import global from './global'
-app.use(global)
+import './global'
 
 app.mount('#app')

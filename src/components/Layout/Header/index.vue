@@ -14,20 +14,16 @@
             arrow: false
         }"
     >
-        <el-button type="text">
+        <wp-button type="text">
             {{ store.userinfo.name || store.userinfo.username }}
             <span v-if="store.userinfo.name || store.userinfo.username">，</span>
             你好！
-            <wp-icon>
-                <arrow-down/>
-            </wp-icon>
-        </el-button>
+        </wp-button>
     </wp-dropdown>
 </template>
 
 <script lang="ts" setup>
 import useStore from '@/store/modules/main'
-import {ArrowDown} from '@element-plus/icons'
 import baseConfig from '@/config/base'
 
 const router = useRouter()
@@ -39,7 +35,7 @@ const handleLogout = () => {
 </script>
 
 <style lang="less" scoped>
-.el-button {
+.wp-button {
     color: #fff;
 }
 .logout-button {

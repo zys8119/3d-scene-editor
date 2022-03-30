@@ -1,10 +1,7 @@
-import type { App } from 'vue'
-
 import {
     type Schemas as SchemasType,
     type WpProForm,
     type WpProPageLayout,
-    proFormGenerate,
     permissionConfig
 } from 'wisdom-plus'
 import type {
@@ -14,35 +11,7 @@ import type {
     TableColumns as TableColumnsType
 } from '@/typings'
 
-const ProElForm = proFormGenerate('ProElForm', ElForm, ElFormItem)
 permissionConfig.useRoute = useRoute
-
-export default {
-    install(app: App<Element>) {
-        app.use(ElMessage)
-        app.use(ElMessageBox)
-        app.use(ElNotification)
-        app.component('ProElForm', ProElForm)
-    }
-}
-
-declare module '@vue/runtime-core' {
-    export interface ComponentCustomProperties {
-        $message: typeof ElMessage,
-        $msgbox: typeof ElMessageBox,
-        $alert: typeof ElMessageBox.alert,
-        $confirm: typeof ElMessageBox.confirm,
-        $prompt: typeof ElMessageBox.prompt,
-        $notify: typeof ElNotification
-    }
-}
-
-declare module 'vue' {
-    export interface GlobalComponents {
-        ProElForm: typeof ProElForm
-    }
-}
-
 declare global {
     type TableColumn<T extends string | object = string> = TableColumnType<T>
     type TableColumns<T extends (string | object) = string> = TableColumnsType<T>

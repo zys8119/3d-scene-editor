@@ -4,7 +4,9 @@ import type {ConfigHooks} from './typings'
 
 import baseConfig from './base'
 import config from './config'
-import {closeAllModals} from 'wisdom-plus'
+import {
+    closeAllModals
+} from 'wisdom-plus'
 
 export default {
     /**
@@ -20,10 +22,7 @@ export default {
             if (!config) return
         },
         errorHandle(msg) {
-            ElMessage({
-                type: 'error',
-                message: msg
-            })
+            WpToast.error(msg)
         },
         logout() {
             router.push({ name: 'login' })
@@ -31,10 +30,7 @@ export default {
     },
     validate: {
         alert(message, type: 'info' | 'success' | 'warning' | 'error') {
-            ElMessage({
-                message,
-                type
-            })
+            WpToast[type](message)
         }
     },
     /**

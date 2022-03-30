@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { WisdomPlusResolver } from './src/resolver'
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import { htmlTransform } from './src/utils'
@@ -40,17 +39,11 @@ export default defineConfig({
                 'pinia'
             ],
             resolvers: [
-                ElementPlusResolver({
-                    importStyle: 'sass'
-                }),
                 WisdomPlusResolver()
             ]
         }),
         Components({
             resolvers: [
-                ElementPlusResolver({
-                    importStyle: 'sass'
-                }),
                 WisdomPlusResolver()
             ]
         }),
@@ -70,11 +63,6 @@ export default defineConfig({
         }
     },
     css: {
-        preprocessorOptions: {
-            scss: {
-                additionalData: '@use "./src/assets/scss/overrides.scss" as *;',
-            },
-        },
         postcss: {
             plugins: [
                 {

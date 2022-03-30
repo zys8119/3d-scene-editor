@@ -1,5 +1,4 @@
 import {RouteRecordRaw, RouterView} from 'vue-router'
-import { HomeFilled } from '@element-plus/icons'
 
 const homeRoutes: RouteRecordRaw[] = [
     {
@@ -15,8 +14,7 @@ const homeRoutes: RouteRecordRaw[] = [
                 name: 'test2',
                 meta: {
                     title: 'test2',
-                    permissions: ['admin'],
-                    icon: HomeFilled
+                    permissions: ['admin']
                 },
                 component: () => import('@/views/Demo/Test2.vue'),
                 children: [
