@@ -14,11 +14,11 @@
             arrow: false
         }"
     >
-        <wp-button type="text">
+        <div class="tip">
             {{ store.userinfo.name || store.userinfo.username }}
             <span v-if="store.userinfo.name || store.userinfo.username">，</span>
             你好！
-        </wp-button>
+        </div>
     </wp-dropdown>
 </template>
 
@@ -41,5 +41,9 @@ const handleLogout = () => {
 .logout-button {
     margin-left: 10px;
     color: #fff;
+}
+.tip {
+    cursor: default;
+    font-size: 14px;
 }
 </style>
