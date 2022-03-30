@@ -2,7 +2,7 @@ import {FileItem} from '@/typings'
 
 export default {
     upload(file: File | Blob, extra?: Record<string, any>, onProgress?: (progress: number) => void) {
-        return window.common.axios<FileItem>({
+        return request<FileItem>({
             url: '/demo/common/upload/',
             method: 'post',
             isFormData: true,
