@@ -51,7 +51,6 @@ import LayoutHeader from './Header/index.vue'
 import config from '@/config/config'
 
 import TagViews from './TagViews/index.vue'
-import useStore from '@/store/modules/main'
 
 import useTagViewsStore from '@/store/modules/tagViews'
 import type { BreadcrumbList } from 'wisdom-plus'
@@ -66,11 +65,6 @@ const keepAliveInclude = computed(() => {
     }).map(tag => {
         return String(tag.name)
     })
-})
-
-const store = useStore()
-const routeMatched = computed(() => {
-    return route.meta.breadcrumbs || []
 })
 
 const routeMatchedMap = computed(() => {

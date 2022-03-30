@@ -43,6 +43,7 @@ export const routes: RouteRecordRaw[] = [
         name: 'index',
         path: '/',
         component: Layout,
+        redirect: '/demo/test2',
         children: []
     },
     {
