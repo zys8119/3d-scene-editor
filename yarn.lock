@@ -3792,7 +3792,7 @@ which@^2.0.1:
 
 "wisdom-plus@git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git":
   version "0.0.0-beta.1"
-  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git#4623667d4ac18b872b44c781f7a12fea106eb81f"
+  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git#c9175a9c9b2feee1d825c49c1e60550ee133529c"
   dependencies:
     "@element-plus/icons" "^0.0.11"
     "@popperjs/core" "^2.10.2"
