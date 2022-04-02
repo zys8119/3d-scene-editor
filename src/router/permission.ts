@@ -18,6 +18,14 @@ export const setRoutesName = (routes: RouteRecordRaw[]) => {
         }
         if (routeMap.component) routeMap.component = createAsyncComponent(routeMap.name, routeMap.component)
         if (routeMap.meta?.icon) routeMap.meta.icon = markRaw(routeMap.meta.icon)
+        if (routeMap.component) {
+            routeMap.props = (route) => {
+                return {
+                    ...route.params,
+                    ...route.query
+                }
+            }
+        }
         if (Array.isArray(route.children) && route.children.length > 0) {
             routeMap.children = setRoutesName(route.children)
         }
