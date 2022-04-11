@@ -12,7 +12,6 @@ export function useKeepScroll(
     onDeactivated(() => {
         scrollLeftRecord = x.value
         scrollTopRecord = y.value
-        console.log(scrollTopRecord, scrollLeftRecord)
     })
     onActivated(() => {
         const el = unref(elRef)
