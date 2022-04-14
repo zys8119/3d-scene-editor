@@ -235,6 +235,5 @@ declare global {
   const watchOnce: typeof import('@vueuse/core')['watchOnce']
   const watchWithFilter: typeof import('@vueuse/core')['watchWithFilter']
   const whenever: typeof import('@vueuse/core')['whenever']
-  const WpToast: typeof import('wisdom-plus/es')['WpToast']
 }
 export {}
