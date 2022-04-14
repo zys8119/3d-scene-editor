@@ -30,6 +30,8 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const EffectScope: typeof import('vue')['EffectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const fh: typeof import('vite-plugin-fz')['fh']
+  const fz: typeof import('vite-plugin-fz')['fz']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']

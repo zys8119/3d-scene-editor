@@ -1,4 +1,5 @@
 <template>
+    <span style="font-size: 100fh;">232323</span>
     <div id="Test2">
         <wp-pro-permission has="admin">
             权限测试，这里只有 admin 权限才可以看
@@ -16,8 +17,13 @@
 <script lang="ts" setup>
 import { usePermission } from 'wisdom-plus'
 const { has } = usePermission()
+
+
+const a = ref(fz`20`)
 </script>
 
 <style scoped>
-
+#Test2 {
+    font-size: 100fh;
+}
 </style>

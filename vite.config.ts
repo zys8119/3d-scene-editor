@@ -7,6 +7,7 @@ import Components from 'unplugin-vue-components/vite'
 import { WisdomPlusResolver } from './src/resolver'
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import { htmlTransform } from './src/utils'
+import { rem, remPreset } from 'vite-plugin-fz'
 import baseConfig from './src/config/base'
 import legacy from '@vitejs/plugin-legacy'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
@@ -32,6 +33,7 @@ export default defineConfig({
                 validatePreset,
                 preprocessorPreset,
                 requestPreset,
+                remPreset,
                 // presets
                 'vue',
                 'vue-router',
@@ -48,6 +50,7 @@ export default defineConfig({
             ]
         }),
         htmlTransform(),
+        rem(),
         legacy({
             targets: ['defaults', 'not IE 11'],
             /**
