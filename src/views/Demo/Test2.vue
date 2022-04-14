@@ -19,8 +19,8 @@ import { fz } from '@/utils/vite/rem'
 import { usePermission } from 'wisdom-plus'
 const { has } = usePermission()
 
-const a = ref(fz(20))
-console.log(a.value)
+
+const a = ref(fz`20`)
 </script>
 
 <style scoped>

@@ -1,6 +1,6 @@
 let baseOption = 1920
 
-export const fz = (rem: number) => {
+export const fz = (rem: number | string | TemplateStringsArray) => {
     return `${Number(rem) / baseOption * 100}vw`
 }
 
