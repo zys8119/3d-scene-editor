@@ -19,5 +19,7 @@ const { has } = usePermission()
 </script>
 
 <style scoped>
-
+#Test2 {
+    font-size: size(100);
+}
 </style>
