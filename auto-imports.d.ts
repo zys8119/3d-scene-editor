@@ -35,6 +35,8 @@ declare global {
   const ElMessageBox: typeof import('element-plus/es')['ElMessageBox']
   const ElNotification: typeof import('element-plus/es')['ElNotification']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const fh: typeof import('vite-plugin-fz')['fh']
+  const fz: typeof import('vite-plugin-fz')['fz']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
