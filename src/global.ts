@@ -1,5 +1,8 @@
 import type { App } from 'vue'
 
+import { install } from 'resize-observer'
+if (!window.ResizeObserver) install()
+
 import {
     type Schemas as SchemasType,
     type WpProForm,
