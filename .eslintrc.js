@@ -47,6 +47,45 @@ module.exports = {
         'prefer-const': 2,
         'object-shorthand': 2,
         'no-trailing-spaces': 2,
-        'no-undef': 0
+        'no-undef': 0,
+        'vue/no-lone-template': 1,
+        'vue/this-in-template': 1,
+        'vue/block-tag-newline': 1,
+        'vue/html-comment-content-newline': 1,
+        'vue/no-child-content': 1,
+        'vue/no-multiple-objects-in-class': 1,
+        'vue/padding-line-between-blocks': 1,
+        'vue/array-bracket-spacing': 2,
+        'vue/arrow-spacing': ['error', { before: true, after: true }],
+        'vue/brace-style': 2,
+        'vue/comma-spacing': 2,
+        'vue/no-extra-parens': 2,
+        'vue/template-curly-spacing': 2,
+        'vue/html-quotes': ['error', 'double', { 'avoidEscape': false }],
+        'vue/html-indent': ['error', 4, {
+            'attribute': 1,
+            'baseIndent': 1,
+            'closeBracket': 0,
+            'alignAttributesVertically': true,
+            'ignores': []
+        }],
+        'vue/max-attributes-per-line': ['error', {
+            'singleline': {
+                'max': 6
+            },
+            'multiline': {
+                'max': 1
+            }
+        }],
+        'vue/first-attribute-linebreak': ['error', {
+            'singleline': 'ignore',
+            'multiline': 'below'
+        }],
+        'vue/html-closing-bracket-newline': ['error', {
+            'singleline': 'never',
+            'multiline': 'always'
+        }],
+        'vue/html-self-closing': 2,
+        'vue/no-multi-spaces': 2
     }
 }
