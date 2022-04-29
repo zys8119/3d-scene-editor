@@ -30,7 +30,7 @@ export default {
     }
 }
 
-declare module '@vue/runtime-core'  {
+declare module '@vue/runtime-core' {
     export interface ComponentCustomProperties {
         readonly $store: ReturnType<typeof getStores>
     }
