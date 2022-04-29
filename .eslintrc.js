@@ -51,6 +51,7 @@ module.exports = {
         'space-unary-ops': 1,
         'no-irregular-whitespace': 1,
         'no-multi-spaces': 1,
+        'comma-spacing': [1, { 'before': false, 'after': true }],
         'no-whitespace-before-property': 1,
         'vue/no-lone-template': 1,
         'vue/this-in-template': 1,
