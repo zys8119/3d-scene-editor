@@ -35,6 +35,11 @@ export default defineConfig({
                 preprocessorPreset,
                 requestPreset,
                 remPreset,
+                {
+                    '@/api': [
+                        'api'
+                    ]
+                },
                 // presets
                 'vue',
                 'vue-router',
