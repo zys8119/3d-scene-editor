@@ -1,7 +1,7 @@
 import demo from './demo'
 import {App} from 'vue'
 
-export const api = {
+const api = {
     demo
 }
 

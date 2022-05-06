@@ -3,7 +3,6 @@
 declare global {
   const $http: typeof import('wp-request')['$http']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
-  const api: typeof import('/Users/chentao/Desktop/zj/vue3-framework/src/api/api')['default']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const biSyncRef: typeof import('@vueuse/core')['biSyncRef']
@@ -38,7 +37,6 @@ declare global {
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
-  const index: typeof import('/Users/chentao/Desktop/zj/vue3-framework/src/api/index')['default']
   const inject: typeof import('vue')['inject']
   const isDefined: typeof import('@vueuse/core')['isDefined']
   const isReadonly: typeof import('vue')['isReadonly']
