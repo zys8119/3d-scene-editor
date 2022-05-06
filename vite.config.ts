@@ -15,6 +15,8 @@ import validatePreset from 'wp-validate/dist/preset'
 import preprocessorPreset from 'wp-preprocessor/dist/preset'
 import requestPreset from 'wp-request/dist/preset'
 
+import { dirResolver, DirResolverHelper } from 'vite-auto-import-resolvers'
+
 // https://vitejs.dev/config/
 export default defineConfig({
     base: baseConfig.base,
@@ -23,6 +25,7 @@ export default defineConfig({
         vueJsx(),
         viteCommonjs(),
         vueSetupExtend(),
+        DirResolverHelper(),
         AutoImport({
             include: [
                 /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
@@ -41,7 +44,11 @@ export default defineConfig({
                 'pinia'
             ],
             resolvers: [
-                WisdomPlusResolver()
+                WisdomPlusResolver(),
+                dirResolver({
+                    target: 'api',
+                    exclude: ['index']
+                })
             ]
         }),
         Components({
@@ -69,14 +76,14 @@ export default defineConfig({
         postcss: {
             plugins: [
                 {
-                postcssPlugin: 'internal:charset-removal',
-                AtRule: {
-                    charset: (atRule) => {
-                    if (atRule.name === 'charset') {
-                        atRule.remove()
+                    postcssPlugin: 'internal:charset-removal',
+                    AtRule: {
+                        charset: (atRule) => {
+                            if (atRule.name === 'charset') {
+                                atRule.remove()
+                            }
+                        }
                     }
-                    }
-                }
                 }
             ],
         }

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 /**
  * 监听 resize 事件，修改 store 的 isH5 属性
  */
