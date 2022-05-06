@@ -1219,11 +1219,6 @@ caniuse-lite@^1.0.30001312:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001312.tgz#e11eba4b87e24d22697dae05455d5aea28550d5f"
   integrity sha512-Wiz1Psk2MEK0pX3rUzWaunLTZzqS2JYZFzNKqAiJGiuxIjRPLgV6+VDPOg6lQOUxmDwhTlh198JsTTi8Hzw6aQ==
 
-case@^1.6.3:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
-  integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
-
 chalk@^2.0.0:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
@@ -3655,15 +3650,6 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
-
-vite-auto-import-resolvers@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/vite-auto-import-resolvers/-/vite-auto-import-resolvers-2.3.0.tgz#be40c17919fab4c66f1b048b33a801520ebf2b48"
-  integrity sha512-2/DloHsurAmli/+yzaN3qjwX3f6jnUs1pmBhk2ChFWWuo5haiuNrGZLIG0U3xNPy4610bY6YLWl7pA+dWGWg6Q==
-  dependencies:
-    case "^1.6.3"
-    fast-glob "^3.2.11"
-    local-pkg "^0.4.1"
 
 vite-plugin-fz@^1.0.2:
   version "1.0.2"
