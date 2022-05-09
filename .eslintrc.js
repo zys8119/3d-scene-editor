@@ -56,7 +56,6 @@ module.exports = {
         'vue/no-lone-template': 1,
         'vue/this-in-template': 1,
         'vue/block-tag-newline': 1,
-        'vue/html-comment-content-newline': 1,
         'vue/no-child-content': 1,
         'vue/no-multiple-objects-in-class': 1,
         'vue/padding-line-between-blocks': 1,
