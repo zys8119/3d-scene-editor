@@ -50,7 +50,7 @@
         "unplugin-vue-components": "^0.17.8",
         "vite": "^2.6.4",
         "vite-plugin-vue-setup-extend": "^0.3.0",
-        "vue-tsc": "^0.3.0"
+        "vue-tsc": "^0.34.16"
     },
     "husky": {
         "hooks": {
