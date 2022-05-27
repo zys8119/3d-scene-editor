@@ -1,6 +1,6 @@
 {
-    "name": "wisdom-plus-basic",
-    "version": "0.0.0",
+    "name": "zhijiasoft",
+    "version": "0.0.1",
     "scripts": {
         "dev": "vite",
         "build": "npm run lint:fix && npm run tsc && vite build",
