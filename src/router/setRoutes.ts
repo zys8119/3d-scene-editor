@@ -40,7 +40,7 @@ export const flatRoutes = (routes: RouteRecordRaw[]) => {
             const getPath = route.path.indexOf('/') === 0 ? route.path : path + '/' + route.path
             const newRoute = {
                 ...route,
-                children: undefined,
+                children: undefined as undefined | RouteRecordRaw[],
                 path: getPath,
                 meta: route.meta ? {
                     ...route.meta
@@ -50,7 +50,7 @@ export const flatRoutes = (routes: RouteRecordRaw[]) => {
             if (route.children && !route.meta?.notFlat) {
                 flatRoutes(route.children, getPath, newRoute.meta.breadcrumbs)
             } else {
-                newRoute.children = route.children as any
+                newRoute.children = route.children
             }
             finalRoutes.push(newRoute)
         })
