@@ -120,6 +120,8 @@ declare module 'vue-router' {
         hideBreadcrumbs?: boolean;
         /** 按钮权限 */
         permissions?: string[];
+        /** 是否进行扁平化路由 **/
+        notFlat?:boolean;
     }
 }
 
