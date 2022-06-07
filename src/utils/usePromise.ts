@@ -4,10 +4,11 @@ export const usePromise = <T>(promise: Promise<T> | (() => Promise<T>)) => {
     const reject = ref(false)
     const error = ref<unknown>()
     const result = ref<T>()
+    let done = false
     const doPromise = () => {
         /** get Promise object */
         const promiseMap = typeof promise === 'function' ? promise() : promise
-        if (typeof promise !== 'function') {
+        if (done && typeof promise !== 'function') {
             console.warn('If you wanna use replay, please use function as param')
             return
         }
@@ -27,6 +28,7 @@ export const usePromise = <T>(promise: Promise<T> | (() => Promise<T>)) => {
             })
             .finally(() => {
                 loading.value = false
+                done = true
             })
     }
     doPromise()
