@@ -3,6 +3,7 @@
 declare global {
   const $http: typeof import('wp-request')['$http']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
+  const api: typeof import('@/api')['api']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const biSyncRef: typeof import('@vueuse/core')['biSyncRef']
