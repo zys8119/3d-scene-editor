@@ -16,10 +16,7 @@ export type FormInstace<Required extends boolean = false> = Required extends fal
 /**
  * 公共类型
  */
-export interface PageMap {
-    page: string | number,
-    size: string | number
-}
+export type PageMap = Record<string, string | number | boolean>
 export interface FileItem {
     id: number,
     creator_id: string
