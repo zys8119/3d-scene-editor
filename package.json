@@ -20,7 +20,6 @@
         "vite-plugin-fz": "^1.0.2",
         "vue": "^3.2.16",
         "vue-router": "^4.0.12",
-        "wangeditor": "^4.7.11",
         "wisdom-plus": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git",
         "wp-preprocessor": "^1.0.2",
         "wp-request": "^1.1.3",
