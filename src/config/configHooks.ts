@@ -4,9 +4,7 @@ import type {ConfigHooks} from './typings'
 
 import baseConfig from './base'
 import config from './config'
-import {
-    closeAllModals
-} from 'wisdom-plus'
+import {closeAllModals, closeAllPopovers} from 'wisdom-plus'
 
 export default {
     /**
@@ -66,6 +64,7 @@ export default {
         beforeEach() {
             // 每个路由进入前发起一个请求
             closeAllModals()
+            closeAllPopovers()
         },
         /**
          * 用于 登录 / 第一次进入页面时获取权限
