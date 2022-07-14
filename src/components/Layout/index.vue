@@ -99,40 +99,6 @@ onBeforeRouteUpdate(() => {
         scrollbar-width: none;
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
         z-index: 1;
-        :deep(.el-menu) {
-            border: 0;
-            width: 250px;
-            --el-menu-active-color: #fff;
-            --el-menu-hover-bg-color: var(--primary-color);
-            --el-menu-hover-color: #fff;
-            .el-menu-item {
-                transition: font-size .2s;
-                &.is-active {
-                    font-size: 15px;
-                    color: var(--primary-color);
-                }
-            }
-            .el-sub-menu__title {
-                font-size: 15px;
-            }
-            .el-menu-item:hover,
-            .el-sub-menu__title:hover {
-                color: var(--primary-color);
-                background-color: transparent;
-            }
-            &.el-menu--collapse {
-                width: 64px;
-                .el-sub-menu__title {
-                    justify-content: center;
-                }
-                .el-menu-item > div {
-                    text-align: center;
-                }
-                .is-active .el-sub-menu__title {
-                    color: var(--primary-color);
-                }
-            }
-        }
     }
     .main-container {
         flex: 1;
