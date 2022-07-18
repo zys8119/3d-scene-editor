@@ -15,7 +15,7 @@ export const asyncRoutes: RouteRecordRaw[] = []
 /**
  * 添加整个文件夹的 modules
  */
-const modules = import.meta.globEager('./modules/*.ts')
+const modules: Record<string, { default: RouteRecordRaw[] }> = import.meta.glob('./modules/*.ts', { eager: true })
 for (const module of Object.values(modules)) {
     if (!module.default) continue
     if (!Array.isArray(module.default)) continue
