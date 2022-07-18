@@ -45,10 +45,10 @@ export const flatRoutes = (routes: RouteRecordRaw[]) => {
                 meta: route.meta ? {
                     ...route.meta
                 } : {}
-            }
-            newRoute.meta.breadcrumbs = [...breadcrumbs, newRoute]
+            } as RouteRecordRaw
+            if (newRoute.meta) newRoute.meta.breadcrumbs = [...breadcrumbs, newRoute]
             if (route.children && !route.meta?.notFlat) {
-                flatRoutes(route.children, getPath, newRoute.meta.breadcrumbs)
+                flatRoutes(route.children, getPath, newRoute.meta && newRoute.meta.breadcrumbs)
             } else {
                 newRoute.children = route.children
             }
