@@ -5,8 +5,6 @@
 declare module 'vue' {
   export interface GlobalComponents {
     404: typeof import('./src/components/Common/404.vue')['default']
-    ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
-    ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElEmpty: typeof import('element-plus/es')['ElEmpty']
@@ -24,7 +22,6 @@ declare module 'vue' {
     WpLayoutAside: typeof import('wisdom-plus/es')['WpLayoutAside']
     WpLayoutContent: typeof import('wisdom-plus/es')['WpLayoutContent']
     WpMenu: typeof import('wisdom-plus/es')['WpMenu']
-    WpProPageLayout: typeof import('wisdom-plus/es')['WpProPageLayout']
     WpProPermission: typeof import('wisdom-plus/es')['WpProPermission']
     WpResult: typeof import('wisdom-plus/es')['WpResult']
     WpSpace: typeof import('wisdom-plus/es')['WpSpace']
