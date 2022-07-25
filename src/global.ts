@@ -24,6 +24,8 @@ console.log(`%c${name} v${version}`, 'color: #fff; border-radius: 5px; padding: 
 const ProElForm = proFormGenerate('ProElForm', ElForm, ElFormItem)
 permissionConfig.useRoute = useRoute
 
+window.$modeConfig = import.meta.env.VITE_CONFIG || '{}'
+
 export default {
     install(app: App<Element>) {
         app.use(ElMessage)
@@ -59,4 +61,7 @@ declare global {
     type PageLayoutInstance = InstanceType<typeof WpProPageLayout>
     type Schemas<T extends string | object = string> = SchemasType<T>
     type ExtractProps<T extends abstract new (...args: any) => any, P extends boolean = true> = P extends true ? Partial<(InstanceType<T>)['$props']> : (InstanceType<T>)['$props']
+    interface Window {
+        $modeConfig: string
+    }
 }

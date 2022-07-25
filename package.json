@@ -25,7 +25,8 @@
         "wisdom-plus": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git",
         "wp-preprocessor": "^1.0.2",
         "wp-request": "^1.0.31",
-        "wp-validate": "^0.0.3"
+        "wp-validate": "^0.0.3",
+        "rd-utils": "git+https://gitlab.zhijiasoft.com/zhangyunshan/zhijia_utils.git"
     },
     "devDependencies": {
         "@commitlint/cli": "^15.0.0",
