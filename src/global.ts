@@ -19,6 +19,9 @@ import { name, version } from '../package.json'
 console.log(`%c${name} v${version}`, 'color: #fff; border-radius: 5px; padding: 10px 25px;background: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%)')
 
 permissionConfig.useRoute = useRoute
+
+window.$modeConfig = import.meta.env.VITE_CONFIG || '{}'
+
 declare global {
     type TableColumn<T extends string | object = string> = TableColumnType<T>
     type TableColumns<T extends (string | object) = string> = TableColumnsType<T>
@@ -28,4 +31,7 @@ declare global {
     type PageLayoutInstance = InstanceType<typeof WpProPageLayout>
     type Schemas<T extends string | object = string> = SchemasType<T>
     type ExtractProps<T extends abstract new (...args: any) => any, P extends boolean = true> = P extends true ? Partial<(InstanceType<T>)['$props']> : (InstanceType<T>)['$props']
+    interface Window {
+        $modeConfig: string
+    }
 }
