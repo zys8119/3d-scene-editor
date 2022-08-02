@@ -1,6 +1,6 @@
 import {RouteRecordRaw, RouterView} from 'vue-router'
 
-const homeRoutes: RouteRecordRaw[] = [
+const routes: RouteRecordRaw[] = [
     {
         path: 'demo',
         name: 'demo',
@@ -33,4 +33,4 @@ const homeRoutes: RouteRecordRaw[] = [
     }
 ]
 
-export default homeRoutes
+export default routes
