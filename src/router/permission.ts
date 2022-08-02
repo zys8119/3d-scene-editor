@@ -41,7 +41,7 @@ router.beforeEach(async(to, from, next) => {
             if (
                 !store.token &&
                 (
-                    to.name &&
+                    !to.name ||
                     !config.router.whiteList.includes(to.name)
                 )
             ) {
