@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "@vitejs/plugin-legacy": "^2.0.0",
-        "@vueuse/core": "^7.3.0",
+        "@vueuse/core": "^9.1.0",
         "eslint-plugin-vue3-jsx": "^0.0.3-beta.3",
         "pinia": "^2.0.4",
         "resize-observer": "^1.0.4",
