@@ -3,13 +3,9 @@ export {}
 declare global {
   const $http: typeof import('wp-request')['$http']
   const EffectScope: typeof import('vue')['EffectScope']
-  const ElForm: typeof import('element-plus/es')['ElForm']
-  const ElFormItem: typeof import('element-plus/es')['ElFormItem']
-  const ElMessage: typeof import('element-plus/es')['ElMessage']
-  const ElMessageBox: typeof import('element-plus/es')['ElMessageBox']
-  const ElNotification: typeof import('element-plus/es')['ElNotification']
   const RequestPromise: typeof import('wp-request')['RequestPromise']
   const ValidationError: typeof import('wp-validate')['ValidationError']
+  const WpToast: typeof import('wisdom-plus/es')['WpToast']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const api: typeof import('@/api')['api']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -40,7 +36,6 @@ declare global {
   const download: typeof import('wp-request')['download']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
-  const EffectScope: typeof import('vue')['EffectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const fh: typeof import('vite-plugin-fz')['fh']
   const fz: typeof import('vite-plugin-fz')['fz']
@@ -290,5 +285,4 @@ declare global {
   const watchTriggerable: typeof import('@vueuse/core')['watchTriggerable']
   const watchWithFilter: typeof import('@vueuse/core')['watchWithFilter']
   const whenever: typeof import('@vueuse/core')['whenever']
-  const WpToast: typeof import('wisdom-plus/es')['WpToast']
 }

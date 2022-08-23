@@ -1,5 +1,5 @@
 <template>
-    <span style="font-size: 100fh;">232323</span>
+    <span style="font-size: 100fh;">响应式字号文字测试</span>
     <div id="Test2">
         <wp-pro-permission has="admin">
             权限测试，这里只有 admin 权限才可以看
@@ -7,9 +7,8 @@
         <wp-pro-permission has="test">
             权限测试，这里只有 test 权限才可以看
         </wp-pro-permission>
-        demo
         <router-link v-if="has('admin')" to="/demo/test2/test3">
-            <wp-button type="primary">click</wp-button>
+            <wp-button type="primary">内页跳转</wp-button>
         </router-link>
     </div>
 </template>
