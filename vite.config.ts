@@ -15,6 +15,7 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus'
 import validatePreset from 'wp-validate/dist/preset'
 import preprocessorPreset from 'wp-preprocessor/dist/preset'
 import requestPreset from 'wp-request/dist/preset'
+import { Resolver } from 'unplugin-auto-import/types'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -49,8 +50,8 @@ export default defineConfig({
             resolvers: [
                 ElementPlusResolver({
                     importStyle: 'sass'
-                }),
-                WisdomPlusResolver()
+                }) as Resolver[],
+                WisdomPlusResolver() as Resolver[]
             ]
         }),
         Components({
