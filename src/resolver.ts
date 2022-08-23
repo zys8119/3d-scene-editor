@@ -1,13 +1,13 @@
-import { ComponentResolver } from 'unplugin-vue-components'
+import { ComponentResolver, ComponentResolveResult } from 'unplugin-vue-components'
 function resolveComponent(name: string) {
     if (!name.match(/^Wp[A-Z]/))
         return
     if (name === 'WpG') name = 'WpGrid'
     if (name === 'WpGi') name = 'WpGridItem'
     return {
-        importName: name,
-        path: 'wisdom-plus/es'
-    }
+        name,
+        from: 'wisdom-plus/es'
+    } as ComponentResolveResult
 }
 export function WisdomPlusResolver(): ComponentResolver[] {
     return [
