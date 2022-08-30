@@ -20,7 +20,8 @@
             "./node_modules/wisdom-plus/global",
             "./node_modules/wisdom-plus/global-var"
         ],
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "noEmit": true
     },
     "include": [
         "src/**/*.ts",

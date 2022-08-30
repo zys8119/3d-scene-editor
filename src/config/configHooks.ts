@@ -11,6 +11,7 @@ export default {
      * 请求相关
      */
     request: {
+        useStore: () => window.store.main,
         beforeEach(config) {
             if (!config) return
             if (!config.headers) config.headers = {}
