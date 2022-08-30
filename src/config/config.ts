@@ -6,7 +6,6 @@ export default {
         successCode: [0, 200],
         // successField: 'success',
         logoutCode: [2],
-        useStore: () => window.store.main,
         trim: true
     },
     router: {

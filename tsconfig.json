@@ -22,7 +22,8 @@
             "./node_modules/wisdom-plus/global-var",
             "unplugin-auto-import-element-plus-preset/type"
         ],
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "noEmit": true
     },
     "include": [
         "src/**/*.ts",
