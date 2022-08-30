@@ -5,10 +5,15 @@ import useMainStore from './modules/main'
 import usetagViewsStore from './modules/tagViews'
 import { App } from 'vue'
 
+interface Store {
+    main: ReturnType<typeof useMainStore>,
+    tagViews: ReturnType<typeof usetagViewsStore>
+}
+
 /**
  * 把导入的模块放到这里
  */
-const getStores = () => {
+function getStores(): Store {
     const mainStore = useMainStore()
     const tagViewsStore = usetagViewsStore()
     const stores = {
@@ -32,12 +37,12 @@ export default {
 
 declare module '@vue/runtime-core' {
     export interface ComponentCustomProperties {
-        readonly $store: ReturnType<typeof getStores>
+        readonly $store: Store
     }
 }
 
 declare global {
     interface Window {
-        store: ReturnType<typeof getStores>
+        store: Store
     }
 }
