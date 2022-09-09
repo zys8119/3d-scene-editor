@@ -89,7 +89,8 @@ export default defineConfig({
     },
     build: {
         target: 'es2015',
-        chunkSizeWarningLimit: 5000
+        chunkSizeWarningLimit: 5000,
+        assetsInlineLimit: 0
     },
     server: {
         port: 8888,
