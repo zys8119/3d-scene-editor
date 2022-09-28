@@ -105,8 +105,15 @@ export default defineConfig({
         assetsInlineLimit: 0,
         rollupOptions: {
             output: baseConfig.filehash ? {} : {
-                chunkFileNames: 'assets/[name].js',
-                entryFileNames: 'assets/[name].js'
+                chunkFileNames: (chunkInfo) => {
+                    const newFileName = chunkInfo.facadeModuleId.replace(__dirname, '').replace(/\/|\\|\./g, '-')
+                    return `assets/chunk${newFileName.toLowerCase()}.js`
+                },
+                entryFileNames: 'assets/[name].js',
+                assetFileNames(chunkInfo) {
+                    const newFileName = chunkInfo.name.replace(__dirname, '').replace(/\/|\\|\./g, '-')
+                    return `assets/${newFileName.toLowerCase()}.[ext]`
+                }
             }
         }
     },
