@@ -16,5 +16,7 @@ export default {
      * 全局标题，改变这里的标题会最终改变 index.html 的标题
      */
     title: '',
-    lang: 'zh-cn'
+    lang: 'zh-cn',
+    /** 在编译时，是否启用文件 hash */
+    filehash: true
 } as BaseConfig

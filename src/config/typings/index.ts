@@ -12,6 +12,7 @@ export interface BaseConfig {
     title: string,
     lang: string,
     unique?: string,
+    filehash?: boolean,
     [x: string]: any
 }
 
