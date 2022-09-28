@@ -94,13 +94,13 @@ export default defineConfig({
         rollupOptions: {
             output: baseConfig.filehash ? {} : {
                 chunkFileNames: (chunkInfo) => {
-                    const newFileName = chunkInfo.facadeModuleId.replace(__dirname, '').replace(/\/|\\|\./g, '-')
+                    const newFileName = (chunkInfo.facadeModuleId || chunkInfo.name).replace(__dirname, '').replace(/\/|\\|\./g, '-')
                     return `assets/chunk${newFileName.toLowerCase()}.js`
                 },
                 entryFileNames: 'assets/[name].js',
                 assetFileNames(chunkInfo) {
                     const newFileName = chunkInfo.name.replace(__dirname, '').replace(/\/|\\|\./g, '-')
-                    return `assets/${newFileName.toLowerCase()}.[ext]`
+                    return `assets/a${newFileName.toLowerCase()}.[ext]`
                 }
             }
         }
