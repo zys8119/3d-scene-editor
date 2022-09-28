@@ -16,6 +16,7 @@ import validatePreset from 'wp-validate/dist/preset'
 import preprocessorPreset from 'wp-preprocessor/dist/preset'
 import requestPreset from 'wp-request/dist/preset'
 import { Resolver } from 'unplugin-auto-import/types'
+import md5 from 'md5'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -104,15 +105,15 @@ export default defineConfig({
         chunkSizeWarningLimit: 5000,
         assetsInlineLimit: 0,
         rollupOptions: {
-            output: baseConfig.filehash ? {} : {
+            output: !baseConfig.filenameHash ? {} : {
                 chunkFileNames: (chunkInfo) => {
-                    const newFileName = (chunkInfo.facadeModuleId || chunkInfo.name).replace(__dirname, '').replace(/\/|\\|\./g, '-')
-                    return `assets/chunk${newFileName.toLowerCase()}.js`
+                    const newFileName = md5((chunkInfo.facadeModuleId || chunkInfo.name).replace(__dirname, '').replace(/\/|\\|\./g, '-'))
+                    return `assets/chunk-${newFileName.slice(0, 8)}.js`
                 },
                 entryFileNames: 'assets/[name].js',
                 assetFileNames(chunkInfo) {
-                    const newFileName = chunkInfo.name.replace(__dirname, '').replace(/\/|\\|\./g, '-')
-                    return `assets/a${newFileName.toLowerCase()}.[ext]`
+                    const newFileName = md5(chunkInfo.name.replace(__dirname, '').replace(/\/|\\|\./g, '-'))
+                    return `assets/${newFileName.slice(0, 8)}.[ext]`
                 }
             }
         }

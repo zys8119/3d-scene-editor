@@ -17,6 +17,6 @@ export default {
      */
     title: '',
     lang: 'zh-cn',
-    /** 在编译时，是否启用文件 hash */
-    filehash: true
+    /** 在编译时，是否启用文件名 hash */
+    filenameHash: true
 } as BaseConfig
