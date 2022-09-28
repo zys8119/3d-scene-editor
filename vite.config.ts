@@ -105,7 +105,8 @@ export default defineConfig({
         assetsInlineLimit: 0,
         rollupOptions: {
             output: baseConfig.filehash ? {} : {
-                chunkFileNames: 'assets/[name].js'
+                chunkFileNames: 'assets/[name].js',
+                entryFileNames: 'assets/[name].js'
             }
         }
     },
