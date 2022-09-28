@@ -90,7 +90,12 @@ export default defineConfig({
     build: {
         target: 'es2015',
         chunkSizeWarningLimit: 5000,
-        assetsInlineLimit: 0
+        assetsInlineLimit: 0,
+        rollupOptions: {
+            output: baseConfig.filehash ? {} : {
+                chunkFileNames: 'assets/[name].js'
+            }
+        }
     },
     server: {
         port: 8888,
