@@ -8,9 +8,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     404: typeof import('./src/components/Common/404.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
-    ElEmpty: typeof import('element-plus/es')['ElEmpty']
     Header: typeof import('./src/components/Layout/Header/index.vue')['default']
     Layout: typeof import('./src/components/Layout/index.vue')['default']
     Loading: typeof import('./src/components/Common/Loading.vue')['default']
@@ -22,7 +19,6 @@ declare module '@vue/runtime-core' {
     WpBreadcrumb: typeof import('wisdom-plus/es')['WpBreadcrumb']
     WpButton: typeof import('wisdom-plus/es')['WpButton']
     WpDropdown: typeof import('wisdom-plus/es')['WpDropdown']
-    WpIcon: typeof import('wisdom-plus/es')['WpIcon']
     WpLayout: typeof import('wisdom-plus/es')['WpLayout']
     WpLayoutAside: typeof import('wisdom-plus/es')['WpLayoutAside']
     WpLayoutContent: typeof import('wisdom-plus/es')['WpLayoutContent']

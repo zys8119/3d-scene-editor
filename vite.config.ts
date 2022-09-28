@@ -98,7 +98,6 @@ export default defineConfig({
                     const newFileName = md5((chunkInfo.facadeModuleId || chunkInfo.name).replace(__dirname, '').replace(/\/|\\|\./g, '-'))
                     return `assets/chunk-${newFileName.slice(0, 8)}.js`
                 },
-                entryFileNames: 'assets/[name].js',
                 assetFileNames(chunkInfo) {
                     const newFileName = md5(chunkInfo.name.replace(__dirname, '').replace(/\/|\\|\./g, '-'))
                     return `assets/${newFileName.slice(0, 8)}.[ext]`
