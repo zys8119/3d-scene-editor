@@ -4,7 +4,6 @@ import config from '@/config/config'
 import baseConfig from '../config/base'
 
 import Page404 from '@/components/Common/404.vue'
-import Layout from '@/components/Layout/index.vue'
 import Redirect from '@/components/Common/Redirect.vue'
 
 /**
@@ -42,7 +41,7 @@ export const routes: RouteRecordRaw[] = [
     {
         name: 'index',
         path: '/',
-        component: Layout,
+        component: () => import('@/components/Layout/index.vue'),
         redirect: '/demo/test2',
         children: []
     },
