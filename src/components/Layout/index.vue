@@ -145,13 +145,14 @@ onBeforeRouteUpdate(() => {
         background-color: var(--primary-color);
         display: flex;
         align-items: center;
-        height: 55px;
-        padding: 0 20px;
+        height: var(--menu-height);
+        // padding: 0 20px;
         color: #fff;
         :deep(.main-header-left) {
             flex: 1;
             display: flex;
             align-items: center;
+            overflow: hidden;
             .el-button {
                 border: 0;
                 background-color: transparent;
@@ -169,7 +170,7 @@ onBeforeRouteUpdate(() => {
     .main-content {
         flex: 1;
         overflow: auto;
-        height: calc(100vh - 55px);
+        height: calc(100vh - var(--menu-height));
         display: flex;
         flex-direction: column;
         &-in {

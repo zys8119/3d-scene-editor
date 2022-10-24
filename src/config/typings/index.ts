@@ -24,7 +24,11 @@ export interface Config {
         needLogin: boolean,
         whiteList: RouteRecordName[],
         keepAlive: boolean,
-        session: boolean
+        session: boolean,
+        menu: {
+            topMenu: boolean,
+            collapse: boolean
+        }
     },
     tagViews: {
         disabled?: boolean,
