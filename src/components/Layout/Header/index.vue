@@ -14,7 +14,7 @@
             </div>
             <div class="title-background"/>
         </div>
-        <div v-if="config.router.menu.topMenu" class="top-menus">
+        <div class="top-menus">
             <wp-x-scroll>
                 <div v-if="config.router.menu.collapse" class="top-menu top-collapse-menu" @click="store.collapse = !store.collapse">
                     <wp-icon
@@ -24,13 +24,15 @@
                         <component :is="Arrow" />
                     </wp-icon>
                 </div>
-                <template v-for="route in routesMap" :key="route.name">
-                    <div class="top-menu" :class="{ active: route.active }" @click="$router.push(route)">
-                        <wp-icon v-if="route.meta?.icon" :fill="false">
-                            <component :is="route.meta?.icon" />
-                        </wp-icon>
-                        {{ route.meta?.title || route.name }}
-                    </div>
+                <template v-if="config.router.menu.topMenu">
+                    <template v-for="route in routesMap" :key="route.name">
+                        <div class="top-menu" :class="{ active: route.active }" @click="$router.push(route)">
+                            <wp-icon v-if="route.meta?.icon" :fill="false">
+                                <component :is="route.meta?.icon" />
+                            </wp-icon>
+                            {{ route.meta?.title || route.name }}
+                        </div>
+                    </template>
                 </template>
             </wp-x-scroll>
         </div>
