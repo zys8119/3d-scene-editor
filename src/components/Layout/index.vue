@@ -118,6 +118,7 @@ onBeforeRouteUpdate(() => {
             flex: 1;
             display: flex;
             align-items: center;
+            overflow: hidden;
         }
     }
     .main-content {
