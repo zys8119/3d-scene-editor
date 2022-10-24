@@ -4,7 +4,7 @@
         :list="routesMap"
         :collapse="store.isCollapse"
         :click="handleClick"
-        width="250px"
+        width="var(--menu-width)"
         vertical
     />
 </template>
@@ -15,6 +15,7 @@ import { RouteRecordRaw } from 'vue-router'
 import configHooks from '@/config/configHooks'
 
 import type { MenuProps, MenuRecord } from 'wisdom-plus'
+import config from '@/config/config'
 
 const store = useStore()
 const route = useRoute()
@@ -36,8 +37,8 @@ const activeMenu = computed(() => {
     }
 })
 
-const routesMap = computed<MenuProps['list']>(() => {
-    const routesMapper = (routes: RouteRecordRaw[]): MenuProps['list'] => {
+const routesMap = computed<MenuRecord[]>(() => {
+    const routesMapper = (routes: RouteRecordRaw[]): MenuRecord[] => {
         return routes.filter(route => !route.meta?.hidden).map(route => {
             return {
                 index: route.name,
@@ -45,10 +46,12 @@ const routesMap = computed<MenuProps['list']>(() => {
                 children: route.children ? routesMapper(route.children) : undefined,
                 info: route,
                 icon: route.meta?.icon
-            }
+            } as MenuRecord
         })
     }
-    return routesMapper(store.routes)
+    const currentRoute = config.router.menu.topMenu ? store.routes.find(routing => route.meta.breadcrumbs?.[0].name === routing.name)?.children || [] : store.routes
+    const routes: MenuProps['list'] = routesMapper(currentRoute)
+    return routes
 })
 
 const handleClick = (record: MenuRecord) => {

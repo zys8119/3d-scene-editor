@@ -15,7 +15,7 @@ export default {
     /**
      * 全局标题，改变这里的标题会最终改变 index.html 的标题
      */
-    title: '',
+    title: '后台管理系统',
     lang: 'zh-cn',
     /** 在编译时，是否启用文件名 hash */
     filenameHash: true
