@@ -141,8 +141,6 @@ const routesMap = computed(() => {
         vertical-align: middle;
 
         &.top-collapse-menu {
-            padding-right: 0;
-            margin-right: -20px;
             .wp-icon {
                 font-size: 20px;
                 transform: rotate(180deg);
@@ -164,12 +162,9 @@ const routesMap = computed(() => {
                 }
             }
         }
-        & + .top-menu {
-            margin-left: 20px;
-        }
         &:hover {
             color: #FFF;
-            font-weight: 700;
+            // font-weight: 700;
             cursor: default;
             opacity: 1;
         }

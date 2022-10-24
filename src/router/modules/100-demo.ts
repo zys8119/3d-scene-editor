@@ -30,6 +30,14 @@ const routes: RouteRecordRaw[] = [
                 ]
             },
         ]
+    },
+    {
+        path: 'demo2',
+        name: 'demo2',
+        meta: {
+            title: 'demo2',
+        },
+        component: RouterView
     }
 ]
 
