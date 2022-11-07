@@ -35,7 +35,7 @@ export default {
         /**
          * 是否保持 alive 状态，如果启用 tagViews，则只会缓存页签中的类目
          */
-        keepAlive: import.meta.env.MODE !== 'development'
+        keepAlive: false
     },
     /**
      * 页签配置
