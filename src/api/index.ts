@@ -13,7 +13,7 @@ declare global {
 
 declare module '@vue/runtime-core' {
     export interface ComponentCustomProperties {
-        readonly api: typeof api;
+        api: typeof api;
     }
 }
 
