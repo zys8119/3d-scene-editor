@@ -10,7 +10,6 @@ declare global {
   const ElNotification: typeof import('element-plus/es')['ElNotification']
   const RequestPromise: typeof import('wp-request')['RequestPromise']
   const ValidationError: typeof import('wp-validate')['ValidationError']
-  const WpInput: typeof import('wisdom-plus/es')['WpInput']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const api: typeof import('@/api')['api']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
