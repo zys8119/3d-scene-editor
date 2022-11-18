@@ -26,12 +26,12 @@
                 </div>
                 <template v-if="config.router.menu.topMenu">
                     <template v-for="route in routesMap" :key="route.name">
-                        <div class="top-menu" :class="{ active: route.active }" @click="$router.push(route)">
+                        <router-link :to="route" class="top-menu" :class="{ active: route.active }">
                             <wp-icon v-if="route.meta?.icon" :fill="false">
                                 <component :is="route.meta?.icon" />
                             </wp-icon>
                             {{ route.meta?.title || route.name }}
-                        </div>
+                        </router-link>
                     </template>
                 </template>
             </wp-x-scroll>
@@ -141,6 +141,7 @@ const routesMap = computed(() => {
         opacity: 0.5;
         cursor: pointer !important;
         vertical-align: middle;
+        text-decoration: none;
 
         &.top-collapse-menu {
             .wp-icon {
