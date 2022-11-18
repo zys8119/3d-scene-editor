@@ -8,7 +8,9 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     404: typeof import('./src/components/Common/404.vue')['default']
+    AlertFooter: typeof import('./src/components/AlertFooter.vue')['default']
     Arrow: typeof import('./src/components/Layout/Header/Arrow.vue')['default']
+    CommonModalHeader: typeof import('./src/components/CommonModalHeader.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElEmpty: typeof import('element-plus/es')['ElEmpty']
