@@ -21,6 +21,9 @@ app.use(errorHandle, {
 import api from '@/api'
 app.use(api)
 
+import alert from './alert'
+app.use(alert)
+
 import '@/router/permission'
 
 import router from './router'
