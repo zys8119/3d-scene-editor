@@ -1,6 +1,6 @@
 <template>
-    <div class="main-header-left" @click="router.push({ name: 'home' })">
-        <div class="title" :style="{ width: !store.isCollapse ? 'var(--menu-width)' : '54px' }">
+    <div class="main-header-left">
+        <div class="title" :style="{ width: !store.isCollapse ? 'var(--menu-width)' : '54px' }" @click="router.push({ name: 'home' })">
             <div class="title-img">
                 <img>
             </div>
