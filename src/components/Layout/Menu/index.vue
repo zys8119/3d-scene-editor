@@ -6,7 +6,11 @@
         :click="handleClick"
         width="var(--menu-width)"
         vertical
-    />
+    >
+        <template #title="{ title, info }">
+            <router-link :to="info" @click.stop>{{ title }}</router-link>
+        </template>
+    </wp-menu>
 </template>
 
 <script lang="ts" setup>
@@ -64,6 +68,12 @@ const handleClick = (record: MenuRecord) => {
 .wp-menu {
     --wp-menu-padding-left-right: 20px;
     --wp-menu-padding-top-bottom: 15px;
+    :deep(.wp-menu-item__text) {
+        > a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
     :deep(.wp-collapse-item__title .wp-menu-item__text) {
         font-size: 14px;
     }
