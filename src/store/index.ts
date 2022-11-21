@@ -35,9 +35,9 @@ export default {
     }
 }
 
-declare module '@vue/runtime-core' {
+declare module 'vue' {
     export interface ComponentCustomProperties {
-        readonly $store: Store
+        $store: Store
     }
 }
 

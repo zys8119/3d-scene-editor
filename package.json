@@ -2,11 +2,11 @@
     "name": "zhijiasoft",
     "version": "0.0.1",
     "scripts": {
-        "dev": "vite",
+        "dev": "vite --host",
         "build": "npm run lint:fix && npm run tsc && vite build",
         "build:test": "npm run lint:fix && npm run tsc && vite build --mode test",
         "tsc": "vue-tsc --noEmit",
-        "serve": "vite preview",
+        "serve": "vite preview --host",
         "lint": "eslint src",
         "lint:fix": "eslint src --fix --ext .ts,.tsx,.vue",
         "prepare": "husky install"

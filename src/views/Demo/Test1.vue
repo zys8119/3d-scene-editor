@@ -1,6 +1,7 @@
 <template>
     <div id="Test1">
         demo
+        {{ api }}
     </div>
 </template>
 
