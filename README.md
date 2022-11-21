@@ -35,12 +35,12 @@ git push origin master
 
 ## 快速开始
 
-推荐使用  `yarn` 以获得更好的依赖安装体验
+推荐使用  `pnpm` 以获得更好的依赖安装体验
 
 ```bash
 # 使用 yarn
-yarn
-yarn dev
+pnpm i
+pnpm dev
 # 使用 npm
 npm i
 npm run dev
@@ -49,8 +49,8 @@ npm run dev
 每次运行  `dev`  前可以先运行以下命令以获得最新版本的 request 插件
 
 ```bash
-# 使用 yarn
-yarn upgrade wp-request
+# 使用 pnpm
+pnpm update wp-request
 # 使用 npm
 npm i wp-request
 ```

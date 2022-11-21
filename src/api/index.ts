@@ -11,7 +11,7 @@ declare global {
     }
 }
 
-declare module '@vue/runtime-core' {
+declare module 'vue' {
     export interface ComponentCustomProperties {
         api: typeof api;
     }
