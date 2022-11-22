@@ -1,82 +1,92 @@
 lockfileVersion: 5.4
 
-specifiers:
-  '@commitlint/cli': ^15.0.0
-  '@commitlint/config-conventional': ^15.0.0
-  '@originjs/vite-plugin-commonjs': ^1.0.1
-  '@types/node': ^16.11.11
-  '@typescript-eslint/eslint-plugin': ^5.5.0
-  '@typescript-eslint/parser': ^5.5.0
-  '@vitejs/plugin-legacy': ^2.0.0
-  '@vitejs/plugin-vue': ^3.0.1
-  '@vitejs/plugin-vue-jsx': ^2.0.0
-  '@vueuse/core': ^9.1.0
-  eslint: ^8.3.0
-  eslint-plugin-vue: ^8.1.1
-  eslint-plugin-vue3-jsx: ^0.0.3-beta.3
-  husky: ^7.0.4
-  less: ^4.1.2
-  lint-staged: ^12.1.2
-  md5: ^2.3.0
-  path: ^0.12.7
-  pinia: ^2.0.4
-  rd-utils: git+https://gitlab.zhijiasoft.com/zhangyunshan/zhijia_utils.git
-  resize-observer: ^1.0.4
-  sass: ^1.49.9
-  terser: ^5.14.2
-  typescript: ~4.7.4
-  unplugin-auto-import: ^0.11.1
-  unplugin-vue-components: ^0.22.4
-  vite: ^3.0.2
-  vite-plugin-fz: ^1.0.2
-  vite-plugin-vue-setup-extend-plus: ^0.0.2
-  vue: ^3.2.16
-  vue-router: ^4.0.12
-  vue-tsc: ^0.40.0
-  wisdom-plus: git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git
-  wp-preprocessor: ^1.0.2
-  wp-request: ^1.2.8
-  wp-validate: ^0.0.3
+importers:
 
-dependencies:
-  '@vitejs/plugin-legacy': 2.3.1_terser@5.15.1+vite@3.2.4
-  '@vueuse/core': 9.5.0_vue@3.2.45
-  eslint-plugin-vue3-jsx: 0.0.3-beta.3
-  md5: 2.3.0
-  pinia: 2.0.24_e7lp6ggkpgyi5vqd44m2kxvk6i
-  rd-utils: gitlab.zhijiasoft.com/zhangyunshan/zhijia_utils/c719af4695ea368389137353035210c7ac201ccc
-  resize-observer: 1.0.4
-  vite-plugin-fz: 1.0.8
-  vue: 3.2.45
-  vue-router: 4.1.6_vue@3.2.45
-  wisdom-plus: gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release/c216209fe14b6a0ed87effc46508f6029f32899f_vue@3.2.45
-  wp-preprocessor: 1.0.12
-  wp-request: 1.2.8_vue@3.2.45
-  wp-validate: 0.0.3
+  .:
+    specifiers:
+      '@commitlint/cli': ^15.0.0
+      '@commitlint/config-conventional': ^15.0.0
+      '@iconfont/icon': ^0.0.1
+      '@originjs/vite-plugin-commonjs': ^1.0.1
+      '@types/md5': ^2.3.2
+      '@types/node': ^16.11.11
+      '@typescript-eslint/eslint-plugin': ^5.5.0
+      '@typescript-eslint/parser': ^5.5.0
+      '@vitejs/plugin-legacy': ^2.0.0
+      '@vitejs/plugin-vue': ^3.0.1
+      '@vitejs/plugin-vue-jsx': ^2.0.0
+      '@vueuse/core': ^9.1.0
+      eslint: ^8.3.0
+      eslint-plugin-vue: ^8.1.1
+      eslint-plugin-vue3-jsx: ^0.0.3-beta.3
+      husky: ^7.0.4
+      less: ^4.1.2
+      lint-staged: ^12.1.2
+      md5: ^2.3.0
+      path: ^0.12.7
+      pinia: ^2.0.4
+      rd-utils: git+https://gitlab.zhijiasoft.com/zhangyunshan/zhijia_utils.git
+      resize-observer: ^1.0.4
+      sass: ^1.49.9
+      terser: ^5.14.2
+      typescript: ~4.7.4
+      unplugin-auto-import: ^0.11.1
+      unplugin-vue-components: ^0.22.4
+      vite: ^3.0.2
+      vite-plugin-fz: ^1.0.2
+      vite-plugin-vue-setup-extend-plus: ^0.0.2
+      vue: ^3.2.16
+      vue-router: ^4.0.12
+      vue-tsc: ^0.40.0
+      wisdom-plus: git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git
+      wp-alert: ^0.0.3
+      wp-preprocessor: ^1.0.2
+      wp-request: ^1.2.8
+      wp-validate: ^0.0.3
+    dependencies:
+      '@iconfont/icon': link:packages/icons
+      '@vitejs/plugin-legacy': 2.3.1_terser@5.15.1+vite@3.2.4
+      '@vueuse/core': 9.5.0_vue@3.2.45
+      eslint-plugin-vue3-jsx: 0.0.3-beta.3
+      md5: 2.3.0
+      pinia: 2.0.24_e7lp6ggkpgyi5vqd44m2kxvk6i
+      rd-utils: gitlab.zhijiasoft.com/zhangyunshan/zhijia_utils/c719af4695ea368389137353035210c7ac201ccc
+      resize-observer: 1.0.4
+      vite-plugin-fz: 1.0.8
+      vue: 3.2.45
+      vue-router: 4.1.6_vue@3.2.45
+      wisdom-plus: gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release/c216209fe14b6a0ed87effc46508f6029f32899f_vue@3.2.45
+      wp-alert: 0.0.3
+      wp-preprocessor: 1.0.12
+      wp-request: 1.2.8_vue@3.2.45
+      wp-validate: 0.0.3
+    devDependencies:
+      '@commitlint/cli': 15.0.0
+      '@commitlint/config-conventional': 15.0.0
+      '@originjs/vite-plugin-commonjs': 1.0.3
+      '@types/md5': 2.3.2
+      '@types/node': 16.18.3
+      '@typescript-eslint/eslint-plugin': 5.43.0_qsgylxrteg3kafyiommnwlhq5e
+      '@typescript-eslint/parser': 5.43.0_tqvwk7sh3taph5wf7sr5z34mke
+      '@vitejs/plugin-vue': 3.2.0_vite@3.2.4+vue@3.2.45
+      '@vitejs/plugin-vue-jsx': 2.1.1_vite@3.2.4+vue@3.2.45
+      eslint: 8.28.0
+      eslint-plugin-vue: 8.7.1_eslint@8.28.0
+      husky: 7.0.4
+      less: 4.1.3
+      lint-staged: 12.5.0
+      path: 0.12.7
+      sass: 1.56.1
+      terser: 5.15.1
+      typescript: 4.7.4
+      unplugin-auto-import: 0.11.4_@vueuse+core@9.5.0
+      unplugin-vue-components: 0.22.9_vue@3.2.45
+      vite: 3.2.4_rx3tzj7owbglupuujoyya2ax3m
+      vite-plugin-vue-setup-extend-plus: 0.0.2
+      vue-tsc: 0.40.13_typescript@4.7.4
 
-devDependencies:
-  '@commitlint/cli': 15.0.0
-  '@commitlint/config-conventional': 15.0.0
-  '@originjs/vite-plugin-commonjs': 1.0.3
-  '@types/node': 16.18.3
-  '@typescript-eslint/eslint-plugin': 5.43.0_qsgylxrteg3kafyiommnwlhq5e
-  '@typescript-eslint/parser': 5.43.0_tqvwk7sh3taph5wf7sr5z34mke
-  '@vitejs/plugin-vue': 3.2.0_vite@3.2.4+vue@3.2.45
-  '@vitejs/plugin-vue-jsx': 2.1.1_vite@3.2.4+vue@3.2.45
-  eslint: 8.28.0
-  eslint-plugin-vue: 8.7.1_eslint@8.28.0
-  husky: 7.0.4
-  less: 4.1.3
-  lint-staged: 12.5.0
-  path: 0.12.7
-  sass: 1.56.1
-  terser: 5.15.1
-  typescript: 4.7.4
-  unplugin-auto-import: 0.11.4_@vueuse+core@9.5.0
-  unplugin-vue-components: 0.22.9_vue@3.2.45
-  vite: 3.2.4_rx3tzj7owbglupuujoyya2ax3m
-  vite-plugin-vue-setup-extend-plus: 0.0.2
-  vue-tsc: 0.40.13_typescript@4.7.4
+  packages/icons:
+    specifiers: {}
 
 packages:
 
@@ -1880,6 +1890,10 @@ packages:
   /@types/lodash/4.14.189:
     resolution: {integrity: sha512-kb9/98N6X8gyME9Cf7YaqIMvYGnBSWqEci6tiettE6iJWH1XdJz/PO8LB0GtLCG7x8dU3KWhZT+lA1a35127tA==}
     dev: false
+
+  /@types/md5/2.3.2:
+    resolution: {integrity: sha512-v+JFDu96+UYJ3/UWzB0mEglIS//MZXgRaJ4ubUPwOM0gvLc/kcQ3TWNYwENEK7/EcXGQVrW8h/XqednSjBd/Og==}
+    dev: true
 
   /@types/minimatch/5.1.2:
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
@@ -11810,6 +11824,10 @@ packages:
     resolution: {integrity: sha512-rvw3QTZc8lAxyVrqcSGVm5yP/IJ2UcB3U0graE3LCFoZ0Yn2x4EoVSqJKdB/T5M+FLcRPjz4TDacRf3OCfNUzw==}
     dependencies:
       errno: 0.1.8
+    dev: false
+
+  /wp-alert/0.0.3:
+    resolution: {integrity: sha512-e2eU3zgEgwWA3KivQkRpUUkM4lEzM5ngNSJeeRC8aG26Lw4BVXqvwJp/fylGb6xgG0/xuMVWIq4cglgyGIJrzQ==}
     dev: false
 
   /wp-preprocessor/1.0.12:
