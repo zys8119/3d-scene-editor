@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "esnext",
+        "sourceMap": true,
+        "moduleResolution": "Node",
+        "jsx":"preserve"
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

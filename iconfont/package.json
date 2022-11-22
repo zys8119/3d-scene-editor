@@ -1,0 +1,17 @@
+{
+  "name": "icons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "serve": "uf",
+    "icons:dev": "uf & vite",
+    "icons:sync": "ts-node iconsSync.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "uf-node": "^0.0.57"
+  }
+}

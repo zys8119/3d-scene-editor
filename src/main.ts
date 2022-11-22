@@ -21,7 +21,7 @@ app.use(errorHandle, {
 import api from '@/api'
 app.use(api)
 
-import alert from './alert'
+import alert from 'wp-alert'
 app.use(alert)
 
 import '@/router/permission'

@@ -2,7 +2,7 @@
     "name": "zhijiasoft",
     "version": "0.0.1",
     "scripts": {
-        "dev": "vite --host",
+        "dev": "vite --host & cd iconfont && npm run icons:dev",
         "build": "npm run lint:fix && npm run tsc && vite build",
         "build:test": "npm run lint:fix && npm run tsc && vite build --mode test",
         "tsc": "vue-tsc --noEmit",
@@ -11,7 +11,11 @@
         "lint:fix": "eslint src --fix --ext .ts,.tsx,.vue",
         "prepare": "husky install"
     },
+    "workspaces": [
+        "packages/*"
+    ],
     "dependencies": {
+        "@iconfont/icon": "^0.0.1",
         "@vitejs/plugin-legacy": "^2.0.0",
         "@vueuse/core": "^9.1.0",
         "eslint-plugin-vue3-jsx": "^0.0.3-beta.3",
@@ -23,6 +27,7 @@
         "vue": "^3.2.16",
         "vue-router": "^4.0.12",
         "wisdom-plus": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git",
+        "wp-alert": "^0.0.3",
         "wp-preprocessor": "^1.0.2",
         "wp-request": "^1.2.8",
         "wp-validate": "^0.0.3"
@@ -31,6 +36,7 @@
         "@commitlint/cli": "^15.0.0",
         "@commitlint/config-conventional": "^15.0.0",
         "@originjs/vite-plugin-commonjs": "^1.0.1",
+        "@types/md5": "^2.3.2",
         "@types/node": "^16.11.11",
         "@typescript-eslint/eslint-plugin": "^5.5.0",
         "@typescript-eslint/parser": "^5.5.0",

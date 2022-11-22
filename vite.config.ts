@@ -15,6 +15,7 @@ import validatePreset from 'wp-validate/dist/preset'
 import preprocessorPreset from 'wp-preprocessor/dist/preset'
 import requestPreset from 'wp-request/dist/preset'
 import { Resolver } from 'unplugin-auto-import/types'
+import { resolver as WpAlertResolver} from 'wp-alert/resolver'
 import md5 from 'md5'
 
 // https://vitejs.dev/config/
@@ -48,11 +49,13 @@ export default defineConfig({
                 'pinia'
             ],
             resolvers: [
+                WpAlertResolver(),
                 WisdomPlusResolver() as Resolver[]
             ]
         }),
         Components({
             resolvers: [
+                WpAlertResolver(),
                 WisdomPlusResolver()
             ]
         }),
@@ -99,7 +102,7 @@ export default defineConfig({
                     return `assets/chunk-${newFileName.slice(0, 8)}.js`
                 },
                 assetFileNames(chunkInfo) {
-                    const newFileName = md5(chunkInfo.name.replace(__dirname, '').replace(/\/|\\|\./g, '-'))
+                    const newFileName = md5((chunkInfo.name || '').replace(__dirname, '').replace(/\/|\\|\./g, '-'))
                     return `assets/${newFileName.slice(0, 8)}.[ext]`
                 },
                 entryFileNames(chunkInfo) {

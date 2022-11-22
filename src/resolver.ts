@@ -4,6 +4,12 @@ function resolveComponent(name: string) {
         return
     if (name === 'WpG') name = 'WpGrid'
     if (name === 'WpGi') name = 'WpGridItem'
+    if (name.match(/^WpIconFont[A-Z]/)) {
+        return {
+            importName: name,
+            path: '@iconfont/icon'
+        }
+    }
     return {
         name,
         from: 'wisdom-plus/es'
@@ -14,7 +20,7 @@ export function WisdomPlusResolver(): ComponentResolver[] {
         {
             type: 'component',
             resolve: async(name) => {
-                return resolveComponent(name)
+                return resolveComponent(name) as ComponentResolveResult
             }
         }
     ]
