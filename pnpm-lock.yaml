@@ -54,7 +54,7 @@ dependencies:
   vite-plugin-fz: 1.0.8
   vue: 3.2.45
   vue-router: 4.1.6_vue@3.2.45
-  wisdom-plus: gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release/cd65c12e7573460302787d2d61b12b694a8ff4fa_vue@3.2.45
+  wisdom-plus: gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release/c216209fe14b6a0ed87effc46508f6029f32899f_vue@3.2.45
   wp-preprocessor: 1.0.12
   wp-request: 1.2.5_vue@3.2.45
   wp-validate: 0.0.3
@@ -12745,9 +12745,9 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release/cd65c12e7573460302787d2d61b12b694a8ff4fa_vue@3.2.45:
-    resolution: {commit: cd65c12e7573460302787d2d61b12b694a8ff4fa, repo: https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git, type: git}
-    id: gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release/cd65c12e7573460302787d2d61b12b694a8ff4fa
+  gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release/c216209fe14b6a0ed87effc46508f6029f32899f_vue@3.2.45:
+    resolution: {commit: c216209fe14b6a0ed87effc46508f6029f32899f, repo: https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git, type: git}
+    id: gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release/c216209fe14b6a0ed87effc46508f6029f32899f
     name: wisdom-plus
     version: 0.0.1-beta.9
     peerDependencies:
