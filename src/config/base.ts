@@ -17,6 +17,9 @@ export default {
      */
     title: '后台管理系统',
     lang: 'zh-cn',
-    /** 在编译时，是否启用文件名 hash */
-    filenameHash: true
+    /**
+     * 在编译时，是否启用文件名 hash
+     * 暂时默认关闭因为有时候会因为同名相互覆盖
+    */
+    filenameHash: false
 } as BaseConfig
