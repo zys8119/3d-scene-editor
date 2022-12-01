@@ -23,14 +23,14 @@
         "pinia": "^2.0.4",
         "rd-utils": "git+https://gitlab.zhijiasoft.com/zhangyunshan/zhijia_utils.git",
         "resize-observer": "^1.0.4",
-        "vite-plugin-fz": "^1.0.2",
+        "vite-plugin-fz": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz.git",
         "vue": "^3.2.45",
         "vue-router": "^4.0.12",
         "wisdom-plus": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git",
-        "wp-alert": "^0.0.3",
-        "wp-preprocessor": "^1.0.2",
-        "wp-request": "^1.2.8",
-        "wp-validate": "^0.0.3"
+        "wp-alert": "^0.0.20",
+        "wp-preprocessor": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-preprocessor.git",
+        "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git",
+        "wp-validate": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-validate.git"
     },
     "devDependencies": {
         "@commitlint/cli": "^15.0.0",

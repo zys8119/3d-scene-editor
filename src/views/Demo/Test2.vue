@@ -52,7 +52,7 @@ const openComponentAlert = () => {
     })
 }
 const goIconfont = () => {
-    window.open('http://127.0.0.1:3002/')
+    window.open('http://localhost:3002/')
 }
 </script>
 
