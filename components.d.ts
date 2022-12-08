@@ -28,6 +28,7 @@ declare module '@vue/runtime-core' {
     WpBadge: typeof import('wisdom-plus/es')['WpBadge']
     WpBreadcrumb: typeof import('wisdom-plus/es')['WpBreadcrumb']
     WpButton: typeof import('wisdom-plus/es')['WpButton']
+    WpCountDown: typeof import('wisdom-plus/es')['WpCountDown']
     WpDropdown: typeof import('wisdom-plus/es')['WpDropdown']
     WpEllipsis: typeof import('wisdom-plus/es')['WpEllipsis']
     WpIcon: typeof import('wisdom-plus/es')['WpIcon']

@@ -62,7 +62,16 @@ export const routes: RouteRecordRaw[] = [
             hiddenInTag: true,
             noCache: true
         }
-    }
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/System/Login.vue'),
+        meta: {
+            title: '登录',
+            isFullPage: true
+        }
+    },
 ]
 
 const router = createRouter({

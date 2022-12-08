@@ -1,8 +1,8 @@
-import demo from './demo'
+import v1 from './v1'
 import {App} from 'vue'
 
 export const api = {
-    demo
+    v1
 }
 
 declare global {
