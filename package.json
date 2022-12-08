@@ -3,9 +3,8 @@
     "version": "0.0.1",
     "scripts": {
         "dev": "vite",
-        "build": "npm run lint:fix && npm run tsc && vite build",
-        "build:test": "npm run lint:fix && npm run tsc && vite build --mode test",
-        "tsc": "vue-tsc --noEmit",
+        "build": "npm run lint:fix && vite build",
+        "build:test": "npm run lint:fix && vite build --mode test",
         "serve": "vite preview --host",
         "lint": "eslint src",
         "lint:fix": "eslint src --fix --ext .ts,.tsx,.vue",
@@ -16,14 +15,17 @@
     ],
     "private": true,
     "dependencies": {
+        "@element-plus/icons-vue": "^2.0.10",
         "@iconfont/icon": "^0.0.1",
         "@vitejs/plugin-legacy": "^2.0.0",
         "@vueuse/core": "^9.1.0",
+        "element-plus": "^2.2.12",
         "eslint-plugin-vue3-jsx": "^0.0.3-beta.3",
         "md5": "^2.3.0",
         "pinia": "^2.0.4",
         "rd-utils": "git+https://gitlab.zhijiasoft.com/zhangyunshan/zhijia_utils.git",
         "resize-observer": "^1.0.4",
+        "unplugin-auto-import-element-plus-preset": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/unplugin-auto-import-element-plus-preset.git",
         "vite-plugin-fz": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz.git",
         "vue": "^3.2.45",
         "vue-router": "^4.0.12",
@@ -56,8 +58,7 @@
         "unplugin-auto-import": "^0.11.1",
         "unplugin-vue-components": "^0.22.4",
         "vite": "^3.0.2",
-        "vite-plugin-vue-setup-extend-plus": "^0.0.2",
-        "vue-tsc": "^0.40.0"
+        "vite-plugin-vue-setup-extend-plus": "^0.0.2"
     },
     "husky": {
         "hooks": {

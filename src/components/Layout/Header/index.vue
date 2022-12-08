@@ -28,7 +28,7 @@
                     <template v-for="route in routesMap" :key="route.name">
                         <router-link :to="route" class="top-menu" :class="{ active: route.active }">
                             <wp-icon v-if="route.meta?.icon" :fill="false">
-                                <component :is="route.meta?.icon" />
+                                <component :is="typeof route.meta?.icon === 'string' ? Icons[route.meta?.icon] : route.meta?.icon" />
                             </wp-icon>
                             {{ route.meta?.title || route.name }}
                         </router-link>
@@ -45,6 +45,7 @@
 </template>
 
 <script lang="ts" setup>
+import * as Icons from '@/components/Icons'
 import useStore from '@/store/modules/main'
 import config from '@/config/config'
 import base from '@/config/base'

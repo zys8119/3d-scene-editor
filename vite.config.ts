@@ -5,6 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { WisdomPlusResolver } from './src/resolver'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import { htmlTransform } from './src/utils'
 import { rem, remPreset } from 'vite-plugin-fz'
@@ -50,13 +51,15 @@ export default defineConfig({
             ],
             resolvers: [
                 WpAlertResolver(),
-                WisdomPlusResolver() as Resolver[]
+                WisdomPlusResolver() as Resolver[],
+                ElementPlusResolver()
             ]
         }),
         Components({
             resolvers: [
                 WpAlertResolver(),
-                WisdomPlusResolver()
+                WisdomPlusResolver(),
+                ElementPlusResolver()
             ]
         }),
         htmlTransform(),

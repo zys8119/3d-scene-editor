@@ -14,6 +14,7 @@
 </template>
 
 <script lang="ts" setup>
+import * as Icons from '@/components/Icons'
 import useStore from '@/store/modules/main'
 import { RouteRecordRaw } from 'vue-router'
 import configHooks from '@/config/configHooks'
@@ -49,7 +50,7 @@ const routesMap = computed<MenuRecord[]>(() => {
                 title: route.meta?.title || route.name,
                 children: route.children ? routesMapper(route.children) : undefined,
                 info: route,
-                icon: route.meta?.icon
+                icon: typeof route.meta?.icon === 'string' ? markRaw(h((Icons as any)[route.meta?.icon as string])) : route.meta?.icon
             } as MenuRecord
         })
     }

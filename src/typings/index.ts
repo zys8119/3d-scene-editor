@@ -20,3 +20,8 @@ export interface FileItem {
     suffix: string
     url: string
 }
+
+export interface EditBtn {
+    title: string
+    index: number
+}
