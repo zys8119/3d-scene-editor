@@ -2,7 +2,7 @@
     "name": "zhijiasoft",
     "version": "0.0.1",
     "scripts": {
-        "dev": "vite --host & cd iconfont && npm run icons:dev",
+        "dev": "vite",
         "build": "npm run lint:fix && npm run tsc && vite build",
         "build:test": "npm run lint:fix && npm run tsc && vite build --mode test",
         "tsc": "vue-tsc --noEmit",
@@ -14,6 +14,7 @@
     "workspaces": [
         "packages/*"
     ],
+    "private": true,
     "dependencies": {
         "@iconfont/icon": "^0.0.1",
         "@vitejs/plugin-legacy": "^2.0.0",
@@ -27,7 +28,7 @@
         "vue": "^3.2.45",
         "vue-router": "^4.0.12",
         "wisdom-plus": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git",
-        "wp-alert": "^0.0.20",
+        "wp-alert": "^0.0.28",
         "wp-preprocessor": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-preprocessor.git",
         "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git",
         "wp-validate": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-validate.git"

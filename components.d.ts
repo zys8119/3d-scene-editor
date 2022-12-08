@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     404: typeof import('./src/components/Common/404.vue')['default']
     AlertContent: typeof import('wp-alert')['AlertContent']
+    AlertContentForm: typeof import('wp-alert')['AlertContentForm']
     AlertFooter: typeof import('wp-alert')['AlertFooter']
     Arrow: typeof import('./src/components/Layout/Header/Arrow.vue')['default']
     CommonModalHeader: typeof import('./src/components/CommonModalHeader.vue')['default']
