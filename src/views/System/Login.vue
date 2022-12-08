@@ -83,7 +83,7 @@ const login = async() => {
         ...res.data.user,
         access_token: res.data.access_token
     })
-    router.push('/assets-management/asset-list')
+    router.push('/')
 }
 
 // 切换登录模式
