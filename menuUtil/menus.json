@@ -1,0 +1,77 @@
+[
+    {
+        "path": "system",
+        "name": "System",
+        "meta": {
+            "title": "系统管理",
+            "icon": "SystemIcon8"
+        },
+        "redirect": "/system/organization",
+        "component": "",
+        "children": [
+            {
+                "path": "organization",
+                "name": "Organization",
+                "meta": {
+                    "title": "组织架构",
+                    "icon": "SystemIcon1"
+                },
+                "component": "System/Organization/index.vue"
+            },
+            {
+                "path": "staff",
+                "name": "Staff",
+                "meta": {
+                    "title": "员工信息",
+                    "icon": "SystemIcon2"
+                },
+                "component": "System/Staff/index.vue"
+            },
+            {
+                "path": "system-user",
+                "name": "SystemUser",
+                "meta": {
+                    "title": "系统用户管理",
+                    "icon": "SystemIcon3"
+                },
+                "component": "System/SystemUser/index.vue"
+            },
+            {
+                "path": "menu",
+                "name": "Menu",
+                "meta": {
+                    "title": "菜单管理",
+                    "icon": "SystemIcon4"
+                },
+                "component": "System/Menu/index.vue"
+            },
+            {
+                "path": "role",
+                "name": "Role",
+                "meta": {
+                    "title": "角色管理",
+                    "icon": "SystemIcon5"
+                },
+                "component": "System/Role/index.vue"
+            },
+            {
+                "path": "user-group",
+                "name": "UserGroup",
+                "meta": {
+                    "title": "用户组管理",
+                    "icon": "SystemIcon6"
+                },
+                "component": "System/UserGroup/index.vue"
+            },
+            {
+                "path": "version",
+                "name": "Version",
+                "meta": {
+                    "title": "版本管理",
+                    "icon": "SystemIcon7"
+                },
+                "component": "System/Version/index.vue"
+            }
+        ]
+    }
+]

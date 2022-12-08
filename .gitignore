@@ -1,4 +1,5 @@
 node_modules
+/menuUtil/node_modules
 .vscode
 .idea
 .DS_Store
