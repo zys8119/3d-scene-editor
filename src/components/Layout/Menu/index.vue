@@ -50,7 +50,7 @@ const routesMap = computed<MenuRecord[]>(() => {
                 title: route.meta?.title || route.name,
                 children: route.children ? routesMapper(route.children) : undefined,
                 info: route,
-                icon: typeof route.meta?.icon === 'string' ? markRaw(h((Icons as any)[route.meta?.icon as string])) : route.meta?.icon
+                icon: (route.meta?.icon && typeof route.meta?.icon === 'string') ? markRaw(h((Icons as any)[route.meta?.icon as string])) : route.meta?.icon
             } as MenuRecord
         })
     }
