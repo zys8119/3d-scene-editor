@@ -20,6 +20,7 @@
 </template>
 
 <script lang="ts" setup>
+import Logo from '@/components/Layout/logo/index.vue'
 import useAppConfigStore from '@/store/modules/app-config'
 import {computed} from 'vue'
 import {SideTheme, ThemeMode} from '@/typings'

@@ -21,7 +21,7 @@
                 !showNavBar ? 'tab-bar-top' : '',
             ]"
         >
-            <!--            <NavBar v-if="showNavBar"/>-->
+            <NavBar v-if="showNavBar"/>
             <!--            <TabBar/>-->
         </section>
         <div class="main-base-style scrollbar" :class="[mainClass]">
@@ -38,6 +38,9 @@
 </template>
 
 <script lang="ts" setup>
+import NavBar from '@/components/Layout/navbar/index.vue'
+import Main from '@/components/Layout/main.vue'
+import Footer from '@/components/Layout/footer/index.vue'
 import useAppConfigStore from '@/store/modules/app-config'
 import {ThemeMode} from '@/typings'
 import {useLoadingBar} from 'naive-ui'

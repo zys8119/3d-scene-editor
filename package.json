@@ -39,6 +39,7 @@
     "devDependencies": {
         "@commitlint/cli": "^15.0.0",
         "@commitlint/config-conventional": "^15.0.0",
+        "@vicons/ionicons5": "^0.10.0",
         "@originjs/vite-plugin-commonjs": "^1.0.1",
         "@types/md5": "^2.3.2",
         "@types/node": "^16.11.11",

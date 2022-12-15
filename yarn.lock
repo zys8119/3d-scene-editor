@@ -1726,6 +1726,11 @@
   resolved "https://registry.npmmirror.com/@uni/env/-/env-1.1.0.tgz#ff04443a0320c235a8700e1bafa0c657f264e518"
   integrity sha512-2GVgUzxIaO2vGElXEuc45+I7L6Jbw8inLDDFuC0K4htjKtPmYywKSE6oDhvmdAXb4GCOH8hmxECYtAh1rjsgoQ==
 
+"@vicons/ionicons5@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.npmmirror.com/@vicons/ionicons5/-/ionicons5-0.10.0.tgz#94641a71850d9e251f1059b67da4c19326bce962"
+  integrity sha512-AgOAI15sXiasLKozj9Nkrxdda8BoaFN4TaprFCcHbBMLFOUwk6QLLHRngC+X5YhYXVjLqMbQ6FtEbrPSPYIZEA==
+
 "@vitejs/plugin-legacy@^2.0.0":
   version "2.3.1"
   resolved "https://registry.npmmirror.com/@vitejs/plugin-legacy/-/plugin-legacy-2.3.1.tgz#44d8e608e66ef03ff82ae176588c7a621d56c524"
