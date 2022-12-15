@@ -1,5 +1,5 @@
 <template>
-    <n-button>alsdjfkasl</n-button>
+    <n-button type="primary">alsdjfkasl</n-button>
     <span style="font-size: 100fh;">响应式字号文字测试</span>
     <div id="Test2">
         <wp-pro-permission has="admin">
