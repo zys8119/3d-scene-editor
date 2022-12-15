@@ -5,6 +5,7 @@ import type {ConfigHooks} from './typings'
 import baseConfig from './base'
 import config from './config'
 import {closeAllModals, closeAllPopovers} from 'wisdom-plus'
+export const views = import.meta.glob('../views/**/**')
 
 export default {
     /**
