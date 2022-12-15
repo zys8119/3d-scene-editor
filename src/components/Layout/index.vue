@@ -21,7 +21,7 @@
                         <!--                        <MainLayout/>-->
                     </template>
                     <template v-else>
-                        <!--                        <SideBar/>-->
+                        <SideBar/>
                         <!--                        <MainLayout/>-->
                     </template>
                     <div
