@@ -26,6 +26,8 @@ declare module '@vue/runtime-core' {
     Loading: typeof import('./src/components/Common/Loading.vue')['default']
     Menu: typeof import('./src/components/Layout/Menu/index.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
+    NMessageProvider: typeof import('naive-ui')['NMessageProvider']
+    NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     Redirect: typeof import('./src/components/Common/Redirect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

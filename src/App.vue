@@ -1,18 +1,7 @@
-<script lang="ts" setup>
-/**
- * 监听 resize 事件，修改 store 的 isH5 属性
- */
-const store = window.store.main
-const view = ref<HTMLDivElement>()
-const setH5 = () => store.isH5 = document.body.offsetWidth < store.isH5Max
-
-watch(() => store.isH5Max, setH5, { immediate: true })
-useResizeObserver(view, setH5)
-</script>
-
 <template>
-    <div id="view" ref="view">
-        <wp-spin :loading="store.loading" fullscreen size="36px" />
-        <router-view />
-    </div>
+    <n-notification-provider>
+        <n-message-provider>
+            <router-view />
+        </n-message-provider>
+    </n-notification-provider>
 </template>
