@@ -1,157 +1,128 @@
 <template>
-    <template v-if="route.meta?.isFullPage">
-        <router-view v-if="config.router.keepAlive" v-slot="{ Component }">
-            <keep-alive :include="keepAliveInclude" :max="config.tagViews.disabled ? undefined : config.tagViews.max">
-                <component :is="Component" />
-            </keep-alive>
-        </router-view>
-        <router-view v-else />
-    </template>
-    <div v-else class="main">
-        <wp-layout>
-            <wp-layout-aside class="main-header">
-                <layout-header />
-            </wp-layout-aside>
-            <wp-layout-content>
-                <wp-layout row>
-                    <wp-layout-aside class="main-aside">
-                        <layout-menu />
-                    </wp-layout-aside>
-                    <wp-layout-content class="main-content">
-                        <tag-views v-if="!config.tagViews.disabled" />
-                        <div ref="contentRef" class="main-content-in">
-                            <div v-if="!route.meta?.hideBreadcrumbs" class="main-content-in-title">
-                                <wp-breadcrumb :list="routeMatchedMap">
-                                    <template #item="{ title, to, link }">
-                                        <router-link v-if="link" :to="to">{{ title }}</router-link>
-                                        <template v-else>
-                                            {{ title }}
-                                        </template>
-                                    </template>
-                                </wp-breadcrumb>
-                            </div>
-                            <router-view v-if="config.router.keepAlive" v-slot="{ Component }">
-                                <keep-alive :include="keepAliveInclude" :max="config.tagViews.disabled ? undefined : config.tagViews.max">
-                                    <component :is="Component" />
-                                </keep-alive>
-                            </router-view>
-                            <router-view v-else />
-                        </div>
-                    </wp-layout-content>
-                </wp-layout>
-            </wp-layout-content>
-        </wp-layout>
-    </div>
+    <n-config-provider
+        :theme-overrides="themeOverrides"
+        :theme="theme"
+        :locale="zhCN"
+        style="height: 100%"
+    >
+        <n-global-style/>
+        <n-loading-bar-provider>
+            <n-dialog-provider>
+                <n-el
+                    class="vaw-layout-container"
+                    :class="[appConfig.deviceType === 'mobile' && 'is-mobile']"
+                >
+                    <template v-if="layoutMode === 'ttb'">
+                        <!--                        <VAWHeader/>-->
+                        <!--                        <MainLayout :show-nav-bar="false"/>-->
+                    </template>
+                    <template v-else-if="layoutMode === 'lcr'">
+                        <!--                        <TabSplitSideBar/>-->
+                        <!--                        <MainLayout/>-->
+                    </template>
+                    <template v-else>
+                        <!--                        <SideBar/>-->
+                        <!--                        <MainLayout/>-->
+                    </template>
+                    <div
+                        v-if="appConfig.deviceType !== 'mobile'"
+                        class="mobile-shadow"
+                        :class="[appConfig.isCollapse ? 'close-shadow' : 'show-shadow']"
+                        @click="closeMenu"
+                    />
+                </n-el>
+            </n-dialog-provider>
+        </n-loading-bar-provider>
+    </n-config-provider>
 </template>
 
 <script lang="ts" setup>
-import { onBeforeRouteUpdate, RouterView } from 'vue-router'
-import LayoutMenu from './Menu/index.vue'
-import LayoutHeader from './Header/index.vue'
-import config from '@/config/config'
+import useAppConfigStore from '@/store/modules/app-config'
+import {darkTheme, zhCN} from 'naive-ui'
+import {DeviceType, ThemeMode} from '@/typings'
 
-import TagViews from './TagViews/index.vue'
-
-import useTagViewsStore from '@/store/modules/tagViews'
-import type { BreadcrumbList } from 'wisdom-plus'
-
-const tagViewsStore = useTagViewsStore()
-const route = useRoute()
-
-const keepAliveInclude = computed(() => {
-    if (config.tagViews.disabled) return undefined
-    return tagViewsStore.tags.filter(item => {
-        return !item.meta.noCache
-    }).map(tag => {
-        return String(tag.name)
-    })
+const appConfig = useAppConfigStore()
+const theme = computed(() => {
+    return appConfig.theme === ThemeMode.DARK ? darkTheme : null
+})
+const themeOverrides = computed(() => {
+    return {
+        common: {
+            primaryColor: appConfig.themeColor,
+            primaryColorHover: appConfig.themeColor,
+        },
+    }
+})
+const layoutMode = computed(() => {
+    return appConfig.getLayoutMode
 })
 
-const routeMatchedMap = computed(() => {
-    const result: BreadcrumbList[] = route.meta.breadcrumbs?.map<BreadcrumbList>((item, index) => {
-        return {
-            index: item.name,
-            to: item,
-            title: String(item.meta?.title || item.name),
-            link: index !== (route.meta.breadcrumbs?.length || 0) - 1
-        }
-    }) || []
-    // BreadcrumbList
-    return result
+function handleScreenResize() {
+    const width = document.body.clientWidth
+    if (width <= 768) {
+        appConfig.changeDevice(DeviceType.MOBILE)
+        appConfig.toggleCollapse(true)
+    } else if (width < 992 && width > 768) {
+        appConfig.changeDevice(DeviceType.PAD)
+        appConfig.toggleCollapse(true)
+    } else if (width < 1200 && width >= 992) {
+        appConfig.changeDevice(DeviceType.PC)
+        appConfig.toggleCollapse(false)
+    } else {
+        appConfig.changeDevice(DeviceType.PC)
+        appConfig.toggleCollapse(false)
+    }
+}
+
+function closeMenu() {
+    appConfig.toggleCollapse(true)
+}
+
+onBeforeUnmount(() => {
+    window.removeEventListener('resize', handleScreenResize)
 })
 
-const contentRef = ref<HTMLDivElement | null>(null)
-onBeforeRouteUpdate(() => {
-    // 自动滚动到顶部
-    if (contentRef.value) contentRef.value.scrollTop = 0
+onMounted(() => {
+    handleScreenResize()
+    window.addEventListener('resize', handleScreenResize)
 })
 </script>
 
-<style lang="less" scoped>
-.main {
-    height: 100vh;
-    display: flex;
-    .main-aside {
-        flex-shrink: 0;
-        overflow-x: hidden;
-        overflow-y: auto;
-        overflow-y: overlay;
-        scrollbar-width: none;
-        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-        z-index: 1;
+<style scoped lang="less">
+.vaw-layout-container {
+    height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+
+    .mobile-shadow {
+        display: none;
     }
-    .main-container {
-        flex: 1;
-        flex-basis: auto;
-        display: flex;
-        flex-direction: column;
-        overflow: auto;
+
+    .layout-mode-ttb {
+        margin-top: var(--logo-height);
+        transition: all var(--transition-time);
     }
-    .main-header {
-        background-color: var(--primary-color);
-        display: flex;
-        align-items: center;
-        height: var(--menu-height);
-        // padding: 0 20px;
-        color: #fff;
-        :deep(.main-header-left) {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
+}
+
+.is-mobile {
+    .mobile-shadow {
+        background-color: #000000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 997;
     }
-    .main-content {
-        flex: 1;
-        overflow: auto;
-        height: calc(100vh - var(--menu-height));
-        display: flex;
-        flex-direction: column;
-        &-in {
-            background-color: rgb(240, 240, 240);
-            padding: 15px 20px;
-            flex: 1;
-            overflow: auto;
-            &-title {
-                color: var(--primary-color);
-                padding-left: 10px;
-                border-left: 5px solid;
-                margin-bottom: 15px;
-                font-size: 16px;
-                font-weight: bold;
-                overflow: hidden;
-                a {
-                    text-decoration: none;
-                }
-                :deep(.wp-breadcrumb-item) {
-                    font-size: 14px;
-                    font-weight: normal;
-                }
-            }
-        }
+
+    .close-shadow {
+        display: none;
     }
-    :deep(.el-menu) {
-        height: 100%;
+
+    .show-shadow {
+        display: block;
+        opacity: 0.5;
+        transition: all var(--transition-time);
     }
 }
 </style>
