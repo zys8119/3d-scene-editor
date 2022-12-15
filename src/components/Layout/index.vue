@@ -22,7 +22,7 @@
                     </template>
                     <template v-else>
                         <SideBar/>
-                        <!--                        <MainLayout/>-->
+                        <MainLayout/>
                     </template>
                     <div
                         v-if="appConfig.deviceType !== 'mobile'"

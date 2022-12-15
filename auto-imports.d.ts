@@ -3,11 +3,8 @@ export {}
 declare global {
   const $http: typeof import('wp-request')['$http']
   const EffectScope: typeof import('vue')['EffectScope']
-  const ElMessageBox: typeof import('element-plus/es')['ElMessageBox']
   const RequestPromise: typeof import('wp-request')['RequestPromise']
   const ValidationError: typeof import('wp-validate')['ValidationError']
-  const WpInput: typeof import('wisdom-plus/es')['WpInput']
-  const WpSwitch: typeof import('wisdom-plus/es')['WpSwitch']
   const WpToast: typeof import('wisdom-plus/es')['WpToast']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const api: typeof import('@/api')['api']
