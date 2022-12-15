@@ -22,7 +22,7 @@
             ]"
         >
             <NavBar v-if="showNavBar"/>
-            <!--            <TabBar/>-->
+            <TabBar/>
         </section>
         <div class="main-base-style scrollbar" :class="[mainClass]">
             <section class="main-section">
@@ -39,6 +39,7 @@
 
 <script lang="ts" setup>
 import NavBar from '@/components/Layout/navbar/index.vue'
+import TabBar from '@/components/Layout/tabbar/index.vue'
 import Main from '@/components/Layout/main.vue'
 import Footer from '@/components/Layout/footer/index.vue'
 import useAppConfigStore from '@/store/modules/app-config'

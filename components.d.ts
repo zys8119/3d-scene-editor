@@ -59,6 +59,7 @@ declare module '@vue/runtime-core' {
     SelectOption: typeof import('./src/components/SelectOption.vue')['default']
     SideBar: typeof import('./src/components/Layout/side-bar/side-bar.vue')['default']
     SvgIcon: typeof import('./src/components/Layout/svg-icon/index.vue')['default']
+    Tabbar: typeof import('./src/components/Layout/tabbar/index.vue')['default']
     TagViews: typeof import('./src/components/Layout/TagViews/index.vue')['default']
     VAWAvatar: typeof import('./src/components/Layout/avatar/VAWAvatar.vue')['default']
     WpAvatar: typeof import('wisdom-plus/es')['WpAvatar']
