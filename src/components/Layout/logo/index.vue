@@ -15,9 +15,9 @@ import useAppConfigStore from '@/store/modules/app-config'
 import base from '@/config/base'
 
 const props = withDefaults(defineProps<{
-    showTitle: boolean
-    showLogo: boolean
-    alwaysShow: boolean
+    showTitle?: boolean
+    showLogo?: boolean
+    alwaysShow?: boolean
 }>(), {
     showTitle: true,
     showLogo: true,

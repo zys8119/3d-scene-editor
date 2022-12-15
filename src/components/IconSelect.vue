@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import * as Icons from '@/components/Icons/index'
+import * as Icons from '@/icons/index'
 
 const props = defineProps<{
     modelValue?: string | undefined

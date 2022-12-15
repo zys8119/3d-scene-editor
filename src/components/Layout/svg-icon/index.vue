@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 const props = withDefaults(defineProps<{
-    prefix: string
+    prefix?: string
     name: string
 }>(), {
     prefix: 'icon',

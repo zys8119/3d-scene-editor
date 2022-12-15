@@ -26,7 +26,7 @@ import {computed} from 'vue'
 import {SideTheme, ThemeMode} from '@/typings'
 
 const props = withDefaults(defineProps<{
-    showLogo: boolean
+    showLogo?: boolean
 }>(), {
     showLogo: true
 })

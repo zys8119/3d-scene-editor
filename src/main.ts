@@ -40,4 +40,6 @@ import '@/assets/less/index.less'
 
 import './global'
 
+import 'virtual:svg-icons-register'
+
 app.mount('#app')

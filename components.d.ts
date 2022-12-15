@@ -14,7 +14,7 @@ declare module '@vue/runtime-core' {
     AlertFooter: typeof import('wp-alert')['AlertFooter']
     Arrow: typeof import('./src/components/Layout/Header/Arrow.vue')['default']
     Avatar: typeof import('./src/components/Layout/avatar/index.vue')['default']
-    Bell: typeof import('./src/components/Icons/Bell.vue')['default']
+    Bell: typeof import('./src/icons/Bell.vue')['default']
     Breadcrumb: typeof import('./src/components/Layout/breadcrumb/index.vue')['default']
     CommonModalHeader: typeof import('./src/components/CommonModalHeader.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']

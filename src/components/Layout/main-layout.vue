@@ -50,7 +50,7 @@ import {useRouter} from 'vue-router'
 const router = useRouter()
 
 const props = withDefaults(defineProps<{
-    showNavBar: boolean
+    showNavBar?: boolean
 }>(), {
     showNavBar: true
 })

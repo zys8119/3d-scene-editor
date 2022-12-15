@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import * as Icons from '@/components/Icons'
+import * as Icons from '@/icons'
 import useStore from '@/store/modules/main'
 import { RouteRecordRaw } from 'vue-router'
 import configHooks from '@/config/configHooks'

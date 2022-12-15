@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts" setup>
-import * as Icons from '@/components/Icons'
+import * as Icons from '@/icons'
 import useStore from '@/store/modules/main'
 import config from '@/config/config'
 import base from '@/config/base'
