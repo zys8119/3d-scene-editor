@@ -9,10 +9,10 @@ import {
 
 export default {
     theme: ThemeMode.LIGHT,
-    sideTheme: SideTheme.WHITE,
+    sideTheme: SideTheme.DARK,
     themeColor: '#f00',
-    layoutMode: LayoutMode.LTR,
-    sideWidth: 210,
+    layoutMode: LayoutMode.LCR,
+    sideWidth: 240,
     deviceType: DeviceType.PC,
     pageAnim: PageAnim.OPACITY,
     isFixedNavBar: true,

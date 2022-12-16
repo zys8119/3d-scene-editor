@@ -3,24 +3,27 @@
  */
 import useMainStore from './modules/main'
 import usetagViewsStore from './modules/tagViews'
+import useSideRoutesStore from './modules/side-routes'
+import useAppConfigStore from './modules/app-config'
 import { App } from 'vue'
 
 interface Store {
     main: ReturnType<typeof useMainStore>,
     tagViews: ReturnType<typeof usetagViewsStore>
+    sideRoutes: ReturnType<typeof useSideRoutesStore>
+    appConfig: ReturnType<typeof useAppConfigStore>
 }
 
 /**
  * 把导入的模块放到这里
  */
 function getStores(): Store {
-    const mainStore = useMainStore()
-    const tagViewsStore = usetagViewsStore()
-    const stores = {
-        main: mainStore,
-        tagViews: tagViewsStore
+    return {
+        main: useMainStore(),
+        tagViews: usetagViewsStore(),
+        sideRoutes: useSideRoutesStore(),
+        appConfig: useAppConfigStore(),
     }
-    return stores
 }
 
 /**

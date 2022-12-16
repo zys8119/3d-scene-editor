@@ -47,7 +47,6 @@ export default {
                     location.href = meta.url || '#'
                 }
             } else {
-                console.log(11)
                 router.push({ name: route.name })
             }
         }

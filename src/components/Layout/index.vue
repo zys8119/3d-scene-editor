@@ -14,8 +14,8 @@
                         <!--                        <MainLayout :show-nav-bar="false"/>-->
                     </template>
                     <template v-else-if="layoutMode === 'lcr'">
-                        <!--                        <TabSplitSideBar/>-->
-                        <!--                        <MainLayout/>-->
+                        <TabSplitSideBar/>
+                        <MainLayout/>
                     </template>
                     <template v-else>
                         <SideBar/>
@@ -35,6 +35,7 @@
 
 <script lang="ts" setup>
 import SideBar from '@/components/Layout/side-bar/side-bar.vue'
+import TabSplitSideBar from '@/components/Layout/side-bar/tab-split-side-bar.vue'
 import MainLayout from '@/components/Layout/main-layout.vue'
 import useAppConfigStore from '@/store/modules/app-config'
 import {darkTheme, zhCN} from 'naive-ui'
