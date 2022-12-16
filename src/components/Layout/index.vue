@@ -8,10 +8,7 @@
         <n-global-style/>
         <n-loading-bar-provider>
             <n-dialog-provider>
-                <n-el
-                    class="vaw-layout-container"
-                    :class="[appConfig.deviceType === 'mobile' && 'is-mobile']"
-                >
+                <n-el class="vaw-layout-container" :class="[appConfig.deviceType === 'mobile' && 'is-mobile']">
                     <template v-if="layoutMode === 'ttb'">
                         <!--                        <VAWHeader/>-->
                         <!--                        <MainLayout :show-nav-bar="false"/>-->

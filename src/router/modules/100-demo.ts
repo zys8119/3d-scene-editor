@@ -6,6 +6,7 @@ const routes: RouteRecordRaw[] = [
         name: 'demo',
         meta: {
             title: 'demo',
+            icon: 'menu'
         },
         component: RouterView,
         children: [
@@ -14,7 +15,6 @@ const routes: RouteRecordRaw[] = [
                 name: 'test2',
                 meta: {
                     title: 'test2',
-                    permissions: ['admin']
                 },
                 component: () => import('@/views/Demo/Test2.vue'),
                 children: [

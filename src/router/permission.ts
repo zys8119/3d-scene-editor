@@ -38,13 +38,7 @@ router.beforeEach(async(to, from, next) => {
              * 如果仍然拿不到 token，这里排除白名单避免无限循环
              * @tip 不取名字的统统当作需要登录处理
              */
-            if (
-                !store.token &&
-                (
-                    !to.name ||
-                    !config.router.whiteList.includes(to.name)
-                )
-            ) {
+            if (!store.token && (!to.name || !config.router.whiteList.includes(to.name))) {
                 return next({ name: 'login' })
             }
         }
@@ -61,10 +55,7 @@ router.beforeEach(async(to, from, next) => {
         /**
          * 第一次进入，一般会先获取权限
          */
-        if (
-            status.registerRouteFresh &&
-            !config.router.whiteList.includes(to.name || '')
-        ) {
+        if (status.registerRouteFresh && !config.router.whiteList.includes(to.name || '')) {
             if (config.router.needLogin) {
                 await getUserinfo()
                 await setRoutes()
@@ -78,6 +69,6 @@ router.beforeEach(async(to, from, next) => {
     } catch {
         // 请求出问题了？
         // token 可能失效了，清除一下
-        return next({ name: 'login' })
+        // return next({ name: 'login' })
     }
 })

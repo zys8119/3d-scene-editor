@@ -13,7 +13,7 @@ export default {
         /** 菜单相关配置 */
         menu: {
             /** 是否启用顶部菜单 */
-            topMenu: true,
+            topMenu: false,
             /** 是否启用折叠按钮 */
             collapse: true
         },

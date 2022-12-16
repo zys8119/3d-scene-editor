@@ -51,7 +51,7 @@ export const routes: RouteRecordRaw[] = [
         component: () => import('@/views/Demo/Test1.vue'),
         meta: {
             title: 'Demo',
-            hiddenInTag: true
+            hiddenInTag: true,
         }
     },
     {
@@ -96,7 +96,7 @@ declare module 'vue-router' {
         /**
          * 图标，要求是一个 Vue Component
          */
-        icon?: Component;
+        icon?: Component | String;
         /**
          * 是否全屏
          */

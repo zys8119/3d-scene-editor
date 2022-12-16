@@ -13,7 +13,7 @@
             <transition name="logo">
                 <Logo v-if="showLogo"/>
             </transition>
-            <ScrollerMenu :routes="[]"/>
+            <ScrollerMenu :routes="routesMap"/>
             <div class="mobile-shadow"/>
         </n-card>
     </n-config-provider>
@@ -22,8 +22,16 @@
 <script lang="ts" setup>
 import Logo from '@/components/Layout/logo/index.vue'
 import useAppConfigStore from '@/store/modules/app-config'
-import {computed} from 'vue'
+import {computed, h} from 'vue'
 import {SideTheme, ThemeMode} from '@/typings'
+import {RouteRecordRaw} from 'vue-router'
+import config from '@/config/config'
+import useStore from '@/store/modules/main'
+import SvgIcon from '@/components/Layout/svg-icon/index.vue'
+import {NIcon} from 'naive-ui'
+
+const store = useStore()
+const route = useRoute()
 
 const props = withDefaults(defineProps<{
     showLogo?: boolean
@@ -31,6 +39,31 @@ const props = withDefaults(defineProps<{
     showLogo: true
 })
 
+// 菜单
+const routesMap = computed<any[]>(() => {
+    const routesMapper = (routes: RouteRecordRaw[]): any[] => {
+        return routes.filter(route => !route.meta?.hidden).map(route => {
+            return {
+                key: route.name,
+                label: route.meta?.title || route.name,
+                children: route.children ? routesMapper(route.children) : undefined,
+                info: route,
+                icon: () => h(NIcon, null, {
+                    default: () =>
+                        h(SvgIcon, {
+                            prefix: 'icon',
+                            name: route?.meta?.icon
+                        }),
+                    }),
+            } as any
+        })
+    }
+    const currentRoute = config.router.menu.topMenu ? store.routes.find(routing => route.meta.breadcrumbs?.[0].name === routing.name)?.children || [] : store.routes
+    return routesMapper(currentRoute)
+})
+
+
+// 主题设置
 const appConfig = useAppConfigStore()
 const themeOverThemes = computed(() => {
     if (appConfig.theme === ThemeMode.DARK) {
