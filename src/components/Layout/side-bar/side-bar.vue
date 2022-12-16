@@ -42,11 +42,11 @@ const props = withDefaults(defineProps<{
 // 菜单
 const routesMap = computed<any[]>(() => {
     const routesMapper = (routes: RouteRecordRaw[]): any[] => {
-        return routes.filter(route => !route.meta?.hidden).map(route => {
+        return routes.map(route => {
             return {
                 key: route.name,
                 label: route.meta?.title || route.name,
-                children: route.children ? routesMapper(route.children) : undefined,
+                children: route.children && route.children.filter(r => !r.meta?.hidden).length > 0 ? routesMapper(route.children) : undefined,
                 info: route,
                 icon: () => h(NIcon, null, {
                     default: () =>

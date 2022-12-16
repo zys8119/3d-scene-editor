@@ -10,7 +10,7 @@ import {
 export default {
     theme: ThemeMode.LIGHT,
     sideTheme: SideTheme.WHITE,
-    themeColor: '#409eff',
+    themeColor: '#f00',
     layoutMode: LayoutMode.LTR,
     sideWidth: 210,
     deviceType: DeviceType.PC,

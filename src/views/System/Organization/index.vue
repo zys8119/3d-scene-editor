@@ -26,10 +26,10 @@
                 <gw-table ref="gwTableRef" :oId="active"/>
             </div>
         </div>
+        <Add ref="addRef" @submit="doSuccess" />
+        <BindAdmin ref="BindAdminRef" @save="doSuccess"/>
+        <BindRole ref="BindRoleRef" @save="doSuccess"/>
     </div>
-    <Add ref="addRef" @submit="doSuccess" />
-    <BindAdmin ref="BindAdminRef" @save="doSuccess"/>
-    <BindRole ref="BindRoleRef" @save="doSuccess"/>
 </template>
 
 <script lang="ts" setup>

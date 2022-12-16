@@ -1,7 +1,7 @@
 <template>
     <router-view v-slot="{ Component, route }">
         <transition :name="appConfig.pageAnim + '-transform'" mode="out-in" appear>
-            <keep-alive :include="cachedRouteStore.getCachedRouteName">
+            <keep-alive>
                 <component :is="Component" :key="route.fullPath"/>
             </keep-alive>
         </transition>
@@ -10,7 +10,5 @@
 
 <script lang="ts" setup>
 import useAppConfigStore from '@/store/modules/app-config'
-import useCachedRouteStore from '@/store/modules/cached-routes'
 const appConfig = useAppConfigStore()
-const cachedRouteStore = useCachedRouteStore()
 </script>

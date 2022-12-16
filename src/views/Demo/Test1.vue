@@ -1,7 +1,6 @@
 <template>
     <div id="Test1">
-        demo
-        {{ api }}
+        demoasdfadsf
     </div>
 </template>
 
