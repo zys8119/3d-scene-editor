@@ -4,7 +4,7 @@
             :bordered="false"
             class="vaw-tab-split-side-bar-wrapper"
             :content-style="{ padding: 0 }"
-            style="border-radius: 0px"
+            style="border-radius: 0"
             :class="[
                 !appConfig.isCollapse ? 'open-status' : 'close-status',
                 appConfig.sideTheme === 'image' ? 'sidebar-bg-img' : '',
@@ -24,6 +24,7 @@
                                 :key="key"
                                 class="label-item-wrapper"
                                 :class="{ 'vaw-tab-split-item-is-active': item.active }"
+                                @click="changeTab(item)"
                             >
                                 <SvgIcon v-if="item.meta.icon" prefix="icon" :name="item.meta.icon"/>
                                 <span>{{ item.meta.title }}</span>
@@ -129,6 +130,10 @@ const tabs = computed(() => {
         }
     })
 })
+
+const changeTab = (row: any) => {
+    router.push({name: row.name})
+}
 </script>
 
 <style scoped lang="less">

@@ -8,7 +8,6 @@ const routes: RouteRecordRaw[] = [
             title: 'demo',
             icon: 'menu'
         },
-        component: RouterView,
         children: [
             {
                 path: 'test2',
