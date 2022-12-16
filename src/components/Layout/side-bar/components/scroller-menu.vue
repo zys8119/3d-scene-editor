@@ -19,6 +19,7 @@
 import useAppConfigStore from '@/store/modules/app-config'
 import configHooks from '@/config/configHooks'
 import useStore from '@/store/modules/main'
+import {DeviceType} from '@/typings'
 
 const store = useStore()
 const route = useRoute()
@@ -50,6 +51,7 @@ const activeMenu = computed(() => {
 
 const onMenuClick = (key: string, record: any) => {
     configHooks.layout.menuSelect(record.info as any)
+    if (appConfig.deviceType === DeviceType.MOBILE) appConfig.toggleCollapse(true)
 }
 </script>
 

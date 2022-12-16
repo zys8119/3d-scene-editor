@@ -20,6 +20,11 @@ export default defineStore('tagViews', {
         clear() {
             this.tags = []
         },
+        closeOthers() {
+            const currentRoute = this.tags.filter(tag => tag.fullPath === this.active)
+            this.clear()
+            this.tags = currentRoute
+        },
         remove(tagName: string) {
             const index = this.tags.findIndex(tag => tag.fullPath === tagName)
             this.tags.splice(index, 1)
@@ -31,18 +36,8 @@ export default defineStore('tagViews', {
                 }
             }
         },
-        refresh(record: RouteLocationNormalized) {
-            const routeRag = this.tags.find(tag => tag.fullPath === record.fullPath)
-            if (!routeRag) {
-                this.push(record)
-            } else {
-                const originNoCache = routeRag.meta.noCache
-                routeRag.meta.noCache = true
-                Router.replace({ name: 'redirect', query: { url: record.fullPath } })
-                    .then(() => {
-                        routeRag.meta.noCache = originNoCache
-                    })
-            }
+        refresh() {
+            Router.replace({ path: '/redirect', query: {url: this.active} })
         }
     }
 })

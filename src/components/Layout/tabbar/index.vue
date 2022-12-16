@@ -1,11 +1,121 @@
 <template>
     <div class="vaw-tab-bar-container">
-        asdfasf
+        <n-icon
+            class="arrow-wrapper"
+            :class="{ 'arrow-wrapper__disabled': leftArrowDisabled }"
+            @click="leftArrowClick"
+        >
+            <ChevronBack />
+        </n-icon>
+        <n-scrollbar ref="scrollbarRef" :x-scrollable="true" :size="0">
+            <n-button
+                v-for="item of store.tags"
+                :key="item.fullPath"
+                :type="route.fullPath === item.fullPath ? 'primary' : 'default'"
+                class="tab-item"
+                strong
+                secondary
+                :data="item.fullPath"
+                @click.self="itemClick(item)"
+            >
+                <span class="text-item" @click.self="itemClick(item)">
+                    {{ item.meta ? item.meta.title : item.name }}
+                </span>
+                <n-icon v-if="!item.meta?.affix && store.tags.length > 1" class="icon-item" @click="store.remove(item.fullPath)">
+                    <Close />
+                </n-icon>
+            </n-button>
+        </n-scrollbar>
+        <n-icon
+            class="arrow-wrapper arrow-wrapper-right"
+            :class="{ 'arrow-wrapper__disabled': rightArrowDisabled }"
+            @click="rightArrowClick"
+        >
+            <ChevronBack />
+        </n-icon>
+        <n-dropdown :options="contextMenuOptions" placement="left-start" @select="onDropDownSelect">
+            <n-icon class="arrow-wrapper" @click="rightArrowClick">
+                <Menu />
+            </n-icon>
+        </n-dropdown>
     </div>
 </template>
 
 <script lang="ts" setup>
+import { Close, ChevronBack, Refresh, ArrowBack, ArrowForward, Menu } from '@vicons/ionicons5'
+import useStoreTagViews from '@/store/modules/tagViews'
+import {NIcon, NScrollbar} from 'naive-ui'
+import {onMounted} from 'vue'
 
+const route = useRoute()
+const router = useRouter()
+const store = useStoreTagViews()
+
+const itemClick = (row: any) => {
+    router.push(row.fullPath || '/')
+}
+
+// 左边箭头
+const leftArrowDisabled = ref(false)
+const leftArrowClick = () => {
+    const scrollbar = scrollbarRef.value as InstanceType<typeof NScrollbar>
+    const scrollX = scrollbar.scrollbarInstRef?.containerRef?.scrollLeft || 0
+    scrollbar.scrollTo({
+        left: Math.max(0, scrollX - 200),
+        debounce: true,
+        behavior: 'smooth',
+    } as any, 0)
+    isDisabledArrow()
+}
+
+// 右边箭头
+const rightArrowDisabled = ref(false)
+const rightArrowClick = () => {
+    const scrollbar = scrollbarRef.value as InstanceType<typeof NScrollbar>
+    const scrollX = scrollbar.scrollbarInstRef?.containerRef?.scrollLeft || 0
+    scrollbar.scrollTo({
+        left: scrollX + 200,
+        debounce: false,
+        behavior: 'smooth',
+    } as any, 0)
+    isDisabledArrow()
+}
+
+// 判断箭头是否有效
+const isDisabledArrow = () => {
+    setTimeout(() => {
+        const scrollbar = scrollbarRef.value as InstanceType<typeof NScrollbar>
+        const { scrollLeft, scrollWidth, clientWidth } = scrollbar.scrollbarInstRef?.containerRef as HTMLElement
+        leftArrowDisabled.value = scrollLeft === 0
+        rightArrowDisabled.value = scrollLeft === scrollWidth - clientWidth
+    }, 100)
+}
+
+// 最右边功能按钮
+const contextMenuOptions = ref([
+        {
+            label: '刷新页面',
+            key: 'refresh',
+            icon: () => h(NIcon, null, {default: () => h(Refresh)})
+        },
+        {
+            label: '关闭其他所有页签',
+            key: 'close',
+            icon: () => h(NIcon, null, {default: () => h(Close)})
+        },
+    ])
+const onDropDownSelect = (key: string) => {
+    switch (key) {
+        case 'refresh': store.refresh(); break
+        case 'close': store.closeOthers(); break
+    }
+}
+
+onMounted(() => {
+    nextTick(() => isDisabledArrow())
+})
+
+const scrollbarRef = ref()
 </script>
 
 <style lang="less" scoped>
@@ -16,53 +126,23 @@
     box-sizing: border-box;
     white-space: nowrap;
     box-shadow: 10px 5px 10px rgb(0 0 0 / 10%);
-
-    .contex-menu-wrapper {
-        position: absolute;
-        width: 130px;
-        z-index: 999;
-        list-style: none;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-        background-color: var(--base-color);
-        padding-left: 0;
-
-        & > li {
-            width: 100%;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            padding: 5px 0;
-        }
-
-        & > li:hover {
-            color: var(--primary-color);
-        }
-    }
-
-    .humburger-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    display: flex;
+    align-items: center;
+    :deep(.n-scrollbar-content) {
         height: 100%;
+        display: flex;
+        align-items: center;
     }
-
-    .tab-humburger-wrapper {
-        margin-left: 40px;
-        transition: margin-left var(--transition-time);
-    }
-
-    .tab-no-humburger-wrapper {
-        margin-left: 0;
-        transition: margin-left var(--transition-time);
-    }
-
     .tab-item {
         padding: 7px 10px;
         cursor: pointer;
+        height: 24px;
+        font-weight: 200;
+
+        .text-item {
+            font-size: 12px;
+            margin-top: 2px;
+        }
 
         .icon-item {
             margin-left: 0;
@@ -95,6 +175,10 @@
         cursor: pointer;
         font-size: 20px;
         margin: 0 8px;
+
+        &-right {
+            transform: rotate(180deg);
+        }
     }
 
     .arrow-wrapper__disabled {
