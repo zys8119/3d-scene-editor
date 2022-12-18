@@ -25,6 +25,7 @@
         "pinia": "^2.0.4",
         "rd-utils": "git+https://gitlab.zhijiasoft.com/zhangyunshan/zhijia_utils.git",
         "resize-observer": "^1.0.4",
+        "screenfull": "^5.1.0",
         "unplugin-auto-import-element-plus-preset": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/unplugin-auto-import-element-plus-preset.git",
         "vite-plugin-fz": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz.git",
         "vue": "^3.2.45",

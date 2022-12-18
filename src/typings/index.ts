@@ -40,8 +40,6 @@ export interface AppConfigState {
     isFixedNavBar: boolean
     isCollapse: boolean
     actionBar: {
-        isShowSearch: boolean
-        isShowMessage: boolean
         isShowRefresh: boolean
         isShowFullScreen: boolean
     }
