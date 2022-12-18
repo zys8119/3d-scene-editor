@@ -22,7 +22,7 @@ const route = useRoute()
 const store = useStore()
 
 const defaultPath = computed(() => route.meta.breadcrumbs?.[0].name)
-const menuOptions = [...store.routes, ...store.routes, ...store.routes].map(route => ({
+const menuOptions = [...store.routes, ...store.routes, ...store.routes, ...store.routes].map(route => ({
     key: route.name,
     label: route.meta?.title || route.name,
     info: route,
@@ -40,16 +40,8 @@ const onMenuClick = (key: string, row: any) => {
 
 <style lang="less">
 .horizontal-scroller-menu {
-    .n-scrollbar-rail--vertical {
-        display: none;
-    }
     .n-menu-item-content__icon {
         font-size: 16px!important;
-    }
-
-    .n-menu .n-menu-item {
-        margin-top: 0;
-        height: var(--logo-height);
     }
 
     .n-menu-item-content-header {

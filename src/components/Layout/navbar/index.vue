@@ -1,9 +1,10 @@
 <template>
     <div class="vaw-nav-bar-wrapper">
         <Humburger/>
-        <Breadcrumb v-if="appConfig.deviceType !== 'mobile' && appConfig.layoutMode !== 'ttb'"/>
-        <HorizontalScrollerMenu v-else/>
-        <div style="flex: 1"/>
+        <div class="nav-container">
+            <Breadcrumb v-if="appConfig.deviceType !== 'mobile' && appConfig.layoutMode !== 'ttb'"/>
+            <HorizontalScrollerMenu v-else/>
+        </div>
         <div v-if="appConfig.deviceType !== 'mobile'" class="right-wrapper">
             <Actions/>
         </div>
@@ -33,6 +34,11 @@ const appConfig = useAppConfigStore()
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--border-color);
+
+    .nav-container {
+        flex: 1;
+        overflow: hidden;
+    }
 
     .avatar-wrapper {
         padding-right: 15px;
