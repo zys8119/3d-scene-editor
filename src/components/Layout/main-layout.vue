@@ -2,21 +2,17 @@
     <div
         class="vaw-main-layout-container scrollbar"
         :class="[
-            layoutMode === 'ttb'
-                ? 'main-layout-ttb-status'
-                : !appConfig.isCollapse
-                    ? 'main-layout-open-status'
-                    : 'main-layout-close-status',
+            !appConfig.isCollapse
+                ? 'main-layout-open-status'
+                : 'main-layout-close-status',
             appConfig.isFixedNavBar ? 'main-layout_fixed-nav-bar' : 'main-layout',
         ]"
     >
         <section
             :class="[
-                layoutMode === 'ttb'
-                    ? 'nav-bar-ttb-status'
-                    : !appConfig.isCollapse
-                        ? 'nav-bar-open-status'
-                        : 'nav-bar-close-status',
+                !appConfig.isCollapse
+                    ? 'nav-bar-open-status'
+                    : 'nav-bar-close-status',
                 appConfig.isFixedNavBar ? 'fixed-nav-bar' : '',
                 !showNavBar ? 'tab-bar-top' : '',
             ]"

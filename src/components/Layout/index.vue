@@ -10,8 +10,8 @@
             <n-dialog-provider>
                 <n-el class="vaw-layout-container" :class="[appConfig.deviceType === 'mobile' && 'is-mobile']">
                     <template v-if="layoutMode === 'ttb'">
-                        <!--                        <VAWHeader/>-->
-                        <!--                        <MainLayout :show-nav-bar="false"/>-->
+                        <SideBar/>
+                        <MainLayout/>
                     </template>
                     <template v-else-if="layoutMode === 'lcr'">
                         <TabSplitSideBar/>

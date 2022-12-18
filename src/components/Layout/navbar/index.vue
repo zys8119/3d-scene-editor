@@ -1,7 +1,8 @@
 <template>
     <div class="vaw-nav-bar-wrapper">
         <Humburger/>
-        <Breadcrumb v-if="appConfig.deviceType !== 'mobile'"/>
+        <Breadcrumb v-if="appConfig.deviceType !== 'mobile' && appConfig.layoutMode !== 'ttb'"/>
+        <HorizontalScrollerMenu v-else/>
         <div style="flex: 1"/>
         <div v-if="appConfig.deviceType !== 'mobile'" class="right-wrapper">
             <Actions/>
@@ -18,6 +19,7 @@ import Breadcrumb from '@/components/Layout/breadcrumb/index.vue'
 import Actions from '@/components/Layout/actions/index.vue'
 import Avatar from '@/components/Layout/avatar/index.vue'
 import useAppConfigStore from '@/store/modules/app-config'
+import HorizontalScrollerMenu from '@/components/Layout/side-bar/components/horizontal-scroller-menu.vue'
 const appConfig = useAppConfigStore()
 </script>
 

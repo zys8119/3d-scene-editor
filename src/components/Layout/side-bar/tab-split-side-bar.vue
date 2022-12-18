@@ -121,15 +121,7 @@ const contentWrapperStyle = computed(() => {
 })
 
 const routes = ref([])
-
-const tabs = computed(() => {
-    return store.routes.filter(route => !route.meta?.hidden).map(r => {
-        return {
-            ...r,
-            active: route.meta?.breadcrumbs?.[0].name === r.name
-        }
-    })
-})
+const tabs = computed(() => sideRoutesStore.getParentsRoutes())
 
 const changeTab = (row: any) => {
     router.push({name: row.name})

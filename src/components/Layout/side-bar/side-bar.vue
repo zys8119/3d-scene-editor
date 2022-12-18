@@ -3,7 +3,7 @@
         <n-card
             class="vaw-side-bar-wrapper"
             :bordered="false"
-            :style="{ borderRadius: '0px', marginTop: appConfig.layoutMode === 'ttb' ? '48px' : 0 }"
+            :style="{ borderRadius: '0px' }"
             :content-style="{ padding: 0 }"
             :class="[
                 !appConfig.isCollapse ? 'open-status' : 'close-status',

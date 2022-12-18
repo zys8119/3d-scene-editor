@@ -7,7 +7,6 @@ declare global {
   const RequestPromise: typeof import('wp-request')['RequestPromise']
   const ValidationError: typeof import('wp-validate')['ValidationError']
   const WpInput: typeof import('wisdom-plus/es')['WpInput']
-  const WpProUpload: typeof import('wisdom-plus/es')['WpProUpload']
   const WpSwitch: typeof import('wisdom-plus/es')['WpSwitch']
   const WpToast: typeof import('wisdom-plus/es')['WpToast']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']

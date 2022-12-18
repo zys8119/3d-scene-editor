@@ -8,6 +8,14 @@ const useSideRoutesStore = defineStore('side-routes', {
         return {}
     },
     actions: {
+        getParentsRoutes() {
+            return window.store.main.routes.filter(route => !route.meta?.hidden).map(r => {
+                return {
+                    ...r,
+                    active: useRoute().meta?.breadcrumbs?.[0].name === r.name
+                }
+            })
+        },
         getSideBarRoutes() {
             const currentRoute = window.store.appConfig.getLayoutMode !== 'ltr' ? window.store.main.routes.find(routing => useRoute().meta.breadcrumbs?.[0].name === routing.name)?.children || [] : window.store.main.routes
             return this.routesMapper(currentRoute)
