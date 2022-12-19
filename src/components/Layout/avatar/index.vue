@@ -26,14 +26,6 @@ const userStore = ref({})
 const router = useRouter()
 const options = [
     {
-        label: '个人中心',
-        key: 'personal-center',
-        icon: () =>
-            h(NIcon, null, {
-                default: () => h(Menu),
-            }),
-    },
-    {
         label: '退出登录',
         key: 'logout',
         icon: () =>
@@ -42,10 +34,6 @@ const options = [
             }),
     },
 ]
-
-function personalCenter() {
-    router.push('/personal/info')
-}
 
 const dialog = useDialog()
 
@@ -56,15 +44,13 @@ function logout() {
         positiveText: '退出',
         negativeText: '再想想',
         onPositiveClick: () => {
+            router.replace({name: 'login'})
         },
     })
 }
 
 function handleSelect(key: string) {
     switch (key) {
-        case 'personal-center':
-            personalCenter()
-            break
         case 'logout':
             logout()
             break

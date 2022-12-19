@@ -1,6 +1,5 @@
 import type { Options } from 'wp-request'
 import type { RouteRecordName } from 'vue-router'
-import type { Options as ValidateOptions } from 'wp-validate'
 
 export interface BaseConfig {
     /**

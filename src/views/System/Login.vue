@@ -13,7 +13,7 @@
                         <input v-model="userForm[item.formKey[1]]" :type="`${key === 2 ? 'text' : 'password'}`" :placeholder="`请输入${item.tip[1]}`" @keydown.enter="login">
                         <div v-if="key === 2" class="code" @click="handleCountDown">
                             <template v-if="countDown > 0">
-                                <wp-count-down v-model="countDown" />
+                                <n-countdown :duration="countDown" :precision="2" />
                             </template>
                             <template v-else>
                                 获取验证码
@@ -59,7 +59,7 @@ const userForm = ref<UserForm>({
     code: ''
 })
 
-const countDown = ref(0)
+const countDown = ref(1000)
 const handleCountDown = async() => {
     if (countDown.value === 0) {
         if (!userForm.value.mobile) return message.error('请输入正确的手机号')
@@ -76,14 +76,15 @@ const login = async() => {
         login_type: currentLoginType.type,
         ...userForm.value
     })
-    await store.setToken(res.data.token_type + ' ' + res.data.access_token)
-    const userMe = await window.api.v1.auth.user.me()
-    store.setUserinfo({
-        ...userMe.data,
-        ...res.data.user,
-        access_token: res.data.access_token
+    await store.setToken(res.data.token_type + ' ' + res.data.access_token).then(async() => {
+        const userMe = await window.api.v1.auth.user.me()
+        store.setUserinfo({
+            ...userMe.data,
+            ...res.data.user,
+            access_token: res.data.access_token
+        })
+        router.push('/')
     })
-    router.push('/')
 }
 
 // 切换登录模式
