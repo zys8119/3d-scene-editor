@@ -18,38 +18,6 @@ const routes: RouteRecordRaw[] = [
                 },
                 component: () => import('@/views/System/Organization/index.vue')
             },
-            {
-                path: 'staff',
-                name: 'Staff',
-                meta: {
-                    title: '员工信息',
-                },
-                component: () => import('@/views/System/Staff/index.vue')
-            },
-            {
-                path: 'system-user',
-                name: 'SystemUser',
-                meta: {
-                    title: '系统用户管理',
-                },
-                component: () => import('@/views/System/SystemUser/index.vue')
-            },
-            {
-                path: 'menu',
-                name: 'Menu',
-                meta: {
-                    title: '菜单管理',
-                },
-                component: () => import('@/views/System/Menu/index.vue')
-            },
-            {
-                path: 'role',
-                name: 'Role',
-                meta: {
-                    title: '角色管理',
-                },
-                component: () => import('@/views/System/Role/index.vue')
-            },
         ]
     }
 ]

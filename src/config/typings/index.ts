@@ -25,15 +25,12 @@ export interface Config {
         whiteList: RouteRecordName[],
         keepAlive: boolean,
         session: boolean,
-        menu: {
-            topMenu: boolean,
-            collapse: boolean
-        }
     },
-    tagViews: {
+    tabBarViews: {
         disabled?: boolean,
         max?: number
-    }
+    },
+    showFooter: boolean
 }
 
 import type { RouteRecordRaw, RouteLocationNormalized } from 'vue-router'

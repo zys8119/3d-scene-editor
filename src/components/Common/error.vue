@@ -1,7 +1,7 @@
 <template>
-    <n-result status="404" :title="error ?? '404 NOT FOUND'" description="这里空空如也">
+    <n-result status="error" :title="error ?? '页面加载错误'">
         <template #footer>
-            <n-button @click="refresh">刷新</n-button>
+            <n-button @click="goHome">返回首页</n-button>
         </template>
     </n-result>
 </template>
@@ -10,8 +10,8 @@
 defineProps<{
     error?: string
 }>()
-
-const refresh = () => location.reload()
+const router = useRouter()
+const goHome = () => router.replace('/')
 </script>
 
 <style lang="less" scoped>

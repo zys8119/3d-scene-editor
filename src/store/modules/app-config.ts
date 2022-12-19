@@ -1,7 +1,7 @@
-import defaultSetting from '@/utils/setting'
+import defaultSetting from '@/config/setting'
 import {LayoutMode, PageAnim, SideTheme, ThemeMode, DeviceType} from '../../typings'
 
-import {useChangeMenuWidth} from '../../hooks/useMenuWidth'
+import {useChangeMenuWidth} from '../../utils/useMenuWidth'
 useChangeMenuWidth(defaultSetting.sideWidth)
 
 export default defineStore('app-config', {

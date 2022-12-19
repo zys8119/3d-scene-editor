@@ -10,13 +10,6 @@ export default {
         history: false,
         /** 是否使用远程路由 */
         remote: false,
-        /** 菜单相关配置 */
-        menu: {
-            /** 是否启用顶部菜单 */
-            topMenu: false,
-            /** 是否启用折叠按钮 */
-            collapse: true
-        },
         /**
          * 系统是否需要登录
          */
@@ -38,8 +31,11 @@ export default {
     /**
      * 页签配置
      */
-    tagViews: {
+    tabBarViews: {
         disabled: false,
-        max: 10
-    }
+    },
+    /**
+     * 是否显示页脚
+     */
+    showFooter: true
 } as Config

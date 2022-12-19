@@ -45,10 +45,12 @@ router.beforeEach(async(to, from, next) => {
         /**
          * 页签
          */
-        if (!config.tagViews.disabled && (to.meta?.title || (to.name && to.name !== 'index'))) {
+        if (!config.tabBarViews.disabled && (to.meta?.title || (to.name && to.name !== 'index'))) {
             const tagViewsStore = useTagViewsStore()
-            if (!to.meta.hiddenInTag) {
-                if (typeof to.fullPath === 'string') tagViewsStore.push(to)
+            if (!config.tabBarViews.max || tagViewsStore.tags.length < config.tabBarViews.max) {
+                if (!to.meta.hiddenInTab) {
+                    if (typeof to.fullPath === 'string') tagViewsStore.push(to)
+                }
             }
             tagViewsStore.active = to.fullPath
         }
@@ -67,8 +69,6 @@ router.beforeEach(async(to, from, next) => {
             next()
         }
     } catch {
-        // 请求出问题了？
-        // token 可能失效了，清除一下
-        // return next({ name: 'login' })
+        return next({name: 'error'})
     }
 })

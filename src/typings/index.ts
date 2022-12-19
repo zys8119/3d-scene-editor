@@ -22,11 +22,6 @@ export interface FileItem {
     url: string
 }
 
-export interface EditBtn {
-    title: string
-    index: number
-}
-
 // 脚手架主题类型
 export interface AppConfigState {
     projectName: string
@@ -71,13 +66,4 @@ export enum PageAnim {
     OPACITY = 'opacity',
     DOWN = 'down',
     SCALE = 'scale',
-}
-
-export interface SplitTab {
-    label: string
-    iconPrefix?: string | unknown
-    icon: string
-    fullPath: string
-    children?: Array<RouteRecordRaw>
-    checked: Ref<UnwrapRef<boolean>>
 }

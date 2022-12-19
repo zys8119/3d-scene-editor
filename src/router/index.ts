@@ -4,6 +4,7 @@ import config from '@/config/config'
 import baseConfig from '../config/base'
 
 import Page404 from '@/components/Common/404.vue'
+import Error from '@/components/Common/error.vue'
 import Redirect from '@/components/Common/Redirect.vue'
 
 /**
@@ -32,7 +33,15 @@ export const commonRoutes: RouteRecordRaw[] = [
         name: '404',
         component: Page404,
         meta: {
-            hiddenInTag: true
+            hiddenInTab: true
+        }
+    },
+    {
+        path: '/error',
+        name: 'error',
+        component: Error,
+        meta: {
+            hiddenInTab: true
         }
     }
 ]
@@ -51,7 +60,7 @@ export const routes: RouteRecordRaw[] = [
         component: () => import('@/views/Demo/Test1.vue'),
         meta: {
             title: 'Demo',
-            hiddenInTag: true,
+            hiddenInTab: true,
         }
     },
     {
@@ -59,7 +68,7 @@ export const routes: RouteRecordRaw[] = [
         name: 'redirect',
         component: Redirect,
         meta: {
-            hiddenInTag: true,
+            hiddenInTab: true,
             noCache: true
         }
     },
@@ -121,7 +130,7 @@ declare module 'vue-router' {
         /**
          * 是否在页签中隐藏
          */
-        hiddenInTag?: boolean;
+        hiddenInTab?: boolean;
         /** 在 keepAlive 模式下，是否禁用缓存  */
         noCache?: boolean;
         /** 是否隐藏面包屑 */

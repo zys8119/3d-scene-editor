@@ -18,13 +18,13 @@
             ]"
         >
             <NavBar v-if="showNavBar"/>
-            <TabBar/>
+            <TabBar v-if="!config.tabBarViews.disabled"/>
         </section>
         <div class="main-base-style scrollbar" :class="[mainClass]">
             <section class="main-section">
                 <Main/>
             </section>
-            <section class="footer-wrapper">
+            <section v-if="config.showFooter" class="footer-wrapper">
                 <Footer/>
             </section>
             <n-back-top :listen-to="listenTo1"/>
@@ -41,8 +41,9 @@ import Footer from '@/components/Layout/footer/index.vue'
 import useAppConfigStore from '@/store/modules/app-config'
 import {ThemeMode} from '@/typings'
 import {useLoadingBar} from 'naive-ui'
-import {computed, defineComponent, onMounted, ref} from 'vue'
+import {computed, onMounted, ref} from 'vue'
 import {useRouter} from 'vue-router'
+import config from '@/config/config'
 
 const router = useRouter()
 
