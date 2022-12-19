@@ -1,5 +1,3 @@
-import {UploadFile} from 'wisdom-plus/es'
-
 export interface List<T = any> {
     page_num: number,
     page_size: number,
@@ -40,7 +38,7 @@ export interface Staff<Remote extends boolean = false> {
     name: string,
     username: string,
     mobile: string,
-    avatar?: Remote extends true ? string : UploadFile[],
+    avatar?: any,
     is_admin: boolean,
     is_superuser: boolean,
     department_name?: string
@@ -51,7 +49,7 @@ export interface User<Remote extends boolean = false> {
     name: string,
     username: string,
     mobile: string,
-    avatar: Remote extends true ? string : UploadFile[],
+    avatar: any,
     is_admin: boolean,
     is_superuser: boolean,
 }

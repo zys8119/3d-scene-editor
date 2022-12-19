@@ -1,10 +1,3 @@
-import { Ref, UnwrapRef } from 'vue'
-import { TableProps } from 'wisdom-plus'
-import {RouteRecordRaw} from 'vue-router'
-
-export type TableColumn<T extends (string | object) = string> = ExtractProps<TableProps['columns']> & Record<string, any> & {
-    prop?: T extends object ? keyof T : T
-}
 export type TableColumns<T extends (string | object) = string> = TableColumn<T>[]
 
 /**

@@ -5,19 +5,15 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { WisdomPlusResolver } from './src/resolver'
-import { ElementPlusResolver, NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import { htmlTransform } from './src/utils'
 import { rem, remPreset } from 'vite-plugin-fz'
 import baseConfig from './src/config/base'
 import legacy from '@vitejs/plugin-legacy'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus'
-import validatePreset from 'wp-validate/dist/preset'
 import preprocessorPreset from 'wp-preprocessor/dist/preset'
 import requestPreset from 'wp-request/dist/preset'
-import { Resolver } from 'unplugin-auto-import/types'
-import { resolver as WpAlertResolver} from 'wp-alert/resolver'
 import md5 from 'md5'
 
 // https://vitejs.dev/config/
@@ -39,7 +35,6 @@ export default defineConfig({
                 /\.md$/, // .md
             ],
             imports: [
-                validatePreset,
                 preprocessorPreset,
                 requestPreset,
                 remPreset,
@@ -55,16 +50,10 @@ export default defineConfig({
                 'pinia'
             ],
             resolvers: [
-                WpAlertResolver(),
-                WisdomPlusResolver() as Resolver[],
-                ElementPlusResolver()
             ]
         }),
         Components({
             resolvers: [
-                WpAlertResolver(),
-                WisdomPlusResolver(),
-                ElementPlusResolver(),
                 NaiveUiResolver()
             ]
         }),

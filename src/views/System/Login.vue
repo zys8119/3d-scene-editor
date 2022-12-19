@@ -35,8 +35,8 @@
 
 <script setup lang="ts">
 import useStore from '@/store/modules/main'
-import { Toast } from 'wisdom-plus'
-
+import {useMessage} from 'naive-ui'
+const message = useMessage()
 const loginType = ref<LoginType[]>([
     {name: '账号密码登录', tip: ['账号', '密码'], formKey: ['username', 'password'], type: 1, isActive: true},
     {name: '手机号密码登录', tip: ['手机号', '密码'], formKey: ['mobile', 'password'], type: 2, isActive: false},
@@ -62,16 +62,16 @@ const userForm = ref<UserForm>({
 const countDown = ref(0)
 const handleCountDown = async() => {
     if (countDown.value === 0) {
-        if (!userForm.value.mobile) return Toast.error('请输入正确的手机号')
+        if (!userForm.value.mobile) return message.error('请输入正确的手机号')
         await window.api.v1.auth.sendSmsCode(userForm.value.mobile)
-        Toast.success('验证码已发送')
+        message.success('验证码已发送')
         countDown.value = 60
     }
 }
 const login = async() => {
     const currentLoginType: LoginType = loginType.value.filter((v: LoginType) => v.isActive)[0]
-    if (!userForm.value[currentLoginType.formKey[0]]) return Toast.error(`请输入${currentLoginType.tip[0]}`)
-    if (!userForm.value[currentLoginType.formKey[1]]) return Toast.error(`请输入${currentLoginType.tip[1]}`)
+    if (!userForm.value[currentLoginType.formKey[0]]) return message.error(`请输入${currentLoginType.tip[0]}`)
+    if (!userForm.value[currentLoginType.formKey[1]]) return message.error(`请输入${currentLoginType.tip[1]}`)
     const res = await window.api.v1.auth.manager.login({
         login_type: currentLoginType.type,
         ...userForm.value

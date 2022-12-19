@@ -10,16 +10,10 @@
         "lint:fix": "eslint src --fix --ext .ts,.tsx,.vue",
         "prepare": "husky install"
     },
-    "workspaces": [
-        "packages/*"
-    ],
     "private": true,
     "dependencies": {
-        "@element-plus/icons-vue": "^2.0.10",
-        "@iconfont/icon": "^0.0.1",
         "@vitejs/plugin-legacy": "^2.0.0",
         "@vueuse/core": "^9.1.0",
-        "element-plus": "^2.2.12",
         "eslint-plugin-vue3-jsx": "^0.0.3-beta.3",
         "md5": "^2.3.0",
         "pinia": "^2.0.4",
@@ -30,12 +24,9 @@
         "vite-plugin-fz": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz.git",
         "vue": "^3.2.45",
         "vue-router": "^4.0.12",
-        "wisdom-plus": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-plus-release.git",
         "naive-ui": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git",
-        "wp-alert": "^0.0.28",
         "wp-preprocessor": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-preprocessor.git",
-        "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git",
-        "wp-validate": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-validate.git"
+        "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git"
     },
     "devDependencies": {
         "@commitlint/cli": "^15.0.0",

@@ -1,7 +1,6 @@
 /** 员工信息 */
 
 import {List, Staff} from '@/api/typing'
-import { UploadFileStatus } from 'wisdom-plus'
 
 /** 获取用户列表 */
 export function getUsers(data: object, page: PageMap, organizationId: string) {
@@ -46,7 +45,7 @@ export async function create(user: Partial<Staff<false>>, id?: string) {
         url: '/api/admin/v1/user',
         method: 'post',
         data: preprocessor(user, {
-            avatar: avatars => avatars?.filter(item => item.status === UploadFileStatus.Success)[0].url,
+            avatar: avatars => avatars?.filter(item => item.status === 0)[0].url,
             department_name: () => void 0
         })
     })
