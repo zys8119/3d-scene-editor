@@ -15,6 +15,8 @@ const routes: RouteRecordRaw[] = [
                 name: 'Organization',
                 meta: {
                     title: '组织架构',
+                    tabTitle: 'asdfjalskdfj',
+                    fixed: true
                 },
                 component: () => import('@/views/System/Organization/index.vue')
             },

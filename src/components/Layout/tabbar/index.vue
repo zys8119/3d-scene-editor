@@ -19,9 +19,9 @@
                 @click.self="itemClick(item)"
             >
                 <span class="text-item" @click.self="itemClick(item)">
-                    {{ item.meta ? item.meta.title : item.name }}
+                    {{ item.meta ? item.meta.tabTitle || item.meta.title || item.name : '页面' }}
                 </span>
-                <n-icon v-if="!item.meta?.affix && store.tags.length > 1" class="icon-item" @click="store.remove(item.fullPath)">
+                <n-icon v-if="!item.meta?.fixed && store.tags.length > 1" class="icon-item" @click="store.remove(item.fullPath)">
                     <Close />
                 </n-icon>
             </n-button>

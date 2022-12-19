@@ -14,7 +14,6 @@ export const setRoutesName = (routes: RouteRecordRaw[]) => {
             ...route
         }
         if (routeMap.component) routeMap.component = createAsyncComponent(routeMap.name, routeMap.component)
-        // if (routeMap.meta?.icon) routeMap.meta.icon = markRaw(routeMap.meta.icon)
         if (routeMap.component && typeof routeMap.props === 'undefined') {
             routeMap.props = (route) => {
                 return {

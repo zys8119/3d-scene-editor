@@ -103,9 +103,9 @@ declare module 'vue-router' {
          */
         disabled?: boolean;
         /**
-         * 图标，要求是一个 Vue Component
+         * 图标
          */
-        icon?: Component | String;
+        icon?: String;
         /**
          * 是否全屏
          */
@@ -118,7 +118,7 @@ declare module 'vue-router' {
         /**
          * 页签标题，优先级高于 title
          */
-        tagTitle?: String;
+        tabTitle?: String;
         /**
          * 面包屑，不需要手动定义
          */
@@ -131,10 +131,6 @@ declare module 'vue-router' {
          * 是否在页签中隐藏
          */
         hiddenInTab?: boolean;
-        /** 在 keepAlive 模式下，是否禁用缓存  */
-        noCache?: boolean;
-        /** 是否隐藏面包屑 */
-        hideBreadcrumbs?: boolean;
         /** 按钮权限 */
         permissions?: string[];
         /** 是否进行扁平化路由 **/
