@@ -3,10 +3,7 @@ import router from '../router'
 import type {ConfigHooks} from './typings'
 import baseConfig from './base'
 import config from './config'
-import {useMessage} from 'naive-ui'
 export const views = import.meta.glob('../views/**/**')
-
-const message = useMessage()
 
 export default {
     /**
@@ -22,7 +19,8 @@ export default {
             if (!config) return
         },
         errorHandle(msg) {
-            message.error(msg)
+            console.log(msg)
+            window?.$message.error(msg)
         },
         logout() {
             router.push({ name: 'login' })

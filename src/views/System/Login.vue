@@ -13,7 +13,7 @@
                         <input v-model="userForm[item.formKey[1]]" :type="`${key === 2 ? 'text' : 'password'}`" :placeholder="`请输入${item.tip[1]}`" @keydown.enter="login">
                         <div v-if="key === 2" class="code" @click="handleCountDown">
                             <template v-if="countDown > 0">
-                                <n-countdown :duration="countDown" :precision="2" />
+                                <n-countdown :duration="countDown" />
                             </template>
                             <template v-else>
                                 获取验证码
@@ -36,6 +36,8 @@
 <script setup lang="ts">
 import useStore from '@/store/modules/main'
 import {useMessage} from 'naive-ui'
+
+window.$message = useMessage()
 const message = useMessage()
 const loginType = ref<LoginType[]>([
     {name: '账号密码登录', tip: ['账号', '密码'], formKey: ['username', 'password'], type: 1, isActive: true},
@@ -59,13 +61,13 @@ const userForm = ref<UserForm>({
     code: ''
 })
 
-const countDown = ref(1000)
+const countDown = ref(0)
 const handleCountDown = async() => {
     if (countDown.value === 0) {
         if (!userForm.value.mobile) return message.error('请输入正确的手机号')
         await window.api.v1.auth.sendSmsCode(userForm.value.mobile)
         message.success('验证码已发送')
-        countDown.value = 60
+        countDown.value = 60000
     }
 }
 const login = async() => {
@@ -76,15 +78,14 @@ const login = async() => {
         login_type: currentLoginType.type,
         ...userForm.value
     })
-    await store.setToken(res.data.token_type + ' ' + res.data.access_token).then(async() => {
-        const userMe = await window.api.v1.auth.user.me()
-        store.setUserinfo({
-            ...userMe.data,
-            ...res.data.user,
-            access_token: res.data.access_token
-        })
-        router.push('/')
+    await store.setToken(res.data.token_type + ' ' + res.data.access_token)
+    const userMe = await window.api.v1.auth.user.me()
+    store.setUserinfo({
+        ...userMe.data,
+        ...res.data.user,
+        access_token: res.data.access_token
     })
+    router.push('/')
 }
 
 // 切换登录模式

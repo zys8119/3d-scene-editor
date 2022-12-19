@@ -16,6 +16,7 @@
         "@vueuse/core": "^9.1.0",
         "eslint-plugin-vue3-jsx": "^0.0.3-beta.3",
         "md5": "^2.3.0",
+        "naive-ui": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git",
         "pinia": "^2.0.4",
         "rd-utils": "git+https://gitlab.zhijiasoft.com/zhangyunshan/zhijia_utils.git",
         "resize-observer": "^1.0.4",
@@ -24,19 +25,18 @@
         "vite-plugin-fz": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz.git",
         "vue": "^3.2.45",
         "vue-router": "^4.0.12",
-        "naive-ui": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git",
         "wp-preprocessor": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-preprocessor.git",
         "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git"
     },
     "devDependencies": {
         "@commitlint/cli": "^15.0.0",
         "@commitlint/config-conventional": "^15.0.0",
-        "@vicons/ionicons5": "^0.10.0",
         "@originjs/vite-plugin-commonjs": "^1.0.1",
         "@types/md5": "^2.3.2",
         "@types/node": "^16.11.11",
         "@typescript-eslint/eslint-plugin": "^5.5.0",
         "@typescript-eslint/parser": "^5.5.0",
+        "@vicons/ionicons5": "^0.10.0",
         "@vitejs/plugin-vue": "^3.0.1",
         "@vitejs/plugin-vue-jsx": "^2.0.0",
         "@vue/runtime-core": "^3.2.45",
@@ -52,8 +52,8 @@
         "unplugin-auto-import": "^0.11.1",
         "unplugin-vue-components": "^0.22.4",
         "vite": "^3.0.2",
-        "vite-plugin-vue-setup-extend-plus": "^0.0.2",
-        "vite-plugin-svg-icons": "^1.0.1"
+        "vite-plugin-svg-icons": "^1.0.1",
+        "vite-plugin-vue-setup-extend-plus": "^0.0.2"
     },
     "husky": {
         "hooks": {

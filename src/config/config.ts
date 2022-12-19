@@ -4,6 +4,7 @@ export default {
     request: {
         baseURL: import.meta.env.VITE_API,
         successCode: [0, 200],
+        useStore: () => window.store.main,
         trim: true
     },
     router: {
