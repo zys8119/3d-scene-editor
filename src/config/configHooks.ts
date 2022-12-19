@@ -1,18 +1,18 @@
 import useStore from '@/store/modules/main'
 import router from '../router'
 import type {ConfigHooks} from './typings'
-
 import baseConfig from './base'
 import config from './config'
-import {closeAllModals, closeAllPopovers} from 'wisdom-plus'
+import {useMessage} from 'naive-ui'
 export const views = import.meta.glob('../views/**/**')
+
+const message = useMessage()
 
 export default {
     /**
      * 请求相关
      */
     request: {
-        useStore: () => window.store.main,
         beforeEach(config) {
             if (!config) return
             if (!config.headers) config.headers = {}
@@ -22,15 +22,10 @@ export default {
             if (!config) return
         },
         errorHandle(msg) {
-            WpToast.error(msg)
+            message.error(msg)
         },
         logout() {
             router.push({ name: 'login' })
-        }
-    },
-    validate: {
-        alert(message, type: 'info' | 'success' | 'warning' | 'error') {
-            WpToast[type](message)
         }
     },
     /**
@@ -65,8 +60,6 @@ export default {
         },
         beforeEach() {
             // 每个路由进入前发起一个请求
-            closeAllModals()
-            closeAllPopovers()
         },
         /**
          * 用于 登录 / 第一次进入页面时获取权限

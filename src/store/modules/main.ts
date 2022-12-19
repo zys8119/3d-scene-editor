@@ -9,10 +9,6 @@ const useStore = defineStore('main', {
                 username: ''
             } as Record<any, string>,
             /**
-             * 可编辑，菜单是否折叠
-             */
-            collapse: false,
-            /**
              * 请求相关
              */
             token: '',
@@ -23,26 +19,12 @@ const useStore = defineStore('main', {
              */
             routes: [] as RouteRecordRaw[],
             flatRoutes: [] as RouteRecordRaw[],
-            /**
-             * 是否是 H5 页面
-             */
-            isH5: false,
-            /**
-             * H5 页面的最大宽度
-             */
-            isH5Max: 700
         }
     },
     getters: {
         loading(state) {
             return state.requests.size > 0
         },
-        /**
-         * 只读，菜单是否折叠，在 H5 页面下永远为 true
-         */
-        isCollapse(state) {
-            return state.isH5 || state.collapse
-        }
     },
     actions: {
         setToken(token = '') {

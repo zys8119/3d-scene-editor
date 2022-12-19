@@ -58,5 +58,4 @@ export interface ConfigHooks {
     error: {
         handle: (error: GlobalError) => void
     },
-    validate: Partial<ValidateOptions>
 }

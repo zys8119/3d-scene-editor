@@ -1,6 +1,6 @@
 import router from './index'
 import useStore from '@/store/modules/main'
-import useTagViewsStore from '@/store/modules/tagViews'
+import useTabViewsStore from '@/store/modules/tabViews'
 import configHooks from '@/config/configHooks'
 import config from '@/config/config'
 import baseConfig from '@/config/base'
@@ -46,13 +46,13 @@ router.beforeEach(async(to, from, next) => {
          * 页签
          */
         if (!config.tabBarViews.disabled && (to.meta?.title || (to.name && to.name !== 'index'))) {
-            const tagViewsStore = useTagViewsStore()
-            if (!config.tabBarViews.max || tagViewsStore.tags.length < config.tabBarViews.max) {
+            const tabViewsStore = useTabViewsStore()
+            if (!config.tabBarViews.max || tabViewsStore.tags.length < config.tabBarViews.max) {
                 if (!to.meta.hiddenInTab) {
-                    if (typeof to.fullPath === 'string') tagViewsStore.push(to)
+                    if (typeof to.fullPath === 'string') tabViewsStore.push(to)
                 }
             }
-            tagViewsStore.active = to.fullPath
+            tabViewsStore.active = to.fullPath
         }
         /**
          * 第一次进入，一般会先获取权限

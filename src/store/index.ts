@@ -2,14 +2,14 @@
  * 挂载 store
  */
 import useMainStore from './modules/main'
-import usetagViewsStore from './modules/tagViews'
+import usetabViewsStore from './modules/tabViews'
 import useSideRoutesStore from './modules/side-routes'
 import useAppConfigStore from './modules/app-config'
 import { App } from 'vue'
 
 interface Store {
     main: ReturnType<typeof useMainStore>,
-    tagViews: ReturnType<typeof usetagViewsStore>
+    tabViews: ReturnType<typeof usetabViewsStore>
     sideRoutes: ReturnType<typeof useSideRoutesStore>
     appConfig: ReturnType<typeof useAppConfigStore>
 }
@@ -20,7 +20,7 @@ interface Store {
 function getStores(): Store {
     return {
         main: useMainStore(),
-        tagViews: usetagViewsStore(),
+        tabViews: usetabViewsStore(),
         sideRoutes: useSideRoutesStore(),
         appConfig: useAppConfigStore(),
     }
