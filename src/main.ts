@@ -16,7 +16,6 @@ import api from '@/api'
 app.use(api)
 
 import '@/router/permission'
-
 import router from './router'
 app.use(router)
 

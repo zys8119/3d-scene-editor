@@ -1,5 +1,3 @@
-export type TableColumns<T extends (string | object) = string> = TableColumn<T>[]
-
 /**
  * 公共类型
  */

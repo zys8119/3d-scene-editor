@@ -5,6 +5,9 @@ import baseConfig from './base'
 import config from './config'
 export const views = import.meta.glob('../views/**/**')
 
+import {createDiscreteApi} from 'naive-ui'
+const {message} = createDiscreteApi(['message'])
+
 export default {
     /**
      * 请求相关
@@ -19,8 +22,7 @@ export default {
             if (!config) return
         },
         errorHandle(msg) {
-            console.log(msg)
-            window?.$message.error(msg)
+            message.error(msg)
         },
         logout() {
             router.push({ name: 'login' })

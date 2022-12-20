@@ -37,7 +37,6 @@
 import useStore from '@/store/modules/main'
 import {useMessage} from 'naive-ui'
 
-window.$message = useMessage()
 const message = useMessage()
 const loginType = ref<LoginType[]>([
     {name: '账号密码登录', tip: ['账号', '密码'], formKey: ['username', 'password'], type: 1, isActive: true},

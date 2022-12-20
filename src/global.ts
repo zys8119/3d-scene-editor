@@ -2,7 +2,6 @@ import { install } from 'resize-observer'
 if (!window.ResizeObserver) install()
 
 import type {
-    FileItem as FileItemType,
     PageMap as PageMapType,
 } from '@/typings'
 
