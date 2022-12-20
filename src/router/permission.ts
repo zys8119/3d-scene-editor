@@ -6,6 +6,7 @@ import config from '@/config/config'
 import baseConfig from '@/config/base'
 
 import { setRoutes, status } from './set-routes'
+import {SystemTabbarRouteRow} from '@/typings'
 
 export const getUserinfo = async() => {
     await configHooks.router.getUserinfo()
@@ -49,7 +50,7 @@ router.beforeEach(async(to, from, next) => {
             const tabbarStore = useTabbarStore()
             if (!config.tabbarViews.max || tabbarStore.tags.length < config.tabbarViews.max) {
                 if (!to.meta.hiddenInTab) {
-                    if (typeof to.fullPath === 'string') tabbarStore.push(to)
+                    if (typeof to.fullPath === 'string') tabbarStore.push(to as SystemTabbarRouteRow)
                 }
             }
             tabbarStore.active = to.fullPath

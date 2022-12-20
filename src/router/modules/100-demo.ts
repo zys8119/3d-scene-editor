@@ -35,6 +35,7 @@ const routes: RouteRecordRaw[] = [
         name: 'demo2',
         meta: {
             title: 'demo2',
+            icon: 'data-order'
         },
         component: () => import('@/views/demo/test1.vue'),
     }

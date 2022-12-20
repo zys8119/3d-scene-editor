@@ -3,10 +3,10 @@
         <n-dropdown trigger="hover" :options="options" size="large" @select="handleSelect">
             <div class="action-wrapper">
                 <div class="avatar">
-                    <n-avatar circle size="small" :src="userStore.avatar"/>
+                    <n-avatar circle size="small" :src="userStore.userinfo.avatar || defaultAvatar"/>
                 </div>
                 <span class="nick-name">
-                    张三
+                    {{ userStore.userinfo.username || '管理员' }}
                     <n-icon class="tip">
                         <CaretDownSharp/>
                     </n-icon>
@@ -19,10 +19,12 @@
 <script lang="ts" setup>
 import {NIcon, useDialog} from 'naive-ui'
 import {h} from 'vue'
-import {Menu, LogInOutline, CaretDownSharp} from '@vicons/ionicons5'
+import {LogInOutline, CaretDownSharp} from '@vicons/ionicons5'
 import {useRouter} from 'vue-router'
+import useStore from '@/store/modules/main'
+import defaultAvatar from '@/assets/images/avatar.png'
 
-const userStore = ref({})
+const userStore = useStore()
 const router = useRouter()
 const options = [
     {

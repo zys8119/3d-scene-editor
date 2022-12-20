@@ -11,11 +11,10 @@
 <script lang="ts" setup>
 const route = useRoute()
 const routeMatchedMap = computed(() => {
-    const result = route.meta.breadcrumbs?.map(item => {
+    return route.meta.breadcrumbs?.map(item => {
         return {
             title: String(item.meta?.title || item.name),
         }
     }) || []
-    return result
 })
 </script>

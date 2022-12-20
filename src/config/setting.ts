@@ -11,7 +11,7 @@ export default {
     theme: ThemeMode.LIGHT,
     sideTheme: SideTheme.DARK,
     themeColor: '#f00',
-    layoutMode: LayoutMode.TTB,
+    layoutMode: LayoutMode.LTR,
     sideWidth: 240,
     deviceType: DeviceType.PC,
     pageAnim: PageAnim.OPACITY,

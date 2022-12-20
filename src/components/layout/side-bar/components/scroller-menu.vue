@@ -19,17 +19,15 @@
 import useAppConfigStore from '@/store/modules/app-config'
 import configHooks from '@/config/config-hooks'
 import useStore from '@/store/modules/main'
-import {DeviceType} from '@/typings'
+import {DeviceType, SystemRouteRow} from '@/typings'
 
 const store = useStore()
 const route = useRoute()
 const appConfig = useAppConfigStore()
 
-const props = withDefaults(defineProps<{
-    routes: any
-}>(), {
-    routes: []
-})
+const props = defineProps<{
+    routes: SystemRouteRow[]
+}>()
 
 // 初始化激活菜单
 const activeMenu = computed(() => {
@@ -49,8 +47,8 @@ const activeMenu = computed(() => {
     }
 })
 
-const onMenuClick = (key: string, record: any) => {
-    configHooks.layout.menuSelect(record.info as any)
+const onMenuClick = (key: string, record: SystemRouteRow) => {
+    configHooks.layout.menuSelect(record.info)
     if (appConfig.deviceType === DeviceType.MOBILE) appConfig.toggleCollapse(true)
 }
 </script>

@@ -59,9 +59,6 @@ const listenTo2 = ref<HTMLElement | null>(null)
 const mainClass = computed(() => {
     return appConfig.theme === ThemeMode.DARK ? 'main-base-dark-theme' : 'main-base-light-theme'
 })
-const layoutMode = computed(() => {
-    return appConfig.getLayoutMode
-})
 const loadingBar = useLoadingBar()
 
 router.beforeEach(() => {

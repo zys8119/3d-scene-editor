@@ -1,5 +1,4 @@
 import {createRouter, createWebHashHistory, createWebHistory, RouteMeta, RouteRecordRaw} from 'vue-router'
-import {Component} from 'vue'
 import config from '@/config/config'
 import baseConfig from '../config/base'
 

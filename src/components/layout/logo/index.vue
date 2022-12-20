@@ -1,10 +1,7 @@
 <template>
     <div class="logo-wrapper">
-        <img v-if="showLogo" class="logo-img" src="../../../assets/images/logo.png">
-        <div
-            v-if="showTitle"
-            :class="[!appConfig.isCollapse || alwaysShow ? 'show-title' : 'close-title']"
-        >
+        <img v-if="showLogo" class="logo-img" src="@/assets/images/logo.png">
+        <div v-if="showTitle" :class="[!appConfig.isCollapse || alwaysShow ? 'show-title' : 'close-title']">
             <span class="logo-title">{{ base.title }}</span>
         </div>
     </div>
@@ -36,6 +33,7 @@ const appConfig = useAppConfigStore()
 
     .logo-img {
         width: 30px;
+        margin-right: 5px;
     }
 
     .logo-title {

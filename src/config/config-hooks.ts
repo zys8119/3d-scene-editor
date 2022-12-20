@@ -68,7 +68,6 @@ export default {
         async getUserinfo() {
             const store = useStore()
             if (!store.token) throw new Error('Token 不存在')
-            if (!store.userinfo.refresh_token) return
         },
         /**
          * 过滤路由，流程在 getUserinfo 之后

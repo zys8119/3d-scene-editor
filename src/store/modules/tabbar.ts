@@ -1,15 +1,15 @@
-import { RouteLocationNormalized } from 'vue-router'
 import Router from '@/router'
+import {SystemTabbarRouteRow} from '@/typings'
 
 export default defineStore('tabbar', {
     state: () => {
         return {
             active: '',
-            tags: [] as RouteLocationNormalized[]
+            tags: [] as SystemTabbarRouteRow[]
         }
     },
     actions: {
-        push(record: RouteLocationNormalized) {
+        push(record: SystemTabbarRouteRow) {
             const index = this.tags.findIndex(tag => tag.fullPath === record.fullPath)
             if (index === -1) {
                 this.tags.push(record)

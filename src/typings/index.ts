@@ -1,16 +1,27 @@
+import {MenuOption} from 'naive-ui'
+import {RouteLocationNormalized, RouteRecordRaw} from 'vue-router'
+
+/**
+ * 系统路由类型
+ */
+export type SystemRouteRow = MenuOption & RouteRecordRaw & {info: RouteRecordRaw}
+
+/**
+ * 系统标签页路由类型
+ */
+export type SystemTabbarRouteRow = (RouteLocationNormalized & RouteRecordRaw) & {active: boolean}
+
 /**
  * 公共类型
  */
 export type PageMap = Record<string, string | number | boolean>
-export interface FileItem {
-    id: number,
-    creator_id: string
-    creator_name: string,
-    name?: string,
-    origin_name?: string,
-    size: number
-    suffix: string
-    url: string
+
+/**
+ * 登录用户信息
+ */
+export interface UserInfo {
+    avatar?: string
+    username?: string
 }
 
 // 脚手架主题类型
@@ -47,7 +58,6 @@ export enum ThemeMode {
 export enum SideTheme {
     DARK = 'dark',
     WHITE = 'white',
-    BLUE = 'blue',
     IMAGE = 'image',
 }
 // 页面切换动画类型

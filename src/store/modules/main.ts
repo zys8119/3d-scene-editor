@@ -1,30 +1,26 @@
 import { RouteRecordRaw } from 'vue-router'
 import config from '@/config/config'
 import baseConfig from '@/config/base'
+import {UserInfo} from '@/typings'
 
-const useStore = defineStore('main', {
+export default defineStore('main', {
     state: () => {
         return {
             userinfo: {
+                avatar: '',
                 username: ''
-            } as Record<any, string>,
+            } as UserInfo,
             /**
              * 请求相关
              */
             token: '',
             requests: new Set() as Set<Promise<any>>,
-            requestResults: {} as Record<string, any>,
             /**
-             * 有权限的路由，用于菜单的生成
+             * 有权限的路由
              */
             routes: [] as RouteRecordRaw[],
             flatRoutes: [] as RouteRecordRaw[],
         }
-    },
-    getters: {
-        loading(state) {
-            return state.requests.size > 0
-        },
     },
     actions: {
         setToken(token = '') {
@@ -47,5 +43,3 @@ const useStore = defineStore('main', {
         }
     }
 })
-
-export default useStore
