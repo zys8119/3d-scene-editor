@@ -3,9 +3,9 @@ import {Component} from 'vue'
 import config from '@/config/config'
 import baseConfig from '../config/base'
 
-import Page404 from '@/components/Common/404.vue'
-import Error from '@/components/Common/error.vue'
-import Redirect from '@/components/Common/Redirect.vue'
+import Page404 from '@/components/common/404.vue'
+import Error from '@/components/common/error.vue'
+import Redirect from '@/components/common/redirect.vue'
 
 /**
  * 动态路由
@@ -50,7 +50,7 @@ export const routes: RouteRecordRaw[] = [
     {
         name: 'index',
         path: '/',
-        component: () => import('@/components/Layout/index.vue'),
+        component: () => import('@/components/layout/index.vue'),
         redirect: '/demo/test2',
         children: []
     },

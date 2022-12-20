@@ -15,12 +15,12 @@
 </template>
 
 <script lang="ts" setup>
-import Humburger from '@/components/Layout/humburger/index.vue'
-import Breadcrumb from '@/components/Layout/breadcrumb/index.vue'
-import Actions from '@/components/Layout/actions/index.vue'
-import Avatar from '@/components/Layout/avatar/index.vue'
+import Humburger from '@/components/layout/humburger/index.vue'
+import Breadcrumb from '@/components/layout/breadcrumb/index.vue'
+import Actions from '@/components/layout/actions/index.vue'
+import Avatar from '@/components/layout/avatar/index.vue'
 import useAppConfigStore from '@/store/modules/app-config'
-import HorizontalScrollerMenu from '@/components/Layout/side-bar/components/horizontal-scroller-menu.vue'
+import HorizontalScrollerMenu from '@/components/layout/side-bar/components/horizontal-scroller-menu.vue'
 const appConfig = useAppConfigStore()
 </script>
 

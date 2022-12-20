@@ -1,7 +1,7 @@
 import { RouteLocationNormalized } from 'vue-router'
 import Router from '@/router'
 
-export default defineStore('tabViews', {
+export default defineStore('tabbar', {
     state: () => {
         return {
             active: '',

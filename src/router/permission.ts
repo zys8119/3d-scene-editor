@@ -1,11 +1,11 @@
 import router from './index'
 import useStore from '@/store/modules/main'
-import useTabViewsStore from '@/store/modules/tabViews'
-import configHooks from '@/config/configHooks'
+import useTabbarStore from '@/store/modules/tabbar'
+import configHooks from '@/config/config-hooks'
 import config from '@/config/config'
 import baseConfig from '@/config/base'
 
-import { setRoutes, status } from './setRoutes'
+import { setRoutes, status } from './set-routes'
 
 export const getUserinfo = async() => {
     await configHooks.router.getUserinfo()
@@ -45,14 +45,14 @@ router.beforeEach(async(to, from, next) => {
         /**
          * 页签
          */
-        if (!config.tabBarViews.disabled && (to.meta?.title || (to.name && to.name !== 'index'))) {
-            const tabViewsStore = useTabViewsStore()
-            if (!config.tabBarViews.max || tabViewsStore.tags.length < config.tabBarViews.max) {
+        if (!config.tabbarViews.disabled && (to.meta?.title || (to.name && to.name !== 'index'))) {
+            const tabbarStore = useTabbarStore()
+            if (!config.tabbarViews.max || tabbarStore.tags.length < config.tabbarViews.max) {
                 if (!to.meta.hiddenInTab) {
-                    if (typeof to.fullPath === 'string') tabViewsStore.push(to)
+                    if (typeof to.fullPath === 'string') tabbarStore.push(to)
                 }
             }
-            tabViewsStore.active = to.fullPath
+            tabbarStore.active = to.fullPath
         }
         /**
          * 第一次进入，一般会先获取权限

@@ -32,7 +32,7 @@ export default {
     /**
      * 页签配置
      */
-    tabBarViews: {
+    tabbarViews: {
         disabled: false,
     },
     /**

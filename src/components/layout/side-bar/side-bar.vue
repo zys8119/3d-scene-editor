@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import Logo from '@/components/Layout/logo/index.vue'
+import Logo from '@/components/layout/logo/index.vue'
 import useAppConfigStore from '@/store/modules/app-config'
 import {computed, h} from 'vue'
 import {SideTheme, ThemeMode} from '@/typings'
@@ -83,7 +83,7 @@ const themeOverThemes = computed(() => {
 
 <style scoped lang="less">
 .sidebar-bg-img {
-    background-image: url('../../../assets/images/bg_img.webp') !important;
+    background-image: url('../../../assets/images/side-bg.png') !important;
     background-size: cover;
 }
 

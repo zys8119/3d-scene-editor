@@ -1,6 +1,6 @@
 import router, { asyncRoutes, commonRoutes } from './index'
 import useStore from '@/store/modules/main'
-import configHooks from '@/config/configHooks'
+import configHooks from '@/config/config-hooks'
 import type { RouteRecordRaw } from 'vue-router'
 import { createAsyncComponent } from '@/utils/route'
 

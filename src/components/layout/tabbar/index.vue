@@ -43,13 +43,13 @@
 
 <script lang="ts" setup>
 import { Close, ChevronBack, Refresh, ArrowBack, ArrowForward, Menu } from '@vicons/ionicons5'
-import useStoreTabViews from '@/store/modules/tabViews'
+import useTabbarStore from '@/store/modules/tabbar'
 import {NIcon, NScrollbar} from 'naive-ui'
 import {onMounted} from 'vue'
 
 const route = useRoute()
 const router = useRouter()
-const store = useStoreTabViews()
+const store = useTabbarStore()
 
 const itemClick = (row: any) => {
     router.push(row.fullPath || '/')

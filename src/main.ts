@@ -1,4 +1,4 @@
-import App from './App.vue'
+import App from './app.vue'
 const app = createApp(App)
 
 /**
@@ -6,7 +6,7 @@ const app = createApp(App)
  */
 import request from 'wp-request'
 import config from './config/config'
-import configHooks from './config/configHooks'
+import configHooks from './config/config-hooks'
 app.use(request, {
     ...config.request,
     ...configHooks.request

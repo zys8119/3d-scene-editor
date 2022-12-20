@@ -25,7 +25,7 @@ export interface Config {
         keepAlive: boolean,
         session: boolean,
     },
-    tabBarViews: {
+    tabbarViews: {
         disabled?: boolean,
         max?: number
     },

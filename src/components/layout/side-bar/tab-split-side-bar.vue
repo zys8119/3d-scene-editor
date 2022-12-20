@@ -46,9 +46,9 @@
 import {useRoute, useRouter} from 'vue-router'
 import useAppConfigStore from '@/store/modules/app-config'
 import {SideTheme, ThemeMode} from '@/typings'
-import Logo from '@/components/Layout/logo/index.vue'
-import SvgIcon from '@/components/Layout/svg-icon/index.vue'
-import ScrollerMenu from '@/components/Layout/side-bar/components/scroller-menu.vue'
+import Logo from '@/components/layout/logo/index.vue'
+import SvgIcon from '@/components/layout/svg-icon/index.vue'
+import ScrollerMenu from '@/components/layout/side-bar/components/scroller-menu.vue'
 import useStore from '@/store/modules/main'
 import useSideRoutesStore from '@/store/modules/side-routes'
 
@@ -130,7 +130,7 @@ const changeTab = (row: any) => {
 
 <style scoped lang="less">
 .sidebar-bg-img {
-    background-image: url('../../../assets/images/bg_img.webp') !important;
+    background-image: url('../../../assets/images/side-bg.png') !important;
     background-size: cover;
 }
 

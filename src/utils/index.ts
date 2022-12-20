@@ -1,5 +1,5 @@
-export * from './vite/htmlTransform'
-export * from './usePromise'
+export * from './vite/html-transform'
+export * from './use-promise'
 
 /**
  * 中划线字符驼峰

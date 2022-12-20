@@ -1,7 +1,7 @@
 import {RouteRecordRaw} from 'vue-router'
 import {h} from 'vue'
 import {NIcon} from 'naive-ui'
-import SvgIcon from '@/components/Layout/svg-icon/index.vue'
+import SvgIcon from '@/components/layout/svg-icon/index.vue'
 
 const useSideRoutesStore = defineStore('side-routes', {
     state() {

@@ -18,7 +18,7 @@
             ]"
         >
             <NavBar v-if="showNavBar"/>
-            <TabBar v-if="!config.tabBarViews.disabled"/>
+            <TabBar v-if="!config.tabbarViews.disabled"/>
         </section>
         <div class="main-base-style scrollbar" :class="[mainClass]">
             <section class="main-section">
@@ -34,10 +34,10 @@
 </template>
 
 <script lang="ts" setup>
-import NavBar from '@/components/Layout/navbar/index.vue'
-import TabBar from '@/components/Layout/tabbar/index.vue'
-import Main from '@/components/Layout/main.vue'
-import Footer from '@/components/Layout/footer/index.vue'
+import NavBar from '@/components/layout/navbar/index.vue'
+import TabBar from '@/components/layout/tabbar/index.vue'
+import Main from '@/components/layout/main.vue'
+import Footer from '@/components/layout/footer/index.vue'
 import useAppConfigStore from '@/store/modules/app-config'
 import {ThemeMode} from '@/typings'
 import {useLoadingBar} from 'naive-ui'

@@ -35,7 +35,6 @@ export enum LayoutMode {
     LCR = 'lcr',
     TTB = 'ttb',
 }
-
 export enum DeviceType {
     PC = 'pc',
     PAD = 'pad',
@@ -51,7 +50,7 @@ export enum SideTheme {
     BLUE = 'blue',
     IMAGE = 'image',
 }
-
+// 页面切换动画类型
 export enum PageAnim {
     FADE = 'fade',
     OPACITY = 'opacity',
