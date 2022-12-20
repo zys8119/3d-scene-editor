@@ -7,8 +7,6 @@ const routes: RouteRecordRaw[] = [
         meta: {
             title: '系统管理',
         },
-        redirect: '/system/organization',
-        component: RouterView,
         children: [
             {
                 path: 'organization',
@@ -18,7 +16,7 @@ const routes: RouteRecordRaw[] = [
                     tabTitle: 'asdfjalskdfj',
                     fixed: true
                 },
-                component: () => import('@/views/System/Organization/index.vue')
+                component: () => import('@/views/system/organization/index.vue')
             },
         ]
     }

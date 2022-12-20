@@ -57,9 +57,9 @@ export const routes: RouteRecordRaw[] = [
     {
         path: '/demo/test1',
         name: 'test1',
-        component: () => import('@/views/Demo/Test1.vue'),
+        component: () => import('@/views/demo/test1.vue'),
         meta: {
-            title: 'Demo',
+            title: 'demo',
             hiddenInTab: true,
         }
     },
@@ -75,7 +75,7 @@ export const routes: RouteRecordRaw[] = [
     {
         path: '/login',
         name: 'login',
-        component: () => import('@/views/System/Login.vue'),
+        component: () => import('@/views/login/index.vue'),
         meta: {
             title: '登录',
             isFullPage: true

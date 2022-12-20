@@ -1,4 +1,4 @@
-import {RouteRecordRaw, RouterView} from 'vue-router'
+import {RouteRecordRaw} from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
     {
@@ -15,7 +15,7 @@ const routes: RouteRecordRaw[] = [
                 meta: {
                     title: 'test2',
                 },
-                component: () => import('@/views/Demo/Test2.vue'),
+                component: () => import('@/views/demo/test2.vue'),
                 children: [
                     {
                         path: 'test3',
@@ -24,7 +24,7 @@ const routes: RouteRecordRaw[] = [
                             title: 'test3',
                             hidden: true
                         },
-                        component: () => import('@/views/Demo/Test3.vue')
+                        component: () => import('@/views/demo/test3.vue')
                     }
                 ]
             },
@@ -36,7 +36,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
             title: 'demo2',
         },
-        component: () => import('@/views/Demo/Test1.vue'),
+        component: () => import('@/views/demo/test1.vue'),
     }
 ]
 
