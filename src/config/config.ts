@@ -27,7 +27,11 @@ export default {
         /**
          * 是否保持 alive 状态
          */
-        keepAlive: false
+        keepAlive: false,
+        /**
+         * 左侧菜单是否需要 icon 图标以及页面响应式
+         */
+        needSideMenuIcon: true
     },
     /**
      * 页签配置

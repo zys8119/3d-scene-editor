@@ -24,6 +24,7 @@ export interface Config {
         whiteList: RouteRecordName[],
         keepAlive: boolean,
         session: boolean,
+        needSideMenuIcon: boolean,
     },
     tabbarViews: {
         disabled?: boolean,

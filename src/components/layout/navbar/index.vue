@@ -1,6 +1,6 @@
 <template>
     <div class="vaw-nav-bar-wrapper">
-        <Humburger/>
+        <Humburger v-if="config.router.needSideMenuIcon"/>
         <div class="nav-container">
             <Breadcrumb v-if="appConfig.deviceType !== 'mobile' && appConfig.layoutMode !== 'ttb'"/>
             <HorizontalScrollerMenu v-else/>
@@ -21,6 +21,7 @@ import Actions from '@/components/layout/actions/index.vue'
 import Avatar from '@/components/layout/avatar/index.vue'
 import useAppConfigStore from '@/store/modules/app-config'
 import HorizontalScrollerMenu from '@/components/layout/side-bar/components/horizontal-scroller-menu.vue'
+import config from '@/config/config'
 const appConfig = useAppConfigStore()
 </script>
 
@@ -38,6 +39,7 @@ const appConfig = useAppConfigStore()
     .nav-container {
         flex: 1;
         overflow: hidden;
+        padding-left: 5px;
     }
 
     .avatar-wrapper {

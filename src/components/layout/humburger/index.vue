@@ -33,7 +33,7 @@ function toggleFold() {
     display: inline-block;
     line-height: var(--logo-height);
     text-align: center;
-    padding: 0 10px;
+    padding: 10px;
     font-size: 22px;
     transition: transform var(--transition-time);
 }

@@ -39,6 +39,7 @@ import MainLayout from '@/components/layout/main-layout.vue'
 import useAppConfigStore from '@/store/modules/app-config'
 import {darkTheme, zhCN} from 'naive-ui'
 import {DeviceType, ThemeMode} from '@/typings'
+import config from '@/config/config'
 
 const appConfig = useAppConfigStore()
 const theme = computed(() => {
@@ -57,6 +58,7 @@ const layoutMode = computed(() => {
 })
 
 function handleScreenResize() {
+    if (!config.router.needSideMenuIcon) return
     const width = document.body.clientWidth
     if (width <= 768) {
         appConfig.changeDevice(DeviceType.MOBILE)

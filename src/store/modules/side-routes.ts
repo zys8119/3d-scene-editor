@@ -3,6 +3,7 @@ import {h} from 'vue'
 import {NIcon} from 'naive-ui'
 import SvgIcon from '@/components/layout/svg-icon/index.vue'
 import {SystemRouteRow} from '@/typings'
+import config from '@/config/config'
 
 export default defineStore('side-routes', {
     state() {
@@ -22,13 +23,13 @@ export default defineStore('side-routes', {
                     label: route.meta?.title || route.name,
                     children: route.children && route.children.filter(r => !r.meta?.hidden).length > 0 ? this.routesMapper(route.children) : undefined,
                     info: route,
-                    icon: () => h(NIcon, null, {
+                    icon: config.router.needSideMenuIcon ? () => h(NIcon, null, {
                         default: () =>
                             h(SvgIcon, {
                                 prefix: 'icon',
                                 name: route?.meta?.icon
                             }),
-                    }),
+                    }) : null,
                 } as any
             })
         }
