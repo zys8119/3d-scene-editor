@@ -45,7 +45,6 @@ export async function create(user: Partial<Staff<false>>, id?: string) {
         url: '/api/admin/v1/user',
         method: 'post',
         data: preprocessor(user, {
-            avatar: avatars => avatars?.filter(item => item.status === 0)[0].url,
             department_name: () => void 0
         })
     })
