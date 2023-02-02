@@ -125,7 +125,7 @@ onMounted(() => {
     .main-base-style {
         height: 100%;
         box-sizing: border-box;
-        padding: 5px;
+        padding: 10px;
     }
 
     .main-base-light-theme {

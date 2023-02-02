@@ -21,6 +21,7 @@
 
 <script lang="ts" setup>
 import Logo from '@/components/layout/logo/index.vue'
+import ScrollerMenu from '@/components/layout/side-bar/components/scroller-menu.vue'
 import useAppConfigStore from '@/store/modules/app-config'
 import {computed, h} from 'vue'
 import {SideTheme, ThemeMode} from '@/typings'
