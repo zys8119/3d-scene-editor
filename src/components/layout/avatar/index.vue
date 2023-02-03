@@ -3,7 +3,7 @@
         <n-dropdown trigger="hover" :options="options" size="large" @select="handleSelect">
             <div class="action-wrapper">
                 <div class="avatar">
-                    <n-avatar circle size="small" :src="userStore.userinfo.avatar.url || defaultAvatar"/>
+                    <n-avatar circle size="small" :src="userStore.userinfo?.avatar?.url || defaultAvatar"/>
                 </div>
                 <span class="nick-name">
                     {{ userStore.userinfo.username || '管理员' }}
