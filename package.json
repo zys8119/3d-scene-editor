@@ -5,6 +5,7 @@
         "dev": "vite",
         "build": "npm run lint:fix && vite build",
         "build:test": "npm run lint:fix && vite build --mode test",
+        "push:release": "ts-node-esm build-release/release.ts",
         "serve": "vite preview --host",
         "lint": "eslint src",
         "lint:fix": "eslint src --fix --ext .ts,.tsx,.vue",
