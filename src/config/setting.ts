@@ -15,7 +15,6 @@ export default {
     sideWidth: 240,
     deviceType: DeviceType.PC,
     pageAnim: PageAnim.OPACITY,
-    isFixedNavBar: true,
     isCollapse: false,
     actionBar: {
         isShowRefresh: true,

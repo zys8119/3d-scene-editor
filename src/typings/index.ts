@@ -34,7 +34,6 @@ export interface AppConfigState {
     deviceType: DeviceType
     sideWidth: number
     pageAnim: PageAnim
-    isFixedNavBar: boolean
     isCollapse: boolean
     actionBar: {
         isShowRefresh: boolean

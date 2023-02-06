@@ -5,7 +5,7 @@
             !appConfig.isCollapse
                 ? 'main-layout-open-status'
                 : 'main-layout-close-status',
-            appConfig.isFixedNavBar ? 'main-layout_fixed-nav-bar' : 'main-layout',
+            !config.tabbarViews.disabled ? 'main-layout_fixed-nav-bar' : 'main-layout',
         ]"
     >
         <section
@@ -13,7 +13,7 @@
                 !appConfig.isCollapse
                     ? 'nav-bar-open-status'
                     : 'nav-bar-close-status',
-                appConfig.isFixedNavBar ? 'fixed-nav-bar' : '',
+                !config.tabbarViews.disabled ? 'fixed-nav-bar' : '',
                 !showNavBar ? 'tab-bar-top' : '',
             ]"
         >
