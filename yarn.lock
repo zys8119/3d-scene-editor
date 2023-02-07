@@ -7732,7 +7732,7 @@ mz@^2.7.0:
 
 "naive-ui@git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git":
   version "2.34.3"
-  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git#fb2bd992553291f3615734ed79cecbc08eb22b31"
+  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git#8a810b39cfee661e6c737d0cb21af7e71954333d"
   dependencies:
     "@css-render/plugin-bem" "^0.15.10"
     "@css-render/vue3-ssr" "^0.15.10"

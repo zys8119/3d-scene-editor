@@ -5,6 +5,7 @@
         :locale="zhCN"
         style="height: 100%"
     >
+        <n-global-style />
         <n-loading-bar-provider>
             <n-dialog-provider>
                 <n-el class="vaw-layout-container" :class="[appConfig.deviceType === 'mobile' && 'is-mobile']">
