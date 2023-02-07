@@ -1,7 +1,5 @@
 <template>
-    <div id="Test1">
-        demoasdfadsf
-    </div>
+    qweqwewq
 </template>
 
 <script lang="ts" setup>

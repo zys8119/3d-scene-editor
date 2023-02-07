@@ -17,7 +17,7 @@ export default defineStore('side-routes', {
             return this.routesMapper(currentRoute)
         },
         routesMapper(routes: RouteRecordRaw[]): SystemRouteRow[] {
-            return routes.map(route => {
+            return routes.filter(v => !v.meta?.hidden).map(route => {
                 return {
                     key: route.name,
                     label: route.meta?.title || route.name,
