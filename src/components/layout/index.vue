@@ -8,7 +8,15 @@
         <n-global-style />
         <n-loading-bar-provider>
             <n-dialog-provider>
-                <n-el class="vaw-layout-container" :class="[appConfig.deviceType === 'mobile' && 'is-mobile']">
+                <router-view v-if="route.meta.isFullPage" v-slot="{ Component, route }">
+                    <transition :name="appConfig.pageAnim + '-transform'" mode="out-in" appear>
+                        <keep-alive v-if="config.router.keepAlive">
+                            <component :is="Component" :key="route.fullPath"/>
+                        </keep-alive>
+                        <component :is="Component" v-else :key="route.fullPath"/>
+                    </transition>
+                </router-view>
+                <n-el v-else class="vaw-layout-container" :class="[appConfig.deviceType === 'mobile' && 'is-mobile']">
                     <template v-if="layoutMode === 'ttb'">
                         <SideBar/>
                         <MainLayout/>
@@ -42,6 +50,7 @@ import {darkTheme, zhCN} from 'naive-ui'
 import {DeviceType, ThemeMode} from '@/typings'
 import config from '@/config/config'
 
+const route = useRoute()
 const appConfig = useAppConfigStore()
 const theme = computed(() => {
     return appConfig.theme === ThemeMode.DARK ? darkTheme : null

@@ -139,6 +139,7 @@ onMounted(() => {
     .main-section {
         min-height: calc(100% - var(--footer-height) - 10px);
         overflow-x: hidden;
+        position: relative;
     }
 
     .fixed-nav-bar {

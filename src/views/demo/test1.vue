@@ -1,5 +1,5 @@
 <template>
-    qweqwewq
+    <div>qweqwewq</div>
 </template>
 
 <script lang="ts" setup>
