@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "15 >="
+    "node": ">= 15"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
