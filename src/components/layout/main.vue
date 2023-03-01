@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import config from "@/config/config";
-import useAppConfigStore from "@/store/modules/app-config";
+import config from '@/config/config';
+import useAppConfigStore from '@/store/modules/app-config';
 const appConfig = useAppConfigStore();
 </script>

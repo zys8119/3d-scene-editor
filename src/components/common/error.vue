@@ -11,7 +11,7 @@ defineProps<{
     error?: string;
 }>();
 const router = useRouter();
-const goHome = () => router.replace("/");
+const goHome = () => router.replace('/');
 </script>
 
 <style lang="less" scoped>

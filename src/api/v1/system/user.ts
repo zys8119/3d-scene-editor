@@ -1,16 +1,16 @@
-import { List, User } from "@/api/typing";
+import { List, User } from '@/api/typing';
 
 export function post(data: Partial<User>) {
     return request({
-        method: "post",
-        url: "/api/admin/v1/user",
+        method: 'post',
+        url: '/api/admin/v1/user',
         data,
     });
 }
 
-export function get(data: { search?: "" }, page: PageMap) {
+export function get(data: { search?: '' }, page: PageMap) {
     return request<List<User>>({
-        url: "/api/admin/v1/user",
+        url: '/api/admin/v1/user',
         params: {
             ...data,
             ...page,
@@ -20,8 +20,8 @@ export function get(data: { search?: "" }, page: PageMap) {
 
 export function del(id_list: string[]) {
     return request({
-        method: "delete",
-        url: "/api/admin/v1/user",
+        method: 'delete',
+        url: '/api/admin/v1/user',
         data: {
             id_list,
         },
@@ -30,7 +30,7 @@ export function del(id_list: string[]) {
 
 export function put(id: string, data: Partial<User>) {
     return request({
-        method: "put",
+        method: 'put',
         url: `/api/admin/v1/user/${id}`,
         data: preprocessor(data, {
             created_at: () => void 0,
@@ -45,8 +45,8 @@ export function resetPassword(data: {
     new_password: string;
 }) {
     return request({
-        method: "patch",
-        url: "/api/admin/v1/user/reset-password",
+        method: 'patch',
+        url: '/api/admin/v1/user/reset-password',
         data,
     });
 }
@@ -57,8 +57,8 @@ export function resetUsersPassword(data: {
     new_password: string;
 }) {
     return request({
-        method: "patch",
-        url: "/api/admin/v1/user/reset-users-password",
+        method: 'patch',
+        url: '/api/admin/v1/user/reset-users-password',
         data,
     });
 }

@@ -16,10 +16,10 @@
 </template>
 
 <script lang="ts" setup>
-import useAppConfigStore from "@/store/modules/app-config";
-import configHooks from "@/config/config-hooks";
-import useStore from "@/store/modules/main";
-import { DeviceType, SystemRouteRow } from "@/typings";
+import useAppConfigStore from '@/store/modules/app-config';
+import configHooks from '@/config/config-hooks';
+import useStore from '@/store/modules/main';
+import { DeviceType, SystemRouteRow } from '@/typings';
 
 const store = useStore();
 const route = useRoute();
@@ -32,16 +32,16 @@ const props = defineProps<{
 // 初始化激活菜单
 const activeMenu = computed(() => {
     if (!route.meta?.hidden) {
-        return route.name || "";
+        return route.name || '';
     } else {
         if (!route.meta.breadcrumbs || route.meta.breadcrumbs.length === 0)
-            return "";
+            return '';
         for (const index in route.meta.breadcrumbs) {
             const breadcrumb = route.meta.breadcrumbs[index];
             if (breadcrumb.meta?.hidden) {
                 const newIndex = Number(index) - 1;
                 if (newIndex >= 0) {
-                    return route.meta.breadcrumbs[newIndex].name || "";
+                    return route.meta.breadcrumbs[newIndex].name || '';
                 }
             }
         }

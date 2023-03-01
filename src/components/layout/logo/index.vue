@@ -15,8 +15,8 @@
 </template>
 
 <script lang="ts" setup>
-import useAppConfigStore from "@/store/modules/app-config";
-import base from "@/config/base";
+import useAppConfigStore from '@/store/modules/app-config';
+import base from '@/config/base';
 
 const props = withDefaults(
     defineProps<{

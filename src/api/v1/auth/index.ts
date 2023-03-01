@@ -2,8 +2,8 @@ export default {
     manager: {
         login(data: Login) {
             return request({
-                url: "/api/admin/v1/auth/manager/login",
-                method: "POST",
+                url: '/api/admin/v1/auth/manager/login',
+                method: 'POST',
                 data,
             });
         },
@@ -11,14 +11,14 @@ export default {
     user: {
         me() {
             return request({
-                url: "/api/admin/v1/auth/user/me/",
+                url: '/api/admin/v1/auth/user/me/',
             });
         },
     },
     sendSmsCode(mobile: string) {
         return request({
-            url: "/api/admin/v1/auth/send-sms-code",
-            method: "POST",
+            url: '/api/admin/v1/auth/send-sms-code',
+            method: 'POST',
             data: {
                 mobile,
             },

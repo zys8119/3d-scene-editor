@@ -61,13 +61,13 @@
 </template>
 
 <script lang="ts" setup>
-import SideBar from "@/components/layout/side-bar/side-bar.vue";
-import TabSplitSideBar from "@/components/layout/side-bar/tab-split-side-bar.vue";
-import MainLayout from "@/components/layout/main-layout.vue";
-import useAppConfigStore from "@/store/modules/app-config";
-import { darkTheme, zhCN } from "naive-ui";
-import { DeviceType, ThemeMode } from "@/typings";
-import config from "@/config/config";
+import SideBar from '@/components/layout/side-bar/side-bar.vue';
+import TabSplitSideBar from '@/components/layout/side-bar/tab-split-side-bar.vue';
+import MainLayout from '@/components/layout/main-layout.vue';
+import useAppConfigStore from '@/store/modules/app-config';
+import { darkTheme, zhCN } from 'naive-ui';
+import { DeviceType, ThemeMode } from '@/typings';
+import config from '@/config/config';
 
 const route = useRoute();
 const appConfig = useAppConfigStore();
@@ -109,12 +109,12 @@ function closeMenu() {
 }
 
 onBeforeUnmount(() => {
-    window.removeEventListener("resize", handleScreenResize);
+    window.removeEventListener('resize', handleScreenResize);
 });
 
 onMounted(() => {
     handleScreenResize();
-    window.addEventListener("resize", handleScreenResize);
+    window.addEventListener('resize', handleScreenResize);
 });
 </script>
 

@@ -1,8 +1,8 @@
-import base from "../../config/base";
+import base from '../../config/base';
 
 export const htmlTransform = () => {
     return {
-        name: "html-transform",
+        name: 'html-transform',
         transformIndexHtml(html: string) {
             html = html.replace(
                 /<title>(.*?)<\/title>/,

@@ -1,11 +1,11 @@
 /**
  * 挂载 store
  */
-import useMainStore from "./modules/main";
-import useTabbarStore from "./modules/tabbar";
-import useSideRoutesStore from "./modules/side-routes";
-import useAppConfigStore from "./modules/app-config";
-import { App } from "vue";
+import useMainStore from './modules/main';
+import useTabbarStore from './modules/tabbar';
+import useSideRoutesStore from './modules/side-routes';
+import useAppConfigStore from './modules/app-config';
+import { App } from 'vue';
 
 interface Store {
     main: ReturnType<typeof useMainStore>;
@@ -39,9 +39,9 @@ export default {
 };
 
 // eslint-disable-next-line vue/prefer-import-from-vue
-import "@vue/runtime-core";
+import '@vue/runtime-core';
 
-declare module "@vue/runtime-core" {
+declare module '@vue/runtime-core' {
     export interface ComponentCustomProperties {
         $store: Store;
     }

@@ -1,8 +1,8 @@
-import router, { asyncRoutes, commonRoutes } from "./index";
-import useStore from "@/store/modules/main";
-import configHooks from "@/config/config-hooks";
-import type { RouteRecordRaw } from "vue-router";
-import { createAsyncComponent } from "@/utils/route";
+import router, { asyncRoutes, commonRoutes } from './index';
+import useStore from '@/store/modules/main';
+import configHooks from '@/config/config-hooks';
+import type { RouteRecordRaw } from 'vue-router';
+import { createAsyncComponent } from '@/utils/route';
 
 /**
  * 自动给路由 name
@@ -10,7 +10,7 @@ import { createAsyncComponent } from "@/utils/route";
 export const setRoutesName = (routes: RouteRecordRaw[]) => {
     return routes.map((route) => {
         const routeMap: RouteRecordRaw = {
-            name: route.meta?.title || Symbol("AnonymousRouter"),
+            name: route.meta?.title || Symbol('AnonymousRouter'),
             ...route,
         };
         if (routeMap.component)
@@ -18,7 +18,7 @@ export const setRoutesName = (routes: RouteRecordRaw[]) => {
                 routeMap.name,
                 routeMap.component
             );
-        if (routeMap.component && typeof routeMap.props === "undefined") {
+        if (routeMap.component && typeof routeMap.props === 'undefined') {
             routeMap.props = (route) => {
                 return {
                     ...route.params,
@@ -40,14 +40,14 @@ export const flatRoutes = (routes: RouteRecordRaw[]) => {
     const finalRoutes: RouteRecordRaw[] = [];
     const flatRoutes = (
         routes: RouteRecordRaw[],
-        path = "",
+        path = '',
         breadcrumbs: RouteRecordRaw[] = []
     ) => {
         routes.forEach((route) => {
             const getPath =
-                route.path.indexOf("/") === 0
+                route.path.indexOf('/') === 0
                     ? route.path
-                    : path + "/" + route.path;
+                    : path + '/' + route.path;
             const newRoute = {
                 ...route,
                 children: undefined as undefined | RouteRecordRaw[],
@@ -94,7 +94,7 @@ export const setRoutes = async (filter = true) => {
         : asyncRoutesWithName;
     store.routes = asyncRoutesFilter;
     store.flatRoutes = flatRoutes(asyncRoutesFilter);
-    store.flatRoutes.forEach((route) => router.addRoute("index", route));
+    store.flatRoutes.forEach((route) => router.addRoute('index', route));
     commonRoutes.forEach((route) => router.addRoute(route));
     status.registerRouteFresh = false;
 };

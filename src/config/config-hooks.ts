@@ -1,12 +1,12 @@
-import useStore from "@/store/modules/main";
-import router from "../router";
-import type { ConfigHooks } from "./typings";
-import baseConfig from "./base";
-import config from "./config";
-export const views = import.meta.glob("../views/**/**");
+import useStore from '@/store/modules/main';
+import router from '../router';
+import type { ConfigHooks } from './typings';
+import baseConfig from './base';
+import config from './config';
+export const views = import.meta.glob('../views/**/**');
 
-import { createDiscreteApi } from "naive-ui";
-const { message } = createDiscreteApi(["message"]);
+import { createDiscreteApi } from 'naive-ui';
+const { message } = createDiscreteApi(['message']);
 
 export default {
     /**
@@ -25,7 +25,7 @@ export default {
             message.error(msg);
         },
         logout() {
-            router.push({ name: "login" });
+            router.push({ name: 'login' });
         },
     },
     /**
@@ -39,7 +39,7 @@ export default {
                 if (meta?.target) {
                     window.open(meta.url, meta.target);
                 } else {
-                    location.href = meta.url || "#";
+                    location.href = meta.url || '#';
                 }
             } else {
                 router.push({ name: route.name });
@@ -54,7 +54,7 @@ export default {
             const storage = config.router.session
                 ? sessionStorage
                 : localStorage;
-            const userinfo = storage.getItem(baseConfig.unique + "userinfo");
+            const userinfo = storage.getItem(baseConfig.unique + 'userinfo');
             if (userinfo) {
                 const store = useStore();
                 store.userinfo = JSON.parse(userinfo);
@@ -69,7 +69,7 @@ export default {
          */
         async getUserinfo() {
             const store = useStore();
-            if (!store.token) throw new Error("Token 不存在");
+            if (!store.token) throw new Error('Token 不存在');
         },
         /**
          * 过滤路由，流程在 getUserinfo 之后

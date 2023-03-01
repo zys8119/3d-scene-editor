@@ -1,18 +1,18 @@
-import { RouteRecordRaw } from "vue-router";
-import { h } from "vue";
-import { NIcon } from "naive-ui";
-import SvgIcon from "@/components/layout/svg-icon/index.vue";
-import { SystemRouteRow } from "@/typings";
-import config from "@/config/config";
+import { RouteRecordRaw } from 'vue-router';
+import { h } from 'vue';
+import { NIcon } from 'naive-ui';
+import SvgIcon from '@/components/layout/svg-icon/index.vue';
+import { SystemRouteRow } from '@/typings';
+import config from '@/config/config';
 
-export default defineStore("side-routes", {
+export default defineStore('side-routes', {
     state() {
         return {};
     },
     actions: {
         getSideBarRoutes() {
             const currentRoute =
-                window.store.appConfig.getLayoutMode !== "ltr"
+                window.store.appConfig.getLayoutMode !== 'ltr'
                     ? window.store.main.routes.find(
                           (routing) =>
                               useRoute().meta.breadcrumbs?.[0].name ===
@@ -40,7 +40,7 @@ export default defineStore("side-routes", {
                                   h(NIcon, null, {
                                       default: () =>
                                           h(SvgIcon, {
-                                              prefix: "icon",
+                                              prefix: 'icon',
                                               name: route?.meta?.icon,
                                           }),
                                   })

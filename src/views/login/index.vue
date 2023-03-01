@@ -50,29 +50,29 @@
 </template>
 
 <script setup lang="ts">
-import useStore from "@/store/modules/main";
-import { useMessage } from "naive-ui";
+import useStore from '@/store/modules/main';
+import { useMessage } from 'naive-ui';
 
 const message = useMessage();
 const loginType = ref<LoginType[]>([
     {
-        name: "账号密码登录",
-        tip: ["账号", "密码"],
-        formKey: ["username", "password"],
+        name: '账号密码登录',
+        tip: ['账号', '密码'],
+        formKey: ['username', 'password'],
         type: 1,
         isActive: true,
     },
     {
-        name: "手机号密码登录",
-        tip: ["手机号", "密码"],
-        formKey: ["mobile", "password"],
+        name: '手机号密码登录',
+        tip: ['手机号', '密码'],
+        formKey: ['mobile', 'password'],
         type: 2,
         isActive: false,
     },
     {
-        name: "验证码登录",
-        tip: ["手机号", "验证码"],
-        formKey: ["mobile", "code"],
+        name: '验证码登录',
+        tip: ['手机号', '验证码'],
+        formKey: ['mobile', 'code'],
         type: 3,
         isActive: false,
     },
@@ -88,18 +88,18 @@ store.setToken();
 store.setUserinfo();
 
 const userForm = ref<UserForm>({
-    username: import.meta.env.DEV ? "admin" : "",
-    password: import.meta.env.DEV ? "123456" : "",
-    mobile: "",
-    code: "",
+    username: import.meta.env.DEV ? 'admin' : '',
+    password: import.meta.env.DEV ? '123456' : '',
+    mobile: '',
+    code: '',
 });
 
 const countDown = ref(0);
 const handleCountDown = async () => {
     if (countDown.value === 0) {
-        if (!userForm.value.mobile) return message.error("请输入正确的手机号");
+        if (!userForm.value.mobile) return message.error('请输入正确的手机号');
         await window.api.v1.auth.sendSmsCode(userForm.value.mobile);
-        message.success("验证码已发送");
+        message.success('验证码已发送');
         countDown.value = 60000;
     }
 };
@@ -115,14 +115,14 @@ const login = async () => {
         login_type: currentLoginType.type,
         ...userForm.value,
     });
-    await store.setToken(res.data.token_type + " " + res.data.access_token);
+    await store.setToken(res.data.token_type + ' ' + res.data.access_token);
     const userMe = await window.api.v1.auth.user.me();
     store.setUserinfo({
         ...userMe.data,
         ...res.data.user,
         access_token: res.data.access_token,
     });
-    router.push("/");
+    router.push('/');
 };
 
 // 切换登录模式
@@ -135,7 +135,7 @@ const changeLoginType = (k: number) => {
 interface LoginType {
     name: string;
     tip: string[];
-    formKey: ("username" | "mobile" | "password" | "code")[];
+    formKey: ('username' | 'mobile' | 'password' | 'code')[];
     type: number;
     isActive: boolean;
 }
@@ -152,7 +152,7 @@ interface UserForm {
 .login {
     width: 100vw;
     height: 100vh;
-    background: url("@/assets/images/system/login-bg.png");
+    background: url('@/assets/images/system/login-bg.png');
     background-size: 100% 100%;
     display: flex;
     align-items: center;

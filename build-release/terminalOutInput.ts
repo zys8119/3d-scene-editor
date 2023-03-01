@@ -1,8 +1,8 @@
-import { merge } from "lodash";
-import * as readline from "readline";
-import { stdin as input, stdout as output } from "process";
-import { Interface } from "readline";
-const ncol = require("ncol");
+import { merge } from 'lodash';
+import * as readline from 'readline';
+import { stdin as input, stdout as output } from 'process';
+import { Interface } from 'readline';
+const ncol = require('ncol');
 
 export type Config = {
     message: string;
@@ -34,15 +34,15 @@ export default class TerminalOutInput {
             ncol.info(
                 `${originOpts.message}${
                     this.options
-                        ? `\n ${originOpts.optionsTitle || "选项如下："}`
-                        : ""
+                        ? `\n ${originOpts.optionsTitle || '选项如下：'}`
+                        : ''
                 }`
             );
             if (this.options) {
                 ncol.cyan(
                     `\n${originOpts.options
                         .map((e) => `  ${e.value}：${e.name}`)
-                        .join("\n")}`
+                        .join('\n')}`
                 );
             }
         }
@@ -70,12 +70,12 @@ export default class TerminalOutInput {
         return chunk;
     }
     setEncoding() {
-        process.stdin.setEncoding("utf8");
+        process.stdin.setEncoding('utf8');
     }
     async readable() {
         this.rl = readline.createInterface({ input, output });
         return new Promise((r) => {
-            this.rl.question("", (answer) => {
+            this.rl.question('', (answer) => {
                 r(answer);
                 this.end();
             });

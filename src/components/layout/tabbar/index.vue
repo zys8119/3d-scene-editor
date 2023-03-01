@@ -22,7 +22,7 @@
                     {{
                         item.meta
                             ? item.meta.tabTitle || item.meta.title || item.name
-                            : "页面"
+                            : '页面'
                     }}
                 </span>
                 <n-icon
@@ -54,18 +54,18 @@
 </template>
 
 <script lang="ts" setup>
-import { Close, ChevronBack, Refresh, Menu } from "@vicons/ionicons5";
-import useTabbarStore from "@/store/modules/tabbar";
-import { NIcon, NScrollbar } from "naive-ui";
-import { onMounted } from "vue";
-import { SystemTabbarRouteRow } from "@/typings";
+import { Close, ChevronBack, Refresh, Menu } from '@vicons/ionicons5';
+import useTabbarStore from '@/store/modules/tabbar';
+import { NIcon, NScrollbar } from 'naive-ui';
+import { onMounted } from 'vue';
+import { SystemTabbarRouteRow } from '@/typings';
 
 const route = useRoute();
 const router = useRouter();
 const store = useTabbarStore();
 
 const itemClick = (row: SystemTabbarRouteRow) => {
-    router.push(row.fullPath || "/");
+    router.push(row.fullPath || '/');
 };
 
 // 左边箭头
@@ -77,7 +77,7 @@ const leftArrowClick = () => {
         {
             left: Math.max(0, scrollX - 200),
             debounce: true,
-            behavior: "smooth",
+            behavior: 'smooth',
         } as any,
         0
     );
@@ -93,7 +93,7 @@ const rightArrowClick = () => {
         {
             left: scrollX + 200,
             debounce: false,
-            behavior: "smooth",
+            behavior: 'smooth',
         } as any,
         0
     );
@@ -114,22 +114,22 @@ const isDisabledArrow = () => {
 // 最右边功能按钮
 const contextMenuOptions = ref([
     {
-        label: "刷新页面",
-        key: "refresh",
+        label: '刷新页面',
+        key: 'refresh',
         icon: () => h(NIcon, null, { default: () => h(Refresh) }),
     },
     {
-        label: "关闭其他所有页签",
-        key: "close",
+        label: '关闭其他所有页签',
+        key: 'close',
         icon: () => h(NIcon, null, { default: () => h(Close) }),
     },
 ]);
 const onDropDownSelect = (key: string) => {
     switch (key) {
-        case "refresh":
+        case 'refresh':
             store.refresh();
             break;
-        case "close":
+        case 'close':
             store.closeOthers();
             break;
     }

@@ -24,21 +24,21 @@
 </template>
 
 <script lang="ts" setup>
-import { NSpace, NButton } from "naive-ui";
-import { onMounted } from "vue";
+import { NSpace, NButton } from 'naive-ui';
+import { onMounted } from 'vue';
 const columns = ref([
     {
-        title: "#",
-        align: "center",
+        title: '#',
+        align: 'center',
         render: (_: any, index: number) => {
             return `${index + 1}`;
         },
     },
-    { title: "头像", key: "avatar", align: "center" },
-    { title: "姓名", key: "name", align: "center" },
-    { title: "邮箱", key: "email", align: "center" },
-    { title: "性别", key: "gender", align: "center" },
-    { title: "操作", key: "todo", align: "center", fixed: "right" },
+    { title: '头像', key: 'avatar', align: 'center' },
+    { title: '姓名', key: 'name', align: 'center' },
+    { title: '邮箱', key: 'email', align: 'center' },
+    { title: '性别', key: 'gender', align: 'center' },
+    { title: '操作', key: 'todo', align: 'center', fixed: 'right' },
 ]);
 
 onMounted(() => {

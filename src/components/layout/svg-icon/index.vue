@@ -11,20 +11,20 @@ const props = withDefaults(
         name: string;
     }>(),
     {
-        prefix: "icon",
-        name: "",
+        prefix: 'icon',
+        name: '',
     }
 );
 
-const component = computed(() => (props.prefix === "icon" ? "svg" : "i"));
+const component = computed(() => (props.prefix === 'icon' ? 'svg' : 'i'));
 const iconName = computed(() => `#${props.prefix}-${props.name}`);
 const className = computed(() => {
-    if (props.prefix === "icon") {
-        return "svg-icon";
-    } else if (props.prefix === "iconfont") {
-        return "iconfont icon-" + props.name;
+    if (props.prefix === 'icon') {
+        return 'svg-icon';
+    } else if (props.prefix === 'iconfont') {
+        return 'iconfont icon-' + props.name;
     } else {
-        return "";
+        return '';
     }
 });
 </script>

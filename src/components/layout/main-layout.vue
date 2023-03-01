@@ -36,16 +36,16 @@
 </template>
 
 <script lang="ts" setup>
-import NavBar from "@/components/layout/navbar/index.vue";
-import TabBar from "@/components/layout/tabbar/index.vue";
-import Main from "@/components/layout/main.vue";
-import Footer from "@/components/layout/footer/index.vue";
-import useAppConfigStore from "@/store/modules/app-config";
-import { ThemeMode } from "@/typings";
-import { useLoadingBar } from "naive-ui";
-import { computed, onMounted, ref } from "vue";
-import { useRouter } from "vue-router";
-import config from "@/config/config";
+import NavBar from '@/components/layout/navbar/index.vue';
+import TabBar from '@/components/layout/tabbar/index.vue';
+import Main from '@/components/layout/main.vue';
+import Footer from '@/components/layout/footer/index.vue';
+import useAppConfigStore from '@/store/modules/app-config';
+import { ThemeMode } from '@/typings';
+import { useLoadingBar } from 'naive-ui';
+import { computed, onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import config from '@/config/config';
 
 const router = useRouter();
 
@@ -63,8 +63,8 @@ const listenTo1 = ref<HTMLElement | null>(null);
 const listenTo2 = ref<HTMLElement | null>(null);
 const mainClass = computed(() => {
     return appConfig.theme === ThemeMode.DARK
-        ? "main-base-dark-theme"
-        : "main-base-light-theme";
+        ? 'main-base-dark-theme'
+        : 'main-base-light-theme';
 });
 const loadingBar = useLoadingBar();
 
@@ -76,8 +76,8 @@ router.afterEach(() => {
 });
 
 onMounted(() => {
-    listenTo1.value = document.querySelector(".main-base-style");
-    listenTo2.value = document.querySelector(".vaw-main-layout-container");
+    listenTo1.value = document.querySelector('.main-base-style');
+    listenTo2.value = document.querySelector('.vaw-main-layout-container');
 });
 </script>
 

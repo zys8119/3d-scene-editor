@@ -3,13 +3,13 @@ import {
     createWebHashHistory,
     createWebHistory,
     RouteRecordRaw,
-} from "vue-router";
-import config from "@/config/config";
-import baseConfig from "../config/base";
+} from 'vue-router';
+import config from '@/config/config';
+import baseConfig from '../config/base';
 
-import Page404 from "@/components/common/404.vue";
-import Error from "@/components/common/error.vue";
-import Redirect from "@/components/common/redirect.vue";
+import Page404 from '@/components/common/404.vue';
+import Error from '@/components/common/error.vue';
+import Redirect from '@/components/common/redirect.vue';
 
 /**
  * 动态路由
@@ -20,7 +20,7 @@ export const asyncRoutes: RouteRecordRaw[] = [];
  * 添加整个文件夹的 modules
  */
 const modules: Record<string, { default: RouteRecordRaw[] }> = import.meta.glob(
-    "./modules/*.ts",
+    './modules/*.ts',
     { eager: true }
 );
 for (const module of Object.values(modules)) {
@@ -36,16 +36,16 @@ for (const module of Object.values(modules)) {
  */
 export const commonRoutes: RouteRecordRaw[] = [
     {
-        path: "/:pathMatch(.*)*",
-        name: "404",
+        path: '/:pathMatch(.*)*',
+        name: '404',
         component: Page404,
         meta: {
             hiddenInTab: true,
         },
     },
     {
-        path: "/error",
-        name: "error",
+        path: '/error',
+        name: 'error',
         component: Error,
         meta: {
             hiddenInTab: true,
@@ -55,24 +55,24 @@ export const commonRoutes: RouteRecordRaw[] = [
 
 export const routes: RouteRecordRaw[] = [
     {
-        name: "index",
-        path: "/",
-        component: () => import("@/components/layout/index.vue"),
-        redirect: "/demo/test2",
+        name: 'index',
+        path: '/',
+        component: () => import('@/components/layout/index.vue'),
+        redirect: '/demo/test2',
         children: [],
     },
     {
-        path: "/demo/test1",
-        name: "test1",
-        component: () => import("@/views/demo/test1.vue"),
+        path: '/demo/test1',
+        name: 'test1',
+        component: () => import('@/views/demo/test1.vue'),
         meta: {
-            title: "demo",
+            title: 'demo',
             hiddenInTab: true,
         },
     },
     {
-        path: "/redirect",
-        name: "redirect",
+        path: '/redirect',
+        name: 'redirect',
         component: Redirect,
         meta: {
             hiddenInTab: true,
@@ -80,11 +80,11 @@ export const routes: RouteRecordRaw[] = [
         },
     },
     {
-        path: "/login",
-        name: "login",
-        component: () => import("@/views/login/index.vue"),
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/login/index.vue'),
         meta: {
-            title: "登录",
+            title: '登录',
             isFullPage: true,
         },
     },
@@ -97,7 +97,7 @@ const router = createRouter({
     routes,
 });
 
-declare module "vue-router" {
+declare module 'vue-router' {
     interface RouteMeta {
         /**
          * 页面标题

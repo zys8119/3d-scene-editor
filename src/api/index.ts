@@ -1,5 +1,5 @@
-import v1 from "./v1";
-import { App } from "vue";
+import v1 from './v1';
+import { App } from 'vue';
 
 export const api = {
     v1,
@@ -12,9 +12,9 @@ declare global {
 }
 
 // eslint-disable-next-line vue/prefer-import-from-vue
-import "@vue/runtime-core";
+import '@vue/runtime-core';
 
-declare module "@vue/runtime-core" {
+declare module '@vue/runtime-core' {
     export interface ComponentCustomProperties {
         api: typeof api;
     }

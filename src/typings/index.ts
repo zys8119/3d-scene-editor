@@ -1,5 +1,5 @@
-import { MenuOption } from "naive-ui";
-import { RouteLocationNormalized, RouteRecordRaw } from "vue-router";
+import { MenuOption } from 'naive-ui';
+import { RouteLocationNormalized, RouteRecordRaw } from 'vue-router';
 
 /**
  * 系统路由类型
@@ -43,28 +43,28 @@ export interface AppConfigState {
     };
 }
 export enum LayoutMode {
-    LTR = "ltr",
-    LCR = "lcr",
-    TTB = "ttb",
+    LTR = 'ltr',
+    LCR = 'lcr',
+    TTB = 'ttb',
 }
 export enum DeviceType {
-    PC = "pc",
-    PAD = "pad",
-    MOBILE = "mobile",
+    PC = 'pc',
+    PAD = 'pad',
+    MOBILE = 'mobile',
 }
 export enum ThemeMode {
-    LIGHT = "light",
-    DARK = "dark",
+    LIGHT = 'light',
+    DARK = 'dark',
 }
 export enum SideTheme {
-    DARK = "dark",
-    WHITE = "white",
-    IMAGE = "image",
+    DARK = 'dark',
+    WHITE = 'white',
+    IMAGE = 'image',
 }
 // 页面切换动画类型
 export enum PageAnim {
-    FADE = "fade",
-    OPACITY = "opacity",
-    DOWN = "down",
-    SCALE = "scale",
+    FADE = 'fade',
+    OPACITY = 'opacity',
+    DOWN = 'down',
+    SCALE = 'scale',
 }

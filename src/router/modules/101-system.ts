@@ -1,23 +1,23 @@
-import { RouteRecordRaw, RouterView } from "vue-router";
+import { RouteRecordRaw, RouterView } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
     {
-        path: "system",
-        name: "System",
+        path: 'system',
+        name: 'System',
         meta: {
-            title: "系统管理",
+            title: '系统管理',
         },
         children: [
             {
-                path: "organization",
-                name: "Organization",
+                path: 'organization',
+                name: 'Organization',
                 meta: {
-                    title: "组织架构",
-                    tabTitle: "asdfjalskdfj",
+                    title: '组织架构',
+                    tabTitle: 'asdfjalskdfj',
                     fixed: true,
                 },
                 component: () =>
-                    import("@/views/system/organization/index.vue"),
+                    import('@/views/system/organization/index.vue'),
             },
         ],
     },

@@ -1,12 +1,12 @@
-import router from "./index";
-import useStore from "@/store/modules/main";
-import useTabbarStore from "@/store/modules/tabbar";
-import configHooks from "@/config/config-hooks";
-import config from "@/config/config";
-import baseConfig from "@/config/base";
+import router from './index';
+import useStore from '@/store/modules/main';
+import useTabbarStore from '@/store/modules/tabbar';
+import configHooks from '@/config/config-hooks';
+import config from '@/config/config';
+import baseConfig from '@/config/base';
 
-import { setRoutes, status } from "./set-routes";
-import { SystemTabbarRouteRow } from "@/typings";
+import { setRoutes, status } from './set-routes';
+import { SystemTabbarRouteRow } from '@/typings';
 
 export const getUserinfo = async () => {
     await configHooks.router.getUserinfo();
@@ -36,7 +36,7 @@ router.beforeEach(async (to, from, next) => {
                     ? sessionStorage
                     : localStorage;
                 store.token =
-                    storage.getItem(baseConfig.unique + "token") || "";
+                    storage.getItem(baseConfig.unique + 'token') || '';
             }
             /**
              * 如果仍然拿不到 token，这里排除白名单避免无限循环
@@ -46,7 +46,7 @@ router.beforeEach(async (to, from, next) => {
                 !store.token &&
                 (!to.name || !config.router.whiteList.includes(to.name))
             ) {
-                return next({ name: "login" });
+                return next({ name: 'login' });
             }
         }
         /**
@@ -54,7 +54,7 @@ router.beforeEach(async (to, from, next) => {
          */
         if (
             !config.tabbarViews.disabled &&
-            (to.meta?.title || (to.name && to.name !== "index"))
+            (to.meta?.title || (to.name && to.name !== 'index'))
         ) {
             const tabbarStore = useTabbarStore();
             if (
@@ -62,7 +62,7 @@ router.beforeEach(async (to, from, next) => {
                 tabbarStore.tags.length < config.tabbarViews.max
             ) {
                 if (!to.meta.hiddenInTab) {
-                    if (typeof to.fullPath === "string")
+                    if (typeof to.fullPath === 'string')
                         tabbarStore.push(to as SystemTabbarRouteRow);
                 }
             }
@@ -73,7 +73,7 @@ router.beforeEach(async (to, from, next) => {
          */
         if (
             status.registerRouteFresh &&
-            !config.router.whiteList.includes(to.name || "")
+            !config.router.whiteList.includes(to.name || '')
         ) {
             if (config.router.needLogin) {
                 await getUserinfo();
@@ -86,6 +86,6 @@ router.beforeEach(async (to, from, next) => {
             next();
         }
     } catch {
-        return next({ name: "error" });
+        return next({ name: 'error' });
     }
 });

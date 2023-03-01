@@ -1,8 +1,8 @@
-import { Post } from "@/api/typing";
+import { Post } from '@/api/typing';
 
 export function get(data: { search?: string }, page: PageMap, node_id: string) {
     return request({
-        url: "/api/admin/v1/post",
+        url: '/api/admin/v1/post',
         params: {
             ...data,
             page_num: page.page,
@@ -14,16 +14,16 @@ export function get(data: { search?: string }, page: PageMap, node_id: string) {
 
 export function post(data: Partial<Post>) {
     return request({
-        method: "post",
-        url: "/api/admin/v1/post",
+        method: 'post',
+        url: '/api/admin/v1/post',
         data,
     });
 }
 
 export function del(data: string[]) {
     return request({
-        method: "delete",
-        url: "/api/admin/v1/post",
+        method: 'delete',
+        url: '/api/admin/v1/post',
         data: {
             id_list: data,
         },
@@ -32,7 +32,7 @@ export function del(data: string[]) {
 
 export function put(id: string, data: Partial<Post>) {
     return request({
-        method: "put",
+        method: 'put',
         url: `/api/admin/v1/post/${id}`,
         data,
     });
@@ -46,7 +46,7 @@ export function detail(id: string) {
 
 export function updatePostStaff(id: string, id_list: string[]) {
     return request({
-        method: "post",
+        method: 'post',
         url: `/api/admin/v1/post/update-post-staff/${id}`,
         data: {
             id_list,
@@ -56,7 +56,7 @@ export function updatePostStaff(id: string, id_list: string[]) {
 
 export function updatePostRoles(id: string, id_list: string[]) {
     return request({
-        method: "post",
+        method: 'post',
         url: `/api/admin/v1/post/update-post-roles/${id}`,
         data: {
             id_list,

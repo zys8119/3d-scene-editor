@@ -9,6 +9,6 @@ const router = useRouter();
 if (route.query?.url) {
     router.replace(String(route.query?.url));
 } else {
-    router.replace("/");
+    router.replace('/');
 }
 </script>

@@ -1,4 +1,4 @@
-import type { Config } from "./typings";
+import type { Config } from './typings';
 
 export default {
     request: {
@@ -23,7 +23,7 @@ export default {
         /**
          * 白名单，用于排除不需要登录的页面
          */
-        whiteList: ["login"],
+        whiteList: ['login'],
         /**
          * 是否保持 alive 状态
          */

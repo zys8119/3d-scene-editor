@@ -1,8 +1,8 @@
-import { Role } from "@/api/typing";
+import { Role } from '@/api/typing';
 
 export function get(data: { search?: string }, page: PageMap) {
     return request({
-        url: "/api/admin/v1/role",
+        url: '/api/admin/v1/role',
         params: {
             ...data,
             page_num: page.page,
@@ -13,16 +13,16 @@ export function get(data: { search?: string }, page: PageMap) {
 
 export function post(data: Partial<Role>) {
     return request({
-        method: "post",
-        url: "/api/admin/v1/role",
+        method: 'post',
+        url: '/api/admin/v1/role',
         data,
     });
 }
 
 export function del(data: string[]) {
     return request({
-        method: "delete",
-        url: "/api/admin/v1/role",
+        method: 'delete',
+        url: '/api/admin/v1/role',
         data: {
             id_list: data,
         },
@@ -31,7 +31,7 @@ export function del(data: string[]) {
 
 export function put(id: string, data: Partial<Role>) {
     return request({
-        method: "put",
+        method: 'put',
         url: `/api/admin/v1/role/${id}`,
         data,
     });
@@ -57,7 +57,7 @@ export function getRoleUsers(id: string) {
 
 export function updateRolePerms(id: string, data: string[]) {
     return request({
-        method: "post",
+        method: 'post',
         url: `/api/admin/v1/role/update-role-perms/${id}`,
         data: {
             menu_ids: data,
@@ -66,7 +66,7 @@ export function updateRolePerms(id: string, data: string[]) {
 }
 export function updateRoleUsers(id: string, data: string[]) {
     return request({
-        method: "post",
+        method: 'post',
         url: `/api/admin/v1/role/update-role-users/${id}`,
         data: {
             id_list: data,

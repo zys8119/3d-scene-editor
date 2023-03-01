@@ -22,11 +22,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useMessage } from "naive-ui";
-import screenfull from "screenfull";
-import useAppConfigStore from "@/store/modules/app-config";
-import { RefreshOutline, Expand } from "@vicons/ionicons5";
-import { useRouter } from "vue-router";
+import { useMessage } from 'naive-ui';
+import screenfull from 'screenfull';
+import useAppConfigStore from '@/store/modules/app-config';
+import { RefreshOutline, Expand } from '@vicons/ionicons5';
+import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const route = useRoute();
@@ -36,13 +36,13 @@ const appConfig = useAppConfigStore();
 
 // 刷新当前页面
 const refreshRoute = () => {
-    router.replace({ path: "/redirect", query: { url: route.path } });
+    router.replace({ path: '/redirect', query: { url: route.path } });
 };
 
 // 全屏
 const screenFull = () => {
     if (!screenfull.isEnabled) {
-        message.error("当前浏览器不支持全屏操作");
+        message.error('当前浏览器不支持全屏操作');
         return false;
     }
     screenfull.toggle();

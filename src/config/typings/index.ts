@@ -1,5 +1,5 @@
-import type { Options } from "wp-request";
-import type { RouteRecordName } from "vue-router";
+import type { Options } from 'wp-request';
+import type { RouteRecordName } from 'vue-router';
 
 export interface BaseConfig {
     /**
@@ -33,9 +33,9 @@ export interface Config {
     showFooter: boolean;
 }
 
-import type { RouteRecordRaw, RouteLocationNormalized } from "vue-router";
+import type { RouteRecordRaw, RouteLocationNormalized } from 'vue-router';
 export interface GlobalError {
-    type: "global" | "vue";
+    type: 'global' | 'vue';
     msg?: string | Event;
     url?: string;
     line?: number;
@@ -47,7 +47,7 @@ export interface GlobalError {
 export interface ConfigHooks {
     request: Pick<
         Options,
-        "afterEach" | "beforeEach" | "logout" | "errorHandle"
+        'afterEach' | 'beforeEach' | 'logout' | 'errorHandle'
     >;
     layout: {
         menuSelect: (route?: RouteRecordRaw) => void;

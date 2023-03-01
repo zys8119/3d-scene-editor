@@ -1,27 +1,27 @@
 module.exports = {
-    extends: ["@commitlint/config-conventional"],
+    extends: ['@commitlint/config-conventional'],
     parserPreset: {
         parserOpts: {
             headerPattern: /^\[(.*)\] (.+)/,
-            headerCorrespondence: ["type", "subject"],
+            headerCorrespondence: ['type', 'subject'],
         },
     },
     rules: {
-        "type-enum": [
+        'type-enum': [
             2,
-            "always",
+            'always',
             [
-                "create",
-                "add",
-                "fix",
-                "mod",
-                "refactor",
-                "merge",
-                "migration",
-                "docs",
-                "test",
-                "release",
-                "chore",
+                'create',
+                'add',
+                'fix',
+                'mod',
+                'refactor',
+                'merge',
+                'migration',
+                'docs',
+                'test',
+                'release',
+                'chore',
             ],
         ],
     },

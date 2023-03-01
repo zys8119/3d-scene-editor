@@ -1,6 +1,6 @@
 /** 员工信息 */
 
-import { List, Staff } from "@/api/typing";
+import { List, Staff } from '@/api/typing';
 
 /** 获取用户列表 */
 export function getUsers(data: object, page: PageMap, organizationId: string) {
@@ -31,7 +31,7 @@ export function getOrgAdmin(
 /** 更新绑定负责人列表 */
 export function updateOrgAdmin(id_list: string[], organizationId: string) {
     return request<List<Staff>>({
-        method: "post",
+        method: 'post',
         url: `/api/admin/v1/staff/update-org-admin/${organizationId}`,
         data: {
             id_list,
@@ -46,8 +46,8 @@ export async function create(user: Partial<Staff<false>>, id?: string) {
      * 0. 预处理
      */
     const addRequest = request<Staff>({
-        url: "/api/admin/v1/user",
-        method: "post",
+        url: '/api/admin/v1/user',
+        method: 'post',
         data: preprocessor(user, {
             department_name: () => void 0,
         }),
@@ -68,7 +68,7 @@ export async function create(user: Partial<Staff<false>>, id?: string) {
 export function batchUpdate(organizationId: string, ids: string[]) {
     return request({
         url: `/api/admin/v1/staff/update-org-staff/${organizationId}`,
-        method: "post",
+        method: 'post',
         data: {
             id_list: ids,
         },
@@ -78,8 +78,8 @@ export function batchUpdate(organizationId: string, ids: string[]) {
 /** 删除 */
 export function remove(ids: (string | number)[]) {
     return request({
-        method: "delete",
-        url: "/api/admin/v1/user",
+        method: 'delete',
+        url: '/api/admin/v1/user',
         data: {
             id_list: ids,
         },
@@ -93,7 +93,7 @@ export function updateEffect(
     organizationId: string
 ) {
     return request({
-        method: "post",
+        method: 'post',
         url: `/api/admin/v1/staff/update-staff-status/${organizationId}`,
         data: {
             id_list,
@@ -105,8 +105,8 @@ export function updateEffect(
 /** 重置密码 */
 export function resetPassword(id_list: string[], data: Partial<Password>) {
     return request({
-        method: "patch",
-        url: "/api/admin/v1/user/reset-users-password",
+        method: 'patch',
+        url: '/api/admin/v1/user/reset-users-password',
         data: {
             id_list,
             ...preprocessor(data, {

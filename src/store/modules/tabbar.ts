@@ -1,10 +1,10 @@
-import Router from "@/router";
-import { SystemTabbarRouteRow } from "@/typings";
+import Router from '@/router';
+import { SystemTabbarRouteRow } from '@/typings';
 
-export default defineStore("tabbar", {
+export default defineStore('tabbar', {
     state: () => {
         return {
-            active: "",
+            active: '',
             tags: [] as SystemTabbarRouteRow[],
         };
     },
@@ -35,7 +35,7 @@ export default defineStore("tabbar", {
             );
             this.tags.splice(index, 1);
             if (this.tags.length === 0) {
-                return Router.push("/");
+                return Router.push('/');
             } else {
                 if (tagName === this.active) {
                     return Router.push(this.tags[this.tags.length - 1]);
@@ -43,7 +43,7 @@ export default defineStore("tabbar", {
             }
         },
         refresh() {
-            Router.replace({ path: "/redirect", query: { url: this.active } });
+            Router.replace({ path: '/redirect', query: { url: this.active } });
         },
     },
 });

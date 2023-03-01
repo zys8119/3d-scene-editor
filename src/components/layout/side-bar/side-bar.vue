@@ -20,12 +20,12 @@
 </template>
 
 <script lang="ts" setup>
-import Logo from "@/components/layout/logo/index.vue";
-import ScrollerMenu from "@/components/layout/side-bar/components/scroller-menu.vue";
-import useAppConfigStore from "@/store/modules/app-config";
-import { computed, h } from "vue";
-import { SideTheme, ThemeMode } from "@/typings";
-import useSideRoutesStore from "@/store/modules/side-routes";
+import Logo from '@/components/layout/logo/index.vue';
+import ScrollerMenu from '@/components/layout/side-bar/components/scroller-menu.vue';
+import useAppConfigStore from '@/store/modules/app-config';
+import { computed, h } from 'vue';
+import { SideTheme, ThemeMode } from '@/typings';
+import useSideRoutesStore from '@/store/modules/side-routes';
 
 const sideRoutesStore = useSideRoutesStore();
 const route = useRoute();
@@ -48,38 +48,38 @@ const themeOverThemes = computed(() => {
     if (appConfig.sideTheme === SideTheme.DARK)
         return {
             common: {
-                cardColor: "#001428",
-                textColor1: "#bbbbbb",
-                textColor2: "#bbbbbb",
-                popoverColor: "rgb(72, 72, 78)",
-                hoverColor: "rgba(255, 255, 255, 0.09)",
-                itemColorActive: "rgba(24, 160, 88, 0.4)",
+                cardColor: '#001428',
+                textColor1: '#bbbbbb',
+                textColor2: '#bbbbbb',
+                popoverColor: 'rgb(72, 72, 78)',
+                hoverColor: 'rgba(255, 255, 255, 0.09)',
+                itemColorActive: 'rgba(24, 160, 88, 0.4)',
             },
             Menu: {
-                itemTextColorChildActive: "#ffffff",
-                itemIconColorChildActive: "#ffffff",
+                itemTextColorChildActive: '#ffffff',
+                itemIconColorChildActive: '#ffffff',
 
-                arrowColorChildActive: "#ffffff",
-                arrowColorHover: "#ffffff",
+                arrowColorChildActive: '#ffffff',
+                arrowColorHover: '#ffffff',
 
-                itemTextColorActive: "#ffffff",
-                itemIconColorActive: "#ffffff",
+                itemTextColorActive: '#ffffff',
+                itemIconColorActive: '#ffffff',
 
-                itemTextColorHover: "#ffffff",
-                itemIconColorHover: "#ffffff",
+                itemTextColorHover: '#ffffff',
+                itemIconColorHover: '#ffffff',
 
-                itemColorActive: "var(--primary-color)",
+                itemColorActive: 'var(--primary-color)',
             },
         };
     if (appConfig.sideTheme === SideTheme.WHITE)
-        return { common: { cardColor: "#ffffff" } };
+        return { common: { cardColor: '#ffffff' } };
     if (appConfig.sideTheme === SideTheme.IMAGE)
         return {
             common: {
-                textColor1: "#bbbbbb",
-                textColor2: "#bbbbbb",
-                hoverColor: "rgba(255, 255, 255, 0.09)",
-                popoverColor: "rgb(72, 72, 78)",
+                textColor1: '#bbbbbb',
+                textColor2: '#bbbbbb',
+                hoverColor: 'rgba(255, 255, 255, 0.09)',
+                popoverColor: 'rgb(72, 72, 78)',
             },
         };
     return {};
@@ -88,7 +88,7 @@ const themeOverThemes = computed(() => {
 
 <style scoped lang="less">
 .sidebar-bg-img {
-    background-image: url("../../../assets/images/side-bg.png") !important;
+    background-image: url('../../../assets/images/side-bg.png') !important;
     background-size: cover;
 }
 

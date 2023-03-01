@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import base from "@/config/base";
+import base from '@/config/base';
 </script>
 
 <style lang="less" scoped>
