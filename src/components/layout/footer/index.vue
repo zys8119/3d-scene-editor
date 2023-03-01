@@ -1,9 +1,11 @@
 <template>
-    <n-card class="footer-container"> Copyright © {{ base.title }} {{ new Date().getFullYear() }}</n-card>
+    <n-card class="footer-container">
+        Copyright © {{ base.title }} {{ new Date().getFullYear() }}</n-card
+    >
 </template>
 
 <script lang="ts" setup>
-import base from '@/config/base'
+import base from "@/config/base";
 </script>
 
 <style lang="less" scoped>

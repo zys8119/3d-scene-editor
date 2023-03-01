@@ -19,9 +19,17 @@
                 @click.self="itemClick(item)"
             >
                 <span class="text-item" @click.self="itemClick(item)">
-                    {{ item.meta ? item.meta.tabTitle || item.meta.title || item.name : '页面' }}
+                    {{
+                        item.meta
+                            ? item.meta.tabTitle || item.meta.title || item.name
+                            : "页面"
+                    }}
                 </span>
-                <n-icon v-if="!item.meta?.fixed && store.tags.length > 1" class="icon-item" @click="store.remove(item.fullPath)">
+                <n-icon
+                    v-if="!item.meta?.fixed && store.tags.length > 1"
+                    class="icon-item"
+                    @click="store.remove(item.fullPath)"
+                >
                     <Close />
                 </n-icon>
             </n-button>
@@ -33,7 +41,11 @@
         >
             <ChevronBack />
         </n-icon>
-        <n-dropdown :options="contextMenuOptions" placement="left-start" @select="onDropDownSelect">
+        <n-dropdown
+            :options="contextMenuOptions"
+            placement="left-start"
+            @select="onDropDownSelect"
+        >
             <n-icon class="arrow-wrapper" @click="rightArrowClick">
                 <Menu />
             </n-icon>
@@ -42,81 +54,92 @@
 </template>
 
 <script lang="ts" setup>
-import { Close, ChevronBack, Refresh, Menu } from '@vicons/ionicons5'
-import useTabbarStore from '@/store/modules/tabbar'
-import {NIcon, NScrollbar} from 'naive-ui'
-import {onMounted} from 'vue'
-import {SystemTabbarRouteRow} from '@/typings'
+import { Close, ChevronBack, Refresh, Menu } from "@vicons/ionicons5";
+import useTabbarStore from "@/store/modules/tabbar";
+import { NIcon, NScrollbar } from "naive-ui";
+import { onMounted } from "vue";
+import { SystemTabbarRouteRow } from "@/typings";
 
-const route = useRoute()
-const router = useRouter()
-const store = useTabbarStore()
+const route = useRoute();
+const router = useRouter();
+const store = useTabbarStore();
 
 const itemClick = (row: SystemTabbarRouteRow) => {
-    router.push(row.fullPath || '/')
-}
+    router.push(row.fullPath || "/");
+};
 
 // 左边箭头
-const leftArrowDisabled = ref(false)
+const leftArrowDisabled = ref(false);
 const leftArrowClick = () => {
-    const scrollbar = scrollbarRef.value as InstanceType<typeof NScrollbar>
-    const scrollX = scrollbar.scrollbarInstRef?.containerRef?.scrollLeft || 0
-    scrollbar.scrollTo({
-        left: Math.max(0, scrollX - 200),
-        debounce: true,
-        behavior: 'smooth',
-    } as any, 0)
-    isDisabledArrow()
-}
+    const scrollbar = scrollbarRef.value as InstanceType<typeof NScrollbar>;
+    const scrollX = scrollbar.scrollbarInstRef?.containerRef?.scrollLeft || 0;
+    scrollbar.scrollTo(
+        {
+            left: Math.max(0, scrollX - 200),
+            debounce: true,
+            behavior: "smooth",
+        } as any,
+        0
+    );
+    isDisabledArrow();
+};
 
 // 右边箭头
-const rightArrowDisabled = ref(false)
+const rightArrowDisabled = ref(false);
 const rightArrowClick = () => {
-    const scrollbar = scrollbarRef.value as InstanceType<typeof NScrollbar>
-    const scrollX = scrollbar.scrollbarInstRef?.containerRef?.scrollLeft || 0
-    scrollbar.scrollTo({
-        left: scrollX + 200,
-        debounce: false,
-        behavior: 'smooth',
-    } as any, 0)
-    isDisabledArrow()
-}
+    const scrollbar = scrollbarRef.value as InstanceType<typeof NScrollbar>;
+    const scrollX = scrollbar.scrollbarInstRef?.containerRef?.scrollLeft || 0;
+    scrollbar.scrollTo(
+        {
+            left: scrollX + 200,
+            debounce: false,
+            behavior: "smooth",
+        } as any,
+        0
+    );
+    isDisabledArrow();
+};
 
 // 判断箭头是否有效
 const isDisabledArrow = () => {
     setTimeout(() => {
-        const scrollbar = scrollbarRef.value as InstanceType<typeof NScrollbar>
-        const { scrollLeft, scrollWidth, clientWidth } = scrollbar.scrollbarInstRef?.containerRef as HTMLElement
-        leftArrowDisabled.value = scrollLeft === 0
-        rightArrowDisabled.value = scrollLeft === scrollWidth - clientWidth
-    }, 100)
-}
+        const scrollbar = scrollbarRef.value as InstanceType<typeof NScrollbar>;
+        const { scrollLeft, scrollWidth, clientWidth } = scrollbar
+            .scrollbarInstRef?.containerRef as HTMLElement;
+        leftArrowDisabled.value = scrollLeft === 0;
+        rightArrowDisabled.value = scrollLeft === scrollWidth - clientWidth;
+    }, 100);
+};
 
 // 最右边功能按钮
 const contextMenuOptions = ref([
-        {
-            label: '刷新页面',
-            key: 'refresh',
-            icon: () => h(NIcon, null, {default: () => h(Refresh)})
-        },
-        {
-            label: '关闭其他所有页签',
-            key: 'close',
-            icon: () => h(NIcon, null, {default: () => h(Close)})
-        },
-    ])
+    {
+        label: "刷新页面",
+        key: "refresh",
+        icon: () => h(NIcon, null, { default: () => h(Refresh) }),
+    },
+    {
+        label: "关闭其他所有页签",
+        key: "close",
+        icon: () => h(NIcon, null, { default: () => h(Close) }),
+    },
+]);
 const onDropDownSelect = (key: string) => {
     switch (key) {
-        case 'refresh': store.refresh(); break
-        case 'close': store.closeOthers(); break
+        case "refresh":
+            store.refresh();
+            break;
+        case "close":
+            store.closeOthers();
+            break;
     }
-}
+};
 
 onMounted(() => {
-    nextTick(() => isDisabledArrow())
-})
+    nextTick(() => isDisabledArrow());
+});
 
-const scrollbarRef = ref()
+const scrollbarRef = ref();
 </script>
 
 <style lang="less" scoped>

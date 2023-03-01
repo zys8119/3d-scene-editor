@@ -1,28 +1,33 @@
 <template>
     <div class="vaw-nav-bar-wrapper">
-        <Humburger v-if="config.router.needSideMenuIcon"/>
+        <Humburger v-if="config.router.needSideMenuIcon" />
         <div class="nav-container">
-            <Breadcrumb v-if="appConfig.deviceType !== 'mobile' && appConfig.layoutMode !== 'ttb'"/>
-            <HorizontalScrollerMenu v-else/>
+            <Breadcrumb
+                v-if="
+                    appConfig.deviceType !== 'mobile' &&
+                    appConfig.layoutMode !== 'ttb'
+                "
+            />
+            <HorizontalScrollerMenu v-else />
         </div>
         <div v-if="appConfig.deviceType !== 'mobile'" class="right-wrapper">
-            <Actions/>
+            <Actions />
         </div>
         <div class="avatar-wrapper">
-            <Avatar/>
+            <Avatar />
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import Humburger from '@/components/layout/humburger/index.vue'
-import Breadcrumb from '@/components/layout/breadcrumb/index.vue'
-import Actions from '@/components/layout/actions/index.vue'
-import Avatar from '@/components/layout/avatar/index.vue'
-import useAppConfigStore from '@/store/modules/app-config'
-import HorizontalScrollerMenu from '@/components/layout/side-bar/components/horizontal-scroller-menu.vue'
-import config from '@/config/config'
-const appConfig = useAppConfigStore()
+import Humburger from "@/components/layout/humburger/index.vue";
+import Breadcrumb from "@/components/layout/breadcrumb/index.vue";
+import Actions from "@/components/layout/actions/index.vue";
+import Avatar from "@/components/layout/avatar/index.vue";
+import useAppConfigStore from "@/store/modules/app-config";
+import HorizontalScrollerMenu from "@/components/layout/side-bar/components/horizontal-scroller-menu.vue";
+import config from "@/config/config";
+const appConfig = useAppConfigStore();
 </script>
 
 <style scoped lang="less">

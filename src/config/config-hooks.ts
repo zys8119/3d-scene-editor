@@ -1,12 +1,12 @@
-import useStore from '@/store/modules/main'
-import router from '../router'
-import type {ConfigHooks} from './typings'
-import baseConfig from './base'
-import config from './config'
-export const views = import.meta.glob('../views/**/**')
+import useStore from "@/store/modules/main";
+import router from "../router";
+import type { ConfigHooks } from "./typings";
+import baseConfig from "./base";
+import config from "./config";
+export const views = import.meta.glob("../views/**/**");
 
-import {createDiscreteApi} from 'naive-ui'
-const {message} = createDiscreteApi(['message'])
+import { createDiscreteApi } from "naive-ui";
+const { message } = createDiscreteApi(["message"]);
 
 export default {
     /**
@@ -14,48 +14,50 @@ export default {
      */
     request: {
         beforeEach(config) {
-            if (!config) return
-            if (!config.headers) config.headers = {}
+            if (!config) return;
+            if (!config.headers) config.headers = {};
             // config.headers['unit'] = 'it is a test'
         },
         afterEach(config) {
-            if (!config) return
+            if (!config) return;
         },
         errorHandle(msg) {
-            message.error(msg)
+            message.error(msg);
         },
         logout() {
-            router.push({ name: 'login' })
-        }
+            router.push({ name: "login" });
+        },
     },
     /**
      * 布局相关
      */
     layout: {
         menuSelect(route) {
-            if (!route) return
+            if (!route) return;
             if (route?.meta?.url) {
-                const meta = route.meta
+                const meta = route.meta;
                 if (meta?.target) {
-                    window.open(meta.url, meta.target)
+                    window.open(meta.url, meta.target);
                 } else {
-                    location.href = meta.url || '#'
+                    location.href = meta.url || "#";
                 }
             } else {
-                router.push({ name: route.name })
+                router.push({ name: route.name });
             }
-        }
+        },
     },
     /**
      * 全局路由相关
      */
     router: {
         firstTimeEnter() {
-            const storage = config.router.session ? sessionStorage : localStorage
-            const userinfo = storage.getItem(baseConfig.unique + 'userinfo')
+            const storage = config.router.session
+                ? sessionStorage
+                : localStorage;
+            const userinfo = storage.getItem(baseConfig.unique + "userinfo");
             if (userinfo) {
-                const store = useStore()
-                store.userinfo = JSON.parse(userinfo)
+                const store = useStore();
+                store.userinfo = JSON.parse(userinfo);
             }
         },
         beforeEach() {
@@ -66,22 +68,22 @@ export default {
          * 可验证token是否有效及续期
          */
         async getUserinfo() {
-            const store = useStore()
-            if (!store.token) throw new Error('Token 不存在')
+            const store = useStore();
+            if (!store.token) throw new Error("Token 不存在");
         },
         /**
          * 过滤路由，流程在 getUserinfo 之后
          */
         routesFilter(routes) {
-            return routes
-        }
+            return routes;
+        },
     },
     /**
      * 错误处理
      */
     error: {
         handle(error) {
-            console.log(error)
-        }
-    }
-} as ConfigHooks
+            console.log(error);
+        },
+    },
+} as ConfigHooks;

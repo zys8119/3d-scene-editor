@@ -7,3 +7,6 @@ dist
 dist-ssr
 *.local
 package-lock.json
+.env
+build
+coverage

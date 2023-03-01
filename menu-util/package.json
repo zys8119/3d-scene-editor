@@ -1,14 +1,14 @@
 {
-  "name": "menuutil",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "ts-node index.ts"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "ts-node-build": "^0.1.2"
-  }
+    "name": "menuutil",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "ts-node index.ts"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "ts-node-build": "^0.1.2"
+    }
 }

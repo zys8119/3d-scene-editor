@@ -1,19 +1,20 @@
-import v1 from './v1'
-import {App} from 'vue'
+import v1 from "./v1";
+import { App } from "vue";
 
 export const api = {
-    v1
-}
+    v1,
+};
 
 declare global {
     interface Window {
-        api: typeof api
+        api: typeof api;
     }
 }
 
-import '@vue/runtime-core'
+// eslint-disable-next-line vue/prefer-import-from-vue
+import "@vue/runtime-core";
 
-declare module '@vue/runtime-core' {
+declare module "@vue/runtime-core" {
     export interface ComponentCustomProperties {
         api: typeof api;
     }
@@ -21,7 +22,7 @@ declare module '@vue/runtime-core' {
 
 export default {
     install(app: App<Element>) {
-        app.config.globalProperties.api = api
-        window.api = api
-    }
-}
+        app.config.globalProperties.api = api;
+        window.api = api;
+    },
+};

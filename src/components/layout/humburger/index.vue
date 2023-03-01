@@ -1,21 +1,23 @@
 <template>
     <span
         class="fold-wrapper iconfont"
-        :class="[appConfig.isCollapse ? 'fold-close-status' : 'fold-open-status']"
+        :class="[
+            appConfig.isCollapse ? 'fold-close-status' : 'fold-open-status',
+        ]"
         @click="toggleFold"
     >
-        <SvgIcon name="expand"/>
+        <SvgIcon name="expand" />
     </span>
 </template>
 
 <script lang="ts" setup>
-import SvgIcon from '@/components/layout/svg-icon/index.vue'
-import useAppConfigStore from '@/store/modules/app-config'
+import SvgIcon from "@/components/layout/svg-icon/index.vue";
+import useAppConfigStore from "@/store/modules/app-config";
 
-const appConfig = useAppConfigStore()
+const appConfig = useAppConfigStore();
 
 function toggleFold() {
-    appConfig.toggleCollapse(!appConfig.isCollapse)
+    appConfig.toggleCollapse(!appConfig.isCollapse);
 }
 </script>
 

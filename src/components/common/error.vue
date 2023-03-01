@@ -8,10 +8,10 @@
 
 <script lang="ts" setup>
 defineProps<{
-    error?: string
-}>()
-const router = useRouter()
-const goHome = () => router.replace('/')
+    error?: string;
+}>();
+const router = useRouter();
+const goHome = () => router.replace("/");
 </script>
 
 <style lang="less" scoped>

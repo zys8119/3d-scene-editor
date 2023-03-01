@@ -1,26 +1,36 @@
 <template>
     <div class="logo-wrapper">
-        <img v-if="showLogo" class="logo-img" src="@/assets/images/logo.png">
-        <div v-if="showTitle" :class="[!appConfig.isCollapse || alwaysShow ? 'show-title' : 'close-title']">
+        <img v-if="showLogo" class="logo-img" src="@/assets/images/logo.png" />
+        <div
+            v-if="showTitle"
+            :class="[
+                !appConfig.isCollapse || alwaysShow
+                    ? 'show-title'
+                    : 'close-title',
+            ]"
+        >
             <span class="logo-title">{{ base.title }}</span>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import useAppConfigStore from '@/store/modules/app-config'
-import base from '@/config/base'
+import useAppConfigStore from "@/store/modules/app-config";
+import base from "@/config/base";
 
-const props = withDefaults(defineProps<{
-    showTitle?: boolean
-    showLogo?: boolean
-    alwaysShow?: boolean
-}>(), {
-    showTitle: true,
-    showLogo: true,
-    alwaysShow: false
-})
-const appConfig = useAppConfigStore()
+const props = withDefaults(
+    defineProps<{
+        showTitle?: boolean;
+        showLogo?: boolean;
+        alwaysShow?: boolean;
+    }>(),
+    {
+        showTitle: true,
+        showLogo: true,
+        alwaysShow: false,
+    }
+);
+const appConfig = useAppConfigStore();
 </script>
 
 <style lang="less" scoped>

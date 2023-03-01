@@ -1,11 +1,11 @@
-import type { Config } from './typings'
+import type { Config } from "./typings";
 
 export default {
     request: {
         baseURL: import.meta.env.VITE_API,
         successCode: [0, 200],
         useStore: () => window.store.main,
-        trim: true
+        trim: true,
     },
     router: {
         history: false,
@@ -23,7 +23,7 @@ export default {
         /**
          * 白名单，用于排除不需要登录的页面
          */
-        whiteList: ['login'],
+        whiteList: ["login"],
         /**
          * 是否保持 alive 状态
          */
@@ -31,7 +31,7 @@ export default {
         /**
          * 左侧菜单是否需要 icon 图标以及页面响应式
          */
-        needSideMenuIcon: true
+        needSideMenuIcon: true,
     },
     /**
      * 页签配置
@@ -42,5 +42,5 @@ export default {
     /**
      * 是否显示页脚
      */
-    showFooter: true
-} as Config
+    showFooter: true,
+} as Config;

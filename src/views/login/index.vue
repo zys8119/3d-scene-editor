@@ -5,19 +5,31 @@
             <template v-for="(item, key) in loginType" :key="key">
                 <template v-if="item.isActive">
                     <div class="list">
-                        <p v-text="item.tip[0]"/>
-                        <input v-model="userForm[item.formKey[0]]" type="text" :placeholder="`请输入${item.tip[0]}`" @keydown.enter="login">
+                        <p v-text="item.tip[0]" />
+                        <input
+                            v-model="userForm[item.formKey[0]]"
+                            type="text"
+                            :placeholder="`请输入${item.tip[0]}`"
+                            @keydown.enter="login"
+                        />
                     </div>
                     <div class="list fixed">
-                        <p v-text="item.tip[1]"/>
-                        <input v-model="userForm[item.formKey[1]]" :type="`${key === 2 ? 'text' : 'password'}`" :placeholder="`请输入${item.tip[1]}`" @keydown.enter="login">
-                        <div v-if="key === 2" class="code" @click="handleCountDown">
+                        <p v-text="item.tip[1]" />
+                        <input
+                            v-model="userForm[item.formKey[1]]"
+                            :type="`${key === 2 ? 'text' : 'password'}`"
+                            :placeholder="`请输入${item.tip[1]}`"
+                            @keydown.enter="login"
+                        />
+                        <div
+                            v-if="key === 2"
+                            class="code"
+                            @click="handleCountDown"
+                        >
                             <template v-if="countDown > 0">
                                 <n-countdown :duration="countDown" />
                             </template>
-                            <template v-else>
-                                获取验证码
-                            </template>
+                            <template v-else> 获取验证码 </template>
                         </div>
                     </div>
                 </template>
@@ -25,7 +37,11 @@
             <div class="btn" @click="login">登录</div>
             <div v-if="loginType.length > 1" class="login-type">
                 <template v-for="(item, key) in loginType" :key="key">
-                    <span v-if="!item.isActive" @click="changeLoginType(key)" v-text="item.name"/>
+                    <span
+                        v-if="!item.isActive"
+                        @click="changeLoginType(key)"
+                        v-text="item.name"
+                    />
                 </template>
             </div>
         </div>
@@ -34,79 +50,101 @@
 </template>
 
 <script setup lang="ts">
-import useStore from '@/store/modules/main'
-import {useMessage} from 'naive-ui'
+import useStore from "@/store/modules/main";
+import { useMessage } from "naive-ui";
 
-const message = useMessage()
+const message = useMessage();
 const loginType = ref<LoginType[]>([
-    {name: '账号密码登录', tip: ['账号', '密码'], formKey: ['username', 'password'], type: 1, isActive: true},
-    {name: '手机号密码登录', tip: ['手机号', '密码'], formKey: ['mobile', 'password'], type: 2, isActive: false},
-    {name: '验证码登录', tip: ['手机号', '验证码'], formKey: ['mobile', 'code'], type: 3, isActive: false},
-])
+    {
+        name: "账号密码登录",
+        tip: ["账号", "密码"],
+        formKey: ["username", "password"],
+        type: 1,
+        isActive: true,
+    },
+    {
+        name: "手机号密码登录",
+        tip: ["手机号", "密码"],
+        formKey: ["mobile", "password"],
+        type: 2,
+        isActive: false,
+    },
+    {
+        name: "验证码登录",
+        tip: ["手机号", "验证码"],
+        formKey: ["mobile", "code"],
+        type: 3,
+        isActive: false,
+    },
+]);
 
-const store = useStore()
-const router = useRouter()
+const store = useStore();
+const router = useRouter();
 
 /**
  * 清空 token
  */
-store.setToken()
-store.setUserinfo()
+store.setToken();
+store.setUserinfo();
 
 const userForm = ref<UserForm>({
-    username: import.meta.env.DEV ? 'admin' : '',
-    password: import.meta.env.DEV ? '123456' : '',
-    mobile: '',
-    code: ''
-})
+    username: import.meta.env.DEV ? "admin" : "",
+    password: import.meta.env.DEV ? "123456" : "",
+    mobile: "",
+    code: "",
+});
 
-const countDown = ref(0)
-const handleCountDown = async() => {
+const countDown = ref(0);
+const handleCountDown = async () => {
     if (countDown.value === 0) {
-        if (!userForm.value.mobile) return message.error('请输入正确的手机号')
-        await window.api.v1.auth.sendSmsCode(userForm.value.mobile)
-        message.success('验证码已发送')
-        countDown.value = 60000
+        if (!userForm.value.mobile) return message.error("请输入正确的手机号");
+        await window.api.v1.auth.sendSmsCode(userForm.value.mobile);
+        message.success("验证码已发送");
+        countDown.value = 60000;
     }
-}
-const login = async() => {
-    const currentLoginType: LoginType = loginType.value.filter((v: LoginType) => v.isActive)[0]
-    if (!userForm.value[currentLoginType.formKey[0]]) return message.error(`请输入${currentLoginType.tip[0]}`)
-    if (!userForm.value[currentLoginType.formKey[1]]) return message.error(`请输入${currentLoginType.tip[1]}`)
+};
+const login = async () => {
+    const currentLoginType: LoginType = loginType.value.filter(
+        (v: LoginType) => v.isActive
+    )[0];
+    if (!userForm.value[currentLoginType.formKey[0]])
+        return message.error(`请输入${currentLoginType.tip[0]}`);
+    if (!userForm.value[currentLoginType.formKey[1]])
+        return message.error(`请输入${currentLoginType.tip[1]}`);
     const res = await window.api.v1.auth.manager.login({
         login_type: currentLoginType.type,
-        ...userForm.value
-    })
-    await store.setToken(res.data.token_type + ' ' + res.data.access_token)
-    const userMe = await window.api.v1.auth.user.me()
+        ...userForm.value,
+    });
+    await store.setToken(res.data.token_type + " " + res.data.access_token);
+    const userMe = await window.api.v1.auth.user.me();
     store.setUserinfo({
         ...userMe.data,
         ...res.data.user,
-        access_token: res.data.access_token
-    })
-    router.push('/')
-}
+        access_token: res.data.access_token,
+    });
+    router.push("/");
+};
 
 // 切换登录模式
 const changeLoginType = (k: number) => {
     loginType.value.forEach((v: LoginType, key: number) => {
-        v.isActive = key === k
-    })
-}
+        v.isActive = key === k;
+    });
+};
 
 interface LoginType {
-    name: string
-    tip: string[]
-    formKey: ('username' | 'mobile'| 'password' | 'code')[]
-    type: number
-    isActive: boolean
+    name: string;
+    tip: string[];
+    formKey: ("username" | "mobile" | "password" | "code")[];
+    type: number;
+    isActive: boolean;
 }
 
 interface UserForm {
-    username: string
-    mobile: string
-    password: string
-    code: string
+    username: string;
+    mobile: string;
+    password: string;
+    code: string;
 }
 </script>
 
@@ -120,7 +158,7 @@ interface UserForm {
     align-items: center;
     justify-content: center;
     .con {
-        background: #FFFFFF;
+        background: #ffffff;
         position: relative;
         padding: 25px;
         display: flex;
@@ -149,14 +187,14 @@ interface UserForm {
                 color: #384f8d;
                 font-size: 14px;
             }
-            .code{
-                display:inline-block;
+            .code {
+                display: inline-block;
                 padding: 6px;
                 background: #989fb6;
                 border-radius: 5px;
                 color: #fff;
-                font-size:10px;
-                font-weight:bold;
+                font-size: 10px;
+                font-weight: bold;
                 position: absolute;
                 top: 18px;
                 cursor: pointer;
@@ -178,7 +216,7 @@ interface UserForm {
                 }
             }
         }
-        .fixed{
+        .fixed {
             position: relative;
         }
         .btn {
@@ -194,11 +232,11 @@ interface UserForm {
         .login-type {
             display: flex;
             justify-content: center;
-            color: #989FB6;
+            color: #989fb6;
             span {
                 cursor: pointer;
                 padding: 0 15px;
-                border-right: 1px solid #989FB6;
+                border-right: 1px solid #989fb6;
                 font-size: 14px;
                 &:hover {
                     color: #2b3f79;

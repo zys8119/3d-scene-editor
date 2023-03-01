@@ -8,31 +8,50 @@
         <n-global-style />
         <n-loading-bar-provider>
             <n-dialog-provider>
-                <router-view v-if="route.meta.isFullPage" v-slot="{ Component, route }">
-                    <transition :name="appConfig.pageAnim + '-transform'" mode="out-in" appear>
+                <router-view
+                    v-if="route.meta.isFullPage"
+                    v-slot="{ Component, route }"
+                >
+                    <transition
+                        :name="appConfig.pageAnim + '-transform'"
+                        mode="out-in"
+                        appear
+                    >
                         <keep-alive v-if="config.router.keepAlive">
-                            <component :is="Component" :key="route.fullPath"/>
+                            <component :is="Component" :key="route.fullPath" />
                         </keep-alive>
-                        <component :is="Component" v-else :key="route.fullPath"/>
+                        <component
+                            :is="Component"
+                            v-else
+                            :key="route.fullPath"
+                        />
                     </transition>
                 </router-view>
-                <n-el v-else class="vaw-layout-container" :class="[appConfig.deviceType === 'mobile' && 'is-mobile']">
+                <n-el
+                    v-else
+                    class="vaw-layout-container"
+                    :class="[appConfig.deviceType === 'mobile' && 'is-mobile']"
+                >
                     <template v-if="layoutMode === 'ttb'">
-                        <SideBar/>
-                        <MainLayout/>
+                        <SideBar />
+                        <MainLayout />
                     </template>
                     <template v-else-if="layoutMode === 'lcr'">
-                        <TabSplitSideBar/>
-                        <MainLayout/>
+                        <TabSplitSideBar />
+                        <MainLayout />
                     </template>
                     <template v-else>
-                        <SideBar/>
-                        <MainLayout/>
+                        <SideBar />
+                        <MainLayout />
                     </template>
                     <div
                         v-if="appConfig.deviceType !== 'mobile'"
                         class="mobile-shadow"
-                        :class="[appConfig.isCollapse ? 'close-shadow' : 'show-shadow']"
+                        :class="[
+                            appConfig.isCollapse
+                                ? 'close-shadow'
+                                : 'show-shadow',
+                        ]"
                         @click="closeMenu"
                     />
                 </n-el>
@@ -42,61 +61,61 @@
 </template>
 
 <script lang="ts" setup>
-import SideBar from '@/components/layout/side-bar/side-bar.vue'
-import TabSplitSideBar from '@/components/layout/side-bar/tab-split-side-bar.vue'
-import MainLayout from '@/components/layout/main-layout.vue'
-import useAppConfigStore from '@/store/modules/app-config'
-import {darkTheme, zhCN} from 'naive-ui'
-import {DeviceType, ThemeMode} from '@/typings'
-import config from '@/config/config'
+import SideBar from "@/components/layout/side-bar/side-bar.vue";
+import TabSplitSideBar from "@/components/layout/side-bar/tab-split-side-bar.vue";
+import MainLayout from "@/components/layout/main-layout.vue";
+import useAppConfigStore from "@/store/modules/app-config";
+import { darkTheme, zhCN } from "naive-ui";
+import { DeviceType, ThemeMode } from "@/typings";
+import config from "@/config/config";
 
-const route = useRoute()
-const appConfig = useAppConfigStore()
+const route = useRoute();
+const appConfig = useAppConfigStore();
 const theme = computed(() => {
-    return appConfig.theme === ThemeMode.DARK ? darkTheme : null
-})
+    return appConfig.theme === ThemeMode.DARK ? darkTheme : null;
+});
 const themeOverrides = computed(() => {
     return {
         common: {
             primaryColor: appConfig.themeColor,
             primaryColorHover: appConfig.themeColor,
         },
-    }
-})
+    };
+});
 const layoutMode = computed(() => {
-    return appConfig.getLayoutMode
-})
+    return appConfig.getLayoutMode;
+});
 
 function handleScreenResize() {
-    if (!config.router.needSideMenuIcon) return
-    const width = document.body.clientWidth
+    if (!config.router.needSideMenuIcon) return;
+    const width = document.body.clientWidth;
     if (width <= 768) {
-        appConfig.changeDevice(DeviceType.MOBILE)
-        appConfig.toggleCollapse(true)
+        appConfig.changeDevice(DeviceType.MOBILE);
+        appConfig.toggleCollapse(true);
     } else if (width < 992 && width > 768) {
-        appConfig.changeDevice(DeviceType.PAD)
-        appConfig.toggleCollapse(true)
+        appConfig.changeDevice(DeviceType.PAD);
+        appConfig.toggleCollapse(true);
     } else if (width < 1200 && width >= 992) {
-        appConfig.changeDevice(DeviceType.PC)
-        appConfig.toggleCollapse(false)
+        appConfig.changeDevice(DeviceType.PC);
+        appConfig.toggleCollapse(false);
     } else {
-        appConfig.changeDevice(DeviceType.PC)
-        appConfig.toggleCollapse(false)
+        appConfig.changeDevice(DeviceType.PC);
+        appConfig.toggleCollapse(false);
     }
 }
 
 function closeMenu() {
-    appConfig.toggleCollapse(true)
+    appConfig.toggleCollapse(true);
 }
 
 onBeforeUnmount(() => {
-    window.removeEventListener('resize', handleScreenResize)
-})
+    window.removeEventListener("resize", handleScreenResize);
+});
 
 onMounted(() => {
-    handleScreenResize()
-    window.addEventListener('resize', handleScreenResize)
-})
+    handleScreenResize();
+    window.addEventListener("resize", handleScreenResize);
+});
 </script>
 
 <style scoped lang="less">

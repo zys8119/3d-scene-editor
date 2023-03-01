@@ -1,12 +1,7 @@
 <template>
-    <div id="Test3">
-        demo
-    </div>
+    <div id="Test3">demo</div>
 </template>
 
-<script lang="ts" setup>
-</script>
+<script lang="ts" setup></script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

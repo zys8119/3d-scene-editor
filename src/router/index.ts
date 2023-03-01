@@ -1,26 +1,34 @@
-import {createRouter, createWebHashHistory, createWebHistory, RouteMeta, RouteRecordRaw} from 'vue-router'
-import config from '@/config/config'
-import baseConfig from '../config/base'
+import {
+    createRouter,
+    createWebHashHistory,
+    createWebHistory,
+    RouteRecordRaw,
+} from "vue-router";
+import config from "@/config/config";
+import baseConfig from "../config/base";
 
-import Page404 from '@/components/common/404.vue'
-import Error from '@/components/common/error.vue'
-import Redirect from '@/components/common/redirect.vue'
+import Page404 from "@/components/common/404.vue";
+import Error from "@/components/common/error.vue";
+import Redirect from "@/components/common/redirect.vue";
 
 /**
  * 动态路由
  */
-export const asyncRoutes: RouteRecordRaw[] = []
+export const asyncRoutes: RouteRecordRaw[] = [];
 
 /**
  * 添加整个文件夹的 modules
  */
-const modules: Record<string, { default: RouteRecordRaw[] }> = import.meta.glob('./modules/*.ts', { eager: true })
+const modules: Record<string, { default: RouteRecordRaw[] }> = import.meta.glob(
+    "./modules/*.ts",
+    { eager: true }
+);
 for (const module of Object.values(modules)) {
-    if (!module.default) continue
-    if (!Array.isArray(module.default)) continue
-    module.default.forEach(route => {
-        asyncRoutes.push(route)
-    })
+    if (!module.default) continue;
+    if (!Array.isArray(module.default)) continue;
+    module.default.forEach((route) => {
+        asyncRoutes.push(route);
+    });
 }
 
 /**
@@ -28,66 +36,68 @@ for (const module of Object.values(modules)) {
  */
 export const commonRoutes: RouteRecordRaw[] = [
     {
-        path: '/:pathMatch(.*)*',
-        name: '404',
+        path: "/:pathMatch(.*)*",
+        name: "404",
         component: Page404,
         meta: {
-            hiddenInTab: true
-        }
+            hiddenInTab: true,
+        },
     },
     {
-        path: '/error',
-        name: 'error',
+        path: "/error",
+        name: "error",
         component: Error,
         meta: {
-            hiddenInTab: true
-        }
-    }
-]
+            hiddenInTab: true,
+        },
+    },
+];
 
 export const routes: RouteRecordRaw[] = [
     {
-        name: 'index',
-        path: '/',
-        component: () => import('@/components/layout/index.vue'),
-        redirect: '/demo/test2',
-        children: []
+        name: "index",
+        path: "/",
+        component: () => import("@/components/layout/index.vue"),
+        redirect: "/demo/test2",
+        children: [],
     },
     {
-        path: '/demo/test1',
-        name: 'test1',
-        component: () => import('@/views/demo/test1.vue'),
+        path: "/demo/test1",
+        name: "test1",
+        component: () => import("@/views/demo/test1.vue"),
         meta: {
-            title: 'demo',
+            title: "demo",
             hiddenInTab: true,
-        }
+        },
     },
     {
-        path: '/redirect',
-        name: 'redirect',
+        path: "/redirect",
+        name: "redirect",
         component: Redirect,
         meta: {
             hiddenInTab: true,
-            noCache: true
-        }
+            noCache: true,
+        },
     },
     {
-        path: '/login',
-        name: 'login',
-        component: () => import('@/views/login/index.vue'),
+        path: "/login",
+        name: "login",
+        component: () => import("@/views/login/index.vue"),
         meta: {
-            title: '登录',
-            isFullPage: true
-        }
+            title: "登录",
+            isFullPage: true,
+        },
     },
-]
+];
 
 const router = createRouter({
-    history: config.router.history ? createWebHistory(baseConfig.base) : createWebHashHistory(),
-    routes
-})
+    history: config.router.history
+        ? createWebHistory(baseConfig.base)
+        : createWebHashHistory(),
+    routes,
+});
 
-declare module 'vue-router' {
+declare module "vue-router" {
     interface RouteMeta {
         /**
          * 页面标题
@@ -104,7 +114,7 @@ declare module 'vue-router' {
         /**
          * 图标
          */
-        icon?: String;
+        icon?: string;
         /**
          * 是否全屏
          */
@@ -117,7 +127,7 @@ declare module 'vue-router' {
         /**
          * 页签标题，优先级高于 title
          */
-        tabTitle?: String;
+        tabTitle?: string;
         /**
          * 面包屑，不需要手动定义
          */
@@ -133,9 +143,8 @@ declare module 'vue-router' {
         /** 按钮权限 */
         permissions?: string[];
         /** 是否进行扁平化路由 **/
-        notFlat?:boolean;
+        notFlat?: boolean;
     }
 }
 
-export default router
-
+export default router;

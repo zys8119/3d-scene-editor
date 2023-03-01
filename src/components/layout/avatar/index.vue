@@ -1,14 +1,23 @@
 <template>
     <div class="vaw-avatar-container">
-        <n-dropdown trigger="hover" :options="options" size="large" @select="handleSelect">
+        <n-dropdown
+            trigger="hover"
+            :options="options"
+            size="large"
+            @select="handleSelect"
+        >
             <div class="action-wrapper">
                 <div class="avatar">
-                    <n-avatar circle size="small" :src="userStore.userinfo?.avatar?.url || defaultAvatar"/>
+                    <n-avatar
+                        circle
+                        size="small"
+                        :src="userStore.userinfo?.avatar?.url || defaultAvatar"
+                    />
                 </div>
                 <span class="nick-name">
-                    {{ userStore.userinfo.username || '管理员' }}
+                    {{ userStore.userinfo.username || "管理员" }}
                     <n-icon class="tip">
-                        <CaretDownSharp/>
+                        <CaretDownSharp />
                     </n-icon>
                 </span>
             </div>
@@ -17,45 +26,45 @@
 </template>
 
 <script lang="ts" setup>
-import {NIcon, useDialog} from 'naive-ui'
-import {h} from 'vue'
-import {LogInOutline, CaretDownSharp} from '@vicons/ionicons5'
-import {useRouter} from 'vue-router'
-import useStore from '@/store/modules/main'
-import defaultAvatar from '@/assets/images/avatar.png'
+import { NIcon, useDialog } from "naive-ui";
+import { h } from "vue";
+import { LogInOutline, CaretDownSharp } from "@vicons/ionicons5";
+import { useRouter } from "vue-router";
+import useStore from "@/store/modules/main";
+import defaultAvatar from "@/assets/images/avatar.png";
 
-const userStore = useStore()
-const router = useRouter()
+const userStore = useStore();
+const router = useRouter();
 const options = [
     {
-        label: '退出登录',
-        key: 'logout',
+        label: "退出登录",
+        key: "logout",
         icon: () =>
             h(NIcon, null, {
                 default: () => h(LogInOutline),
             }),
     },
-]
+];
 
-const dialog = useDialog()
+const dialog = useDialog();
 
 function logout() {
     dialog.warning({
-        title: '提示',
-        content: '是否要退出当前账号？',
-        positiveText: '退出',
-        negativeText: '再想想',
+        title: "提示",
+        content: "是否要退出当前账号？",
+        positiveText: "退出",
+        negativeText: "再想想",
         onPositiveClick: () => {
-            router.replace({name: 'login'})
+            router.replace({ name: "login" });
         },
-    })
+    });
 }
 
 function handleSelect(key: string) {
     switch (key) {
-        case 'logout':
-            logout()
-            break
+        case "logout":
+            logout();
+            break;
     }
 }
 </script>
