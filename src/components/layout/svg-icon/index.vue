@@ -1,7 +1,9 @@
 <template>
-    <component :is="component" :class="className" aria-hidden="true">
-        <use :href="iconName" />
-    </component>
+    <n-icon>
+        <component :is="component" :class="className" aria-hidden="true">
+            <use :href="iconName" />
+        </component>
+    </n-icon>
 </template>
 
 <script lang="ts" setup>

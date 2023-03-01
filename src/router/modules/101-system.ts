@@ -6,6 +6,7 @@ const routes: RouteRecordRaw[] = [
         name: 'System',
         meta: {
             title: '系统管理',
+            icon: 'test-aixin',
         },
         children: [
             {
