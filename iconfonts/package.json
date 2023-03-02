@@ -14,6 +14,7 @@
         "axios": "^1.3.4",
         "compressing": "^1.8.0",
         "fs-extra": "^11.1.0",
+        "naive-ui": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git",
         "puppeteer": "^19.7.2",
         "rimraf": "^4.1.3",
         "ts-node": "^10.9.1",
