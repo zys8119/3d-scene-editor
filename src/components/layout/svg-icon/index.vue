@@ -1,15 +1,23 @@
 <template>
-    <n-icon>
-        <component :is="component" :class="className" aria-hidden="true">
-            <use :href="iconName" />
-        </component>
-    </n-icon>
+    <component
+        :is="component"
+        :class="className"
+        aria-hidden="true"
+        :style="{
+            color: color,
+            fontSize: `${size}${typeof size === 'number' ? 'px' : ''}`,
+        }"
+    >
+        <use :href="iconName" />
+    </component>
 </template>
 
 <script lang="ts" setup>
 const props = withDefaults(
     defineProps<{
         prefix?: string;
+        color?: string;
+        size?: string | number;
         name: string;
     }>(),
     {

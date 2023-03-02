@@ -6,7 +6,7 @@ const routes: RouteRecordRaw[] = [
         name: 'demo',
         meta: {
             title: 'demo',
-            icon: 'menu',
+            icon: 'menus-menu',
         },
         children: [
             {
@@ -35,7 +35,7 @@ const routes: RouteRecordRaw[] = [
         name: 'demo2',
         meta: {
             title: 'demo2',
-            icon: 'data-order',
+            icon: 'menus-menu',
         },
         component: () => import('@/views/demo/test2.vue'),
     },

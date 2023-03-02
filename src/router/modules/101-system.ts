@@ -6,7 +6,7 @@ const routes: RouteRecordRaw[] = [
         name: 'System',
         meta: {
             title: '系统管理',
-            icon: 'svgs-dingbufanhui',
+            icon: 'menus-menu',
         },
         children: [
             {
@@ -14,7 +14,7 @@ const routes: RouteRecordRaw[] = [
                 name: 'Organization',
                 meta: {
                     title: '组织架构',
-                    tabTitle: 'asdfjalskdfj',
+                    tabTitle: '这是组织架构',
                     fixed: true,
                 },
                 component: () =>

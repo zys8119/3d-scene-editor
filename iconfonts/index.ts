@@ -6,8 +6,8 @@ import fs from 'fs-extra';
 
 (async () => {
     const config = {
-        username: '15372618221',
-        password: 'xy598491063',
+        username: '15372612690',
+        password: 'zj123456789',
         pid: '3923406',
     } as {
         username: string;
@@ -17,8 +17,6 @@ import fs from 'fs-extra';
 
     const browser = await launch({
         timeout: 0,
-        // headless: false,
-        // devtools: true
     });
     const page = await browser.newPage();
     await page.goto('https://www.iconfont.cn/login');
@@ -54,6 +52,16 @@ import fs from 'fs-extra';
                         v.font_class + '.svg'
                     ),
                     v.show_svg
+                        .replace(/style=("|').*?("|')/, '')
+                        .replace(/fill=("|').*?("|')/g, '')
+                );
+                writeFileSync(
+                    resolve(
+                        process.cwd(),
+                        '../src/icons/svgs',
+                        v.font_class + '-fill.svg'
+                    ),
+                    v.show_svg.replace(/style=("|').*?("|')/, '')
                 );
             });
             console.log('svg资源下载成功');
