@@ -24,7 +24,7 @@ const className = computed(() => {
     if (props.prefix === 'icon') {
         return 'svg-icon';
     } else if (props.prefix === 'iconfont') {
-        return 'iconfont icon-' + props.name;
+        return 'iconfont ' + props.name;
     } else {
         return '';
     }

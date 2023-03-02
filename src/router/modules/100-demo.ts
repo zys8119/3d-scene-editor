@@ -10,12 +10,12 @@ const routes: RouteRecordRaw[] = [
         },
         children: [
             {
-                path: 'test2',
-                name: 'test2',
+                path: 'test1',
+                name: 'test1',
                 meta: {
-                    title: 'test2',
+                    title: 'test1',
                 },
-                component: () => import('@/views/demo/test2.vue'),
+                component: () => import('@/views/demo/test1.vue'),
                 children: [
                     {
                         path: 'test3',
@@ -37,7 +37,7 @@ const routes: RouteRecordRaw[] = [
             title: 'demo2',
             icon: 'data-order',
         },
-        component: () => import('@/views/demo/test1.vue'),
+        component: () => import('@/views/demo/test2.vue'),
     },
 ];
 

@@ -1,7 +1,6 @@
 <template>
     <n-search-table-page
         ref="searchTablePageRef"
-        :data-api="api.v1.test.list"
         :data-table-props="{ columns: columns }"
         @search="a"
     >

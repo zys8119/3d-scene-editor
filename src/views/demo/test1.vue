@@ -1,11 +1,9 @@
 <template>
-    <div>qweqwewq</div>
+    <div>
+        <svg-icon prefix="iconfont" name="icon-fenxiang"></svg-icon>
+    </div>
 </template>
 
-<script lang="ts" setup>
-// const testFn = async() => {
-//     await window.api.demo.list({}, {} as PageMap)
-// }
-</script>
+<script lang="ts" setup></script>
 
 <style scoped></style>

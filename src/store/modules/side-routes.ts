@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from 'vue-router';
 import { h } from 'vue';
 import { NIcon } from 'naive-ui';
-import SvgIcon from '@/components/layout/svg-icon/index.tsx';
+import SvgIcon from '@/components/layout/svg-icon/index.vue';
 import { SystemRouteRow } from '@/typings';
 import config from '@/config/config';
 
