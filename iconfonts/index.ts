@@ -5,6 +5,16 @@ import compressing from 'compressing';
 import fs from 'fs-extra';
 
 (async () => {
+    const config = {
+        username: '15372618221',
+        password: 'xy598491063',
+        pid: '3923406',
+    } as {
+        username: string;
+        password: string;
+        pid: string;
+    };
+
     const browser = await launch({
         timeout: 0,
         // headless: false,
@@ -13,8 +23,8 @@ import fs from 'fs-extra';
     const page = await browser.newPage();
     await page.goto('https://www.iconfont.cn/login');
     await page.waitForSelector('#userid', { timeout: 1000 });
-    await page.type('#userid', '15372618221');
-    await page.type('#password', 'xy598491063');
+    await page.type('#userid', config.username);
+    await page.type('#password', config.password);
     await page.tap('#login-form button[type=submit]');
     await new Promise((resolve) => setTimeout(resolve, 1000));
     const page2 = await browser.newPage();
@@ -27,13 +37,13 @@ import fs from 'fs-extra';
     page2.on('response', async (data) => {
         if (bool && /myprojects\.json/.test(data.url())) {
             bool = false;
-            const res = await page2.evaluateHandle(async () => {
+            const res = await page2.evaluateHandle(async (config) => {
                 return await (
                     await fetch(
-                        'https://www.iconfont.cn/api/project/detail.json?pid=3923406'
+                        `https://www.iconfont.cn/api/project/detail.json?pid=${config.pid}`
                     )
                 ).json();
-            });
+            }, config);
             const json = await res.jsonValue();
             console.log('svg资源下载中...');
             json.data.icons.forEach((v: any) => {
@@ -52,11 +62,11 @@ import fs from 'fs-extra';
     await page2.goto(
         'https://www.iconfont.cn/manage/index?manage_type=myprojects'
     );
-    await page2.evaluateHandle(() => {
+    await page2.evaluateHandle((config) => {
         window.open(
-            'https://www.iconfont.cn/api/project/download.zip?pid=3923406'
+            `https://www.iconfont.cn/api/project/download.zip?pid=${config.pid}`
         );
-    });
+    }, config);
     await watch(
         './',
         {
@@ -72,7 +82,7 @@ import fs from 'fs-extra';
         }
     );
 
-    const watcher2 = await watch(
+    const watcher = await watch(
         '../src/icons/iconfont',
         {
             persistent: true,
@@ -97,7 +107,7 @@ import fs from 'fs-extra';
                 });
                 await (() => {
                     console.log('iconfronts资源解压成功');
-                    watcher2.close();
+                    watcher.close();
                     fs.removeSync(
                         `../src/icons/iconfont/${res[res.length - 1]}`
                     );

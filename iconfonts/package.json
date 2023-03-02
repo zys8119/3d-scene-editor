@@ -5,7 +5,7 @@
     "main": "index.ts",
     "type": "module",
     "scripts": {
-        "tsc": "rimraf ../src/icons/svgs/* && rimraf ../src/icons/iconfont/* && ts-node-esm index.ts",
+        "clone:iconfonts": "rimraf ../src/icons/svgs/* && rimraf ../src/icons/iconfont/* && ts-node-esm index.ts",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
