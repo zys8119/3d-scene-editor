@@ -6,7 +6,7 @@
         ]"
         @click="toggleFold"
     >
-        <SvgIcon name="expand" />
+        <SvgIcon name="svgs-shousuo" :size="20" />
     </span>
 </template>
 
