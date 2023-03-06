@@ -76,7 +76,16 @@ export const routes: RouteRecordRaw[] = [
         component: Redirect,
         meta: {
             hiddenInTab: true,
-            noCache: true,
+        },
+    },
+    {
+        path: '/common-tools',
+        name: 'common-tools',
+        component: () => import('@/components/common/tools/index.vue'),
+        meta: {
+            hiddenInTab: true,
+            hidden: true,
+            isFullPage: true,
         },
     },
     {
