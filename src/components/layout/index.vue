@@ -9,7 +9,7 @@
         <n-loading-bar-provider>
             <n-dialog-provider>
                 <router-view
-                    v-if="route.meta.isFullPage"
+                    v-if="routeElse.meta.isFullPage"
                     v-slot="{ Component, route }"
                 >
                     <transition
@@ -69,6 +69,7 @@ import { darkTheme, zhCN } from 'naive-ui';
 import { DeviceType, ThemeMode } from '@/typings';
 import config from '@/config/config';
 
+const routeElse = useRoute();
 const appConfig = useAppConfigStore();
 const theme = computed(() => {
     return appConfig.theme === ThemeMode.DARK ? darkTheme : null;
