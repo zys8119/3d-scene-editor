@@ -15,6 +15,7 @@ import { h } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import useStore from '@/store/modules/main';
 import { NIcon } from 'naive-ui';
+import SvgIcon from '@/components/layout/svg-icon/index.vue';
 import { SystemRouteRow } from '@/typings';
 
 const router = useRouter();

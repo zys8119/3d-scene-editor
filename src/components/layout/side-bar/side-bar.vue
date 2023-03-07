@@ -23,14 +23,13 @@
 import Logo from '@/components/layout/logo/index.vue';
 import ScrollerMenu from '@/components/layout/side-bar/components/scroller-menu.vue';
 import useAppConfigStore from '@/store/modules/app-config';
-import { computed, h } from 'vue';
+import { computed } from 'vue';
 import { SideTheme, ThemeMode } from '@/typings';
 import useSideRoutesStore from '@/store/modules/side-routes';
 
 const sideRoutesStore = useSideRoutesStore();
-const route = useRoute();
 
-const props = withDefaults(
+withDefaults(
     defineProps<{
         showLogo?: boolean;
     }>(),

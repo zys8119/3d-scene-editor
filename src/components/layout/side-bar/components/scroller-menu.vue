@@ -21,11 +21,10 @@ import configHooks from '@/config/config-hooks';
 import useStore from '@/store/modules/main';
 import { DeviceType, SystemRouteRow } from '@/typings';
 
-const store = useStore();
 const route = useRoute();
 const appConfig = useAppConfigStore();
 
-const props = defineProps<{
+defineProps<{
     routes: SystemRouteRow[];
 }>();
 

@@ -49,7 +49,7 @@ import config from '@/config/config';
 
 const router = useRouter();
 
-const props = withDefaults(
+withDefaults(
     defineProps<{
         showNavBar?: boolean;
     }>(),
