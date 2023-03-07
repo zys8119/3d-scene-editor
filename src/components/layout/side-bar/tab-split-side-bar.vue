@@ -130,7 +130,6 @@ const contentWrapperStyle = computed(() => {
     }`;
 });
 
-const routes = ref([]);
 const tabs = computed(() => {
     return window.store.main.routes
         .filter((route) => !route.meta?.hidden)

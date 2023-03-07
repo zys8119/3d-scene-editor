@@ -18,7 +18,6 @@
 <script lang="ts" setup>
 import useAppConfigStore from '@/store/modules/app-config';
 import configHooks from '@/config/config-hooks';
-import useStore from '@/store/modules/main';
 import { DeviceType, SystemRouteRow } from '@/typings';
 
 const route = useRoute();
