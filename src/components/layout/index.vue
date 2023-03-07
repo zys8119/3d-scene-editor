@@ -69,7 +69,6 @@ import { darkTheme, zhCN } from 'naive-ui';
 import { DeviceType, ThemeMode } from '@/typings';
 import config from '@/config/config';
 
-const route = useRoute();
 const appConfig = useAppConfigStore();
 const theme = computed(() => {
     return appConfig.theme === ThemeMode.DARK ? darkTheme : null;
