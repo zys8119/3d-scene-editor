@@ -33,7 +33,7 @@ module.exports = {
     },
     globals: {},
     rules: {
-        'vue/multi-word-component-names': 'warning',
+        'vue/multi-word-component-names': 'warn',
         '@typescript-eslint/no-unused-vars': [2],
         '@typescript-eslint/no-explicit-any': 'off',
     },
