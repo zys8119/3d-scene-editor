@@ -33,9 +33,21 @@ const list = ref([
         component: shallowRef(iconfonts),
         isActive: false,
     },
+    {
+        name: 'wisdom-naive',
+        component: 'https://wisdom-naive.zhijiasoft.com/',
+        isActive: false,
+    },
+    {
+        name: '智加文档',
+        component: 'https://zjdoc.zhijiasoft.com/',
+        isActive: false,
+    },
 ]);
 
 const changeComponent = (k: number | null) => {
+    if (typeof list.value[k || 0].component === 'string')
+        return window.open(list.value[k || 0].component);
     list.value.forEach((v, i) => {
         v.isActive = i === k;
     });
