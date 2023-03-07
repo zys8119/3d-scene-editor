@@ -1,6 +1,9 @@
 import App from './app.vue';
 const app = createApp(App);
 
+import SvgIcon from '@/components/layout/svg-icon/index.vue';
+app.component('SvgIcon', SvgIcon);
+
 /**
  * 请求初始化
  */

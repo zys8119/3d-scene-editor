@@ -11,7 +11,6 @@
 </template>
 
 <script lang="ts" setup>
-import SvgIcon from '@/components/layout/svg-icon/index.vue';
 import useAppConfigStore from '@/store/modules/app-config';
 
 const appConfig = useAppConfigStore();

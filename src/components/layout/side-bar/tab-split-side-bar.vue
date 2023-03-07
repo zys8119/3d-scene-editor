@@ -56,7 +56,6 @@ import { useRoute, useRouter } from 'vue-router';
 import useAppConfigStore from '@/store/modules/app-config';
 import { SideTheme, SystemTabbarRouteRow, ThemeMode } from '@/typings';
 import Logo from '@/components/layout/logo/index.vue';
-import SvgIcon from '@/components/layout/svg-icon/index.vue';
 import ScrollerMenu from '@/components/layout/side-bar/components/scroller-menu.vue';
 import useStore from '@/store/modules/main';
 import useSideRoutesStore from '@/store/modules/side-routes';

@@ -25,6 +25,7 @@
         "unplugin-auto-import-element-plus-preset": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/unplugin-auto-import-element-plus-preset.git",
         "vite-plugin-fz": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz.git",
         "vue": "^3.2.45",
+        "vue-clipboard3": "^2.0.0",
         "vue-router": "^4.0.12",
         "wp-preprocessor": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-preprocessor.git",
         "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git"
