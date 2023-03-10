@@ -1,19 +1,18 @@
 <template>
-    <div class="menu">
+    <div class="role">
+        <n-button type="primary">测试权限</n-button>
         <n-cascade-menu
             v-model:tree="tree"
-            :editable="true"
-            @node:add="handleAdd"
-            @node:edit="handleEdit"
-            @node:delete="handleDelete"
-            @node:expanded="handleExpand"
+            :selectable="true"
+            :multiple="true"
         />
     </div>
 </template>
 
 <script lang="ts" setup>
 import { TreeNodeAddCallback, TreeNode } from 'naive-ui';
-
+const route = useRoute();
+console.log(route);
 const tree = ref<TreeNode[]>([
     {
         name: '中国',
@@ -28,8 +27,26 @@ const tree = ref<TreeNode[]>([
                         value: '330200',
                         children: [
                             {
-                                name: '鄞州区',
+                                name: '测试页面',
                                 value: '330212',
+                                children: [
+                                    {
+                                        name: '新增按钮',
+                                        value: '330212',
+                                    },
+                                    {
+                                        name: '删除按钮',
+                                        value: '330212',
+                                    },
+                                    {
+                                        name: 'api/v1/test/test',
+                                        value: '330212',
+                                    },
+                                    {
+                                        name: 'api/v1/test/test',
+                                        value: '330212',
+                                    },
+                                ],
                             },
                             {
                                 name: '海曙区',

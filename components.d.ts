@@ -41,6 +41,7 @@ declare module '@vue/runtime-core' {
         NBreadcrumbItem: typeof import('naive-ui')['NBreadcrumbItem'];
         NButton: typeof import('naive-ui')['NButton'];
         NCard: typeof import('naive-ui')['NCard'];
+        NCascadeMenu: typeof import('naive-ui')['NCascadeMenu'];
         NConfigProvider: typeof import('naive-ui')['NConfigProvider'];
         NCountdown: typeof import('naive-ui')['NCountdown'];
         NDialogProvider: typeof import('naive-ui')['NDialogProvider'];

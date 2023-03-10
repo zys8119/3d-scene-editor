@@ -18,6 +18,14 @@ const routes: RouteRecordRaw[] = [
                 component: () => import('@/views/system/menu/index.vue'),
             },
             {
+                path: 'role',
+                name: 'Role',
+                meta: {
+                    title: '角色管理',
+                },
+                component: () => import('@/views/system/role/index.vue'),
+            },
+            {
                 path: 'organization',
                 name: 'Organization',
                 meta: {
