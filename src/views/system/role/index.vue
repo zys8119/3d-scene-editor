@@ -11,8 +11,6 @@
 
 <script lang="ts" setup>
 import { TreeNodeAddCallback, TreeNode } from 'naive-ui';
-const route = useRoute();
-console.log(route);
 const tree = ref<TreeNode[]>([
     {
         name: '中国',
@@ -87,39 +85,6 @@ const tree = ref<TreeNode[]>([
         ],
     },
 ]);
-
-function handleAdd(
-    nodeList: TreeNode<{ name: string; value: string }>[],
-    done: TreeNodeAddCallback
-) {
-    const name = window.prompt('请输入节点name');
-    const value = window.prompt('请输入节点value');
-    if (name && value) {
-        done({ name, value, children: [] });
-    }
-    console.log(tree.value);
-}
-
-function handleEdit(node: TreeNode<{ value: string }>) {
-    const name = window.prompt('请输入节点name', node.name) ?? node.name;
-    const value = window.prompt('请输入节点value', node.value) ?? node.value;
-    node.name = name;
-    node.value = value;
-    console.log(tree.value);
-}
-
-function handleDelete(node: TreeNode<{ value: string }>) {
-    const targetIndex = node.parent?.children?.findIndex(
-        (item) => item.__id__ === node.__id__
-    );
-    if (targetIndex) {
-        node.parent?.children?.splice(targetIndex, 1);
-    }
-}
-
-function handleExpand(node: TreeNode) {
-    console.log(node);
-}
 </script>
 
 <style scoped></style>
