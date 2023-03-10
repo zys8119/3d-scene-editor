@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { TreeNodeAddCallback, TreeNode } from 'naive-ui';
+import { TreeNode } from 'naive-ui';
 const tree = ref<TreeNode[]>([
     {
         name: '中国',
