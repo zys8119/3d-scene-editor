@@ -119,6 +119,7 @@ const copy = async (text: string) => {
                 border-radius: 5px;
                 margin: 5px;
                 text-align: center;
+                overflow: hidden;
                 .svg {
                     padding: 10px 20px 5px;
                     display: flex;

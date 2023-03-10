@@ -142,13 +142,13 @@ declare module 'vue-router' {
          */
         breadcrumbs?: RouteRecordRaw[];
         /**
-         * 是否在页签中固定，禁止关闭
-         */
-        fixed?: boolean;
-        /**
          * 是否在页签中隐藏
          */
         hiddenInTab?: boolean;
+        /**
+         * 是否在页签中固定，禁止关闭
+         */
+        fixed?: boolean;
         /** 按钮权限 */
         permissions?: string[];
         /** 是否进行扁平化路由 **/

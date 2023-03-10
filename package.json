@@ -28,7 +28,8 @@
         "vue-clipboard3": "^2.0.0",
         "vue-router": "^4.0.12",
         "wp-preprocessor": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-preprocessor.git",
-        "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git"
+        "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git",
+        "wp-utils": "https://gitlab.zhijiasoft.com/vue3-base-framework/wp-utils.git"
     },
     "devDependencies": {
         "@commitlint/cli": "^15.0.0",

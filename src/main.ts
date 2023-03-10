@@ -30,5 +30,8 @@ import '@/assets/less/index.less';
 import './global';
 
 import 'virtual:svg-icons-register';
+//
+// import {utils} from 'wp-utils/src/utils'
+// utils.a()
 
 app.mount('#app');
