@@ -11,10 +11,12 @@ import Page404 from '@/components/common/404.vue';
 import Error from '@/components/common/error.vue';
 import Redirect from '@/components/common/redirect.vue';
 
+import { flattenDeep, sortBy } from 'lodash';
+
 /**
  * 动态路由
  */
-export const asyncRoutes: RouteRecordRaw[] = [];
+export let asyncRoutes: RouteRecordRaw[] = [];
 
 /**
  * 添加整个文件夹的 modules
@@ -23,13 +25,13 @@ const modules: Record<string, { default: RouteRecordRaw[] }> = import.meta.glob(
     './modules/*.ts',
     { eager: true }
 );
-for (const module of Object.values(modules)) {
-    if (!module.default) continue;
-    if (!Array.isArray(module.default)) continue;
-    module.default.forEach((route) => {
-        asyncRoutes.push(route);
-    });
-}
+const _modules = Object.keys(modules).map((v) =>
+    modules[v].default.map((a) => ({
+        ...a,
+        nameNumber: parseInt(v.replace('./modules/', '').split('-')[0]),
+    }))
+);
+asyncRoutes = sortBy(flattenDeep(_modules), (route) => route.nameNumber);
 
 /**
  * 公共路由，例如404，要在路由动态加载完成之后再加载

@@ -11,7 +11,7 @@ const routes: RouteRecordRaw[] = [
         children: [
             {
                 path: 'menu',
-                name: 'menu',
+                name: 'Menu',
                 meta: {
                     title: '菜单管理',
                 },
