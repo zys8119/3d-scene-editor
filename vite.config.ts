@@ -16,6 +16,7 @@ import preprocessorPreset from 'wp-preprocessor/dist/preset';
 import requestPreset from 'wp-request/dist/preset';
 import md5 from 'md5';
 import AutoRoute from 'vitejs-plugin-vue-route-auto-import';
+import AutoApi from 'vitejs-plugin-api-auto-import';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -73,6 +74,12 @@ export default defineConfig({
         AutoRoute({
             route: 'auto-route',
             views: 'src/views/auto-views',
+        }),
+        AutoApi({
+            outFile: '../../auto-api.ts',
+            dir: 'src/api',
+            resolveAliasName: '@/api',
+            exclude: /\/src\/api\/(typing)\.ts$/,
         }),
     ],
     resolve: {

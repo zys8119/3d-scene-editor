@@ -24,6 +24,7 @@
         "screenfull": "^5.1.0",
         "unplugin-auto-import-element-plus-preset": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/unplugin-auto-import-element-plus-preset.git",
         "vite-plugin-fz": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz.git",
+        "vitejs-plugin-api-auto-import": "^0.0.14",
         "vitejs-plugin-vue-route-auto-import": "0.0.17",
         "vue": "^3.2.45",
         "vue-clipboard3": "^2.0.0",

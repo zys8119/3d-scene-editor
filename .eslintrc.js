@@ -31,7 +31,9 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    globals: {},
+    globals: {
+        $apis: true,
+    },
     rules: {
         'vue/multi-word-component-names': 'off',
         '@typescript-eslint/no-unused-vars': [2],
