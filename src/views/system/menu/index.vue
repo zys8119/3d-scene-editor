@@ -10,11 +10,13 @@
             @node:edit="handleEdit"
             @node:delete="handleDelete"
         />
+        <menu-form ref="menuFormRef" />
     </div>
 </template>
 
 <script lang="ts" setup>
 import { TreeNodeAddCallback, TreeNode } from 'naive-ui';
+import MenuForm from '@/views/system/menu/models/menu-form.vue';
 
 const tree = ref<TreeNode[]>([]);
 
@@ -24,6 +26,7 @@ function handleAdd(
 ) {
     console.log(nodeList);
     console.log(done);
+    menuFormRef.value.open();
 }
 
 function handleEdit(node: TreeNode<{ value: string }>) {
@@ -33,6 +36,8 @@ function handleEdit(node: TreeNode<{ value: string }>) {
 function handleDelete(node: TreeNode<{ value: string }>) {
     console.log(node);
 }
+
+const menuFormRef = ref();
 </script>
 
 <style scoped></style>
