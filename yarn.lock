@@ -12375,10 +12375,10 @@ vite@^4.1.4:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitejs-plugin-api-auto-import@^0.0.14:
-  version "0.0.14"
-  resolved "https://registry.npmjs.org/vitejs-plugin-api-auto-import/-/vitejs-plugin-api-auto-import-0.0.14.tgz#4f255d1ecabc0efc6e5447a539fd4536cc5bfa8b"
-  integrity sha512-mFeOzppCwQqz60YyIrk2OF77TtLOwlky0Il3SqDXE45ugWpC57zq/+RvynwnHleewyfcjsCTeUl6fbCaWz2IJg==
+vitejs-plugin-api-auto-import@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.npmjs.org/vitejs-plugin-api-auto-import/-/vitejs-plugin-api-auto-import-0.0.16.tgz#45fa6a9683c745e1fbe710978b256b3acd4d5511"
+  integrity sha512-sS+9EHO7IRqFDI1WOU5UbyFnl/GKnnKWltnnXodWVq+qv3DSaQYi7WjuaaZe5pNAuA2cgmXL4gIpi6BssxNJSw==
   dependencies:
     fast-glob "^3.2.12"
     fs-extra "^11.1.0"

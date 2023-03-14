@@ -80,6 +80,8 @@ export default defineConfig({
             dir: 'src/api',
             resolveAliasName: '@/api',
             exclude: /\/src\/api\/(typing)\.ts$/,
+            allExport: true,
+            import: false,
         }),
     ],
     resolve: {
