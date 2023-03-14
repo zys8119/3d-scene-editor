@@ -136,7 +136,7 @@
 import { TreeNode } from 'naive-ui';
 import { views } from '@/config/config-hooks';
 
-const props = defineProps<{
+defineProps<{
     parentMenu?: TreeNode;
 }>();
 
@@ -161,10 +161,10 @@ const componentsOptions = computed(() => {
 const menuForm = ref<any>({});
 
 // 按钮权限表单
-const buttonForm = ref([]);
+// const buttonForm = ref([]);
 
 // 接口权限表单
-const apiForm = ref([]);
+// const apiForm = ref([]);
 
 defineExpose({ open });
 </script>
