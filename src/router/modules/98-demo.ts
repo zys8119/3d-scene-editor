@@ -14,6 +14,7 @@ const routes: RouteRecordRaw[] = [
                 name: 'Test1',
                 meta: {
                     title: 'test1',
+                    permissions: ['a', 'b', 'c'],
                 },
                 component: () => import('@/views/demo/test1.vue'),
                 children: [

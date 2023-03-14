@@ -3,10 +3,12 @@
         <n-cascade-menu
             v-model:tree="tree"
             :editable="true"
+            :config="{
+                addNodeText: '新增菜单',
+            }"
             @node:add="handleAdd"
             @node:edit="handleEdit"
             @node:delete="handleDelete"
-            @node:expanded="handleExpand"
         />
     </div>
 </template>
@@ -14,93 +16,21 @@
 <script lang="ts" setup>
 import { TreeNodeAddCallback, TreeNode } from 'naive-ui';
 
-const tree = ref<TreeNode[]>([
-    {
-        name: '中国',
-        value: '100000',
-        children: [
-            {
-                name: '浙江省',
-                value: '330000',
-                children: [
-                    {
-                        name: '宁波市',
-                        value: '330200',
-                        children: [
-                            {
-                                name: '鄞州区',
-                                value: '330212',
-                            },
-                            {
-                                name: '海曙区',
-                                value: '330203',
-                            },
-                        ],
-                    },
-                    {
-                        name: '杭州市',
-                        value: '330100',
-                        children: [
-                            {
-                                name: '上城区',
-                                value: '330102',
-                            },
-                            {
-                                name: '西湖区',
-                                value: '330106',
-                            },
-                        ],
-                    },
-                ],
-            },
-            {
-                name: '上海市',
-                value: '310000',
-                children: [
-                    {
-                        name: '普陀区',
-                        value: '310107',
-                    },
-                    {
-                        name: '静安区',
-                        value: '310106',
-                    },
-                ],
-            },
-        ],
-    },
-]);
+const tree = ref<TreeNode[]>([]);
 
 function handleAdd(
     nodeList: TreeNode<{ name: string; value: string }>[],
     done: TreeNodeAddCallback
 ) {
-    const name = window.prompt('请输入节点name');
-    const value = window.prompt('请输入节点value');
-    if (name && value) {
-        done({ name, value, children: [] });
-    }
-    console.log(tree.value);
+    console.log(nodeList);
+    console.log(done);
 }
 
 function handleEdit(node: TreeNode<{ value: string }>) {
-    const name = window.prompt('请输入节点name', node.name) ?? node.name;
-    const value = window.prompt('请输入节点value', node.value) ?? node.value;
-    node.name = name;
-    node.value = value;
-    console.log(tree.value);
+    console.log(node);
 }
 
 function handleDelete(node: TreeNode<{ value: string }>) {
-    const targetIndex = node.parent?.children?.findIndex(
-        (item) => item.__id__ === node.__id__
-    );
-    if (targetIndex) {
-        node.parent?.children?.splice(targetIndex, 1);
-    }
-}
-
-function handleExpand(node: TreeNode) {
     console.log(node);
 }
 </script>

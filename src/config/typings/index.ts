@@ -9,6 +9,7 @@ export interface BaseConfig {
      */
     base: string;
     title: string;
+    company: string;
     lang: string;
     unique?: string;
     filehash?: boolean;

@@ -1,6 +1,6 @@
 <template>
     <n-card class="footer-container">
-        Copyright © {{ base.title }} {{ new Date().getFullYear() }}</n-card
+        Copyright © {{ base.company }} {{ new Date().getFullYear() }}</n-card
     >
 </template>
 
