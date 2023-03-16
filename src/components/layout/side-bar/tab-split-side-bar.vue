@@ -4,7 +4,6 @@
             :bordered="false"
             class="vaw-tab-split-side-bar-wrapper"
             :content-style="{ padding: 0 }"
-            style="border-radius: 0"
             :class="[
                 !appConfig.isCollapse ? 'open-status' : 'close-status',
                 appConfig.sideTheme === 'image' ? 'sidebar-bg-img' : '',
@@ -15,7 +14,7 @@
                 :style="{ backgroundColor: bgColor }"
             >
                 <Logo class="tab-split-logo-wrapper" :show-title="false" />
-                <div style="height: calc(100% - 48px)">
+                <div class="tab-split-tab-wrapper-menu">
                     <n-scrollbar>
                         <div
                             id="tabSplitContentWrapper"
@@ -172,6 +171,7 @@ const changeTab = (row: SystemTabbarRouteRow) => {
     height: 100vh;
     box-sizing: border-box;
     z-index: 999;
+    border-radius: 0;
 
     .tab-split-tab-wrapper {
         position: relative;
@@ -183,6 +183,9 @@ const changeTab = (row: SystemTabbarRouteRow) => {
         overflow: hidden;
         height: 100vh;
         box-sizing: border-box;
+        .tab-split-tab-wrapper-menu {
+            height: calc(100% - var(--logo-height));
+        }
 
         .tab-split-logo-wrapper {
             max-width: var(--tab-split-menu-width);
@@ -228,6 +231,10 @@ const changeTab = (row: SystemTabbarRouteRow) => {
 
                 &:hover {
                     cursor: pointer;
+                    color: #ffffff;
+                    svg {
+                        fill: #ffffff;
+                    }
                 }
 
                 &::after {
