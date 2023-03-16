@@ -57,6 +57,7 @@ import { SideTheme, SystemTabbarRouteRow, ThemeMode } from '@/typings';
 import Logo from '@/components/layout/logo/index.vue';
 import ScrollerMenu from '@/components/layout/side-bar/components/scroller-menu.vue';
 import useSideRoutesStore from '@/store/modules/side-routes';
+import configSetting from '@/config/setting';
 
 const sideRoutesStore = useSideRoutesStore();
 const router = useRouter();
@@ -85,7 +86,12 @@ const themeOverThemes = computed(() => {
                 textColor2: '#bbbbbb',
             },
             Menu: {
-                itemColorActive: 'rgba(24, 160, 88, 0.4)',
+                itemColorHover: configSetting.themeColor,
+                itemColorActive: configSetting.themeColor,
+                itemColorActiveHover: configSetting.themeColor,
+                itemTextColorHover: '#ffffff',
+                itemTextColorActive: '#ffffff',
+                itemTextColorActiveHover: '#ffffff',
             },
         };
     if (appConfig.sideTheme === SideTheme.WHITE)

@@ -54,30 +54,11 @@ const onMenuClick = (key: string, record: SystemRouteRow) => {
 </script>
 
 <style lang="less" scoped>
-:deep(.n-menu .n-submenu .n-menu-item-content__icon) {
-    font-size: 16px !important;
-}
-
-:deep(.n-menu .n-menu-item-content .n-menu-item-content__icon) {
-    font-size: 16px !important;
-}
-
-:deep(.n-menu .n-menu-item) {
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-
-:deep(.n-menu .n-menu-item::before) {
-    left: 5px;
-    right: 5px;
-    border-radius: 5px;
-}
-
-:deep(.n-menu .n-menu-item:hover) {
-    background-color: var(--item-color-active);
-}
-
 .scrollbar {
     height: calc(100vh - var(--logo-height)) !important;
+    :deep(.n-menu .n-menu-item) {
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
 }
 </style>

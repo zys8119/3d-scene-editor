@@ -28,6 +28,9 @@ const themeOverrides = computed(() => {
             primaryColor: appConfig.themeColor,
             primaryColorHover: appConfig.themeColor,
         },
+        dark: {
+            colorActive: 'red',
+        },
     };
 });
 </script>
