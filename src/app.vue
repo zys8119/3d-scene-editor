@@ -26,7 +26,11 @@ const themeOverrides = computed(() => {
     return {
         common: {
             primaryColor: appConfig.themeColor,
-            primaryColorHover: appConfig.themeColor,
+            primaryColorHover: appConfig.themeColorHover,
+        },
+        Button: {
+            colorPressedPrimary: appConfig.themeColor,
+            borderPressedPrimary: appConfig.themeColor,
         },
     };
 });

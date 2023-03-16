@@ -32,6 +32,7 @@ export interface AppConfigState {
     theme: ThemeMode;
     sideTheme: SideTheme;
     themeColor: string;
+    themeColorHover: string;
     layoutMode: LayoutMode;
     deviceType: DeviceType;
     sideWidth: number;
