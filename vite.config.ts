@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import viteSvgIcons from 'vite-plugin-svg-icons';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
@@ -21,7 +21,7 @@ export default defineConfig({
     base: baseConfig.base,
     plugins: [
         vue(),
-        viteSvgIcons({
+        createSvgIconsPlugin({
             iconDirs: [path.resolve(process.cwd(), 'src/icons')],
             symbolId: 'icon-[dir]-[name]',
             svgoOptions: {
@@ -73,22 +73,6 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src'),
-        },
-    },
-    css: {
-        postcss: {
-            plugins: [
-                {
-                    postcssPlugin: 'internal:charset-removal',
-                    AtRule: {
-                        charset: (atRule) => {
-                            if (atRule.name === 'charset') {
-                                atRule.remove();
-                            }
-                        },
-                    },
-                },
-            ],
         },
     },
     build: {
