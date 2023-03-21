@@ -31,7 +31,7 @@ const _modules = Object.keys(modules).map((v) =>
         nameNumber: parseInt(v.replace('./modules/', '').split('-')[0]),
     }))
 );
-asyncRoutes = sortBy(flattenDeep(_modules), (route) => route.nameNumber);
+asyncRoutes = sortBy(flattenDeep(_modules), (route: any) => route.nameNumber);
 
 /**
  * 公共路由，例如404，要在路由动态加载完成之后再加载
