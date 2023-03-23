@@ -49,6 +49,7 @@ declare module '@vue/runtime-core' {
         NModal: typeof import('naive-ui')['NModal'];
         NNotificationProvider: typeof import('naive-ui')['NNotificationProvider'];
         NPermission: typeof import('naive-ui')['NPermission'];
+        NPopover: typeof import('naive-ui')['NPopover'];
         NResult: typeof import('naive-ui')['NResult'];
         NScrollbar: typeof import('naive-ui')['NScrollbar'];
         NSearchTablePage: typeof import('naive-ui')['NSearchTablePage'];
@@ -59,6 +60,7 @@ declare module '@vue/runtime-core' {
         NTabPane: typeof import('naive-ui')['NTabPane'];
         NTabs: typeof import('naive-ui')['NTabs'];
         NTag: typeof import('naive-ui')['NTag'];
+        NThree: typeof import('naive-ui')['NThree'];
         Redirect: typeof import('./src/components/common/redirect.vue')['default'];
         RouterLink: typeof import('vue-router')['RouterLink'];
         RouterView: typeof import('vue-router')['RouterView'];
