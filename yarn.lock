@@ -6571,19 +6571,25 @@ word-wrap@^1.2.3:
   resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-preprocessor.git#8256ab04f53dd696c9f2aad55486bba40adcd485"
 
 "wp-request@git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git":
-  version "1.3.0"
-  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git#6bbc91cd795365d46285caadb18082cbb5bcb7d2"
+  version "1.3.3"
+  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git#dd339785b8f7f54425700162400a490e3fb6aba1"
   dependencies:
     "@babel/core" "^7.20.2"
     axios "^0.24.0"
     crypto-js "^4.1.1"
     rax "^1.2.2"
+    wp-zheliban-request "0.0.2"
 
 "wp-utils@https://gitlab.zhijiasoft.com/vue3-base-framework/wp-utils.git":
   version "1.0.1"
   resolved "https://gitlab.zhijiasoft.com/vue3-base-framework/wp-utils.git#50e03bf38896150e6134705bf5738ec381fb9be5"
   dependencies:
     typescript "^4.9.5"
+
+wp-zheliban-request@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/wp-zheliban-request/-/wp-zheliban-request-0.0.2.tgz#ac0ccdb165f7b090c56665bdfdb9948da6bcfde0"
+  integrity sha512-0I5YxP07hCP/403hQIedUeOkQCBPYd/8+RdxPZTPiteZn3tdh3mUu65p/jywfxkxF68Dj7R4YXihxQbc1czZZg==
 
 wrap-ansi@^6.2.0:
   version "6.2.0"
