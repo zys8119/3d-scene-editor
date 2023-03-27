@@ -1,5 +1,7 @@
 node_modules
-/menu-util/node_modules
+menu-util/node_modules
+iconfonts/node_modules
+build-release/node_modules
 .vscode
 .idea
 .DS_Store
