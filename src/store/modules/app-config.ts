@@ -1,14 +1,5 @@
 import defaultSetting from '@/config/setting';
-import {
-    LayoutMode,
-    PageAnim,
-    SideTheme,
-    ThemeMode,
-    DeviceType,
-} from '@/typings';
-
-import { useChangeMenuWidth } from '@/utils/use-menu-width';
-useChangeMenuWidth(defaultSetting.sideWidth);
+import { DeviceType } from '@/typings';
 
 export default defineStore('app-config', {
     state: () => {
@@ -20,28 +11,8 @@ export default defineStore('app-config', {
         },
     },
     actions: {
-        changeTheme(theme: ThemeMode) {
-            this.theme = theme;
-        },
-        changeLayoutMode(mode: LayoutMode) {
-            this.layoutMode = mode;
-        },
         changeDevice(deviceType: DeviceType) {
             this.deviceType = deviceType;
-        },
-        changeSideBarTheme(sideTheme: SideTheme) {
-            this.sideTheme = sideTheme;
-        },
-        changePageAnim(pageAnim: PageAnim) {
-            this.pageAnim = pageAnim;
-        },
-        changePrimaryColor(color: string) {
-            this.themeColor = color;
-        },
-        changeSideWith(sideWidth: number) {
-            this.sideWidth = sideWidth;
-            const r = document.querySelector(':root') as HTMLElement;
-            r.style.setProperty('--menu-width', sideWidth + 'px');
         },
         toggleCollapse(isCollapse: boolean) {
             this.isCollapse = isCollapse;

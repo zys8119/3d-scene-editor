@@ -1,8 +1,15 @@
 {
     "globals": {
         "$http": true,
+        "Component": true,
+        "ComponentPublicInstance": true,
+        "ComputedRef": true,
         "EffectScope": true,
+        "InjectionKey": true,
+        "PropType": true,
+        "Ref": true,
         "RequestPromise": true,
+        "VNode": true,
         "acceptHMRUpdate": true,
         "api": true,
         "asyncComputed": true,
@@ -93,7 +100,6 @@
         "request": true,
         "requestAll": true,
         "resolveComponent": true,
-        "resolveDirective": true,
         "resolveRef": true,
         "resolveUnref": true,
         "setActivePinia": true,

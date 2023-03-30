@@ -1,63 +1,49 @@
 <template>
-    <n-config-provider
-        :theme-overrides="themeOverrides"
-        :theme="theme"
-        :locale="zhCN"
-        style="height: 100%"
-    >
-        <n-global-style />
-        <n-loading-bar-provider>
-            <n-dialog-provider>
-                <router-view
-                    v-if="routeElse.meta.isFullPage"
-                    v-slot="{ Component, route }"
+    <n-loading-bar-provider>
+        <n-dialog-provider>
+            <router-view
+                v-if="routeElse.meta.isFullPage"
+                v-slot="{ Component, route }"
+            >
+                <transition
+                    :name="appConfig.pageAnim + '-transform'"
+                    mode="out-in"
+                    appear
                 >
-                    <transition
-                        :name="appConfig.pageAnim + '-transform'"
-                        mode="out-in"
-                        appear
-                    >
-                        <keep-alive v-if="config.router.keepAlive">
-                            <component :is="Component" :key="route.fullPath" />
-                        </keep-alive>
-                        <component
-                            :is="Component"
-                            v-else
-                            :key="route.fullPath"
-                        />
-                    </transition>
-                </router-view>
-                <n-el
-                    v-else
-                    class="vaw-layout-container"
-                    :class="[appConfig.deviceType === 'mobile' && 'is-mobile']"
-                >
-                    <template v-if="layoutMode === 'ttb'">
-                        <SideBar />
-                        <MainLayout />
-                    </template>
-                    <template v-else-if="layoutMode === 'lcr'">
-                        <TabSplitSideBar />
-                        <MainLayout />
-                    </template>
-                    <template v-else>
-                        <SideBar />
-                        <MainLayout />
-                    </template>
-                    <div
-                        v-if="appConfig.deviceType !== 'mobile'"
-                        class="mobile-shadow"
-                        :class="[
-                            appConfig.isCollapse
-                                ? 'close-shadow'
-                                : 'show-shadow',
-                        ]"
-                        @click="closeMenu"
-                    />
-                </n-el>
-            </n-dialog-provider>
-        </n-loading-bar-provider>
-    </n-config-provider>
+                    <keep-alive v-if="config.router.keepAlive">
+                        <component :is="Component" :key="route.fullPath" />
+                    </keep-alive>
+                    <component :is="Component" v-else :key="route.fullPath" />
+                </transition>
+            </router-view>
+            <n-el
+                v-else
+                class="vaw-layout-container"
+                :class="[appConfig.deviceType === 'mobile' && 'is-mobile']"
+            >
+                <template v-if="layoutMode === 'ttb'">
+                    <SideBar />
+                    <MainLayout />
+                </template>
+                <template v-else-if="layoutMode === 'lcr'">
+                    <TabSplitSideBar />
+                    <MainLayout />
+                </template>
+                <template v-else>
+                    <SideBar />
+                    <MainLayout />
+                </template>
+                <div
+                    v-if="appConfig.deviceType !== 'mobile'"
+                    class="mobile-shadow"
+                    :class="[
+                        appConfig.isCollapse ? 'close-shadow' : 'show-shadow',
+                    ]"
+                    @click="closeMenu"
+                />
+            </n-el>
+        </n-dialog-provider>
+    </n-loading-bar-provider>
 </template>
 
 <script lang="ts" setup>
@@ -65,23 +51,11 @@ import SideBar from '@/components/layout/side-bar/side-bar.vue';
 import TabSplitSideBar from '@/components/layout/side-bar/tab-split-side-bar.vue';
 import MainLayout from '@/components/layout/main-layout.vue';
 import useAppConfigStore from '@/store/modules/app-config';
-import { darkTheme, zhCN } from 'naive-ui';
-import { DeviceType, ThemeMode } from '@/typings';
+import { DeviceType } from '@/typings';
 import config from '@/config/config';
 
 const routeElse = useRoute();
 const appConfig = useAppConfigStore();
-const theme = computed(() => {
-    return appConfig.theme === ThemeMode.DARK ? darkTheme : null;
-});
-const themeOverrides = computed(() => {
-    return {
-        common: {
-            primaryColor: appConfig.themeColor,
-            primaryColorHover: appConfig.themeColor,
-        },
-    };
-});
 const layoutMode = computed(() => {
     return appConfig.getLayoutMode;
 });

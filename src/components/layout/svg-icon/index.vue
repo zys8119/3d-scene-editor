@@ -46,10 +46,9 @@ const className = computed(() => {
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
-}
-
-.svg-icon:hover {
-    fill: var(--primary-color-hover);
+    &:hover {
+        fill: var(--primary-color-hover);
+    }
 }
 
 .svg-external-icon {

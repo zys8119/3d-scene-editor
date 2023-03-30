@@ -1,3 +1,8 @@
+## 依赖安装
+
+-   使用 `yarn` 命令进行安装
+-   使用 `yarn upgrade xxx` 命令进行某个依赖包更新
+
 ## 项目工具可视化页面
 
 -   http://localhost:8888/#/common-tools 【端口需要根据实际项目中运行的端口保持一致】

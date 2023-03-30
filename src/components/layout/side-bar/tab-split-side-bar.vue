@@ -4,7 +4,6 @@
             :bordered="false"
             class="vaw-tab-split-side-bar-wrapper"
             :content-style="{ padding: 0 }"
-            style="border-radius: 0"
             :class="[
                 !appConfig.isCollapse ? 'open-status' : 'close-status',
                 appConfig.sideTheme === 'image' ? 'sidebar-bg-img' : '',
@@ -15,7 +14,7 @@
                 :style="{ backgroundColor: bgColor }"
             >
                 <Logo class="tab-split-logo-wrapper" :show-title="false" />
-                <div style="height: calc(100% - 48px)">
+                <div class="tab-split-tab-wrapper-menu">
                     <n-scrollbar>
                         <div
                             id="tabSplitContentWrapper"
@@ -58,6 +57,7 @@ import { SideTheme, SystemTabbarRouteRow, ThemeMode } from '@/typings';
 import Logo from '@/components/layout/logo/index.vue';
 import ScrollerMenu from '@/components/layout/side-bar/components/scroller-menu.vue';
 import useSideRoutesStore from '@/store/modules/side-routes';
+import configSetting from '@/config/setting';
 
 const sideRoutesStore = useSideRoutesStore();
 const router = useRouter();
@@ -86,7 +86,12 @@ const themeOverThemes = computed(() => {
                 textColor2: '#bbbbbb',
             },
             Menu: {
-                itemColorActive: 'rgba(24, 160, 88, 0.4)',
+                itemColorHover: configSetting.themeColor,
+                itemColorActive: configSetting.themeColor,
+                itemColorActiveHover: configSetting.themeColor,
+                itemTextColorHover: '#ffffff',
+                itemTextColorActive: '#ffffff',
+                itemTextColorActiveHover: '#ffffff',
             },
         };
     if (appConfig.sideTheme === SideTheme.WHITE)
@@ -172,6 +177,7 @@ const changeTab = (row: SystemTabbarRouteRow) => {
     height: 100vh;
     box-sizing: border-box;
     z-index: 999;
+    border-radius: 0;
 
     .tab-split-tab-wrapper {
         position: relative;
@@ -183,6 +189,9 @@ const changeTab = (row: SystemTabbarRouteRow) => {
         overflow: hidden;
         height: 100vh;
         box-sizing: border-box;
+        .tab-split-tab-wrapper-menu {
+            height: calc(100% - var(--logo-height));
+        }
 
         .tab-split-logo-wrapper {
             max-width: var(--tab-split-menu-width);
@@ -228,6 +237,10 @@ const changeTab = (row: SystemTabbarRouteRow) => {
 
                 &:hover {
                     cursor: pointer;
+                    color: #ffffff;
+                    svg {
+                        fill: #ffffff;
+                    }
                 }
 
                 &::after {
