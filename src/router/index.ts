@@ -10,6 +10,7 @@ import baseConfig from '../config/base';
 import Page404 from '@/components/common/404.vue';
 import Error from '@/components/common/error.vue';
 import Redirect from '@/components/common/redirect.vue';
+import AutoRoute from '../../auto-route';
 
 import { flattenDeep, sortBy } from 'lodash';
 
@@ -31,8 +32,12 @@ const _modules = Object.keys(modules).map((v) =>
         nameNumber: parseInt(v.replace('./modules/', '').split('-')[0]),
     }))
 );
-asyncRoutes = sortBy(flattenDeep(_modules), (route: any) => route.nameNumber);
+asyncRoutes = sortBy(flattenDeep(_modules), (route) => route.nameNumber);
 
+asyncRoutes = sortBy(
+    flattenDeep(_modules).concat(AutoRoute.options.routes as any),
+    (route) => route.nameNumber
+);
 /**
  * 公共路由，例如404，要在路由动态加载完成之后再加载
  */
@@ -143,7 +148,7 @@ declare module 'vue-router' {
          */
         fixed?: boolean;
         /** 按钮权限 */
-        permissions?: string | string[];
+        permissions?: string[];
         /** 是否进行扁平化路由 **/
         notFlat?: boolean;
     }
