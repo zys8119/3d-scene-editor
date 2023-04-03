@@ -4,6 +4,13 @@
         :data-table-props="{ columns: columns }"
         @search="a"
     >
+        <template #search_form_pre>
+            <n-date-picker
+                v-model:value="range"
+                type="datetimerange"
+                clearable
+            />
+        </template>
         <template #table_avatar="{ row }">
             <n-avatar round size="small" :src="row.avatar" />
         </template>
@@ -39,6 +46,8 @@ const columns = ref([
     { title: '性别', key: 'gender', align: 'center' },
     { title: '操作', key: 'todo', align: 'center', fixed: 'right' },
 ]);
+
+const range = ref();
 
 onMounted(() => {
     searchTablePageRef.value?.initData();

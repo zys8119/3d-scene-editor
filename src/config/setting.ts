@@ -5,6 +5,7 @@ import {
     PageAnim,
     SideTheme,
     ThemeMode,
+    LocaleName,
 } from '@/typings';
 
 export default {
@@ -21,4 +22,5 @@ export default {
         isShowRefresh: true,
         isShowFullScreen: true,
     },
+    localeName: LocaleName.zhCN,
 } as AppConfigState;

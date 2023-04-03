@@ -42,6 +42,7 @@ export interface AppConfigState {
         isShowRefresh: boolean;
         isShowFullScreen: boolean;
     };
+    localeName: LocaleName;
 }
 export enum LayoutMode {
     LTR = 'ltr',
@@ -68,4 +69,8 @@ export enum PageAnim {
     OPACITY = 'opacity',
     DOWN = 'down',
     SCALE = 'scale',
+}
+export enum LocaleName {
+    zhCN = 'zh-CN',
+    enUS = 'en-US',
 }
