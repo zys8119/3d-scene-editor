@@ -93,3 +93,5 @@ node_modules
 .idea
 dist
 .husky
+.eslintrc-auto-import.json
+components.d.ts
