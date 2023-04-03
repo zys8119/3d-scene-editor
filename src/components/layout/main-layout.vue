@@ -22,7 +22,13 @@
             <NavBar v-if="showNavBar" />
             <TabBar v-if="!config.tabbarViews.disabled" />
         </section>
-        <div class="main-base-style scrollbar" :class="[mainClass]">
+        <div
+            class="main-base-style scrollbar"
+            :class="[
+                mainClass,
+                config.tabbarViews.disabled ? 'no-tab-bar' : '',
+            ]"
+        >
             <section class="main-section">
                 <Main />
             </section>
@@ -133,6 +139,9 @@ onMounted(() => {
         height: 100%;
         box-sizing: border-box;
         padding: 10px;
+        &.no-tab-bar {
+            height: calc(100% - var(--logo-height));
+        }
     }
 
     .main-base-light-theme {
