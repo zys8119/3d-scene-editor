@@ -15,7 +15,8 @@
             @click="screenFull"
         >
             <n-icon size="18">
-                <Expand />
+                <Contract v-if="isFullscreen" />
+                <Expand v-else />
             </n-icon>
         </span>
     </div>
@@ -25,7 +26,7 @@
 import { useMessage } from 'naive-ui';
 import screenfull from 'screenfull';
 import useAppConfigStore from '@/store/modules/app-config';
-import { RefreshOutline, Expand } from '@vicons/ionicons5';
+import { RefreshOutline, Expand, Contract } from '@vicons/ionicons5';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -40,11 +41,13 @@ const refreshRoute = () => {
 };
 
 // 全屏
+const isFullscreen = ref(false);
 const screenFull = () => {
     if (!screenfull.isEnabled) {
         message.error('当前浏览器不支持全屏操作');
         return false;
     }
+    isFullscreen.value = !screenfull.isFullscreen;
     screenfull.toggle();
 };
 </script>
