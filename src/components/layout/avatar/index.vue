@@ -11,11 +11,12 @@
                     <n-avatar
                         circle
                         size="small"
-                        :src="userStore.userinfo.avatar.url || defaultAvatar"
+                        :src="store.userinfo?.avatar?.url || defaultAvatar"
+                        @error="avatarError"
                     />
                 </div>
                 <span class="nick-name">
-                    {{ userStore.userinfo.username || '管理员' }}
+                    {{ store.userinfo.username || '管理员' }}
                     <n-icon class="tip">
                         <CaretDownSharp />
                     </n-icon>
@@ -33,7 +34,7 @@ import { useRouter } from 'vue-router';
 import useStore from '@/store/modules/main';
 import defaultAvatar from '@/assets/images/avatar.png';
 
-const userStore = useStore();
+const store = useStore();
 const router = useRouter();
 const options = [
     {
@@ -47,6 +48,10 @@ const options = [
 ];
 
 const dialog = useDialog();
+
+const avatarError = () => {
+    store.removeUserInfoAvatar();
+};
 
 function logout() {
     dialog.warning({

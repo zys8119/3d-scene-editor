@@ -22,8 +22,8 @@ export type PageMap = Record<string, string | number | boolean>;
  * 登录用户信息
  */
 export interface UserInfo {
-    avatar: {
-        url: string;
+    avatar?: {
+        url: string | null;
     };
     username?: string;
 }

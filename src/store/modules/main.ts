@@ -7,7 +7,9 @@ export default defineStore('main', {
     state: () => {
         return {
             userinfo: {
-                avatar: '',
+                avatar: {
+                    url: '',
+                },
                 username: '',
             } as UserInfo,
             /**
@@ -47,6 +49,9 @@ export default defineStore('main', {
                     JSON.stringify(userinfo)
                 );
             }
+        },
+        removeUserInfoAvatar() {
+            if (this.userinfo.avatar) this.userinfo.avatar.url = null;
         },
     },
 });
