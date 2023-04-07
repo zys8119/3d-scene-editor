@@ -11,7 +11,7 @@
                     <n-avatar
                         circle
                         size="small"
-                        :src="userStore.userinfo?.avatar?.url || defaultAvatar"
+                        :src="userStore.userinfo.avatar.url || defaultAvatar"
                     />
                 </div>
                 <span class="nick-name">
