@@ -112,6 +112,7 @@ const login = async () => {
     if (!userForm.value[currentLoginType.formKey[1]])
         return message.error(`请输入${currentLoginType.tip[1]}`);
     const res = await window.api.user.login(userForm.value);
+    console.log(res);
     // await store.setToken(res.data.token_type + ' ' + res.data.access_token);
     // const userMe = await window.api.user.login(userForm.value);
     // store.setUserinfo({
@@ -119,7 +120,7 @@ const login = async () => {
     //     ...res.data.user,
     //     access_token: res.data.access_token,
     // });
-    // router.push('/');
+    await router.push('/');
 };
 
 // 切换登录模式
