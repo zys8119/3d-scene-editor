@@ -1,5 +1,6 @@
 import v1 from './v1';
 import user from './user';
+import captcha from './captcha';
 import menu from './menu';
 import role from './role';
 import apiElse from './api';
@@ -9,6 +10,7 @@ import { App } from 'vue';
 export const api = {
     v1,
     user,
+    captcha,
     menu,
     role,
     department,

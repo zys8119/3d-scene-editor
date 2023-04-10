@@ -32,6 +32,18 @@
                             <template v-else> 获取验证码 </template>
                         </div>
                     </div>
+                    <div class="list fixed" v-if="key === 0">
+                        <p v-text="item.tip[2]" />
+                        <input
+                            v-model="userForm[item.formKey[2]]"
+                            type="text"
+                            :placeholder="`请输入${item.tip[2]}`"
+                            @keydown.enter="login"
+                        />
+                        <div class="code img" @click="init">
+                            <img :src="imgCode" alt="" />
+                        </div>
+                    </div>
                 </template>
             </template>
             <div class="btn" @click="login">登录</div>
@@ -57,8 +69,8 @@ const message = useMessage();
 const loginType = ref<LoginType[]>([
     {
         name: '账号密码登录',
-        tip: ['账号', '密码'],
-        formKey: ['username', 'password'],
+        tip: ['账号', '密码', '验证码'],
+        formKey: ['username', 'password', 'captcha'],
         type: 1,
         isActive: true,
     },
@@ -77,6 +89,7 @@ const loginType = ref<LoginType[]>([
         isActive: false,
     },
 ]);
+const imgCode = ref('');
 
 const store = useStore();
 const router = useRouter();
@@ -92,6 +105,8 @@ const userForm = ref<UserForm>({
     password: import.meta.env.DEV ? 'simple-admin' : '',
     mobile: '',
     code: '',
+    captcha: '',
+    captchaId: '',
 });
 
 const countDown = ref(0);
@@ -111,15 +126,15 @@ const login = async () => {
         return message.error(`请输入${currentLoginType.tip[0]}`);
     if (!userForm.value[currentLoginType.formKey[1]])
         return message.error(`请输入${currentLoginType.tip[1]}`);
+    if (
+        loginType.value[0].isActive &&
+        !userForm.value[currentLoginType.formKey[2]]
+    )
+        return message.error(`请输入${currentLoginType.tip[2]}`);
     const res = await window.api.user.login(userForm.value);
-    console.log(res);
-    // await store.setToken(res.data.token_type + ' ' + res.data.access_token);
-    // const userMe = await window.api.user.login(userForm.value);
-    // store.setUserinfo({
-    //     ...userMe.data,
-    //     ...res.data.user,
-    //     access_token: res.data.access_token,
-    // });
+    await store.setToken(res.data.token);
+    const userMe = await window.api.user.index(res.data.userId);
+    store.setUserinfo(userMe.data);
     await router.push('/');
 };
 
@@ -129,6 +144,15 @@ const changeLoginType = (k: number) => {
         v.isActive = key === k;
     });
 };
+
+// 初始化
+const init = async () => {
+    const res = await window.api.captcha.index();
+    userForm.value.captchaId = res.data.captchaId;
+    imgCode.value = res.data.imgPath;
+};
+
+onMounted(init);
 
 interface LoginType {
     name: string;
@@ -143,6 +167,8 @@ interface UserForm {
     mobile: string;
     password: string;
     code: string;
+    captcha: string;
+    captchaId: string;
 }
 </script>
 
@@ -197,6 +223,15 @@ interface UserForm {
                 top: 18px;
                 cursor: pointer;
                 right: 10px;
+                &.img {
+                    width: 90px;
+                    height: 40px;
+                    top: 10px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
             }
             input {
                 flex: 1;

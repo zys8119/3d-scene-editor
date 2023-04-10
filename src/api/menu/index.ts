@@ -45,4 +45,20 @@ export default {
 
 export interface MenuForm {
     id?: string;
+    type: 'menu' | 'button';
+    name: string;
+    title: string;
+    url: string;
+    component: string;
+    redirect: string;
+    order: string;
+    parent: string | null;
+    hidden: boolean;
+    hiddenInTab: boolean;
+    isActive: boolean;
+    fixed: boolean;
+    icon: string;
+    remark: string;
+    permissions: string[];
+    buttons: MenuForm[];
 }

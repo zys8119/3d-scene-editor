@@ -9,90 +9,94 @@
     >
         <n-tabs type="line" animated>
             <n-tab-pane name="菜单设置">
-                <n-form
-                    :label-width="100"
-                    label-placement="left"
-                    require-mark-placement="left"
-                >
-                    <n-form-item label="菜单名称" required>
-                        <n-input
-                            v-model:value="menuForm.name"
-                            placeholder="请输入菜单名称"
-                            clearable
-                        />
-                    </n-form-item>
-                    <n-form-item label="菜单标题" required>
-                        <n-input
-                            v-model:value="menuForm.title"
-                            placeholder="请输入菜单标题"
-                            clearable
-                        />
-                    </n-form-item>
-                    <n-form-item label="路径 / Url" required>
-                        <n-input
-                            v-model:value="menuForm.router"
-                            placeholder="请输入路径 / Url"
-                            clearable
-                        />
-                    </n-form-item>
-                    <n-form-item label="组件" required>
-                        <n-select
-                            v-model:value="menuForm.components"
-                            :options="componentsOptions"
-                            filterable
-                        />
-                    </n-form-item>
-                    <n-form-item label="重定向">
-                        <n-input
-                            v-model:value="menuForm.redirect"
-                            placeholder="请输入重定向路径"
-                            clearable
-                        />
-                    </n-form-item>
-                    <n-form-item label="排序号">
-                        <n-input-number
-                            v-model:value="menuForm.order"
-                            :precision="0"
-                        />
-                    </n-form-item>
-                    <n-form-item label="父级">
-                        {{ parentMenu ? parentMenu.name : '无' }}
-                    </n-form-item>
-                    <n-space justify="space-between">
-                        <n-form-item label="是否隐藏">
-                            <n-switch v-model:value="menuForm.is_hide" />
-                        </n-form-item>
-                        <n-form-item
-                            label="是否在页签中隐藏"
-                            label-width="150px"
-                        >
-                            <n-switch v-model:value="menuForm.is_hide_in_tab" />
-                        </n-form-item>
-                    </n-space>
-                    <n-space justify="space-between">
-                        <n-form-item label="是否启用">
-                            <n-switch v-model:value="menuForm.is_enabled" />
-                        </n-form-item>
-                        <n-form-item
-                            label="是否在页签中固定"
-                            label-width="150px"
-                        >
-                            <n-switch
-                                v-model:value="menuForm.is_fixed_in_tab"
+                <n-scrollbar style="max-height: 500px">
+                    <n-form
+                        :label-width="100"
+                        label-placement="left"
+                        require-mark-placement="left"
+                    >
+                        <n-form-item label="菜单名称" required>
+                            <n-input
+                                v-model:value="menuForm.name"
+                                placeholder="请输入菜单名称"
+                                clearable
                             />
                         </n-form-item>
-                    </n-space>
-                    <n-form-item label="图标">
-                        <icon-select v-model:value="menuForm.icon" />
-                    </n-form-item>
-                    <n-form-item label="备注">
-                        <n-input type="textarea" placeholder="请输入备注" />
-                    </n-form-item>
-                </n-form>
+                        <n-form-item label="菜单标题" required>
+                            <n-input
+                                v-model:value="menuForm.title"
+                                placeholder="请输入菜单标题"
+                                clearable
+                            />
+                        </n-form-item>
+                        <n-form-item label="路径 / Url" required>
+                            <n-input
+                                v-model:value="menuForm.router"
+                                placeholder="请输入路径 / Url"
+                                clearable
+                            />
+                        </n-form-item>
+                        <n-form-item label="组件" required>
+                            <n-select
+                                v-model:value="menuForm.components"
+                                :options="componentsOptions"
+                                filterable
+                            />
+                        </n-form-item>
+                        <n-form-item label="重定向">
+                            <n-input
+                                v-model:value="menuForm.redirect"
+                                placeholder="请输入重定向路径"
+                                clearable
+                            />
+                        </n-form-item>
+                        <n-form-item label="排序号">
+                            <n-input-number
+                                v-model:value="menuForm.order"
+                                :precision="0"
+                            />
+                        </n-form-item>
+                        <n-form-item label="父级">
+                            {{ parentMenu ? parentMenu.name : '无' }}
+                        </n-form-item>
+                        <n-space justify="space-between">
+                            <n-form-item label="是否隐藏">
+                                <n-switch v-model:value="menuForm.is_hide" />
+                            </n-form-item>
+                            <n-form-item
+                                label="是否在页签中隐藏"
+                                label-width="150px"
+                            >
+                                <n-switch
+                                    v-model:value="menuForm.is_hide_in_tab"
+                                />
+                            </n-form-item>
+                        </n-space>
+                        <n-space justify="space-between">
+                            <n-form-item label="是否启用">
+                                <n-switch v-model:value="menuForm.is_enabled" />
+                            </n-form-item>
+                            <n-form-item
+                                label="是否在页签中固定"
+                                label-width="150px"
+                            >
+                                <n-switch
+                                    v-model:value="menuForm.is_fixed_in_tab"
+                                />
+                            </n-form-item>
+                        </n-space>
+                        <n-form-item label="图标">
+                            <icon-select v-model:value="menuForm.icon" />
+                        </n-form-item>
+                        <n-form-item label="备注">
+                            <n-input type="textarea" placeholder="请输入备注" />
+                        </n-form-item>
+                    </n-form>
+                </n-scrollbar>
             </n-tab-pane>
-            <n-tab-pane name="权限设置">
-                <n-space vertical>
-                    <n-card title="按钮权限">
+            <n-tab-pane name="功能设置">
+                <n-card title="页面按钮">
+                    <n-scrollbar style="max-height: 500px">
                         <n-form label-placement="left">
                             <n-form-item label="按钮名称" required>
                                 <n-space>
@@ -105,22 +109,8 @@
                                 </n-space>
                             </n-form-item>
                         </n-form>
-                    </n-card>
-                    <n-card title="接口权限">
-                        <n-form label-placement="left">
-                            <n-form-item label="接口地址" required>
-                                <n-space>
-                                    <n-input
-                                        placeholder="请输入接口地址"
-                                        clearable
-                                    />
-                                    <n-button type="primary">新增</n-button>
-                                    <n-button type="error">删除</n-button>
-                                </n-space>
-                            </n-form-item>
-                        </n-form>
-                    </n-card>
-                </n-space>
+                    </n-scrollbar>
+                </n-card>
             </n-tab-pane>
         </n-tabs>
         <template #footer>
