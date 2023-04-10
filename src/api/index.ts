@@ -1,8 +1,18 @@
 import v1 from './v1';
+import user from './user';
+import menu from './menu';
+import role from './role';
+import apiElse from './api';
+import department from './department';
 import { App } from 'vue';
 
 export const api = {
     v1,
+    user,
+    menu,
+    role,
+    department,
+    api: apiElse,
 };
 
 declare global {

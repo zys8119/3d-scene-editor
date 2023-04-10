@@ -89,7 +89,7 @@ store.setUserinfo();
 
 const userForm = ref<UserForm>({
     username: import.meta.env.DEV ? 'admin' : '',
-    password: import.meta.env.DEV ? '123456' : '',
+    password: import.meta.env.DEV ? 'simple-admin' : '',
     mobile: '',
     code: '',
 });
@@ -111,18 +111,15 @@ const login = async () => {
         return message.error(`请输入${currentLoginType.tip[0]}`);
     if (!userForm.value[currentLoginType.formKey[1]])
         return message.error(`请输入${currentLoginType.tip[1]}`);
-    const res = await window.api.v1.auth.manager.login({
-        login_type: currentLoginType.type,
-        ...userForm.value,
-    });
-    await store.setToken(res.data.token_type + ' ' + res.data.access_token);
-    const userMe = await window.api.v1.auth.user.me();
-    store.setUserinfo({
-        ...userMe.data,
-        ...res.data.user,
-        access_token: res.data.access_token,
-    });
-    router.push('/');
+    const res = await window.api.user.login(userForm.value);
+    // await store.setToken(res.data.token_type + ' ' + res.data.access_token);
+    // const userMe = await window.api.user.login(userForm.value);
+    // store.setUserinfo({
+    //     ...userMe.data,
+    //     ...res.data.user,
+    //     access_token: res.data.access_token,
+    // });
+    // router.push('/');
 };
 
 // 切换登录模式
