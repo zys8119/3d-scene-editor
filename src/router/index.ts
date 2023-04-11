@@ -143,7 +143,13 @@ declare module 'vue-router' {
          */
         fixed?: boolean;
         /** 按钮权限 */
-        permissions?: string | string[];
+        permissions?:
+            | string
+            | string[]
+            | {
+                  name: string;
+                  code: string;
+              }[];
         /** 是否进行扁平化路由 **/
         notFlat?: boolean;
     }
