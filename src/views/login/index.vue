@@ -64,6 +64,7 @@
 <script setup lang="ts">
 import useStore from '@/store/modules/main';
 import { useMessage } from 'naive-ui';
+import { Ref } from 'vue';
 
 const message = useMessage();
 const loginType = ref<LoginType[]>([
@@ -109,7 +110,7 @@ const userForm = ref<UserForm>({
     captchaId: '',
 });
 
-const countDown = ref(0);
+const countDown = ref(0) as Ref<number>;
 const handleCountDown = async () => {
     if (countDown.value === 0) {
         if (!userForm.value.mobile) return message.error('请输入正确的手机号');
