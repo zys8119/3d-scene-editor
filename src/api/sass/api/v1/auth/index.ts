@@ -11,6 +11,6 @@ export default {
 export interface LoginForm {
     password: string;
     username: string;
-    captchaId: number;
+    captchaId: string;
     captcha: string;
 }

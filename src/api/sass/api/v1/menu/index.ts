@@ -14,21 +14,24 @@ export default {
             data,
         });
     },
-    delete(ids: number[]) {
+    delete(ids: string[]) {
         return request({
             url: '/saas/api/v1/menu/delete',
             method: 'post',
             data: { ids },
         });
     },
-    update(data: MenuForm & { id: number }) {
+    update(data: MenuListData) {
         return request({
             url: '/saas/api/v1/menu/update',
             method: 'post',
-            data,
+            data: preprocessor(data, {
+                buttons: () => void 0,
+                children: () => void 0,
+            }),
         });
     },
-    get(id: number) {
+    get(id: string) {
         return request({
             url: `/saas/api/v1/menu/${id}`,
             method: 'get',
@@ -38,7 +41,6 @@ export default {
 
 export interface MenuForm {
     component: string;
-    Component: string;
     fixed: boolean;
     hidden: boolean;
     hiddenInTab: boolean;
@@ -46,7 +48,7 @@ export interface MenuForm {
     isActive: boolean;
     meta?: any;
     name: string;
-    parentId: number | null;
+    parentId: string | null;
     redirect: string;
     remark: string;
     sort: number;
@@ -54,29 +56,15 @@ export interface MenuForm {
     url: string;
 }
 
-export interface MenuListData {
+export interface MenuListData extends MenuForm {
     buttons: {
         code: string;
-        id: number;
-        menuId: number;
+        id: string;
+        menuId: string;
         name: string;
         sort: number;
     }[];
     children: MenuListData[];
-    component: string;
-    fixed: boolean;
-    hidden: boolean;
-    hiddenInTab: boolean;
-    icon: string;
-    id: number;
-    isActive: boolean;
-    menuType: number;
-    meta: any;
-    name: string;
-    parentId: number;
-    redirect: string;
-    remark: string;
-    sort: number;
-    title: string;
-    url: string;
+    id: string;
+    parent: MenuListData | undefined;
 }

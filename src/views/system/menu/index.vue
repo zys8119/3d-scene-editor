@@ -22,7 +22,7 @@
                         {
                             label: '按钮设置',
                             key: 'button',
-                            props: { onClick: () => emit('node:edit', node) },
+                            props: { onClick: () => addButton(node) },
                         },
                         {
                             label: '编辑',
@@ -47,27 +47,33 @@
             :menus="tree"
             @save="cascadeMenuRef.refresh()"
         />
+        <button-form ref="buttonFormRef" @save="cascadeMenuRef.refresh()" />
     </div>
 </template>
 
 <script lang="ts" setup>
-import { TreeNode, useDialog, useMessage } from 'naive-ui';
+import { useDialog, useMessage } from 'naive-ui';
 import { MenuListData } from '@/api/sass/api/v1/menu';
 import MenuForm from '@/views/system/menu/models/menu-form.vue';
+import ButtonForm from '@/views/system/menu/models/button-form.vue';
 
 const dialog = useDialog();
 const message = useMessage();
 
-const tree = ref<MenuListData>([]);
-function handleAdd(parent: TreeNode | undefined) {
+const tree = ref<MenuListData[]>([]);
+
+// 菜单新增
+function handleAdd(parent: MenuListData) {
     menuFormRef.value.open(null, parent);
 }
 
-function handleEdit(node: TreeNode<{ value: string }>) {
+// 菜单编辑
+function handleEdit(node: MenuListData) {
     menuFormRef.value.open(node, null);
 }
 
-function handleDelete(node: TreeNode<{ id: number }>) {
+// 菜单删除
+function handleDelete(node: MenuListData) {
     dialog.warning({
         title: '警告',
         content: '确定删除该条数据么？',
@@ -81,6 +87,11 @@ function handleDelete(node: TreeNode<{ id: number }>) {
     });
 }
 
+// 按钮操作
+function addButton(menu: MenuListData) {
+    buttonFormRef.value.open(menu);
+}
+
 const loadTree = async () => {
     const res = await window.api.sass.api.v1.menu.tree.list();
     return res.data.data;
@@ -88,6 +99,7 @@ const loadTree = async () => {
 
 const cascadeMenuRef = ref();
 const menuFormRef = ref();
+const buttonFormRef = ref();
 </script>
 
 <style scoped></style>

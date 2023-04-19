@@ -27,11 +27,11 @@ export interface LoginUserInfo {
     };
     createdAt: number;
     email: string;
-    id: number;
+    id: string;
     mobile: string;
     nickname: string;
     status: number;
-    defaultTenantID: number;
+    defaultTenantID: string;
     updatedAt: number;
     username: string;
 }

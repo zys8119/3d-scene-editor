@@ -14,41 +14,41 @@
         >
             <n-form-item label="菜单标题" required>
                 <n-input
-                    v-model:value="menuForm.title"
+                    v-model:value="form.title"
                     placeholder="请输入菜单标题"
                     clearable
                 />
             </n-form-item>
             <n-form-item label="菜单名称" required>
                 <n-input
-                    v-model:value="menuForm.name"
+                    v-model:value="form.name"
                     placeholder="请输入菜单名称"
                     clearable
                 />
             </n-form-item>
             <n-form-item label="路径 / Url" required>
                 <n-input
-                    v-model:value="menuForm.url"
+                    v-model:value="form.url"
                     placeholder="请输入路径 / Url"
                     clearable
                 />
             </n-form-item>
             <n-form-item label="组件">
                 <n-select
-                    v-model:value="menuForm.component"
+                    v-model:value="form.component"
                     :options="componentsOptions"
                     filterable
                 />
             </n-form-item>
             <n-form-item label="重定向">
                 <n-input
-                    v-model:value="menuForm.redirect"
+                    v-model:value="form.redirect"
                     placeholder="请输入重定向路径"
                     clearable
                 />
             </n-form-item>
             <n-form-item label="排序号">
-                <n-input-number v-model:value="menuForm.sort" :precision="0" />
+                <n-input-number v-model:value="form.sort" :precision="0" />
             </n-form-item>
             <n-form-item label="父级" v-if="parentMenu">
                 <n-cascader
@@ -61,26 +61,26 @@
             </n-form-item>
             <n-space justify="space-between">
                 <n-form-item label="是否隐藏">
-                    <n-switch v-model:value="menuForm.hidden" />
+                    <n-switch v-model:value="form.hidden" />
                 </n-form-item>
                 <n-form-item label="是否在页签中隐藏" label-width="150px">
-                    <n-switch v-model:value="menuForm.hiddenInTab" />
+                    <n-switch v-model:value="form.hiddenInTab" />
                 </n-form-item>
             </n-space>
             <n-space justify="space-between">
                 <n-form-item label="是否启用">
-                    <n-switch v-model:value="menuForm.isActive" />
+                    <n-switch v-model:value="form.isActive" />
                 </n-form-item>
                 <n-form-item label="是否在页签中固定" label-width="150px">
-                    <n-switch v-model:value="menuForm.fixed" />
+                    <n-switch v-model:value="form.fixed" />
                 </n-form-item>
             </n-space>
             <n-form-item label="图标">
-                <icon-select v-model:value="menuForm.icon" />
+                <icon-select v-model:value="form.icon" />
             </n-form-item>
             <n-form-item label="备注">
                 <n-input
-                    v-model:value="menuForm.remark"
+                    v-model:value="form.remark"
                     type="textarea"
                     placeholder="请输入备注"
                 />
@@ -101,7 +101,7 @@ import { useMessage } from 'naive-ui';
 import { MenuForm, MenuListData } from '@/api/sass/api/v1/menu';
 
 defineProps<{
-    menus: MenuListData;
+    menus: MenuListData[];
 }>();
 
 const message = useMessage();
@@ -111,14 +111,14 @@ const emit = defineEmits(['save']);
 const show = ref(false);
 const parentMenu = ref();
 
-const open = (row, parent) => {
+const open = (row: MenuListData, parent: MenuListData) => {
     show.value = true;
     parentMenu.value = parent ?? (row ? row.parent : null) ?? null;
-    menuForm.value = {
+    form.value = {
         isActive: true,
         parentId: parentMenu.value ? parentMenu.value.id : '',
     };
-    if (row) menuForm.value = { ...row };
+    if (row) form.value = { ...row };
 };
 
 // vue 文件列表
@@ -130,13 +130,13 @@ const componentsOptions = computed(() => {
 });
 
 // 菜单表单
-const menuForm = ref<MenuForm>({});
+const form = ref<MenuForm>({});
 
 const submit = async () => {
-    const res = menuForm.value.id
-        ? await window.api.sass.api.v1.menu.update(menuForm.value)
-        : await window.api.sass.api.v1.menu.create(menuForm.value);
-    await message.success(res.message);
+    const res = form.value.id
+        ? await window.api.sass.api.v1.menu.update(form.value)
+        : await window.api.sass.api.v1.menu.create(form.value);
+    await message.success(res.msg);
     show.value = false;
     emit('save');
 };

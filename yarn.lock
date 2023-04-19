@@ -1555,9 +1555,9 @@
     chalk "*"
 
 "@types/estree@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmmirror.com/@types/estree/-/estree-1.0.0.tgz#5fb2e536c1ae9bf35366eed879e827fa59ca41c2"
-  integrity sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==
+  version "1.0.1"
+  resolved "https://registry.npmmirror.com/@types/estree/-/estree-1.0.1.tgz#aa22750962f3bf0e79d753d3cc067f010c95f194"
+  integrity sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==
 
 "@types/event-emitter@^0.3.3":
   version "0.3.3"
@@ -4812,7 +4812,7 @@ ms@^2.1.1:
 
 "naive-ui@git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git":
   version "2.34.3"
-  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git#fd770bc18b5db82c42650960f15edae4fa762bfe"
+  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git#aec2008ad608f65eef8536bafc22dc1f13975031"
   dependencies:
     "@css-render/plugin-bem" "^0.15.10"
     "@css-render/vue3-ssr" "^0.15.10"
