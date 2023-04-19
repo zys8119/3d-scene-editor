@@ -10,6 +10,15 @@ const routes: RouteRecordRaw[] = [
         },
         children: [
             {
+                path: 'organization',
+                name: 'Organization',
+                meta: {
+                    title: '组织架构',
+                },
+                component: () =>
+                    import('@/views/system/organization/index.vue'),
+            },
+            {
                 path: 'menu',
                 name: 'Menu',
                 meta: {
@@ -24,16 +33,6 @@ const routes: RouteRecordRaw[] = [
                     title: '角色管理',
                 },
                 component: () => import('@/views/system/role/index.vue'),
-            },
-            {
-                path: 'organization',
-                name: 'Organization',
-                meta: {
-                    title: '组织架构',
-                    tabTitle: '这是组织架构',
-                },
-                component: () =>
-                    import('@/views/system/organization/index.vue'),
             },
         ],
     },
