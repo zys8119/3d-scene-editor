@@ -121,7 +121,7 @@ const add = (
     node_type: string,
     type_name: string,
     parentId?: string,
-    row?: Organization | null
+    row?: any
 ) => {
     organizationFormRef.value.open(node_type, type_name, parentId, row);
 };
@@ -143,7 +143,7 @@ const deleteTree = (id) => {
 const init = async () => {
     const res = await api.v1.system.organization.getDetail(currentId.value);
     currentInfo.value = { ...res.data };
-    currentType.value = nodeTypeName[currentInfo.value.node_type];
+    // currentType.value = nodeTypeName[currentInfo.value.node_type];
 };
 
 const organizationTreeRef = ref();

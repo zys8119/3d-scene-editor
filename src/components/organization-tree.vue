@@ -42,19 +42,19 @@
 <script lang="ts" setup>
 import { Ref } from 'vue';
 
-const props = withDefaults(
-    defineProps<{
-        canEdit?: boolean;
-        initValue?: boolean;
-    }>(),
-    {
-        canEdit: true,
-        initValue: true,
-    }
-);
+// const props = withDefaults(
+//     defineProps<{
+//         canEdit?: boolean;
+//         initValue?: boolean;
+//     }>(),
+//     {
+//         canEdit: true,
+//         initValue: true,
+//     }
+// );
 const emit = defineEmits(['editBtn', 'selected']);
 
-const data = ref([]) as Ref<Organization[]>;
+const data = ref([]) as Ref<any>;
 
 const dropdownBtnList = computed(() => (type: string) => [
     { label: '新增子公司', key: 1, disabled: type !== 'company' },
@@ -75,10 +75,7 @@ const editBtn = (k, row) => {
 };
 
 // 选中
-const selectRow = (
-    keys: Array<string>,
-    option: Array<Organization[] | null>
-) => {
+const selectRow = (keys: Array<string>, option: any) => {
     selectedKeys.value = keys;
     emit('selected', keys, option);
 };
