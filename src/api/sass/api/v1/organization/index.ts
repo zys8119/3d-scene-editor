@@ -5,14 +5,14 @@ export default {
             method: 'post',
         });
     },
-    delete(ids: string[]) {
+    delete(ids: number[]) {
         return request({
             url: '/saas/api/v1/organization/delete',
             method: 'post',
             data: { ids },
         });
     },
-    update(data: OrganizationForm & { id: string }) {
+    update(data: OrganizationForm & { id: number }) {
         return request({
             url: '/saas/api/v1/organization/update',
             method: 'post',
@@ -25,7 +25,7 @@ export default {
             method: 'get',
         });
     },
-    get(id: string) {
+    get(id: number) {
         return request({
             url: `/saas/api/v1/organization/${id}`,
             method: 'get',

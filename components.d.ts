@@ -32,6 +32,7 @@ declare module '@vue/runtime-core' {
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
     NCascadeMenu: typeof import('naive-ui')['NCascadeMenu']
+    NCascader: typeof import('naive-ui')['NCascader']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NCountdown: typeof import('naive-ui')['NCountdown']
     NDatePicker: typeof import('naive-ui')['NDatePicker']

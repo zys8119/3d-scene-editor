@@ -55,9 +55,11 @@ export default {
                 ? sessionStorage
                 : localStorage;
             const userinfo = storage.getItem(baseConfig.unique + 'userinfo');
+            const token = storage.getItem(baseConfig.unique + 'token');
             if (userinfo) {
                 const store = useStore();
                 store.userinfo = JSON.parse(userinfo);
+                store.token = token ?? '';
             }
         },
         beforeEach() {

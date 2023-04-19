@@ -171,7 +171,7 @@ interface UserForm {
     password: string;
     code: string;
     captcha: string;
-    captchaId: string;
+    captchaId: number;
 }
 
 interface LoginInfo {
