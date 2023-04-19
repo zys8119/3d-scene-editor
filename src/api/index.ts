@@ -1,20 +1,16 @@
-import v1 from './v1';
-import user from './user';
-import captcha from './captcha';
-import menu from './menu';
-import role from './role';
-import apiElse from './api';
-import department from './department';
+import v1 from './sass/api/v1';
+import auth from './sass/api/v1/auth';
 import { App } from 'vue';
 
 export const api = {
-    v1,
-    user,
-    captcha,
-    menu,
-    role,
-    department,
-    api: apiElse,
+    sass: {
+        api: {
+            v1: {
+                ...v1,
+                auth,
+            },
+        },
+    },
 };
 
 declare global {

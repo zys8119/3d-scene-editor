@@ -1,7 +1,7 @@
 export default {
-    index() {
+    captcha() {
         return request({
-            url: '/captcha',
+            url: '/saas/api/v1/captcha',
             method: 'get',
         });
     },

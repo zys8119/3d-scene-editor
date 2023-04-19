@@ -11,7 +11,7 @@
                     <n-avatar
                         circle
                         size="small"
-                        :src="store.userinfo?.avatar?.url || defaultAvatar"
+                        :src="store.userinfo.avatar?.url || defaultAvatar"
                         @error="avatarError"
                     />
                 </div>

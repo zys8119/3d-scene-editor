@@ -65,6 +65,7 @@
 import useStore from '@/store/modules/main';
 import { useMessage } from 'naive-ui';
 import { Ref } from 'vue';
+import { LoginUserInfo } from '@/typings';
 
 const message = useMessage();
 const loginType = ref<LoginType[]>([
@@ -99,11 +100,11 @@ const router = useRouter();
  * 清空 token
  */
 store.setToken();
-store.setUserinfo();
+store.setUserinfo(null);
 
 const userForm = ref<UserForm>({
     username: import.meta.env.DEV ? 'admin' : '',
-    password: import.meta.env.DEV ? 'simple-admin' : '',
+    password: import.meta.env.DEV ? 'saas-admin' : '',
     mobile: '',
     code: '',
     captcha: '',
@@ -114,7 +115,7 @@ const countDown = ref(0) as Ref<number>;
 const handleCountDown = async () => {
     if (countDown.value === 0) {
         if (!userForm.value.mobile) return message.error('请输入正确的手机号');
-        await window.api.v1.auth.sendSmsCode(userForm.value.mobile);
+        // await window.api.v1.auth.sendSmsCode(userForm.value.mobile);
         message.success('验证码已发送');
         countDown.value = 60000;
     }
@@ -132,10 +133,11 @@ const login = async () => {
         !userForm.value[currentLoginType.formKey[2]]
     )
         return message.error(`请输入${currentLoginType.tip[2]}`);
-    const res = await window.api.user.login(userForm.value);
-    await store.setToken(res.data.token);
-    const userMe = await window.api.user.index(res.data.userId);
-    store.setUserinfo(userMe.data);
+    const res: LoginInfo = await window.api.sass.api.v1.auth.login(
+        userForm.value
+    );
+    await store.setToken(res.data.accessToken);
+    await store.setUserinfo(res.data.user);
     await router.push('/');
 };
 
@@ -148,7 +150,7 @@ const changeLoginType = (k: number) => {
 
 // 初始化
 const init = async () => {
-    const res = await window.api.captcha.index();
+    const res = await window.api.sass.api.v1.captcha();
     userForm.value.captchaId = res.data.captchaId;
     imgCode.value = res.data.imgPath;
 };
@@ -170,6 +172,13 @@ interface UserForm {
     code: string;
     captcha: string;
     captchaId: string;
+}
+
+interface LoginInfo {
+    data: {
+        accessToken: string;
+        user: LoginUserInfo;
+    };
 }
 </script>
 

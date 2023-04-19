@@ -21,11 +21,19 @@ export type PageMap = Record<string, string | number | boolean>;
 /**
  * 登录用户信息
  */
-export interface UserInfo {
-    avatar?: {
-        url: string | null;
+export interface LoginUserInfo {
+    avatar: {
+        url: string;
     };
-    username?: string;
+    createdAt: number;
+    email: string;
+    id: number;
+    mobile: string;
+    nickname: string;
+    status: number;
+    tenantId: number;
+    updatedAt: number;
+    username: string;
 }
 
 // 脚手架主题类型

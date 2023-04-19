@@ -1,17 +1,12 @@
 import { RouteRecordRaw } from 'vue-router';
 import config from '@/config/config';
 import baseConfig from '@/config/base';
-import { UserInfo } from '@/typings';
+import { LoginUserInfo } from '@/typings';
 
 export default defineStore('main', {
     state: () => {
         return {
-            userinfo: {
-                avatar: {
-                    url: '',
-                },
-                username: '',
-            } as UserInfo,
+            userinfo: {} as Partial<LoginUserInfo>,
             /**
              * 请求相关
              */
@@ -35,7 +30,7 @@ export default defineStore('main', {
                 resolve();
             });
         },
-        setUserinfo(userinfo?: Record<any, string>) {
+        setUserinfo(userinfo: LoginUserInfo | null) {
             const storage = config.router.session
                 ? sessionStorage
                 : localStorage;
@@ -51,7 +46,7 @@ export default defineStore('main', {
             }
         },
         removeUserInfoAvatar() {
-            if (this.userinfo.avatar) this.userinfo.avatar.url = null;
+            if (this.userinfo.avatar) this.userinfo.avatar.url = '';
         },
     },
 });
