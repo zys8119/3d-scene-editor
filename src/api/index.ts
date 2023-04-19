@@ -1,5 +1,6 @@
 import v1 from './sass/api/v1';
 import auth from './sass/api/v1/auth';
+import user from './sass/api/v1/user';
 import organization from './sass/api/v1/organization';
 import { App } from 'vue';
 
@@ -9,6 +10,7 @@ export const api = {
             v1: {
                 ...v1,
                 auth,
+                user,
                 organization,
             },
         },

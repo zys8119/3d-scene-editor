@@ -31,7 +31,7 @@ export interface LoginUserInfo {
     mobile: string;
     nickname: string;
     status: number;
-    tenantId: number;
+    defaultTenantID: number;
     updatedAt: number;
     username: string;
 }

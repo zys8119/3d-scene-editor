@@ -19,11 +19,10 @@ export default {
             data,
         });
     },
-    list(params: ListParams) {
+    list() {
         return request({
             url: '/saas/api/v1/organization/list',
             method: 'get',
-            params,
         });
     },
     get(id: string) {
@@ -36,10 +35,4 @@ export default {
 
 export interface OrganizationForm {
     name: string;
-}
-
-export interface ListParams {
-    page: number;
-    size: number;
-    search: string;
 }
