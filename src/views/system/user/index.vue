@@ -50,7 +50,7 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { useDialog, useMessage, DataTableRowKey } from 'naive-ui';
+import { useDialog, useMessage } from 'naive-ui';
 import { UserListData } from '@/api/sass/api/v1/user';
 
 const dialog = useDialog();
@@ -102,5 +102,4 @@ const init = async () => {
 
 const searchTablePageRef = ref();
 const userFormRef = ref();
-const resetPasswordRef = ref();
 </script>
