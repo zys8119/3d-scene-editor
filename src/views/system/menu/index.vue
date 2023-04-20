@@ -47,7 +47,7 @@
             :menus="tree"
             @save="cascadeMenuRef.refresh()"
         />
-        <button-form ref="buttonFormRef" @save="cascadeMenuRef.refresh()" />
+        <button-list ref="buttonListRef" />
     </div>
 </template>
 
@@ -55,7 +55,7 @@
 import { useDialog, useMessage } from 'naive-ui';
 import { MenuListData } from '@/api/sass/api/v1/menu';
 import MenuForm from '@/views/system/menu/models/menu-form.vue';
-import ButtonForm from '@/views/system/menu/models/button-form.vue';
+import ButtonList from '@/views/system/menu/models/button-list.vue';
 
 const dialog = useDialog();
 const message = useMessage();
@@ -89,7 +89,7 @@ function handleDelete(node: MenuListData) {
 
 // 按钮操作
 function addButton(menu: MenuListData) {
-    buttonFormRef.value.open(menu);
+    buttonListRef.value.open(menu.id);
 }
 
 const loadTree = async () => {
@@ -99,7 +99,7 @@ const loadTree = async () => {
 
 const cascadeMenuRef = ref();
 const menuFormRef = ref();
-const buttonFormRef = ref();
+const buttonListRef = ref();
 </script>
 
 <style scoped></style>

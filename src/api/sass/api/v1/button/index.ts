@@ -1,3 +1,5 @@
+import { TableListParams } from '@/api/typing';
+
 export default {
     create(data: ButtonForm) {
         return request({
@@ -26,12 +28,19 @@ export default {
             method: 'get',
         });
     },
+    list(params: TableListParams & { menuId: string }) {
+        return request({
+            url: `/saas/api/v1/button/list`,
+            method: 'get',
+            params,
+        });
+    },
 };
 
 export interface ButtonForm {
     code: string;
     name: string;
-    menuId?: string;
+    menuId: string;
 }
 
 export interface ButtonListData extends ButtonForm {

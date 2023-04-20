@@ -3,6 +3,7 @@ import auth from './sass/api/v1/auth';
 import user from './sass/api/v1/user';
 import organization from './sass/api/v1/organization';
 import menu from './sass/api/v1/menu';
+import button from './sass/api/v1/button';
 import { App } from 'vue';
 
 export const api = {
@@ -14,6 +15,7 @@ export const api = {
                 user,
                 organization,
                 menu,
+                button,
             },
         },
     },

@@ -4,7 +4,7 @@
         preset="card"
         title="按钮编辑"
         :bordered="false"
-        :style="{ width: '60%' }"
+        :style="{ width: '50%' }"
         segmented
     >
         <n-form
@@ -12,26 +12,19 @@
             label-placement="left"
             require-mark-placement="left"
         >
-            <n-form-item
-                label="按钮名称"
-                required
-                v-for="(item, key) in formList"
-                :key="key"
-            >
-                <n-space>
-                    <n-input
-                        v-model:value="item.name"
-                        placeholder="请输入按钮名称"
-                        clearable
-                    />
-                    <n-input
-                        v-model:value="item.code"
-                        placeholder="请输入按钮CODE"
-                        clearable
-                    />
-                    <n-button type="primary" @click="addItem">新增</n-button>
-                    <n-button type="error" @click="delItem(key)">删除</n-button>
-                </n-space>
+            <n-form-item label="按钮名称" required>
+                <n-input
+                    v-model:value="form.name"
+                    placeholder="请输入按钮名称"
+                    clearable
+                />
+            </n-form-item>
+            <n-form-item label="按钮CODE" required>
+                <n-input
+                    v-model:value="form.code"
+                    placeholder="请输入按钮CODE"
+                    clearable
+                />
             </n-form-item>
         </n-form>
         <template #footer>
@@ -45,43 +38,32 @@
 
 <script lang="ts" setup>
 import { useMessage } from 'naive-ui';
-import { ButtonForm } from '@/api/sass/api/v1/button';
-import { MenuListData } from '@/api/sass/api/v1/menu';
+import { ButtonForm, ButtonListData } from '@/api/sass/api/v1/button';
 
 const message = useMessage();
 
 const emit = defineEmits(['save']);
 
 const show = ref(false);
-const menuInfo = ref<MenuListData>({});
 
-const open = (row: MenuListData) => {
-    menuInfo.value = row;
+const open = (row: ButtonListData | null, id: string) => {
     show.value = true;
-    formList.value = row.buttons.length > 0 ? row.buttons : [item];
+    form.value = { ...row } ?? {};
+    form.value.menuId = id;
 };
 
 // 按钮表单
-const formList = ref<ButtonForm[]>([]);
-const item = ref<ButtonForm>({ name: '', code: '' });
-
-// 添加按钮
-const addItem = () => {
-    formList.value.push({ ...item });
-};
-
-// 删除按钮
-const delItem = (k) => {
-    formList.value.splice(k, 1);
-};
+const form = ref<ButtonForm>({});
 
 const submit = async () => {
-    // const res = menuForm.value.id
-    //     ? await window.api.sass.api.v1.menu.update(menuForm.value)
-    //     : await window.api.sass.api.v1.menu.create(menuForm.value);
-    // await message.success(res.msg);
-    // show.value = false;
-    // emit('save');
+    if (!form.value.name) return message.error('请输入按钮名称');
+    if (!form.value.code) return message.error('请输入按钮编码');
+    const res = form.value.id
+        ? await window.api.sass.api.v1.button.update(form.value)
+        : await window.api.sass.api.v1.button.create(form.value);
+    await message.success(res.msg);
+    show.value = false;
+    emit('save');
 };
 
 defineExpose({ open });
