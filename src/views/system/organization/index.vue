@@ -140,7 +140,4 @@ const add = (
 
 const organizationTreeRef = ref();
 const organizationFormRef = ref();
-const gwRef = ref();
-const bindAdminRef = ref();
-const bindRoleRef = ref();
 </script>

@@ -70,10 +70,10 @@ const emit = defineEmits<{
 const message = useMessage();
 
 const show = ref(false);
-const form = ref<Partial<Staff>>({});
-const info = ref<Partial<User> | null>();
+const form = ref<>({});
+const info = ref<null>();
 
-const open = (row?: User) => {
+const open = (row) => {
     info.value = null;
     form.value = {
         is_admin: false,
