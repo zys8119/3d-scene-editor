@@ -62,7 +62,6 @@
 
 <script lang="ts" setup>
 import { useMessage } from 'naive-ui';
-import { Staff, User } from '@/api/typing';
 
 const emit = defineEmits<{
     (e: 'submit'): void;

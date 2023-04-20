@@ -16,13 +16,13 @@
         <template #prefix="{ rawNode }">
             <SvgIcon
                 class="m-r-5"
-                v-if="rawNode.node_type === 'company'"
+                v-if="rawNode.nodeType === 0"
                 name="svgs-wuye"
                 color="#7facf5"
             />
             <SvgIcon
                 class="m-r-5"
-                v-if="rawNode.node_type === 'department'"
+                v-if="rawNode.nodeType === 1"
                 name="svgs-zuzhi"
                 color="#e8a5a5"
             />
@@ -30,7 +30,7 @@
         <template #suffix="{ rawNode }" v-if="canEdit">
             <n-dropdown
                 trigger="hover"
-                :options="dropdownBtnList(rawNode.node_type)"
+                :options="dropdownBtnList(rawNode.nodeType)"
                 @select="editBtn($event, rawNode)"
             >
                 <SvgIcon name="svgs-qita" />
@@ -54,19 +54,17 @@ const props = withDefaults(
     }
 );
 const emit = defineEmits<{
-    edit(k: number, row: OrganizationListData): void;
-    selected(keys: Array<string>, option: TreeOption): void;
+    (e: 'edit', k: number, row: OrganizationListData): void;
+    (e: 'selected', keys: string[], option: TreeOption[]): void;
 }>();
 
 const data = ref<OrganizationListData[]>([]);
 
 const dropdownBtnList = computed(() => (type: string) => [
-    { label: '新增子公司', key: 1, disabled: type !== 'company' },
-    { label: '新增部门', key: 2, disabled: false },
-    { label: '绑定负责人', key: 3, disabled: false },
-    { label: '绑定角色', key: 4, disabled: false },
-    { label: '编辑', key: 5, disabled: false },
-    { label: '删除', key: 6, disabled: false },
+    { label: '新增子单位', key: 'subUnit', disabled: type !== 0 },
+    { label: '新增部门', key: 'department', disabled: false },
+    { label: '编辑', key: 'edit', disabled: false },
+    { label: '删除', key: 'delete', disabled: false },
 ]);
 
 // 功能按钮
@@ -75,18 +73,19 @@ const editRow = ref();
 const editBtn = (k: number, row: OrganizationListData) => {
     editType.value = k;
     editRow.value = row;
-    emit.edit(k, row);
+    emit('edit', k, row);
 };
 
 // 选中
-const selectRow = (keys: Array<string>, option: TreeOption) => {
+const selectRow = (keys: string[], option: TreeOption[]) => {
     selectedKeys.value = keys;
-    emit.selected(keys, option);
+    emit('selected', keys, option);
 };
 
 // 搜索
 const patternVal = ref('');
 const filter = (str: string) => {
+    if (!str) init();
     patternVal.value = str;
 };
 
@@ -100,8 +99,8 @@ const init = async () => {
             selectedKeys.value.length < 1 ||
             (editType.value === 6 && selectedKeys.value[0] === editRow.value.id)
         ) {
-            selectedKeys.value = [res.data.list[0].id];
-            selectRow(selectedKeys.value, [res.data.list[0]]);
+            selectedKeys.value = [data.value[0].id];
+            selectRow(selectedKeys.value, [data.value[0]]);
         }
     }
 };

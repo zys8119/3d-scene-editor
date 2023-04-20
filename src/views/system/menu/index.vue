@@ -12,27 +12,23 @@
                 label: 'title',
             }"
             @node:add="handleAdd"
-            @node:edit="handleEdit"
-            @node:delete="handleDelete"
         >
-            <template #node_menu="{ node, emit }">
+            <template #node_menu="{ node }">
                 <n-dropdown
                     trigger="hover"
+                    @select="select($event, node)"
                     :options="[
                         {
                             label: '按钮设置',
                             key: 'button',
-                            props: { onClick: () => addButton(node) },
                         },
                         {
                             label: '编辑',
                             key: 'edit',
-                            props: { onClick: () => emit('node:edit', node) },
                         },
                         {
                             label: '删除',
                             key: 'delete',
-                            props: { onClick: () => emit('node:delete', node) },
                         },
                     ]"
                 >
@@ -62,6 +58,20 @@ const message = useMessage();
 
 const tree = ref<MenuListData[]>([]);
 
+const select = (event, row) => {
+    switch (event) {
+        case 'button':
+            addButton(row);
+            break;
+        case 'edit':
+            handleEdit(row);
+            break;
+        case 'delete':
+            handleDelete(row);
+            break;
+    }
+};
+
 // 菜单新增
 function handleAdd(parent: MenuListData) {
     menuFormRef.value.open(null, parent);
@@ -89,7 +99,7 @@ function handleDelete(node: MenuListData) {
 
 // 按钮操作
 function addButton(menu: MenuListData) {
-    buttonListRef.value.open(menu.id);
+    nextTick(() => buttonListRef.value.open(menu.id));
 }
 
 const loadTree = async () => {

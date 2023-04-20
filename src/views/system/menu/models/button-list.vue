@@ -8,6 +8,7 @@
         segmented
     >
         <n-search-table-page
+            v-if="mId"
             ref="searchTablePageRef"
             :data-table-props="{ columns: columns }"
             :data-api="api.sass.api.v1.button.list"

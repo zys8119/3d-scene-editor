@@ -50,27 +50,11 @@
                         <n-form-item :label="`${currentType}名称:`">{{
                             currentInfo.name
                         }}</n-form-item>
-                        <n-form-item label="部门负责人:">{{
-                            currentInfo.managers &&
-                            currentInfo.managers.length > 0
-                                ? currentInfo.managers
-                                      .map((v) => v.name)
-                                      .join(',')
-                                : '未设置'
-                        }}</n-form-item>
-                        <n-form-item label="角色:">{{
-                            currentInfo.roles && currentInfo.roles.length > 0
-                                ? currentInfo.roles.map((v) => v.name).join(',')
-                                : '未设置'
-                        }}</n-form-item>
-                        <n-form-item label="上级:">{{
-                            currentInfo.parent_name || '无'
-                        }}</n-form-item>
-                        <n-form-item label="全路径:">{{
-                            currentInfo.total_path
+                        <n-form-item label="负责人:">{{
+                            currentInfo.leader || '未设置'
                         }}</n-form-item>
                         <n-form-item label="是否启用:">
-                            <n-tag v-if="currentInfo.is_enabled" type="success"
+                            <n-tag v-if="currentInfo.status" type="success"
                                 >有效</n-tag
                             >
                             <n-tag v-else type="error">禁用</n-tag>
@@ -79,7 +63,10 @@
                 </n-card>
             </n-gi>
         </n-grid>
-        <organization-form ref="organizationFormRef" />
+        <organization-form
+            ref="organizationFormRef"
+            @submit="organizationTreeRef.init()"
+        />
     </div>
 </template>
 <script lang="ts" setup>
@@ -100,30 +87,23 @@ const nodeTypeName = {
     1: '部门',
 };
 
-const selected = (k) => {
-    currentId.value = k[0];
-    if (gwRef.value) gwRef.value.init();
+const selected = (keys: string[]) => {
+    currentId.value = keys[0];
     init();
 };
 
 const editBtn = (k, row) => {
     switch (k) {
-        case 1:
-            add('company', '公司', row.id, null);
+        case 'subUnit':
+            add(0, nodeTypeName[0], row.id, null);
             break;
-        case 2:
-            add('department', '部门', row.id, null);
+        case 'department':
+            add(1, nodeTypeName[1], row.id, null);
             break;
-        case 3:
-            bindAdminRef.value.open(row.id);
+        case 'edit':
+            add(row.nodeType, nodeTypeName[row.nodeType], row.parentId, row);
             break;
-        case 4:
-            bindRoleRef.value.open(row.id);
-            break;
-        case 5:
-            add(row.node_type, nodeTypeName[row.node_type], row.parent_id, row);
-            break;
-        case 6:
+        case 'delete':
             deleteTree(row.id);
             break;
     }
@@ -146,7 +126,7 @@ const deleteTree = (id: string) => {
 const init = async () => {
     const res = await window.api.sass.api.v1.organization.get(currentId.value);
     currentInfo.value = { ...res.data };
-    currentType.value = nodeTypeName[currentInfo.value.node_type];
+    currentType.value = nodeTypeName[currentInfo.value.nodeType];
 };
 
 const add = (

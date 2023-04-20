@@ -51,9 +51,11 @@ const show = ref(false);
 
 const open = (row: RoleListData | null) => {
     show.value = true;
-    form.value = { ...row } ?? {
-        status: true,
-    };
+    form.value = row
+        ? { ...row }
+        : {
+              status: true,
+          };
 };
 
 // 按钮表单

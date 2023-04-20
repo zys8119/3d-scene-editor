@@ -17,6 +17,18 @@
             </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">
+                    <n-button
+                        size="small"
+                        @click="openMenuAuth(row)"
+                        type="primary"
+                        >菜单权限</n-button
+                    >
+                    <n-button
+                        size="small"
+                        @click="openMenuAuth(row)"
+                        type="primary"
+                        >接口权限</n-button
+                    >
                     <n-button size="small" @click="openForm(row)" type="success"
                         >编辑</n-button
                     >
@@ -30,6 +42,7 @@
             </template>
         </n-search-table-page>
         <role-form ref="roleFormRef" @save="searchTablePageRef.initData()" />
+        <menu-auth ref="menuAuthRef" />
     </div>
 </template>
 
@@ -37,6 +50,7 @@
 import { RoleListData } from '@/api/sass/api/v1/role';
 import { useDialog, useMessage } from 'naive-ui';
 import RoleForm from '@/views/system/role/models/role-form.vue';
+import MenuAuth from '@/views/system/role/models/menu-auth.vue';
 
 const dialog = useDialog();
 const message = useMessage();
@@ -55,8 +69,13 @@ const columns = ref([
     { title: '操作', key: 'todo', align: 'center' },
 ]);
 
-const openForm = (row: RoleListData) => {
+const openForm = (row: RoleListData | null) => {
     roleFormRef.value.open(row);
+};
+
+// 菜单权限
+const openMenuAuth = (row: RoleListData) => {
+    menuAuthRef.value.open(row.id);
 };
 
 function handleDelete(node: RoleListData) {
@@ -75,6 +94,7 @@ function handleDelete(node: RoleListData) {
 
 const searchTablePageRef = ref();
 const roleFormRef = ref();
+const menuAuthRef = ref();
 </script>
 
 <style scoped></style>
