@@ -1,8 +1,17 @@
 export default {
-    create() {
+    tree: {
+        list() {
+            return request({
+                url: '/saas/api/v1/organization/tree/list',
+                method: 'get',
+            });
+        },
+    },
+    create(data: OrganizationForm) {
         return request({
             url: '/saas/api/v1/organization/create',
             method: 'post',
+            data,
         });
     },
     delete(ids: string[]) {
@@ -35,4 +44,18 @@ export default {
 
 export interface OrganizationForm {
     name: string;
+    code: string;
+    email: string;
+    leader: string;
+    nodeType: 0 | 1; // 0 单位 1 部门
+    parentId: string | null;
+    phone: string;
+    remark: string;
+    sort: number;
+    status: boolean;
+    tenantId: string;
+}
+
+export interface OrganizationListData extends OrganizationForm {
+    id: string;
 }

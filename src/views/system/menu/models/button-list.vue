@@ -69,7 +69,7 @@ const open = (id: string) => {
     show.value = true;
 };
 
-const openForm = (row: ButtonListData) => {
+const openForm = (row: ButtonListData | null) => {
     buttonFormRef.value.open(row, mId.value);
 };
 

@@ -20,22 +20,29 @@
                         <organization-tree
                             ref="organizationTreeRef"
                             @selected="selected"
-                            @editBtn="editBtn"
+                            @edit="editBtn"
                         />
                     </n-space>
                 </n-card>
             </n-gi>
             <n-gi :span="4">
-                <n-card size="small" :title="currentInfo.name" segmented>
+                <n-card
+                    size="small"
+                    :title="currentInfo.name ?? '暂无数据'"
+                    segmented
+                >
                     <template #header-extra>
-                        <n-button type="primary" @click="add('company', '公司')"
-                            >新建公司</n-button
+                        <n-button
+                            type="primary"
+                            @click="add(0, nodeTypeName[0])"
+                            >新建{{ nodeTypeName[0] }}</n-button
                         >
                     </template>
                     <n-form
                         :label-width="100"
                         label-placement="left"
                         size="small"
+                        v-if="currentId"
                     >
                         <n-form-item :label="`${currentType}编码:`">{{
                             currentInfo.code
@@ -72,20 +79,25 @@
                 </n-card>
             </n-gi>
         </n-grid>
+        <organization-form ref="organizationFormRef" />
     </div>
 </template>
 <script lang="ts" setup>
 import { useDialog, useMessage } from 'naive-ui';
+import { OrganizationListData } from '@/api/sass/api/v1/organization';
+import OrganizationForm from '@/views/system/organization/models/organization-form.vue';
 
 const dialog = useDialog();
 const message = useMessage();
 
-const currentInfo = ref({});
+const currentInfo = ref<OrganizationListData>({});
 const currentId = ref('');
+const currentType = ref('');
+const search = ref('');
 
 const nodeTypeName = {
-    company: '公司',
-    department: '部门',
+    0: '单位',
+    1: '部门',
 };
 
 const selected = (k) => {
@@ -117,23 +129,14 @@ const editBtn = (k, row) => {
     }
 };
 
-const add = (
-    node_type: string,
-    type_name: string,
-    parentId?: string,
-    row?: any
-) => {
-    organizationFormRef.value.open(node_type, type_name, parentId, row);
-};
-
-const deleteTree = (id) => {
+const deleteTree = (id: string) => {
     dialog.warning({
         title: '警告',
         content: '确定删除该条数据么？',
         positiveText: '确定',
         negativeText: '取消',
         onPositiveClick: async () => {
-            await window.api.v1.system.organization.remove([id]);
+            await window.api.sass.api.v1.organization.delete([id]);
             message.success('删除成功');
             organizationTreeRef.value.init();
         },
@@ -141,9 +144,18 @@ const deleteTree = (id) => {
 };
 
 const init = async () => {
-    const res = await api.v1.system.organization.getDetail(currentId.value);
+    const res = await window.api.sass.api.v1.organization.get(currentId.value);
     currentInfo.value = { ...res.data };
-    // currentType.value = nodeTypeName[currentInfo.value.node_type];
+    currentType.value = nodeTypeName[currentInfo.value.node_type];
+};
+
+const add = (
+    nodeType: number,
+    typeName: string,
+    parentId?: string,
+    row?: OrganizationListData | null
+) => {
+    organizationFormRef.value.open(nodeType, typeName, parentId, row);
 };
 
 const organizationTreeRef = ref();

@@ -40,21 +40,25 @@
 </template>
 
 <script lang="ts" setup>
-import { Ref } from 'vue';
+import { OrganizationListData } from '@/api/sass/api/v1/organization';
+import { TreeOption } from 'naive-ui';
 
-// const props = withDefaults(
-//     defineProps<{
-//         canEdit?: boolean;
-//         initValue?: boolean;
-//     }>(),
-//     {
-//         canEdit: true,
-//         initValue: true,
-//     }
-// );
-const emit = defineEmits(['editBtn', 'selected']);
+const props = withDefaults(
+    defineProps<{
+        canEdit?: boolean;
+        initValue?: boolean;
+    }>(),
+    {
+        canEdit: true,
+        initValue: true,
+    }
+);
+const emit = defineEmits<{
+    edit(k: number, row: OrganizationListData): void;
+    selected(keys: Array<string>, option: TreeOption): void;
+}>();
 
-const data = ref([]) as Ref<any>;
+const data = ref<OrganizationListData[]>([]);
 
 const dropdownBtnList = computed(() => (type: string) => [
     { label: '新增子公司', key: 1, disabled: type !== 'company' },
@@ -68,38 +72,38 @@ const dropdownBtnList = computed(() => (type: string) => [
 // 功能按钮
 const editType = ref();
 const editRow = ref();
-const editBtn = (k, row) => {
+const editBtn = (k: number, row: OrganizationListData) => {
     editType.value = k;
     editRow.value = row;
-    emit('editBtn', k, row);
+    emit.edit(k, row);
 };
 
 // 选中
-const selectRow = (keys: Array<string>, option: any) => {
+const selectRow = (keys: Array<string>, option: TreeOption) => {
     selectedKeys.value = keys;
-    emit('selected', keys, option);
+    emit.selected(keys, option);
 };
 
 // 搜索
-const patternVal = ref('') as Ref<string>;
+const patternVal = ref('');
 const filter = (str: string) => {
     patternVal.value = str;
 };
 
 // 初始化
-const selectedKeys = ref([]) as Ref<string[]>;
+const selectedKeys = ref<string[]>([]);
 const init = async () => {
-    const res = await window.api.sass.api.v1.organization.list();
-    data.value = res.data.list;
-    // if (props.initValue) {
-    //     if (
-    //         selectedKeys.value.length < 1 ||
-    //         (editType.value === 6 && selectedKeys.value[0] === editRow.value.id)
-    //     ) {
-    //         selectedKeys.value = [res.data.list[0].id];
-    //         selectRow(selectedKeys.value, [res.data.list[0]]);
-    //     }
-    // }
+    const res = await window.api.sass.api.v1.organization.tree.list();
+    data.value = res.data.data;
+    if (props.initValue && data.value.length > 0) {
+        if (
+            selectedKeys.value.length < 1 ||
+            (editType.value === 6 && selectedKeys.value[0] === editRow.value.id)
+        ) {
+            selectedKeys.value = [res.data.list[0].id];
+            selectRow(selectedKeys.value, [res.data.list[0]]);
+        }
+    }
 };
 
 onMounted(init);

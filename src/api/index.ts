@@ -4,6 +4,7 @@ import user from './sass/api/v1/user';
 import organization from './sass/api/v1/organization';
 import menu from './sass/api/v1/menu';
 import button from './sass/api/v1/button';
+import role from './sass/api/v1/role';
 import { App } from 'vue';
 
 export const api = {
@@ -16,6 +17,7 @@ export const api = {
                 organization,
                 menu,
                 button,
+                role,
             },
         },
     },
