@@ -23,14 +23,12 @@
 </template>
 
 <script lang="ts" setup>
-import { MenuListData } from '@/api/sass/api/v1/menu';
 import { useMessage } from 'naive-ui';
 import { ApiListData } from '@/api/sass/api/v1/api';
 
 const message = useMessage();
 
 const show = ref(false);
-const tree = ref<MenuListData[]>([]);
 const selected = ref<string[]>([]);
 const rId = ref('');
 const apis = ref<ApiListData[]>([]);
