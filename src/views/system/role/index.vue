@@ -25,7 +25,7 @@
                     >
                     <n-button
                         size="small"
-                        @click="openMenuAuth(row)"
+                        @click="openAuthAuth(row)"
                         type="primary"
                         >接口权限</n-button
                     >
@@ -43,6 +43,7 @@
         </n-search-table-page>
         <role-form ref="roleFormRef" @save="searchTablePageRef.initData()" />
         <menu-auth ref="menuAuthRef" />
+        <api-auth ref="apiAuthRef" />
     </div>
 </template>
 
@@ -51,6 +52,7 @@ import { RoleListData } from '@/api/sass/api/v1/role';
 import { useDialog, useMessage } from 'naive-ui';
 import RoleForm from '@/views/system/role/models/role-form.vue';
 import MenuAuth from '@/views/system/role/models/menu-auth.vue';
+import ApiAuth from '@/views/system/role/models/api-auth.vue';
 
 const dialog = useDialog();
 const message = useMessage();
@@ -78,6 +80,11 @@ const openMenuAuth = (row: RoleListData) => {
     menuAuthRef.value.open(row.id);
 };
 
+// 接口权限
+const openAuthAuth = (row: RoleListData) => {
+    apiAuthRef.value.open(row.id);
+};
+
 function handleDelete(node: RoleListData) {
     dialog.warning({
         title: '警告',
@@ -95,6 +102,7 @@ function handleDelete(node: RoleListData) {
 const searchTablePageRef = ref();
 const roleFormRef = ref();
 const menuAuthRef = ref();
+const apiAuthRef = ref();
 </script>
 
 <style scoped></style>
