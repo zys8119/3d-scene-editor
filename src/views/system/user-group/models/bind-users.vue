@@ -55,7 +55,7 @@ const init = async () => {
 const submit = async () => {
     const res = await window.api.sass.api.v1.group.update_users(
         gId.value,
-        users.value.filter((v) => selected.value.indexOf(v.id) > -1)
+        selected.value
     );
     await message.success(res.msg);
     show.value = false;

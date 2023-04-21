@@ -41,7 +41,7 @@ export default {
         return request({
             url: '/saas/api/v1/group/update_users',
             method: 'post',
-            params: {
+            data: {
                 groupId,
                 userIds,
             },
