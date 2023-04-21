@@ -69,6 +69,10 @@ const emit = defineEmits<{
     (e: 'submit'): void;
 }>();
 
+const props = defineProps<{
+    oId: string;
+}>();
+
 const message = useMessage();
 
 const show = ref(false);
@@ -76,6 +80,7 @@ const form = ref<UserForm>({});
 
 const open = (row: UserListData) => {
     form.value = {
+        organizationId: props.oId,
         status: true,
     };
     show.value = true;
@@ -96,8 +101,8 @@ const submit = async () => {
     };
     const res =
         form.value && form.value.id
-            ? await api.sass.api.v1.user.update(_data)
-            : await api.sass.api.v1.user.create(_data);
+            ? await api.sass.api.v1.organizationUserInfo.update(_data)
+            : await api.sass.api.v1.organizationUserInfo.create(_data);
     res.message && message.success(res.message);
     show.value = false;
     emit('submit');

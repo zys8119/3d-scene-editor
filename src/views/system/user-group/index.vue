@@ -1,5 +1,5 @@
 <template>
-    <div class="api">
+    <div class="user-group">
         <n-card>
             <n-tabs default-value="groupType" animated>
                 <n-tab-pane name="groupType" tab="组类型">
@@ -13,7 +13,7 @@
                         @add="addGroupTypeForm(null)"
                     >
                         <template #prefix="{ itemCount }">
-                            从第{{ itemCount }}项
+                            共{{ itemCount }}项
                         </template>
                         <template #table_status="{ row }">
                             <n-tag
@@ -51,7 +51,7 @@
                         @add="addGroupForm(null)"
                     >
                         <template #prefix="{ itemCount }">
-                            从第{{ itemCount }}项
+                            共{{ itemCount }}项
                         </template>
                         <template #table_status="{ row }">
                             <n-tag

@@ -1,55 +1,58 @@
 <template>
-    <div class="system-user">
+    <div class="user">
         <n-search-table-page
             ref="searchTablePageRef"
-            page-field="page_num"
-            size-field="page_size"
-            :data-table-props="{
-                columns: columns,
+            :data-table-props="{ columns: columns }"
+            :data-api="api.sass.api.v1.organizationUserInfo.list"
+            :params="{
+                organizationId: oId,
             }"
-            :dataApi="api.sass.api.v1.user.list"
-            :search-props="{
-                addText: '新增用户',
+            :search-table-space="{
+                size: 20,
             }"
-            @add="add(null)"
+            @add="addUser(null)"
         >
             <template #prefix="{ itemCount }"> 共{{ itemCount }}项 </template>
-            <template #table_status="{ row }">
-                <n-tag size="small" :type="row.status ? 'success' : 'error'">{{
-                    row.status ? '有效' : '失效'
-                }}</n-tag>
-            </template>
             <template #table_avatar="{ row }">
                 <n-avatar size="small" :src="row.avatar" />
             </template>
+            <template #table_status="{ row }">
+                <n-tag size="small" :type="row.status ? 'success' : 'error'">{{
+                    row.status ? '启用' : '禁用'
+                }}</n-tag>
+            </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">
-                    <n-button @click="add(row)" size="small" type="success"
+                    <n-button size="small" @click="addUser(row)" type="success"
                         >编辑</n-button
                     >
-                    <n-button @click="deleteRow(row)" size="small" type="error"
+                    <n-button size="small" @click="deleteUser(row)" type="error"
                         >删除</n-button
                     >
                 </n-space>
             </template>
         </n-search-table-page>
-        <user-form ref="userFormRef" @submit="init"></user-form>
+        <user-form ref="userFormRef" @submit="init" :oId="oId" />
     </div>
 </template>
+
 <script lang="ts" setup>
 import { useDialog, useMessage } from 'naive-ui';
-import { UserListData } from '@/api/sass/api/v1/user';
-import UserForm from '@/views/system/user/models/user-form.vue';
+import { OrganizationUserListData } from '@/api/sass/api/v1/organization-user-info';
+import UserForm from '@/views/system/organization/components/models/user-form.vue';
 
 const dialog = useDialog();
 const message = useMessage();
 
+const props = defineProps<{
+    oId: string;
+}>();
+
+// 接口
 const columns = ref([
     {
         title: '#',
-        key: 'key',
         align: 'center',
-        width: '45px',
         render: (_: any, index: number) => {
             return `${index + 1}`;
         },
@@ -61,28 +64,31 @@ const columns = ref([
     { title: '是否有效', key: 'status', align: 'center' },
     { title: '操作', key: 'todo', align: 'center' },
 ]);
-const deleteRow = (row: UserListData) => {
+const addUser = (row: OrganizationUserListData | null) => {
+    userFormRef.value.open(row);
+};
+const deleteUser = (row: OrganizationUserListData) => {
     dialog.warning({
         title: '警告',
-        content: '确定删除所选数据么？',
+        content: '确定删除该条数据么？',
         positiveText: '确定',
         negativeText: '取消',
         onPositiveClick: async () => {
-            await window.api.sass.api.v1.user.delete([row.id]);
+            await window.api.sass.api.v1.organizationUserInfo.delete([row.id]);
             message.success('删除成功');
             init();
         },
     });
 };
 
-const add = (row) => {
-    userFormRef.value?.open(row);
+const init = () => {
+    nextTick(() => searchTablePageRef.value.initData());
 };
 
-const init = async () => {
-    nextTick(() => searchTablePageRef.value?.initData());
-};
-
-const searchTablePageRef = ref();
 const userFormRef = ref();
+const searchTablePageRef = ref();
+
+defineExpose({ init });
 </script>
+
+<style scoped></style>

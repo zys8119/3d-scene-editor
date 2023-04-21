@@ -9,7 +9,7 @@
             }"
             @add="openForm(null)"
         >
-            <template #prefix="{ itemCount }"> 从第{{ itemCount }}项 </template>
+            <template #prefix="{ itemCount }"> 共{{ itemCount }}项 </template>
             <template #table_status="{ row }">
                 <n-tag size="small" :type="row.status ? 'success' : 'error'">{{
                     row.status ? '启用' : '禁用'

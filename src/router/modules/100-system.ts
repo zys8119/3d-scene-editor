@@ -30,7 +30,7 @@ const routes: RouteRecordRaw[] = [
                 path: 'user-group',
                 name: 'UserGroup',
                 meta: {
-                    title: '用户组',
+                    title: '用户组管理',
                 },
                 component: () => import('@/views/system/user-group/index.vue'),
             },

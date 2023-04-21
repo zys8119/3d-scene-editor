@@ -20,7 +20,7 @@
             }"
             @add="openForm(null)"
         >
-            <template #prefix="{ itemCount }"> 从第{{ itemCount }}项 </template>
+            <template #prefix="{ itemCount }"> 共{{ itemCount }}项 </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">
                     <n-button size="small" @click="openForm(row)" type="success"

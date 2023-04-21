@@ -38,28 +38,33 @@
                             >新建{{ nodeTypeName[0] }}</n-button
                         >
                     </template>
-                    <n-form
-                        :label-width="100"
-                        label-placement="left"
-                        size="small"
+                    <n-descriptions
                         v-if="currentId"
+                        label-placement="left"
+                        :column="2"
                     >
-                        <n-form-item :label="`${currentType}编码:`">{{
+                        <n-descriptions-item :label="`${currentType}编码`">{{
                             currentInfo.code
-                        }}</n-form-item>
-                        <n-form-item :label="`${currentType}名称:`">{{
+                        }}</n-descriptions-item>
+                        <n-descriptions-item :label="`${currentType}名称`">{{
                             currentInfo.name
-                        }}</n-form-item>
-                        <n-form-item label="负责人:">{{
+                        }}</n-descriptions-item>
+                        <n-descriptions-item label="负责人">{{
                             currentInfo.leader || '未设置'
-                        }}</n-form-item>
-                        <n-form-item label="是否启用:">
-                            <n-tag v-if="currentInfo.status" type="success"
-                                >有效</n-tag
+                        }}</n-descriptions-item>
+                        <n-descriptions-item label="是否启用">
+                            <n-tag
+                                size="small"
+                                v-if="currentInfo.status"
+                                :type="currentInfo.status ? 'success' : 'error'"
                             >
-                            <n-tag v-else type="error">禁用</n-tag>
-                        </n-form-item>
-                    </n-form>
+                                {{ currentInfo.status ? '有效' : '禁用' }}
+                            </n-tag>
+                        </n-descriptions-item>
+                    </n-descriptions>
+                    <template #footer v-if="currentId">
+                        <user ref="userRef" :oId="currentId" />
+                    </template>
                 </n-card>
             </n-gi>
         </n-grid>
@@ -73,6 +78,7 @@
 import { useDialog, useMessage } from 'naive-ui';
 import { OrganizationListData } from '@/api/sass/api/v1/organization';
 import OrganizationForm from '@/views/system/organization/models/organization-form.vue';
+import User from '@/views/system/organization/components/user.vue';
 
 const dialog = useDialog();
 const message = useMessage();
@@ -89,6 +95,7 @@ const nodeTypeName = {
 
 const selected = (keys: string[]) => {
     currentId.value = keys[0];
+    if (userRef.value) userRef.value.init();
     init();
 };
 
@@ -140,4 +147,5 @@ const add = (
 
 const organizationTreeRef = ref();
 const organizationFormRef = ref();
+const userRef = ref();
 </script>
