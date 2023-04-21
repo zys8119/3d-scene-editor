@@ -49,12 +49,13 @@ const init = async () => {
     }));
     selected.value = (
         await window.api.sass.api.v1.authority.api.role(rId.value)
-    ).data.data;
+    ).data.data.map((v) => v.id);
 };
 
 const submit = async () => {
     const res = await window.api.sass.api.v1.authority.api.create_or_update(
-        apis.value.filter((v) => selected.value.indexOf(v.id) > -1)
+        apis.value.filter((v) => selected.value.indexOf(v.id) > -1),
+        rId.value
     );
     await message.success(res.msg);
     show.value = false;

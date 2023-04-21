@@ -1,10 +1,13 @@
 export default {
     api: {
-        create_or_update(data: ApiForm[]) {
+        create_or_update(data: ApiForm[], roleId: string) {
             return request({
                 url: '/saas/api/v1/authority/api/create_or_update',
                 method: 'post',
-                data,
+                data: {
+                    data,
+                    roleId,
+                },
             });
         },
         role(id: string) {
