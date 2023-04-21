@@ -1,13 +1,13 @@
 <template>
-    <div class="api">
+    <div class="position">
         <n-search-table-page
-            ref="searchTablePageApiRef"
-            :data-table-props="{ columns: columnsApi }"
-            :data-api="api.sass.api.v1.api.list"
+            ref="searchTablePageRef"
+            :data-table-props="{ columns: columns }"
+            :data-api="api.sass.api.v1.position.list"
             :search-table-space="{
                 size: 20,
             }"
-            @add="addApi(null)"
+            @add="addPosition(null)"
         >
             <template #prefix="{ itemCount }"> 共{{ itemCount }}项 </template>
             <template #table_status="{ row }">
@@ -17,29 +17,38 @@
             </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">
-                    <n-button size="small" @click="addApi(row)" type="success"
+                    <n-button
+                        size="small"
+                        @click="addPosition(row)"
+                        type="success"
                         >编辑</n-button
                     >
-                    <n-button size="small" @click="deleteApi(row)" type="error"
+                    <n-button
+                        size="small"
+                        @click="deletePosition(row)"
+                        type="error"
                         >删除</n-button
                     >
                 </n-space>
             </template>
         </n-search-table-page>
-        <api-form ref="apiFormRef" @save="searchTablePageApiRef.initData()" />
+        <position-form
+            ref="positionFormRef"
+            @save="searchTablePageRef.initData()"
+        />
     </div>
 </template>
 
 <script lang="ts" setup>
 import { useDialog, useMessage } from 'naive-ui';
-import { ApiListData } from '@/api/sass/api/v1/api';
-import ApiForm from '@/views/system/api/models/api-form.vue';
+import PositionForm from '@/views/system/position/models/position-form.vue';
+import { PositionListData } from '@/api/sass/api/v1/position';
 
 const dialog = useDialog();
 const message = useMessage();
 
 // 接口
-const columnsApi = ref([
+const columns = ref([
     {
         title: '#',
         align: 'center',
@@ -47,31 +56,30 @@ const columnsApi = ref([
             return `${index + 1}`;
         },
     },
-    { title: '接口地址', key: 'path', align: 'center' },
-    { title: '请求方式', key: 'method', align: 'center' },
-    { title: '接口组', key: 'apiGroup', align: 'center' },
+    { title: '职位名称', key: 'name', align: 'center' },
+    { title: '职位编码', key: 'code', align: 'center' },
     { title: '状态', key: 'status', align: 'center' },
     { title: '操作', key: 'todo', align: 'center' },
 ]);
-const addApi = (row: ApiListData | null) => {
-    apiFormRef.value.open(row);
+const addPosition = (row: PositionListData | null) => {
+    positionFormRef.value.open(row);
 };
-const deleteApi = (row: ApiListData) => {
+const deletePosition = (row: PositionListData) => {
     dialog.warning({
         title: '警告',
         content: '确定删除该条数据么？',
         positiveText: '确定',
         negativeText: '取消',
         onPositiveClick: async () => {
-            await window.api.sass.api.v1.api.delete([row.id]);
+            await window.api.sass.api.v1.position.delete([row.id]);
             message.success('删除成功');
-            searchTablePageApiRef.value?.initData();
+            searchTablePageRef.value?.initData();
         },
     });
 };
 
-const apiFormRef = ref();
-const searchTablePageApiRef = ref();
+const positionFormRef = ref();
+const searchTablePageRef = ref();
 </script>
 
 <style scoped></style>

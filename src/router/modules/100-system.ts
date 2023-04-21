@@ -35,6 +35,14 @@ const routes: RouteRecordRaw[] = [
                 component: () => import('@/views/system/user-group/index.vue'),
             },
             {
+                path: 'position',
+                name: 'Position',
+                meta: {
+                    title: '职位管理',
+                },
+                component: () => import('@/views/system/position/index.vue'),
+            },
+            {
                 path: 'menu',
                 name: 'Menu',
                 meta: {

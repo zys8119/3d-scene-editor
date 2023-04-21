@@ -115,7 +115,7 @@ const columnsGroupType = ref([
     { title: '状态', key: 'status', align: 'center' },
     { title: '操作', key: 'todo', align: 'center' },
 ]);
-const addGroupTypeForm = (row: GroupTypeListData) => {
+const addGroupTypeForm = (row: GroupTypeListData | null) => {
     groupTypeFormRef.value.open(row);
 };
 const deleteGroupType = (row: GroupTypeListData) => {
@@ -147,7 +147,7 @@ const columnsGroup = ref([
     { title: '状态', key: 'status', align: 'center' },
     { title: '操作', key: 'todo', align: 'center' },
 ]);
-const addGroupForm = (row: GroupListData) => {
+const addGroupForm = (row: GroupListData | null) => {
     groupFormRef.value.open(row);
 };
 const deleteGroup = (row: GroupListData) => {
