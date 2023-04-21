@@ -6,6 +6,9 @@ import menu from './sass/api/v1/menu';
 import button from './sass/api/v1/button';
 import role from './sass/api/v1/role';
 import authority from './sass/api/v1/authority';
+import apiApi from './sass/api/v1/api';
+import group from './sass/api/v1/group';
+import groupType from './sass/api/v1/group-type';
 import { App } from 'vue';
 
 export const api = {
@@ -20,6 +23,9 @@ export const api = {
                 button,
                 role,
                 authority,
+                api: apiApi,
+                group,
+                groupType,
             },
         },
     },

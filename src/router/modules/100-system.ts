@@ -35,6 +35,14 @@ const routes: RouteRecordRaw[] = [
                 component: () => import('@/views/system/menu/index.vue'),
             },
             {
+                path: 'api',
+                name: 'Api',
+                meta: {
+                    title: '接口管理',
+                },
+                component: () => import('@/views/system/api/index.vue'),
+            },
+            {
                 path: 'role',
                 name: 'Role',
                 meta: {
