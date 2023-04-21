@@ -1,5 +1,5 @@
 export interface TableListParams {
-    page: number;
-    size: number;
-    search: string;
+    page?: number;
+    pageSize?: number;
+    search?: string;
 }

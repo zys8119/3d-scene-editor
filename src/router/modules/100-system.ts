@@ -27,6 +27,14 @@ const routes: RouteRecordRaw[] = [
                 component: () => import('@/views/system/user/index.vue'),
             },
             {
+                path: 'user-group',
+                name: 'UserGroup',
+                meta: {
+                    title: '用户组',
+                },
+                component: () => import('@/views/system/user-group/index.vue'),
+            },
+            {
                 path: 'menu',
                 name: 'Menu',
                 meta: {
