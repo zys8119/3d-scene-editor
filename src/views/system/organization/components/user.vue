@@ -44,7 +44,7 @@ import UserForm from '@/views/system/organization/components/models/user-form.vu
 const dialog = useDialog();
 const message = useMessage();
 
-const props = defineProps<{
+defineProps<{
     oId: string;
 }>();
 
