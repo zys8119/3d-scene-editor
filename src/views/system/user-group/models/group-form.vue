@@ -60,7 +60,7 @@ const emit = defineEmits(['save']);
 const show = ref(false);
 const options = ref<GroupTypeListData[]>([]);
 
-const open = (row: GroupListData | null, id: string) => {
+const open = (row: GroupListData | null) => {
     show.value = true;
     form.value = row
         ? { ...row }

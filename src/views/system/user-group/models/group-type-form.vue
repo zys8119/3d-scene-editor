@@ -49,7 +49,7 @@ const emit = defineEmits(['save']);
 
 const show = ref(false);
 
-const open = (row: GroupTypeListData | null, id: string) => {
+const open = (row: GroupTypeListData | null) => {
     show.value = true;
     form.value = row
         ? { ...row }

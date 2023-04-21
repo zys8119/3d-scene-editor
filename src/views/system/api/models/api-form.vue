@@ -56,7 +56,6 @@
 <script lang="ts" setup>
 import { useMessage } from 'naive-ui';
 import { ApiForm, ApiListData } from '@/api/sass/api/v1/api';
-import { GroupListData } from '@/api/sass/api/v1/group';
 
 const message = useMessage();
 
