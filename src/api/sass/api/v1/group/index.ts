@@ -1,6 +1,14 @@
 import { TableListParams } from '@/api/typing';
 
 export default {
+    users: {
+        get(id: string) {
+            return request({
+                url: `/saas/api/v1/group/users/${id}`,
+                method: 'get',
+            });
+        },
+    },
     create(data: GroupForm) {
         return request({
             url: '/saas/api/v1/group/create',
@@ -27,6 +35,16 @@ export default {
             url: '/saas/api/v1/group/list',
             method: 'get',
             params,
+        });
+    },
+    update_users(groupId: string, userIds: string[]) {
+        return request({
+            url: '/saas/api/v1/group/update_users',
+            method: 'post',
+            params: {
+                groupId,
+                userIds,
+            },
         });
     },
 };

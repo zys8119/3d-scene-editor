@@ -64,6 +64,12 @@
                             <n-space justify="center">
                                 <n-button
                                     size="small"
+                                    @click="bindUsersForm(row)"
+                                    type="primary"
+                                    >绑定用户</n-button
+                                >
+                                <n-button
+                                    size="small"
                                     @click="addGroupForm(row)"
                                     type="success"
                                     >编辑</n-button
@@ -88,6 +94,7 @@
             ref="groupFormRef"
             @save="searchTablePageGroupRef.initData()"
         />
+        <bind-users ref="bindUsersRef" />
     </div>
 </template>
 
@@ -97,6 +104,7 @@ import { GroupTypeListData } from '@/api/sass/api/v1/group-type';
 import { useDialog, useMessage } from 'naive-ui';
 import { GroupListData } from '@/api/sass/api/v1/group';
 import GroupForm from '@/views/system/user-group/models/group-form.vue';
+import BindUsers from '@/views/system/user-group/models/bind-users.vue';
 
 const dialog = useDialog();
 const message = useMessage();
@@ -164,8 +172,14 @@ const deleteGroup = (row: GroupListData) => {
     });
 };
 
+// 绑定用户
+const bindUsersForm = (row: GroupListData) => {
+    bindUsersRef.value?.open(row.id);
+};
+
 const groupTypeFormRef = ref();
 const groupFormRef = ref();
+const bindUsersRef = ref();
 const searchTablePageGroupTypeRef = ref();
 const searchTablePageGroupRef = ref();
 </script>
