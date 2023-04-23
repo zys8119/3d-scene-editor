@@ -68,7 +68,6 @@ declare module '@vue/runtime-core' {
     NTabPane: typeof import('naive-ui')['NTabPane']
     NTabs: typeof import('naive-ui')['NTabs']
     NTag: typeof import('naive-ui')['NTag']
-    NThree: typeof import('naive-ui')['NThree']
     NTransfer: typeof import('naive-ui')['NTransfer']
     NTree: typeof import('naive-ui')['NTree']
     OrganizationTree: typeof import('./src/components/organization-tree.vue')['default']

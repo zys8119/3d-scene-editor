@@ -133,12 +133,16 @@ const login = async () => {
         !userForm.value[currentLoginType.formKey[2]]
     )
         return message.error(`请输入${currentLoginType.tip[2]}`);
-    const res: LoginInfo = await window.api.sass.api.v1.auth.login(
-        userForm.value
-    );
-    await store.setToken(res.data.accessToken);
-    await store.setUserinfo(res.data.user);
-    await router.push('/');
+    try {
+        const res: LoginInfo = await window.api.sass.api.v1.auth.login(
+            userForm.value
+        );
+        await store.setToken(res.data.accessToken);
+        await store.setUserinfo(res.data.user);
+        await router.push('/');
+    } catch (e) {
+        if (e === '系统错误') init();
+    }
 };
 
 // 切换登录模式

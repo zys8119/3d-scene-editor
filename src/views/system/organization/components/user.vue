@@ -10,6 +10,10 @@
             :search-table-space="{
                 size: 20,
             }"
+            :search-props="{
+                addText: '新增用户',
+            }"
+            padding="0px"
             @add="addUser(null)"
         >
             <template #prefix="{ itemCount }"> 共{{ itemCount }}项 </template>

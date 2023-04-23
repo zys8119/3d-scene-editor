@@ -13,6 +13,7 @@
                 v-model:tree="tree"
                 v-model:selected="selected"
                 :load-tree="loadTree"
+                :load-selected="loadTreeSelected"
                 selectable
                 multiple
                 propagation
@@ -47,7 +48,7 @@ const open = (id: string) => {
     selected.value = [];
     rId.value = id;
     show.value = true;
-    init();
+    // init();
 };
 
 const init = async () => {
@@ -74,6 +75,13 @@ const loadTree = async () => {
     };
     recombinationData(data);
     return data;
+};
+
+const loadTreeSelected = async () => {
+    const res = await window.api.sass.api.v1.authority.menu.role(rId.value);
+    const buttons = res.data.buttonIds.map((v) => ({ id: v }));
+    const menus = res.data.menuIds.map((v) => ({ id: v }));
+    return [...buttons, ...menus];
 };
 
 const submit = async () => {
