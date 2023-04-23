@@ -48,14 +48,6 @@ const open = (id: string) => {
     selected.value = [];
     rId.value = id;
     show.value = true;
-    // init();
-};
-
-const init = async () => {
-    const res = await window.api.sass.api.v1.authority.menu.role(rId.value);
-    const buttons = res.data.buttonIds.map((v) => ({ id: v }));
-    const menus = res.data.menuIds.map((v) => ({ id: v }));
-    selected.value = [...buttons, ...menus];
 };
 
 const loadTree = async () => {
