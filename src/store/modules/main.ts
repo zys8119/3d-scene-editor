@@ -3,7 +3,7 @@ import config from '@/config/config';
 import baseConfig from '@/config/base';
 import { LoginUserInfo } from '@/typings';
 
-export default defineStore('main', {
+const useStore = defineStore('main', {
     state: () => {
         return {
             userinfo: {} as Partial<LoginUserInfo>,
@@ -50,3 +50,5 @@ export default defineStore('main', {
         },
     },
 });
+
+export default useStore;

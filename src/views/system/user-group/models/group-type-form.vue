@@ -42,6 +42,9 @@
 <script lang="ts" setup>
 import { useMessage } from 'naive-ui';
 import { GroupTypeForm, GroupTypeListData } from '@/api/sass/api/v1/group-type';
+import useStore from '@/store/modules/main';
+
+const store = useStore();
 
 const message = useMessage();
 
@@ -55,6 +58,7 @@ const open = (row: GroupTypeListData | null) => {
         ? { ...row }
         : {
               status: true,
+              tenantId: store.userinfo.defaultTenantID,
           };
 };
 

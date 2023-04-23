@@ -1,7 +1,7 @@
 <template>
     <div class="user-group">
         <n-card>
-            <n-tabs default-value="groupType" animated>
+            <n-tabs default-value="group" animated>
                 <n-tab-pane name="groupType" tab="组类型">
                     <n-search-table-page
                         ref="searchTablePageGroupTypeRef"

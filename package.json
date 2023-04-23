@@ -52,9 +52,9 @@
         "prettier": "^2.8.4",
         "terser": "^5.14.2",
         "typescript": "~5.0.2",
-        "unplugin-auto-import": "^0.15.2",
+        "unplugin-auto-import": "^0.15.3",
         "unplugin-vue-components": "^0.24.1",
-        "vite": "^4.2.1",
+        "vite": "^4.3.1",
         "vite-plugin-svg-icons": "^2.0.1",
         "vite-plugin-vue-setup-extend-plus": "^0.1.0"
     },
