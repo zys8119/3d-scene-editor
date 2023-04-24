@@ -60,8 +60,6 @@ export const routes: RouteRecordRaw[] = [
         name: 'index',
         path: '/',
         component: () => import('@/components/layout/index.vue'),
-        redirect: '/demo/test1',
-        children: [],
     },
     {
         path: '/redirect',

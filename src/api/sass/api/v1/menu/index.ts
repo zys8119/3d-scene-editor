@@ -37,6 +37,12 @@ export default {
             method: 'get',
         });
     },
+    get_menus_by_user(id: string) {
+        return request({
+            url: `/saas/api/v1/menu/get_menus_by_user/${id}`,
+            method: 'get',
+        });
+    },
 };
 
 export interface MenuForm {
@@ -57,14 +63,17 @@ export interface MenuForm {
 }
 
 export interface MenuListData extends MenuForm {
-    buttons: {
-        code: string;
-        id: string;
-        menuId: string;
-        name: string;
-        sort: number;
-    }[];
+    buttons: Permission[];
+    permissions: Permission[];
     children: MenuListData[];
     id: string;
     parent: MenuListData | undefined;
+}
+
+interface Permission {
+    code: string;
+    id: string;
+    menuId: string;
+    name: string;
+    sort: number;
 }

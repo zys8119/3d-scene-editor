@@ -19,7 +19,8 @@ new tsNodeBuild({
                     .replace(/\(\) => import\(/g, '')
                     .replace(/'\)/g, "'")
                     .replace(/@\/views\//g, '')
-                    .replace(/RouterView/g, "''");
+                    .replace(/RouterView/g, "''")
+                    .replace(/\];/g, '');
                 fileStr += str + `${index === files.length - 1 ? '' : ','}`;
                 index++;
             },
@@ -28,5 +29,8 @@ new tsNodeBuild({
 })
     .compile()
     .then(() => {
-        writeFileSync(resolve('menus.json'), `[${fileStr}]`);
+        writeFileSync(
+            resolve('menus.json'),
+            JSON.stringify(((e) => eval(e))(`[${fileStr}]`), null, 4)
+        );
     });

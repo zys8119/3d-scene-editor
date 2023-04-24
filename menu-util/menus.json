@@ -1,76 +1,115 @@
 [
     {
+        "path": "demo",
+        "name": "Demo",
+        "meta": {
+            "title": "demo",
+            "icon": "menus-menu"
+        },
+        "children": [
+            {
+                "path": "test1",
+                "name": "Test1",
+                "meta": {
+                    "title": "test1",
+                    "permissions": [
+                        {
+                            "code": "add",
+                            "name": "新增"
+                        },
+                        {
+                            "code": "edit",
+                            "name": "编辑"
+                        }
+                    ]
+                },
+                "component": "demo/test1.vue",
+                "children": [
+                    {
+                        "path": "test3",
+                        "name": "Test3",
+                        "meta": {
+                            "title": "test3",
+                            "hidden": true
+                        },
+                        "component": "demo/test3.vue"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "path": "demo2",
+        "name": "Demo2",
+        "meta": {
+            "title": "demo2",
+            "icon": "menus-menu"
+        },
+        "component": "demo/test2.vue"
+    },
+    {
         "path": "system",
         "name": "System",
         "meta": {
             "title": "系统管理",
-            "icon": "SystemIcon8"
+            "icon": "menus-menu"
         },
-        "redirect": "/system/organization",
-        "component": "",
         "children": [
             {
                 "path": "organization",
                 "name": "Organization",
                 "meta": {
-                    "title": "组织架构",
-                    "icon": "SystemIcon1"
+                    "title": "组织架构"
                 },
-                "component": "System/Organization/index.vue"
+                "component": "system/organization/index.vue"
             },
             {
-                "path": "staff",
-                "name": "Staff",
+                "path": "user",
+                "name": "User",
                 "meta": {
-                    "title": "员工信息",
-                    "icon": "SystemIcon2"
+                    "title": "用户管理"
                 },
-                "component": "System/Staff/index.vue"
-            },
-            {
-                "path": "system-user",
-                "name": "SystemUser",
-                "meta": {
-                    "title": "系统用户管理",
-                    "icon": "SystemIcon3"
-                },
-                "component": "System/SystemUser/index.vue"
-            },
-            {
-                "path": "menu",
-                "name": "Menu",
-                "meta": {
-                    "title": "菜单管理",
-                    "icon": "SystemIcon4"
-                },
-                "component": "System/Menu/index.vue"
-            },
-            {
-                "path": "role",
-                "name": "Role",
-                "meta": {
-                    "title": "角色管理",
-                    "icon": "SystemIcon5"
-                },
-                "component": "System/Role/index.vue"
+                "component": "system/user/index.vue"
             },
             {
                 "path": "user-group",
                 "name": "UserGroup",
                 "meta": {
-                    "title": "用户组管理",
-                    "icon": "SystemIcon6"
+                    "title": "用户组管理"
                 },
-                "component": "System/UserGroup/index.vue"
+                "component": "system/user-group/index.vue"
             },
             {
-                "path": "version",
-                "name": "Version",
+                "path": "position",
+                "name": "Position",
                 "meta": {
-                    "title": "版本管理",
-                    "icon": "SystemIcon7"
+                    "title": "职位管理"
                 },
-                "component": "System/Version/index.vue"
+                "component": "system/position/index.vue"
+            },
+            {
+                "path": "menu",
+                "name": "Menu",
+                "meta": {
+                    "title": "菜单管理"
+                },
+                "component": "system/menu/index.vue"
+            },
+            {
+                "path": "api",
+                "name": "Api",
+                "meta": {
+                    "title": "接口管理"
+                },
+                "component": "system/api/index.vue"
+            },
+            {
+                "path": "role",
+                "name": "Role",
+                "meta": {
+                    "title": "角色管理"
+                },
+                "component": "system/role/index.vue"
             }
         ]
     }

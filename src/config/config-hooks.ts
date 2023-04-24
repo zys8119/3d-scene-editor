@@ -6,7 +6,42 @@ import config from './config';
 export const views = import.meta.glob('../views/**/**');
 
 import { createDiscreteApi } from 'naive-ui';
+import { MenuListData } from '@/api/sass/api/v1/menu';
+import { RouteRecordRaw, RouterView } from 'vue-router';
+import { createAsyncComponent } from '@/utils/route';
 const { message } = createDiscreteApi(['message']);
+
+const transToRoutes = (menusMap: MenuListData[]): RouteRecordRaw[] => {
+    return (
+        menusMap?.map((menu) => {
+            const redirect =
+                menu.redirect ||
+                (menu.children?.[0] && !menu.component
+                    ? { name: menu.children[0].name }
+                    : undefined);
+            return {
+                name: menu.name,
+                path: menu.url,
+                component: redirect
+                    ? RouterView
+                    : createAsyncComponent(
+                          menu.name,
+                          views[`../views${menu.component}`]
+                      ),
+                redirect,
+                meta: {
+                    icon: menu.icon ?? null,
+                    title: menu.title || menu.name,
+                    hidden: menu.hidden,
+                    hiddenInTag: menu.hiddenInTab,
+                    fixed: menu.fixed,
+                    permissions: menu.permissions,
+                },
+                children: transToRoutes(menu.children),
+            };
+        }) || []
+    );
+};
 
 export default {
     /**
@@ -16,7 +51,7 @@ export default {
         beforeEach(config) {
             if (!config) return;
             if (!config.headers) config.headers = {};
-            // config.headers['unit'] = 'it is a svgs'
+            // config.headers['unit'] = 'it is test header params'
         },
         afterEach(config) {
             if (!config) return;
@@ -76,8 +111,31 @@ export default {
         /**
          * 过滤路由，流程在 getUserinfo 之后
          */
-        routesFilter(routes) {
-            return routes;
+        async routesFilter(routes) {
+            const store = useStore();
+            if (!config.router.needLogin || !config.router.remote) {
+                return routes;
+            }
+            const data = (
+                await window.api.sass.api.v1.menu.get_menus_by_user(
+                    store.userinfo.id ?? ''
+                )
+            ).data.data;
+            const indexName = data?.[0].name || 'login';
+            if (indexName === 'login')
+                message.error('您没有任何页面的访问权限！');
+            return [
+                {
+                    name: 'Index',
+                    path: '/',
+                    redirect: { name: indexName },
+                    meta: {
+                        hidden: true,
+                        hiddenInTag: true,
+                    },
+                },
+                ...transToRoutes(data),
+            ];
         },
     },
     /**

@@ -16,8 +16,12 @@ const routes: RouteRecordRaw[] = [
                     title: 'test1',
                     permissions: [
                         {
-                            code: 'a',
+                            code: 'add',
                             name: '新增',
+                        },
+                        {
+                            code: 'edit',
+                            name: '编辑',
                         },
                     ],
                 },

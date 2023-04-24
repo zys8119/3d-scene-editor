@@ -66,6 +66,7 @@ import useStore from '@/store/modules/main';
 import { useMessage } from 'naive-ui';
 import { Ref } from 'vue';
 import { LoginUserInfo } from '@/typings';
+import { setRoutes } from '@/router/set-routes';
 
 const message = useMessage();
 const loginType = ref<LoginType[]>([
@@ -139,6 +140,7 @@ const login = async () => {
         );
         await store.setToken(res.data.accessToken);
         await store.setUserinfo(res.data.user);
+        await setRoutes();
         await router.push('/');
     } catch (e) {
         if (e === '系统错误') init();
