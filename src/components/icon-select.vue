@@ -7,7 +7,7 @@
             :class="{ active: selected === item }"
             @click="init(item)"
         >
-            <SvgIcon :name="`menus-${item}`" :size="20" />
+            <SvgIcon :name="item" :size="20" />
         </div>
     </div>
 </template>
@@ -26,8 +26,12 @@ const selected = ref<string>('');
 for (const [key] of Object.entries(icons).filter(
     (v) => v[0].indexOf('fill') < 0
 )) {
-    let moduleName = key.replace(/\.svg/g, '').split('/');
-    iconList.value.push(moduleName[moduleName.length - 1]);
+    let moduleName = key
+        .replace('/src/icons/', '')
+        .replace(/\.svg/g, '')
+        .split('/')
+        .join('-');
+    iconList.value.push(moduleName);
 }
 
 const init = (name?: string) => {

@@ -59,13 +59,15 @@ const form = ref<TenantForm>({});
 const time = ref<[number, number]>();
 
 const open = (row: TenantListData) => {
+    time.value = null;
     form.value = {
         status: true,
     };
     show.value = true;
     if (row && row.id) {
         form.value = { ...row };
-        time.value = [form.value.serviceStartAt, form.value.serviceEndAt];
+        if (form.value.serviceStartAt && form.value.serviceEndAt)
+            time.value = [form.value.serviceStartAt, form.value.serviceEndAt];
     }
 };
 
