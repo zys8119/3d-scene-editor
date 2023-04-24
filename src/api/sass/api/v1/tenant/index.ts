@@ -46,7 +46,6 @@ export default {
 export interface TenantForm {
     isSuper: boolean;
     name: string;
-    secret: string;
     serviceEndAt: number;
     serviceStartAt: number;
     status: boolean;
@@ -56,4 +55,5 @@ export interface TenantListData extends TenantForm {
     uuid: string;
     id: string;
     key: string;
+    secret: string;
 }

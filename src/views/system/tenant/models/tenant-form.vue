@@ -22,13 +22,7 @@
                     clearable
                 />
             </n-form-item>
-            <n-form-item label="密钥">
-                <n-input
-                    v-model:value="form.secret"
-                    placeholder="请输入"
-                ></n-input>
-            </n-form-item>
-            <n-form-item label="是否有效" required>
+            <n-form-item label="是否管理员" required>
                 <n-switch v-model:value="form.isSuper"></n-switch>
             </n-form-item>
             <n-form-item label="是否有效" required>

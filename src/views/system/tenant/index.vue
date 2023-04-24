@@ -2,8 +2,7 @@
     <div class="system-user">
         <n-search-table-page
             ref="searchTablePageRef"
-            page-field="page_num"
-            size-field="page_size"
+            size-field="pageSize"
             :data-table-props="{
                 columns: columns,
             }"
@@ -64,7 +63,7 @@ const columns = ref([
     { title: '姓名', key: 'name', align: 'center' },
     { title: '生效时间', key: 'serviceStartAt', align: 'center' },
     { title: '失效时间', key: 'serviceEndAt', align: 'center' },
-    { title: '是否', key: 'isSuper', align: 'center' },
+    { title: '是否管理员', key: 'isSuper', align: 'center' },
     { title: '是否有效', key: 'status', align: 'center' },
     { title: '操作', key: 'todo', align: 'center' },
 ]);

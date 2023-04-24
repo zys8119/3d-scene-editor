@@ -2,8 +2,7 @@
     <div class="system-user">
         <n-search-table-page
             ref="searchTablePageRef"
-            page-field="page_num"
-            size-field="page_size"
+            size-field="pageSize"
             :data-table-props="{
                 columns: columns,
             }"
