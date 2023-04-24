@@ -1,6 +1,24 @@
 import { TableListParams } from '@/api/typing';
 
 export default {
+    users: {
+        get(id: string) {
+            return request({
+                url: `/saas/api/v1/role/users/${id}`,
+                method: 'get',
+            });
+        },
+        update_users(roleId: string, userIds: string[]) {
+            return request({
+                url: `/saas/api/v1/role/update_users`,
+                method: 'post',
+                data: {
+                    roleId,
+                    userIds,
+                },
+            });
+        },
+    },
     create(data: RoleForm) {
         return request({
             url: '/saas/api/v1/role/create',

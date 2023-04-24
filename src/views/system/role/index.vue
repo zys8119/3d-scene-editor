@@ -19,6 +19,12 @@
                 <n-space justify="center">
                     <n-button
                         size="small"
+                        @click="openBindUsers(row)"
+                        type="primary"
+                        >绑定人员</n-button
+                    >
+                    <n-button
+                        size="small"
                         @click="openMenuAuth(row)"
                         type="primary"
                         >菜单权限</n-button
@@ -41,6 +47,7 @@
                 </n-space>
             </template>
         </n-search-table-page>
+        <bind-users ref="bindUsersRef" />
         <role-form ref="roleFormRef" @save="searchTablePageRef.initData()" />
         <menu-auth ref="menuAuthRef" />
         <api-auth ref="apiAuthRef" />
@@ -53,6 +60,7 @@ import { useDialog, useMessage } from 'naive-ui';
 import RoleForm from '@/views/system/role/models/role-form.vue';
 import MenuAuth from '@/views/system/role/models/menu-auth.vue';
 import ApiAuth from '@/views/system/role/models/api-auth.vue';
+import BindUsers from '@/views/system/role/models/bind-users.vue';
 
 const dialog = useDialog();
 const message = useMessage();
@@ -73,6 +81,11 @@ const columns = ref([
 
 const openForm = (row: RoleListData | null) => {
     roleFormRef.value.open(row);
+};
+
+// 绑定人员
+const openBindUsers = (row: RoleListData) => {
+    bindUsersRef.value.open(row.id);
 };
 
 // 菜单权限
@@ -100,6 +113,7 @@ function handleDelete(node: RoleListData) {
 }
 
 const searchTablePageRef = ref();
+const bindUsersRef = ref();
 const roleFormRef = ref();
 const menuAuthRef = ref();
 const apiAuthRef = ref();
