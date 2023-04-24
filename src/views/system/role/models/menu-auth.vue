@@ -56,13 +56,16 @@ const loadTree = async () => {
     const recombinationData = (list) => {
         for (let i = 0; i < list.length; i++) {
             const row = list[i];
+            let permissions =
+                row.permissions && row.permissions.length > 0
+                    ? row.permissions.map((v) => ({
+                          ...v,
+                          title: v.name,
+                          children: [],
+                      }))
+                    : [];
+            row.children = row.children.concat(permissions);
             if (row.children.length > 0) recombinationData(row.children);
-            else {
-                row.permissions.forEach((v) => {
-                    v.title = v.name;
-                });
-                row.children = row.permissions;
-            }
         }
     };
     recombinationData(data);
