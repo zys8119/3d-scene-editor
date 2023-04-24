@@ -12,6 +12,7 @@ new tsNodeBuild({
             outFileDir: 'dist',
             transform({ code, files }): Promise<string | void> | string | void {
                 const str = code
+                    .replace(/(=>)(\s|\n)*/g, '$1 ')
                     .replace(
                         /(.|\n)+RouteRecordRaw(\[|\]|\s|=)*|\]?(\s|\n)*export(\s|\n)*default(.|\n)*/g,
                         ''
@@ -31,6 +32,10 @@ new tsNodeBuild({
     .then(() => {
         writeFileSync(
             resolve('menus.json'),
-            JSON.stringify(((e) => eval(e))(`[${fileStr}]`), null, 4)
+            JSON.stringify(
+                ((e) => eval(e).filter((v) => v))(`[${fileStr}]`),
+                null,
+                4
+            )
         );
     });
