@@ -19,6 +19,14 @@ const routes: RouteRecordRaw[] = [
                     import('@/views/system/organization/index.vue'),
             },
             {
+                path: 'tenant',
+                name: 'Tenant',
+                meta: {
+                    title: '租户管理',
+                },
+                component: () => import('@/views/system/tenant/index.vue'),
+            },
+            {
                 path: 'user',
                 name: 'User',
                 meta: {
