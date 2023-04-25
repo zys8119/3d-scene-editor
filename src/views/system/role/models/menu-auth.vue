@@ -45,6 +45,7 @@ const selected = ref([]);
 const rId = ref('');
 
 const open = (id: string) => {
+    tree.value = [];
     selected.value = [];
     rId.value = id;
     show.value = true;

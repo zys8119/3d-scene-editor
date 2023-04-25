@@ -34,6 +34,8 @@ const rId = ref('');
 const users = ref<UserListData[]>([]);
 
 const open = (id: string) => {
+    users.value = [];
+    selected.value = [];
     rId.value = id;
     show.value = true;
     init();
