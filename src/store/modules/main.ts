@@ -1,9 +1,4 @@
-import {
-    RouteLocationNormalized,
-    RouteLocationNormalizedLoaded,
-    RouteLocationOptions,
-    RouteRecordRaw,
-} from 'vue-router';
+import { RouteLocationNormalized, RouteRecordRaw } from 'vue-router';
 import config from '@/config/config';
 import baseConfig from '@/config/base';
 import { LoginUserInfo } from '@/typings';
