@@ -142,8 +142,8 @@ const login = async () => {
         await store.setUserinfo(res.data.user);
         await setRoutes();
         await router.push('/');
-    } catch (e) {
-        if (e === '系统错误') init();
+    } catch {
+        init();
     }
 };
 
