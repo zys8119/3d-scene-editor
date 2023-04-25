@@ -10,6 +10,11 @@
                         :search-table-space="{
                             size: 20,
                         }"
+                        :search-props="{
+                            showAdd:
+                                store.permissions.indexOf('addUserGroupType') >
+                                -1,
+                        }"
                         @add="addGroupTypeForm(null)"
                     >
                         <template #prefix="{ itemCount }">
@@ -24,18 +29,22 @@
                         </template>
                         <template #table_todo="{ row }">
                             <n-space justify="center">
-                                <n-button
-                                    size="small"
-                                    @click="addGroupTypeForm(row)"
-                                    type="success"
-                                    >编辑</n-button
-                                >
-                                <n-button
-                                    size="small"
-                                    @click="deleteGroupType(row)"
-                                    type="error"
-                                    >删除</n-button
-                                >
+                                <n-permission has="editUserGroupType">
+                                    <n-button
+                                        size="small"
+                                        @click="addGroupTypeForm(row)"
+                                        type="success"
+                                        >编辑</n-button
+                                    >
+                                </n-permission>
+                                <n-permission has="deleteUserGroupType">
+                                    <n-button
+                                        size="small"
+                                        @click="deleteGroupType(row)"
+                                        type="error"
+                                        >删除</n-button
+                                    >
+                                </n-permission>
                             </n-space>
                         </template>
                     </n-search-table-page>
@@ -47,6 +56,10 @@
                         :data-api="api.sass.api.v1.group.list"
                         :search-table-space="{
                             size: 20,
+                        }"
+                        :search-props="{
+                            showAdd:
+                                store.permissions.indexOf('addUserGroup') > -1,
                         }"
                         @add="addGroupForm(null)"
                     >
@@ -62,24 +75,30 @@
                         </template>
                         <template #table_todo="{ row }">
                             <n-space justify="center">
-                                <n-button
-                                    size="small"
-                                    @click="bindUsersForm(row)"
-                                    type="primary"
-                                    >绑定用户</n-button
-                                >
-                                <n-button
-                                    size="small"
-                                    @click="addGroupForm(row)"
-                                    type="success"
-                                    >编辑</n-button
-                                >
-                                <n-button
-                                    size="small"
-                                    @click="deleteGroup(row)"
-                                    type="error"
-                                    >删除</n-button
-                                >
+                                <n-permission has="bindUser">
+                                    <n-button
+                                        size="small"
+                                        @click="bindUsersForm(row)"
+                                        type="primary"
+                                        >绑定用户</n-button
+                                    >
+                                </n-permission>
+                                <n-permission has="editUserGroup">
+                                    <n-button
+                                        size="small"
+                                        @click="addGroupForm(row)"
+                                        type="success"
+                                        >编辑</n-button
+                                    >
+                                </n-permission>
+                                <n-permission has="deleteUserGroup">
+                                    <n-button
+                                        size="small"
+                                        @click="deleteGroup(row)"
+                                        type="error"
+                                        >删除</n-button
+                                    >
+                                </n-permission>
                             </n-space>
                         </template>
                     </n-search-table-page>
@@ -105,6 +124,9 @@ import { useDialog, useMessage } from 'naive-ui';
 import { GroupListData } from '@/api/sass/api/v1/group';
 import GroupForm from '@/views/system/user-group/models/group-form.vue';
 import BindUsers from '@/views/system/user-group/models/bind-users.vue';
+import useStore from '@/store/modules/main';
+
+const store = useStore();
 
 const dialog = useDialog();
 const message = useMessage();

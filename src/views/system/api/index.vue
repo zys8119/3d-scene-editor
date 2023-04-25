@@ -7,6 +7,10 @@
             :search-table-space="{
                 size: 20,
             }"
+            :search-props="{
+                addText: '新增接口',
+                showAdd: store.permissions.indexOf('addApi') > -1,
+            }"
             @add="addApi(null)"
         >
             <template #prefix="{ itemCount }"> 共{{ itemCount }}项 </template>
@@ -17,12 +21,22 @@
             </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">
-                    <n-button size="small" @click="addApi(row)" type="success"
-                        >编辑</n-button
-                    >
-                    <n-button size="small" @click="deleteApi(row)" type="error"
-                        >删除</n-button
-                    >
+                    <n-permission has="editApi">
+                        <n-button
+                            size="small"
+                            @click="addApi(row)"
+                            type="success"
+                            >编辑</n-button
+                        >
+                    </n-permission>
+                    <n-permission has="deleteApi">
+                        <n-button
+                            size="small"
+                            @click="deleteApi(row)"
+                            type="error"
+                            >删除</n-button
+                        >
+                    </n-permission>
                 </n-space>
             </template>
         </n-search-table-page>
@@ -34,6 +48,9 @@
 import { useDialog, useMessage } from 'naive-ui';
 import { ApiListData } from '@/api/sass/api/v1/api';
 import ApiForm from '@/views/system/api/models/api-form.vue';
+import useStore from '@/store/modules/main';
+
+const store = useStore();
 
 const dialog = useDialog();
 const message = useMessage();

@@ -16,6 +16,8 @@ let firstTimeEnter = true;
 
 router.beforeEach(async (to, from, next) => {
     try {
+        const store = useStore();
+        store.setPermissions(to);
         if (to.meta?.title) document.title = to.meta.title;
         if (firstTimeEnter) {
             configHooks.router.firstTimeEnter();
@@ -26,7 +28,6 @@ router.beforeEach(async (to, from, next) => {
          * 需要登录才需要判断 token 是否存在
          */
         if (config.router.needLogin) {
-            const store = useStore();
             /**
              * Storage 检查是否有 token
              * 有的话说明是第一次访问页面，则调用 getUserInfo 获取用户信息

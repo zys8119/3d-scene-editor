@@ -10,7 +10,7 @@ export default {
     router: {
         history: false,
         /** 是否使用远程路由 */
-        remote: false,
+        remote: true,
         /**
          * 系统是否需要登录
          */

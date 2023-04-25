@@ -42,6 +42,9 @@
 <script lang="ts" setup>
 import { OrganizationListData } from '@/api/sass/api/v1/organization';
 import { TreeOption } from 'naive-ui';
+import useStore from '@/store/modules/main';
+
+const store = useStore();
 
 const props = withDefaults(
     defineProps<{
@@ -61,10 +64,27 @@ const emit = defineEmits<{
 const data = ref<OrganizationListData[]>([]);
 
 const dropdownBtnList = computed(() => (type: string) => [
-    { label: '新增子单位', key: 'subUnit', disabled: type !== 0 },
-    { label: '新增部门', key: 'department', disabled: false },
-    { label: '编辑', key: 'edit', disabled: false },
-    { label: '删除', key: 'delete', disabled: false },
+    {
+        label: '新增子单位',
+        key: 'subUnit',
+        disabled:
+            type !== 0 || store.permissions.indexOf('addSubOrganization') < 0,
+    },
+    {
+        label: '新增部门',
+        key: 'department',
+        disabled: store.permissions.indexOf('addSubOrganization') < 0,
+    },
+    {
+        label: '编辑',
+        key: 'edit',
+        disabled: store.permissions.indexOf('addSubOrganization') < 0,
+    },
+    {
+        label: '删除',
+        key: 'delete',
+        disabled: store.permissions.indexOf('addSubOrganization') < 0,
+    },
 ]);
 
 // 功能按钮

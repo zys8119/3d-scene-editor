@@ -1,4 +1,9 @@
-import { RouteRecordRaw } from 'vue-router';
+import {
+    RouteLocationNormalized,
+    RouteLocationNormalizedLoaded,
+    RouteLocationOptions,
+    RouteRecordRaw,
+} from 'vue-router';
 import config from '@/config/config';
 import baseConfig from '@/config/base';
 import { LoginUserInfo } from '@/typings';
@@ -17,6 +22,7 @@ const useStore = defineStore('main', {
              */
             routes: [] as RouteRecordRaw[],
             flatRoutes: [] as RouteRecordRaw[],
+            permissions: '' as string,
         };
     },
     actions: {
@@ -47,6 +53,17 @@ const useStore = defineStore('main', {
         },
         removeUserInfoAvatar() {
             if (this.userinfo.avatar) this.userinfo.avatar.url = '';
+        },
+        setPermissions(route: RouteLocationNormalized) {
+            const _permissions = route.meta.permissions;
+            if (!_permissions) return;
+            if (typeof _permissions === 'string')
+                this.permissions = _permissions;
+            else if (_permissions?.length > 0) {
+                this.permissions = _permissions
+                    .map((v) => (typeof v === 'string' ? v : v.code))
+                    .join(',');
+            }
         },
     },
 });

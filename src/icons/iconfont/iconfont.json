@@ -6,6 +6,13 @@
     "description": "智加通用图标库--网页端",
     "glyphs": [
         {
+            "icon_id": "34753317",
+            "name": "编组备份 3",
+            "font_class": "a-bianzubeifen3",
+            "unicode": "e6e4",
+            "unicode_decimal": 59108
+        },
+        {
             "icon_id": "34515782",
             "name": "picture",
             "font_class": "picture",

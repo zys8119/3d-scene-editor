@@ -9,6 +9,7 @@
             :dataApi="api.sass.api.v1.user.list"
             :search-props="{
                 addText: '新增用户',
+                showAdd: store.permissions.indexOf('addUser') > -1,
             }"
             @add="add(null)"
         >
@@ -23,12 +24,19 @@
             </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">
-                    <n-button @click="add(row)" size="small" type="success"
-                        >编辑</n-button
-                    >
-                    <n-button @click="deleteRow(row)" size="small" type="error"
-                        >删除</n-button
-                    >
+                    <n-permission has="editUser">
+                        <n-button @click="add(row)" size="small" type="success"
+                            >编辑</n-button
+                        >
+                    </n-permission>
+                    <n-permission has="deleteUser">
+                        <n-button
+                            @click="deleteRow(row)"
+                            size="small"
+                            type="error"
+                            >删除</n-button
+                        >
+                    </n-permission>
                 </n-space>
             </template>
         </n-search-table-page>
@@ -39,6 +47,9 @@
 import { useDialog, useMessage } from 'naive-ui';
 import { UserListData } from '@/api/sass/api/v1/user';
 import UserForm from '@/views/system/user/models/user-form.vue';
+import useStore from '@/store/modules/main';
+
+const store = useStore();
 
 const dialog = useDialog();
 const message = useMessage();

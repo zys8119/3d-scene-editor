@@ -9,6 +9,7 @@
             :dataApi="api.sass.api.v1.tenant.list"
             :search-props="{
                 addText: '新增租户',
+                showAdd: store.permissions.indexOf('addTenant') > -1,
             }"
             @add="add(null)"
         >
@@ -30,12 +31,19 @@
             </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">
-                    <n-button @click="add(row)" size="small" type="success"
-                        >编辑</n-button
-                    >
-                    <n-button @click="deleteRow(row)" size="small" type="error"
-                        >删除</n-button
-                    >
+                    <n-permission has="editTenant">
+                        <n-button @click="add(row)" size="small" type="success"
+                            >编辑</n-button
+                        >
+                    </n-permission>
+                    <n-permission has="deleteTenant">
+                        <n-button
+                            @click="deleteRow(row)"
+                            size="small"
+                            type="error"
+                            >删除</n-button
+                        >
+                    </n-permission>
                 </n-space>
             </template>
         </n-search-table-page>
@@ -46,6 +54,9 @@
 import { useDialog, useMessage } from 'naive-ui';
 import { UserListData } from '@/api/sass/api/v1/user';
 import TenantForm from '@/views/system/tenant/models/tenant-form.vue';
+import useStore from '@/store/modules/main';
+
+const store = useStore();
 
 const dialog = useDialog();
 const message = useMessage();

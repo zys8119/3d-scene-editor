@@ -7,6 +7,10 @@
             :search-table-space="{
                 size: 20,
             }"
+            :search-props="{
+                addText: '新增职位',
+                showAdd: store.permissions.indexOf('addPosition') > -1,
+            }"
             @add="addPosition(null)"
         >
             <template #prefix="{ itemCount }"> 共{{ itemCount }}项 </template>
@@ -17,18 +21,22 @@
             </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">
-                    <n-button
-                        size="small"
-                        @click="addPosition(row)"
-                        type="success"
-                        >编辑</n-button
-                    >
-                    <n-button
-                        size="small"
-                        @click="deletePosition(row)"
-                        type="error"
-                        >删除</n-button
-                    >
+                    <n-permission has="editPosition">
+                        <n-button
+                            size="small"
+                            @click="addPosition(row)"
+                            type="success"
+                            >编辑</n-button
+                        >
+                    </n-permission>
+                    <n-permission has="deletePosition">
+                        <n-button
+                            size="small"
+                            @click="deletePosition(row)"
+                            type="error"
+                            >删除</n-button
+                        >
+                    </n-permission>
                 </n-space>
             </template>
         </n-search-table-page>
@@ -43,6 +51,9 @@
 import { useDialog, useMessage } from 'naive-ui';
 import PositionForm from '@/views/system/position/models/position-form.vue';
 import { PositionListData } from '@/api/sass/api/v1/position';
+import useStore from '@/store/modules/main';
+
+const store = useStore();
 
 const dialog = useDialog();
 const message = useMessage();

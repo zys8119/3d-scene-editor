@@ -4,7 +4,7 @@
             ref="cascadeMenuRef"
             v-model:tree="tree"
             :load-tree="loadTree"
-            :editable="true"
+            :editable="store.permissions.indexOf('addMenu') > -1"
             :config="{
                 addNodeText: '新增菜单',
             }"
@@ -21,14 +21,19 @@
                         {
                             label: '按钮设置',
                             key: 'button',
+                            disabled:
+                                store.permissions.indexOf('buttonSet') < 0,
                         },
                         {
                             label: '编辑',
                             key: 'edit',
+                            disabled: store.permissions.indexOf('editMenu') < 0,
                         },
                         {
                             label: '删除',
                             key: 'delete',
+                            disabled:
+                                store.permissions.indexOf('deleteMenu') < 0,
                         },
                     ]"
                 >
@@ -52,6 +57,9 @@ import { useDialog, useMessage } from 'naive-ui';
 import { MenuListData } from '@/api/sass/api/v1/menu';
 import MenuForm from '@/views/system/menu/models/menu-form.vue';
 import ButtonList from '@/views/system/menu/models/button-list.vue';
+import useStore from '@/store/modules/main';
+
+const store = useStore();
 
 const dialog = useDialog();
 const message = useMessage();

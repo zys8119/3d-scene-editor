@@ -12,6 +12,7 @@
             }"
             :search-props="{
                 addText: '新增用户',
+                showAdd: store.permissions.indexOf('addUser') > -1,
             }"
             padding="0px"
             @add="addUser(null)"
@@ -27,12 +28,22 @@
             </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">
-                    <n-button size="small" @click="addUser(row)" type="success"
-                        >编辑</n-button
-                    >
-                    <n-button size="small" @click="deleteUser(row)" type="error"
-                        >删除</n-button
-                    >
+                    <n-permission has="editUser">
+                        <n-button
+                            size="small"
+                            @click="addUser(row)"
+                            type="success"
+                            >编辑</n-button
+                        >
+                    </n-permission>
+                    <n-permission has="deleteUser">
+                        <n-button
+                            size="small"
+                            @click="deleteUser(row)"
+                            type="error"
+                            >删除</n-button
+                        >
+                    </n-permission>
                 </n-space>
             </template>
         </n-search-table-page>
@@ -44,9 +55,12 @@
 import { useDialog, useMessage } from 'naive-ui';
 import { OrganizationUserListData } from '@/api/sass/api/v1/organization-user-info';
 import UserForm from '@/views/system/organization/components/models/user-form.vue';
+import useStore from '@/store/modules/main';
 
 const dialog = useDialog();
 const message = useMessage();
+
+const store = useStore();
 
 defineProps<{
     oId: string;

@@ -7,6 +7,10 @@
             :search-table-space="{
                 size: 20,
             }"
+            :search-props="{
+                addText: '新增角色',
+                showAdd: store.permissions.indexOf('addRole') > -1,
+            }"
             @add="openForm(null)"
         >
             <template #prefix="{ itemCount }"> 共{{ itemCount }}项 </template>
@@ -17,33 +21,46 @@
             </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">
-                    <n-button
-                        size="small"
-                        @click="openBindUsers(row)"
-                        type="primary"
-                        >绑定人员</n-button
-                    >
-                    <n-button
-                        size="small"
-                        @click="openMenuAuth(row)"
-                        type="primary"
-                        >菜单权限</n-button
-                    >
-                    <n-button
-                        size="small"
-                        @click="openAuthAuth(row)"
-                        type="primary"
-                        >接口权限</n-button
-                    >
-                    <n-button size="small" @click="openForm(row)" type="success"
-                        >编辑</n-button
-                    >
-                    <n-button
-                        size="small"
-                        @click="handleDelete(row)"
-                        type="error"
-                        >删除</n-button
-                    >
+                    <n-permission has="apiAuth">
+                        <n-button
+                            size="small"
+                            @click="openAuthAuth(row)"
+                            type="primary"
+                            >接口权限</n-button
+                        >
+                    </n-permission>
+                    <n-permission has="menuAuth">
+                        <n-button
+                            size="small"
+                            @click="openMenuAuth(row)"
+                            type="primary"
+                            >菜单权限</n-button
+                        >
+                    </n-permission>
+                    <n-permission has="bindUser">
+                        <n-button
+                            size="small"
+                            @click="openBindUsers(row)"
+                            type="primary"
+                            >绑定人员</n-button
+                        >
+                    </n-permission>
+                    <n-permission has="editRole">
+                        <n-button
+                            size="small"
+                            @click="openForm(row)"
+                            type="success"
+                            >编辑</n-button
+                        >
+                    </n-permission>
+                    <n-permission has="deleteRole">
+                        <n-button
+                            size="small"
+                            @click="handleDelete(row)"
+                            type="error"
+                            >删除</n-button
+                        >
+                    </n-permission>
                 </n-space>
             </template>
         </n-search-table-page>
@@ -61,6 +78,9 @@ import RoleForm from '@/views/system/role/models/role-form.vue';
 import MenuAuth from '@/views/system/role/models/menu-auth.vue';
 import ApiAuth from '@/views/system/role/models/api-auth.vue';
 import BindUsers from '@/views/system/role/models/bind-users.vue';
+import useStore from '@/store/modules/main';
+
+const store = useStore();
 
 const dialog = useDialog();
 const message = useMessage();

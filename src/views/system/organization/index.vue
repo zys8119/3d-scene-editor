@@ -32,11 +32,13 @@
                     segmented
                 >
                     <template #header-extra>
-                        <n-button
-                            type="primary"
-                            @click="add(0, nodeTypeName[0])"
-                            >新建{{ nodeTypeName[0] }}</n-button
-                        >
+                        <n-permission has="addOrganization">
+                            <n-button
+                                type="primary"
+                                @click="add(0, nodeTypeName[0])"
+                                >新建{{ nodeTypeName[0] }}</n-button
+                            >
+                        </n-permission>
                     </template>
                     <n-descriptions
                         v-if="currentId"
