@@ -236,13 +236,12 @@ interface LoginInfo {
                 font-size: 10px;
                 font-weight: bold;
                 position: absolute;
-                top: 18px;
+                bottom: 15px;
                 cursor: pointer;
                 right: 10px;
                 &.img {
                     width: 90px;
                     height: 40px;
-                    top: 10px;
                     img {
                         width: 100%;
                         height: 100%;
@@ -255,6 +254,7 @@ interface LoginInfo {
                 border-bottom: 1px solid #989fb6;
                 outline: none;
                 margin-top: 5px;
+                padding: 5px 0 10px;
                 &::-webkit-input-placeholder {
                     color: #989fb6;
                     font-size: 14px;

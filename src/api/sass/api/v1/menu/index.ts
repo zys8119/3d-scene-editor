@@ -26,7 +26,8 @@ export default {
             url: '/saas/api/v1/menu/update',
             method: 'post',
             data: preprocessor(data, {
-                buttons: () => void 0,
+                parent: () => void 0,
+                permissions: () => void 0,
                 children: () => void 0,
             }),
         });
