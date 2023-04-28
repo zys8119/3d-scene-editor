@@ -62,7 +62,7 @@ const message = useMessage();
 
 const store = useStore();
 
-defineProps<{
+const props = defineProps<{
     oId: string;
 }>();
 
@@ -94,7 +94,7 @@ const deleteUser = (row: OrganizationUserListData) => {
         onPositiveClick: async () => {
             await window.api.sass.api.v1.organizationUserInfo.delete(
                 [row.id],
-                oId
+                props.oId
             );
             message.success('删除成功');
             init();
