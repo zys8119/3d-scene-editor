@@ -8,11 +8,11 @@ export default {
             data,
         });
     },
-    delete(ids: string[]) {
+    delete(ids: string[], organizationId: string) {
         return request({
             url: '/saas/api/v1/organization_user/delete',
             method: 'post',
-            data: { ids },
+            data: { ids, organizationId },
         });
     },
     update(data: OrganizationUserListData) {

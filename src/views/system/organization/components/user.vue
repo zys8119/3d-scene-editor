@@ -92,7 +92,10 @@ const deleteUser = (row: OrganizationUserListData) => {
         positiveText: '确定',
         negativeText: '取消',
         onPositiveClick: async () => {
-            await window.api.sass.api.v1.organizationUserInfo.delete([row.id]);
+            await window.api.sass.api.v1.organizationUserInfo.delete(
+                [row.id],
+                oId
+            );
             message.success('删除成功');
             init();
         },
