@@ -21,6 +21,7 @@ const routes: RouteRecordRaw[] = [
                         { name: '编辑组织架构', code: 'editOrganization' },
                         { name: '删除组织架构', code: 'deleteDepartment' },
                         { name: '新增用户', code: 'addUser' },
+                        { name: '绑定用户', code: 'bindUser' },
                         { name: '编辑用户', code: 'editUser' },
                         { name: '删除用户', code: 'deleteUser' },
                     ],
@@ -34,6 +35,11 @@ const routes: RouteRecordRaw[] = [
                 meta: {
                     title: '租户管理',
                     permissions: [
+                        { name: '用户列表', code: 'userList' },
+                        { name: '新增用户', code: 'addUser' },
+                        { name: '编辑用户', code: 'editUser' },
+                        { name: '删除用户', code: 'deleteUser' },
+                        { name: '绑定用户', code: 'bindUser' },
                         { name: '新增租户', code: 'addTenant' },
                         { name: '编辑租户', code: 'editTenant' },
                         { name: '删除租户', code: 'deleteTenant' },

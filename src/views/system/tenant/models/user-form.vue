@@ -72,7 +72,7 @@ const emit = defineEmits<{
 }>();
 
 const props = defineProps<{
-    oId: string;
+    tId: string;
 }>();
 
 const message = useMessage();
@@ -94,7 +94,7 @@ const open = (row: UserListData) => {
 
 const submit = async () => {
     const _data = {
-        organizationId: props.oId,
+        tenantId: props.tId,
         ...form.value,
         avatarId:
             form.value.avatar && form.value.avatar?.length > 0
@@ -103,8 +103,8 @@ const submit = async () => {
     };
     const res =
         form.value && form.value.id
-            ? await api.sass.api.v1.organizationUserInfo.update(_data)
-            : await api.sass.api.v1.organizationUserInfo.create(_data);
+            ? await api.sass.api.v1.tenantUserInfo.update(_data)
+            : await api.sass.api.v1.tenantUserInfo.create(_data);
     res.message && message.success(res.message);
     show.value = false;
     emit('submit');

@@ -41,6 +41,16 @@ export default {
             data,
         });
     },
+    update_users(tenantId: string, userIds: string[]) {
+        return request({
+            url: '/saas/api/v1/tenant/update_users',
+            method: 'post',
+            data: {
+                tenantId,
+                userIds,
+            },
+        });
+    },
 };
 
 export interface TenantForm {

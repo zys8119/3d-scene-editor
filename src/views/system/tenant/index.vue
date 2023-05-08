@@ -31,6 +31,14 @@
             </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">
+                    <n-permission has="userList">
+                        <n-button
+                            @click="usersListRef?.open(row.id)"
+                            size="small"
+                            type="primary"
+                            >用户列表</n-button
+                        >
+                    </n-permission>
                     <n-permission has="editTenant">
                         <n-button @click="add(row)" size="small" type="success"
                             >编辑</n-button
@@ -48,6 +56,7 @@
             </template>
         </n-search-table-page>
         <tenant-form ref="tenantFormRef" @submit="init"></tenant-form>
+        <users-list ref="usersListRef" />
     </div>
 </template>
 <script lang="ts" setup>
@@ -55,6 +64,7 @@ import { useDialog, useMessage } from 'naive-ui';
 import { UserListData } from '@/api/sass/api/v1/user';
 import TenantForm from '@/views/system/tenant/models/tenant-form.vue';
 import useStore from '@/store/modules/main';
+import UsersList from '@/views/system/tenant/models/users-list.vue';
 
 const store = useStore();
 
@@ -102,4 +112,5 @@ const init = async () => {
 
 const searchTablePageRef = ref();
 const tenantFormRef = ref();
+const usersListRef = ref();
 </script>

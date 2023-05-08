@@ -1,14 +1,23 @@
 <template>
-    <div class="user" v-if="oId">
+    <n-modal
+        v-model:show="show"
+        preset="card"
+        title="用户列表"
+        :bordered="false"
+        :style="{ width: '80%' }"
+        segmented
+    >
         <n-search-table-page
+            v-if="tId"
             ref="searchTablePageRef"
             :data-table-props="{ columns: columns }"
-            :data-api="api.sass.api.v1.organizationUserInfo.list"
+            :data-api="api.sass.api.v1.tenantUserInfo.list"
             :params="{
-                organizationId: oId,
+                tenantId: tId,
+                ignoreTenant: true,
             }"
             :search-table-space="{
-                size: 20,
+                size: 10,
             }"
             :search-props="{
                 addText: '新增用户',
@@ -54,26 +63,24 @@
                 </n-space>
             </template>
         </n-search-table-page>
-        <user-form ref="userFormRef" @submit="init" :oId="oId" />
-        <bind-users ref="bindUsersRef" @submit="init" :oId="oId" />
-    </div>
+        <user-form ref="userFormRef" @submit="init" :tId="tId" />
+        <bind-users ref="bindUsersRef" @submit="init" :tId="tId" />
+    </n-modal>
 </template>
 
 <script lang="ts" setup>
 import { useDialog, useMessage } from 'naive-ui';
-import { OrganizationUserListData } from '@/api/sass/api/v1/organization-user-info';
-import UserForm from '@/views/system/organization/components/models/user-form.vue';
+import { TenantUserListData } from '@/api/sass/api/v1/tenant-user-info';
+import UserForm from '@/views/system/tenant/models/user-form.vue';
+import BindUsers from '@/views/system/tenant/models/bind-users.vue';
 import useStore from '@/store/modules/main';
-import BindUsers from '@/views/system/organization/components/models/bind-users.vue';
 
 const dialog = useDialog();
 const message = useMessage();
-
 const store = useStore();
 
-const props = defineProps<{
-    oId: string;
-}>();
+const show = ref(false);
+const tId = ref(null);
 
 // 接口
 const columns = ref([
@@ -91,24 +98,29 @@ const columns = ref([
     { title: '是否有效', key: 'status', align: 'center' },
     { title: '操作', key: 'todo', align: 'center' },
 ]);
-const addUser = (row: OrganizationUserListData | null) => {
+const addUser = (row: TenantUserListData | null) => {
     userFormRef.value.open(row);
 };
-const deleteUser = (row: OrganizationUserListData) => {
+const deleteUser = (row: TenantUserListData) => {
     dialog.warning({
         title: '警告',
         content: '确定删除该条数据么？',
         positiveText: '确定',
         negativeText: '取消',
         onPositiveClick: async () => {
-            await window.api.sass.api.v1.organizationUserInfo.delete(
+            await window.api.sass.api.v1.tenantUserInfo.delete(
                 [row.id],
-                props.oId
+                tId.value
             );
             message.success('删除成功');
             init();
         },
     });
+};
+
+const open = (id: string) => {
+    show.value = true;
+    tId.value = id;
 };
 
 const init = () => {
@@ -119,7 +131,7 @@ const userFormRef = ref();
 const bindUsersRef = ref();
 const searchTablePageRef = ref();
 
-defineExpose({ init });
+defineExpose({ open });
 </script>
 
 <style scoped></style>
