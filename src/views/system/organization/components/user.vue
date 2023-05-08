@@ -27,7 +27,7 @@
                         >绑定用户</n-button
                     >
                 </n-permission>
-                <n-permission has="bindUser">
+                <n-permission has="batchUpdatePassword">
                     <n-button
                         type="warning"
                         @click="updatePasswordRef?.open()"
