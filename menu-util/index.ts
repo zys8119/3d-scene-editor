@@ -19,7 +19,7 @@ new tsNodeBuild({
                     )
                     .replace(/\(\) => import\(/g, '')
                     .replace(/'\)/g, "'")
-                    .replace(/@\/views\//g, '')
+                    .replace(/@\/views/g, '')
                     .replace(/RouterView/g, "''")
                     .replace(/\];/g, '');
                 fileStr += str + `${index === files.length - 1 ? '' : ','}`;

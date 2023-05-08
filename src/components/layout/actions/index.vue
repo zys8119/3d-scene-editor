@@ -10,7 +10,7 @@
             trigger="click"
             @update:value="select"
         >
-            <n-button>{{ selectedLabel }}</n-button>
+            <n-button @click="getUserInfo">{{ selectedLabel }}</n-button>
         </n-popselect>
         <span
             v-if="appConfig.actionBar.isShowRefresh"

@@ -23,7 +23,7 @@
                         }
                     ]
                 },
-                "component": "demo/test1.vue",
+                "component": "/demo/test1.vue",
                 "children": [
                     {
                         "path": "test3",
@@ -32,7 +32,7 @@
                             "title": "test3",
                             "hidden": true
                         },
-                        "component": "demo/test3.vue"
+                        "component": "/demo/test3.vue"
                     }
                 ]
             }
@@ -45,7 +45,7 @@
             "title": "demo2",
             "icon": "menus-menu"
         },
-        "component": "demo/test2.vue"
+        "component": "/demo/test2.vue"
     },
     {
         "path": "system",
@@ -86,16 +86,24 @@
                             "code": "addUser"
                         },
                         {
+                            "name": "绑定用户",
+                            "code": "bindUser"
+                        },
+                        {
                             "name": "编辑用户",
                             "code": "editUser"
                         },
                         {
                             "name": "删除用户",
                             "code": "deleteUser"
+                        },
+                        {
+                            "name": "批量密码修改",
+                            "code": "batchUpdatePassword"
                         }
                     ]
                 },
-                "component": "system/organization/index.vue"
+                "component": "/system/organization/index.vue"
             },
             {
                 "path": "tenant",
@@ -103,6 +111,26 @@
                 "meta": {
                     "title": "租户管理",
                     "permissions": [
+                        {
+                            "name": "用户列表",
+                            "code": "userList"
+                        },
+                        {
+                            "name": "新增用户",
+                            "code": "addUser"
+                        },
+                        {
+                            "name": "编辑用户",
+                            "code": "editUser"
+                        },
+                        {
+                            "name": "删除用户",
+                            "code": "deleteUser"
+                        },
+                        {
+                            "name": "绑定用户",
+                            "code": "bindUser"
+                        },
                         {
                             "name": "新增租户",
                             "code": "addTenant"
@@ -117,7 +145,7 @@
                         }
                     ]
                 },
-                "component": "system/tenant/index.vue"
+                "component": "/system/tenant/index.vue"
             },
             {
                 "path": "user",
@@ -139,7 +167,7 @@
                         }
                     ]
                 },
-                "component": "system/user/index.vue"
+                "component": "/system/user/index.vue"
             },
             {
                 "path": "user-group",
@@ -177,7 +205,7 @@
                         }
                     ]
                 },
-                "component": "system/user-group/index.vue"
+                "component": "/system/user-group/index.vue"
             },
             {
                 "path": "position",
@@ -199,7 +227,7 @@
                         }
                     ]
                 },
-                "component": "system/position/index.vue"
+                "component": "/system/position/index.vue"
             },
             {
                 "path": "menu",
@@ -225,7 +253,7 @@
                         }
                     ]
                 },
-                "component": "system/menu/index.vue"
+                "component": "/system/menu/index.vue"
             },
             {
                 "path": "api",
@@ -247,7 +275,7 @@
                         }
                     ]
                 },
-                "component": "system/api/index.vue"
+                "component": "/system/api/index.vue"
             },
             {
                 "path": "role",
@@ -281,7 +309,7 @@
                         }
                     ]
                 },
-                "component": "system/role/index.vue"
+                "component": "/system/role/index.vue"
             }
         ]
     }

@@ -16,7 +16,6 @@
                 :load-selected="loadTreeSelected"
                 selectable
                 multiple
-                propagation
                 identifier="id"
                 :tree-options="{
                     label: 'title',
@@ -75,12 +74,16 @@ const loadTree = async () => {
 
 const loadTreeSelected = async () => {
     const res = await window.api.sass.api.v1.authority.menu.role(rId.value);
-    const buttons = res.data.buttonIds.map((v) => ({ id: v }));
-    const menus = res.data.menuIds.map((v) => ({ id: v }));
+    const buttons = res.data.buttonIds.map((v) => ({
+        id: v,
+        nodeType: 'button',
+    }));
+    const menus = res.data.menuIds.map((v) => ({ id: v, nodeType: 'menu' }));
     return [...buttons, ...menus];
 };
 
 const submit = async () => {
+    console.log(selected.value);
     const res = await window.api.sass.api.v1.authority.menu.create_or_update({
         buttonIds: selected.value
             .filter((v) => v.nodeType === 'button')

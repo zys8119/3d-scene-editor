@@ -121,9 +121,11 @@ export default {
                     store.userinfo.id ?? ''
                 )
             ).data.data;
-            const indexName = data?.[0].name || 'login';
-            if (indexName === 'login')
+            const indexName = (data.length > 0 && data?.[0].name) || 'login';
+            if (indexName === 'login') {
                 message.error('您没有任何页面的访问权限！');
+                return [];
+            }
             return [
                 {
                     name: 'Index',

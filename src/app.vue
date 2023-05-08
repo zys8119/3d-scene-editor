@@ -37,7 +37,9 @@ const themeOverrides = computed(() => {
         },
         Button: {
             colorPressedPrimary: appConfig.themeColor,
+            textColorPressed: appConfig.themeColor,
             borderPressedPrimary: appConfig.themeColor,
+            borderPressed: `1px solid ${appConfig.themeColor}`,
         },
     };
 });
