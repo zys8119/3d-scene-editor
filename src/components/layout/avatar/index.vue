@@ -23,20 +23,38 @@
                 </span>
             </div>
         </n-dropdown>
+        <update-password
+            ref="updatePasswordRef"
+            :ids="[store.userinfo.id]"
+            @submit="updateSuccess"
+        />
     </div>
 </template>
 
 <script lang="ts" setup>
 import { NIcon, useDialog } from 'naive-ui';
 import { h } from 'vue';
-import { LogInOutline, CaretDownSharp } from '@vicons/ionicons5';
+import {
+    LogInOutline,
+    CaretDownSharp,
+    LockClosedOutline,
+} from '@vicons/ionicons5';
 import { useRouter } from 'vue-router';
 import useStore from '@/store/modules/main';
 import defaultAvatar from '@/assets/images/avatar.png';
+import UpdatePassword from '@/views/system/organization/components/models/update-password.vue';
 
 const store = useStore();
 const router = useRouter();
 const options = [
+    {
+        label: '密码修改',
+        key: 'passwordUpdate',
+        icon: () =>
+            h(NIcon, null, {
+                default: () => h(LockClosedOutline),
+            }),
+    },
     {
         label: '退出登录',
         key: 'logout',
@@ -70,8 +88,17 @@ function handleSelect(key: string) {
         case 'logout':
             logout();
             break;
+        case 'passwordUpdate':
+            updatePasswordRef.value?.open();
+            break;
     }
 }
+
+const updateSuccess = () => {
+    router.replace({ name: 'login' });
+};
+
+const updatePasswordRef = ref();
 </script>
 
 <style lang="less" scoped>

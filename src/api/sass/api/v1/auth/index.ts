@@ -6,6 +6,15 @@ export default {
             data,
         });
     },
+    token_refresh(tenantId: string) {
+        return request({
+            url: '/saas/api/v1/auth/token_refresh',
+            method: 'post',
+            data: {
+                tenantId,
+            },
+        });
+    },
 };
 
 export interface LoginForm {

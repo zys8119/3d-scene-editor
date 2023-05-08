@@ -1,5 +1,17 @@
 <template>
-    <div class="action-items-wrapper">
+    <n-space
+        align="center"
+        :wrap-item="false"
+        class="h-100 action-items-wrapper"
+    >
+        <n-popselect
+            v-model:value="selectedValue"
+            :options="options"
+            trigger="click"
+            @update:value="select"
+        >
+            <n-button>{{ selectedLabel }}</n-button>
+        </n-popselect>
         <span
             v-if="appConfig.actionBar.isShowRefresh"
             class="action-item"
@@ -19,7 +31,7 @@
                 <Expand v-else />
             </n-icon>
         </span>
-    </div>
+    </n-space>
 </template>
 
 <script lang="ts" setup>
@@ -28,12 +40,46 @@ import screenfull from 'screenfull';
 import useAppConfigStore from '@/store/modules/app-config';
 import { RefreshOutline, Expand, Contract } from '@vicons/ionicons5';
 import { useRouter } from 'vue-router';
+import { setRoutes } from '@/router/set-routes';
+import useStore from '@/store/modules/main';
 
+const store = useStore();
 const router = useRouter();
 const route = useRoute();
 const message = useMessage();
 
+const selectedValue = ref();
+const options = ref([]);
+
 const appConfig = useAppConfigStore();
+
+// 获取用户信息
+const getUserInfo = async () => {
+    const res = await window.api.sass.api.v1.user.info();
+    selectedValue.value = res.data.DefaultTenantId ?? null;
+    if (res.data.tenants) {
+        options.value = res.data.tenants.map((v) => ({
+            label: v.name,
+            value: v.id,
+        }));
+    }
+};
+const selectedLabel = computed(() =>
+    selectedValue.value
+        ? options.value.find((v) => v.value === selectedValue.value).label
+        : '默认单位'
+);
+
+// 切换租户
+const select = async () => {
+    const res = await window.api.sass.api.v1.auth.token_refresh(
+        selectedValue.value
+    );
+    await store.setToken(res.data.accessToken);
+    await store.setUserinfo(res.data.user);
+    await setRoutes();
+    await router.push('/');
+};
 
 // 刷新当前页面
 const refreshRoute = () => {
@@ -50,19 +96,18 @@ const screenFull = () => {
     isFullscreen.value = !screenfull.isFullscreen;
     screenfull.toggle();
 };
+
+onMounted(() => {
+    getUserInfo();
+});
 </script>
 
 <style lang="less" scoped>
 .action-items-wrapper {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
     z-index: 1;
-    padding-left: 15px;
+    padding: 0 15px;
 
     .action-item {
-        min-width: 40px;
         display: flex;
         align-items: center;
 

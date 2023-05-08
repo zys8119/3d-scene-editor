@@ -45,6 +45,10 @@ const props = defineProps<{
     ids: string[];
 }>();
 
+const emits = defineEmits<{
+    (e: 'submit');
+}>();
+
 const show = ref(false);
 const form = ref({});
 
@@ -59,6 +63,7 @@ const submit = async () => {
     });
     await message.success(res.msg);
     show.value = false;
+    emits('submit');
 };
 
 defineExpose({ open });
