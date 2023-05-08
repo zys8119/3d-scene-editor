@@ -20,7 +20,7 @@
                 }}</n-tag>
             </template>
             <template #table_avatar="{ row }">
-                <n-avatar size="small" :src="row.avatar" />
+                <n-avatar size="small" :src="row.avatar?.url" />
             </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">

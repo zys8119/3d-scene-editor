@@ -12,6 +12,7 @@ import group from './sass/api/v1/group';
 import groupType from './sass/api/v1/group-type';
 import position from './sass/api/v1/position';
 import tenant from './sass/api/v1/tenant';
+import file from './file/api/v1/file';
 import { App } from 'vue';
 
 export const api = {
@@ -32,6 +33,13 @@ export const api = {
                 organizationUserInfo,
                 position,
                 tenant,
+            },
+        },
+    },
+    file: {
+        api: {
+            v1: {
+                file,
             },
         },
     },

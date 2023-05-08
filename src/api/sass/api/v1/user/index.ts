@@ -38,7 +38,10 @@ export default {
         return request({
             url: '/saas/api/v1/user/update',
             method: 'post',
-            data,
+            data: preprocessor(data, {
+                DefaultTenantId: () => void 0,
+                avatar: () => void 0,
+            }),
         });
     },
 };
