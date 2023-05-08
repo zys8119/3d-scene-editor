@@ -71,7 +71,9 @@ const open = (row: GroupListData | null) => {
 };
 
 const init = async () => {
-    const res = await window.api.sass.api.v1.groupType.list({ pageSize: 1000 });
+    const res = await window.api.sass.api.v1.groupType.list({
+        pageSize: 10000,
+    });
     options.value = res.data.data.map((v) => ({
         ...v,
         disabled: !v.status,

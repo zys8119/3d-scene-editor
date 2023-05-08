@@ -45,7 +45,9 @@
                 <n-pro-upload
                     v-model:value="form.avatar"
                     :max="1"
-                    :api="{}"
+                    :api="{
+                        upload: api.file.api.v1.file.upload,
+                    }"
                     :upload-props="{
                         listType: 'image-card',
                     }"
@@ -94,7 +96,7 @@ const open = (row: UserListData) => {
 const submit = async () => {
     const _data = {
         ...form.value,
-        avatar:
+        avatarId:
             form.value.avatar && form.value.avatar?.length > 0
                 ? form.value.avatar[0].id
                 : null,

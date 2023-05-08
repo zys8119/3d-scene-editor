@@ -2,7 +2,7 @@
     <n-modal
         v-model:show="show"
         preset="card"
-        title="接口权限"
+        title="绑定用户"
         :bordered="false"
         :style="{ width: '60%' }"
         segmented
@@ -10,7 +10,7 @@
         <n-transfer
             v-model:value="selected"
             virtual-scroll
-            :options="apis"
+            :options="users"
             source-filterable
         />
         <template #footer>
@@ -24,41 +24,51 @@
 
 <script lang="ts" setup>
 import { useMessage } from 'naive-ui';
-import { ApiListData } from '@/api/sass/api/v1/api';
+import { UserListData } from '@/api/sass/api/v1/user';
 
 const message = useMessage();
 
+const props = defineProps<{
+    oId: string;
+}>();
+const emit = defineEmits<{
+    (e: 'submit'): void;
+}>();
+
 const show = ref(false);
 const selected = ref<string[]>([]);
-const rId = ref('');
-const apis = ref<ApiListData[]>([]);
+const users = ref<UserListData[]>([]);
 
-const open = (id: string) => {
-    rId.value = id;
+const open = () => {
     show.value = true;
     init();
 };
 
 const init = async () => {
-    const res = await window.api.sass.api.v1.api.list({ pageSize: 10000 });
-    apis.value = res.data.data.map((v) => ({
+    const res = await window.api.sass.api.v1.user.list({ pageSize: 10000 });
+    users.value = res.data.data.map((v) => ({
         ...v,
-        label: v.path,
+        label: v.username,
         value: v.id,
         disabled: !v.status,
     }));
     selected.value = (
-        await window.api.sass.api.v1.authority.api.role(rId.value)
+        await window.api.sass.api.v1.organizationUserInfo.list({
+            organizationId: props.oId,
+            page: 1,
+            pageSize: 10000,
+        })
     ).data.data.map((v) => v.id);
 };
 
 const submit = async () => {
-    const res = await window.api.sass.api.v1.authority.api.create_or_update(
-        apis.value.filter((v) => selected.value.indexOf(v.id) > -1),
-        rId.value
+    const res = await window.api.sass.api.v1.organization.update_users(
+        props.oId,
+        selected.value
     );
     await message.success(res.msg);
     show.value = false;
+    emit('submit');
 };
 
 defineExpose({ open });

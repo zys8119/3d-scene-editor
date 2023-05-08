@@ -2,7 +2,7 @@
     <n-modal
         v-model:show="show"
         preset="card"
-        title="接口权限"
+        title="绑定用户"
         :bordered="false"
         :style="{ width: '60%' }"
         segmented
@@ -40,7 +40,7 @@ const open = (id: string) => {
 };
 
 const init = async () => {
-    const res = await window.api.sass.api.v1.user.list({ pageSize: 1000 });
+    const res = await window.api.sass.api.v1.user.list({ pageSize: 10000 });
     users.value = res.data.data.map((v) => ({
         ...v,
         label: v.username,

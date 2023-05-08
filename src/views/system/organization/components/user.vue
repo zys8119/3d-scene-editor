@@ -17,6 +17,11 @@
             padding="0px"
             @add="addUser(null)"
         >
+            <template #search_handle_after>
+                <n-button type="warning" @click="bindUsersRef?.open()"
+                    >绑定用户</n-button
+                >
+            </template>
             <template #prefix="{ itemCount }"> 共{{ itemCount }}项 </template>
             <template #table_avatar="{ row }">
                 <n-avatar size="small" :src="row.avatar" />
@@ -48,6 +53,7 @@
             </template>
         </n-search-table-page>
         <user-form ref="userFormRef" @submit="init" :oId="oId" />
+        <bind-users ref="bindUsersRef" @submit="init" :oId="oId" />
     </div>
 </template>
 
@@ -56,6 +62,7 @@ import { useDialog, useMessage } from 'naive-ui';
 import { OrganizationUserListData } from '@/api/sass/api/v1/organization-user-info';
 import UserForm from '@/views/system/organization/components/models/user-form.vue';
 import useStore from '@/store/modules/main';
+import BindUsers from '@/views/system/organization/components/models/bind-users.vue';
 
 const dialog = useDialog();
 const message = useMessage();
@@ -107,6 +114,7 @@ const init = () => {
 };
 
 const userFormRef = ref();
+const bindUsersRef = ref();
 const searchTablePageRef = ref();
 
 defineExpose({ init });

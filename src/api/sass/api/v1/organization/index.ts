@@ -40,6 +40,22 @@ export default {
             method: 'get',
         });
     },
+    userList(id: string) {
+        return request({
+            url: `/saas/api/v1/organization/userList/${id}`,
+            method: 'get',
+        });
+    },
+    update_users(organizationId: string, userIds: string[]) {
+        return request({
+            url: `/saas/api/v1/organization/update_users`,
+            method: 'post',
+            data: {
+                organizationId,
+                userIds,
+            },
+        });
+    },
 };
 
 export interface OrganizationForm {
