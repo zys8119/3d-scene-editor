@@ -7,7 +7,7 @@ export default {
             method: 'get',
         });
     },
-    list(params: TableListParams) {
+    list(params: TableListParams & { ignoreTenant?: boolean }) {
         return request({
             url: '/saas/api/v1/user/list',
             method: 'get',
@@ -44,6 +44,13 @@ export default {
             }),
         });
     },
+    update_users_password(data: UserUpdatePassword) {
+        return request({
+            url: '/saas/api/v1/user/update_users_password',
+            method: 'post',
+            data,
+        });
+    },
 };
 
 export interface UserForm {
@@ -59,4 +66,10 @@ export interface UserForm {
 export interface UserListData extends UserForm {
     DefaultTenantId: string;
     id: string;
+}
+
+export interface UserUpdatePassword {
+    newPass: string;
+    operatorPW: string;
+    userIds: string[];
 }

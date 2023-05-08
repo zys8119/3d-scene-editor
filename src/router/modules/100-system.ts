@@ -24,6 +24,7 @@ const routes: RouteRecordRaw[] = [
                         { name: '绑定用户', code: 'bindUser' },
                         { name: '编辑用户', code: 'editUser' },
                         { name: '删除用户', code: 'deleteUser' },
+                        { name: '批量密码修改', code: 'batchUpdatePassword' },
                     ],
                 },
                 component: () =>

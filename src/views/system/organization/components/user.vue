@@ -2,7 +2,11 @@
     <div class="user" v-if="oId">
         <n-search-table-page
             ref="searchTablePageRef"
-            :data-table-props="{ columns: columns }"
+            :data-table-props="{
+                columns: columns,
+                rowKey: (row) => row.id,
+                'onUpdate:checkedRowKeys': handleCheck,
+            }"
             :data-api="api.sass.api.v1.organizationUserInfo.list"
             :params="{
                 organizationId: oId,
@@ -21,6 +25,14 @@
                 <n-permission has="bindUser">
                     <n-button type="warning" @click="bindUsersRef?.open()"
                         >绑定用户</n-button
+                    >
+                </n-permission>
+                <n-permission has="bindUser">
+                    <n-button
+                        type="warning"
+                        @click="updatePasswordRef?.open()"
+                        :disabled="selected.length < 1"
+                        >批量修改密码</n-button
                     >
                 </n-permission>
             </template>
@@ -56,15 +68,17 @@
         </n-search-table-page>
         <user-form ref="userFormRef" @submit="init" :oId="oId" />
         <bind-users ref="bindUsersRef" @submit="init" :oId="oId" />
+        <update-password ref="updatePasswordRef" :ids="selected" />
     </div>
 </template>
 
 <script lang="ts" setup>
-import { useDialog, useMessage } from 'naive-ui';
+import { DataTableRowKey, useDialog, useMessage } from 'naive-ui';
 import { OrganizationUserListData } from '@/api/sass/api/v1/organization-user-info';
 import UserForm from '@/views/system/organization/components/models/user-form.vue';
 import useStore from '@/store/modules/main';
 import BindUsers from '@/views/system/organization/components/models/bind-users.vue';
+import UpdatePassword from '@/views/system/organization/components/models/update-password.vue';
 
 const dialog = useDialog();
 const message = useMessage();
@@ -75,8 +89,13 @@ const props = defineProps<{
     oId: string;
 }>();
 
+const selected = ref([]);
+
 // 接口
 const columns = ref([
+    {
+        type: 'selection',
+    },
     {
         title: '#',
         align: 'center',
@@ -115,9 +134,15 @@ const init = () => {
     nextTick(() => searchTablePageRef.value.initData());
 };
 
+// 勾选数据
+const handleCheck = (row: DataTableRowKey[]) => {
+    selected.value = row;
+};
+
 const userFormRef = ref();
 const bindUsersRef = ref();
 const searchTablePageRef = ref();
+const updatePasswordRef = ref();
 
 defineExpose({ init });
 </script>
