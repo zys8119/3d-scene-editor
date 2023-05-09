@@ -12,6 +12,10 @@
         <div
             class="components-con"
             v-if="list.filter((v) => v.isActive).length > 0"
+            :style="{
+                backgroundColor:
+                    appConfig.theme === 'dark' ? 'rgb(24, 24, 28)' : '#ffffff',
+            }"
         >
             <div class="close">
                 <n-icon @click="changeComponent(null)"><CloseCircle /></n-icon>
@@ -26,6 +30,8 @@
 <script lang="ts" setup>
 import iconfonts from './components/iconfonts.vue';
 import { CloseCircle } from '@vicons/ionicons5';
+import useAppConfigStore from '@/store/modules/app-config';
+const appConfig = useAppConfigStore();
 
 const list = ref([
     {
@@ -84,7 +90,6 @@ const changeComponent = (k: number | null) => {
         height: 100vh;
         top: 0;
         left: 0;
-        background: #ffffff;
         display: flex;
         flex-flow: column;
         .close {
@@ -95,7 +100,7 @@ const changeComponent = (k: number | null) => {
                 cursor: pointer;
                 color: #cccccc;
                 &:hover {
-                    color: #000000;
+                    color: #cccccc99;
                 }
             }
         }
