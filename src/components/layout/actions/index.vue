@@ -9,6 +9,7 @@
             :options="options"
             trigger="click"
             @update:value="select"
+            v-if="baseConfig.hasUnitChange"
         >
             <n-button @click="getUserInfo">{{ selectedLabel }}</n-button>
         </n-popselect>
@@ -42,6 +43,7 @@ import { RefreshOutline, Expand, Contract } from '@vicons/ionicons5';
 import { useRouter } from 'vue-router';
 import { setRoutes } from '@/router/set-routes';
 import useStore from '@/store/modules/main';
+import baseConfig from '@/config/base';
 
 const store = useStore();
 const router = useRouter();
@@ -98,7 +100,9 @@ const screenFull = () => {
 };
 
 onMounted(() => {
-    getUserInfo();
+    if (baseConfig.hasUnitChange) {
+        getUserInfo();
+    }
 });
 </script>
 

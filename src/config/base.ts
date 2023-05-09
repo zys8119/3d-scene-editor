@@ -23,4 +23,8 @@ export default {
      * 暂时默认关闭因为有时候会因为同名相互覆盖
      */
     filenameHash: false,
+    /**
+     * 右上角是否需要单位切换
+     */
+    hasUnitChange: false,
 } as BaseConfig;

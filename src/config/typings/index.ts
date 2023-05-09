@@ -13,6 +13,7 @@ export interface BaseConfig {
     lang: string;
     unique?: string;
     filehash?: boolean;
+    hasUnitChange?: boolean;
     [x: string]: any;
 }
 
