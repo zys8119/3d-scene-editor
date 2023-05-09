@@ -104,6 +104,7 @@ const rightArrowClick = () => {
 const isDisabledArrow = () => {
     setTimeout(() => {
         const scrollbar = scrollbarRef.value as InstanceType<typeof NScrollbar>;
+        if (!scrollbar) return;
         const { scrollLeft, scrollWidth, clientWidth } = scrollbar
             .scrollbarInstRef?.containerRef as HTMLElement;
         leftArrowDisabled.value = scrollLeft === 0;
