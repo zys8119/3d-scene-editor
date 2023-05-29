@@ -29,7 +29,7 @@ export default {
          */
         keepAlive: false,
         /**
-         * 左侧菜单是否需要 icon 图标以及页面响应式
+         * 菜单是否需要 icon 图标以及页面响应式
          */
         needSideMenuIcon: true,
     },
