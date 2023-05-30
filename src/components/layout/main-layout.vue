@@ -29,7 +29,10 @@
                 config.tabbarViews.disabled ? 'no-tab-bar' : '',
             ]"
         >
-            <section class="main-section">
+            <section
+                class="main-section"
+                :class="{ 'main-section-no-footer': !config.showFooter }"
+            >
                 <Main />
             </section>
             <section v-if="config.showFooter" class="footer-wrapper">
@@ -153,9 +156,13 @@ onMounted(() => {
     }
 
     .main-section {
+        height: 100%;
         min-height: calc(100% - var(--footer-height) - 10px);
         overflow-x: hidden;
         position: relative;
+        &.main-section-no-footer {
+            min-height: 100%;
+        }
     }
 
     .fixed-nav-bar {
