@@ -6611,7 +6611,7 @@ word-wrap@^1.2.3:
 
 "wp-utils@git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-utils.git#develop":
   version "1.0.1"
-  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-utils.git#bfd444721e2957687640241f3c035783f0dd55ab"
+  resolved "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-utils.git#fb1cf4aeb021da8fa51af78af5b8872512d53ffc"
   dependencies:
     lodash "^4.17.21"
     typescript "^4.9.5"

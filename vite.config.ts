@@ -15,7 +15,6 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus';
 import preprocessorPreset from 'wp-preprocessor/dist/preset';
 import requestPreset from 'wp-request/dist/preset';
 import md5 from 'md5';
-import Utils from 'wp-utils/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -70,26 +69,35 @@ export default defineConfig({
              */
             modernPolyfills: ['es.global-this', 'es.array.flat'],
         }),
-        Utils.initZhezhengding({
-            enable: true,
-            bid: 'asdf',
-            signkey: 'asf',
-            sapp_id: 'asf',
-            sapp_name: 'asf',
-        }),
-        // (() => {
-        //     return {
-        //         transformIndexHtml(html){
-        //             return html.replace(/(<\/head>)/, '<script src="xxxxxxx"></script>$1')
+        // {
+        //     enforce:'post',
+        //     transformIndexHtml(html){
+        //         return html.replace(/(<\/head>)/, '<script src="xxxxxxx"></script>$1')
+        //     },
+        //     transform(code, id){
+        //         if(/createBaseBurialPoint/.test(code) && !/node_modules/.test(id) && /\.(vue|tsx|ts|js)/.test(id)){
+        //             const newCode = code.replace(/(createBaseBurialPoint\()([^\)]*)(\))/g, function (m,$1,$2,$3){
+        //                 try {
+        //                     const data = Object.assign((new Function(`return ${$2}`)()) || {}, {
+        //                         b:"asdasd"
+        //                     })
+        //                     return `${$1}${JSON.stringify(data)}${$3}`
+        //                 }catch (e){
+        //                     return m
+        //                 }
+        //             })
+        //             return  newCode
         //         }
+        //         return code
         //     }
-        // })()
+        // }
     ],
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src'),
         },
     },
+
     build: {
         target: 'es2015',
         chunkSizeWarningLimit: 5000,

@@ -10,10 +10,6 @@
     </n-space>
 </template>
 
-<script lang="ts" setup>
-import utils from 'wp-utils';
-
-utils.utils.a();
-</script>
+<script lang="ts" setup></script>
 
 <style scoped></style>
