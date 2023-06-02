@@ -117,6 +117,7 @@
     "toReactive": true,
     "toRef": true,
     "toRefs": true,
+    "toValue": true,
     "transParams": true,
     "triggerRef": true,
     "tryOnBeforeMount": true,

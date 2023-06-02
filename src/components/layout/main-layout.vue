@@ -156,7 +156,6 @@ onMounted(() => {
     }
 
     .main-section {
-        height: 100%;
         min-height: calc(100% - var(--footer-height) - 10px);
         overflow-x: hidden;
         position: relative;

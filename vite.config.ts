@@ -15,6 +15,7 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus';
 import preprocessorPreset from 'wp-preprocessor/dist/preset';
 import requestPreset from 'wp-request/dist/preset';
 import md5 from 'md5';
+import Utils from 'wp-utils/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -69,6 +70,20 @@ export default defineConfig({
              */
             modernPolyfills: ['es.global-this', 'es.array.flat'],
         }),
+        Utils.initZhezhengding({
+            enable: true,
+            bid: 'asdf',
+            signkey: 'asf',
+            sapp_id: 'asf',
+            sapp_name: 'asf',
+        }),
+        // (() => {
+        //     return {
+        //         transformIndexHtml(html){
+        //             return html.replace(/(<\/head>)/, '<script src="xxxxxxx"></script>$1')
+        //         }
+        //     }
+        // })()
     ],
     resolve: {
         alias: {

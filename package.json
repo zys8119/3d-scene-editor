@@ -19,7 +19,6 @@
         "md5": "^2.3.0",
         "naive-ui": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git",
         "pinia": "^2.0.4",
-        "rd-utils": "git+https://gitlab.zhijiasoft.com/zhangyunshan/zhijia_utils.git",
         "resize-observer": "^1.0.4",
         "screenfull": "^6.0.2",
         "vite-plugin-fz": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz.git",
@@ -28,7 +27,7 @@
         "vue-router": "^4.0.12",
         "wp-preprocessor": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-preprocessor.git",
         "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git",
-        "wp-utils": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-utils.git"
+        "wp-utils": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-utils.git#develop"
     },
     "devDependencies": {
         "@commitlint/cli": "^17.4.4",
