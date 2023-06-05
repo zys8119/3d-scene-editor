@@ -10,6 +10,9 @@
     </n-space>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+window.$message.warning('this is test message');
+setTimeout(() => window.$apis.test.index.xxx(), 1000);
+</script>
 
 <style scoped></style>

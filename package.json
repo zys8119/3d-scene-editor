@@ -55,7 +55,8 @@
         "unplugin-vue-components": "^0.24.1",
         "vite": "^4.3.1",
         "vite-plugin-svg-icons": "^2.0.1",
-        "vite-plugin-vue-setup-extend-plus": "^0.1.0"
+        "vite-plugin-vue-setup-extend-plus": "^0.1.0",
+        "vitejs-plugin-api-auto-import": "^0.0.21"
     },
     "license": "MIT"
 }

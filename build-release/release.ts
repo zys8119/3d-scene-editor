@@ -140,7 +140,7 @@ const ncol = require('ncol');
         const releasesVm = new Releases({
             token,
             host: 'https://gitlab.zhijiasoft.com',
-            baseURL: '/api/v4',
+            baseURL: '/apis/v4',
             projectName: ProjectName,
         });
         try {

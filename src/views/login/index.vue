@@ -116,7 +116,7 @@ const countDown = ref(0) as Ref<number>;
 const handleCountDown = async () => {
     if (countDown.value === 0) {
         if (!userForm.value.mobile) return message.error('请输入正确的手机号');
-        // await window.api.v1.auth.sendSmsCode(userForm.value.mobile);
+        // await window.apis.v1.auth.sendSmsCode(userForm.value.mobile);
         message.success('验证码已发送');
         countDown.value = 60000;
     }

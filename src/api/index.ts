@@ -14,7 +14,11 @@ import position from './sass/api/v1/position';
 import tenant from './sass/api/v1/tenant';
 import tenantUserInfo from './sass/api/v1/tenant-user-info';
 import file from './file/api/v1/file';
+import apis from '@/api/apis/index';
+
 import { App } from 'vue';
+import { createDiscreteApi } from 'naive-ui';
+const { message } = createDiscreteApi(['message']);
 
 export const api = {
     sass: {
@@ -50,6 +54,8 @@ export const api = {
 declare global {
     interface Window {
         api: typeof api;
+        $apis: typeof apis;
+        $message: typeof message;
     }
 }
 
@@ -59,12 +65,18 @@ import '@vue/runtime-core';
 declare module '@vue/runtime-core' {
     export interface ComponentCustomProperties {
         api: typeof api;
+        $apis: typeof apis;
+        $message: typeof message;
     }
 }
 
 export default {
     install(app: App<Element>) {
         app.config.globalProperties.api = api;
+        app.config.globalProperties.$apis = apis;
+        app.config.globalProperties.$message = message;
         window.api = api;
+        window.$apis = apis;
+        window.$message = message;
     },
 };

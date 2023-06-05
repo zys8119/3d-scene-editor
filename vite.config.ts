@@ -15,6 +15,7 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus';
 import preprocessorPreset from 'wp-preprocessor/dist/preset';
 import requestPreset from 'wp-request/dist/preset';
 import md5 from 'md5';
+import AutoApi from 'vitejs-plugin-api-auto-import';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -68,6 +69,10 @@ export default defineConfig({
              * global-this is vaild from chrome 70
              */
             modernPolyfills: ['es.global-this', 'es.array.flat'],
+        }),
+        AutoApi({
+            resolveAliasName: '@/apis/apis',
+            dir: 'src/apis/apis',
         }),
     ],
     resolve: {
