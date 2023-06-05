@@ -32,6 +32,10 @@
 <script lang="ts" setup>
 import { NSpace, NButton } from 'naive-ui';
 import { onMounted } from 'vue';
+
+window.$message.warning('this is test message');
+setTimeout(() => window.$apis.test.index.xxx(), 1000);
+
 const columns = ref([
     {
         title: '#',
