@@ -69,28 +69,6 @@ export default defineConfig({
              */
             modernPolyfills: ['es.global-this', 'es.array.flat'],
         }),
-        // {
-        //     enforce:'post',
-        //     transformIndexHtml(html){
-        //         return html.replace(/(<\/head>)/, '<script src="xxxxxxx"></script>$1')
-        //     },
-        //     transform(code, id){
-        //         if(/createBaseBurialPoint/.test(code) && !/node_modules/.test(id) && /\.(vue|tsx|ts|js)/.test(id)){
-        //             const newCode = code.replace(/(createBaseBurialPoint\()([^\)]*)(\))/g, function (m,$1,$2,$3){
-        //                 try {
-        //                     const data = Object.assign((new Function(`return ${$2}`)()) || {}, {
-        //                         b:"asdasd"
-        //                     })
-        //                     return `${$1}${JSON.stringify(data)}${$3}`
-        //                 }catch (e){
-        //                     return m
-        //                 }
-        //             })
-        //             return  newCode
-        //         }
-        //         return code
-        //     }
-        // }
     ],
     resolve: {
         alias: {
