@@ -71,8 +71,8 @@ export default defineConfig({
             modernPolyfills: ['es.global-this', 'es.array.flat'],
         }),
         AutoApi({
-            resolveAliasName: '@/apis/apis',
-            dir: 'src/apis/apis',
+            resolveAliasName: '@/api/apis',
+            dir: 'src/api/apis',
         }),
     ],
     resolve: {
