@@ -23,6 +23,7 @@ declare module '@vue/runtime-core' {
     Loading: typeof import('./src/components/common/loading.vue')['default']
     Logo: typeof import('./src/components/layout/logo/index.vue')['default']
     Main: typeof import('./src/components/layout/main.vue')['default']
+    MainH5: typeof import('./src/components/layout/main-h5.vue')['default']
     MainLayout: typeof import('./src/components/layout/main-layout.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     Navbar: typeof import('./src/components/layout/navbar/index.vue')['default']
@@ -81,5 +82,7 @@ declare module '@vue/runtime-core' {
     Tabbar: typeof import('./src/components/layout/tabbar/index.vue')['default']
     TabSplitSideBar: typeof import('./src/components/layout/side-bar/tab-split-side-bar.vue')['default']
     Tools: typeof import('./src/components/common/tools/index.vue')['default']
+    VanConfigProvider: typeof import('vant/es')['ConfigProvider']
+    VanNavBar: typeof import('vant/es')['NavBar']
   }
 }

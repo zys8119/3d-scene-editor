@@ -43,4 +43,11 @@ export default {
      * 是否显示页脚
      */
     showFooter: true,
+    /**
+     * H5的配置项
+     */
+    h5Config: {
+        showTopNav: true,
+        showBottomNav: true,
+    },
 } as Config;

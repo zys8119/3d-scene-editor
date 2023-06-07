@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
+import {
+    NaiveUiResolver,
+    VantResolver,
+} from 'unplugin-vue-components/resolvers';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 import { htmlTransform } from './src/utils/vite/html-transform';
 import { rem, remPreset } from 'vite-plugin-fz';
@@ -14,8 +16,10 @@ import legacy from '@vitejs/plugin-legacy';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus';
 import preprocessorPreset from 'wp-preprocessor/dist/preset';
 import requestPreset from 'wp-request/dist/preset';
-import md5 from 'md5';
 import AutoApi from 'vitejs-plugin-api-auto-import';
+
+const path = require('path');
+const md5 = require('md5');
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -58,7 +62,7 @@ export default defineConfig({
             resolvers: [],
         }),
         Components({
-            resolvers: [NaiveUiResolver()],
+            resolvers: [NaiveUiResolver(), VantResolver()],
         }),
         htmlTransform(),
         rem(),

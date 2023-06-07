@@ -27,4 +27,8 @@ export default {
      * 右上角是否需要单位切换
      */
     hasUnitChange: false,
+    /**
+     * 是否是H5模式
+     */
+    isH5: true,
 } as BaseConfig;

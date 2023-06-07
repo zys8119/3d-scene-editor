@@ -1,5 +1,6 @@
 <template>
-    <n-loading-bar-provider>
+    <main-h5 v-if="base.isH5" />
+    <n-loading-bar-provider v-else>
         <n-dialog-provider>
             <n-el
                 class="vaw-layout-container"
@@ -54,12 +55,14 @@
 </template>
 
 <script lang="ts" setup>
+import mainH5 from '@/components/layout/main-h5.vue';
 import SideBar from '@/components/layout/side-bar/side-bar.vue';
 import TabSplitSideBar from '@/components/layout/side-bar/tab-split-side-bar.vue';
 import MainLayout from '@/components/layout/main-layout.vue';
 import useAppConfigStore from '@/store/modules/app-config';
 import { DeviceType } from '@/typings';
 import config from '@/config/config';
+import base from '@/config/base';
 
 const routeElse = useRoute();
 const appConfig = useAppConfigStore();

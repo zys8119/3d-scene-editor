@@ -1,5 +1,8 @@
 <template>
-    <n-notification-provider>
+    <van-config-provider v-if="config.isH5" theme="light">
+        <router-view />
+    </van-config-provider>
+    <n-notification-provider v-else>
         <n-message-provider>
             <n-config-provider
                 :theme-overrides="themeOverrides"
@@ -15,6 +18,7 @@
     </n-notification-provider>
 </template>
 <script lang="ts" setup>
+import config from '@/config/base';
 import { LocaleName, ThemeMode } from '@/typings';
 import { darkTheme, zhCN, dateZhCN, enUS, dateEnUS } from 'naive-ui';
 import useAppConfigStore from '@/store/modules/app-config';

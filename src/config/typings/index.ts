@@ -14,6 +14,7 @@ export interface BaseConfig {
     unique?: string;
     filehash?: boolean;
     hasUnitChange?: boolean;
+    isH5?: boolean;
     [x: string]: any;
 }
 
@@ -33,6 +34,10 @@ export interface Config {
         max?: number;
     };
     showFooter: boolean;
+    h5Config: {
+        showTopNav: boolean;
+        showBottomNav: boolean;
+    };
 }
 
 import type { RouteRecordRaw, RouteLocationNormalized } from 'vue-router';
