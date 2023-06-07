@@ -32,6 +32,18 @@
                             <template v-else> 获取验证码 </template>
                         </div>
                     </div>
+                    <div class="list fixed" v-if="key === 0">
+                        <p v-text="item.tip[2]" />
+                        <input
+                            v-model="userForm[item.formKey[2]]"
+                            type="text"
+                            :placeholder="`请输入${item.tip[2]}`"
+                            @keydown.enter="login"
+                        />
+                        <div class="code img" @click="init">
+                            <img :src="imgCode" alt="" />
+                        </div>
+                    </div>
                 </template>
             </template>
             <div class="btn" @click="login">登录</div>
@@ -52,13 +64,16 @@
 <script setup lang="ts">
 import useStore from '@/store/modules/main';
 import { useMessage } from 'naive-ui';
+import { Ref } from 'vue';
+import { LoginUserInfo } from '@/typings';
+import { setRoutes } from '@/router/set-routes';
 
 const message = useMessage();
 const loginType = ref<LoginType[]>([
     {
         name: '账号密码登录',
-        tip: ['账号', '密码'],
-        formKey: ['username', 'password'],
+        tip: ['账号', '密码', '验证码'],
+        formKey: ['username', 'password', 'captcha'],
         type: 1,
         isActive: true,
     },
@@ -77,6 +92,7 @@ const loginType = ref<LoginType[]>([
         isActive: false,
     },
 ]);
+const imgCode = ref('');
 
 const store = useStore();
 const router = useRouter();
@@ -85,20 +101,22 @@ const router = useRouter();
  * 清空 token
  */
 store.setToken();
-store.setUserinfo();
+store.setUserinfo(null);
 
 const userForm = ref<UserForm>({
     username: import.meta.env.DEV ? 'admin' : '',
-    password: import.meta.env.DEV ? '123456' : '',
+    password: import.meta.env.DEV ? 'saas-admin' : '',
     mobile: '',
     code: '',
+    captcha: '',
+    captchaId: '',
 });
 
-const countDown = ref(0);
+const countDown = ref(0) as Ref<number>;
 const handleCountDown = async () => {
     if (countDown.value === 0) {
         if (!userForm.value.mobile) return message.error('请输入正确的手机号');
-        await window.api.v1.auth.sendSmsCode(userForm.value.mobile);
+        // await window.apis.v1.auth.sendSmsCode(userForm.value.mobile);
         message.success('验证码已发送');
         countDown.value = 60000;
     }
@@ -111,18 +129,22 @@ const login = async () => {
         return message.error(`请输入${currentLoginType.tip[0]}`);
     if (!userForm.value[currentLoginType.formKey[1]])
         return message.error(`请输入${currentLoginType.tip[1]}`);
-    const res = await window.api.v1.auth.manager.login({
-        login_type: currentLoginType.type,
-        ...userForm.value,
-    });
-    await store.setToken(res.data.token_type + ' ' + res.data.access_token);
-    const userMe = await window.api.v1.auth.user.me();
-    store.setUserinfo({
-        ...userMe.data,
-        ...res.data.user,
-        access_token: res.data.access_token,
-    });
-    router.push('/');
+    if (
+        loginType.value[0].isActive &&
+        !userForm.value[currentLoginType.formKey[2]]
+    )
+        return message.error(`请输入${currentLoginType.tip[2]}`);
+    try {
+        const res: LoginInfo = await window.api.sass.api.v1.auth.login(
+            userForm.value
+        );
+        await store.setToken(res.data.accessToken);
+        await store.setUserinfo(res.data.user);
+        await setRoutes();
+        await router.push('/');
+    } catch {
+        init();
+    }
 };
 
 // 切换登录模式
@@ -131,6 +153,15 @@ const changeLoginType = (k: number) => {
         v.isActive = key === k;
     });
 };
+
+// 初始化
+const init = async () => {
+    const res = await window.api.sass.api.v1.captcha();
+    userForm.value.captchaId = res.data.captchaId;
+    imgCode.value = res.data.imgPath;
+};
+
+onMounted(init);
 
 interface LoginType {
     name: string;
@@ -145,6 +176,15 @@ interface UserForm {
     mobile: string;
     password: string;
     code: string;
+    captcha: string;
+    captchaId: string;
+}
+
+interface LoginInfo {
+    data: {
+        accessToken: string;
+        user: LoginUserInfo;
+    };
 }
 </script>
 
@@ -196,9 +236,17 @@ interface UserForm {
                 font-size: 10px;
                 font-weight: bold;
                 position: absolute;
-                top: 18px;
+                bottom: 15px;
                 cursor: pointer;
                 right: 10px;
+                &.img {
+                    width: 90px;
+                    height: 40px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
             }
             input {
                 flex: 1;
@@ -206,6 +254,7 @@ interface UserForm {
                 border-bottom: 1px solid #989fb6;
                 outline: none;
                 margin-top: 5px;
+                padding: 5px 0 10px;
                 &::-webkit-input-placeholder {
                     color: #989fb6;
                     font-size: 14px;

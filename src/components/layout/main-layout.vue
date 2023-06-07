@@ -22,8 +22,17 @@
             <NavBar v-if="showNavBar" />
             <TabBar v-if="!config.tabbarViews.disabled" />
         </section>
-        <div class="main-base-style scrollbar" :class="[mainClass]">
-            <section class="main-section">
+        <div
+            class="main-base-style scrollbar"
+            :class="[
+                mainClass,
+                config.tabbarViews.disabled ? 'no-tab-bar' : '',
+            ]"
+        >
+            <section
+                class="main-section"
+                :class="{ 'main-section-no-footer': !config.showFooter }"
+            >
                 <Main />
             </section>
             <section v-if="config.showFooter" class="footer-wrapper">
@@ -133,6 +142,9 @@ onMounted(() => {
         height: 100%;
         box-sizing: border-box;
         padding: 10px;
+        &.no-tab-bar {
+            height: calc(100% - var(--logo-height));
+        }
     }
 
     .main-base-light-theme {
@@ -147,6 +159,9 @@ onMounted(() => {
         min-height: calc(100% - var(--footer-height) - 10px);
         overflow-x: hidden;
         position: relative;
+        &.main-section-no-footer {
+            min-height: 100%;
+        }
     }
 
     .fixed-nav-bar {

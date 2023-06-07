@@ -28,7 +28,6 @@ import { SideTheme, ThemeMode } from '@/typings';
 import useSideRoutesStore from '@/store/modules/side-routes';
 
 const sideRoutesStore = useSideRoutesStore();
-
 withDefaults(
     defineProps<{
         showLogo?: boolean;

@@ -21,9 +21,19 @@ export type PageMap = Record<string, string | number | boolean>;
 /**
  * 登录用户信息
  */
-export interface UserInfo {
-    avatar?: string;
-    username?: string;
+export interface LoginUserInfo {
+    avatar: {
+        url: string;
+    };
+    createdAt: number;
+    email: string;
+    id: string;
+    mobile: string;
+    nickname: string;
+    status: number;
+    defaultTenantID: string;
+    updatedAt: number;
+    username: string;
 }
 
 // 脚手架主题类型
@@ -42,6 +52,7 @@ export interface AppConfigState {
         isShowRefresh: boolean;
         isShowFullScreen: boolean;
     };
+    localeName: LocaleName;
 }
 export enum LayoutMode {
     LTR = 'ltr',
@@ -68,4 +79,8 @@ export enum PageAnim {
     OPACITY = 'opacity',
     DOWN = 'down',
     SCALE = 'scale',
+}
+export enum LocaleName {
+    zhCN = 'zh-CN',
+    enUS = 'en-US',
 }

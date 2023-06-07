@@ -35,16 +35,17 @@ export default defineStore('side-routes', {
                                 ? this.routesMapper(route.children)
                                 : undefined,
                         info: route,
-                        icon: config.router.needSideMenuIcon
-                            ? () =>
-                                  h(NIcon, null, {
-                                      default: () =>
-                                          h(SvgIcon, {
-                                              prefix: 'icon',
-                                              name: route?.meta?.icon,
-                                          }),
-                                  })
-                            : null,
+                        icon:
+                            config.router.needSideMenuIcon && route?.meta?.icon
+                                ? () =>
+                                      h(NIcon, null, {
+                                          default: () =>
+                                              h(SvgIcon, {
+                                                  prefix: 'icon',
+                                                  name: route?.meta?.icon,
+                                              }),
+                                      })
+                                : null,
                     } as any;
                 });
         },

@@ -6,9 +6,6 @@
                 :value="activeMenu"
                 :options="routes"
                 :collapsed="appConfig.isCollapse"
-                :collapsed-icon-size="22"
-                :collapsed-width="63"
-                :indent="15"
                 @update:value="onMenuClick"
             />
         </n-scrollbar>

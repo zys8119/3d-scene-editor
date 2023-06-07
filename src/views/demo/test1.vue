@@ -1,13 +1,13 @@
 <template>
-    <div>
-        <SvgIcon name="svgs-qita-fill" :size="20" />
-        <n-permission :has="['a', 'b']">
-            <n-button>添加</n-button>
+    <n-space>
+        <SvgIcon name="svgs-qita" :size="20" />
+        <n-permission has="add">
+            <n-button type="primary">新增</n-button>
         </n-permission>
-        <n-permission>
-            <n-button>添加</n-button>
+        <n-permission has="edit">
+            <n-button type="success">编辑</n-button>
         </n-permission>
-    </div>
+    </n-space>
 </template>
 
 <script lang="ts" setup></script>

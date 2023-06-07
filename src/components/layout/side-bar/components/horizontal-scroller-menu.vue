@@ -17,6 +17,7 @@ import useStore from '@/store/modules/main';
 import { NIcon } from 'naive-ui';
 import SvgIcon from '@/components/layout/svg-icon/index.vue';
 import { SystemRouteRow } from '@/typings';
+import config from '@/config/config';
 
 const router = useRouter();
 const route = useRoute();
@@ -27,14 +28,17 @@ const menuOptions = store.routes.map((route) => ({
     key: route.name,
     label: route.meta?.title || route.name,
     info: route,
-    icon: () =>
-        h(NIcon, null, {
-            default: () =>
-                h(SvgIcon, {
-                    prefix: 'icon',
-                    name: route?.meta?.icon,
-                }),
-        }),
+    icon:
+        config.router.needSideMenuIcon && route?.meta?.icon
+            ? () =>
+                  h(NIcon, null, {
+                      default: () =>
+                          h(SvgIcon, {
+                              prefix: 'icon',
+                              name: route?.meta?.icon,
+                          }),
+                  })
+            : null,
 }));
 const onMenuClick = (key: string, row: SystemRouteRow) => {
     router.push({ name: row.info.name });

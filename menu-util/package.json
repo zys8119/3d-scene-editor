@@ -9,6 +9,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "ts-node": "^10.9.1",
         "ts-node-build": "^0.1.2"
     }
 }

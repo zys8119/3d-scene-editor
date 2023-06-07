@@ -19,7 +19,6 @@
         "md5": "^2.3.0",
         "naive-ui": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git",
         "pinia": "^2.0.4",
-        "rd-utils": "git+https://gitlab.zhijiasoft.com/zhangyunshan/zhijia_utils.git",
         "resize-observer": "^1.0.4",
         "screenfull": "^6.0.2",
         "vite-plugin-fz": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz.git",
@@ -30,7 +29,7 @@
         "vue-router": "^4.0.12",
         "wp-preprocessor": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-preprocessor.git",
         "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git",
-        "wp-utils": "https://gitlab.zhijiasoft.com/vue3-base-framework/wp-utils.git"
+        "wp-utils": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-utils.git"
     },
     "devDependencies": {
         "@commitlint/cli": "^17.4.4",
@@ -54,11 +53,12 @@
         "prettier": "^2.8.4",
         "terser": "^5.14.2",
         "typescript": "~5.0.2",
-        "unplugin-auto-import": "^0.15.1",
+        "unplugin-auto-import": "^0.15.3",
         "unplugin-vue-components": "^0.24.1",
-        "vite": "^4.2.0",
+        "vite": "^4.3.1",
         "vite-plugin-svg-icons": "^2.0.1",
-        "vite-plugin-vue-setup-extend-plus": "^0.1.0"
+        "vite-plugin-vue-setup-extend-plus": "^0.1.0",
+        "vitejs-plugin-api-auto-import": "^0.0.21"
     },
     "license": "MIT"
 }

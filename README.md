@@ -5,7 +5,7 @@
 
 ## 项目工具可视化页面
 
--   http://localhost:8888/#/common-tools 【端口需要根据实际项目中运行的端口保持一致】
+-   http://localhost:5173/#/common-tools 【端口需要根据实际项目中运行的端口保持一致】
 
 ## 项目评审明确清单
 

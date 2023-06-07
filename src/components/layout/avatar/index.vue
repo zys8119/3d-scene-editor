@@ -11,31 +11,50 @@
                     <n-avatar
                         circle
                         size="small"
-                        :src="userStore.userinfo?.avatar?.url || defaultAvatar"
+                        :src="store.userinfo.avatar?.url || defaultAvatar"
+                        @error="avatarError"
                     />
                 </div>
                 <span class="nick-name">
-                    {{ userStore.userinfo.username || '管理员' }}
+                    {{ store.userinfo.username || '管理员' }}
                     <n-icon class="tip">
                         <CaretDownSharp />
                     </n-icon>
                 </span>
             </div>
         </n-dropdown>
+        <update-password
+            ref="updatePasswordRef"
+            :ids="[store.userinfo.id]"
+            @submit="updateSuccess"
+        />
     </div>
 </template>
 
 <script lang="ts" setup>
 import { NIcon, useDialog } from 'naive-ui';
 import { h } from 'vue';
-import { LogInOutline, CaretDownSharp } from '@vicons/ionicons5';
+import {
+    LogInOutline,
+    CaretDownSharp,
+    LockClosedOutline,
+} from '@vicons/ionicons5';
 import { useRouter } from 'vue-router';
 import useStore from '@/store/modules/main';
 import defaultAvatar from '@/assets/images/avatar.png';
+import UpdatePassword from '@/views/system/organization/components/models/update-password.vue';
 
-const userStore = useStore();
+const store = useStore();
 const router = useRouter();
 const options = [
+    {
+        label: '密码修改',
+        key: 'passwordUpdate',
+        icon: () =>
+            h(NIcon, null, {
+                default: () => h(LockClosedOutline),
+            }),
+    },
     {
         label: '退出登录',
         key: 'logout',
@@ -47,6 +66,10 @@ const options = [
 ];
 
 const dialog = useDialog();
+
+const avatarError = () => {
+    store.removeUserInfoAvatar();
+};
 
 function logout() {
     dialog.warning({
@@ -65,8 +88,17 @@ function handleSelect(key: string) {
         case 'logout':
             logout();
             break;
+        case 'passwordUpdate':
+            updatePasswordRef.value?.open();
+            break;
     }
 }
+
+const updateSuccess = () => {
+    router.replace({ name: 'login' });
+};
+
+const updatePasswordRef = ref();
 </script>
 
 <style lang="less" scoped>

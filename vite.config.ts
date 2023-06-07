@@ -15,7 +15,6 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus';
 import preprocessorPreset from 'wp-preprocessor/dist/preset';
 import requestPreset from 'wp-request/dist/preset';
 import md5 from 'md5';
-import AutoRoute from 'vitejs-plugin-vue-route-auto-import';
 import AutoApi from 'vitejs-plugin-api-auto-import';
 
 // https://vitejs.dev/config/
@@ -71,17 +70,9 @@ export default defineConfig({
              */
             modernPolyfills: ['es.global-this', 'es.array.flat'],
         }),
-        AutoRoute({
-            route: 'auto-route',
-            views: 'src/views/auto-views',
-        }),
         AutoApi({
-            outFile: '../../auto-api.ts',
-            dir: 'src/api',
-            resolveAliasName: '@/api',
-            exclude: /\/src\/api\/(typing)\.ts$/,
-            allExport: true,
-            import: false,
+            resolveAliasName: '@/api/apis',
+            dir: 'src/api/apis',
         }),
     ],
     resolve: {
@@ -89,6 +80,7 @@ export default defineConfig({
             '@': path.resolve(__dirname, 'src'),
         },
     },
+
     build: {
         target: 'es2015',
         chunkSizeWarningLimit: 5000,
@@ -126,7 +118,6 @@ export default defineConfig({
     },
     server: {
         host: '0.0.0.0',
-        port: 8888,
         hmr: {
             overlay: false,
         },

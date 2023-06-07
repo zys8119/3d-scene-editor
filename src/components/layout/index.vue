@@ -1,46 +1,53 @@
 <template>
     <n-loading-bar-provider>
         <n-dialog-provider>
-            <router-view
-                v-if="routeElse.meta.isFullPage"
-                v-slot="{ Component, route }"
-            >
-                <transition
-                    :name="appConfig.pageAnim + '-transform'"
-                    mode="out-in"
-                    appear
-                >
-                    <keep-alive v-if="config.router.keepAlive">
-                        <component :is="Component" :key="route.fullPath" />
-                    </keep-alive>
-                    <component :is="Component" v-else :key="route.fullPath" />
-                </transition>
-            </router-view>
             <n-el
-                v-else
                 class="vaw-layout-container"
                 :class="[appConfig.deviceType === 'mobile' && 'is-mobile']"
             >
-                <template v-if="layoutMode === 'ttb'">
-                    <SideBar />
-                    <MainLayout />
-                </template>
-                <template v-else-if="layoutMode === 'lcr'">
-                    <TabSplitSideBar />
-                    <MainLayout />
-                </template>
+                <router-view
+                    v-if="routeElse.meta.isFullPage"
+                    v-slot="{ Component, route }"
+                >
+                    <transition
+                        :name="appConfig.pageAnim + '-transform'"
+                        mode="out-in"
+                        appear
+                    >
+                        <keep-alive v-if="config.router.keepAlive">
+                            <component :is="Component" :key="route.fullPath" />
+                        </keep-alive>
+                        <component
+                            :is="Component"
+                            v-else
+                            :key="route.fullPath"
+                        />
+                    </transition>
+                </router-view>
                 <template v-else>
-                    <SideBar />
-                    <MainLayout />
+                    <template v-if="layoutMode === 'ttb'">
+                        <SideBar />
+                        <MainLayout />
+                    </template>
+                    <template v-else-if="layoutMode === 'lcr'">
+                        <TabSplitSideBar />
+                        <MainLayout />
+                    </template>
+                    <template v-else>
+                        <SideBar />
+                        <MainLayout />
+                    </template>
+                    <div
+                        v-if="appConfig.deviceType !== 'mobile'"
+                        class="mobile-shadow"
+                        :class="[
+                            appConfig.isCollapse
+                                ? 'close-shadow'
+                                : 'show-shadow',
+                        ]"
+                        @click="closeMenu"
+                    />
                 </template>
-                <div
-                    v-if="appConfig.deviceType !== 'mobile'"
-                    class="mobile-shadow"
-                    :class="[
-                        appConfig.isCollapse ? 'close-shadow' : 'show-shadow',
-                    ]"
-                    @click="closeMenu"
-                />
             </n-el>
         </n-dialog-provider>
     </n-loading-bar-provider>

@@ -12,14 +12,16 @@ new tsNodeBuild({
             outFileDir: 'dist',
             transform({ code, files }): Promise<string | void> | string | void {
                 const str = code
+                    .replace(/(=>)(\s|\n)*/g, '$1 ')
                     .replace(
                         /(.|\n)+RouteRecordRaw(\[|\]|\s|=)*|\]?(\s|\n)*export(\s|\n)*default(.|\n)*/g,
                         ''
                     )
                     .replace(/\(\) => import\(/g, '')
                     .replace(/'\)/g, "'")
-                    .replace(/@\/views\//g, '')
-                    .replace(/RouterView/g, "''");
+                    .replace(/@\/views/g, '')
+                    .replace(/RouterView/g, "''")
+                    .replace(/\];/g, '');
                 fileStr += str + `${index === files.length - 1 ? '' : ','}`;
                 index++;
             },
@@ -28,5 +30,12 @@ new tsNodeBuild({
 })
     .compile()
     .then(() => {
-        writeFileSync(resolve('menus.json'), `[${fileStr}]`);
+        writeFileSync(
+            resolve('menus.json'),
+            JSON.stringify(
+                ((e) => eval(e).filter((v) => v))(`[${fileStr}]`),
+                null,
+                4
+            )
+        );
     });

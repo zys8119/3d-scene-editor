@@ -1,15 +1,12 @@
-import { RouteRecordRaw } from 'vue-router';
+import { RouteLocationNormalized, RouteRecordRaw } from 'vue-router';
 import config from '@/config/config';
 import baseConfig from '@/config/base';
-import { UserInfo } from '@/typings';
+import { LoginUserInfo } from '@/typings';
 
-export default defineStore('main', {
+const useStore = defineStore('main', {
     state: () => {
         return {
-            userinfo: {
-                avatar: '',
-                username: '',
-            } as UserInfo,
+            userinfo: {} as Partial<LoginUserInfo>,
             /**
              * 请求相关
              */
@@ -20,6 +17,7 @@ export default defineStore('main', {
              */
             routes: [] as RouteRecordRaw[],
             flatRoutes: [] as RouteRecordRaw[],
+            permissions: '' as string,
         };
     },
     actions: {
@@ -33,7 +31,7 @@ export default defineStore('main', {
                 resolve();
             });
         },
-        setUserinfo(userinfo?: Record<any, string>) {
+        setUserinfo(userinfo: LoginUserInfo | null) {
             const storage = config.router.session
                 ? sessionStorage
                 : localStorage;
@@ -48,5 +46,21 @@ export default defineStore('main', {
                 );
             }
         },
+        removeUserInfoAvatar() {
+            if (this.userinfo.avatar) this.userinfo.avatar.url = '';
+        },
+        setPermissions(route: RouteLocationNormalized) {
+            const _permissions = route.meta.permissions;
+            if (!_permissions) return;
+            if (typeof _permissions === 'string')
+                this.permissions = _permissions;
+            else if (_permissions?.length > 0) {
+                this.permissions = _permissions
+                    .map((v) => (typeof v === 'string' ? v : v.code))
+                    .join(',');
+            }
+        },
     },
 });
+
+export default useStore;

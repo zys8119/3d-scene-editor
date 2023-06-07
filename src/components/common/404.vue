@@ -5,7 +5,7 @@
         description="这里空空如也"
     >
         <template #footer>
-            <n-button @click="refresh">刷新</n-button>
+            <n-button @click="goHome">返回首页</n-button>
         </template>
     </n-result>
 </template>
@@ -15,7 +15,7 @@ defineProps<{
     error?: string;
 }>();
 
-const refresh = () => location.reload();
+const goHome = () => location.replace('/');
 </script>
 
 <style lang="less" scoped>
