@@ -1,5 +1,5 @@
 <template>
-    <van-config-provider v-if="config.isH5" theme="light">
+    <van-config-provider v-if="config.isH5" theme="light" class="h-100%">
         <router-view />
     </van-config-provider>
     <n-notification-provider v-else>

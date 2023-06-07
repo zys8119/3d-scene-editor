@@ -7,6 +7,11 @@
 
 -   http://localhost:5173/#/common-tools 【端口需要根据实际项目中运行的端口保持一致】
 
+## unocss 查询
+
+-   文档： https://unocss.dev/
+-   查询：https://unocss.dev/interactive/
+
 ## 项目评审明确清单
 
 | 明确功能项                             | 备注 |
