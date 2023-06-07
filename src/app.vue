@@ -6,7 +6,7 @@
                 :theme="theme"
                 :locale="localeName"
                 :date-locale="localeDateName"
-                class="h-100"
+                class="h-100%"
             >
                 <n-global-style />
                 <router-view />

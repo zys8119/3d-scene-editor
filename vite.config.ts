@@ -16,11 +16,13 @@ import preprocessorPreset from 'wp-preprocessor/dist/preset';
 import requestPreset from 'wp-request/dist/preset';
 import md5 from 'md5';
 import AutoApi from 'vitejs-plugin-api-auto-import';
+import UnoCSS from 'unocss/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
     base: baseConfig.base,
     plugins: [
+        UnoCSS(),
         vue(),
         createSvgIconsPlugin({
             iconDirs: [path.resolve(process.cwd(), 'src/icons')],

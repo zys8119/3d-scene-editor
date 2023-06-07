@@ -25,6 +25,7 @@ app.use(router);
 import stores from '@/store';
 app.use(stores);
 
+import 'virtual:uno.css';
 import '@/assets/less/index.less';
 
 import './global';

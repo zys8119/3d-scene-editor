@@ -14,3 +14,4 @@ build
 coverage
 /auto-api.ts
 /auto-route.ts
+/pnpm-lock.yaml

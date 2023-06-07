@@ -16,7 +16,7 @@
             </n-form-item>
             <n-form-item label="有效时间" required>
                 <n-date-picker
-                    class="w-100"
+                    class="w-100%"
                     v-model:value="time"
                     type="datetimerange"
                     clearable

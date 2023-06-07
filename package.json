@@ -53,6 +53,7 @@
         "prettier": "^2.8.4",
         "terser": "^5.14.2",
         "typescript": "~5.0.2",
+        "unocss": "^0.53.1",
         "unplugin-auto-import": "^0.15.3",
         "unplugin-vue-components": "^0.24.1",
         "vite": "^4.3.1",
