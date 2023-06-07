@@ -27,6 +27,7 @@
                     [`color-${setting.themeColor}`]:
                         route.fullPath.indexOf(item.info.path) > -1,
                 }"
+                @click="router.push({ name: item.key })"
             >
                 <svg-icon
                     class="m-t-5px"
@@ -49,6 +50,7 @@ const appConfig = useAppConfigStore();
 const sideRoutesStore = useSideRoutesStore();
 
 const route = useRoute();
+const router = useRouter();
 
 console.log(sideRoutesStore.getSideBarRoutes());
 </script>
