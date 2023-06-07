@@ -2,7 +2,7 @@
     <n-space
         align="center"
         :wrap-item="false"
-        class="h-100 action-items-wrapper"
+        class="h-100% action-items-wrapper"
     >
         <n-popselect
             v-model:value="selectedValue"

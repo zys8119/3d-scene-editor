@@ -12,3 +12,6 @@ package-lock.json
 .env
 build
 coverage
+/auto-api.ts
+/auto-route.ts
+/pnpm-lock.yaml

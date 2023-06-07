@@ -15,13 +15,13 @@
     >
         <template #prefix="{ rawNode }">
             <SvgIcon
-                class="m-r-5"
+                class="mr-5px"
                 v-if="rawNode.nodeType === 0"
                 name="svgs-wuye"
                 color="#7facf5"
             />
             <SvgIcon
-                class="m-r-5"
+                class="mr-5px"
                 v-if="rawNode.nodeType === 1"
                 name="svgs-zuzhi"
                 color="#e8a5a5"

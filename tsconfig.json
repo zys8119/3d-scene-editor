@@ -17,7 +17,8 @@
         "skipLibCheck": true,
         "types": [
             "vite/client",
-            "unplugin-auto-import-element-plus-preset/type"
+            "unplugin-auto-import-element-plus-preset/type",
+            "vitejs-plugin-vue-route-auto-import/type"
         ],
         "allowSyntheticDefaultImports": true,
         "noEmit": true
@@ -28,6 +29,7 @@
         "src/**/*.tsx",
         "src/**/*.vue",
         "auto-imports.d.ts",
-        "components.d.ts"
+        "components.d.ts",
+        "auto-api.ts"
     ]
 }

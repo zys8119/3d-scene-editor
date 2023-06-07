@@ -17,6 +17,7 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus';
 import preprocessorPreset from 'wp-preprocessor/dist/preset';
 import requestPreset from 'wp-request/dist/preset';
 import AutoApi from 'vitejs-plugin-api-auto-import';
+import UnoCSS from 'unocss/vite';
 
 const path = require('path');
 const md5 = require('md5');
@@ -25,6 +26,7 @@ const md5 = require('md5');
 export default defineConfig({
     base: baseConfig.base,
     plugins: [
+        UnoCSS(),
         vue(),
         createSvgIconsPlugin({
             iconDirs: [path.resolve(process.cwd(), 'src/icons')],
