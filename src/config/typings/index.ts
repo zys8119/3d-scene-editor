@@ -37,7 +37,7 @@ export interface Config {
     h5Config: {
         showTopNav: boolean; // 是否显示头部导航
         showBottomNav: boolean; // 是否显示底部导航
-        openPullRefresh: boolean; // 是否开启页面下拉刷新
+        openPullRefresh: boolean; // 是否开启所有页面的下拉刷新功能
     };
 }
 

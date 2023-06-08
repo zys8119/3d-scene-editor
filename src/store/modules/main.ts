@@ -20,6 +20,11 @@ const useStore = defineStore('main', {
             permissions: '' as string,
         };
     },
+    getters: {
+        loading(state) {
+            return state.requests.size > 0;
+        },
+    },
     actions: {
         setToken(token = '') {
             const storage = config.router.session

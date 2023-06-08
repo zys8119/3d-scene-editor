@@ -6,6 +6,7 @@ export default {
         successCode: [0, 200],
         useStore: () => window.store.main,
         trim: true,
+        timeout: 20000,
     },
     router: {
         history: false,
