@@ -1,6 +1,9 @@
 <template>
     <div class="main-h5 h-100% flex flex-col">
-        <van-nav-bar title="标题" v-if="config.h5Config.showTopNav" />
+        <van-nav-bar
+            :title="route.meta.title"
+            v-if="config.h5Config.showTopNav"
+        />
         <div class="main-container flex-1">
             <router-view v-slot="{ Component, route }">
                 <transition
@@ -21,20 +24,16 @@
         >
             <div
                 class="flex-1 flex flex-col flex-items-center flex-justify-center"
-                v-for="(item, key) in sideRoutesStore.getSideBarRoutes()"
+                v-for="(item, key) in store.routes"
                 :key="key"
                 :class="{
                     [`color-${setting.themeColor}`]:
-                        route.fullPath.indexOf(item.info.path) > -1,
+                        route.fullPath.indexOf(item.path) > -1,
                 }"
-                @click="router.push({ name: item.key })"
+                @click="router.push({ name: item.name })"
             >
-                <svg-icon
-                    class="m-t-5px"
-                    :name="item.info.meta.icon"
-                    :size="16"
-                />
-                <span v-text="item.label"></span>
+                <svg-icon class="m-t-5px" :name="item.meta.icon" :size="16" />
+                <span v-text="item.meta.title"></span>
             </div>
         </div>
     </div>
@@ -43,16 +42,16 @@
 <script setup lang="ts">
 import config from '@/config/config';
 import useAppConfigStore from '@/store/modules/app-config';
-import useSideRoutesStore from '@/store/modules/side-routes';
 import setting from '@/config/setting';
+import useStore from '@/store/modules/main';
 
 const appConfig = useAppConfigStore();
-const sideRoutesStore = useSideRoutesStore();
+const store = useStore();
 
 const route = useRoute();
 const router = useRouter();
 
-console.log(sideRoutesStore.getSideBarRoutes());
+console.log(store.routes);
 </script>
 
 <style scoped></style>
