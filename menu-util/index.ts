@@ -18,7 +18,7 @@ new tsNodeBuild({
                         ''
                     )
                     .replace(/\(\) => import\(/g, '')
-                    .replace(/'\)/g, "'")
+                    .replace(/('\))|('(\s|\n)*?\))/g, "'")
                     .replace(/@\/views/g, '')
                     .replace(/RouterView/g, "''")
                     .replace(/\];/g, '');

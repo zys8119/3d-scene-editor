@@ -5,6 +5,7 @@
         aria-hidden="true"
         :style="{
             color: color,
+            fill: color,
             fontSize: `${size}${typeof size === 'number' ? 'px' : ''}`,
         }"
     >

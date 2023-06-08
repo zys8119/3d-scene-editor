@@ -8,6 +8,7 @@ const routes: RouteRecordRaw[] = [
             title: 'demo',
             icon: 'menus-menu',
         },
+        redirect: '/demo/test1',
         children: [
             {
                 path: 'test1',

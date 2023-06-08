@@ -3,8 +3,11 @@
         <van-nav-bar
             :title="route.meta.title"
             v-if="config.h5Config.showTopNav"
+            :left-text="isShowLeftBack ? '返回' : ''"
+            :left-arrow="isShowLeftBack"
+            @click-left="goBack"
         />
-        <div class="main-container flex-1">
+        <div class="p-5px flex-1 overflow-auto">
             <router-view v-slot="{ Component, route }">
                 <transition
                     :name="appConfig.pageAnim + '-transform'"
@@ -27,8 +30,7 @@
                 v-for="(item, key) in store.routes"
                 :key="key"
                 :class="{
-                    [`color-${setting.themeColor}`]:
-                        route.fullPath.indexOf(item.path) > -1,
+                    active: route.fullPath.indexOf(item.path) > -1,
                 }"
                 @click="router.push({ name: item.name })"
             >
@@ -51,7 +53,18 @@ const store = useStore();
 const route = useRoute();
 const router = useRouter();
 
-console.log(store.routes);
+const isShowLeftBack = computed(() => route.meta.hidden);
+
+const goBack = () => {
+    router.back();
+};
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.active {
+    color: v-bind('setting.themeColor');
+    .svg-icon {
+        fill: v-bind('setting.themeColor');
+    }
+}
+</style>

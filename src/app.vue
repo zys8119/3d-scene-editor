@@ -1,8 +1,5 @@
 <template>
-    <van-config-provider v-if="config.isH5" theme="light" class="h-100%">
-        <router-view />
-    </van-config-provider>
-    <n-notification-provider v-else>
+    <n-notification-provider>
         <n-message-provider>
             <n-config-provider
                 :theme-overrides="themeOverrides"
@@ -12,7 +9,15 @@
                 class="h-100%"
             >
                 <n-global-style />
-                <router-view />
+                <van-config-provider
+                    v-if="config.isH5"
+                    :theme-vars="themeVars"
+                    theme="light"
+                    class="h-100%"
+                >
+                    <router-view />
+                </van-config-provider>
+                <router-view v-else />
             </n-config-provider>
         </n-message-provider>
     </n-notification-provider>
@@ -33,6 +38,8 @@ const localeName = computed(() => {
 const localeDateName = computed(() => {
     return appConfig.localeName === LocaleName.zhCN ? dateZhCN : dateEnUS;
 });
+
+// PC主题样式自定义
 const themeOverrides = computed(() => {
     return {
         common: {
@@ -46,5 +53,13 @@ const themeOverrides = computed(() => {
             borderPressed: `1px solid ${appConfig.themeColor}`,
         },
     };
+});
+
+// H5主题样式自定义
+const themeVars = reactive({
+    rateIconFullColor: appConfig.themeColor,
+    sliderActiveBackground: appConfig.themeColor,
+    buttonPrimaryBackground: appConfig.themeColor,
+    buttonPrimaryBorderColor: appConfig.themeColor,
 });
 </script>

@@ -82,6 +82,7 @@ declare module '@vue/runtime-core' {
     Tabbar: typeof import('./src/components/layout/tabbar/index.vue')['default']
     TabSplitSideBar: typeof import('./src/components/layout/side-bar/tab-split-side-bar.vue')['default']
     Tools: typeof import('./src/components/common/tools/index.vue')['default']
+    VanButton: typeof import('vant/es')['Button']
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
     VanNavBar: typeof import('vant/es')['NavBar']
   }

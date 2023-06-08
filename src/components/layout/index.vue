@@ -1,8 +1,9 @@
 <template>
-    <main-h5 v-if="base.isH5" />
-    <n-loading-bar-provider v-else>
+    <n-loading-bar-provider>
         <n-dialog-provider>
+            <main-h5 v-if="base.isH5" />
             <n-el
+                v-else
                 class="vaw-layout-container"
                 :class="[appConfig.deviceType === 'mobile' && 'is-mobile']"
             >
