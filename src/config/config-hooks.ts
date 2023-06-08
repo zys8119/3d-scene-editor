@@ -9,6 +9,7 @@ import { createDiscreteApi } from 'naive-ui';
 import { MenuListData } from '@/api/sass/api/v1/menu';
 import { RouteRecordRaw, RouterView } from 'vue-router';
 import { createAsyncComponent } from '@/utils/route';
+import { commonToast } from '@/utils/common';
 const { message } = createDiscreteApi(['message']);
 
 const transToRoutes = (menusMap: MenuListData[]): RouteRecordRaw[] => {
@@ -57,7 +58,8 @@ export default {
             if (!config) return;
         },
         errorHandle(msg) {
-            message.error(msg);
+            if (baseConfig.isH5) commonToast(msg);
+            else message.error(msg);
         },
         logout() {
             router.push({ name: 'login' });
