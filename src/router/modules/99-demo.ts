@@ -7,6 +7,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
             title: 'demo2',
             icon: 'menus-menu',
+            openPullRefresh: false,
         },
         component: () => import('@/views/demo/test2.vue'),
     },

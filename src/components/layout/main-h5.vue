@@ -8,22 +8,36 @@
             @click-left="goBack"
         />
         <div class="p-5px flex-1 overflow-auto">
-            <router-view v-slot="{ Component, route }">
-                <transition
-                    :name="appConfig.pageAnim + '-transform'"
-                    mode="out-in"
-                    appear
-                >
-                    <keep-alive v-if="config.router.keepAlive">
-                        <component :is="Component" :key="route.fullPath" />
-                    </keep-alive>
-                    <component :is="Component" v-else :key="route.fullPath" />
-                </transition>
-            </router-view>
+            <van-pull-refresh
+                v-model="loading"
+                @refresh="refreshRoute"
+                :disabled="
+                    route.meta.openPullRefresh === undefined
+                        ? !config.h5Config.openPullRefresh
+                        : !route.meta.openPullRefresh
+                "
+            >
+                <router-view v-slot="{ Component, route }">
+                    <transition
+                        :name="appConfig.pageAnim + '-transform'"
+                        mode="out-in"
+                        appear
+                    >
+                        <keep-alive v-if="config.router.keepAlive">
+                            <component :is="Component" :key="route.fullPath" />
+                        </keep-alive>
+                        <component
+                            :is="Component"
+                            v-else
+                            :key="route.fullPath"
+                        />
+                    </transition>
+                </router-view>
+            </van-pull-refresh>
         </div>
         <div
             class="flex h-50px b-t b-t-solid b-$van-border-color"
-            v-if="config.h5Config.showBottomNav"
+            v-if="config.h5Config.showBottomNav && !isShowLeftBack"
         >
             <div
                 class="flex-1 flex flex-col flex-items-center flex-justify-center"
@@ -55,6 +69,14 @@ const router = useRouter();
 
 const isShowLeftBack = computed(() => route.meta.hidden);
 
+const loading = ref(false);
+// 刷新当前页面
+const refreshRoute = () => {
+    loading.value = false;
+    router.replace({ path: '/redirect', query: { url: route.path } });
+};
+
+// 返回上一页
 const goBack = () => {
     router.back();
 };

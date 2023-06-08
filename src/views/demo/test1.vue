@@ -11,6 +11,7 @@
             <n-button type="success">编辑</n-button>
         </n-permission>
         <van-button type="primary">主要按钮</van-button>
+        <div class="h-1000px">asdfasd</div>
     </n-space>
 </template>
 

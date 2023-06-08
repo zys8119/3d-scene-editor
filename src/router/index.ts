@@ -150,6 +150,8 @@ declare module 'vue-router' {
               }[];
         /** 是否进行扁平化路由 **/
         notFlat?: boolean;
+        /** 是否在H5模式下开启下拉刷新 **/
+        openPullRefresh?: boolean;
     }
 }
 

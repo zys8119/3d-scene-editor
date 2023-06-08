@@ -35,8 +35,9 @@ export interface Config {
     };
     showFooter: boolean;
     h5Config: {
-        showTopNav: boolean;
-        showBottomNav: boolean;
+        showTopNav: boolean; // 是否显示头部导航
+        showBottomNav: boolean; // 是否显示底部导航
+        openPullRefresh: boolean; // 是否开启页面下拉刷新
     };
 }
 

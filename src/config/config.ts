@@ -49,5 +49,6 @@ export default {
     h5Config: {
         showTopNav: true,
         showBottomNav: true,
+        openPullRefresh: true,
     },
 } as Config;
