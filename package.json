@@ -17,6 +17,7 @@
         "@vueuse/core": "^9.1.0",
         "eslint-plugin-vue3-jsx": "^0.0.3-beta.3",
         "md5": "^2.3.0",
+        "mescroll.js": "^1.4.2",
         "naive-ui": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git",
         "pinia": "^2.0.4",
         "resize-observer": "^1.0.4",

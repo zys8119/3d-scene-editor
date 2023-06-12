@@ -34,6 +34,7 @@ const routes: RouteRecordRaw[] = [
                         meta: {
                             title: 'test3',
                             hidden: true,
+                            openPullRefresh: false,
                         },
                         component: () => import('@/views/demo/test3.vue'),
                     },

@@ -25,6 +25,7 @@ declare module '@vue/runtime-core' {
     Main: typeof import('./src/components/layout/main.vue')['default']
     MainH5: typeof import('./src/components/layout/main-h5.vue')['default']
     MainLayout: typeof import('./src/components/layout/main-layout.vue')['default']
+    Mescroll: typeof import('./src/components/mescroll.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     Navbar: typeof import('./src/components/layout/navbar/index.vue')['default']
     NBackTop: typeof import('naive-ui')['NBackTop']
