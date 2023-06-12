@@ -18,6 +18,7 @@ import MescrollVue from 'mescroll.js/mescroll.vue';
 import noData from '@/assets/images/no-data.png';
 import toTop from '@/assets/images/to-top.png';
 import loading from '@/assets/images/loading/fire.svg';
+import loadingDna from '@/assets/images/loading/dna.svg';
 
 const emits = defineEmits(['loadData']);
 
@@ -36,7 +37,7 @@ const mescrollUp = ref<any>({
         size: 10,
     },
     htmlNodata: '<p class="nodata">-- 暂无更多数据 --</p>',
-    htmlLoading: `<img height="50px" src='${loading}' />`,
+    htmlLoading: `<img height="50px" src='${loadingDna}' />`,
     noMoreSize: 5, // 如果列表已无数据,可设置列表的总数量要大于5才显示无更多数据
     toTop: {
         warpId: 'Mescroll',
