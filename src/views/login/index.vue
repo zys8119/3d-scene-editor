@@ -192,7 +192,7 @@ interface LoginInfo {
 .login {
     width: 100vw;
     height: 100vh;
-    background: url('@/assets/images/system/login-bg.png');
+    background: url('@/assets/images/login/bg.png');
     background-size: 100% 100%;
     display: flex;
     align-items: center;

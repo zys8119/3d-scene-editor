@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
             title: '系统管理',
             icon: 'menus-menu',
         },
-        redirect: '/system/organization',
+        redirect: '/login/organization',
         children: [
             {
                 path: 'organization',
