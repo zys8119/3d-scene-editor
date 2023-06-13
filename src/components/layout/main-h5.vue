@@ -11,6 +11,7 @@
             <van-pull-refresh
                 v-model="loading"
                 @refresh="refreshRoute"
+                :pull-distance="80"
                 :disabled="
                     route.meta.openPullRefresh === undefined
                         ? !config.h5Config.openPullRefresh
