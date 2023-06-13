@@ -37,7 +37,7 @@
             </van-pull-refresh>
         </div>
         <div
-            class="flex h-50px b-t b-t-solid b-$van-border-color"
+            class="bottom-nav flex b-t b-t-solid b-$van-border-color"
             v-if="config.h5Config.showBottomNav && !isShowLeftBack"
         >
             <div
@@ -84,6 +84,9 @@ const goBack = () => {
 </script>
 
 <style scoped lang="less">
+.bottom-nav {
+    height: var(--h5-bottom-nav-height);
+}
 .active {
     color: v-bind('setting.themeColor');
     .svg-icon {
