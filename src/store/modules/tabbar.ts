@@ -43,7 +43,13 @@ export default defineStore('tabbar', {
             }
         },
         refresh() {
-            Router.replace({ path: '/redirect', query: { url: this.active } });
+            Router.replace({
+                path: '/redirect',
+                query: {
+                    url: this.active,
+                    params: JSON.stringify(Router.currentRoute.value.query),
+                },
+            });
         },
     },
 });
