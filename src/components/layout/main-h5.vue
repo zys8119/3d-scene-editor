@@ -74,7 +74,10 @@ const loading = ref(false);
 // 刷新当前页面
 const refreshRoute = () => {
     loading.value = false;
-    router.replace({ path: '/redirect', query: { url: route.path } });
+    router.replace({
+        path: '/redirect',
+        query: { url: route.path, params: JSON.stringify(route.query) },
+    });
 };
 
 // 返回上一页

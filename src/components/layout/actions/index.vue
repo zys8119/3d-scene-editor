@@ -85,7 +85,10 @@ const select = async () => {
 
 // 刷新当前页面
 const refreshRoute = () => {
-    router.replace({ path: '/redirect', query: { url: route.path } });
+    router.replace({
+        path: '/redirect',
+        query: { url: route.path, params: JSON.stringify(route.query) },
+    });
 };
 
 // 全屏

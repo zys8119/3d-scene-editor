@@ -7,7 +7,10 @@ const route = useRoute();
 const router = useRouter();
 
 if (route.query?.url) {
-    router.replace(String(route.query?.url));
+    router.replace({
+        path: String(route.query?.url),
+        query: JSON.parse(<string>route.query?.params),
+    });
 } else {
     router.replace('/');
 }
