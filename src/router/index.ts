@@ -86,6 +86,7 @@ export const routes: RouteRecordRaw[] = [
         meta: {
             title: '登录',
             isFullPage: true,
+            hiddenInTab: true,
         },
     },
 ];

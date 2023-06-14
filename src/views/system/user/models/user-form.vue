@@ -44,6 +44,7 @@
             <n-form-item label="头像" required>
                 <n-pro-upload
                     v-model:value="form.avatar"
+                    accept=".png,.jpg,.jpeg,.svg"
                     :max="1"
                     :api="{
                         upload: api.file.api.v1.file.upload,
