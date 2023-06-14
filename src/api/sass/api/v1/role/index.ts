@@ -4,12 +4,14 @@ export default {
     users: {
         get(id: string) {
             return request({
+                baseURL: import.meta.env.VITE_SASS_API,
                 url: `/saas/api/v1/role/users/${id}`,
                 method: 'get',
             });
         },
         update_users(roleId: string, userIds: string[]) {
             return request({
+                baseURL: import.meta.env.VITE_SASS_API,
                 url: `/saas/api/v1/role/update_users`,
                 method: 'post',
                 data: {
@@ -21,6 +23,7 @@ export default {
     },
     create(data: RoleForm) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/role/create',
             method: 'post',
             data,
@@ -28,6 +31,7 @@ export default {
     },
     delete(ids: string[]) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/role/delete',
             method: 'post',
             data: { ids },
@@ -35,6 +39,7 @@ export default {
     },
     update(data: RoleListData) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/role/update',
             method: 'post',
             data,
@@ -42,12 +47,14 @@ export default {
     },
     get(id: string) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: `/saas/api/v1/role/${id}`,
             method: 'get',
         });
     },
     list(params: TableListParams) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: `/saas/api/v1/role/list`,
             method: 'get',
             params,

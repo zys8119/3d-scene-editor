@@ -3,6 +3,7 @@ import { TableListParams } from '@/api/typing';
 export default {
     create(data: GroupTypeForm) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/group_type/create',
             method: 'post',
             data,
@@ -10,6 +11,7 @@ export default {
     },
     delete(ids: string[]) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/group_type/delete',
             method: 'post',
             data: { ids },
@@ -17,6 +19,7 @@ export default {
     },
     update(data: GroupTypeListData) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/group_type/update',
             method: 'post',
             data,
@@ -24,6 +27,7 @@ export default {
     },
     list(params: TableListParams) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/group_type/list',
             method: 'get',
             params,

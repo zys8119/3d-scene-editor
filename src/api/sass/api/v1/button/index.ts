@@ -3,6 +3,7 @@ import { TableListParams } from '@/api/typing';
 export default {
     create(data: ButtonForm) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/button/create',
             method: 'post',
             data,
@@ -10,6 +11,7 @@ export default {
     },
     delete(ids: string[]) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/button/delete',
             method: 'post',
             data: { ids },
@@ -17,6 +19,7 @@ export default {
     },
     update(data: ButtonListData) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/button/update',
             method: 'post',
             data: preprocessor(data, {}),
@@ -24,12 +27,14 @@ export default {
     },
     get(id: string) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: `/saas/api/v1/button/${id}`,
             method: 'get',
         });
     },
     list(params: TableListParams & { menuId: string }) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: `/saas/api/v1/button/list`,
             method: 'get',
             params,

@@ -3,12 +3,14 @@ import { TableListParams } from '@/api/typing';
 export default {
     info() {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/user/info',
             method: 'get',
         });
     },
     list(params: TableListParams & { ignoreTenant?: boolean }) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/user/list',
             method: 'get',
             params,
@@ -16,12 +18,14 @@ export default {
     },
     get(id: string) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: `/saas/api/v1/user/${id}`,
             method: 'get',
         });
     },
     create(data: UserForm) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/user/create',
             method: 'post',
             data,
@@ -29,6 +33,7 @@ export default {
     },
     delete(ids: string[]) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/user/delete',
             method: 'post',
             data: { ids },
@@ -36,6 +41,7 @@ export default {
     },
     update(data: UserListData) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/user/update',
             method: 'post',
             data: preprocessor(data, {
@@ -46,6 +52,7 @@ export default {
     },
     update_users_password(data: UserUpdatePassword) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/user/update_users_password',
             method: 'post',
             data,

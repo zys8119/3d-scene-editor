@@ -3,6 +3,7 @@ import { TableListParams } from '@/api/typing';
 export default {
     create(data: TenantUserForm) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/tenant_user/create',
             method: 'post',
             data,
@@ -10,6 +11,7 @@ export default {
     },
     delete(ids: string[], tenantId: string) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/tenant_user/delete',
             method: 'post',
             data: { ids, tenantId },
@@ -17,6 +19,7 @@ export default {
     },
     update(data: TenantUserListData) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/tenant_user/update',
             method: 'post',
             data: preprocessor(data, {
@@ -28,6 +31,7 @@ export default {
     },
     list(params: TableListParams & { tenantId: string }) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/tenant_user/list',
             method: 'get',
             params,
@@ -35,6 +39,7 @@ export default {
     },
     get(id: string) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: `/saas/api/v1/tenant_user/${id}`,
             method: 'get',
         });

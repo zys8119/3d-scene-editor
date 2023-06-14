@@ -3,6 +3,7 @@ import { TableListParams } from '@/api/typing';
 export default {
     create(data: ApiForm) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/api/create',
             method: 'post',
             data,
@@ -10,6 +11,7 @@ export default {
     },
     delete(ids: string[]) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/api/delete',
             method: 'post',
             data: { ids },
@@ -17,6 +19,7 @@ export default {
     },
     update(data: ApiListData) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/api/update',
             method: 'post',
             data,
@@ -24,6 +27,7 @@ export default {
     },
     list(params: TableListParams) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/api/list',
             method: 'get',
             params,

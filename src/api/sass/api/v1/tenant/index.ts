@@ -3,12 +3,14 @@ import { TableListParams } from '@/api/typing';
 export default {
     info() {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/tenant/info',
             method: 'get',
         });
     },
     list(params: TableListParams) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/tenant/list',
             method: 'get',
             params,
@@ -16,12 +18,14 @@ export default {
     },
     get(id: string) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: `/saas/api/v1/tenant/${id}`,
             method: 'get',
         });
     },
     create(data: TenantForm) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/tenant/create',
             method: 'post',
             data,
@@ -29,6 +33,7 @@ export default {
     },
     delete(ids: string[]) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/tenant/delete',
             method: 'post',
             data: { ids },
@@ -36,6 +41,7 @@ export default {
     },
     update(data: TenantListData) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/tenant/update',
             method: 'post',
             data,
@@ -43,6 +49,7 @@ export default {
     },
     update_users(tenantId: string, userIds: string[]) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/tenant/update_users',
             method: 'post',
             data: {

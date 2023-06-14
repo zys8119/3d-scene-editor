@@ -2,6 +2,7 @@ export default {
     tree: {
         list() {
             return request({
+                baseURL: import.meta.env.VITE_SASS_API,
                 url: '/saas/api/v1/menu/tree/list',
                 method: 'get',
             });
@@ -9,6 +10,7 @@ export default {
     },
     create(data: MenuForm) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/menu/create',
             method: 'post',
             data,
@@ -16,6 +18,7 @@ export default {
     },
     delete(ids: string[]) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/menu/delete',
             method: 'post',
             data: { ids },
@@ -23,6 +26,7 @@ export default {
     },
     update(data: MenuListData) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/menu/update',
             method: 'post',
             data: preprocessor(data, {
@@ -34,12 +38,14 @@ export default {
     },
     get(id: string) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: `/saas/api/v1/menu/${id}`,
             method: 'get',
         });
     },
     get_menus_by_user(id: string) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: `/saas/api/v1/menu/get_menus_by_user/${id}`,
             method: 'get',
         });

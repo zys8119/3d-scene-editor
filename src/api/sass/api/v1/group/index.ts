@@ -4,6 +4,7 @@ export default {
     users: {
         get(id: string) {
             return request({
+                baseURL: import.meta.env.VITE_SASS_API,
                 url: `/saas/api/v1/group/users/${id}`,
                 method: 'get',
             });
@@ -11,6 +12,7 @@ export default {
     },
     create(data: GroupForm) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/group/create',
             method: 'post',
             data,
@@ -18,6 +20,7 @@ export default {
     },
     delete(ids: string[]) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/group/delete',
             method: 'post',
             data: { ids },
@@ -32,6 +35,7 @@ export default {
     },
     list(params: TableListParams) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/group/list',
             method: 'get',
             params,
@@ -39,6 +43,7 @@ export default {
     },
     update_users(groupId: string, userIds: string[]) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/group/update_users',
             method: 'post',
             data: {

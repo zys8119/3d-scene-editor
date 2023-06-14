@@ -2,6 +2,7 @@ export default {
     tree: {
         list() {
             return request({
+                baseURL: import.meta.env.VITE_SASS_API,
                 url: '/saas/api/v1/organization/tree/list',
                 method: 'get',
             });
@@ -9,6 +10,7 @@ export default {
     },
     create(data: OrganizationForm) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/organization/create',
             method: 'post',
             data,
@@ -16,6 +18,7 @@ export default {
     },
     delete(ids: string[]) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/organization/delete',
             method: 'post',
             data: { ids },
@@ -23,6 +26,7 @@ export default {
     },
     update(data: OrganizationForm & { id: string }) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/organization/update',
             method: 'post',
             data,
@@ -30,24 +34,28 @@ export default {
     },
     list() {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: '/saas/api/v1/organization/list',
             method: 'get',
         });
     },
     get(id: string) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: `/saas/api/v1/organization/${id}`,
             method: 'get',
         });
     },
     userList(id: string) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: `/saas/api/v1/organization/userList/${id}`,
             method: 'get',
         });
     },
     update_users(organizationId: string, userIds: string[]) {
         return request({
+            baseURL: import.meta.env.VITE_SASS_API,
             url: `/saas/api/v1/organization/update_users`,
             method: 'post',
             data: {
