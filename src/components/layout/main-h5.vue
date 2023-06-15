@@ -7,7 +7,7 @@
             :left-arrow="isShowLeftBack"
             @click-left="goBack"
         />
-        <div class="p-5px flex-1 overflow-auto">
+        <div class="flex-1 overflow-auto">
             <van-pull-refresh
                 v-model="loading"
                 @refresh="refreshRoute"
@@ -18,22 +18,40 @@
                         : !route.meta.openPullRefresh
                 "
             >
-                <router-view v-slot="{ Component, route }">
-                    <transition
-                        :name="appConfig.pageAnim + '-transform'"
-                        mode="out-in"
-                        appear
-                    >
-                        <keep-alive v-if="config.router.keepAlive">
-                            <component :is="Component" :key="route.fullPath" />
-                        </keep-alive>
-                        <component
-                            :is="Component"
-                            v-else
-                            :key="route.fullPath"
-                        />
-                    </transition>
-                </router-view>
+                <div
+                    class="bg-#f6f6f6"
+                    :style="{
+                        minHeight: `calc(100vh - ${
+                            config.h5Config.showTopNav
+                                ? 'var(--van-nav-bar-height)'
+                                : '0px'
+                        } - ${
+                            config.h5Config.showBottomNav && !isShowLeftBack
+                                ? 'var(--h5-bottom-nav-height)'
+                                : '0px'
+                        })`,
+                    }"
+                >
+                    <router-view v-slot="{ Component, route }">
+                        <transition
+                            :name="appConfig.pageAnim + '-transform'"
+                            mode="out-in"
+                            appear
+                        >
+                            <keep-alive v-if="config.router.keepAlive">
+                                <component
+                                    :is="Component"
+                                    :key="route.fullPath"
+                                />
+                            </keep-alive>
+                            <component
+                                :is="Component"
+                                v-else
+                                :key="route.fullPath"
+                            />
+                        </transition>
+                    </router-view>
+                </div>
             </van-pull-refresh>
         </div>
         <div
@@ -49,7 +67,7 @@
                 }"
                 @click="router.push({ name: item.name })"
             >
-                <svg-icon class="m-t-5px" :name="item.meta.icon" :size="16" />
+                <svg-icon class="m-t-5px" :name="item.meta.icon" :size="24" />
                 <span v-text="item.meta.title"></span>
             </div>
         </div>
