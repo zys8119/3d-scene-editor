@@ -60,15 +60,19 @@
         >
             <div
                 class="flex-1 flex flex-col flex-items-center flex-justify-center"
-                v-for="(item, key) in store.routes"
+                v-for="(item, key) in routes"
                 :key="key"
                 :class="{
                     active: route.fullPath.indexOf(item.path) > -1,
                 }"
                 @click="router.push({ name: item.name })"
             >
-                <svg-icon class="m-t-5px" :name="item.meta.icon" :size="24" />
-                <span v-text="item.meta.title"></span>
+                <svg-icon
+                    class="m-t-5px"
+                    :name="item.meta?.icon ?? ''"
+                    :size="24"
+                />
+                <span v-text="item.meta?.title"></span>
             </div>
         </div>
     </div>
@@ -79,12 +83,20 @@ import config from '@/config/config';
 import useAppConfigStore from '@/store/modules/app-config';
 import setting from '@/config/setting';
 import useStore from '@/store/modules/main';
+import { RouteRecordRaw } from 'vue-router';
 
 const appConfig = useAppConfigStore();
 const store = useStore();
 
 const route = useRoute();
 const router = useRouter();
+
+const routes = computed(
+    () =>
+        store.routes.filter(
+            (v: RouteRecordRaw) => !v.meta?.hidden
+        ) as RouteRecordRaw[]
+);
 
 const isShowLeftBack = computed(() => route.meta.hidden);
 
