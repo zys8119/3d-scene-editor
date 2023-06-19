@@ -38,7 +38,13 @@
                             mode="out-in"
                             appear
                         >
-                            <keep-alive v-if="config.router.keepAlive">
+                            <keep-alive
+                                v-if="
+                                    route.meta.keepAlive !== undefined
+                                        ? route.meta.keepAlive
+                                        : config.router.keepAlive
+                                "
+                            >
                                 <component
                                     :is="Component"
                                     :key="route.fullPath"
@@ -81,7 +87,6 @@
 <script setup lang="ts">
 import config from '@/config/config';
 import useAppConfigStore from '@/store/modules/app-config';
-import setting from '@/config/setting';
 import useStore from '@/store/modules/main';
 import { RouteRecordRaw } from 'vue-router';
 
@@ -121,9 +126,9 @@ const goBack = () => {
     height: var(--h5-bottom-nav-height);
 }
 .active {
-    color: v-bind('setting.themeColor');
+    color: var(--van-primary-color);
     .svg-icon {
-        fill: v-bind('setting.themeColor');
+        fill: var(--van-primary-color);
     }
 }
 </style>

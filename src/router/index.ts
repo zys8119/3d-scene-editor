@@ -105,6 +105,10 @@ declare module 'vue-router' {
          */
         title?: string;
         /**
+         * 是否保持 alive 状态
+         */
+        keepAlive?: false;
+        /**
          * 是否在菜单中隐藏
          */
         hidden?: boolean;

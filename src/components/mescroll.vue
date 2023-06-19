@@ -1,7 +1,6 @@
 <template>
     <div id="Mescroll">
         <mescroll-vue
-            ref="mescroll"
             :down="mescrollDown"
             :up="mescrollUp"
             @init="mescrollInit"
@@ -23,7 +22,7 @@ import loadingDna from '@/assets/images/loading/dna.svg';
 const emits = defineEmits(['loadData']);
 
 // mescroll 实例对象
-const mescroll = ref(null);
+const mescroll = ref<any>(null);
 
 // 下拉刷新的配置
 const mescrollDown = ref({
@@ -52,14 +51,21 @@ const mescrollUp = ref<any>({
 });
 
 // 初始化
-const mescrollInit = (mescroll) => {
-    mescroll.value = mescroll;
+const mescrollInit = (m) => {
+    mescroll.value = m;
 };
 
 // 刷新数据
 mescrollUp.value.callback = (page, mescroll) => {
     emits('loadData', page, mescroll);
 };
+
+// 主动刷新
+const refresh = () => {
+    mescroll.value?.resetUpScroll(true);
+};
+
+defineExpose({ refresh });
 </script>
 
 <style lang="less">
