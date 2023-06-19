@@ -38,23 +38,12 @@
                             mode="out-in"
                             appear
                         >
-                            <keep-alive
-                                v-if="
-                                    route.meta.keepAlive !== undefined
-                                        ? route.meta.keepAlive
-                                        : config.router.keepAlive
-                                "
-                            >
+                            <keep-alive :include="keepAliveInclude">
                                 <component
                                     :is="Component"
                                     :key="route.fullPath"
                                 />
                             </keep-alive>
-                            <component
-                                :is="Component"
-                                v-else
-                                :key="route.fullPath"
-                            />
                         </transition>
                     </router-view>
                 </div>
@@ -89,12 +78,30 @@ import config from '@/config/config';
 import useAppConfigStore from '@/store/modules/app-config';
 import useStore from '@/store/modules/main';
 import { RouteRecordRaw } from 'vue-router';
+import { get } from 'lodash';
 
 const appConfig = useAppConfigStore();
 const store = useStore();
 
 const route = useRoute();
 const router = useRouter();
+const keepAliveInclude = computed<any>(() => {
+    return config.router.keepAlive
+        ? /./
+        : router
+              .getRoutes()
+              .map((r) => {
+                  return r.meta?.keepAlive
+                      ? get(
+                            r,
+                            'components.default.name',
+                            get(r, 'components.name', get(r, 'name'))
+                        )
+                      : null;
+              })
+              .filter((e) => e)
+              .join(',') || /^$/;
+});
 
 const routes = computed(
     () =>
