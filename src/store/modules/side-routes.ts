@@ -1,15 +1,17 @@
-import { RouteRecordRaw } from 'vue-router';
+import { RouteLocationNormalized, RouteRecordRaw } from 'vue-router';
 import { h } from 'vue';
 import { NIcon } from 'naive-ui';
 import SvgIcon from '@/components/layout/svg-icon/index.vue';
 import { SystemRouteRow } from '@/typings';
 import config from '@/config/config';
-import { get } from 'lodash';
+import { get, uniqBy } from 'lodash';
 import router from '@/router';
 
 export default defineStore('side-routes', {
     state() {
-        return {};
+        return {
+            historyRoutes: [] as RouteLocationNormalized[],
+        };
     },
     getters: {
         keepAliveInclude(): any {
@@ -69,6 +71,20 @@ export default defineStore('side-routes', {
                                 : null,
                     } as any;
                 });
+        },
+        setHistoryRoutes(
+            to: RouteLocationNormalized | null,
+            from?: RouteLocationNormalized | null
+        ) {
+            if (!to || !from) this.historyRoutes = [];
+            else {
+                const lastRoute =
+                    this.historyRoutes[this.historyRoutes.length - 1] || null;
+                if (lastRoute && lastRoute.fullPath === to.fullPath)
+                    this.historyRoutes.pop();
+                else this.historyRoutes.push(from);
+                this.historyRoutes = uniqBy(this.historyRoutes, 'fullPath');
+            }
         },
     },
 });

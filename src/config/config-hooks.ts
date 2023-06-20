@@ -1,4 +1,5 @@
 import useStore from '@/store/modules/main';
+import useSideRoutes from '@/store/modules/side-routes';
 import router from '../router';
 import type { ConfigHooks } from './typings';
 import baseConfig from './base';
@@ -99,8 +100,10 @@ export default {
                 store.token = token ?? '';
             }
         },
-        beforeEach() {
+        beforeEach(to, from) {
             // 每个路由进入前发起一个请求
+            const store = useSideRoutes();
+            store.setHistoryRoutes(to, from);
         },
         /**
          * 用于 登录 / 第一次进入页面时获取权限
