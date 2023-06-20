@@ -15,6 +15,6 @@
     </n-space>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup name="AAAAA"></script>
 
 <style scoped></style>

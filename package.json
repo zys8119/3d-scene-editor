@@ -13,9 +13,12 @@
     },
     "private": true,
     "dependencies": {
+        "@types/lodash": "^4.14.195",
+        "@vicons/ionicons5": "^0.12.0",
         "@vitejs/plugin-legacy": "^4.0.2",
         "@vueuse/core": "^9.1.0",
         "eslint-plugin-vue3-jsx": "^0.0.3-beta.3",
+        "lodash": "^4.17.21",
         "md5": "^2.3.0",
         "mescroll.js": "^1.4.2",
         "naive-ui": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git",
