@@ -4,10 +4,31 @@ import { NIcon } from 'naive-ui';
 import SvgIcon from '@/components/layout/svg-icon/index.vue';
 import { SystemRouteRow } from '@/typings';
 import config from '@/config/config';
+import { get } from 'lodash';
+import router from '@/router';
 
 export default defineStore('side-routes', {
     state() {
         return {};
+    },
+    getters: {
+        keepAliveInclude(): any {
+            return config.router.keepAlive
+                ? /./
+                : router
+                      .getRoutes()
+                      .map((r) => {
+                          return r.meta?.keepAlive
+                              ? get(
+                                    r,
+                                    'components.default.name',
+                                    get(r, 'components.name', get(r, 'name'))
+                                )
+                              : null;
+                      })
+                      .filter((e) => e)
+                      .join(',') || /^$/;
+        },
     },
     actions: {
         getSideBarRoutes() {

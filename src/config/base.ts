@@ -30,5 +30,5 @@ export default {
     /**
      * 是否是H5模式
      */
-    isH5: true,
+    isH5: false,
 } as BaseConfig;

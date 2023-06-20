@@ -5,16 +5,17 @@
             mode="out-in"
             appear
         >
-            <keep-alive v-if="config.router.keepAlive">
+            <keep-alive :include="storeSide.keepAliveInclude">
                 <component :is="Component" :key="route.fullPath" />
             </keep-alive>
-            <component :is="Component" v-else :key="route.fullPath" />
         </transition>
     </router-view>
 </template>
 
 <script lang="ts" setup>
-import config from '@/config/config';
 import useAppConfigStore from '@/store/modules/app-config';
+import useSideRoutes from '@/store/modules/side-routes';
+
+const storeSide = useSideRoutes();
 const appConfig = useAppConfigStore();
 </script>

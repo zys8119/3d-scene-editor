@@ -15,6 +15,7 @@ const routes: RouteRecordRaw[] = [
                 name: 'Test1',
                 meta: {
                     title: 'test1',
+                    keepAlive: true,
                     permissions: [
                         {
                             code: 'add',

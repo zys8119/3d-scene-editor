@@ -16,14 +16,9 @@
                         mode="out-in"
                         appear
                     >
-                        <keep-alive v-if="config.router.keepAlive">
+                        <keep-alive :include="storeSide.keepAliveInclude">
                             <component :is="Component" :key="route.fullPath" />
                         </keep-alive>
-                        <component
-                            :is="Component"
-                            v-else
-                            :key="route.fullPath"
-                        />
                     </transition>
                 </router-view>
                 <template v-else>
@@ -64,6 +59,9 @@ import useAppConfigStore from '@/store/modules/app-config';
 import { DeviceType } from '@/typings';
 import config from '@/config/config';
 import base from '@/config/base';
+import useSideRoutes from '@/store/modules/side-routes';
+
+const storeSide = useSideRoutes();
 
 const routeElse = useRoute();
 const appConfig = useAppConfigStore();
