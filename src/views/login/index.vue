@@ -105,7 +105,7 @@ store.setUserinfo(null);
 
 const userForm = ref<UserForm>({
     username: import.meta.env.DEV ? 'admin' : '',
-    password: import.meta.env.DEV ? 'Zj654123,,,' : '',
+    password: import.meta.env.DEV ? 'saas-admin' : '',
     mobile: '',
     code: '',
     captcha: '',
