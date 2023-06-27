@@ -5,8 +5,9 @@ import SvgIcon from '@/components/layout/svg-icon/index.vue';
 import { SystemRouteRow } from '@/typings';
 import config from '@/config/config';
 import { get, uniqBy } from 'lodash';
-import router from '@/router';
-
+import { asyncRoutes, commonRoutes } from '@/router';
+import { flatRoutes } from '@/router/set-routes';
+const routes = flatRoutes(asyncRoutes.concat(commonRoutes));
 export default defineStore('side-routes', {
     state() {
         return {
@@ -17,8 +18,7 @@ export default defineStore('side-routes', {
         keepAliveInclude(): any {
             return config.router.keepAlive
                 ? /./
-                : router
-                      .getRoutes()
+                : routes
                       .map((r) => {
                           return r.meta?.keepAlive
                               ? get(

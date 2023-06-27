@@ -24,22 +24,24 @@ const route = useRoute();
 const store = useStore();
 
 const defaultPath = computed(() => route.meta.breadcrumbs?.[0].name);
-const menuOptions = store.routes.map((route) => ({
-    key: route.name,
-    label: route.meta?.title || route.name,
-    info: route,
-    icon:
-        config.router.needSideMenuIcon && route?.meta?.icon
-            ? () =>
-                  h(NIcon, null, {
-                      default: () =>
-                          h(SvgIcon, {
-                              prefix: 'icon',
-                              name: route?.meta?.icon,
-                          }),
-                  })
-            : null,
-}));
+const menuOptions = store.routes
+    .filter((v) => !v.meta?.hidden)
+    .map((route) => ({
+        key: route.name,
+        label: route.meta?.title || route.name,
+        info: route,
+        icon:
+            config.router.needSideMenuIcon && route?.meta?.icon
+                ? () =>
+                      h(NIcon, null, {
+                          default: () =>
+                              h(SvgIcon, {
+                                  prefix: 'icon',
+                                  name: route?.meta?.icon,
+                              }),
+                      })
+                : null,
+    }));
 const onMenuClick = (key: string, row: SystemRouteRow) => {
     router.push({ name: row.info.name });
 };
