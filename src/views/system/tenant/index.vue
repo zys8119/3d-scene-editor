@@ -29,6 +29,16 @@
             <template #table_avatar="{ row }">
                 <n-avatar size="small" :src="row.avatar" />
             </template>
+            <template #table_serviceStartAt="{ row }">
+                <span>{{
+                    utils.dateFormat(row.serviceStartAt, 'YYYY-MM-DD HH:mm:ss')
+                }}</span>
+            </template>
+            <template #table_serviceEndAt="{ row }">
+                <span>{{
+                    utils.dateFormat(row.serviceEndAt, 'YYYY-MM-DD HH:mm:ss')
+                }}</span>
+            </template>
             <template #table_todo="{ row }">
                 <n-space justify="center">
                     <n-permission has="userList">
@@ -65,6 +75,7 @@ import { UserListData } from '@/api/sass/api/v1/user';
 import TenantForm from '@/views/system/tenant/models/tenant-form.vue';
 import useStore from '@/store/modules/main';
 import UsersList from '@/views/system/tenant/models/users-list.vue';
+import { utils } from 'wp-utils';
 
 const store = useStore();
 
