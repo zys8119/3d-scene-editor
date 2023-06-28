@@ -75,14 +75,14 @@
 
 <script setup lang="ts">
 import config from '@/config/config';
-import useAppConfigStore from '@/store/modules/app-config';
 import useStore from '@/store/modules/main';
-import useSideRoutes from '@/store/modules/side-routes';
 import { RouteRecordRaw } from 'vue-router';
+import useAppConfigStore from '@/store/modules/app-config';
+import useSideRoutesStore from '@/store/modules/side-routes';
 
 const appConfig = useAppConfigStore();
 const store = useStore();
-const storeSide = useSideRoutes();
+const storeSide = useSideRoutesStore();
 
 const route = useRoute();
 const router = useRouter();

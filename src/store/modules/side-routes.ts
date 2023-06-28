@@ -8,7 +8,7 @@ import { get, uniqBy } from 'lodash';
 import { asyncRoutes, commonRoutes } from '@/router';
 import { flatRoutes } from '@/router/set-routes';
 const routes = flatRoutes(asyncRoutes.concat(commonRoutes));
-export default defineStore('side-routes', {
+const useSideRoutesStore = defineStore('side-routes', {
     state() {
         return {
             historyRoutes: [] as RouteLocationNormalized[],
@@ -88,3 +88,5 @@ export default defineStore('side-routes', {
         },
     },
 });
+
+export default useSideRoutesStore;

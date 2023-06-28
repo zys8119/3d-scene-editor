@@ -1,7 +1,7 @@
 import defaultSetting from '@/config/setting';
 import { DeviceType } from '@/typings';
 
-export default defineStore('app-config', {
+const useAppConfigStore = defineStore('app-config', {
     state: () => {
         return defaultSetting;
     },
@@ -19,3 +19,5 @@ export default defineStore('app-config', {
         },
     },
 });
+
+export default useAppConfigStore;

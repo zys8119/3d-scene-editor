@@ -1,12 +1,12 @@
 import router from './index';
 import useStore from '@/store/modules/main';
-import useTabbarStore from '@/store/modules/tabbar';
 import configHooks from '@/config/config-hooks';
 import config from '@/config/config';
 import baseConfig from '@/config/base';
 
 import { setRoutes, status } from './set-routes';
 import { SystemTabbarRouteRow } from '@/typings';
+import useTabbarStore from '@/store/modules/tabbar';
 
 export const getUserinfo = async () => {
     await configHooks.router.getUserinfo();

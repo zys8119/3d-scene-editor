@@ -14,8 +14,8 @@
 
 <script lang="ts" setup>
 import useAppConfigStore from '@/store/modules/app-config';
-import useSideRoutes from '@/store/modules/side-routes';
+import useSideRoutesStore from '@/store/modules/side-routes';
 
-const storeSide = useSideRoutes();
+const storeSide = useSideRoutesStore();
 const appConfig = useAppConfigStore();
 </script>

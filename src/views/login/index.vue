@@ -67,6 +67,7 @@ import { useMessage } from 'naive-ui';
 import { Ref } from 'vue';
 import { LoginUserInfo } from '@/typings';
 import { setRoutes } from '@/router/set-routes';
+import useTabbarStore from '@/store/modules/tabbar';
 
 const message = useMessage();
 const loginType = ref<LoginType[]>([
@@ -96,12 +97,14 @@ const imgCode = ref('');
 
 const store = useStore();
 const router = useRouter();
+const tabbarStore = useTabbarStore();
 
 /**
- * 清空 token
+ * 清空 token tabs
  */
 store.setToken();
 store.setUserinfo(null);
+tabbarStore.clear();
 
 const userForm = ref<UserForm>({
     username: import.meta.env.DEV ? 'admin' : '',

@@ -1,7 +1,7 @@
 import Router from '@/router';
 import { SystemTabbarRouteRow } from '@/typings';
 
-export default defineStore('tabbar', {
+const useTabbarStore = defineStore('tabbar', {
     state: () => {
         return {
             active: '',
@@ -53,3 +53,5 @@ export default defineStore('tabbar', {
         },
     },
 });
+
+export default useTabbarStore;

@@ -1,5 +1,4 @@
 import useStore from '@/store/modules/main';
-import useSideRoutes from '@/store/modules/side-routes';
 import router from '../router';
 import type { ConfigHooks } from './typings';
 import baseConfig from './base';
@@ -11,6 +10,7 @@ import { MenuListData } from '@/api/sass/api/v1/menu';
 import { RouteRecordRaw, RouterView } from 'vue-router';
 import { createAsyncComponent } from '@/utils/route';
 import { commonToast } from '@/utils/common';
+import useSideRoutesStore from '@/store/modules/side-routes';
 const { message } = createDiscreteApi(['message']);
 
 const transToRoutes = (menusMap: MenuListData[]): RouteRecordRaw[] => {
@@ -102,7 +102,7 @@ export default {
         },
         beforeEach(to, from) {
             // 每个路由进入前发起一个请求
-            const store = useSideRoutes();
+            const store = useSideRoutesStore();
             store.setHistoryRoutes(to, from);
         },
         /**

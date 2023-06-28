@@ -59,9 +59,9 @@ import useAppConfigStore from '@/store/modules/app-config';
 import { DeviceType } from '@/typings';
 import config from '@/config/config';
 import base from '@/config/base';
-import useSideRoutes from '@/store/modules/side-routes';
+import useSideRoutesStore from '@/store/modules/side-routes';
 
-const storeSide = useSideRoutes();
+const storeSide = useSideRoutesStore();
 
 const routeElse = useRoute();
 const appConfig = useAppConfigStore();
