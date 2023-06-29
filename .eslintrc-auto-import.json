@@ -11,6 +11,7 @@
     "RequestPromise": true,
     "VNode": true,
     "acceptHMRUpdate": true,
+    "api": true,
     "asyncComputed": true,
     "autoResetRef": true,
     "cancelAll": true,

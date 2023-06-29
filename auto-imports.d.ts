@@ -8,6 +8,7 @@ declare global {
     const EffectScope: typeof import('vue')['EffectScope'];
     const RequestPromise: typeof import('wp-request')['RequestPromise'];
     const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate'];
+    const api: typeof import('@/api')['api'];
     const asyncComputed: typeof import('@vueuse/core')['asyncComputed'];
     const autoResetRef: typeof import('@vueuse/core')['autoResetRef'];
     const cancelAll: typeof import('wp-request')['cancelAll'];
