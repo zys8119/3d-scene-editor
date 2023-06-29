@@ -33,6 +33,7 @@ const load = async (three: BaseThreeClass) => {
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     three.scene.add(mesh);
+    three.transformControls().attach(mesh);
 };
 const gui = use3DGui();
 </script>
