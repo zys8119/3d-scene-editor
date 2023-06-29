@@ -16,7 +16,7 @@ export function use3DGlobalInit(three: BaseThreeClass) {
     cameraHelper.visible = false;
     // 创建网格
     const gridSize = 10000; // 网格大小
-    const gridSpacing = 30; // 网格间距
+    const gridSpacing = 50; // 网格间距
     const gridColor = '#bebebe'; // 网格颜色
     const gridGeometry = new THREE.PlaneGeometry(
         gridSize,
