@@ -8,7 +8,6 @@ declare global {
     const EffectScope: typeof import('vue')['EffectScope'];
     const RequestPromise: typeof import('wp-request')['RequestPromise'];
     const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate'];
-    const api: typeof import('@/api')['api'];
     const asyncComputed: typeof import('@vueuse/core')['asyncComputed'];
     const autoResetRef: typeof import('@vueuse/core')['autoResetRef'];
     const cancelAll: typeof import('wp-request')['cancelAll'];
@@ -125,6 +124,9 @@ declare global {
     const unref: typeof import('vue')['unref'];
     const unrefElement: typeof import('@vueuse/core')['unrefElement'];
     const until: typeof import('@vueuse/core')['until'];
+    const use3DConfig: typeof import('./src/views/scene/lib/config')['use3DConfig'];
+    const use3DGlobalInit: typeof import('./src/views/scene/lib/global')['use3DGlobalInit'];
+    const use3DGui: typeof import('./src/views/scene/lib/gui')['use3DGui'];
     const useActiveElement: typeof import('@vueuse/core')['useActiveElement'];
     const useArrayEvery: typeof import('@vueuse/core')['useArrayEvery'];
     const useArrayFilter: typeof import('@vueuse/core')['useArrayFilter'];

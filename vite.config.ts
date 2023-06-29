@@ -19,7 +19,9 @@ import requestPreset from 'wp-request/dist/preset';
 import AutoApi from 'vitejs-plugin-api-auto-import';
 import UnoCSS from 'unocss/vite';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const md5 = require('md5');
 
 // https://vitejs.dev/config/
@@ -49,19 +51,16 @@ export default defineConfig({
                 preprocessorPreset,
                 requestPreset,
                 remPreset,
-                {
-                    '@/api': ['api'],
-                },
                 // presets
                 'vue',
                 'vue-router',
                 '@vueuse/core',
                 'pinia',
             ],
+            dirs: ['./src/views/scene/lib/**'],
             eslintrc: {
                 enabled: true,
             },
-            resolvers: [],
         }),
         Components({
             resolvers: [NaiveUiResolver(), VantResolver()],

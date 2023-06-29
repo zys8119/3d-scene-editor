@@ -40,6 +40,7 @@
         "@originjs/vite-plugin-commonjs": "^1.0.1",
         "@types/md5": "^2.3.2",
         "@types/node": "^18.15.3",
+        "@types/three": "^0.152.1",
         "@typescript-eslint/eslint-plugin": "^5.54.0",
         "@typescript-eslint/parser": "^5.54.0",
         "@vitejs/plugin-vue": "^4.1.0",

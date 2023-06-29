@@ -15,6 +15,11 @@ app.use(request, {
     ...configHooks.request,
 });
 
+import errorHandle from './error';
+app.use(errorHandle, {
+    errorHandle: configHooks.error.handle,
+});
+
 import api from '@/api';
 app.use(api);
 
