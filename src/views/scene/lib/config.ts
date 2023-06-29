@@ -13,6 +13,11 @@ const config = {
             z: 0,
         },
     },
+    grid: {
+        x: Math.PI * 0.5,
+        y: 0,
+        z: 0,
+    },
 };
 const configRef = ref(config);
 /**

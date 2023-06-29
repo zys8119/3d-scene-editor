@@ -7,6 +7,7 @@
             @gui="gui"
             @load="load"
             class="bg-#d2d2d2"
+            :near="0.5"
         ></n-three>
     </div>
 </template>
@@ -27,6 +28,7 @@ const load = async (three: BaseThreeClass) => {
         transparent: true,
     });
     const mesh = new THREE.Mesh(box, material);
+    mesh.position.setY(50);
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     three.scene.add(mesh);

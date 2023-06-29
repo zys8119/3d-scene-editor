@@ -1,5 +1,6 @@
 import { CameraHelper, DirectionalLightHelper } from 'three';
 import { BaseThreeClass } from 'naive-ui';
+const config = use3DConfig();
 /**
  * 全局初始化
  * @param three
@@ -15,7 +16,7 @@ export function use3DGlobalInit(three: BaseThreeClass) {
     cameraHelper.visible = false;
     // 创建网格
     const gridSize = 10000; // 网格大小
-    const gridSpacing = 50; // 网格间距
+    const gridSpacing = 30; // 网格间距
     const gridColor = '#bebebe'; // 网格颜色
     const gridGeometry = new THREE.PlaneGeometry(
         gridSize,
@@ -29,6 +30,10 @@ export function use3DGlobalInit(three: BaseThreeClass) {
     });
     const gridMesh = new THREE.Mesh(gridGeometry, gridMaterial);
     gridMesh.name = 'sceneGridMesh';
-    gridMesh.rotation.set(0, 0, 0);
+    gridMesh.rotation.set(
+        config.value.grid.x,
+        config.value.grid.y,
+        config.value.grid.z
+    );
     scene.add(gridMesh);
 }
