@@ -66,7 +66,23 @@ export default defineConfig({
             },
         }),
         Components({
-            resolvers: [NaiveUiResolver(), VantResolver()],
+            resolvers: [
+                NaiveUiResolver(),
+                VantResolver(),
+                [
+                    function (name) {
+                        if (/^.{1,}3d$/.test(name)) {
+                            return {
+                                name: 'default',
+                                from: `@/views/scene/components/${name.replace(
+                                    /3d$/,
+                                    ''
+                                )}.vue`,
+                            };
+                        }
+                    },
+                ],
+            ],
         }),
         htmlTransform(),
         rem(),

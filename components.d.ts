@@ -84,6 +84,7 @@ declare module '@vue/runtime-core' {
     SvgIcon: typeof import('./src/components/layout/svg-icon/index.vue')['default']
     Tabbar: typeof import('./src/components/layout/tabbar/index.vue')['default']
     TabSplitSideBar: typeof import('./src/components/layout/side-bar/tab-split-side-bar.vue')['default']
+    Tool3d: typeof import('@/views/scene/components/Tool.vue')['default']
     Tools: typeof import('./src/components/common/tools/index.vue')['default']
     VanButton: typeof import('vant/es')['Button']
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']

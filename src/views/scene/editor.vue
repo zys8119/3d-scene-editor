@@ -1,5 +1,5 @@
 <template>
-    <div class="editor">
+    <div class="editor fixed w-100% h-100% left-0 top-0">
         <n-three
             v-model:initialization-data="initializationData"
             :gui="true"
@@ -9,6 +9,7 @@
             class="bg-#d2d2d2"
             :near="0.5"
         ></n-three>
+        <tool-3d></tool-3d>
     </div>
 </template>
 
