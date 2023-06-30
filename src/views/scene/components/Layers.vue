@@ -21,7 +21,7 @@
                     v-html="item.tool.icon"
                     class="w-20px h-20px flex justify-center items-center"
                 ></div>
-                <div>{{ item.label }}-{{ key }}</div>
+                <div>{{ item.label }}</div>
                 <div class="flex justify-end">icon</div>
             </n-space>
             <div

@@ -1,5 +1,18 @@
 <template>
-    <div class="Attribute"></div>
+    <div class="Attribute flex flex-col">
+        <n-space justify="space-between" class="p-10px">
+            <div
+                class="w-30px h-30px flex justify-center items-center bg-#29c194 text-#ffffff text-12px b-rd-100%"
+            >
+                Zys
+            </div>
+            <div>icon</div>
+        </n-space>
+
+        <div class="Attribute-Content flex-1 b-t-solid b-t-1px b-t-#5c5c5e">
+            <div v-for="(item, key) in 100">{{ item }}</div>
+        </div>
+    </div>
 </template>
 
 <script lang="ts"></script>
@@ -17,5 +30,11 @@
     z-index: 1;
     overflow: hidden;
     transition: all ease-in-out 300ms;
+    &-Content {
+        overflow-x: hidden;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
 }
 </style>
