@@ -1,3 +1,4 @@
+const config = use3DConfig();
 const tools = [
     {
         title: '基础对象',
@@ -49,6 +50,7 @@ const toolsActiveType = [
     'rect',
     'circle',
     'text',
+    'cube',
     'sphere',
     'pen',
     'select',
@@ -59,20 +61,35 @@ export type ToolItemType<T> = T extends (infer R extends (typeof tools)[0])[]
         : R
     : T;
 export type ToolItem = ToolItemType<typeof tools>;
+export type toolsActiveType = (typeof toolsActiveType)[number] | null;
+export type Layer = {
+    [key: string]: any;
+    type: toolsActiveType;
+    width: number;
+    height: number;
+    depth: number;
+    Box: any;
+    Material: any;
+    Mesh: any;
+};
 export interface Store3Dstate {
     [key: string]: any;
-    toolsActive: (typeof toolsActiveType)[number] | null;
+    toolsActive: toolsActiveType;
     tools: typeof tools;
+    layers: Layer[];
+    layerBaseName: string;
+    config: typeof config;
 }
 export interface Store3DGetters {
     [key: string]: any;
     toolsFlatMap(): Record<string, ToolItem>;
     toolActiveInfo(): ToolItem | null;
+    layerBaseNameReg(): RegExp;
 }
 export interface Store3DActions {
     [key: string]: any;
+    setToolActive(type: toolsActiveType): void;
 }
-
 const useStore3d = defineStore<
     string,
     Store3Dstate,
@@ -81,11 +98,36 @@ const useStore3d = defineStore<
 >('3d', {
     state() {
         return {
+            config,
             toolsActive: null,
             tools: tools,
+            layerBaseName: 'RedrawObject3D',
+            layers: [
+                {
+                    type: 'cube',
+                    width: 100,
+                    height: 100,
+                    depth: 100,
+                },
+                {
+                    type: 'cube',
+                    width: 100,
+                    height: 100,
+                    depth: 50,
+                    Mesh: {
+                        position: {
+                            x: 100,
+                            y: 100,
+                        },
+                    },
+                },
+            ],
         } as Store3Dstate;
     },
     getters: {
+        layerBaseNameReg() {
+            return new RegExp(this.layerBaseName);
+        },
         toolsFlatMap() {
             return this.tools.reduce((a, b) => {
                 b.children.forEach((item) => {
@@ -98,6 +140,10 @@ const useStore3d = defineStore<
             return this.toolsFlatMap[this.toolsActive as string] || null;
         },
     },
-    actions: {},
+    actions: {
+        setToolActive(type) {
+            this.toolsActive = type;
+        },
+    },
 });
 export default useStore3d;

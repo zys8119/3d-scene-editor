@@ -1,12 +1,28 @@
 import { CameraHelper, DirectionalLightHelper } from 'three';
 import { BaseThreeClass } from 'naive-ui';
 const config = use3DConfig();
+const { Shift } = useMagicKeys({
+    onEventFired(e) {
+        console.log(e.code);
+    },
+});
 /**
  * 全局初始化
  * @param three
  */
 export function use3DGlobalInit(three: BaseThreeClass) {
-    const { THREE, scene } = three;
+    const { THREE, scene, controls, camera } = three;
+    // 相机设置
+    camera.position.x = config.value.camera.x;
+    camera.position.y = config.value.camera.y;
+    camera.position.z = config.value.camera.z;
+    camera.rotation.x = config.value.camera.rotation.x;
+    camera.rotation.y = config.value.camera.rotation.y;
+    camera.rotation.z = config.value.camera.rotation.z;
+    camera.scale.x = config.value.camera.scale.x;
+    camera.scale.y = config.value.camera.scale.y;
+    camera.scale.z = config.value.camera.scale.z;
+    camera.zoom = config.value.camera.zoom;
     // 关闭灯光帮助
     const lightHelper: DirectionalLightHelper =
         three.lightHelper as DirectionalLightHelper;
@@ -36,4 +52,25 @@ export function use3DGlobalInit(three: BaseThreeClass) {
         config.value.grid.z
     );
     scene.add(gridMesh);
+    // 控制器
+    controls.addEventListener('change', () => {
+        config.value.camera.x = three.camera.position.x;
+        config.value.camera.y = three.camera.position.y;
+        config.value.camera.z = three.camera.position.z;
+        config.value.camera.rotation.x = three.camera.rotation.x;
+        config.value.camera.rotation.y = three.camera.rotation.y;
+        config.value.camera.rotation.z = three.camera.rotation.z;
+        config.value.camera.zoom = three.camera.zoom;
+        config.value.camera.scale.x = three.camera.scale.x;
+        config.value.camera.scale.y = three.camera.scale.y;
+        config.value.camera.scale.z = three.camera.scale.z;
+    });
+    watchEffect(() => {
+        if (Shift.value) {
+            controls.rotateSpeed = 5;
+        } else {
+            controls.rotateSpeed = 1;
+        }
+    });
+    controls.listenToKeyEvents(window);
 }
