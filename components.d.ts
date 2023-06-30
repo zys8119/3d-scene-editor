@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     404: typeof import('./src/components/common/404.vue')['default']
     Aaa: typeof import('./src/components/aaa.vue')['default']
     Actions: typeof import('./src/components/layout/actions/index.vue')['default']
+    Attribute3d: typeof import('@/views/scene/components/Attribute.vue')['default']
     Avatar: typeof import('./src/components/layout/avatar/index.vue')['default']
     Breadcrumb: typeof import('./src/components/layout/breadcrumb/index.vue')['default']
     Error: typeof import('./src/components/common/error.vue')['default']

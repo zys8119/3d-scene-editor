@@ -24,6 +24,7 @@ const config = {
         y: 0,
         z: 0,
     },
+    statsShow: false,
 };
 const configRef = ref(config);
 /**
