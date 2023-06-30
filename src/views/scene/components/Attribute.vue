@@ -10,7 +10,7 @@
         </n-space>
 
         <div class="Attribute-Content flex-1 b-t-solid b-t-1px b-t-#5c5c5e">
-            <div v-for="(item, key) in 100">{{ item }}</div>
+            <div v-for="(item, key) in 100" :key="key">{{ item }}</div>
         </div>
     </div>
 </template>
