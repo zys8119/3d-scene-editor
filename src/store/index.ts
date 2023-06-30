@@ -5,6 +5,7 @@ import useMainStore from './modules/main';
 import useTabbarStore from './modules/tabbar';
 import useSideRoutesStore from './modules/side-routes';
 import useAppConfigStore from './modules/app-config';
+import useStore3d from './modules/3d';
 import { App } from 'vue';
 
 interface Store {
@@ -12,6 +13,7 @@ interface Store {
     tabbar: ReturnType<typeof useTabbarStore>;
     sideRoutes: ReturnType<typeof useSideRoutesStore>;
     appConfig: ReturnType<typeof useAppConfigStore>;
+    store3d: ReturnType<typeof useStore3d>;
 }
 
 /**
@@ -23,6 +25,7 @@ function getStores(): Store {
         tabbar: useTabbarStore(),
         sideRoutes: useSideRoutesStore(),
         appConfig: useAppConfigStore(),
+        store3d: useStore3d(),
     };
 }
 
