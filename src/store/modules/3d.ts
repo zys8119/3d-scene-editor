@@ -65,6 +65,7 @@ export type toolsActiveType = (typeof toolsActiveType)[number] | null;
 export type Layer = {
     [key: string]: any;
     type: toolsActiveType;
+    label: string;
     width: number;
     height: number;
     depth: number;
@@ -85,6 +86,7 @@ export interface Store3DGetters {
     toolsFlatMap(): Record<string, ToolItem>;
     toolActiveInfo(): ToolItem | null;
     layerBaseNameReg(): RegExp;
+    layersGetters(): Array<Layer & { tool: ToolItem }>;
 }
 export interface Store3DActions {
     [key: string]: any;
@@ -104,12 +106,14 @@ const useStore3d = defineStore<
             layerBaseName: 'RedrawObject3D',
             layers: [
                 {
+                    label: '物体1',
                     type: 'cube',
                     width: 100,
                     height: 100,
                     depth: 100,
                 },
                 {
+                    label: '物体2',
                     type: 'cube',
                     width: 100,
                     height: 100,
@@ -138,6 +142,12 @@ const useStore3d = defineStore<
         },
         toolActiveInfo() {
             return this.toolsFlatMap[this.toolsActive as string] || null;
+        },
+        layersGetters() {
+            return this.layers.map((e) => ({
+                ...e,
+                tool: this.toolsFlatMap[e.type as string],
+            }));
         },
     },
     actions: {

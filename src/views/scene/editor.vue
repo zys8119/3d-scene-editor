@@ -8,6 +8,7 @@
             :near="0.5"
         ></n-three>
         <tool-3d></tool-3d>
+        <layers-3d></layers-3d>
     </div>
 </template>
 
@@ -22,7 +23,7 @@ const load = async (three: BaseThreeClass) => {
 };
 </script>
 
-<style scoped>
+<style>
 .editor {
 }
 </style>

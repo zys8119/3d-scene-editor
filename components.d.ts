@@ -20,6 +20,7 @@ declare module '@vue/runtime-core' {
     Humburger: typeof import('./src/components/layout/humburger/index.vue')['default']
     Iconfonts: typeof import('./src/components/common/tools/components/iconfonts.vue')['default']
     IconSelect: typeof import('./src/components/icon-select.vue')['default']
+    Layers3d: typeof import('@/views/scene/components/Layers.vue')['default']
     Layout: typeof import('./src/components/layout/index.vue')['default']
     Loading: typeof import('./src/components/common/loading.vue')['default']
     Logo: typeof import('./src/components/layout/logo/index.vue')['default']
