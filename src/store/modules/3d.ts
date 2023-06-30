@@ -59,12 +59,6 @@ export type ToolItemType<T> = T extends (infer R extends (typeof tools)[0])[]
         : R
     : T;
 export type ToolItem = ToolItemType<typeof tools>;
-export type ToolsActiveType<T> = T extends (infer R extends (typeof tools)[0])[]
-    ? R['children'] extends (infer V extends R['children'][0])[]
-        ? V['type']
-        : R
-    : T;
-export type ToolsActive = ToolsActiveType<typeof tools>;
 export interface Store3Dstate {
     [key: string]: any;
     toolsActive: (typeof toolsActiveType)[number] | null;
