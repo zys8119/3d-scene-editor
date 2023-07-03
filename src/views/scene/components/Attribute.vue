@@ -18,9 +18,7 @@
                 :key="key"
             ></attr-card-3d>
         </div>
-        <div class="AttributeMore">
-            <div v-for="i in 100">{{ i }}</div>
-        </div>
+        <div class="AttributeMore"></div>
     </div>
 </template>
 
