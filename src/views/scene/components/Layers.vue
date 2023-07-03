@@ -1,7 +1,7 @@
 <template>
     <div class="Layers flex flex-col">
         <n-space justify="space-between" class="p-10px">
-            <div class="text-18px">title</div>
+            <div class="text-18px">sceneTitle</div>
             <div>icon</div>
         </n-space>
         <div class="p-10px b-t-solid b-t-1px b-t-#5c5c5e">

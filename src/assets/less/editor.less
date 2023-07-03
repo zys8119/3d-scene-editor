@@ -1,14 +1,78 @@
-.editor {
-    .n-input {
-        background: #191a1d;
-        &:not(.n-input--disabled).n-input--focus {
-            background: #191a1d;
+body {
+    .editor {
+        --editor-text-active: #3c92fc;
+        --editor-text-color: #ffffff;
+        --editor-bg: #191a1d;
+        --editor-border: #0000;
+        --editor-color-placeholder: #6f6f71;
+        --editor-color: var(--editor-text-color);
+        --editor-font-size: 12px;
+        .n-input {
+            background: var(--editor-bg);
+            &:not(.n-input--disabled).n-input--focus {
+                background: var(--editor-bg);
+            }
+            input {
+                color: var(--editor-color);
+                font-size: 12px !important;
+            }
+            .n-input__border {
+                border: none;
+            }
+            .n-input__placeholder {
+                color: var(--editor-color-placeholder);
+                font-size: var(--editor-font-size);
+            }
         }
-        input {
-            color: #fff;
+        .n-select {
+            .n-base-selection {
+                .n-base-selection-label {
+                    --n-color: var(--editor-bg);
+                    font-size: var(--editor-font-size);
+                }
+                .n-base-selection__border {
+                    --n-border: var(--editor-border);
+                }
+            }
+            .n-base-selection .n-base-selection-placeholder {
+                color: var(--editor-color-placeholder);
+                font-size: var(--editor-font-size);
+            }
+            .n-base-selection-input__content {
+                color: var(--editor-text-color);
+            }
+            .n-base-selection:not(
+                    .n-base-selection--disabled
+                ).n-base-selection--active
+                .n-base-selection-label {
+                background: var(--editor-bg);
+            }
         }
-        .n-input__border {
-            border: none;
+    }
+    .AttrCardComponent-n-select {
+        background: #000000;
+    }
+    .attrs-n-radio-group {
+        .n-radio__dot-wrapper {
+            display: none;
+        }
+        label {
+            width: 100%;
+        }
+        .n-radio__label {
+            background: var(--editor-bg);
+            width: 100%;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--editor-color-placeholder);
+        }
+        .n-radio--checked {
+            .n-radio__label {
+                background: var(--editor-text-active);
+                color: var(--editor-text-color);
+            }
         }
     }
 }
