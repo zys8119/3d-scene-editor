@@ -13,7 +13,7 @@ const attrs = [
                 label: 'radio',
                 config: {
                     type: 'radio',
-                    isflex: true,
+                    isFlex: true,
                     props: {
                         options: [
                             {

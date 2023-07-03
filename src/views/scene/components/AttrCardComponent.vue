@@ -44,7 +44,7 @@
             class="attrs-n-radio-group w-100%"
         >
             <n-space
-                :item-style="config.isflex ? { flex: 1 } : {}"
+                :item-style="config.isFlex ? { flex: 1 } : {}"
                 class="w-100%"
             >
                 <n-radio

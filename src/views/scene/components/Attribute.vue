@@ -11,11 +11,15 @@
 
         <div class="Attribute-Content flex-1 b-t-solid b-t-1px b-t-#5c5c5e">
             <attr-card-3d
+                v-model:show="item.show"
                 :title="item.title"
                 :list="item.child"
                 v-for="(item, key) in $store.store3d.attrsGetters"
                 :key="key"
             ></attr-card-3d>
+        </div>
+        <div class="AttributeMore">
+            <div v-for="i in 100">{{ i }}</div>
         </div>
     </div>
 </template>
@@ -33,10 +37,24 @@
     border-radius: 10px;
     color: #9d9ea0;
     z-index: 1;
-    overflow: hidden;
     transition: all ease-in-out 300ms;
     &-Content {
         overflow-x: hidden;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    .AttributeMore {
+        position: absolute;
+        transform: translateX(-100%);
+        top: 0;
+        left: -10px;
+        background: #111316;
+        height: 100%;
+        overflow-x: hidden;
+        z-index: 2;
+        border-radius: 10px;
+        color: #9d9ea0;
         &::-webkit-scrollbar {
             display: none;
         }
