@@ -93,7 +93,23 @@
             class="cursorCss"
             v-if="config.cursorGj && isDown"
             :style="cursorCss"
-        ></div>
+        >
+            <svg
+                t="1688374091664"
+                class="icon"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                p-id="3262"
+                width="200"
+                height="200"
+            >
+                <path
+                    d="M775.8 648.7V564c0-2.2-1.8-4-4-4H252.2c-2.2 0-4 1.8-4 4v84.7c0 3.1-3.3 5-6 3.5L11.5 518.9c-5.3-3.1-5.3-10.8 0-13.9l230.7-133.2c2.7-1.5 6 0.4 6 3.5V460c0 2.2 1.8 4 4 4h519.6c2.2 0 4-1.8 4-4v-84.7c0-3.1 3.3-5 6-3.5L1012.5 505c5.3 3.1 5.3 10.8 0 13.9L781.8 652.1c-2.7 1.6-6-0.3-6-3.4z"
+                    p-id="3263"
+                ></path>
+            </svg>
+        </div>
     </div>
 </template>
 <script setup lang="ts">
@@ -119,7 +135,7 @@ const isDown = ref(false);
 const time = ref(-1);
 const moveX = ref(0);
 const moveXM = ref(0);
-const { x, y, isOutside } = useMouseInElement(el);
+const { x, y } = useMouseInElement(el);
 const cursorCss = computed(() => {
     let left = (x.value + moveXM.value) % window.innerWidth;
     if (left <= 0) {
@@ -137,17 +153,14 @@ const mousedown = () => {
     isDown.value = true;
     moveXM.value = 0;
     el.value.requestPointerLock();
-    time.value = setTimeout(() => {
-        document.exitPointerLock();
-        isDown.value = false;
-    }, 500);
 };
-const mouseup = (e: MouseEvent) => {
+const mouseup = () => {
     if (!props.config.cursorGj) {
         return;
     }
-    moveX.value = e.movementX;
+    moveX.value = 0;
     moveXM.value = 0;
+    isDown.value = false;
     document.exitPointerLock();
 };
 window.addEventListener('mouseup', mouseup);
@@ -161,23 +174,13 @@ const mousemove = (e: MouseEvent) => {
         // err
     }
     if (isDown.value) {
-        el.value.requestPointerLock();
         moveX.value += e.movementX;
         moveXM.value += e.movementX;
         const configProps: any = get(props.config, 'props', {});
         configProps.value = get(configProps, 'value', 0);
         configProps.value += e.movementX;
-        time.value = setTimeout(() => {
-            document.exitPointerLock();
-            isDown.value = false;
-        }, 500);
     }
 };
-watchEffect(() => {
-    if (!isDown.value && isOutside.value) {
-        document.exitPointerLock();
-    }
-});
 </script>
 
 <style scoped lang="less">
@@ -185,9 +188,19 @@ watchEffect(() => {
     .cursorCss {
         position: fixed;
         z-index: 1000000000;
-        width: 10px;
-        height: 10px;
-        background: #f00;
+        width: 20px;
+        height: 20px;
+        color: #ff0000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        svg {
+            fill: currentColor;
+            width: 100%;
+            height: 100%;
+            transform: translate(-10px, -50%);
+            filter: drop-shadow(0 0 2px #000);
+        }
     }
 }
 </style>
