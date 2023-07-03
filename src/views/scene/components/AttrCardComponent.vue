@@ -6,18 +6,25 @@
         @mousedown="mousedown"
         @mousemove="mousemove"
     >
-        <n-input v-if="config.type === 'input'" clearable v-bind="config.props">
+        <n-input
+            v-if="config.type === 'input'"
+            clearable
+            v-bind="config.props"
+            v-model:value="config.props.value"
+        >
         </n-input>
         <n-input-number
             v-if="config.type === 'number'"
             clearable
             v-bind="config.props"
+            v-model:value="config.props.value"
         >
         </n-input-number>
         <n-switch
             v-if="config.type === 'switch'"
             clearable
             v-bind="config.props"
+            v-model:value="config.props.value"
         >
         </n-switch>
         <n-select
@@ -27,6 +34,7 @@
                         class:'AttrCardComponent-n-select '
                   } as any"
             v-bind="config.props"
+            v-model:value="config.props.value"
         >
         </n-select>
         <n-radio-group
@@ -81,22 +89,47 @@
                 v-bind="config.props"
             />
         </n-space>
+        <div
+            class="cursorCss"
+            v-if="config.cursorGj && isDown"
+            :style="cursorCss"
+        ></div>
     </div>
 </template>
 <script setup lang="ts">
 import { Ref } from 'vue';
 import { AttrsItemChildConfig } from '@/store/modules/3d/attrs';
 import { get } from 'lodash';
-
 const props = defineProps<{
     config: AttrsItemChildConfig;
 }>();
+const emits = defineEmits<{
+    (e: 'uodate:config', v: AttrsItemChildConfig): void;
+}>();
+const config = computed<AttrsItemChildConfig>({
+    get() {
+        return props.config;
+    },
+    set(v: AttrsItemChildConfig) {
+        emits('uodate:config', v);
+    },
+});
 const el = ref() as Ref<HTMLDivElement>;
 const isDown = ref(false);
 const time = ref(-1);
 const moveX = ref(0);
 const moveXM = ref(0);
 const { x, y, isOutside } = useMouseInElement(el);
+const cursorCss = computed(() => {
+    let left = (x.value + moveXM.value) % window.innerWidth;
+    if (left <= 0) {
+        left = window.innerWidth + left;
+    }
+    return {
+        left: `${left}px`,
+        top: `${y.value}px`,
+    };
+});
 const mousedown = () => {
     if (!props.config.cursorGj) {
         return;
@@ -149,5 +182,12 @@ watchEffect(() => {
 
 <style scoped lang="less">
 .AttrCardComponent {
+    .cursorCss {
+        position: fixed;
+        z-index: 1000000000;
+        width: 10px;
+        height: 10px;
+        background: #f00;
+    }
 }
 </style>
