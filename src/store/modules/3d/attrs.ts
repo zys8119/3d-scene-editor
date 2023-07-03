@@ -61,6 +61,32 @@ const attrs = [
                     props: {},
                 },
             },
+            {
+                label: 'color',
+                config: {
+                    type: 'color',
+                    props: {
+                        swatches: [
+                            '#FFFFFF',
+                            '#18A058',
+                            '#2080F0',
+                            '#F0A020',
+                            'rgba(208, 48, 80, 1)',
+                        ],
+                        actions: ['clear', 'confirm'],
+                    },
+                },
+            },
+            {
+                label: 'slider',
+                config: {
+                    type: 'slider',
+                    cursorGj: true,
+                    props: {
+                        value: 1,
+                    },
+                },
+            },
         ],
     },
 ];

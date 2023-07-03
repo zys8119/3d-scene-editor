@@ -1,5 +1,11 @@
 <template>
-    <div class="AttrCardComponent">
+    <div
+        class="AttrCardComponent"
+        ref="el"
+        @mouseup="mouseup"
+        @mousedown="mousedown"
+        @mousemove="mousemove"
+    >
         <n-input v-if="config.type === 'input'" clearable v-bind="config.props">
         </n-input>
         <n-input-number
@@ -47,14 +53,98 @@
             </n-space>
             <template #icon>asdas</template>
         </n-radio-group>
+        <n-space v-if="config.type === 'color'" class="AttrCardComponentColor">
+            <n-color-picker
+                v-bind="config.props"
+                v-model:value="config.props.value"
+                class="w-30px h-30px"
+                show-preview
+                size="small"
+            >
+                <template #label></template>
+            </n-color-picker>
+            <n-input v-model:value="config.props.value"></n-input>
+        </n-space>
+        <n-space
+            v-if="config.type === 'slider'"
+            class="AttrCardComponentSlider"
+        >
+            <n-input-number
+                @mousedown.stop="() => {}"
+                v-model:value="config.props.value"
+                size="small"
+                :show-button="false"
+            />
+            <n-slider
+                @mousedown.stop="() => {}"
+                v-model:value="config.props.value"
+                v-bind="config.props"
+            />
+        </n-space>
     </div>
 </template>
 <script setup lang="ts">
+import { Ref } from 'vue';
 import { AttrsItemChildConfig } from '@/store/modules/3d/attrs';
+import { get } from 'lodash';
 
-defineProps<{
+const props = defineProps<{
     config: AttrsItemChildConfig;
 }>();
+const el = ref() as Ref<HTMLDivElement>;
+const isDown = ref(false);
+const time = ref(-1);
+const moveX = ref(0);
+const moveXM = ref(0);
+const { x, y, isOutside } = useMouseInElement(el);
+const mousedown = () => {
+    if (!props.config.cursorGj) {
+        return;
+    }
+    isDown.value = true;
+    moveXM.value = 0;
+    el.value.requestPointerLock();
+    time.value = setTimeout(() => {
+        document.exitPointerLock();
+        isDown.value = false;
+    }, 500);
+};
+const mouseup = (e: MouseEvent) => {
+    if (!props.config.cursorGj) {
+        return;
+    }
+    moveX.value = e.movementX;
+    moveXM.value = 0;
+    document.exitPointerLock();
+};
+window.addEventListener('mouseup', mouseup);
+const mousemove = (e: MouseEvent) => {
+    if (!props.config.cursorGj) {
+        return;
+    }
+    try {
+        clearInterval(time.value);
+    } catch (e) {
+        // err
+    }
+    if (isDown.value) {
+        el.value.requestPointerLock();
+        moveX.value += e.movementX;
+        moveXM.value += e.movementX;
+        const configProps: any = get(props.config, 'props', {});
+        configProps.value = get(configProps, 'value', 0);
+        configProps.value += e.movementX;
+        time.value = setTimeout(() => {
+            document.exitPointerLock();
+            isDown.value = false;
+        }, 500);
+    }
+};
+watchEffect(() => {
+    if (!isDown.value && isOutside.value) {
+        document.exitPointerLock();
+    }
+});
 </script>
 
 <style scoped lang="less">

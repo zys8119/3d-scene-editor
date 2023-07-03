@@ -1,5 +1,6 @@
 body {
     .editor {
+        user-select: none;
         --editor-text-active: #3c92fc;
         --editor-text-color: #ffffff;
         --editor-bg: #191a1d;
@@ -72,6 +73,50 @@ body {
             .n-radio__label {
                 background: var(--editor-text-active);
                 color: var(--editor-text-color);
+            }
+        }
+    }
+    .AttrCardComponentColor {
+        & > div {
+            &:nth-child(1) {
+                flex-shrink: 0;
+            }
+            &:nth-child(2) {
+                flex: 1;
+            }
+        }
+    }
+    .n-switch {
+        .n-switch__rail {
+            --n-rail-color: var(--editor-bg);
+        }
+    }
+    .AttrCardComponentSlider {
+        cursor: ew-resize;
+        & > div {
+            &:nth-child(1) {
+                flex-shrink: 0;
+                width: 40px;
+            }
+            &:nth-child(2) {
+                flex: 1;
+            }
+        }
+        .n-slider {
+            height: 100%;
+            padding: 0;
+            .n-slider-rail {
+                height: 100%;
+                background: #202124;
+            }
+            .n-slider-handle-wrapper {
+                border-radius: 10px !important;
+                height: 100% !important;
+                width: 18px !important;
+            }
+            .n-slider-handle {
+                border-radius: 10px !important;
+                height: 100% !important;
             }
         }
     }
