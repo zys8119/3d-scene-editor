@@ -1,98 +1,100 @@
 <template>
     <div
         class="AttrCardComponent"
+        :class="{
+            'p-l-15px': isCursorGj,
+        }"
         ref="el"
         @mouseup="mouseup"
         @mousedown="mousedown"
         @mousemove="mousemove"
     >
-        <n-input
-            v-if="config.type === 'input'"
-            clearable
-            v-bind="config.props"
-            v-model:value="config.props.value"
-        >
-        </n-input>
-        <n-input-number
-            v-if="config.type === 'number'"
-            clearable
-            v-bind="config.props"
-            v-model:value="config.props.value"
-        >
-        </n-input-number>
-        <n-switch
-            v-if="config.type === 'switch'"
-            clearable
-            v-bind="config.props"
-            v-model:value="config.props.value"
-        >
-        </n-switch>
-        <n-select
-            v-if="config.type === 'select'"
-            clearable
-            :menu-props="{
+        <div @mousedown.stop="() => {}">
+            <n-input
+                v-if="config.type === 'input'"
+                clearable
+                v-bind="config.props"
+                v-model:value="config.props.value"
+            >
+            </n-input>
+            <n-input-number
+                v-if="config.type === 'number'"
+                clearable
+                v-bind="config.props"
+                v-model:value="config.props.value"
+            >
+            </n-input-number>
+            <n-switch
+                v-if="config.type === 'switch'"
+                clearable
+                v-bind="config.props"
+                v-model:value="config.props.value"
+            >
+            </n-switch>
+            <n-select
+                v-if="config.type === 'select'"
+                clearable
+                :menu-props="{
                         class:'AttrCardComponent-n-select '
                   } as any"
-            v-bind="config.props"
-            v-model:value="config.props.value"
-        >
-        </n-select>
-        <n-radio-group
-            v-if="config.type === 'radio'"
-            v-bind="config.props"
-            v-model:value="config.props.value"
-            class="attrs-n-radio-group w-100%"
-        >
-            <n-space
-                :item-style="config.isFlex ? { flex: 1 } : {}"
-                class="w-100%"
+                v-bind="config.props"
+                v-model:value="config.props.value"
             >
-                <n-radio
-                    v-for="song in config.props.options"
-                    :key="song.value"
-                    :value="song.value"
+            </n-select>
+            <n-radio-group
+                v-if="config.type === 'radio'"
+                v-bind="config.props"
+                v-model:value="config.props.value"
+                class="attrs-n-radio-group w-100%"
+            >
+                <n-space
+                    :item-style="config.isFlex ? { flex: 1 } : {}"
+                    class="w-100%"
                 >
-                    <n-ellipsis class="w-100%">
-                        <div class="flex justify-center items-center">
-                            {{ song.label }}
-                        </div>
-                    </n-ellipsis>
-                </n-radio>
-            </n-space>
-        </n-radio-group>
-        <n-space v-if="config.type === 'color'" class="AttrCardComponentColor">
-            <n-color-picker
-                v-bind="config.props"
-                v-model:value="config.props.value"
-                class="w-30px h-30px"
-                show-preview
-                size="small"
+                    <n-radio
+                        v-for="song in config.props.options"
+                        :key="song.value"
+                        :value="song.value"
+                    >
+                        <n-ellipsis class="w-100%">
+                            <div class="flex justify-center items-center">
+                                {{ song.label }}
+                            </div>
+                        </n-ellipsis>
+                    </n-radio>
+                </n-space>
+            </n-radio-group>
+            <n-space
+                v-if="config.type === 'color'"
+                class="AttrCardComponentColor"
             >
-                <template #label></template>
-            </n-color-picker>
-            <n-input v-model:value="config.props.value"></n-input>
-        </n-space>
-        <n-space
-            v-if="config.type === 'slider'"
-            class="AttrCardComponentSlider"
-        >
-            <n-input-number
-                @mousedown.stop="() => {}"
-                v-model:value="config.props.value"
-                size="small"
-                :show-button="false"
-            />
-            <n-slider
-                @mousedown.stop="() => {}"
-                v-model:value="config.props.value"
-                v-bind="config.props"
-            />
-        </n-space>
-        <div
-            class="cursorCss"
-            v-if="config.cursorGj && isDown"
-            :style="cursorCss"
-        >
+                <n-color-picker
+                    v-bind="config.props"
+                    v-model:value="config.props.value"
+                    class="w-30px h-30px"
+                    show-preview
+                    size="small"
+                >
+                    <template #label></template>
+                </n-color-picker>
+                <n-input v-model:value="config.props.value"></n-input>
+            </n-space>
+            <n-space
+                v-if="config.type === 'slider'"
+                class="AttrCardComponentSlider"
+            >
+                <n-input-number
+                    v-model:value="config.props.value"
+                    size="small"
+                    :show-button="false"
+                />
+                <n-slider
+                    v-model:value="config.props.value"
+                    v-bind="config.props"
+                />
+            </n-space>
+        </div>
+        <div class="cursorCss" v-if="isCursorGj && isDown" :style="cursorCss">
             <svg
                 t="1688374091664"
                 class="icon"
@@ -129,6 +131,9 @@ const config = computed<AttrsItemChildConfig>({
         emits('uodate:config', v);
     },
 });
+const isCursorGj = computed(() =>
+    ['boolean', 'number'].includes(typeof props.config.cursorGj)
+);
 const el = ref() as Ref<HTMLDivElement>;
 const isDown = ref(false);
 const time = ref(-1);
@@ -146,7 +151,7 @@ const cursorCss = computed(() => {
     };
 });
 const mousedown = () => {
-    if (!props.config.cursorGj) {
+    if (!isCursorGj.value) {
         return;
     }
     isDown.value = true;
@@ -154,7 +159,7 @@ const mousedown = () => {
     el.value.requestPointerLock();
 };
 const mouseup = () => {
-    if (!props.config.cursorGj) {
+    if (!isCursorGj.value) {
         return;
     }
     moveX.value = 0;
@@ -164,7 +169,7 @@ const mouseup = () => {
 };
 window.addEventListener('mouseup', mouseup);
 const mousemove = (e: MouseEvent) => {
-    if (!props.config.cursorGj) {
+    if (!isCursorGj.value) {
         return;
     }
     try {
@@ -173,11 +178,16 @@ const mousemove = (e: MouseEvent) => {
         // err
     }
     if (isDown.value) {
-        moveX.value += e.movementX;
-        moveXM.value += e.movementX;
+        const step =
+            e.movementX *
+            (typeof config.value.cursorGj === 'number'
+                ? config.value.cursorGj
+                : 1);
+        moveX.value += step;
+        moveXM.value += step;
         const configProps: any = get(props.config, 'props', {});
         configProps.value = get(configProps, 'value', 0);
-        configProps.value += e.movementX;
+        configProps.value += step;
     }
 };
 </script>

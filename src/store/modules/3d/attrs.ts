@@ -1,109 +1,6 @@
 import { VNode } from 'vue';
-
-const attrs: Attrs = [
-    {
-        title: 'Camera',
-        showMore: true,
-        more() {
-            return h('div', 'asdas');
-        },
-        child: [
-            {
-                label: 'input',
-                config: {
-                    type: 'input',
-                    props: {},
-                },
-            },
-            {
-                label: 'radio',
-                config: {
-                    type: 'radio',
-                    isFlex: true,
-                    props: {
-                        options: [
-                            {
-                                label: 'Yes',
-                                value: 'Yes',
-                            },
-                            {
-                                label: 'No',
-                                value: 'No',
-                            },
-                        ],
-                    },
-                },
-            },
-            {
-                label: 'select',
-                config: {
-                    type: 'select',
-                    props: {
-                        options: [
-                            {
-                                label: "Everybody's Got Something to Hide Except Me and My Monkey",
-                                value: 'song0',
-                                disabled: true,
-                            },
-                            {
-                                label: 'Drive My Car',
-                                value: 'song1',
-                            },
-                        ],
-                    },
-                },
-            },
-            {
-                label: 'number',
-                config: {
-                    type: 'number',
-                    props: {},
-                },
-            },
-            {
-                label: 'switch',
-                config: {
-                    type: 'switch',
-                    props: {},
-                },
-            },
-            {
-                label: 'color',
-                showMore: true,
-                more() {
-                    return h('div', '阿四件打算看');
-                },
-                config: {
-                    type: 'color',
-                    props: {
-                        swatches: [
-                            '#FFFFFF',
-                            '#18A058',
-                            '#2080F0',
-                            '#F0A020',
-                            'rgba(208, 48, 80, 1)',
-                        ],
-                        actions: ['clear', 'confirm'],
-                    },
-                },
-            },
-            {
-                label: 'sliderasasa',
-                showMore: true,
-                more() {
-                    return h('div', 'asdas');
-                },
-                config: {
-                    type: 'slider',
-                    cursorGj: true,
-                    props: {
-                        value: 0,
-                    },
-                },
-            },
-        ],
-    },
-] as Attrs;
+import cameraAttrs from './cameraAttrs';
+const attrs = cameraAttrs;
 export default attrs;
 export type AttrsType =
     | 'input'
@@ -127,7 +24,7 @@ export type Attrs = Array<{
         config: {
             // 属性配置
             type: AttrsType; // 控件类型
-            cursorGj: boolean; // 是否开启鼠标水平无限滚动
+            cursorGj: boolean | number; // 是否开启鼠标水平无限滚动
             isFlex?: boolean; // 是否为flex布局，用于select控件类型
             props: any; // 控件参数
         };
