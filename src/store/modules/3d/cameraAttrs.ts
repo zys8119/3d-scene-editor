@@ -1,11 +1,10 @@
 import { Attrs } from '@/store/modules/3d/attrs';
-import { get, set } from 'lodash';
+import { get as _get, set } from 'lodash';
 const config = use3DConfig();
 
 const attrs = [
     {
         title: 'Camera',
-        show: false,
         child: [
             'x',
             'y',
@@ -24,10 +23,14 @@ const attrs = [
                     type: 'number',
                     cursorGj: 0.05,
                     props: {
-                        value: get(config.value.camera, label, 0),
-                        'onUpdate:value'(v) {
-                            set(config.value.camera, label, v);
-                        },
+                        value: computed({
+                            get() {
+                                return _get(config.value.camera, label, 0);
+                            },
+                            set(v: any) {
+                                set(config.value.camera, label, v);
+                            },
+                        }),
                     },
                 },
             }))
@@ -38,10 +41,14 @@ const attrs = [
                         type: 'number',
                         cursorGj: 0.05,
                         props: {
-                            value: get(config.value, label, 0),
-                            'onUpdate:value'(v) {
-                                set(config.value, label, v);
-                            },
+                            value: computed({
+                                get() {
+                                    return _get(config.value, label, 0);
+                                },
+                                set(v: any) {
+                                    set(config.value, label, v);
+                                },
+                            }),
                         },
                     },
                 }))

@@ -72,5 +72,32 @@ export function use3DGlobalInit(three: BaseThreeClass) {
             controls.rotateSpeed = 1;
         }
     });
-    controls.listenToKeyEvents(window);
+    watch(
+        config,
+        () => {
+            camera.scale.set(
+                config.value.camera.scale.x,
+                config.value.camera.scale.y,
+                config.value.camera.scale.z
+            );
+            camera.rotation.set(
+                config.value.camera.rotation.x,
+                config.value.camera.rotation.y,
+                config.value.camera.rotation.z
+            );
+            camera.position.set(
+                config.value.camera.x,
+                config.value.camera.y,
+                config.value.camera.z
+            );
+            camera.zoom = config.value.camera.zoom;
+            gridMesh.rotation.set(
+                config.value.grid.x,
+                config.value.grid.y,
+                config.value.grid.z
+            );
+        },
+        { deep: true }
+    );
+    // controls.listenToKeyEvents(window);
 }
