@@ -59,7 +59,6 @@
                     </n-ellipsis>
                 </n-radio>
             </n-space>
-            <template #icon>asdas</template>
         </n-radio-group>
         <n-space v-if="config.type === 'color'" class="AttrCardComponentColor">
             <n-color-picker

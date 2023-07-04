@@ -1,4 +1,6 @@
-const attrs = [
+import { VNode } from 'vue';
+
+const attrs: Attrs = [
     {
         title: 'Camera',
         showMore: true,
@@ -101,15 +103,40 @@ const attrs = [
             },
         ],
     },
-];
+] as Attrs;
 export default attrs;
-
-export type Attrs = typeof attrs;
+export type AttrsType =
+    | 'input'
+    | 'number'
+    | 'switch'
+    | 'select'
+    | 'radio'
+    | 'color'
+    | 'slider';
+export type Attrs = Array<{
+    title: string;
+    showMore?: boolean;
+    show?: boolean;
+    showAdd?: boolean;
+    contentMore?: any;
+    more?(): VNode;
+    child: Array<{
+        label: string;
+        showMore?: boolean;
+        more?(): VNode;
+        config: {
+            type: AttrsType;
+            cursorGj: boolean;
+            isFlex?: boolean;
+            props: any;
+        };
+    }>;
+}>;
 
 export type AttrsItem = Attrs extends (infer T)[] ? T : never;
 
 export type AttrsItemChild = AttrsItem['child'] extends (infer T)[] ? T : never;
 
-export type AttrsItemChildConfig = AttrsItemChild['config'] extends (infer T)[]
+export type AttrsItemChildConfig = AttrsItemChild['config'] extends infer T
     ? T
     : any;
