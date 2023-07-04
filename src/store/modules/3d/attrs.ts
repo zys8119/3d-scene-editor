@@ -1,13 +1,15 @@
 import { VNode } from 'vue';
-import cameraAttrs from './cameraAttrs';
-import transformAttrs from './transformAttrs';
+const models = import.meta.glob(['./*Attrs.ts'], {
+    eager: true,
+    import: 'default',
+});
 import {
     Store3Dstate,
     Store3DGetters,
     Store3DActions,
 } from '@/store/modules/3d';
 import { Store } from 'pinia';
-const attrs = cameraAttrs.concat(transformAttrs);
+const attrs: Attrs = Object.values(models).flat() as Attrs;
 export default attrs;
 export type AttrsType =
     | 'input'
