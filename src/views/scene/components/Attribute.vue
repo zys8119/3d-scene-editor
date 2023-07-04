@@ -12,17 +12,48 @@
         <div class="Attribute-Content flex-1 b-t-solid b-t-1px b-t-#5c5c5e">
             <attr-card-3d
                 v-model:show="item.show"
+                v-model:showMore="item.showMore"
+                v-model:showAdd="item.showAdd"
+                v-model:contentMore="item.contentMore"
                 :title="item.title"
                 :list="item.child"
                 v-for="(item, key) in $store.store3d.attrsGetters"
                 :key="key"
+                @more="(v) => more(v, item)"
+                @add="add(item)"
             ></attr-card-3d>
         </div>
-        <div class="AttributeMore"></div>
+        <div
+            ref="moreRef"
+            class="AttributeMore"
+            v-if="moreContent !== null && moreContent !== undefined"
+        >
+            <AttributeMoreVnode :content="moreContent" />
+        </div>
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AttributeMoreVnode from './AttributeMoreVnode';
+const moreRef = ref();
+const moreContent = ref(null);
+const more = async (v: any, item: any) => {
+    if (typeof v === 'string') {
+        moreContent.value = await item.more?.();
+    } else {
+        moreContent.value = await v.more?.();
+    }
+};
+const add = async (v: any) => {
+    await v.onAadd?.();
+};
+const { isOutside } = useMouseInElement(moreRef);
+window.addEventListener('click', () => {
+    if (isOutside.value) {
+        moreContent.value = null;
+    }
+});
+</script>
 
 <style scoped lang="less">
 .Attribute {

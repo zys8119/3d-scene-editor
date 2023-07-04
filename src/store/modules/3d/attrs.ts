@@ -1,6 +1,10 @@
 const attrs = [
     {
         title: 'Camera',
+        showMore: true,
+        more() {
+            return h('div', 'asdas');
+        },
         child: [
             {
                 label: 'input',
@@ -63,6 +67,10 @@ const attrs = [
             },
             {
                 label: 'color',
+                showMore: true,
+                more() {
+                    return h('div', '阿四件打算看');
+                },
                 config: {
                     type: 'color',
                     props: {
@@ -78,12 +86,16 @@ const attrs = [
                 },
             },
             {
-                label: 'slider',
+                label: 'sliderasasa',
+                showMore: true,
+                more() {
+                    return h('div', 'asdas');
+                },
                 config: {
                     type: 'slider',
                     cursorGj: true,
                     props: {
-                        value: 1,
+                        value: 0,
                     },
                 },
             },
