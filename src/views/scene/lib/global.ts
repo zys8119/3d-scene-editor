@@ -1,5 +1,6 @@
 import { CameraHelper, DirectionalLightHelper } from 'three';
 import { BaseThreeClass } from 'naive-ui';
+import onEvent from 'three-onevent-esm';
 const config = use3DConfig();
 const { Shift } = useMagicKeys({
     onEventFired(e) {
@@ -12,6 +13,12 @@ const { Shift } = useMagicKeys({
  */
 export function use3DGlobalInit(three: BaseThreeClass) {
     const { THREE, scene, controls, camera } = three;
+    // 初始化事件交互
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    new onEvent(three.scene, three.camera, three.vm.exposed.canvas.value);
+    // 初始化变形设置
+    (three as any).transform = three.transformControls();
     // 相机设置
     camera.position.x = config.value.camera.x;
     camera.position.y = config.value.camera.y;

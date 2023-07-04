@@ -12,22 +12,33 @@
             ></n-input>
         </div>
         <div class="layers-menus layers-menus-line flex-1">
-            <n-space
-                class="layers-menus-item"
-                align="center"
-                v-for="(item, key) in layers"
-                :key="key"
-            >
-                <div
-                    v-html="item.tool.icon"
-                    class="w-20px h-20px flex justify-center items-center"
-                ></div>
-                <layers-label-3d
-                    class="w-100% min-h-19px"
-                    :item="item"
-                ></layers-label-3d>
-                <div class="flex justify-end">icon</div>
-            </n-space>
+            <VueDraggable v-model="$store.store3d.layers" :animation="150">
+                <n-space
+                    class="layers-menus-item"
+                    align="center"
+                    v-for="(item, key) in layers"
+                    :key="key"
+                    :class="{
+                        active:
+                            item.id === store.layerActiveId ||
+                            item.id === store.layerActiveIdCache,
+                    }"
+                    @mouseenter="$store.store3d.setLayerActiveId(item.id)"
+                    @mouseleave="$store.store3d.setLayerActiveId(null)"
+                >
+                    <div
+                        v-html="item.tool.icon"
+                        class="w-20px h-20px flex justify-center items-center"
+                        @click="layerClick(item)"
+                    ></div>
+                    <layers-label-3d
+                        class="w-100% min-h-19px"
+                        :item="item"
+                        @click="layerClick(item)"
+                    ></layers-label-3d>
+                    <div class="flex justify-end">icon</div>
+                </n-space>
+            </VueDraggable>
             <div
                 v-if="layers.length === 0"
                 class="flex text-12px justify-center"
@@ -60,7 +71,8 @@
 </template>
 
 <script setup lang="ts">
-import useStore3d from '@/store/modules/3d';
+import useStore3d, { LayersGettersItem } from '@/store/modules/3d';
+import { VueDraggable } from 'vue-draggable-plus';
 const config = use3DConfig();
 const top = computed(() => (config.value.statsShow ? '65px' : '15px'));
 const store = useStore3d();
@@ -79,6 +91,9 @@ const layersFooter = ref([
     { title: 'Import' },
     { title: 'Help & Feedback' },
 ]);
+const layerClick = (layer: LayersGettersItem) => {
+    store.setLayerActiveId(layer.id, true);
+};
 </script>
 
 <style scoped lang="less">
@@ -103,10 +118,13 @@ const layersFooter = ref([
             :deep(svg) {
                 fill: currentColor;
             }
-            &:hover {
+            &.active {
                 background: #3b93fc;
                 color: #ffffff;
                 cursor: pointer;
+            }
+            &:hover {
+                .active;
             }
             & > :deep(div) {
                 &:nth-child(3) {
@@ -153,10 +171,19 @@ const layersFooter = ref([
                         height: 50%;
                     }
                 }
-                &:hover {
+                &.active {
                     &:before,
                     &:after {
                         background: #ffffff;
+                    }
+                }
+                &:hover {
+                    //.active;
+                    color: #3b93fc;
+                    background: transparent;
+                    &:before,
+                    &:after {
+                        background: #3b93fc;
                     }
                 }
                 & > :deep(div) {

@@ -12,6 +12,8 @@ export type toolsActiveType = (typeof toolsActiveType)[number] | null;
 export type Layer = {
     [key: string]: any;
     type: toolsActiveType;
+    id: any;
+    name?: string;
     label: string;
     width: number;
     height: number;
@@ -24,23 +26,28 @@ export type Layer = {
 export interface Store3Dstate {
     [key: string]: any;
     toolsActive: toolsActiveType;
+    layerActiveId: any;
+    layerActiveIdCache: any;
     tools: typeof tools;
     layers: Layer[];
     layerBaseName: string;
     config: typeof config;
     attrs: typeof attrs;
 }
+export type LayersGettersItem = Layer & { tool: ToolItem };
 export interface Store3DGetters {
     [key: string]: any;
     toolsFlatMap(): Record<string, ToolItem>;
     toolActiveInfo(): ToolItem | null;
     layerBaseNameReg(): RegExp;
-    layersGetters(): Array<Layer & { tool: ToolItem }>;
+    layersGetters(): Array<LayersGettersItem>;
     attrsGetters(): Array<AttrsItem>;
+    layerActiveGetters(): LayersGettersItem;
 }
 export interface Store3DActions {
     [key: string]: any;
     setToolActive(type: toolsActiveType): void;
+    setLayerActiveId(layerId: any, isCache?: boolean): void;
 }
 const useStore3d = defineStore<
     string,
@@ -53,6 +60,8 @@ const useStore3d = defineStore<
             attrs,
             config,
             toolsActive: null,
+            layerActiveId: null,
+            layerActiveIdCache: null,
             tools,
             layerBaseName: 'RedrawObject3D',
             layers: [
@@ -62,6 +71,7 @@ const useStore3d = defineStore<
                     width: 100,
                     height: 100,
                     depth: 100,
+                    id: 1,
                 },
                 {
                     label: '物体2',
@@ -75,6 +85,7 @@ const useStore3d = defineStore<
                             y: 100,
                         },
                     },
+                    id: 2,
                 },
             ],
         } as Store3Dstate;
@@ -96,6 +107,7 @@ const useStore3d = defineStore<
         },
         layersGetters() {
             return this.layers.map<any>((e) => {
+                e.name = typeof e.name === 'string' ? e.name : e.label;
                 e.tool = this.toolsFlatMap[e.type as string];
                 return e;
             });
@@ -103,10 +115,23 @@ const useStore3d = defineStore<
         attrsGetters() {
             return this.attrs;
         },
+        layerActiveGetters() {
+            return this.layersGetters.find(
+                (e) =>
+                    e.id === this.layerActiveId ||
+                    e.id === this.layerActiveIdCache
+            ) as LayersGettersItem;
+        },
     },
     actions: {
         setToolActive(type) {
             this.toolsActive = type;
+        },
+        setLayerActiveId(layerId, isCache) {
+            this.layerActiveId = layerId;
+            if (isCache) {
+                this.layerActiveIdCache = layerId;
+            }
         },
     },
 });

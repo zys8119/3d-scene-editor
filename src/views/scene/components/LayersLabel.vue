@@ -7,7 +7,7 @@
         v-model:value="item.label"
         placeholder="请输入名称"
     ></n-input>
-    <div v-else @click="show = true">
+    <div v-else @dblclick="show = true">
         <n-ellipsis class="w-100%">{{ item.label }}</n-ellipsis>
     </div>
 </template>
