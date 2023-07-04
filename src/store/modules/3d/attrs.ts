@@ -1,6 +1,7 @@
 import { VNode } from 'vue';
 import cameraAttrs from './cameraAttrs';
-const attrs = cameraAttrs;
+import transformAttrs from './transformAttrs';
+const attrs = cameraAttrs.concat(transformAttrs);
 export default attrs;
 export type AttrsType =
     | 'input'

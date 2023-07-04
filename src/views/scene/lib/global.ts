@@ -18,7 +18,7 @@ export function use3DGlobalInit(three: BaseThreeClass) {
     // @ts-ignore
     new onEvent(three.scene, three.camera, three.vm.exposed.canvas.value);
     // 初始化变形设置
-    (three as any).transform = three.transformControls();
+    const transform = ((three as any).transform = three.transformControls());
     // 相机设置
     camera.position.x = config.value.camera.x;
     camera.position.y = config.value.camera.y;
@@ -79,32 +79,35 @@ export function use3DGlobalInit(three: BaseThreeClass) {
             controls.rotateSpeed = 1;
         }
     });
-    watch(
-        config,
-        () => {
-            camera.scale.set(
-                config.value.camera.scale.x,
-                config.value.camera.scale.y,
-                config.value.camera.scale.z
-            );
-            camera.rotation.set(
-                config.value.camera.rotation.x,
-                config.value.camera.rotation.y,
-                config.value.camera.rotation.z
-            );
-            camera.position.set(
-                config.value.camera.x,
-                config.value.camera.y,
-                config.value.camera.z
-            );
-            camera.zoom = config.value.camera.zoom;
-            gridMesh.rotation.set(
-                config.value.grid.x,
-                config.value.grid.y,
-                config.value.grid.z
-            );
-        },
-        { deep: true }
-    );
+    watchEffect(() => {
+        camera.scale.set(
+            config.value.camera.scale.x,
+            config.value.camera.scale.y,
+            config.value.camera.scale.z
+        );
+        camera.rotation.set(
+            config.value.camera.rotation.x,
+            config.value.camera.rotation.y,
+            config.value.camera.rotation.z
+        );
+        camera.position.set(
+            config.value.camera.x,
+            config.value.camera.y,
+            config.value.camera.z
+        );
+        camera.zoom = config.value.camera.zoom;
+        gridMesh.rotation.set(
+            config.value.grid.x,
+            config.value.grid.y,
+            config.value.grid.z
+        );
+        transform.setMode(config.value.transform.mode || transform.getMode());
+        config.value.transform.mode = transform.getMode();
+    });
+    window.addEventListener('click', () => {
+        if (!window.$draw3dSceneEditorObject3DClick) {
+            window.store.store3d.setLayerActiveId(null, true);
+        }
+    });
     // controls.listenToKeyEvents(window);
 }

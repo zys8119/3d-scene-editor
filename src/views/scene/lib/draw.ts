@@ -61,6 +61,10 @@ class Redraw {
                 mesh.on('click', (e) => {
                     store.setLayerActiveId(this.parseName(e.name).id, true);
                     this.transform.attach(e);
+                    window.$draw3dSceneEditorObject3DClick = true;
+                    setTimeout(() => {
+                        window.$draw3dSceneEditorObject3DClick = false;
+                    }, 500);
                 });
             })
         );

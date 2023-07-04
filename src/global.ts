@@ -16,5 +16,6 @@ declare global {
     type PageMap = PageMapType;
     interface Window {
         $modeConfig: string;
+        $draw3dSceneEditorObject3DClick: boolean;
     }
 }

@@ -113,14 +113,20 @@ const useStore3d = defineStore<
             });
         },
         attrsGetters() {
-            return this.attrs;
+            return this.attrs.filter((e) => {
+                if (e.title === 'Transform') {
+                    return !!this.layerActiveGetters;
+                }
+                return true;
+            });
         },
         layerActiveGetters() {
-            return this.layersGetters.find(
-                (e) =>
-                    e.id === this.layerActiveId ||
-                    e.id === this.layerActiveIdCache
-            ) as LayersGettersItem;
+            return (this.layersGetters.find(
+                (e) => e.id === this.layerActiveId
+            ) ||
+                this.layersGetters.find(
+                    (e) => e.id === this.layerActiveIdCache
+                )) as LayersGettersItem;
         },
     },
     actions: {

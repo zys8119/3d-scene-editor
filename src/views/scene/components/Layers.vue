@@ -93,6 +93,10 @@ const layersFooter = ref([
 ]);
 const layerClick = (layer: LayersGettersItem) => {
     store.setLayerActiveId(layer.id, true);
+    window.$draw3dSceneEditorObject3DClick = true;
+    setTimeout(() => {
+        window.$draw3dSceneEditorObject3DClick = false;
+    }, 500);
 };
 </script>
 

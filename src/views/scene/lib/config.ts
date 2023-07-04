@@ -25,6 +25,9 @@ const config = {
         z: 0,
     },
     statsShow: false,
+    transform: {
+        mode: null as any,
+    },
 };
 const configRef = ref(config);
 /**
