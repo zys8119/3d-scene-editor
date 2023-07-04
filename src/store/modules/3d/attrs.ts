@@ -114,12 +114,12 @@ export type AttrsType =
     | 'color'
     | 'slider';
 export type Attrs = Array<{
-    title: string;
-    showMore?: boolean;
-    show?: boolean;
-    showAdd?: boolean;
-    contentMore?: any;
-    more?(): VNode;
+    title: string; // 分组标题
+    showMore?: boolean; // 是否显示更多
+    show?: boolean; // 是否可控显示
+    showAdd?: boolean; // 是否显示添加按钮
+    contentMore?: any; // 显示更多内容
+    more?(): VNode; // 更多面板
     child: Array<{
         label: string;
         showMore?: boolean;

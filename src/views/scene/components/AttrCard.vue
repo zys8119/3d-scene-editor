@@ -16,7 +16,11 @@
                         class="!gap-0"
                         v-if="contentMore || showAdd"
                     >
-                        <n-popover trigger="hover" placement="bottom">
+                        <n-popover
+                            trigger="hover"
+                            placement="bottom"
+                            v-if="!!contentMore"
+                        >
                             <template #trigger>
                                 <div class="attr-card-3d-more-icon">
                                     <svg
