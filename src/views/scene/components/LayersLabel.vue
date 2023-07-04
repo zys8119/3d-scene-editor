@@ -16,9 +16,13 @@
 import { Layer } from '@/store/modules/3d';
 
 const show = ref(false);
-defineProps<{
+const props = defineProps<{
     item: Layer;
 }>();
+const emits = defineEmits<{
+    (e: 'update:item', v: any): void;
+}>();
+const item = useVModel(props, 'item', emits);
 const el = ref();
 const { isOutside } = useMouseInElement(el);
 window.addEventListener('click', () => {
