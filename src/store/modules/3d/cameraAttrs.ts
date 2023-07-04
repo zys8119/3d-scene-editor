@@ -36,23 +36,26 @@ const attrs = [
                 },
             }))
             .concat(
-                ['grid.x', 'grid.y', 'grid.z'].map((label) => ({
-                    label: label.replace(/^./, (m) => m.toUpperCase()),
-                    config: {
-                        type: 'number',
-                        cursorGj: 0.05,
-                        props: {
-                            value: computed({
-                                get() {
-                                    return _get(config.value, label, 0);
+                ['grid.x', 'grid.y', 'grid.z'].map(
+                    (label) =>
+                        ({
+                            label: label.replace(/^./, (m) => m.toUpperCase()),
+                            config: {
+                                type: 'number',
+                                cursorGj: 0.05,
+                                props: {
+                                    value: computed({
+                                        get() {
+                                            return _get(config.value, label, 0);
+                                        },
+                                        set(v: any) {
+                                            set(config.value, label, v);
+                                        },
+                                    }),
                                 },
-                                set(v: any) {
-                                    set(config.value, label, v);
-                                },
-                            }),
-                        },
-                    },
-                }))
+                            },
+                        } as any)
+                )
             ),
     },
 ] as Attrs;

@@ -8,7 +8,7 @@ import useAppConfigStore from './modules/app-config';
 import useStore3d from './modules/3d';
 import { App } from 'vue';
 
-interface Store {
+export interface Store {
     main: ReturnType<typeof useMainStore>;
     tabbar: ReturnType<typeof useTabbarStore>;
     sideRoutes: ReturnType<typeof useSideRoutesStore>;

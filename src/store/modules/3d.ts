@@ -1,5 +1,5 @@
 import tools, { toolsActiveType } from './3d/tools';
-import attrs, { AttrsItem } from './3d/attrs';
+import attrs, { AttrsItem, AttrsItemChild } from './3d/attrs';
 const config = use3DConfig();
 
 export type ToolItemType<T> = T extends (infer R extends (typeof tools)[0])[]
@@ -112,13 +112,26 @@ const useStore3d = defineStore<
                 return e;
             });
         },
+
         attrsGetters() {
-            return this.attrs.filter((e) => {
-                if (e.title === 'Transform') {
-                    return !!this.layerActiveGetters;
-                }
-                return true;
-            });
+            return this.attrs
+                .filter((e: AttrsItem | AttrsItemChild) => {
+                    if (typeof e.filter === 'function') {
+                        return e.filter.call(this as any);
+                    }
+                    return true;
+                })
+                .map((e) => {
+                    e.child = (e.child || []).filter(
+                        (e: AttrsItem | AttrsItemChild) => {
+                            if (typeof e.filter === 'function') {
+                                return e.filter.call(this as any);
+                            }
+                            return true;
+                        }
+                    );
+                    return e;
+                });
         },
         layerActiveGetters() {
             return (this.layersGetters.find(

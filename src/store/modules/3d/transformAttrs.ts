@@ -3,6 +3,9 @@ const config = use3DConfig();
 const attrs = [
     {
         title: 'Transform',
+        filter() {
+            return !!this.layerActiveGetters;
+        },
         child: [
             {
                 label: 'Mode',
