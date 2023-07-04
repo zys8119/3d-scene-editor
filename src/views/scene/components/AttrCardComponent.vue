@@ -184,7 +184,7 @@ const mousemove = (e: MouseEvent) => {
                 ? config.value.cursorGj
                 : 1);
         moveX.value += step;
-        moveXM.value += step;
+        moveXM.value += e.movementX;
         const configProps: any = get(props.config, 'props', {});
         configProps.value = get(configProps, 'value', 0);
         configProps.value += step;
