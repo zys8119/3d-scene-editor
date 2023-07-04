@@ -19,6 +19,7 @@ export type Layer = {
     Box: any;
     Material: any;
     Mesh: any;
+    $isEdit: boolean;
 };
 export interface Store3Dstate {
     [key: string]: any;
@@ -94,10 +95,10 @@ const useStore3d = defineStore<
             return this.toolsFlatMap[this.toolsActive as string] || null;
         },
         layersGetters() {
-            return this.layers.map((e) => ({
-                ...e,
-                tool: this.toolsFlatMap[e.type as string],
-            }));
+            return this.layers.map<any>((e) => {
+                e.tool = this.toolsFlatMap[e.type as string];
+                return e;
+            });
         },
         attrsGetters() {
             return this.attrs;

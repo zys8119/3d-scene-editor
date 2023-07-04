@@ -5,6 +5,7 @@ const config = use3DConfig();
 const attrs = [
     {
         title: 'Camera',
+        show: false,
         child: [
             'x',
             'y',

@@ -24,6 +24,7 @@ declare module '@vue/runtime-core' {
     Iconfonts: typeof import('./src/components/common/tools/components/iconfonts.vue')['default']
     IconSelect: typeof import('./src/components/icon-select.vue')['default']
     Layers3d: typeof import('@/views/scene/components/Layers.vue')['default']
+    LayersLabel3d: typeof import('@/views/scene/components/LayersLabel.vue')['default']
     Layout: typeof import('./src/components/layout/index.vue')['default']
     Loading: typeof import('./src/components/common/loading.vue')['default']
     Logo: typeof import('./src/components/layout/logo/index.vue')['default']

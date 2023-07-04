@@ -14,6 +14,7 @@
         <div class="layers-menus layers-menus-line flex-1">
             <n-space
                 class="layers-menus-item"
+                align="center"
                 v-for="(item, key) in layers"
                 :key="key"
             >
@@ -21,7 +22,10 @@
                     v-html="item.tool.icon"
                     class="w-20px h-20px flex justify-center items-center"
                 ></div>
-                <div>{{ item.label }}</div>
+                <layers-label-3d
+                    class="w-100% min-h-19px"
+                    :item="item"
+                ></layers-label-3d>
                 <div class="flex justify-end">icon</div>
             </n-space>
             <div
@@ -34,6 +38,7 @@
         <div class="layers-menus b-t-solid b-t-1px b-t-#5c5c5e">
             <n-space
                 class="layers-menus-item"
+                align="center"
                 v-for="(item, key) in layersFooter"
                 :key="key"
             >
@@ -152,6 +157,15 @@ const layersFooter = ref([
                     &:before,
                     &:after {
                         background: #ffffff;
+                    }
+                }
+                & > :deep(div) {
+                    &:nth-child(2) {
+                        flex: 1;
+                        overflow: hidden;
+                    }
+                    &:last-child {
+                        flex: initial;
                     }
                 }
             }
