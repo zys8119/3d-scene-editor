@@ -121,14 +121,15 @@ export type Attrs = Array<{
     contentMore?: any; // 显示更多内容
     more?(): VNode; // 更多面板
     child: Array<{
-        label: string;
-        showMore?: boolean;
-        more?(): VNode;
+        label: string; // 属性标题
+        showMore?: boolean; // 属性更多
+        more?(): VNode; // 更多内容
         config: {
-            type: AttrsType;
-            cursorGj: boolean;
-            isFlex?: boolean;
-            props: any;
+            // 属性配置
+            type: AttrsType; // 控件类型
+            cursorGj: boolean; // 是否开启鼠标水平无限滚动
+            isFlex?: boolean; // 是否为flex布局，用于select控件类型
+            props: any; // 控件参数
         };
     }>;
 }>;
