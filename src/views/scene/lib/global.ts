@@ -106,7 +106,7 @@ export function use3DGlobalInit(three: BaseThreeClass) {
     });
     window.addEventListener('click', () => {
         if (!window.$draw3dSceneEditorObject3DClick) {
-            window.store.store3d.setLayerActiveId(null, true);
+            // window.store.store3d.setLayerActiveId(null, true);
         }
     });
     // controls.listenToKeyEvents(window);

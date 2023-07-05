@@ -114,24 +114,12 @@ const useStore3d = defineStore<
         },
 
         attrsGetters() {
-            return this.attrs
-                .filter((e: AttrsItem | AttrsItemChild) => {
-                    if (typeof e.filter === 'function') {
-                        return e.filter.call(this as any);
-                    }
-                    return true;
-                })
-                .map((e) => {
-                    e.child = (e.child || []).filter(
-                        (e: AttrsItem | AttrsItemChild) => {
-                            if (typeof e.filter === 'function') {
-                                return e.filter.call(this as any);
-                            }
-                            return true;
-                        }
-                    );
-                    return e;
-                });
+            return this.attrs.filter((e: AttrsItem | AttrsItemChild) => {
+                if (typeof e.filter === 'function') {
+                    return e.filter.call(this as any);
+                }
+                return true;
+            });
         },
         layerActiveGetters() {
             return (this.layersGetters.find(

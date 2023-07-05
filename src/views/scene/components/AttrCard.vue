@@ -82,30 +82,31 @@
             </n-space>
         </div>
         <n-collapse-transition :show="typeof show === 'boolean' ? show : true">
-            <div
-                class="attr-card-3d-value flex justify-center items-center gap-15px"
-                v-for="(item, key) in list"
-                :key="key"
-            >
+            <template v-for="(item, key) in list" :key="key">
                 <div
-                    class="attr-card-3d-value__label text-12px w-60px flex items-center"
+                    v-if="filter(item)"
+                    class="attr-card-3d-value flex justify-center items-center gap-15px"
                 >
-                    <n-ellipsis class="flex-1">
-                        {{ item.label }}
-                    </n-ellipsis>
-                    <span
-                        class="attr-card-3d-more"
-                        v-if="item.showMore"
-                        @click.stop="more(item)"
-                    ></span>
+                    <div
+                        class="attr-card-3d-value__label text-12px w-60px flex items-center"
+                    >
+                        <n-ellipsis class="flex-1">
+                            {{ item.label }}
+                        </n-ellipsis>
+                        <span
+                            class="attr-card-3d-more"
+                            v-if="item.showMore"
+                            @click.stop="more(item)"
+                        ></span>
+                    </div>
+                    <div class="value flex-1">
+                        <attr-card-component-3d
+                            :config="item.config"
+                            class="w-100%"
+                        ></attr-card-component-3d>
+                    </div>
                 </div>
-                <div class="value flex-1">
-                    <attr-card-component-3d
-                        :config="item.config"
-                        class="w-100%"
-                    ></attr-card-component-3d>
-                </div>
-            </div>
+            </template>
         </n-collapse-transition>
     </div>
 </template>
@@ -113,6 +114,8 @@
 <script setup lang="ts">
 import { AttrsItemChild } from '@/store/modules/3d/attrs';
 import AttributeMoreVnode from './AttributeMoreVnode';
+import useStore3d from '@/store/modules/3d';
+const store = useStore3d();
 
 const props = defineProps<{
     title: string;
@@ -133,6 +136,12 @@ const more = (v: any) => {
 };
 const add = () => {
     emits('add');
+};
+const filter = (item: any) => {
+    if (typeof item.filter === 'function') {
+        return item.filter?.(store);
+    }
+    return true;
 };
 </script>
 
