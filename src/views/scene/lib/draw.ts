@@ -30,6 +30,23 @@ class Redraw {
             name: layerName,
         };
     }
+    parseColor(color: string) {
+        let opacity = 1;
+        if (/#/.test(color)) {
+            opacity = parseInt(`0x${color.replace(/#.{6}/, '') || 'ff'}`, 16);
+            color = color.replace(/(#.{6})(.*)/, '$1');
+            opacity = isNaN(opacity) ? 255 : opacity;
+            opacity = opacity / 1 / 255;
+        }
+        if (/hsla|rgba/.test(color)) {
+            opacity = Number(get(/(?:.*,\s*(.*)\)$)/.exec(color), '[1]', '1'));
+            color = color.replace(new RegExp(`,\\s*${opacity}\\)$`), ')');
+        }
+        return {
+            color,
+            opacity,
+        };
+    }
     async draw() {
         const { THREE, scene } = this.three;
         // 清除绘制场景
@@ -41,9 +58,7 @@ class Redraw {
                     layer.depth
                 );
 
-                const material = new THREE.MeshLambertMaterial({
-                    color: '#525252',
-                });
+                const material = new THREE.MeshLambertMaterial();
                 const mesh = new THREE.Mesh(box, material) as unknown as Mesh &
                     OnEventType;
                 mesh.name = this.getName(layer);
@@ -74,6 +89,12 @@ class Redraw {
                         get(layer, 'Mesh.scale.y', 1),
                         get(layer, 'Mesh.scale.z', 1)
                     );
+                    const materialColor = this.parseColor(
+                        get(layer, 'Material.color', '#5f5f5f')
+                    );
+                    material.color = new THREE.Color(materialColor.color);
+                    material.opacity = materialColor.opacity;
+                    material.transparent = true;
                 };
                 watchReset();
                 watch(layer, watchReset, { deep: true });
