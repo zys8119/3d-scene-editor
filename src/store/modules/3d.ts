@@ -1,5 +1,6 @@
 import tools, { toolsActiveType } from './3d/tools';
 import attrs, { AttrsItem, AttrsItemChild } from './3d/attrs';
+import assets from './assets/index';
 const config = use3DConfig();
 
 export type ToolItemType<T> = T extends (infer R extends (typeof tools)[0])[]
@@ -33,6 +34,7 @@ export interface Store3Dstate {
     layerBaseName: string;
     config: typeof config;
     attrs: typeof attrs;
+    assets: typeof assets;
 }
 export type LayersGettersItem = Layer & { tool: ToolItem };
 export interface Store3DGetters {
@@ -48,6 +50,8 @@ export interface Store3DActions {
     [key: string]: any;
     setToolActive(type: toolsActiveType): void;
     setLayerActiveId(layerId: any, isCache?: boolean): void;
+    setAssets(url: string): void;
+    deleteAssets(index: number): void;
 }
 const useStore3d = defineStore<
     string,
@@ -58,6 +62,7 @@ const useStore3d = defineStore<
     state() {
         return {
             attrs,
+            assets,
             config,
             toolsActive: null,
             layerActiveId: null,
@@ -139,6 +144,12 @@ const useStore3d = defineStore<
             if (isCache) {
                 this.layerActiveIdCache = layerId;
             }
+        },
+        setAssets(url) {
+            this.assets.push(url);
+        },
+        deleteAssets(index) {
+            this.assets.splice(index, 1);
         },
     },
 });

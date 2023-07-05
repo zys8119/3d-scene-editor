@@ -3,6 +3,7 @@ import useStore3d, { Layer } from '@/store/modules/3d';
 import { get, set } from 'lodash';
 import { Mesh, Object3D } from 'three';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 const store = useStore3d();
 interface OnEventType {
     on(
@@ -58,6 +59,7 @@ class Redraw {
                     layer.depth
                 );
                 const material = new THREE.MeshLambertMaterial();
+                material.needsUpdate = true;
                 const mesh = new THREE.Mesh(box, material) as unknown as Mesh &
                     OnEventType;
                 mesh.name = this.getName(layer);
@@ -101,12 +103,18 @@ class Redraw {
                     material.transparent = true;
                     const materialMap = get(layer, 'Material.map');
                     if (typeof materialMap === 'string') {
-                        mesh.material.map = new THREE.TextureLoader().load(
-                            'http://localhost:3000/%E5%9B%BE%E7%89%87:%E8%A7%86%E9%A2%91/%E9%98%BF%E7%8B%B8%20cosplay%E7%BE%8E%E5%A5%B34k%E9%AB%98%E6%B8%85%E5%A3%81%E7%BA%B8_%E5%BD%BC%E5%B2%B8%E5%9B%BE%E7%BD%91.jpg'
-                        );
+                        if (material.map?.image.src !== materialMap) {
+                            material.needsUpdate = true;
+                            material.setValues({
+                                map: new THREE.TextureLoader().load(
+                                    materialMap
+                                ),
+                            });
+                        }
                     } else {
-                        console.log(2);
-                        // material.map = null;
+                        material.setValues({
+                            map: null,
+                        });
                     }
                 };
                 watchReset();
