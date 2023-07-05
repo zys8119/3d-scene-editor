@@ -38,6 +38,13 @@ export default [
                 },
                 defaultValue: '#000000',
             },
+            {
+                path: 'Material.map',
+                config: { type: 'color' } as AttrsItemChildConfig & {
+                    defaultValue: string;
+                },
+                defaultValue: '#000000',
+            },
         ].map((label: any) => {
             const isObject =
                 Object.prototype.toString.call(label) === '[object Object]';

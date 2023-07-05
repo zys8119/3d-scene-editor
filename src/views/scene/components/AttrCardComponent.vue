@@ -93,6 +93,11 @@
                     v-bind="config.props"
                 />
             </n-space>
+            <n-space v-if="config.type === 'VNode'">
+                <AttributeMoreVnode
+                    :conetnt="config.render"
+                ></AttributeMoreVnode>
+            </n-space>
         </div>
         <div class="cursorCss" v-if="isCursorGj && isDown" :style="cursorCss">
             <svg
@@ -116,6 +121,7 @@
 <script setup lang="ts">
 import { Ref } from 'vue';
 import { AttrsItemChildConfig } from '@/store/modules/3d/attrs';
+import AttributeMoreVnode from './AttributeMoreVnode';
 import { get } from 'lodash';
 const props = defineProps<{
     config: AttrsItemChildConfig;
