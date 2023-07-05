@@ -89,6 +89,7 @@
                 >
                     <div
                         class="attr-card-3d-value__label text-12px w-60px flex items-center"
+                        v-if="typeof item.label === 'string'"
                     >
                         <n-ellipsis class="flex-1">
                             {{ item.label }}

@@ -1,5 +1,19 @@
 import { Attrs } from '@/store/modules/3d/attrs';
 const config = use3DConfig();
+const optionsMode = [
+    {
+        label: 'translate',
+        value: 'translate',
+    },
+    {
+        label: 'rotate',
+        value: 'rotate',
+    },
+    {
+        label: 'scale',
+        value: 'scale',
+    },
+];
 const attrs = [
     {
         title: 'Transform',
@@ -12,20 +26,7 @@ const attrs = [
                 config: {
                     type: 'select',
                     props: {
-                        options: [
-                            {
-                                label: 'translate',
-                                value: 'translate',
-                            },
-                            {
-                                label: 'rotate',
-                                value: 'rotate',
-                            },
-                            {
-                                label: 'scale',
-                                value: 'scale',
-                            },
-                        ],
+                        options: optionsMode,
                         value: computed({
                             get() {
                                 return config.value.transform.mode;
@@ -40,4 +41,22 @@ const attrs = [
         ],
     },
 ] as Attrs;
+
+const { Control, KeyT } = useMagicKeys();
+watchEffect(() => {
+    if (
+        Control.value &&
+        KeyT.value &&
+        !!window.store.store3d.layerActiveGetters
+    ) {
+        let index =
+            optionsMode.findIndex(
+                (e) => e.value === config.value.transform.mode
+            ) + 1;
+        if (index < 0 || index >= optionsMode.length) {
+            index = 0;
+        }
+        config.value.transform.mode = optionsMode[index].value;
+    }
+});
 export default attrs;
