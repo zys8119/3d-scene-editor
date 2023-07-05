@@ -17,6 +17,7 @@ const optionsMode = [
 const attrs = [
     {
         title: 'Transform',
+        show: false,
         filter() {
             return !!this.layerActiveGetters;
         },

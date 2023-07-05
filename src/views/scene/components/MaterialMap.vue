@@ -64,6 +64,9 @@
 
 <script setup lang="ts">
 import { set } from 'lodash';
+const props = defineProps<{
+    keyName: string;
+}>();
 const change = (e: Event & { target: HTMLInputElement }) => {
     const file = e.target.files?.[0];
     const fr = new FileReader();
@@ -74,7 +77,11 @@ const change = (e: Event & { target: HTMLInputElement }) => {
     fr.readAsDataURL(file as File);
 };
 const setMap = (item) => {
-    set(window.store.store3d, 'layerActiveGetters.Material.map', item);
+    set(
+        window.store.store3d,
+        `layerActiveGetters.Material.${props.keyName}`,
+        item
+    );
 };
 </script>
 

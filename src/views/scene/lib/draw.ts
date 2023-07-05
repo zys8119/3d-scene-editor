@@ -4,6 +4,7 @@ import { get, set } from 'lodash';
 import { Mesh, Object3D } from 'three';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { textureField } from '@/store/modules/3d/materialAttrs';
 const store = useStore3d();
 interface OnEventType {
     on(
@@ -95,27 +96,95 @@ class Redraw {
                     );
                     material.color = new THREE.Color(materialColor.color);
                     material.opacity = materialColor.opacity;
+                    material.needsUpdate = true;
+                    material.setValues({
+                        aoMapIntensity: get(
+                            layer,
+                            'Material.aoMapIntensity',
+                            1
+                        ),
+                        bumpScale: get(layer, 'Material.bumpScale', 1),
+                        combine: get(layer, 'Material.combine', 1),
+                        displacementScale: get(
+                            layer,
+                            'Material.displacementScale',
+                            1
+                        ),
+                        displacementBias: get(
+                            layer,
+                            'Material.displacementScale',
+                            0
+                        ),
+                        emissiveIntensity: get(
+                            layer,
+                            'Material.emissiveIntensity',
+                            1
+                        ),
+                        lightMapIntensity: get(
+                            layer,
+                            'Material.lightMapIntensity',
+                            1
+                        ),
+                        reflectivity: get(layer, 'Material.reflectivity', 1),
+                        wireframeLinewidth: get(
+                            layer,
+                            'Material.wireframeLinewidth',
+                            1
+                        ),
+                        refractionRatio: get(
+                            layer,
+                            'Material.refractionRatio',
+                            0.98
+                        ),
+                        wireframeLinecap: get(
+                            layer,
+                            'Material.wireframeLinecap',
+                            'round'
+                        ),
+                        wireframeLinejoin: get(
+                            layer,
+                            'Material.wireframeLinejoin',
+                            'round'
+                        ),
+                        flatShading: get(layer, 'Material.flatShading', false),
+                        fog: get(layer, 'Material.fog', true),
+                        wireframe: get(layer, 'Material.wireframe', false),
+                    });
                     material.emissive = new THREE.Color(
                         this.parseColor(
                             get(layer, 'Material.emissive', '#000000')
                         ).color
                     );
                     material.transparent = true;
-                    const materialMap = get(layer, 'Material.map');
-                    if (typeof materialMap === 'string') {
-                        if (material.map?.image.src !== materialMap) {
+                    material.needsUpdate = false;
+                    const updateTexture = async (path: string) => {
+                        const materialMap = get(layer, path);
+                        const keyName: string = (/(?:\.(.*)$)/.exec(path) ||
+                            [])[1];
+                        if (typeof materialMap === 'string') {
+                            if (
+                                (material as any)[keyName as any]?.image.src !==
+                                materialMap
+                            ) {
+                                material.needsUpdate = true;
+                                const texture = new THREE.TextureLoader().load(
+                                    materialMap
+                                );
+                                material.setValues({
+                                    [keyName]: texture,
+                                });
+                            }
+                        } else {
                             material.needsUpdate = true;
                             material.setValues({
-                                map: new THREE.TextureLoader().load(
-                                    materialMap
-                                ),
+                                [keyName]: null,
                             });
                         }
-                    } else {
-                        material.setValues({
-                            map: null,
-                        });
-                    }
+                    };
+                    // 更新贴图
+                    textureField.forEach((keyName) => {
+                        updateTexture(`Material.${keyName}`);
+                    });
                 };
                 watchReset();
                 watch(layer, watchReset, { deep: true });

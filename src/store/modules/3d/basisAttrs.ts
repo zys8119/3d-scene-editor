@@ -13,6 +13,7 @@ const createValue = (keyPath: string) => {
 export default [
     {
         title: 'Basis',
+        show: true,
         filter() {
             return (
                 !!this.layerActiveGetters &&
