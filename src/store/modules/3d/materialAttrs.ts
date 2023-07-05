@@ -31,6 +31,13 @@ export default [
                 },
                 defaultValue: '#5f5f5f',
             },
+            {
+                path: 'Material.emissive',
+                config: { type: 'color' } as AttrsItemChildConfig & {
+                    defaultValue: string;
+                },
+                defaultValue: '#000000',
+            },
         ].map((label: any) => {
             const isObject =
                 Object.prototype.toString.call(label) === '[object Object]';
@@ -38,7 +45,7 @@ export default [
             const defaultValue = isObject ? label.defaultValue : 0;
             return {
                 label: _label
-                    .replace(/Mesh\./g, '')
+                    .replace(/Material\./g, '')
                     .replace(/^./, (m: string) => m.toUpperCase()),
                 config: _merge(
                     {
