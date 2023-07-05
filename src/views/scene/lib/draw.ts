@@ -57,7 +57,6 @@ class Redraw {
                     layer.height,
                     layer.depth
                 );
-
                 const material = new THREE.MeshLambertMaterial();
                 const mesh = new THREE.Mesh(box, material) as unknown as Mesh &
                     OnEventType;
@@ -71,7 +70,7 @@ class Redraw {
                         window.$draw3dSceneEditorObject3DClick = false;
                     }, 500);
                 });
-                const watchReset = () => {
+                const watchReset = async () => {
                     mesh.castShadow = get(layer, 'Mesh.castShadow', true);
                     mesh.receiveShadow = get(layer, 'Mesh.receiveShadow', true);
                     mesh.position.set(
@@ -102,11 +101,12 @@ class Redraw {
                     material.transparent = true;
                     const materialMap = get(layer, 'Material.map');
                     if (typeof materialMap === 'string') {
-                        material.map = new THREE.TextureLoader().load(
-                            materialMap
+                        mesh.material.map = new THREE.TextureLoader().load(
+                            'http://localhost:3000/%E5%9B%BE%E7%89%87:%E8%A7%86%E9%A2%91/%E9%98%BF%E7%8B%B8%20cosplay%E7%BE%8E%E5%A5%B34k%E9%AB%98%E6%B8%85%E5%A3%81%E7%BA%B8_%E5%BD%BC%E5%B2%B8%E5%9B%BE%E7%BD%91.jpg'
                         );
                     } else {
-                        material.map = null;
+                        console.log(2);
+                        // material.map = null;
                     }
                 };
                 watchReset();

@@ -1,4 +1,10 @@
-import { Attrs, AttrsItemChildConfig } from '@/store/modules/3d/attrs';
+import {
+    Attrs,
+    AttrsItemChild,
+    AttrsItemChildConfig,
+} from '@/store/modules/3d/attrs';
+import RenderMapVNode from '@/views/scene/components/RenderMapVNode.vue';
+import MaterialMap from '@/views/scene/components/MaterialMap.vue';
 import { get as _get, set as _set, merge as _merge } from 'lodash';
 const createValue = (keyPath: string, defaultValue: any = 0) => {
     return computed({
@@ -26,24 +32,26 @@ export default [
         child: [
             {
                 path: 'Material.color',
-                config: { type: 'color' } as AttrsItemChildConfig & {
-                    defaultValue: string;
-                },
+                config: { type: 'color' } as AttrsItemChildConfig,
                 defaultValue: '#5f5f5f',
             },
             {
                 path: 'Material.emissive',
-                config: { type: 'color' } as AttrsItemChildConfig & {
-                    defaultValue: string;
-                },
+                config: { type: 'color' } as AttrsItemChildConfig,
                 defaultValue: '#000000',
             },
             {
                 path: 'Material.map',
-                config: { type: 'color' } as AttrsItemChildConfig & {
-                    defaultValue: string;
-                },
-                defaultValue: '#000000',
+                config: {
+                    type: 'VNode',
+                    renderVNode: h(RenderMapVNode),
+                } as AttrsItemChildConfig,
+                base: {
+                    showMore: true,
+                    more(): VNode {
+                        return h(MaterialMap);
+                    },
+                } as AttrsItemChild,
             },
         ].map((label: any) => {
             const isObject =
@@ -54,6 +62,7 @@ export default [
                 label: _label
                     .replace(/Material\./g, '')
                     .replace(/^./, (m: string) => m.toUpperCase()),
+                ...(label.base || {}),
                 config: _merge(
                     {
                         type: 'number',

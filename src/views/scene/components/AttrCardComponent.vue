@@ -95,7 +95,7 @@
             </n-space>
             <n-space v-if="config.type === 'VNode'">
                 <AttributeMoreVnode
-                    :conetnt="config.render"
+                    :content="config.renderVNode"
                 ></AttributeMoreVnode>
             </n-space>
         </div>

@@ -18,6 +18,7 @@ export type AttrsType =
     | 'select'
     | 'radio'
     | 'color'
+    | 'VNode'
     | 'slider';
 export type AttrsFilter = (
     this: Store<string, Store3Dstate, Store3DGetters, Store3DActions>
@@ -38,6 +39,7 @@ export type Attrs = Array<{
         config: {
             // 属性配置
             type: AttrsType; // 控件类型
+            renderVNode: VNode; // 虚拟DOM
             cursorGj: boolean | number; // 是否开启鼠标水平无限滚动
             isFlex?: boolean; // 是否为flex布局，用于select控件类型
             props: any; // 控件参数
