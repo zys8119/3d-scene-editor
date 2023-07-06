@@ -19,6 +19,9 @@ export type Layer = {
     width: number;
     height: number;
     depth: number;
+    widthSegments: number;
+    heightSegments: number;
+    depthSegments: number;
     Box: any;
     Material: any;
     Mesh: any;

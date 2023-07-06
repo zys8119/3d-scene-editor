@@ -4,6 +4,7 @@ import { get, set } from 'lodash';
 import { Mesh, Object3D } from 'three';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls';
 import { textureField } from '@/store/modules/3d/materialAttrs';
+import { BufferGeometry } from 'three/src/core/BufferGeometry';
 const store = useStore3d();
 interface OnEventType {
     on(
@@ -48,16 +49,23 @@ class Redraw {
             opacity,
         };
     }
+    generateGeometry(layer: Layer): BufferGeometry {
+        const box = new this.three.THREE.BoxGeometry(
+            layer.width,
+            layer.height,
+            layer.depth,
+            layer.widthSegments,
+            layer.heightSegments,
+            layer.depthSegments
+        );
+        return box;
+    }
     async draw() {
         const { THREE, scene } = this.three;
         // 清除绘制场景
         await Promise.all(
             store.layers.map(async (layer) => {
-                const box = new THREE.BoxGeometry(
-                    layer.width,
-                    layer.height,
-                    layer.depth
-                );
+                let box = this.generateGeometry(layer);
                 const material = new THREE.MeshLambertMaterial();
                 material.needsUpdate = true;
                 const mesh = new THREE.Mesh(box, material) as unknown as Mesh &
@@ -73,6 +81,10 @@ class Redraw {
                     }, 500);
                 });
                 const watchReset = async () => {
+                    mesh.geometry.dispose();
+                    box = this.generateGeometry(layer);
+                    mesh.geometry = box;
+                    console.log(scene.children.length);
                     mesh.castShadow = get(layer, 'Mesh.castShadow', true);
                     mesh.receiveShadow = get(layer, 'Mesh.receiveShadow', true);
                     mesh.position.set(
