@@ -152,6 +152,16 @@ export const optionsGeometry = [
             return new three.THREE.ExtrudeGeometry(shape, extrudeSettings);
         },
     },
+    {
+        label: 'IcosahedronGeometry',
+        value: 'IcosahedronGeometry',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.IcosahedronGeometry(
+                layer.radius,
+                layer.detail
+            );
+        },
+    },
 ] as const;
 export type GeometryType = (typeof optionsGeometry)[number] extends {
     value: infer A;
@@ -203,6 +213,7 @@ export const filterMap = {
         'curveSegments',
         'paths',
     ],
+    IcosahedronGeometry: ['radius', 'detail'],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>

@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { h, Ref } from 'vue';
+import { Ref } from 'vue';
 import useStore3d from '@/store/modules/3d';
 import { PaperScope, Color } from 'paper';
 
