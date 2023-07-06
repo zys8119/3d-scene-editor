@@ -97,6 +97,19 @@ export const optionsGeometry = [
             );
         },
     },
+    {
+        label: 'EdgesGeometry',
+        value: 'EdgesGeometry',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.EdgesGeometry(
+                new three.THREE.BoxGeometry(
+                    layer.width,
+                    layer.height,
+                    layer.depth
+                )
+            );
+        },
+    },
 ] as const;
 export type GeometryType = (typeof optionsGeometry)[number] extends {
     value: infer A;
@@ -134,6 +147,7 @@ export const filterMap = {
         'thetaLength',
     ],
     DodecahedronGeometry: ['radius', 'detail'],
+    EdgesGeometry: ['width', 'height', 'depth'],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>
