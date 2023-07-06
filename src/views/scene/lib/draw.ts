@@ -50,14 +50,28 @@ class Redraw {
         };
     }
     generateGeometry(layer: Layer): BufferGeometry {
-        const box = new this.three.THREE.BoxGeometry(
-            layer.width,
-            layer.height,
-            layer.depth,
-            layer.widthSegments,
-            layer.heightSegments,
-            layer.depthSegments
-        );
+        let box: BufferGeometry;
+        switch (layer.geometryType) {
+            case 'CapsuleGeometry':
+                box = new this.three.THREE.CapsuleGeometry(
+                    layer.radius,
+                    layer.length,
+                    layer.capSegments,
+                    layer.radialSegments
+                );
+                break;
+            case 'BoxGeometry':
+            default:
+                box = new this.three.THREE.BoxGeometry(
+                    layer.width,
+                    layer.height,
+                    layer.depth,
+                    layer.widthSegments,
+                    layer.heightSegments,
+                    layer.depthSegments
+                );
+                break;
+        }
         return box;
     }
     async draw() {
@@ -84,7 +98,6 @@ class Redraw {
                     mesh.geometry.dispose();
                     box = this.generateGeometry(layer);
                     mesh.geometry = box;
-                    console.log(scene.children.length);
                     mesh.castShadow = get(layer, 'Mesh.castShadow', true);
                     mesh.receiveShadow = get(layer, 'Mesh.receiveShadow', true);
                     mesh.position.set(

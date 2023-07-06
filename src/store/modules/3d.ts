@@ -12,20 +12,25 @@ export type ToolItem = ToolItemType<typeof tools>;
 export type toolsActiveType = (typeof toolsActiveType)[number] | null;
 export type Layer = {
     [key: string]: any;
+    $isEdit: boolean;
     type: toolsActiveType;
+    geometryType: string;
     id: any;
     name?: string;
     label: string;
-    width: number;
-    height: number;
-    depth: number;
-    widthSegments: number;
-    heightSegments: number;
-    depthSegments: number;
-    Box: any;
-    Material: any;
-    Mesh: any;
-    $isEdit: boolean;
+    widthSegments?: number;
+    heightSegments?: number;
+    depthSegments?: number;
+    Box?: any;
+    Material?: any;
+    Mesh?: any;
+    width?: number;
+    height?: number;
+    depth?: number;
+    radius?: number;
+    length?: number;
+    capSegments?: number;
+    radialSegments?: number;
 };
 export interface Store3Dstate {
     [key: string]: any;
@@ -94,6 +99,22 @@ const useStore3d = defineStore<
                         },
                     },
                     id: 2,
+                },
+                {
+                    label: '物体3',
+                    type: 'cube',
+                    geometryType: 'CapsuleGeometry',
+                    radius: 100,
+                    length: 0,
+                    capSegments: 32,
+                    radialSegments: 64,
+                    Mesh: {
+                        position: {
+                            x: -100,
+                            y: 100,
+                        },
+                    },
+                    id: 3,
                 },
             ],
         } as Store3Dstate;

@@ -140,7 +140,7 @@ const add = () => {
 };
 const filter = (item: any) => {
     if (typeof item.filter === 'function') {
-        return item.filter?.(store);
+        return item.filter?.call(store);
     }
     return true;
 };
