@@ -110,6 +110,28 @@ export const optionsGeometry = [
             );
         },
     },
+    {
+        label: 'ExtrudeGeometry',
+        value: 'ExtrudeGeometry',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            const shape = new three.THREE.Shape();
+            shape.moveTo(0, 0);
+            shape.lineTo(0, layer.width as number);
+            shape.lineTo(layer.length as number, layer.width as number);
+            shape.lineTo(layer.length as number, 0);
+            shape.lineTo(0, 0);
+            const extrudeSettings = {
+                steps: 2,
+                depth: 16,
+                bevelEnabled: true,
+                bevelThickness: 1,
+                bevelSize: 1,
+                bevelOffset: 0,
+                bevelSegments: 1,
+            };
+            return new three.THREE.ExtrudeGeometry(shape, extrudeSettings);
+        },
+    },
 ] as const;
 export type GeometryType = (typeof optionsGeometry)[number] extends {
     value: infer A;
@@ -148,6 +170,7 @@ export const filterMap = {
     ],
     DodecahedronGeometry: ['radius', 'detail'],
     EdgesGeometry: ['width', 'height', 'depth'],
+    ExtrudeGeometry: ['width', 'length'],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>

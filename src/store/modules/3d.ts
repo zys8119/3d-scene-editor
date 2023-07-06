@@ -90,7 +90,7 @@ const useStore3d = defineStore<
                 {
                     label: '物体1',
                     type: 'cube',
-                    geometryType: 'EdgesGeometry',
+                    geometryType: 'ExtrudeGeometry',
                     width: 100,
                     height: 100,
                     depth: 100,
