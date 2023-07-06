@@ -3,7 +3,6 @@ import useStore3d, { Layer } from '@/store/modules/3d';
 import { get, set } from 'lodash';
 import { Mesh, Object3D } from 'three';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { textureField } from '@/store/modules/3d/materialAttrs';
 const store = useStore3d();
 interface OnEventType {
