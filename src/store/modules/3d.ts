@@ -1,6 +1,7 @@
 import tools, { toolsActiveType } from './3d/tools';
 import attrs, { AttrsItem, AttrsItemChild } from './3d/attrs';
 import assets from './assets/index';
+import { GeometryType } from '@/store/modules/3d/basisAttrs';
 const config = use3DConfig();
 
 export type ToolItemType<T> = T extends (infer R extends (typeof tools)[0])[]
@@ -10,11 +11,12 @@ export type ToolItemType<T> = T extends (infer R extends (typeof tools)[0])[]
     : T;
 export type ToolItem = ToolItemType<typeof tools>;
 export type toolsActiveType = (typeof toolsActiveType)[number] | null;
+export type LayerGeometryType = GeometryType;
 export type Layer = {
     [key: string]: any;
     $isEdit: boolean;
     type: toolsActiveType;
-    geometryType: string;
+    geometryType: LayerGeometryType;
     id: any;
     name?: string;
     label: string;

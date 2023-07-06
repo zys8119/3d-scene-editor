@@ -1,8 +1,4 @@
-import {
-    Attrs,
-    AttrsItemChild,
-    AttrsItemChildConfig,
-} from '@/store/modules/3d/attrs';
+import { Attrs, AttrsItemChildConfig } from '@/store/modules/3d/attrs';
 import { get as _get, set as _set, merge as _merge } from 'lodash';
 const createValue = (keyPath: string, defaultValue: any = 0) => {
     return computed({
@@ -21,7 +17,32 @@ const createValue = (keyPath: string, defaultValue: any = 0) => {
 export const optionsGeometry = [
     { label: 'BoxGeometry', value: 'BoxGeometry' },
     { label: 'CapsuleGeometry', value: 'CapsuleGeometry' },
-];
+] as const;
+export type GeometryType = (typeof optionsGeometry)[number] extends {
+    value: infer A;
+}
+    ? A
+    : string;
+export const filterMap = {
+    CapsuleGeometry: ['radius', 'length', 'capSegments', 'radialSegments'],
+    BoxGeometry: [
+        'width',
+        'height',
+        'depth',
+        'widthSegments',
+        'heightSegments',
+        'depthSegments',
+    ],
+} as Record<GeometryType, string[]>;
+export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
+    Record<string, string[]>
+>((a, [type, fields]) => {
+    fields.forEach((k) => {
+        a[k] = a[k] || [];
+        a[k].push(type);
+    });
+    return a;
+}, {});
 export default [
     {
         title: 'Basis',
@@ -43,60 +64,11 @@ export default [
                     },
                 } as AttrsItemChildConfig,
             },
-            {
-                path: 'radius',
-                defaultValue: 1,
-                base: {
-                    filter() {
-                        return ['CapsuleGeometry'].includes(
-                            this.layerActiveGetters.geometryType
-                        );
-                    },
-                } as AttrsItemChild,
-            },
-            {
-                path: 'length',
-                defaultValue: 1,
-                base: {
-                    filter() {
-                        return ['CapsuleGeometry'].includes(
-                            this.layerActiveGetters.geometryType
-                        );
-                    },
-                } as AttrsItemChild,
-            },
-            {
-                path: 'capSegments',
-                defaultValue: 4,
-                base: {
-                    filter() {
-                        return ['CapsuleGeometry'].includes(
-                            this.layerActiveGetters.geometryType
-                        );
-                    },
-                } as AttrsItemChild,
-            },
-            {
-                path: 'radialSegments',
-                defaultValue: 8,
-                base: {
-                    filter() {
-                        return ['CapsuleGeometry'].includes(
-                            this.layerActiveGetters.geometryType
-                        );
-                    },
-                } as AttrsItemChild,
-            },
-            {
-                path: 'width',
-                base: {
-                    filter() {
-                        return ['BoxGeometry', undefined, null].includes(
-                            this.layerActiveGetters.geometryType
-                        );
-                    },
-                } as AttrsItemChild,
-            },
+            { path: 'radius', defaultValue: 1 },
+            { path: 'length', defaultValue: 1 },
+            { path: 'capSegments', defaultValue: 4 },
+            { path: 'radialSegments', defaultValue: 8 },
+            { path: 'width' },
             { path: 'height' },
             { path: 'depth' },
             { path: 'widthSegments', defaultValue: 1 },
@@ -130,7 +102,26 @@ export default [
                 label: _label
                     .replace(/Material\./g, '')
                     .replace(/^./, (m: string) => m.toUpperCase()),
-                ...(label.base || {}),
+                ...(label?.base || {}),
+                filter() {
+                    if (
+                        typeof _get(label?.base || {}, 'filter') === 'function'
+                    ) {
+                        return label?.base?.filter?.call?.(this);
+                    }
+                    if (
+                        fieldsGeometryTypeMap[_label] &&
+                        fieldsGeometryTypeMap[_label].length > 0
+                    ) {
+                        const geometryType =
+                            this.layerActiveGetters.geometryType ||
+                            'BoxGeometry';
+                        return fieldsGeometryTypeMap[_label].includes(
+                            geometryType
+                        );
+                    }
+                    return true;
+                },
                 config: _merge(
                     {
                         type: 'number',
