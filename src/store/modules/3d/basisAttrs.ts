@@ -56,6 +56,21 @@ export const optionsGeometry = [
             );
         },
     },
+    {
+        label: 'ConeGeometry',
+        value: 'ConeGeometry',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.ConeGeometry(
+                layer.radius,
+                layer.height,
+                layer.radialSegments,
+                layer.heightSegments,
+                layer.openEnded,
+                layer.thetaStart,
+                layer.thetaLength
+            );
+        },
+    },
 ] as const;
 export type GeometryType = (typeof optionsGeometry)[number] extends {
     value: infer A;
@@ -73,6 +88,15 @@ export const filterMap = {
         'depthSegments',
     ],
     CircleGeometry: ['radius', 'segments', 'thetaStart', 'thetaLength'],
+    ConeGeometry: [
+        'radius',
+        'height',
+        'radialSegments',
+        'heightSegments',
+        'openEnded',
+        'thetaStart',
+        'thetaLength',
+    ],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>
@@ -116,6 +140,11 @@ export default [
             { path: 'depthSegments', defaultValue: 1 },
             { path: 'segments', defaultValue: 32 },
             { path: 'thetaStart', defaultValue: 0 },
+            {
+                path: 'openEnded',
+                defaultValue: false,
+                config: { type: 'switch' },
+            },
             {
                 path: 'thetaLength',
                 defaultValue: 2 * Math.PI,

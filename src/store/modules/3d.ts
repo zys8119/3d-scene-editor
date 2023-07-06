@@ -36,6 +36,7 @@ export type Layer = {
     segments?: number;
     thetaStart?: number;
     thetaLength?: number;
+    openEnded?: boolean;
 };
 export interface Store3Dstate {
     [key: string]: any;
@@ -86,37 +87,11 @@ const useStore3d = defineStore<
                 {
                     label: '物体1',
                     type: 'cube',
+                    geometryType: 'ConeGeometry',
                     width: 100,
                     height: 100,
                     depth: 100,
                     id: 1,
-                },
-                {
-                    label: '物体2',
-                    type: 'cube',
-                    width: 100,
-                    height: 100,
-                    depth: 50,
-                    Mesh: {
-                        position: {
-                            x: 100,
-                            y: 100,
-                        },
-                    },
-                    id: 2,
-                },
-                {
-                    label: '物体3',
-                    type: 'cube',
-                    geometryType: 'CircleGeometry',
-                    radius: 58,
-                    Mesh: {
-                        position: {
-                            x: -100,
-                            y: 100,
-                        },
-                    },
-                    id: 3,
                 },
             ],
         } as Store3Dstate;
