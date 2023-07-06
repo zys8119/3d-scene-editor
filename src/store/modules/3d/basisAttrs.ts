@@ -1,5 +1,8 @@
 import { Attrs, AttrsItemChildConfig } from '@/store/modules/3d/attrs';
 import { get as _get, set as _set, merge as _merge } from 'lodash';
+import { BufferGeometry } from 'three/src/core/BufferGeometry';
+import { Layer } from '@/store/modules/3d';
+import { BaseThreeClass } from 'naive-ui';
 const createValue = (keyPath: string, defaultValue: any = 0) => {
     return computed({
         get() {
@@ -15,8 +18,44 @@ const createValue = (keyPath: string, defaultValue: any = 0) => {
     });
 };
 export const optionsGeometry = [
-    { label: 'BoxGeometry', value: 'BoxGeometry' },
-    { label: 'CapsuleGeometry', value: 'CapsuleGeometry' },
+    {
+        label: 'BoxGeometry',
+        value: 'BoxGeometry',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.BoxGeometry(
+                layer.width,
+                layer.height,
+                layer.depth,
+                layer.widthSegments,
+                layer.heightSegments,
+                layer.depthSegments
+            );
+        },
+    },
+    {
+        label: 'CapsuleGeometry',
+        value: 'CapsuleGeometry',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.CapsuleGeometry(
+                layer.radius,
+                layer.length,
+                layer.capSegments,
+                layer.radialSegments
+            );
+        },
+    },
+    {
+        label: 'CircleGeometry',
+        value: 'CircleGeometry',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.CircleGeometry(
+                layer.radius,
+                layer.segments,
+                layer.thetaStart,
+                layer.thetaLength
+            );
+        },
+    },
 ] as const;
 export type GeometryType = (typeof optionsGeometry)[number] extends {
     value: infer A;
@@ -33,6 +72,7 @@ export const filterMap = {
         'heightSegments',
         'depthSegments',
     ],
+    CircleGeometry: ['radius', 'segments', 'thetaStart', 'thetaLength'],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>
@@ -74,6 +114,20 @@ export default [
             { path: 'widthSegments', defaultValue: 1 },
             { path: 'heightSegments', defaultValue: 1 },
             { path: 'depthSegments', defaultValue: 1 },
+            { path: 'segments', defaultValue: 32 },
+            { path: 'thetaStart', defaultValue: 0 },
+            {
+                path: 'thetaLength',
+                defaultValue: 2 * Math.PI,
+                config: {
+                    cursorGj: 0.001,
+                    props: {
+                        step: 0.01,
+                        min: 0,
+                        max: 2 * Math.PI,
+                    },
+                },
+            },
             { path: 'Mesh.position.x' },
             { path: 'Mesh.position.y' },
             { path: 'Mesh.position.z' },

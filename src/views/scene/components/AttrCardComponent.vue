@@ -186,16 +186,27 @@ const mousemove = (e: MouseEvent) => {
         // err
     }
     if (isDown.value) {
+        const configProps: any = get(props.config, 'props', {});
         const step =
             e.movementX *
             (typeof config.value.cursorGj === 'number'
                 ? config.value.cursorGj
                 : 1);
-        moveX.value += step;
-        moveXM.value += e.movementX;
-        const configProps: any = get(props.config, 'props', {});
-        configProps.value = get(configProps, 'value', 0);
-        configProps.value += step;
+        const min = get(configProps, 'min');
+        const max = get(configProps, 'max');
+        const value = get(configProps, 'value', 0) + step;
+        if (
+            (typeof min === 'number' &&
+                value >= min &&
+                typeof max === 'number' &&
+                value <= max) ||
+            typeof min !== 'number' ||
+            typeof max !== 'number'
+        ) {
+            moveX.value += step;
+            moveXM.value += e.movementX;
+            configProps.value = value;
+        }
     }
 };
 </script>

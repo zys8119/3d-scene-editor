@@ -5,6 +5,10 @@ import { Mesh, Object3D } from 'three';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls';
 import { textureField } from '@/store/modules/3d/materialAttrs';
 import { BufferGeometry } from 'three/src/core/BufferGeometry';
+import {
+    optionsGeometry,
+    OptionsGeometryItemType,
+} from '@/store/modules/3d/basisAttrs';
 const store = useStore3d();
 interface OnEventType {
     on(
@@ -50,29 +54,12 @@ class Redraw {
         };
     }
     generateGeometry(layer: Layer): BufferGeometry {
-        let box: BufferGeometry;
-        switch (layer.geometryType) {
-            case 'CapsuleGeometry':
-                box = new this.three.THREE.CapsuleGeometry(
-                    layer.radius,
-                    layer.length,
-                    layer.capSegments,
-                    layer.radialSegments
-                );
-                break;
-            case 'BoxGeometry':
-            default:
-                box = new this.three.THREE.BoxGeometry(
-                    layer.width,
-                    layer.height,
-                    layer.depth,
-                    layer.widthSegments,
-                    layer.heightSegments,
-                    layer.depthSegments
-                );
-                break;
-        }
-        return box;
+        const geometryType = layer.geometryType || 'BoxGeometry';
+        return (
+            optionsGeometry.find(
+                (e) => e.value === geometryType
+            ) as OptionsGeometryItemType
+        ).box(this.three, layer);
     }
     async draw() {
         const { THREE, scene } = this.three;
