@@ -27,7 +27,6 @@
         "resize-observer": "^1.0.4",
         "screenfull": "^6.0.2",
         "three": "^0.154.0",
-        "three-onevent-esm": "^0.0.4",
         "vant": "^4.4.1",
         "vite-plugin-fz": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz.git",
         "vue": "^3.2.45",

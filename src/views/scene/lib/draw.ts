@@ -1,7 +1,7 @@
 import { BaseThreeClass } from 'naive-ui';
 import useStore3d, { Layer } from '@/store/modules/3d';
 import { get, set } from 'lodash';
-import { Mesh, Object3D } from 'three';
+import { Object3D } from 'three';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls';
 import { textureField } from '@/store/modules/3d/materialAttrs';
 import { BufferGeometry } from 'three/src/core/BufferGeometry';
@@ -9,13 +9,21 @@ import {
     optionsGeometry,
     OptionsGeometryItemType,
 } from '@/store/modules/3d/basisAttrs';
+import { Intersection } from 'three/src/core/Raycaster';
 const store = useStore3d();
-interface OnEventType {
-    on(
-        event: 'hover' | 'click' | 'gaze',
-        callback: (object: Object3D) => void
+export interface Object3DEventListener {
+    (object: Object3D): void;
+    (object: Object3D, intersects: Array<Intersection<Object3D>>): void;
+    (
+        object: Object3D,
+        intersects: Array<Intersection<Object3D>>,
+        event: MouseEvent
     ): void;
 }
+export type Object3DEventMapType = Record<
+    keyof HTMLElementEventMap,
+    Object3DEventListener
+>;
 class Redraw {
     transform: TransformControls;
     constructor(public three: BaseThreeClass) {
@@ -63,24 +71,59 @@ class Redraw {
     }
     async draw() {
         const { THREE, scene } = this.three;
+        // 事件注册
+        const eventsMap = {
+            dblclick: (object) => {
+                store.setLayerActiveId(this.parseName(object.name).id, true);
+                this.transform.attach(object);
+                window.$draw3dSceneEditorObject3DClick = true;
+                setTimeout(() => {
+                    window.$draw3dSceneEditorObject3DClick = false;
+                }, 500);
+            },
+        } as Object3DEventMapType;
+        Object.entries(eventsMap).forEach(([eventType, listener]) => {
+            const fn = (e: MouseEvent) => {
+                const raycaster = new this.three.THREE.Raycaster();
+                const mouse = new this.three.THREE.Vector2();
+                mouse.x =
+                    (e.clientX / this.three.renderer.domElement.clientWidth) *
+                        2 -
+                    1;
+                mouse.y =
+                    -(
+                        (e.clientY /
+                            this.three.renderer.domElement.clientHeight) *
+                        2
+                    ) + 1;
+                raycaster.setFromCamera(mouse, this.three.camera);
+                const intersects = raycaster
+                    .intersectObjects(this.three.scene.children, true)
+                    .map((e) => e.object)
+                    .filter((e) => store.layerBaseNameReg.test(e.name));
+                const object = intersects[intersects.length - 1];
+                if (object) {
+                    listener?.(object, intersects as any, e);
+                }
+            };
+            this.three.renderer.domElement.removeEventListener(
+                eventType as any,
+                fn
+            );
+            this.three.renderer.domElement.addEventListener(
+                eventType as any,
+                fn
+            );
+        });
         // 清除绘制场景
         await Promise.all(
             store.layers.map(async (layer) => {
                 let box = this.generateGeometry(layer);
                 const material = new THREE.MeshLambertMaterial();
                 material.needsUpdate = true;
-                const mesh = new THREE.Mesh(box, material) as unknown as Mesh &
-                    OnEventType;
+                const mesh = new THREE.Mesh(box, material);
                 mesh.name = this.getName(layer);
                 scene.add(mesh);
-                mesh.on('click', (e) => {
-                    store.setLayerActiveId(this.parseName(e.name).id, true);
-                    this.transform.attach(e);
-                    window.$draw3dSceneEditorObject3DClick = true;
-                    setTimeout(() => {
-                        window.$draw3dSceneEditorObject3DClick = false;
-                    }, 500);
-                });
                 const watchReset = async () => {
                     mesh.geometry.dispose();
                     box = this.generateGeometry(layer);

@@ -98,11 +98,33 @@ const useStore3d = defineStore<
                 {
                     label: '物体1',
                     type: 'cube',
-                    geometryType: 'IcosahedronGeometry',
+                    geometryType: 'BoxGeometry',
                     width: 100,
                     height: 100,
                     depth: 100,
                     id: 1,
+                    paths: [
+                        [
+                            [50, 0],
+                            [0, 100],
+                            [100, 100],
+                        ],
+                    ],
+                },
+                {
+                    label: '物体2',
+                    type: 'cube',
+                    geometryType: 'BoxGeometry',
+                    width: 100,
+                    height: 100,
+                    depth: 100,
+                    id: 2,
+                    Material: {
+                        position: {
+                            x: 50,
+                            y: 50,
+                        },
+                    },
                     paths: [
                         [
                             [50, 0],

@@ -172,7 +172,8 @@ export const optionsGeometry = [
         },
     },
 ] as const;
-export type GeometryType = (typeof optionsGeometry)[number] extends {
+export type OptionsGeometryItemType = (typeof optionsGeometry)[number];
+export type GeometryType = OptionsGeometryItemType extends {
     value: infer A;
 }
     ? A
