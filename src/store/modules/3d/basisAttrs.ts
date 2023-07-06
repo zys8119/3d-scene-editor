@@ -8,7 +8,6 @@ import { BufferGeometry } from 'three/src/core/BufferGeometry';
 import { Layer } from '@/store/modules/3d';
 import { BaseThreeClass } from 'naive-ui';
 import BasisAttrsPathsPreview from '@/views/scene/components/BasisAttrsPathsPreview.vue';
-import { label } from 'three/examples/jsm/nodes/shadernode/ShaderNodeBaseElements';
 const createValue = (keyPath: string, defaultValue: any = 0) => {
     return computed({
         get() {
