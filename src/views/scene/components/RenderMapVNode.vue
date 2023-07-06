@@ -1,19 +1,19 @@
 <template>
     <div
-        class="RenderMapVNode w-100px h-100px overflow-hidden b-rd-10px relative"
+        class="RenderMapVNode w-40px h-40px overflow-hidden b-rd-10px relative"
     >
         <n-image
             v-if="typeof src === 'string'"
             class="w-100% h-100%"
-            width="100"
-            height="100"
+            width="40"
+            height="40"
             object-fit="cover"
             :src="src"
         />
         <span
             v-if="typeof src === 'string'"
             @click.stop="delMap"
-            class="absolute top-5px right-5px w-20px h-20px b-rd-10px overflow-hidden bg-#fff flex justify-center items-center opacity-20% hover:opacity-100% cursor-pointer"
+            class="absolute top-2px right-2px w-15px h-15px b-rd-10px overflow-hidden bg-#fff flex justify-center items-center opacity-10% hover:opacity-100% cursor-pointer"
         >
             <svg
                 t="1688545193928"
