@@ -137,11 +137,12 @@ const config = computed<AttrsItemChildConfig>({
         emits('uodate:config', v);
     },
 });
-const isCursorGj = computed(
-    () =>
+const isCursorGj = computed(() => {
+    return (
         ['boolean', 'number'].includes(typeof props.config.cursorGj) &&
         !props.config?.props?.disabled
-);
+    );
+});
 const el = ref() as Ref<HTMLDivElement>;
 const isDown = ref(false);
 const time = ref(-1);

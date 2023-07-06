@@ -1,8 +1,13 @@
-import { Attrs, AttrsItemChildConfig } from '@/store/modules/3d/attrs';
+import {
+    Attrs,
+    AttrsItemChild,
+    AttrsItemChildConfig,
+} from '@/store/modules/3d/attrs';
 import { get as _get, set as _set, merge as _merge } from 'lodash';
 import { BufferGeometry } from 'three/src/core/BufferGeometry';
 import { Layer } from '@/store/modules/3d';
 import { BaseThreeClass } from 'naive-ui';
+import BasisAttrsPathsPreview from '@/views/scene/components/BasisAttrsPathsPreview.vue';
 const createValue = (keyPath: string, defaultValue: any = 0) => {
     return computed({
         get() {
@@ -115,19 +120,34 @@ export const optionsGeometry = [
         value: 'ExtrudeGeometry',
         box(three: BaseThreeClass, layer: Layer): BufferGeometry {
             const shape = new three.THREE.Shape();
-            shape.moveTo(0, 0);
-            shape.lineTo(0, layer.width as number);
-            shape.lineTo(layer.length as number, layer.width as number);
-            shape.lineTo(layer.length as number, 0);
-            shape.lineTo(0, 0);
+            if (
+                Object.prototype.toString.call(layer.paths) === '[object Array]'
+            ) {
+                layer.paths?.forEach((item) => {
+                    item.forEach(([x, y], k) => {
+                        if (k === 0) {
+                            shape.moveTo(x, y);
+                        } else {
+                            shape.lineTo(x, y);
+                        }
+                    });
+                });
+            } else {
+                shape.moveTo(0, 0);
+                shape.lineTo(0, layer.width as number);
+                shape.lineTo(layer.length as number, layer.width as number);
+                shape.lineTo(layer.length as number, 0);
+                shape.lineTo(0, 0);
+            }
             const extrudeSettings = {
-                steps: 200,
-                depth: 16,
-                bevelEnabled: true,
-                bevelThickness: 1,
-                bevelSize: 1,
-                bevelOffset: 0,
-                bevelSegments: 1,
+                steps: layer.steps,
+                depth: layer.depth,
+                curveSegments: layer.curveSegments,
+                bevelEnabled: layer.bevelEnabled,
+                bevelThickness: layer.bevelThickness,
+                bevelSize: layer.bevelSize,
+                bevelOffset: layer.bevelOffset,
+                bevelSegments: layer.bevelSegments,
             };
             return new three.THREE.ExtrudeGeometry(shape, extrudeSettings);
         },
@@ -170,7 +190,19 @@ export const filterMap = {
     ],
     DodecahedronGeometry: ['radius', 'detail'],
     EdgesGeometry: ['width', 'height', 'depth'],
-    ExtrudeGeometry: ['width', 'length'],
+    ExtrudeGeometry: [
+        'width',
+        'length',
+        'depth',
+        'steps',
+        'bevelEnabled',
+        'bevelThickness',
+        'bevelSize',
+        'bevelSegments',
+        'bevelSegments',
+        'curveSegments',
+        'paths',
+    ],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>
@@ -216,6 +248,31 @@ export default [
             { path: 'detail', defaultValue: 0 },
             { path: 'radiusTop', defaultValue: 1 },
             { path: 'radiusBottom', defaultValue: 1 },
+            { path: 'steps', defaultValue: 1 },
+            { path: 'curveSegments', defaultValue: 12 },
+            { path: 'bevelThickness', defaultValue: 0.2 },
+            { path: 'bevelSize', defaultValue: 0.1 },
+            { path: 'bevelOffset', defaultValue: 0 },
+            { path: 'bevelSegments', defaultValue: 3 },
+            {
+                path: 'paths',
+                base: {
+                    showMore: true,
+                    more(): VNode {
+                        return h(BasisAttrsPathsPreview);
+                    },
+                } as AttrsItemChild,
+                config: {
+                    cursorGj: null,
+                    type: 'VNode',
+                    renderVNode: h(BasisAttrsPathsPreview),
+                },
+            },
+            {
+                path: 'bevelEnabled',
+                defaultValue: true,
+                config: { type: 'switch' },
+            },
             {
                 path: 'openEnded',
                 defaultValue: false,

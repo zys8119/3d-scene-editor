@@ -40,6 +40,14 @@ export type Layer = {
     detail?: number;
     radiusBottom?: number;
     openEnded?: boolean;
+    steps?: number;
+    curveSegments?: number;
+    bevelEnabled?: boolean;
+    bevelThickness?: number;
+    bevelSize?: number;
+    bevelOffset?: number;
+    bevelSegments?: number;
+    paths?: Array<Array<[number, number]>>;
 };
 export interface Store3Dstate {
     [key: string]: any;
@@ -83,7 +91,7 @@ const useStore3d = defineStore<
             config,
             toolsActive: null,
             layerActiveId: null,
-            layerActiveIdCache: null,
+            layerActiveIdCache: 1,
             tools,
             layerBaseName: 'RedrawObject3D',
             layers: [
@@ -95,6 +103,13 @@ const useStore3d = defineStore<
                     height: 100,
                     depth: 100,
                     id: 1,
+                    paths: [
+                        [
+                            [50, 0],
+                            [0, 100],
+                            [100, 100],
+                        ],
+                    ],
                 },
             ],
         } as Store3Dstate;
