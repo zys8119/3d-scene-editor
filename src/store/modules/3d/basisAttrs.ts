@@ -259,13 +259,17 @@ export default [
                 base: {
                     showMore: true,
                     more(): VNode {
-                        return h(BasisAttrsPathsPreview);
+                        return h(BasisAttrsPathsPreview, {
+                            edit: true,
+                        });
                     },
                 } as AttrsItemChild,
                 config: {
                     cursorGj: null,
                     type: 'VNode',
-                    renderVNode: h(BasisAttrsPathsPreview),
+                    renderVNode: h(BasisAttrsPathsPreview, {
+                        edit: false,
+                    }),
                 },
             },
             {

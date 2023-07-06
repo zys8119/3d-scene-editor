@@ -1,19 +1,30 @@
 <template>
     <div
-        class="BasisAttrsPathsPreview w-126px h-126px bg-#191a1d b-rd-5px overflow-hidden flex justify-center items-center"
+        class="BasisAttrsPathsPreview w-$width h-$height bg-#191a1d b-rd-5px overflow-hidden flex justify-center items-center"
     >
         <canvas ref="canvasRef" :style="canvasStyle"></canvas>
     </div>
 </template>
 
 <script setup lang="ts">
-import { Ref } from 'vue';
+import { h, Ref } from 'vue';
 import useStore3d from '@/store/modules/3d';
+import { PaperScope, Color } from 'paper';
 
 const store = useStore3d();
 const paths = computed(() => store.layerActiveGetters.paths || []);
 const canvasRef = ref<HTMLCanvasElement>() as Ref<HTMLCanvasElement>;
-
+const props = defineProps<{
+    edit: boolean;
+}>();
+const width = computed(() => (props.edit ? 250 : 126));
+const height = computed(() => (props.edit ? 250 : 126));
+useCssVars(() => {
+    return {
+        width: `${width.value}px`,
+        height: `${height.value}px`,
+    };
+});
 /**
  * 根据矩阵坐标计算面积、宽高、起始坐标
  * @param matrix
@@ -42,32 +53,70 @@ function calculateMaxArea(matrix: Array<[number, number]>) {
 }
 const pathsInfo = computed(() => calculateMaxArea(paths.value));
 const canvasStyle = computed(() => {
-    return {
-        transform: `scale(${Math.min(
-            126 / pathsInfo.value.width,
-            126 / pathsInfo.value.height
-        )})`,
-    };
+    return props.edit
+        ? {}
+        : {
+              transform: `scale(${Math.min(
+                  width.value / pathsInfo.value.width,
+                  height.value / pathsInfo.value.height
+              )})`,
+          };
 });
 
 const init = async () => {
     if (canvasRef.value) {
         const canvas = canvasRef.value;
-        const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-        canvas.width = pathsInfo.value.width;
-        canvas.height = pathsInfo.value.height;
-        ctx.fillStyle = '#ffff';
-        paths.value.forEach((item) => {
-            item.forEach(([x, y], k) => {
-                if (k === 0) {
-                    ctx.beginPath();
-                    ctx.moveTo(x, y);
-                } else {
-                    ctx.lineTo(x, y);
-                }
+        if (props.edit) {
+            canvas.width = width.value;
+            canvas.height = height.value;
+        } else {
+            canvas.width = pathsInfo.value.width;
+            canvas.height = pathsInfo.value.height;
+        }
+        const p = new PaperScope();
+        p.setup(canvasRef.value);
+        if (props.edit) {
+            // 平面编辑
+            paths.value.forEach((segments) => {
+                const path = new p.Path({
+                    segments,
+                });
+                path.closed = true;
+                path.fullySelected = true;
+                path.fillColor = new Color('#fff');
+                path.strokeWidth = 2;
+                let segment = null;
+                path.onMouseDown = (ev) => {
+                    const hitResult = p.project.hitTest(ev.point);
+                    segment = hitResult.segment;
+                };
+
+                path.onMouseDrag = (ev) => {
+                    if (segment) {
+                        segment.point.x += ev.delta.x;
+                        segment.point.y += ev.delta.y;
+                        segments[segment.index] = [
+                            segment.point.x,
+                            segment.point.y,
+                        ];
+                    }
+                };
             });
-        });
-        ctx.fill();
+        } else {
+            const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+            ctx.fillStyle = '#ffff';
+            paths.value.forEach((item) => {
+                item.forEach(([x, y], k) => {
+                    if (k === 0) {
+                        ctx.beginPath();
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                });
+            });
+            ctx.fill();
+        }
     }
 };
 onMounted(init);
