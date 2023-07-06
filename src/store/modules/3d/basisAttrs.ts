@@ -121,7 +121,7 @@ export const optionsGeometry = [
             shape.lineTo(layer.length as number, 0);
             shape.lineTo(0, 0);
             const extrudeSettings = {
-                steps: 2,
+                steps: 200,
                 depth: 16,
                 bevelEnabled: true,
                 bevelThickness: 1,
@@ -213,7 +213,6 @@ export default [
             { path: 'heightSegments', defaultValue: 1 },
             { path: 'depthSegments', defaultValue: 1 },
             { path: 'segments', defaultValue: 32 },
-            { path: 'thetaStart', defaultValue: 0 },
             { path: 'detail', defaultValue: 0 },
             { path: 'radiusTop', defaultValue: 1 },
             { path: 'radiusBottom', defaultValue: 1 },
@@ -221,6 +220,18 @@ export default [
                 path: 'openEnded',
                 defaultValue: false,
                 config: { type: 'switch' },
+            },
+            {
+                path: 'thetaStart',
+                defaultValue: 0,
+                config: {
+                    cursorGj: 0.001,
+                    props: {
+                        step: 0.01,
+                        min: 0,
+                        max: 2 * Math.PI,
+                    },
+                },
             },
             {
                 path: 'thetaLength',
