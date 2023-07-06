@@ -27,6 +27,7 @@ export const optionsGeometry = [
     {
         label: 'BoxGeometry',
         value: 'BoxGeometry',
+        name: '立方缓冲几何体',
         box(three: BaseThreeClass, layer: Layer): BufferGeometry {
             return new three.THREE.BoxGeometry(
                 layer.width,
@@ -41,6 +42,7 @@ export const optionsGeometry = [
     {
         label: 'CapsuleGeometry',
         value: 'CapsuleGeometry',
+        name: '胶囊图形几何体',
         box(three: BaseThreeClass, layer: Layer): BufferGeometry {
             return new three.THREE.CapsuleGeometry(
                 layer.radius,
@@ -53,6 +55,7 @@ export const optionsGeometry = [
     {
         label: 'CircleGeometry',
         value: 'CircleGeometry',
+        name: '圆形缓冲几何体',
         box(three: BaseThreeClass, layer: Layer): BufferGeometry {
             return new three.THREE.CircleGeometry(
                 layer.radius,
@@ -65,6 +68,7 @@ export const optionsGeometry = [
     {
         label: 'ConeGeometry',
         value: 'ConeGeometry',
+        name: '圆锥缓冲几何体',
         box(three: BaseThreeClass, layer: Layer): BufferGeometry {
             return new three.THREE.ConeGeometry(
                 layer.radius,
@@ -80,6 +84,7 @@ export const optionsGeometry = [
     {
         label: 'CylinderGeometry',
         value: 'CylinderGeometry',
+        name: '圆柱缓冲几何体',
         box(three: BaseThreeClass, layer: Layer): BufferGeometry {
             return new three.THREE.CylinderGeometry(
                 layer.radiusTop,
@@ -96,6 +101,7 @@ export const optionsGeometry = [
     {
         label: 'DodecahedronGeometry',
         value: 'DodecahedronGeometry',
+        name: '十二面缓冲几何体',
         box(three: BaseThreeClass, layer: Layer): BufferGeometry {
             return new three.THREE.DodecahedronGeometry(
                 layer.radius,
@@ -106,6 +112,7 @@ export const optionsGeometry = [
     {
         label: 'EdgesGeometry',
         value: 'EdgesGeometry',
+        name: '边缘几何体',
         box(three: BaseThreeClass, layer: Layer): BufferGeometry {
             return new three.THREE.EdgesGeometry(
                 new three.THREE.BoxGeometry(
@@ -119,6 +126,7 @@ export const optionsGeometry = [
     {
         label: 'ExtrudeGeometry',
         value: 'ExtrudeGeometry',
+        name: '挤压缓冲几何体',
         box(three: BaseThreeClass, layer: Layer): BufferGeometry {
             const shape = new three.THREE.Shape();
             if (
