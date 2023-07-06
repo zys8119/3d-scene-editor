@@ -8,6 +8,7 @@ import { BufferGeometry } from 'three/src/core/BufferGeometry';
 import { Layer } from '@/store/modules/3d';
 import { BaseThreeClass } from 'naive-ui';
 import BasisAttrsPathsPreview from '@/views/scene/components/BasisAttrsPathsPreview.vue';
+import { label } from 'three/examples/jsm/nodes/shadernode/ShaderNodeBaseElements';
 const createValue = (keyPath: string, defaultValue: any = 0) => {
     return computed({
         get() {
@@ -155,6 +156,7 @@ export const optionsGeometry = [
     {
         label: 'IcosahedronGeometry',
         value: 'IcosahedronGeometry',
+        name: '二十面缓冲几何体',
         box(three: BaseThreeClass, layer: Layer): BufferGeometry {
             return new three.THREE.IcosahedronGeometry(
                 layer.radius,
@@ -240,8 +242,12 @@ export default [
                 defaultValue: 'BoxGeometry',
                 config: {
                     type: 'select',
+                    cursorGj: null as unknown,
                     props: {
-                        options: optionsGeometry,
+                        options: optionsGeometry.map((e: any) => ({
+                            ...e,
+                            label: e.name || e.label,
+                        })),
                     },
                 } as AttrsItemChildConfig,
             },
