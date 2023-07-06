@@ -22,6 +22,7 @@
         "md5": "^2.3.0",
         "mescroll.js": "^1.4.2",
         "naive-ui": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git",
+        "paper": "^0.12.17",
         "pinia": "^2.0.4",
         "resize-observer": "^1.0.4",
         "screenfull": "^6.0.2",
