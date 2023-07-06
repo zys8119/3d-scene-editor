@@ -71,6 +71,32 @@ export const optionsGeometry = [
             );
         },
     },
+    {
+        label: 'CylinderGeometry',
+        value: 'CylinderGeometry',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.CylinderGeometry(
+                layer.radiusTop,
+                layer.radiusBottom,
+                layer.height,
+                layer.radialSegments,
+                layer.heightSegments,
+                layer.openEnded,
+                layer.thetaStart,
+                layer.thetaLength
+            );
+        },
+    },
+    {
+        label: 'DodecahedronGeometry',
+        value: 'DodecahedronGeometry',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.DodecahedronGeometry(
+                layer.radius,
+                layer.detail
+            );
+        },
+    },
 ] as const;
 export type GeometryType = (typeof optionsGeometry)[number] extends {
     value: infer A;
@@ -97,6 +123,17 @@ export const filterMap = {
         'thetaStart',
         'thetaLength',
     ],
+    CylinderGeometry: [
+        'radiusTop',
+        'radiusBottom',
+        'height',
+        'radialSegments',
+        'heightSegments',
+        'openEnded',
+        'thetaStart',
+        'thetaLength',
+    ],
+    DodecahedronGeometry: ['radius', 'detail'],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>
@@ -140,6 +177,9 @@ export default [
             { path: 'depthSegments', defaultValue: 1 },
             { path: 'segments', defaultValue: 32 },
             { path: 'thetaStart', defaultValue: 0 },
+            { path: 'detail', defaultValue: 0 },
+            { path: 'radiusTop', defaultValue: 1 },
+            { path: 'radiusBottom', defaultValue: 1 },
             {
                 path: 'openEnded',
                 defaultValue: false,
