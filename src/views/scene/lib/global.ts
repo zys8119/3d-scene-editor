@@ -1,11 +1,53 @@
-import { CameraHelper, DirectionalLightHelper } from 'three';
+import { CameraHelper, DirectionalLightHelper, Object3D } from 'three';
 import { BaseThreeClass } from 'naive-ui';
+import useStore3d from '@/store/modules/3d';
+import { Intersection } from 'three/src/core/Raycaster';
 const config = use3DConfig();
 const { Shift } = useMagicKeys({
     onEventFired(e) {
         console.log(e.code);
     },
 });
+const store = useStore3d();
+export const parseName = (name: string) => {
+    const [layerBaseName, layerId, layerName] = name.split('-');
+    return {
+        layerBaseName,
+        id: Number(layerId),
+        name: layerName,
+    };
+};
+
+export interface Object3DEventListener {
+    (object: Object3D): void;
+    (object: Object3D, intersects: Array<Intersection<Object3D>>): void;
+    (
+        object: Object3D,
+        intersects: Array<Intersection<Object3D>>,
+        event: MouseEvent
+    ): void;
+}
+export type Object3DEventMapType = Record<
+    keyof HTMLElementEventMap,
+    Object3DEventListener
+>;
+export const listenerCallback = (
+    three: BaseThreeClass,
+    listener: Object3DEventListener,
+    e: MouseEvent
+) => {
+    const raycaster = new three.THREE.Raycaster();
+    const mouse = new three.THREE.Vector2();
+    mouse.x = (e.clientX / three.renderer.domElement.clientWidth) * 2 - 1;
+    mouse.y = -((e.clientY / three.renderer.domElement.clientHeight) * 2) + 1;
+    raycaster.setFromCamera(mouse, three.camera);
+    const intersects = raycaster
+        .intersectObjects(three.scene.children, true)
+        .map((e) => e.object)
+        .filter((e) => store.layerBaseNameReg.test(e.name));
+    const object = intersects[0];
+    listener?.(object, intersects as any, e);
+};
 /**
  * 全局初始化
  * @param three
@@ -98,6 +140,29 @@ export function use3DGlobalInit(three: BaseThreeClass) {
         );
         transform.setMode(config.value.transform.mode || transform.getMode());
         config.value.transform.mode = transform.getMode();
+    });
+    // 事件注册
+    const eventsMap = {
+        dblclick: (object) => {
+            if (object) {
+                store.setLayerActiveId(parseName(object.name).id, true);
+                transform.attach(object);
+                window.$draw3dSceneEditorObject3DClick = true;
+                setTimeout(() => {
+                    window.$draw3dSceneEditorObject3DClick = false;
+                }, 500);
+            }
+        },
+    } as Object3DEventMapType;
+    Object.entries(eventsMap).forEach(([eventType, listener]) => {
+        three.renderer.domElement.removeEventListener(
+            eventType as any,
+            listenerCallback.bind(null, three, listener)
+        );
+        three.renderer.domElement.addEventListener(
+            eventType as any,
+            listenerCallback.bind(null, three, listener)
+        );
     });
     window.addEventListener('click', () => {
         if (!window.$draw3dSceneEditorObject3DClick) {

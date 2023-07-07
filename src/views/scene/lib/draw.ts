@@ -9,21 +9,7 @@ import {
     optionsGeometry,
     OptionsGeometryItemType,
 } from '@/store/modules/3d/basisAttrs';
-import { Intersection } from 'three/src/core/Raycaster';
 const store = useStore3d();
-export interface Object3DEventListener {
-    (object: Object3D): void;
-    (object: Object3D, intersects: Array<Intersection<Object3D>>): void;
-    (
-        object: Object3D,
-        intersects: Array<Intersection<Object3D>>,
-        event: MouseEvent
-    ): void;
-}
-export type Object3DEventMapType = Record<
-    keyof HTMLElementEventMap,
-    Object3DEventListener
->;
 class Redraw {
     transform: TransformControls;
     constructor(public three: BaseThreeClass) {
@@ -76,53 +62,7 @@ class Redraw {
     }
     async draw() {
         const { THREE, scene } = this.three;
-        // 事件注册
-        const eventsMap = {
-            dblclick: (object) => {
-                if (object) {
-                    store.setLayerActiveId(
-                        this.parseName(object.name).id,
-                        true
-                    );
-                    this.transform.attach(object);
-                    window.$draw3dSceneEditorObject3DClick = true;
-                    setTimeout(() => {
-                        window.$draw3dSceneEditorObject3DClick = false;
-                    }, 500);
-                }
-            },
-        } as Object3DEventMapType;
-        Object.entries(eventsMap).forEach(([eventType, listener]) => {
-            const fn = (e: MouseEvent) => {
-                const raycaster = new this.three.THREE.Raycaster();
-                const mouse = new this.three.THREE.Vector2();
-                mouse.x =
-                    (e.clientX / this.three.renderer.domElement.clientWidth) *
-                        2 -
-                    1;
-                mouse.y =
-                    -(
-                        (e.clientY /
-                            this.three.renderer.domElement.clientHeight) *
-                        2
-                    ) + 1;
-                raycaster.setFromCamera(mouse, this.three.camera);
-                const intersects = raycaster
-                    .intersectObjects(this.three.scene.children, true)
-                    .map((e) => e.object)
-                    .filter((e) => store.layerBaseNameReg.test(e.name));
-                const object = intersects[0];
-                listener?.(object, intersects as any, e);
-            };
-            this.three.renderer.domElement.removeEventListener(
-                eventType as any,
-                fn
-            );
-            this.three.renderer.domElement.addEventListener(
-                eventType as any,
-                fn
-            );
-        });
+
         // 清除绘制场景
         await Promise.all(
             store.layers.map(async (layer) => {

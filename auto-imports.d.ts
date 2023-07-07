@@ -51,6 +51,7 @@ declare global {
     const isReactive: typeof import('vue')['isReactive'];
     const isReadonly: typeof import('vue')['isReadonly'];
     const isRef: typeof import('vue')['isRef'];
+    const listenerCallback: typeof import('./src/views/scene/lib/global')['listenerCallback'];
     const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable'];
     const mapActions: typeof import('pinia')['mapActions'];
     const mapGetters: typeof import('pinia')['mapGetters'];
@@ -78,6 +79,7 @@ declare global {
     const onStartTyping: typeof import('@vueuse/core')['onStartTyping'];
     const onUnmounted: typeof import('vue')['onUnmounted'];
     const onUpdated: typeof import('vue')['onUpdated'];
+    const parseName: typeof import('./src/views/scene/lib/global')['parseName'];
     const pausableWatch: typeof import('@vueuse/core')['pausableWatch'];
     const preprocessor: typeof import('wp-preprocessor')['preprocessor'];
     const provide: typeof import('vue')['provide'];
