@@ -19,6 +19,7 @@ export const parseName = (name: string) => {
 };
 
 export interface Object3DEventListener {
+    (): void;
     (object: Object3D): void;
     (object: Object3D, intersects: Array<Intersection<Object3D>>): void;
     (
@@ -143,7 +144,7 @@ export function use3DGlobalInit(three: BaseThreeClass) {
     });
     // 事件注册
     const eventsMap = {
-        dblclick: (object) => {
+        dblclick(object) {
             if (object) {
                 store.setLayerActiveId(parseName(object.name).id, true);
                 transform.attach(object);
@@ -152,6 +153,9 @@ export function use3DGlobalInit(three: BaseThreeClass) {
                     window.$draw3dSceneEditorObject3DClick = false;
                 }, 500);
             }
+        },
+        mousemove() {
+            console.log(111);
         },
     } as Object3DEventMapType;
     Object.entries(eventsMap).forEach(([eventType, listener]) => {
