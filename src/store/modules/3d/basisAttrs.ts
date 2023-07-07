@@ -171,6 +171,36 @@ export const optionsGeometry = [
             );
         },
     },
+    {
+        label: 'LatheGeometry',
+        value: 'LatheGeometry',
+        name: '车削缓冲几何体',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            const points: any = [];
+            layer.paths?.forEach((e) => {
+                e.forEach(([x, y]: [number, number]) => {
+                    points.push(new three.THREE.Vector2(x, y));
+                });
+            });
+            return new three.THREE.LatheGeometry(
+                points,
+                layer.segments,
+                layer.phiStart,
+                layer.phiLength
+            );
+        },
+    },
+    {
+        label: 'OctahedronGeometry',
+        value: 'OctahedronGeometry',
+        name: '八面缓冲几何体',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.OctahedronGeometry(
+                layer.radius,
+                layer.detail
+            );
+        },
+    },
 ] as const;
 export type OptionsGeometryItemType = (typeof optionsGeometry)[number];
 export type GeometryType = OptionsGeometryItemType extends {
@@ -218,12 +248,15 @@ export const filterMap = {
         'bevelEnabled',
         'bevelThickness',
         'bevelSize',
+        'bevelOffset',
         'bevelSegments',
         'bevelSegments',
         'curveSegments',
         'paths',
     ],
     IcosahedronGeometry: ['radius', 'detail'],
+    LatheGeometry: ['segments', 'phiStart', 'phiLength', 'paths'],
+    OctahedronGeometry: ['radius', 'detail'],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>
@@ -322,6 +355,30 @@ export default [
             },
             {
                 path: 'thetaLength',
+                defaultValue: 2 * Math.PI,
+                config: {
+                    cursorGj: 0.001,
+                    props: {
+                        step: 0.01,
+                        min: 0,
+                        max: 2 * Math.PI,
+                    },
+                },
+            },
+            {
+                path: 'phiStart',
+                defaultValue: 0,
+                config: {
+                    cursorGj: 0.001,
+                    props: {
+                        step: 0.01,
+                        min: 0,
+                        max: 2 * Math.PI,
+                    },
+                },
+            },
+            {
+                path: 'phiLength',
                 defaultValue: 2 * Math.PI,
                 config: {
                     cursorGj: 0.001,

@@ -205,7 +205,7 @@ class Redraw {
                         ),
                         flatShading: get(layer, 'Material.flatShading', false),
                         fog: get(layer, 'Material.fog', true),
-                        wireframe: get(layer, 'Material.wireframe', false),
+                        wireframe: get(layer, 'Material.wireframe', true),
                     });
                     material.emissive = new THREE.Color(
                         this.parseColor(

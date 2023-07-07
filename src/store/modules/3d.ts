@@ -47,6 +47,8 @@ export type Layer = {
     bevelSize?: number;
     bevelOffset?: number;
     bevelSegments?: number;
+    phiStart?: number;
+    phiLength?: number;
     paths?: Array<Array<[number, number]>>;
 };
 export interface Store3Dstate {
@@ -98,7 +100,7 @@ const useStore3d = defineStore<
                 {
                     label: '物体1',
                     type: 'cube',
-                    geometryType: 'BoxGeometry',
+                    geometryType: 'OctahedronGeometry',
                     width: 100,
                     height: 100,
                     depth: 100,
@@ -106,29 +108,7 @@ const useStore3d = defineStore<
                     paths: [
                         [
                             [50, 0],
-                            [0, 100],
-                            [100, 100],
-                        ],
-                    ],
-                },
-                {
-                    label: '物体2',
-                    type: 'cube',
-                    geometryType: 'BoxGeometry',
-                    width: 100,
-                    height: 100,
-                    depth: 100,
-                    id: 2,
-                    Mesh: {
-                        position: {
-                            x: 100,
-                            y: 100,
-                        },
-                    },
-                    paths: [
-                        [
-                            [50, 0],
-                            [0, 100],
+                            // [0, 100],
                             [100, 100],
                         ],
                     ],
