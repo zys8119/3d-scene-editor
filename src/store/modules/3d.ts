@@ -83,6 +83,9 @@ export interface Store3DGetters {
     layersGetters(): Array<LayersGettersItem>;
     attrsGetters(): Array<AttrsItem>;
     layerActiveGetters(): LayersGettersItem;
+    /// 选择工具是否为平面
+    isToolPlane(): boolean;
+    isToolSelect(): boolean;
 }
 export interface Store3DActions {
     [key: string]: any;
@@ -102,7 +105,7 @@ const useStore3d = defineStore<
             attrs,
             assets,
             config,
-            toolsActive: null,
+            toolsActive: 'select',
             layerActiveId: null,
             layerActiveIdCache: 1,
             tools,
@@ -143,6 +146,14 @@ const useStore3d = defineStore<
                 return a;
             }, {} as Record<string, ToolItem>);
         },
+        isToolPlane() {
+            return ['rect', 'circle'].includes(this.toolsActive as string);
+        },
+        isToolSelect() {
+            return ['select', null, undefined].includes(
+                this.toolsActive as string
+            );
+        },
         toolActiveInfo() {
             return this.toolsFlatMap[this.toolsActive as string] || null;
         },
@@ -153,7 +164,6 @@ const useStore3d = defineStore<
                 return e;
             });
         },
-
         attrsGetters() {
             return this.attrs.filter((e: AttrsItem | AttrsItemChild) => {
                 if (typeof e.filter === 'function') {
