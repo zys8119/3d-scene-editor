@@ -2,6 +2,7 @@ import { CameraHelper, DirectionalLightHelper, Object3D } from 'three';
 import { BaseThreeClass } from 'naive-ui';
 import useStore3d from '@/store/modules/3d';
 import { Intersection } from 'three/src/core/Raycaster';
+import { Vector2 } from 'three/src/math/Vector2';
 const config = use3DConfig();
 const { Shift } = useMagicKeys({
     onEventFired(e) {
@@ -25,7 +26,11 @@ export interface Object3DEventListener {
     (
         object: Object3D,
         intersects: Array<Intersection<Object3D>>,
-        event: MouseEvent
+        event: {
+            event: MouseEvent;
+            mouse: Vector2;
+            intersects: Array<Intersection<Object3D>>;
+        }
     ): void;
 }
 export type Object3DEventMapType = Record<
@@ -37,17 +42,32 @@ export const listenerCallback = (
     listener: Object3DEventListener,
     e: MouseEvent
 ) => {
-    const raycaster = new three.THREE.Raycaster();
+    const raycaster = new three.THREE.Raycaster(
+        new three.THREE.Vector3(
+            config.value.camera.x,
+            config.value.camera.y,
+            config.value.camera.z
+        ),
+        new three.THREE.Vector3(
+            config.value.camera.x,
+            config.value.camera.y,
+            config.value.camera.z
+        )
+    );
     const mouse = new three.THREE.Vector2();
     mouse.x = (e.clientX / three.renderer.domElement.clientWidth) * 2 - 1;
     mouse.y = -((e.clientY / three.renderer.domElement.clientHeight) * 2) + 1;
     raycaster.setFromCamera(mouse, three.camera);
-    const intersects = raycaster
-        .intersectObjects(three.scene.children, true)
+    const intersects = raycaster.intersectObjects(three.scene.children, true);
+    const objectFilters = intersects
         .map((e) => e.object)
         .filter((e) => store.layerBaseNameReg.test(e.name));
     const object = intersects[0];
-    listener?.(object, intersects as any, e);
+    listener?.(object as any, objectFilters as any, {
+        event: e,
+        mouse,
+        intersects,
+    });
 };
 /**
  * 全局初始化
@@ -76,27 +96,40 @@ export function use3DGlobalInit(three: BaseThreeClass) {
     const cameraHelper: CameraHelper = three.cameraHelper as CameraHelper;
     cameraHelper.visible = false;
     // 创建网格
-    const gridSize = 10000; // 网格大小
-    const gridSpacing = 50; // 网格间距
-    const gridColor = '#bebebe'; // 网格颜色
-    const gridGeometry = new THREE.PlaneGeometry(
-        gridSize,
-        gridSize,
-        gridSize / gridSpacing,
-        gridSize / gridSpacing
-    );
-    const gridMaterial = new THREE.MeshBasicMaterial({
-        color: gridColor,
-        wireframe: true,
-    });
-    const gridMesh = new THREE.Mesh(gridGeometry, gridMaterial);
-    gridMesh.name = 'sceneGridMesh';
-    gridMesh.rotation.set(
-        config.value.grid.x,
-        config.value.grid.y,
-        config.value.grid.z
-    );
-    scene.add(gridMesh);
+    const createGrid = (bool: boolean) => {
+        const gridSize = 1; // 网格大小
+        const gridSpacing = 200; // 网格间距
+        const gridScale = 8000; // 网格放大倍数
+        const gridColor = '#bebebe'; // 网格颜色
+        const gridGeometry = new THREE.PlaneGeometry(
+            gridSize,
+            gridSize,
+            gridSpacing,
+            gridSpacing
+        );
+        const gridMaterial = new THREE.MeshBasicMaterial({
+            color: gridColor,
+            wireframe: true,
+        });
+        const gridMesh = new THREE.Mesh(gridGeometry, gridMaterial);
+        gridMesh.name = 'sceneGridMesh';
+        gridMesh.rotation.set(
+            bool ? config.value.grid.x : Math.PI * 2 - config.value.grid.x,
+            config.value.grid.y,
+            config.value.grid.z
+        );
+        gridMesh.scale.set(gridScale, gridScale, 1);
+        scene.add(gridMesh);
+        return gridMesh;
+    };
+    // 防止射线无法照射另一面，所以创建两次
+    const gridMeshs = [
+        // 正向
+        createGrid(true),
+        // 反向
+        createGrid(false),
+    ];
+
     // 控制器
     controls.addEventListener('change', () => {
         config.value.camera.x = three.camera.position.x;
@@ -134,15 +167,29 @@ export function use3DGlobalInit(three: BaseThreeClass) {
             config.value.camera.z
         );
         camera.zoom = config.value.camera.zoom;
-        gridMesh.rotation.set(
-            config.value.grid.x,
-            config.value.grid.y,
-            config.value.grid.z
-        );
+        gridMeshs.forEach((gridM, k) => {
+            gridM.rotation.set(
+                k === 0
+                    ? config.value.grid.x
+                    : Math.PI * 2 - config.value.grid.x,
+                config.value.grid.y,
+                config.value.grid.z
+            );
+        });
+
         transform.setMode(config.value.transform.mode || transform.getMode());
         config.value.transform.mode = transform.getMode();
     });
     // 事件注册
+    const box = new THREE.PlaneGeometry(100, 100);
+    const m = new THREE.MeshBasicMaterial({
+        color: new THREE.Color('#f00'),
+    });
+    const ms = new THREE.Mesh(box, m);
+    ms.visible = false;
+    box.rotateX(-Math.PI * 0.5);
+    ms.position.set(0, 2, 2);
+    scene.add(ms);
     const eventsMap = {
         dblclick(object) {
             if (object) {
@@ -154,8 +201,16 @@ export function use3DGlobalInit(three: BaseThreeClass) {
                 }, 500);
             }
         },
-        mousemove() {
-            console.log(111);
+        mousedown(object, ints, { intersects }) {},
+        mouseup(object, ints, { intersects }) {},
+        mousemove(object, ints, { intersects }) {
+            ms.visible = true;
+            const point = intersects.find(
+                (e) => e.object.name === 'sceneGridMesh'
+            )?.point;
+            if (point) {
+                ms.position.set(point.x, point.y, point.z);
+            }
         },
     } as Object3DEventMapType;
     Object.entries(eventsMap).forEach(([eventType, listener]) => {
