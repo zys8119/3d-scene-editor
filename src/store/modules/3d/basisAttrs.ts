@@ -131,8 +131,8 @@ export const optionsGeometry = [
             if (
                 Object.prototype.toString.call(layer.paths) === '[object Array]'
             ) {
-                layer.paths?.forEach((item) => {
-                    item.forEach(([x, y], k) => {
+                layer.paths?.forEach((item: any) => {
+                    item.forEach(([x, y]: any, k: number) => {
                         if (k === 0) {
                             shape.moveTo(x, y);
                         } else {
@@ -177,7 +177,7 @@ export const optionsGeometry = [
         name: '车削缓冲几何体',
         box(three: BaseThreeClass, layer: Layer): BufferGeometry {
             const points: any = [];
-            layer.paths?.forEach((e) => {
+            layer.paths?.forEach((e: any) => {
                 e.forEach(([x, y]: [number, number]) => {
                     points.push(new three.THREE.Vector2(x, y));
                 });
@@ -198,6 +198,153 @@ export const optionsGeometry = [
             return new three.THREE.OctahedronGeometry(
                 layer.radius,
                 layer.detail
+            );
+        },
+    },
+    {
+        label: 'PlaneGeometry',
+        value: 'PlaneGeometry',
+        name: '平面缓冲几何体',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.PlaneGeometry(
+                layer.width,
+                layer.height,
+                layer.widthSegments,
+                layer.heightSegments
+            );
+        },
+    },
+    {
+        label: 'PolyhedronGeometry',
+        value: 'PolyhedronGeometry',
+        name: '多面缓冲几何体',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            const verticesOfCube = _get(layer, 'paths[0]', []);
+            const indicesOfFaces = _get(layer, 'paths[1]', []);
+            return new three.THREE.PolyhedronGeometry(
+                verticesOfCube,
+                indicesOfFaces,
+                layer.radius,
+                layer.detail
+            );
+        },
+    },
+    {
+        label: 'RingGeometry',
+        value: 'RingGeometry',
+        name: '圆环缓冲几何体',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.RingGeometry(
+                layer.innerRadius,
+                layer.outerRadius,
+                layer.thetaSegments,
+                layer.phiSegments,
+                layer.thetaStart,
+                layer.thetaLength
+            );
+        },
+    },
+    {
+        label: 'ShapeGeometry',
+        value: 'ShapeGeometry',
+        name: '形状缓冲几何体',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            const heartShape = new three.THREE.Shape(
+                (layer.paths || []) as any
+            );
+            return new three.THREE.ShapeGeometry(
+                heartShape,
+                layer.curveSegments
+            );
+        },
+    },
+    {
+        label: 'SphereGeometry',
+        value: 'SphereGeometry',
+        name: '球缓冲几何体',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.SphereGeometry(
+                layer.radius,
+                layer.widthSegments,
+                layer.heightSegments,
+                layer.phiStart,
+                layer.phiLength,
+                layer.thetaStart,
+                layer.thetaLength
+            );
+        },
+    },
+    {
+        label: 'TetrahedronGeometry',
+        value: 'TetrahedronGeometry',
+        name: '四面缓冲几何体',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.TetrahedronGeometry(
+                layer.radius,
+                layer.detail
+            );
+        },
+    },
+    {
+        label: 'TorusGeometry',
+        value: 'TorusGeometry',
+        name: '圆环缓冲几何体',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.TorusGeometry(
+                layer.radius,
+                layer.tube,
+                layer.radialSegments,
+                layer.tubularSegments,
+                layer.arc
+            );
+        },
+    },
+    {
+        label: 'TorusKnotGeometry',
+        value: 'TorusKnotGeometry',
+        name: '圆环缓冲扭结几何体',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            return new three.THREE.TorusKnotGeometry(
+                layer.radius,
+                layer.tube,
+                layer.tubularSegments,
+                layer.radialSegments,
+                layer.p,
+                layer.q
+            );
+        },
+    },
+    {
+        label: 'TubeGeometry',
+        value: 'TubeGeometry',
+        name: '管道缓冲几何体',
+        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+            class CustomSinCurve extends three.THREE.Curve {
+                constructor(public scale = 1) {
+                    super();
+                }
+
+                getPoint(
+                    t: number,
+                    optionalTarget = new three.THREE.Vector3()
+                ) {
+                    const tx = t * 3 - 1.5;
+                    const ty = Math.sin(2 * Math.PI * t);
+                    const tz = 0;
+
+                    return optionalTarget
+                        .set(tx, ty, tz)
+                        .multiplyScalar(this.scale);
+                }
+            }
+
+            const path: any = new CustomSinCurve(10);
+            return new three.THREE.TubeGeometry(
+                path,
+                layer.tubularSegments,
+                layer.radius,
+                layer.radialSegments,
+                layer.closed
             );
         },
     },
@@ -257,6 +404,43 @@ export const filterMap = {
     IcosahedronGeometry: ['radius', 'detail'],
     LatheGeometry: ['segments', 'phiStart', 'phiLength', 'paths'],
     OctahedronGeometry: ['radius', 'detail'],
+    PlaneGeometry: ['width', 'height', 'widthSegments', 'heightSegments'],
+    PolyhedronGeometry: ['vertices', 'indices', 'radius', 'detail'],
+    RingGeometry: [
+        'innerRadius',
+        'outerRadius',
+        'thetaSegments',
+        'phiSegments',
+        'thetaStart',
+        'thetaLength',
+    ],
+    ShapeGeometry: ['curveSegments', 'paths'],
+    SphereGeometry: [
+        'radius',
+        'widthSegments',
+        'heightSegments',
+        'phiStart',
+        'phiLength',
+        'thetaStart',
+        'thetaLength',
+    ],
+    TetrahedronGeometry: ['radius', 'detail'],
+    TorusGeometry: [
+        'radius',
+        'tube',
+        'radialSegments',
+        'tubularSegments',
+        'arc',
+    ],
+    TorusKnotGeometry: [
+        'radius',
+        'tube',
+        'radialSegments',
+        'tubularSegments',
+        'p',
+        'q',
+    ],
+    TubeGeometry: ['radius', 'radialSegments', 'tubularSegments', 'closed'],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>
@@ -313,6 +497,27 @@ export default [
             { path: 'bevelSize', defaultValue: 0.1 },
             { path: 'bevelOffset', defaultValue: 0 },
             { path: 'bevelSegments', defaultValue: 3 },
+            { path: 'innerRadius', defaultValue: 0.5 },
+            { path: 'outerRadius', defaultValue: 1 },
+            { path: 'tube', defaultValue: 0.4 },
+            { path: 'tubularSegments', defaultValue: 48 },
+            { path: 'p', defaultValue: 2 },
+            { path: 'q', defaultValue: 3 },
+            {
+                path: 'closed',
+                config: { type: 'switch' },
+                defaultValue: false,
+            },
+            {
+                path: 'thetaSegments',
+                defaultValue: 32,
+                config: { props: { min: 3, max: Infinity } },
+            },
+            {
+                path: 'phiSegments',
+                defaultValue: 8,
+                config: { props: { min: 1, max: Infinity } },
+            },
             {
                 path: 'paths',
                 base: {
@@ -344,6 +549,18 @@ export default [
             {
                 path: 'thetaStart',
                 defaultValue: 0,
+                config: {
+                    cursorGj: 0.001,
+                    props: {
+                        step: 0.01,
+                        min: 0,
+                        max: 2 * Math.PI,
+                    },
+                },
+            },
+            {
+                path: 'arc',
+                defaultValue: 2 * Math.PI,
                 config: {
                     cursorGj: 0.001,
                     props: {

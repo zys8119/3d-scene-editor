@@ -49,7 +49,17 @@ export type Layer = {
     bevelSegments?: number;
     phiStart?: number;
     phiLength?: number;
-    paths?: Array<Array<[number, number]>>;
+    innerRadius?: number;
+    outerRadius?: number;
+    thetaSegments?: number;
+    phiSegments?: number;
+    tube?: number;
+    tubularSegments?: number;
+    arc?: number;
+    p?: number;
+    q?: number;
+    closed?: boolean;
+    paths?: Array<Array<[number, number]> | Array<number> | number>;
 };
 export interface Store3Dstate {
     [key: string]: any;
@@ -100,16 +110,20 @@ const useStore3d = defineStore<
                 {
                     label: '物体1',
                     type: 'cube',
-                    geometryType: 'OctahedronGeometry',
+                    geometryType: 'TubeGeometry',
                     width: 100,
                     height: 100,
                     depth: 100,
                     id: 1,
                     paths: [
                         [
-                            [50, 0],
-                            // [0, 100],
-                            [100, 100],
+                            -1, -1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1,
+                            1, 1, -1, 1, 1, 1, 1, -1, 1, 1,
+                        ],
+                        [
+                            2, 1, 0, 0, 3, 2, 0, 4, 7, 7, 3, 0, 0, 1, 5, 5, 4,
+                            0, 1, 2, 6, 6, 5, 1, 2, 3, 7, 7, 6, 2, 4, 5, 6, 6,
+                            7, 4,
                         ],
                     ],
                 },
