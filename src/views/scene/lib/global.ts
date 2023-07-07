@@ -201,8 +201,6 @@ export function use3DGlobalInit(three: BaseThreeClass) {
                 }, 500);
             }
         },
-        mousedown() {},
-        mouseup() {},
         mousemove(object, ints, { intersects }) {
             ms.visible = true;
             const point = intersects.find(
