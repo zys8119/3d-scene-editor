@@ -74,12 +74,17 @@ class Redraw {
         // 事件注册
         const eventsMap = {
             dblclick: (object) => {
-                store.setLayerActiveId(this.parseName(object.name).id, true);
-                this.transform.attach(object);
-                window.$draw3dSceneEditorObject3DClick = true;
-                setTimeout(() => {
-                    window.$draw3dSceneEditorObject3DClick = false;
-                }, 500);
+                if (object) {
+                    store.setLayerActiveId(
+                        this.parseName(object.name).id,
+                        true
+                    );
+                    this.transform.attach(object);
+                    window.$draw3dSceneEditorObject3DClick = true;
+                    setTimeout(() => {
+                        window.$draw3dSceneEditorObject3DClick = false;
+                    }, 500);
+                }
             },
         } as Object3DEventMapType;
         Object.entries(eventsMap).forEach(([eventType, listener]) => {
@@ -101,10 +106,8 @@ class Redraw {
                     .intersectObjects(this.three.scene.children, true)
                     .map((e) => e.object)
                     .filter((e) => store.layerBaseNameReg.test(e.name));
-                const object = intersects[intersects.length - 1];
-                if (object) {
-                    listener?.(object, intersects as any, e);
-                }
+                const object = intersects[0];
+                listener?.(object, intersects as any, e);
             };
             this.three.renderer.domElement.removeEventListener(
                 eventType as any,

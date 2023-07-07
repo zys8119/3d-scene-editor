@@ -1,13 +1,14 @@
 body {
+    --editor-text-active: #3c92fc;
+    --editor-text-color: #ffffff;
+    --editor-bg: #191a1d;
+    --editor-border: #0000;
+    --editor-select-bg-color: #000;
+    --editor-color-placeholder: #6f6f71;
+    --editor-color: var(--editor-text-color);
+    --editor-font-size: 12px;
     .editor {
         user-select: none;
-        --editor-text-active: #3c92fc;
-        --editor-text-color: #ffffff;
-        --editor-bg: #191a1d;
-        --editor-border: #0000;
-        --editor-color-placeholder: #6f6f71;
-        --editor-color: var(--editor-text-color);
-        --editor-font-size: 12px;
         .n-input {
             background: var(--editor-bg);
             &:not(.n-input--disabled).n-input--focus {
@@ -34,10 +35,18 @@ body {
                 .n-base-selection__border {
                     --n-border: var(--editor-border);
                 }
+                .n-base-selection-input {
+                    color: var(--editor-text-color);
+                }
             }
             .n-base-selection .n-base-selection-placeholder {
                 color: var(--editor-color-placeholder);
                 font-size: var(--editor-font-size);
+            }
+            .n-base-selection
+                .n-base-selection-label
+                .n-base-selection-label__render-label {
+                color: var(--editor-text-color);
             }
             .n-base-selection-input__content {
                 color: var(--editor-text-color);
@@ -51,7 +60,32 @@ body {
         }
     }
     .AttrCardComponent-n-select {
-        background: #000000;
+        background-color: var(--editor-select-bg-color);
+        .n-base-select-option {
+            .n-base-select-option__content {
+                color: var(--editor-text-color);
+                color: #cacbcb;
+            }
+            &:hover {
+                color: var(--editor-text-active);
+                .n-base-select-option__content {
+                    color: var(--editor-select-bg);
+                }
+            }
+            &.n-base-select-option--pending {
+                color: var(--editor-text-active);
+                background-color: transparent !important;
+                &:before {
+                    background-color: transparent !important;
+                }
+                .n-base-select-option__content {
+                    color: var(--editor-text-active);
+                }
+            }
+            &.n-base-select-option--selected {
+                .n-base-select-option--pending;
+            }
+        }
     }
     .attrs-n-radio-group {
         .n-radio__dot-wrapper {

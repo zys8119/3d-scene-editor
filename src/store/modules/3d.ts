@@ -119,10 +119,10 @@ const useStore3d = defineStore<
                     height: 100,
                     depth: 100,
                     id: 2,
-                    Material: {
+                    Mesh: {
                         position: {
-                            x: 50,
-                            y: 50,
+                            x: 100,
+                            y: 100,
                         },
                     },
                     paths: [

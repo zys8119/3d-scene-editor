@@ -252,6 +252,7 @@ export default [
                     type: 'select',
                     cursorGj: null as unknown,
                     props: {
+                        filterable: true,
                         options: optionsGeometry.map((e: any) => ({
                             ...e,
                             label: e.name || e.label,
