@@ -59,6 +59,7 @@ export type Layer = {
     p?: number;
     q?: number;
     closed?: boolean;
+    wireframe?: boolean;
     paths?: Array<Array<[number, number]> | Array<number> | number>;
 };
 export interface Store3Dstate {
@@ -110,7 +111,7 @@ const useStore3d = defineStore<
                 {
                     label: '物体1',
                     type: 'cube',
-                    geometryType: 'TubeGeometry',
+                    geometryType: 'BoxGeometry',
                     width: 100,
                     height: 100,
                     depth: 100,

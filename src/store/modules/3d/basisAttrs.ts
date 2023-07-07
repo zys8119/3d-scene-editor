@@ -606,6 +606,11 @@ export default [
                     },
                 },
             },
+            {
+                path: 'wireframe',
+                config: { type: 'switch' },
+                defaultValue: false,
+            },
             { path: 'Mesh.position.x' },
             { path: 'Mesh.position.y' },
             { path: 'Mesh.position.z' },

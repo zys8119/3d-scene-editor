@@ -63,11 +63,16 @@ class Redraw {
     }
     generateGeometry(layer: Layer): BufferGeometry {
         const geometryType = layer.geometryType || 'BoxGeometry';
-        return (
+        const geometry = (
             optionsGeometry.find(
                 (e) => e.value === geometryType
             ) as OptionsGeometryItemType
         ).box(this.three, layer);
+        if (layer.wireframe) {
+            // 网格几何体
+            return new this.three.THREE.WireframeGeometry(geometry);
+        }
+        return geometry;
     }
     async draw() {
         const { THREE, scene } = this.three;
@@ -205,7 +210,7 @@ class Redraw {
                         ),
                         flatShading: get(layer, 'Material.flatShading', false),
                         fog: get(layer, 'Material.fog', true),
-                        wireframe: get(layer, 'Material.wireframe', true),
+                        wireframe: get(layer, 'Material.wireframe', false),
                     });
                     material.emissive = new THREE.Color(
                         this.parseColor(
