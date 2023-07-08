@@ -1,0 +1,121 @@
+const frFR = {
+    name: 'fr-FR',
+    global: {
+        undo: 'D\xE9faire',
+        redo: 'Refaire',
+        confirm: 'Confirmer',
+        clear: 'Effacer',
+    },
+    Popconfirm: {
+        positiveText: 'Confirmer',
+        negativeText: 'Annuler',
+    },
+    Cascader: {
+        placeholder: 'S\xE9lectionner',
+        loading: 'Chargement',
+        loadingRequiredMessage: (label) =>
+            `Charger tous les enfants de ${label} avant de le s\xE9lectionner`,
+    },
+    Time: {
+        dateFormat: 'dd/MM/yyyy',
+        dateTimeFormat: 'dd/MM/yyyy HH:mm:ss',
+    },
+    DatePicker: {
+        yearFormat: 'yyyy',
+        monthFormat: 'MMM',
+        dayFormat: 'eeeeee',
+        yearTypeFormat: 'yyyy',
+        monthTypeFormat: 'MM/yyyy',
+        dateFormat: 'dd/MM/yyyy',
+        dateTimeFormat: 'dd/MM/yyyy HH:mm:ss',
+        quarterFormat: 'qqq yyyy',
+        clear: 'Effacer',
+        now: 'Maintenant',
+        confirm: 'Confirmer',
+        selectTime: "S\xE9lectionner l'heure",
+        selectDate: 'S\xE9lectionner la date',
+        datePlaceholder: 'S\xE9lectionner la date',
+        datetimePlaceholder: "S\xE9lectionner la date et l'heure",
+        monthPlaceholder: 'S\xE9lectionner le mois',
+        yearPlaceholder: "S\xE9lectionner l'ann\xE9e",
+        quarterPlaceholder: 'S\xE9lectionner le trimestre',
+        startDatePlaceholder: 'Date de d\xE9but',
+        endDatePlaceholder: 'Date de fin',
+        startDatetimePlaceholder: 'Date et heure de d\xE9but',
+        endDatetimePlaceholder: 'Date et heure de fin',
+        startMonthPlaceholder: 'Mois de d\xE9but',
+        endMonthPlaceholder: 'Mois de fin',
+        monthBeforeYear: true,
+        firstDayOfWeek: 1,
+        today: "Aujourd'hui",
+    },
+    DataTable: {
+        checkTableAll: 'S\xE9lectionner tout',
+        uncheckTableAll: 'D\xE9s\xE9lectionner tout',
+        confirm: 'Confirmer',
+        clear: 'Effacer',
+    },
+    LegacyTransfer: {
+        sourceTitle: 'Source',
+        targetTitle: 'Cible',
+    },
+    Transfer: {
+        selectAll: 'S\xE9lectionner tout',
+        unselectAll: 'D\xE9s\xE9lectionner tout',
+        clearAll: 'Effacer',
+        total: (num) => `Total ${num} \xE9l\xE9ments`,
+        selected: (num) => `${num} \xE9l\xE9ments s\xE9lectionn\xE9s`,
+    },
+    Empty: {
+        description: 'Aucune donn\xE9e',
+    },
+    Select: {
+        placeholder: 'S\xE9lectionner',
+    },
+    TimePicker: {
+        placeholder: "S\xE9lectionner l'heure",
+        positiveText: 'OK',
+        negativeText: 'Annuler',
+        now: 'Maintenant',
+    },
+    Pagination: {
+        goto: 'Aller \xE0',
+        selectionSuffix: 'page',
+    },
+    DynamicTags: {
+        add: 'Ajouter',
+    },
+    Log: {
+        loading: 'Chargement',
+    },
+    Input: {
+        placeholder: 'Saisir',
+    },
+    InputNumber: {
+        placeholder: 'Saisir',
+    },
+    DynamicInput: {
+        create: 'Cr\xE9er',
+    },
+    ThemeEditor: {
+        title: '\xC9diteur de th\xE8me',
+        clearAllVars: 'Effacer toutes les variables',
+        clearSearch: 'Effacer la recherche',
+        filterCompName: 'Filtrer par nom de composant',
+        filterVarName: 'Filtrer par nom de variable',
+        import: 'Importer',
+        export: 'Exporter',
+        restore: 'R\xE9initialiser',
+    },
+    Image: {
+        tipPrevious: 'Image pr\xE9c\xE9dente (\u2190)',
+        tipNext: 'Image suivante (\u2192)',
+        tipCounterclockwise: 'Sens antihoraire',
+        tipClockwise: 'Sens horaire',
+        tipZoomOut: 'D\xE9zoomer',
+        tipZoomIn: 'Zoomer',
+        tipClose: 'Fermer (\xC9chap.)',
+        tipOriginalSize: 'Zoom \xE0 la taille originale',
+    },
+};
+export default frFR;

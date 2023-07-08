@@ -1,0 +1,121 @@
+const esAR = {
+    name: 'es-AR',
+    global: {
+        undo: 'Deshacer',
+        redo: 'Rehacer',
+        confirm: 'Confirmar',
+        clear: 'Borrar',
+    },
+    Popconfirm: {
+        positiveText: 'Confirmar',
+        negativeText: 'Cancelar',
+    },
+    Cascader: {
+        placeholder: 'Seleccionar por favor',
+        loading: 'Cargando',
+        loadingRequiredMessage: (label) =>
+            `Por favor, cargue los descendientes de ${label} antes de marcarlo.`,
+    },
+    Time: {
+        dateFormat: 'yyyy-MM-dd',
+        dateTimeFormat: 'yyyy-MM-dd HH:mm:ss',
+    },
+    DatePicker: {
+        yearFormat: 'yyyy',
+        monthFormat: 'MMM',
+        dayFormat: 'eeeeee',
+        yearTypeFormat: 'yyyy',
+        monthTypeFormat: 'yyyy-MM',
+        dateFormat: 'yyyy-MM-dd',
+        dateTimeFormat: 'yyyy-MM-dd HH:mm:ss',
+        quarterFormat: 'yyyy-qqq',
+        clear: 'Borrar',
+        now: 'Ahora',
+        confirm: 'Confirmar',
+        selectTime: 'Seleccionar hora',
+        selectDate: 'Seleccionar fecha',
+        datePlaceholder: 'Seleccionar fecha',
+        datetimePlaceholder: 'Seleccionar fecha y hora',
+        monthPlaceholder: 'Seleccionar mes',
+        yearPlaceholder: 'Seleccionar a\xF1o',
+        quarterPlaceholder: 'Seleccionar Trimestre',
+        startDatePlaceholder: 'Fecha de inicio',
+        endDatePlaceholder: 'Fecha final',
+        startDatetimePlaceholder: 'Fecha y hora de inicio',
+        endDatetimePlaceholder: 'Fecha y hora final',
+        monthBeforeYear: true,
+        startMonthPlaceholder: 'Start Month',
+        endMonthPlaceholder: 'End Month',
+        firstDayOfWeek: 6,
+        today: 'Hoy',
+    },
+    DataTable: {
+        checkTableAll: 'Seleccionar todo de la tabla',
+        uncheckTableAll: 'Deseleccionar todo de la tabla',
+        confirm: 'Confirmar',
+        clear: 'Limpiar',
+    },
+    LegacyTransfer: {
+        sourceTitle: 'Fuente',
+        targetTitle: 'Objetivo',
+    },
+    Transfer: {
+        selectAll: 'Select all',
+        unselectAll: 'Unselect all',
+        clearAll: 'Clear',
+        total: (num) => `Total ${num} items`,
+        selected: (num) => `${num} items selected`,
+    },
+    Empty: {
+        description: 'Sin datos',
+    },
+    Select: {
+        placeholder: 'Seleccionar por favor',
+    },
+    TimePicker: {
+        placeholder: 'Seleccionar hora',
+        positiveText: 'OK',
+        negativeText: 'Cancelar',
+        now: 'Ahora',
+    },
+    Pagination: {
+        goto: 'Ir a',
+        selectionSuffix: 'p\xE1gina',
+    },
+    DynamicTags: {
+        add: 'Agregar',
+    },
+    Log: {
+        loading: 'Cargando',
+    },
+    Input: {
+        placeholder: 'Ingrese datos por favor',
+    },
+    InputNumber: {
+        placeholder: 'Ingrese datos por favor',
+    },
+    DynamicInput: {
+        create: 'Crear',
+    },
+    ThemeEditor: {
+        title: 'Editor de Tema',
+        clearAllVars: 'Limpiar todas las variables',
+        clearSearch: 'Limpiar b\xFAsqueda',
+        filterCompName: 'Filtro para nombre del componente',
+        filterVarName: 'Filtro para nombre de la variable',
+        import: 'Importar',
+        export: 'Exportar',
+        restore: 'Restablecer los valores por defecto',
+    },
+    Image: {
+        tipPrevious: 'Imagen anterior (\u2190)',
+        tipNext: 'Siguiente imagen (\u2192)',
+        tipCounterclockwise: 'Sentido antihorario',
+        tipClockwise: 'Sentido horario',
+        tipZoomOut: 'Alejar',
+        tipZoomIn: 'Acercar',
+        tipClose: 'Cerrar (Esc)',
+        tipOriginalSize: 'Zoom to original size',
+    },
+};
+export default esAR;

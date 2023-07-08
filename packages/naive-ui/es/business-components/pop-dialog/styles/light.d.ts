@@ -1,0 +1,20 @@
+import { Theme } from '../../../_mixins';
+import { ThemeCommonVars } from '../../../_styles/common';
+export declare const self: (vars: ThemeCommonVars) => {
+    leftColor: string;
+    leftBackgroundColor: string;
+    leftActiveBackgroundColor: string;
+    rightColor: string;
+    rightBackgroundColor: string;
+    rightActiveBackgroundColor: string;
+    rightFileHoverColor: string;
+    titleColor: string;
+    borderRadius: string;
+    titleFontSize: string;
+    fontSize: string;
+    arrowSize: string;
+};
+export type PopDialogThemeVars = ReturnType<typeof self>;
+declare const popDialogLight: Theme<'PopDialog', PopDialogThemeVars>;
+export default popDialogLight;
+export type PopDialogTheme = typeof popDialogLight;

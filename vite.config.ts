@@ -151,7 +151,7 @@ export default defineConfig({
             'naive-ui',
             'vite-plugin-fz',
             'wp-request',
-            'wp-preprocessor',
+            // 'wp-preprocessor',
             'wp-utils',
         ],
     },

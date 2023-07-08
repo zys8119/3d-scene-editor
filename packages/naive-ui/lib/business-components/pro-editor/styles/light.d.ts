@@ -1,0 +1,24 @@
+import { ThemeCommonVars } from '../../../_styles/common';
+import { Theme } from '../../../_mixins/use-theme';
+declare const self: (vars: ThemeCommonVars) => {
+    textareaBgColor: string;
+    textareaColor: string;
+    textareaBorderColor: string;
+    textareaSlightBorderColor: string;
+    textareaSlightColor: string;
+    textareaSlightBgColor: string;
+    textareaSelectedBorderColor: string;
+    textareaHandlerBgColor: string;
+    toolbarColor: string;
+    toolbarBgColor: string;
+    toolbarActiveColor: string;
+    toolbarActiveBgColor: string;
+    toolbarDisabledColor: string;
+    toolbarBorderColor: string;
+    modalButtonBgColor: string;
+    modalButtonBorderColor: string;
+};
+export type ProEditorThemeVars = ReturnType<typeof self>;
+declare const proEditorLight: Theme<'ProEditor', ProEditorThemeVars>;
+export default proEditorLight;
+export type ProEditorTheme = typeof proEditorLight;

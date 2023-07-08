@@ -1,0 +1,122 @@
+Object.defineProperty(exports, '__esModule', { value: true });
+const deDE = {
+    name: 'de-DE',
+    global: {
+        undo: 'R\xFCckg\xE4ngig',
+        redo: 'Wiederholen',
+        confirm: 'Best\xE4tigen',
+        clear: 'L\xF6schen',
+    },
+    Popconfirm: {
+        positiveText: 'Best\xE4tigen',
+        negativeText: 'Abbrechen',
+    },
+    Cascader: {
+        placeholder: 'Bitte ausw\xE4hlen',
+        loading: 'Wird geladen',
+        loadingRequiredMessage: (label) =>
+            `Bitte laden Sie alle Unterpunkte von ${label}, bevor Sie es ausw\xE4hlen.`,
+    },
+    Time: {
+        dateFormat: 'dd.MM.yyyy',
+        dateTimeFormat: 'dd.MM.yyyy HH:mm:ss',
+    },
+    DatePicker: {
+        yearFormat: 'yyyy',
+        monthFormat: 'MMM',
+        dayFormat: 'eeeeee',
+        yearTypeFormat: 'yyyy',
+        monthTypeFormat: 'MM-yyyy',
+        dateFormat: 'dd.MM.yyyy',
+        dateTimeFormat: 'dd.MM.yyyy HH:mm:ss',
+        quarterFormat: 'yyyy-qqq',
+        clear: 'L\xF6schen',
+        now: 'Jetzt',
+        confirm: 'Best\xE4tigen',
+        selectTime: 'Uhrzeit ausw\xE4hlen',
+        selectDate: 'Datum ausw\xE4hlen',
+        datePlaceholder: 'Datum ausw\xE4hlen',
+        datetimePlaceholder: 'Datum und Uhrzeit ausw\xE4hlen',
+        monthPlaceholder: 'Monat ausw\xE4hlen',
+        yearPlaceholder: 'Jahr ausw\xE4hlen',
+        quarterPlaceholder: 'Quartal ausw\xE4hlen',
+        startDatePlaceholder: 'Anfangsdatum',
+        endDatePlaceholder: 'Enddatum',
+        startDatetimePlaceholder: 'Anfangsdatum und Uhrzeit',
+        endDatetimePlaceholder: 'Enddatum und Uhrzeit',
+        startMonthPlaceholder: 'Anfangsmonat',
+        endMonthPlaceholder: 'Endmonat',
+        monthBeforeYear: true,
+        firstDayOfWeek: 0,
+        today: 'Heute',
+    },
+    DataTable: {
+        checkTableAll: 'Alles ausw\xE4hlen',
+        uncheckTableAll: 'Auswahl aufheben',
+        confirm: 'Best\xE4tigen',
+        clear: 'L\xF6schen',
+    },
+    LegacyTransfer: {
+        sourceTitle: 'Quelle',
+        targetTitle: 'Ziel',
+    },
+    Transfer: {
+        selectAll: 'Alle ausw\xE4hlen',
+        unselectAll: 'Alle abw\xE4hlen',
+        clearAll: 'Leeren',
+        total: (num) => `Insgesamt ${num} Eintr\xE4ge`,
+        selected: (num) => `${num} Eintr\xE4ge ausgew\xE4hlt`,
+    },
+    Empty: {
+        description: 'Keine Daten',
+    },
+    Select: {
+        placeholder: 'Bitte ausw\xE4hlen',
+    },
+    TimePicker: {
+        placeholder: 'Uhrzeit ausw\xE4hlen',
+        positiveText: 'OK',
+        negativeText: 'Abbrechen',
+        now: 'Jetzt',
+    },
+    Pagination: {
+        goto: 'Gehe zu',
+        selectionSuffix: 'Seite',
+    },
+    DynamicTags: {
+        add: 'Hinzuf\xFCgen',
+    },
+    Log: {
+        loading: 'Wird geladen',
+    },
+    Input: {
+        placeholder: 'Bitte ausf\xFCllen',
+    },
+    InputNumber: {
+        placeholder: 'Bitte ausf\xFCllen',
+    },
+    DynamicInput: {
+        create: 'Erstellen',
+    },
+    ThemeEditor: {
+        title: 'Theme Editor',
+        clearAllVars: 'Alle Variablen l\xF6schen',
+        clearSearch: 'Suche l\xF6schen',
+        filterCompName: 'Filter Komponentenname',
+        filterVarName: 'Filter Variablenname',
+        import: 'Importieren',
+        export: 'Exportieren',
+        restore: 'Auf Standard zur\xFCcksetzen',
+    },
+    Image: {
+        tipPrevious: 'Vorheriges Bild (\u2190)',
+        tipNext: 'N\xE4chstes Bild (\u2192)',
+        tipCounterclockwise: 'Gegen Uhrzeigersinn',
+        tipClockwise: 'Uhrzeigersinn',
+        tipZoomOut: 'Rauszoomen',
+        tipZoomIn: 'Reinzoomen',
+        tipClose: 'Schlie\xDFen (Esc)',
+        tipOriginalSize: 'Zoom zur\xFCcksetzen',
+    },
+};
+exports.default = deDE;

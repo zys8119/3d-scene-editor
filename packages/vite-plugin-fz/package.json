@@ -1,0 +1,26 @@
+{
+    "name": "vite-plugin-fz",
+    "version": "1.0.8",
+    "description": "",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "release": "tsc && release-it"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz"
+    },
+    "keywords": [
+        "fz",
+        "css"
+    ],
+    "author": "zys8119",
+    "license": "MIT",
+    "dependencies": {
+        "typescript": "^4.6.3"
+    },
+    "devDependencies": {
+        "release-it": "^14.14.2"
+    }
+}

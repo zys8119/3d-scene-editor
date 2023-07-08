@@ -12,6 +12,9 @@
         "prepare": "husky install"
     },
     "private": true,
+    "workspaces": [
+        "packages/**"
+    ],
     "dependencies": {
         "@types/lodash": "^4.14.195",
         "@vicons/ionicons5": "^0.12.0",
@@ -21,22 +24,22 @@
         "lodash": "^4.17.21",
         "md5": "^2.3.0",
         "mescroll.js": "^1.4.2",
-        "naive-ui": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wisdom-naive-release.git",
+        "naive-ui": "workspaces",
         "paper": "^0.12.17",
         "pinia": "^2.0.4",
         "resize-observer": "^1.0.4",
         "screenfull": "^6.0.2",
         "three": "^0.154.0",
         "vant": "^4.4.1",
-        "vite-plugin-fz": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz.git",
+        "vite-plugin-fz": "workspaces",
         "vue": "^3.2.45",
         "vue-clipboard3": "^2.0.0",
         "vue-draggable-plus": "^0.2.1",
         "vue-router": "^4.0.12",
         "winframe": "^0.0.3",
-        "wp-preprocessor": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-preprocessor.git",
-        "wp-request": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-request.git",
-        "wp-utils": "git+https://gitlab.zhijiasoft.com/vue3-base-framework/wp-utils.git"
+        "wp-preprocessor": "workspaces",
+        "wp-request": "workspaces",
+        "wp-utils": "workspaces"
     },
     "devDependencies": {
         "@commitlint/cli": "^17.4.4",

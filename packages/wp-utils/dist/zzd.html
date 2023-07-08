@@ -1,0 +1,50 @@
+<script src='//wpk-gate.zjzwfw.gov.cn/static/wpk-jssdk.1.0.2/wpkReporter.js' crossorigin='true'></script>
+<script type="application/javascript">
+    /**
+     *  浙政钉--稳定性监控
+     */
+    try {
+        const config = {
+            bid: "<%= bid %>",
+            signkey: "<%= signkey %>",
+            gateway: "//wpk-gate.zjzwfw.gov.cn"
+        };
+        const wpk = new wpkReporter(config);
+        wpk.installAll();
+        window._wpk = wpk;
+    } catch (err) {
+        console.error('WpkReporter init fail', err);
+    }
+
+    /**
+     *  浙政钉--通用采集
+     */
+    (function(w, d, s, q, i) {
+        w[q] = w[q] || [];
+        var f = d.getElementsByTagName(s)[0],j = d.createElement(s);
+        j.async = true;
+        j.id = 'beacon-aplus';
+        j.src = '//alidt.alicdn.com/alilog/mlog/aplus_cloud.js';
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'aplus_queue');
+
+    aplus_queue.push({
+        action: 'aplus.setMetaInfo',
+        arguments: ['aplus-rhost-v', 'alog.zjzwfw.gov.cn']
+    });
+    aplus_queue.push({
+        action: 'aplus.setMetaInfo',
+        arguments: ['aplus-rhost-g', 'alog.zjzwfw.gov.cn']
+    });
+
+    var u = navigator.userAgent
+    var isAndroid = u.indexOf('Android') > -1
+    // 原始代码，解决lodash.template方法反斜杠'\'被转义bug
+    // var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+    var isIOS = !!u.match(/\\\(i[^;]+;( U;)? CPU.+Mac OS X/)
+
+    aplus_queue.push({
+        action: 'aplus.setMetaInfo',
+        arguments: ['appId', isAndroid ? '28302650' : isIOS ? '28328447' : '47130293']
+    });
+</script>

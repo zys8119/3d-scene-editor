@@ -1,0 +1,122 @@
+Object.defineProperty(exports, '__esModule', { value: true });
+const eo = {
+    name: 'eo',
+    global: {
+        undo: 'Malfari',
+        redo: 'Refari',
+        confirm: 'Konfirmi',
+        clear: 'Malplenigi',
+    },
+    Popconfirm: {
+        positiveText: 'Konfirmi',
+        negativeText: 'Nuligi',
+    },
+    Cascader: {
+        placeholder: 'Bonvolu elekti',
+        loading: '\u015Cargi\u011Do',
+        loadingRequiredMessage: (label) =>
+            `Bonvolu \u015Dargi \u0109iujn idojn de ${label} anta\u016D ol elekti \u011Din.`,
+    },
+    Time: {
+        dateFormat: 'yyyy-MM-dd',
+        dateTimeFormat: 'yyyy-MM-dd HH:mm:ss',
+    },
+    DatePicker: {
+        yearFormat: 'yyyy',
+        monthFormat: 'MMM',
+        dayFormat: 'eeeeee',
+        yearTypeFormat: 'yyyy',
+        monthTypeFormat: 'yyyy-MM',
+        dateFormat: 'yyyy-MM-dd',
+        dateTimeFormat: 'yyyy-MM-dd HH:mm:ss',
+        quarterFormat: 'yyyy-qqq',
+        clear: 'Malplenigi',
+        now: 'Nun',
+        confirm: 'Konfirmi',
+        selectTime: 'Elekti tempon',
+        selectDate: 'Elekti daton',
+        datePlaceholder: 'Elekti daton',
+        datetimePlaceholder: 'Elekti daton kaj tempon',
+        monthPlaceholder: 'Elekti monaton',
+        yearPlaceholder: 'Elekti jaron',
+        quarterPlaceholder: 'Elekti jarkvaronon',
+        startDatePlaceholder: 'Komenca dato',
+        endDatePlaceholder: 'Fina dato',
+        startDatetimePlaceholder: 'Komencaj dato kaj tempo',
+        endDatetimePlaceholder: 'Finaj dato kaj tempo',
+        startMonthPlaceholder: 'Start Month',
+        endMonthPlaceholder: 'End Month',
+        monthBeforeYear: true,
+        firstDayOfWeek: 0,
+        today: 'Hodia\u016D',
+    },
+    DataTable: {
+        checkTableAll: 'Elekti \u0109iujn en la tabelo',
+        uncheckTableAll: 'Malelekti \u0109iujn en la tabelo',
+        confirm: 'Konfirmi',
+        clear: 'Malplenigi',
+    },
+    LegacyTransfer: {
+        sourceTitle: 'Source',
+        targetTitle: 'Target',
+    },
+    Transfer: {
+        selectAll: 'Select all',
+        unselectAll: 'Unselect all',
+        clearAll: 'Clear',
+        total: (num) => `Total ${num} items`,
+        selected: (num) => `${num} items selected`,
+    },
+    Empty: {
+        description: 'Neniu datumo',
+    },
+    Select: {
+        placeholder: 'Bonvolu elekti',
+    },
+    TimePicker: {
+        placeholder: 'Elekti tempon',
+        positiveText: 'Bone',
+        negativeText: 'Nuligi',
+        now: 'Nun',
+    },
+    Pagination: {
+        goto: 'Iri al',
+        selectionSuffix: 'pa\u011Do',
+    },
+    DynamicTags: {
+        add: 'Aldoni',
+    },
+    Log: {
+        loading: '\u015Cargado',
+    },
+    Input: {
+        placeholder: 'Bonvolu entajpi',
+    },
+    InputNumber: {
+        placeholder: 'Bonvolu entajpi',
+    },
+    DynamicInput: {
+        create: 'Krei',
+    },
+    ThemeEditor: {
+        title: 'Etosredaktilo',
+        clearAllVars: 'Malplenigi \u0109iujn variablojn',
+        clearSearch: 'Malplenigi ser\u0109on',
+        filterCompName: 'Filtri nomojn de kompona\u0135oj',
+        filterVarName: 'Filtri nomojn de variabloj',
+        import: 'Importi',
+        export: 'Eksporti',
+        restore: 'Restarigi defa\u016Dltajn valorojn',
+    },
+    Image: {
+        tipPrevious: 'Anta\u016Da bildo (\u2190)',
+        tipNext: 'Sekva bildo (\u2192)',
+        tipCounterclockwise: 'Maldekstrume',
+        tipClockwise: 'Dekstrume',
+        tipZoomOut: 'Malzomi',
+        tipZoomIn: 'Zomi',
+        tipClose: 'Fermi (Esc)',
+        tipOriginalSize: 'Zoom to original size',
+    },
+};
+exports.default = eo;
