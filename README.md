@@ -6,8 +6,8 @@
 
 已完成
 
--   <input type="checkbox" checked >☑✔ 史蒂夫
+-   ✅ 史蒂夫
 
 待完成
 
--   <input type="checkbox" > workspaces 目录的包 git 更新机制，编写全局脚手架
+-   ☑️ workspaces 目录的包 git 更新机制，编写全局脚手架
