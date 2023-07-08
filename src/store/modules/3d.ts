@@ -113,7 +113,7 @@ const useStore3d = defineStore<
             layers: [
                 {
                     label: '物体1',
-                    type: 'cube',
+                    type: 'geometry',
                     geometryType: 'BoxGeometry',
                     width: 100,
                     height: 100,

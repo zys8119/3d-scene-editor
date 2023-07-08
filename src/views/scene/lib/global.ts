@@ -71,10 +71,10 @@ export const listenerCallback = (
         }
         return store.layerBaseNameReg.test(e.object.name);
     });
-    listener?.(objectFilters[0]?.object, objectFilters as any, {
+    listener?.(objectFilters[0]?.object as any, objectFilters as any, {
         event: e,
-        mouse,
-        intersects,
+        mouse: mouse as any,
+        intersects: intersects as any,
         point: point,
     });
 };
@@ -99,10 +99,11 @@ export function use3DGlobalInit(three: BaseThreeClass) {
     camera.zoom = config.value.camera.zoom;
     // 关闭灯光帮助
     const lightHelper: DirectionalLightHelper =
-        three.lightHelper as DirectionalLightHelper;
+        three.lightHelper as unknown as DirectionalLightHelper;
     lightHelper.visible = false;
     // 关闭相机帮助
-    const cameraHelper: CameraHelper = three.cameraHelper as CameraHelper;
+    const cameraHelper: CameraHelper =
+        three.cameraHelper as unknown as CameraHelper;
     cameraHelper.visible = false;
     // 创建网格
     const createGrid = (bool: boolean) => {
@@ -238,7 +239,7 @@ export function use3DGlobalInit(three: BaseThreeClass) {
             if (object) {
                 if (!store.isToolSelect) {
                     store.setLayerActiveId(parseName(object.name).id, true);
-                    transform.attach(object);
+                    transform.attach(object as any);
                     window.$draw3dSceneEditorObject3DClick = true;
                     setTimeout(() => {
                         window.$draw3dSceneEditorObject3DClick = false;

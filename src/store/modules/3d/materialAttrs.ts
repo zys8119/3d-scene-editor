@@ -47,7 +47,7 @@ export default [
         filter() {
             return (
                 !!this.layerActiveGetters &&
-                this.layerActiveGetters?.type === 'cube'
+                this.layerActiveGetters?.type === 'geometry'
             );
         },
         child: [

@@ -52,11 +52,13 @@ class Redraw {
         const geometry = (
             optionsGeometry.find(
                 (e) => e.value === geometryType
-            ) as OptionsGeometryItemType
+            ) as unknown as OptionsGeometryItemType
         ).box(this.three, layer);
         if (layer.wireframe) {
             // 网格几何体
-            return new this.three.THREE.WireframeGeometry(geometry);
+            return new this.three.THREE.WireframeGeometry(
+                geometry as any
+            ) as unknown as BufferGeometry;
         }
         return geometry;
     }
@@ -66,10 +68,10 @@ class Redraw {
         // 清除绘制场景
         await Promise.all(
             store.layers.map(async (layer) => {
-                let box = this.generateGeometry(layer);
+                let box: BufferGeometry = this.generateGeometry(layer);
                 const material = new THREE.MeshLambertMaterial();
                 material.needsUpdate = true;
-                const mesh = new THREE.Mesh(box, material);
+                const mesh = new THREE.Mesh(box as any, material);
                 mesh.name = this.getName(layer);
                 scene.add(mesh);
                 const watchReset = async () => {
@@ -244,7 +246,7 @@ class Redraw {
             if (store.layerActiveGetters) {
                 const name = this.getName(store.layerActiveGetters);
                 const object = scene.getObjectByName(name);
-                this.transform.attach(object as Object3D);
+                this.transform.attach(object as unknown as Object3D);
             } else {
                 this.transform.detach();
             }

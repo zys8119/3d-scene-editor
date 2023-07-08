@@ -27,7 +27,7 @@ export const optionsGeometry = [
         label: 'BoxGeometry',
         value: 'BoxGeometry',
         name: '立方缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.BoxGeometry(
                 layer.width,
                 layer.height,
@@ -42,7 +42,7 @@ export const optionsGeometry = [
         label: 'CapsuleGeometry',
         value: 'CapsuleGeometry',
         name: '胶囊图形几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.CapsuleGeometry(
                 layer.radius,
                 layer.length,
@@ -55,7 +55,7 @@ export const optionsGeometry = [
         label: 'CircleGeometry',
         value: 'CircleGeometry',
         name: '圆形缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.CircleGeometry(
                 layer.radius,
                 layer.segments,
@@ -68,7 +68,7 @@ export const optionsGeometry = [
         label: 'ConeGeometry',
         value: 'ConeGeometry',
         name: '圆锥缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.ConeGeometry(
                 layer.radius,
                 layer.height,
@@ -84,7 +84,7 @@ export const optionsGeometry = [
         label: 'CylinderGeometry',
         value: 'CylinderGeometry',
         name: '圆柱缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.CylinderGeometry(
                 layer.radiusTop,
                 layer.radiusBottom,
@@ -101,7 +101,7 @@ export const optionsGeometry = [
         label: 'DodecahedronGeometry',
         value: 'DodecahedronGeometry',
         name: '十二面缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.DodecahedronGeometry(
                 layer.radius,
                 layer.detail
@@ -112,7 +112,7 @@ export const optionsGeometry = [
         label: 'EdgesGeometry',
         value: 'EdgesGeometry',
         name: '边缘几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.EdgesGeometry(
                 new three.THREE.BoxGeometry(
                     layer.width,
@@ -126,7 +126,7 @@ export const optionsGeometry = [
         label: 'ExtrudeGeometry',
         value: 'ExtrudeGeometry',
         name: '挤压缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             const shape = new three.THREE.Shape();
             if (
                 Object.prototype.toString.call(layer.paths) === '[object Array]'
@@ -164,7 +164,7 @@ export const optionsGeometry = [
         label: 'IcosahedronGeometry',
         value: 'IcosahedronGeometry',
         name: '二十面缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.IcosahedronGeometry(
                 layer.radius,
                 layer.detail
@@ -175,7 +175,7 @@ export const optionsGeometry = [
         label: 'LatheGeometry',
         value: 'LatheGeometry',
         name: '车削缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             const points: any = [];
             layer.paths?.forEach((e: any) => {
                 e.forEach(([x, y]: [number, number]) => {
@@ -194,7 +194,7 @@ export const optionsGeometry = [
         label: 'OctahedronGeometry',
         value: 'OctahedronGeometry',
         name: '八面缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.OctahedronGeometry(
                 layer.radius,
                 layer.detail
@@ -205,7 +205,7 @@ export const optionsGeometry = [
         label: 'PlaneGeometry',
         value: 'PlaneGeometry',
         name: '平面缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.PlaneGeometry(
                 layer.width,
                 layer.height,
@@ -218,7 +218,7 @@ export const optionsGeometry = [
         label: 'PolyhedronGeometry',
         value: 'PolyhedronGeometry',
         name: '多面缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             const verticesOfCube = _get(layer, 'paths[0]', []);
             const indicesOfFaces = _get(layer, 'paths[1]', []);
             return new three.THREE.PolyhedronGeometry(
@@ -233,7 +233,7 @@ export const optionsGeometry = [
         label: 'RingGeometry',
         value: 'RingGeometry',
         name: '圆环缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.RingGeometry(
                 layer.innerRadius,
                 layer.outerRadius,
@@ -248,7 +248,7 @@ export const optionsGeometry = [
         label: 'ShapeGeometry',
         value: 'ShapeGeometry',
         name: '形状缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             const heartShape = new three.THREE.Shape(
                 (layer.paths || []) as any
             );
@@ -262,7 +262,7 @@ export const optionsGeometry = [
         label: 'SphereGeometry',
         value: 'SphereGeometry',
         name: '球缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.SphereGeometry(
                 layer.radius,
                 layer.widthSegments,
@@ -278,7 +278,7 @@ export const optionsGeometry = [
         label: 'TetrahedronGeometry',
         value: 'TetrahedronGeometry',
         name: '四面缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.TetrahedronGeometry(
                 layer.radius,
                 layer.detail
@@ -289,7 +289,7 @@ export const optionsGeometry = [
         label: 'TorusGeometry',
         value: 'TorusGeometry',
         name: '圆环缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.TorusGeometry(
                 layer.radius,
                 layer.tube,
@@ -303,7 +303,7 @@ export const optionsGeometry = [
         label: 'TorusKnotGeometry',
         value: 'TorusKnotGeometry',
         name: '圆环缓冲扭结几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             return new three.THREE.TorusKnotGeometry(
                 layer.radius,
                 layer.tube,
@@ -318,7 +318,7 @@ export const optionsGeometry = [
         label: 'TubeGeometry',
         value: 'TubeGeometry',
         name: '管道缓冲几何体',
-        box(three: BaseThreeClass, layer: Layer): BufferGeometry {
+        box(three: BaseThreeClass, layer: Layer) {
             class CustomSinCurve extends three.THREE.Curve {
                 constructor(public scale = 1) {
                     super();
@@ -349,7 +349,12 @@ export const optionsGeometry = [
         },
     },
 ] as const;
-export type OptionsGeometryItemType = (typeof optionsGeometry)[number];
+export type OptionsGeometryItemType = Omit<
+    (typeof optionsGeometry)[number],
+    'box'
+> & {
+    box(three: BaseThreeClass, layer: Layer): BufferGeometry;
+};
 export type GeometryType = OptionsGeometryItemType extends {
     value: infer A;
 }
@@ -458,7 +463,7 @@ export default [
         filter() {
             return (
                 !!this.layerActiveGetters &&
-                this.layerActiveGetters?.type === 'cube'
+                this.layerActiveGetters?.type === 'geometry'
             );
         },
         child: [

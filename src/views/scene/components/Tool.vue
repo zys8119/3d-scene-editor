@@ -7,6 +7,7 @@
                 :key="key"
             >
                 <div
+                    :title="item.title"
                     class="ToolIcon"
                     v-for="(item, kk) in cols.children"
                     :key="kk"
