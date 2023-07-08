@@ -1,4 +1,5 @@
 import { TableListParams } from '@/api/typing';
+import preprocessor from 'wp-preprocessor';
 
 export default {
     info() {

@@ -146,4 +146,13 @@ export default defineConfig({
             overlay: false,
         },
     },
+    optimizeDeps: {
+        include: [
+            'naive-ui',
+            'vite-plugin-fz',
+            'wp-request',
+            'wp-preprocessor',
+            'wp-utils',
+        ],
+    },
 });
