@@ -6,7 +6,7 @@
 
 已完成
 
--   <input type="checkbox" checked > 史蒂夫
+-   <input type="checkbox" checked >☑✔ 史蒂夫
 
 待完成
 

@@ -56,10 +56,10 @@ export declare const treeSelectProps: {
     readonly disabledField: {
         readonly type: StringConstructor;
         readonly default: 'disabled';
-    }
+    };
     /**
      * @deprecated
-     */;
+     */
     readonly defaultExpandedKeys: {
         readonly type: PropType<Key[]>;
         readonly default: () => never[];
@@ -754,10 +754,10 @@ declare const _default: import('vue').DefineComponent<
         readonly disabledField: {
             readonly type: StringConstructor;
             readonly default: 'disabled';
-        }
+        };
         /**
          * @deprecated
-         */;
+         */
         readonly defaultExpandedKeys: {
             readonly type: PropType<Key[]>;
             readonly default: () => never[];
@@ -2006,10 +2006,10 @@ declare const _default: import('vue').DefineComponent<
             readonly disabledField: {
                 readonly type: StringConstructor;
                 readonly default: 'disabled';
-            }
+            };
             /**
              * @deprecated
-             */;
+             */
             readonly defaultExpandedKeys: {
                 readonly type: PropType<Key[]>;
                 readonly default: () => never[];
