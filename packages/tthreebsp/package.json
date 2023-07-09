@@ -1,0 +1,15 @@
+{
+    "name": "tthreebsp",
+    "version": "1.0.9",
+    "description": "",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fox19920726/threebsp"
+    },
+    "author": "Jin",
+    "license": "MIT"
+}

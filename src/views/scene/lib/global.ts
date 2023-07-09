@@ -237,7 +237,7 @@ export function use3DGlobalInit(three: BaseThreeClass) {
     const eventsMap = {
         dblclick(object) {
             if (object) {
-                if (!store.isToolSelect) {
+                if (store.isToolSelect) {
                     store.setLayerActiveId(parseName(object.name).id, true);
                     transform.attach(object as any);
                     window.$draw3dSceneEditorObject3DClick = true;

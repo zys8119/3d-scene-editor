@@ -153,6 +153,7 @@ export default defineConfig({
             'wp-request',
             // 'wp-preprocessor',
             'wp-utils',
+            'tthreebsp',
         ],
     },
 });
