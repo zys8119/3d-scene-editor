@@ -8,6 +8,7 @@ import { BufferGeometry } from 'three/src/core/BufferGeometry';
 import { Layer } from '@/store/modules/3d';
 import { BaseThreeClass } from 'naive-ui';
 import BasisAttrsPathsPreview from '@/views/scene/components/BasisAttrsPathsPreview.vue';
+import FontsAssetsPanel from '@/views/scene/components/FontsAssetsPanel.vue';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import useWatchStore from '@/utils/watchStore';
 const downloadFontsMap = new Map<string, boolean>();
@@ -540,6 +541,12 @@ export default [
             {
                 path: 'fontName',
                 defaultValue: 'BoxGeometry',
+                base: {
+                    showMore: true,
+                    more(): VNode {
+                        return h(FontsAssetsPanel);
+                    },
+                } as AttrsItemChild,
                 config: {
                     type: 'select',
                     cursorGj: null as unknown,
@@ -556,6 +563,12 @@ export default [
                         })(),
                     },
                 } as AttrsItemChildConfig,
+            },
+            {
+                path: 'text',
+                config: {
+                    type: 'input',
+                },
             },
             { path: 'radius', defaultValue: 1 },
             { path: 'length', defaultValue: 1 },

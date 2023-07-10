@@ -53,6 +53,7 @@ window.addEventListener('click', () => {
         moreContent.value = null;
     }
 });
+provide('$moreContent', moreContent);
 </script>
 
 <style scoped lang="less">

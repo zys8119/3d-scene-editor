@@ -104,6 +104,7 @@ export interface Store3DActions {
     setAssets(url: string): void;
     deleteAssets(index: number): void;
     addLayer(layer: Layer): void;
+    setFontsAssets(fonts: Record<string, string>): void;
 }
 const useStore3d = defineStore<
     string,
@@ -227,10 +228,11 @@ const useStore3d = defineStore<
                 )) as LayersGettersItem;
         },
         fontNameOptions() {
-            return Object.entries(this.fontsAssets).map(([label]) => {
+            return Object.entries(this.fontsAssets).map(([label, url]) => {
                 return {
                     label,
                     value: label,
+                    url,
                 };
             });
         },
@@ -253,6 +255,9 @@ const useStore3d = defineStore<
         },
         addLayer(layer) {
             this.layers.push(layer);
+        },
+        setFontsAssets(fontsAssets) {
+            this.fontsAssets = fontsAssets as any;
         },
     },
 });
