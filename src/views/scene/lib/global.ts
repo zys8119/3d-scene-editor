@@ -82,11 +82,18 @@ export const listenerCallback = (
         point: point,
     });
 };
+export type GlobalOptions = {
+    // 物体鼠标右键
+    objectRightButtonCallback(object: Object3D, event: MouseEvent): void;
+};
 /**
  * 全局初始化
  * @param three
  */
-export function use3DGlobalInit(three: BaseThreeClass) {
+export function use3DGlobalInit(
+    three: BaseThreeClass,
+    options: GlobalOptions = {} as GlobalOptions
+) {
     const { THREE, scene, controls, camera } = three;
     // 初始化变形设置
     const transform = ((three as any).transform = three.transformControls());
@@ -296,7 +303,7 @@ export function use3DGlobalInit(three: BaseThreeClass) {
                 }
             }
         },
-        mousedown(object, ints, { point }) {
+        mousedown(object, ints, { point, event }) {
             if (point) {
                 if (!store.isToolSelect) {
                     ms.name = store.toolsActive as any;
@@ -310,6 +317,11 @@ export function use3DGlobalInit(three: BaseThreeClass) {
                     msY = point.y;
                     msZ = point.z;
                     ms.position.set(msX, msY, msZ);
+                } else {
+                    if (object && event.button === 2) {
+                        // 鼠标右键
+                        options.objectRightButtonCallback?.(object, event);
+                    }
                 }
             }
         },
@@ -393,10 +405,6 @@ export function use3DGlobalInit(three: BaseThreeClass) {
             listenerCallback.bind(null, three, listener)
         );
     });
-    window.addEventListener('click', () => {
-        if (!window.$draw3dSceneEditorObject3DClick) {
-            // window.store.store3d.setLayerActiveId(null, true);
-        }
-    });
+    window.addEventListener('mouseup', eventsMap.mouseup);
     // controls.listenToKeyEvents(window);
 }
