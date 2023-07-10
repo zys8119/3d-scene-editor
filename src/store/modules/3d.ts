@@ -60,6 +60,7 @@ export type Layer = {
     q?: number;
     closed?: boolean;
     wireframe?: boolean;
+    visible?: boolean;
     paths?: Array<Array<[number, number]> | Array<number> | number>;
     text?: string;
     fontName?: FontsAssetsType;
@@ -103,6 +104,7 @@ export interface Store3DActions {
     setLayerActiveId(layerId: any, isCache?: boolean): void;
     setAssets(url: string): void;
     deleteAssets(index: number): void;
+    delLayer(index: number): void;
     addLayer(layer: Layer): void;
     setFontsAssets(fonts: Record<string, string>): void;
 }
@@ -194,7 +196,7 @@ const useStore3d = defineStore<
             return ['rect', 'circle'].includes(this.toolsActive as string);
         },
         isToolSelect() {
-            return ['select', null, undefined].includes(
+            return ['play', 'select', null, undefined].includes(
                 this.toolsActive as string
             );
         },
@@ -255,6 +257,9 @@ const useStore3d = defineStore<
         },
         addLayer(layer) {
             this.layers.push(layer);
+        },
+        delLayer(index) {
+            this.layers.splice(index, 1);
         },
         setFontsAssets(fontsAssets) {
             this.fontsAssets = fontsAssets as any;

@@ -86,6 +86,7 @@ class Redraw {
                     mesh.geometry = box;
                     mesh.castShadow = get(layer, 'Mesh.castShadow', true);
                     mesh.receiveShadow = get(layer, 'Mesh.receiveShadow', true);
+                    mesh.visible = get(layer, 'visible', true);
                     mesh.position.set(
                         get(layer, 'Mesh.position.x', 0),
                         get(layer, 'Mesh.position.y', 0),

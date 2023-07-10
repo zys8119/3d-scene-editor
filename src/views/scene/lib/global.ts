@@ -305,7 +305,10 @@ export function use3DGlobalInit(
         },
         mousedown(object, ints, { point, event }) {
             if (point) {
-                if (!store.isToolSelect) {
+                if (
+                    !store.isToolSelect &&
+                    !['play'].includes(store.toolsActive as string)
+                ) {
                     ms.name = store.toolsActive as any;
                     ms.geometry = new THREE.BoxGeometry(
                         boxW - 1,
@@ -324,15 +327,20 @@ export function use3DGlobalInit(
                     }
                 }
             }
+            if (!object) {
+                store.setLayerActiveId(null, true);
+            }
         },
         mouseup() {
             if (!store.isToolSelect) {
                 msX = 0;
                 msY = 0;
                 msZ = 0;
-                ms.visible = false;
                 store.setToolActive('select');
-                createLayers();
+                if (ms.visible) {
+                    createLayers();
+                }
+                ms.visible = false;
             }
         },
         mousemove(object, ints, { point }) {

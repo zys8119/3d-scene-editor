@@ -728,6 +728,11 @@ export default [
                 config: { type: 'switch' },
                 defaultValue: true,
             },
+            {
+                path: 'visible',
+                config: { type: 'switch' },
+                defaultValue: true,
+            },
         ].map((label: any) => {
             const isObject =
                 Object.prototype.toString.call(label) === '[object Object]';

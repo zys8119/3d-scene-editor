@@ -36,7 +36,11 @@
 <script setup lang="ts">
 import { Ref } from 'vue';
 import { BaseThreeClass } from 'naive-ui';
+import { Object3D } from 'three';
+import useStore3d from '@/store/modules/3d';
+const thresInstance = ref() as Ref<BaseThreeClass>;
 const initializationData = use3DConfig();
+const store = useStore3d();
 const threeRef = ref();
 const rbmRef = ref();
 const showMenu = ref(false);
@@ -52,20 +56,27 @@ const rbmStyle = computed(() => {
         top: `${rbmPos.value.y + 2}px`,
     };
 });
+const menusObject = ref() as Ref<Object3D>;
 const menusMap = ref({
     objectRightButtonCallback: [
         {
-            name: '测试菜单',
-            value: 'asdas',
+            name: '删除',
             calllback() {
                 showMenu.value = false;
+                const id = parseName(menusObject.value.name as string).id;
+                const index = store.layers.findIndex((e) => e.id === id);
+                store.delLayer(index);
+                thresInstance.value.scene.remove(menusObject.value as any);
             },
         },
     ],
 });
 const menusType = ref<typeof menusMap extends Ref<infer T> ? keyof T : never>();
-const menus = computed(() => menusMap.value[menusType.value as any] || []);
+const menus = computed(
+    () => (menusMap.value as any)[menusType.value as any] || []
+);
 const load = async (three: BaseThreeClass) => {
+    thresInstance.value = three;
     // 全局初始化
     use3DGlobalInit(three, {
         objectRightButtonCallback(object, event) {
@@ -73,6 +84,7 @@ const load = async (three: BaseThreeClass) => {
             rbmPos.value.x = x.value;
             rbmPos.value.y = y.value;
             menusType.value = 'objectRightButtonCallback';
+            menusObject.value = object;
             showMenu.value = true;
         },
     });
