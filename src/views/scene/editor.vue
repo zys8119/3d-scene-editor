@@ -1,5 +1,10 @@
 <template>
-    <div class="editor fixed w-100% h-100% left-0 top-0">
+    <div
+        class="editor fixed w-100% h-100% left-0 top-0"
+        :class="{
+            editorIsPlay: $store.store3d.toolsActive === 'play',
+        }"
+    >
         <n-three
             v-model:initialization-data="initializationData"
             :stats="initializationData.statsShow"
@@ -119,6 +124,15 @@ window.addEventListener('click', () => {
             & + .right-button-menu-item {
                 border-top: 1px solid #d8d8d8;
             }
+        }
+    }
+    &.editorIsPlay {
+        .Layers {
+            transform: translateX(-120%);
+            opacity: 0;
+        }
+        .Attribute {
+            transform: translateX(120%);
         }
     }
 }

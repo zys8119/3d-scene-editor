@@ -399,6 +399,9 @@ export function use3DGlobalInit(
                     } else {
                         mousePosMesh.visible = true;
                     }
+                } else {
+                    ms.visible = false;
+                    mousePosMesh.visible = false;
                 }
             }
         },

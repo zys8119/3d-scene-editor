@@ -14,7 +14,7 @@
                     :class="{
                         active: $store.store3d.toolsActive === item.type,
                     }"
-                    @click="$store.store3d.toolsActive = item.type"
+                    @click="switchToolsActive(item)"
                     v-html="item.icon"
                 ></div>
             </n-space>
@@ -22,7 +22,18 @@
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import useStore3d, { Layer } from '@/store/modules/3d';
+const store = useStore3d();
+
+const switchToolsActive = (item: Layer) => {
+    if (store.toolsActive === item.type && store.toolsActive !== 'select') {
+        store.toolsActive = 'select';
+        return;
+    }
+    store.toolsActive = item.type;
+};
+</script>
 
 <style scoped lang="less">
 .Tool {

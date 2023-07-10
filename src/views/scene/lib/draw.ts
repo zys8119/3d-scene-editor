@@ -272,6 +272,8 @@ class Redraw {
             } else {
                 this.transform.detach();
             }
+
+            this.transform.visible = store.toolsActive !== 'play';
         });
     }
 }
