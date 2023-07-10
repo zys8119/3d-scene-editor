@@ -43,6 +43,7 @@ declare global {
     const getActivePinia: typeof import('pinia')['getActivePinia'];
     const getCurrentInstance: typeof import('vue')['getCurrentInstance'];
     const getCurrentScope: typeof import('vue')['getCurrentScope'];
+    const getName: typeof import('./src/views/scene/lib/global')['getName'];
     const h: typeof import('vue')['h'];
     const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch'];
     const inject: typeof import('vue')['inject'];

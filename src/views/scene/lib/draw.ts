@@ -62,10 +62,12 @@ class Redraw {
         }
         return geometry;
     }
-    async draw() {
+    async update() {
         const { THREE, scene } = this.three;
-
         // 清除绘制场景
+        this.drawWatchCache.forEach((e) => {
+            e?.();
+        });
         await Promise.all(
             store.layers.map(async (layer) => {
                 let box: BufferGeometry = this.generateGeometry(layer);
@@ -73,6 +75,10 @@ class Redraw {
                 material.needsUpdate = true;
                 const mesh = new THREE.Mesh(box as any, material);
                 mesh.name = this.getName(layer);
+                const objectCache = scene.getObjectByName(mesh.name);
+                if (objectCache) {
+                    scene.remove(objectCache);
+                }
                 scene.add(mesh);
                 const watchReset = async () => {
                     mesh.geometry.dispose();
@@ -191,9 +197,24 @@ class Redraw {
                     });
                 };
                 watchReset();
-                watch(layer, watchReset, { deep: true });
+                this.drawWatchCache.push(
+                    watch(layer, watchReset, { deep: true })
+                );
             })
         );
+    }
+    public layersLeng = store.layers.length;
+    public drawWatchCache: any[] = [];
+    async draw() {
+        const { scene } = this.three;
+        // 清除绘制场景
+        await this.update();
+        watch(store.layers, async (v) => {
+            if (this.layersLeng !== v.length) {
+                await this.update();
+                this.layersLeng = v.length;
+            }
+        });
         this.transform.addEventListener('change', () => {
             set(
                 store.layerActiveGetters,

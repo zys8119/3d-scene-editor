@@ -10,12 +10,12 @@ export type ToolItemType<T> = T extends (infer R extends (typeof tools)[0])[]
         : R
     : T;
 export type ToolItem = ToolItemType<typeof tools>;
-export type toolsActiveType = (typeof toolsActiveType)[number] | null;
+export type ToolsActiveType = (typeof toolsActiveType)[number] | null;
 export type LayerGeometryType = GeometryType;
 export type Layer = {
     [key: string]: any;
-    $isEdit: boolean;
-    type: toolsActiveType;
+    $isEdit?: boolean;
+    type: ToolsActiveType;
     geometryType: LayerGeometryType;
     id: any;
     name?: string;
@@ -64,7 +64,7 @@ export type Layer = {
 };
 export interface Store3Dstate {
     [key: string]: any;
-    toolsActive: toolsActiveType;
+    toolsActive: ToolsActiveType;
     layerActiveId: any;
     layerActiveIdCache: any;
     tools: typeof tools;
@@ -89,10 +89,11 @@ export interface Store3DGetters {
 }
 export interface Store3DActions {
     [key: string]: any;
-    setToolActive(type: toolsActiveType): void;
+    setToolActive(type: ToolsActiveType): void;
     setLayerActiveId(layerId: any, isCache?: boolean): void;
     setAssets(url: string): void;
     deleteAssets(index: number): void;
+    addLayer(layer: Layer): void;
 }
 const useStore3d = defineStore<
     string,
@@ -225,6 +226,9 @@ const useStore3d = defineStore<
         },
         deleteAssets(index) {
             this.assets.splice(index, 1);
+        },
+        addLayer(layer) {
+            this.layers.push(layer);
         },
     },
 });

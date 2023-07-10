@@ -1,9 +1,10 @@
-import { CameraHelper, DirectionalLightHelper, Object3D } from 'three';
+import { CameraHelper, DirectionalLightHelper, Mesh, Object3D } from 'three';
 import { BaseThreeClass } from 'naive-ui';
-import useStore3d from '@/store/modules/3d';
+import useStore3d, { Layer } from '@/store/modules/3d';
 import { Intersection } from 'three/src/core/Raycaster';
 import { Vector3 } from 'three/src/math/Vector3';
 import { Vector2 } from 'three/src/math/Vector2';
+import { get } from 'lodash';
 const config = use3DConfig();
 const { Shift } = useMagicKeys({
     onEventFired(e) {
@@ -11,6 +12,9 @@ const { Shift } = useMagicKeys({
     },
 });
 const store = useStore3d();
+export const getName = (layer: Layer) => {
+    return `${store.layerBaseName}-${layer.id}-${layer.name}`;
+};
 export const parseName = (name: string) => {
     const [layerBaseName, layerId, layerName] = name.split('-');
     return {
@@ -203,7 +207,7 @@ export function use3DGlobalInit(three: BaseThreeClass) {
     let msY = 0;
     let msZ = 0;
     const m = new THREE.MeshLambertMaterial({
-        color: new THREE.Color('#f00'),
+        color: new THREE.Color('#478cf9'),
         transparent: true,
         // map: new THREE.TextureLoader().load(
         //     'http://localhost:3000/%E5%9B%BE%E7%89%87:%E8%A7%86%E9%A2%91/%E9%98%BF%E7%8B%B8%20cosplay%E7%BE%8E%E5%A5%B34k%E9%AB%98%E6%B8%85%E5%A3%81%E7%BA%B8_%E5%BD%BC%E5%B2%B8%E5%9B%BE%E7%BD%91.jpg'
@@ -228,11 +232,45 @@ export function use3DGlobalInit(three: BaseThreeClass) {
     mousePosMesh.rotateX(Math.PI * 0.5);
     mousePosMesh.visible = false;
     scene.add(mousePosMesh);
+    const setLayerActiveId = (id: any, name: string) => {
+        requestAnimationFrame(() => {
+            if (scene.getObjectByName(name)) {
+                console.log(111);
+                store.setLayerActiveId(id, true);
+            } else {
+                setLayerActiveId(id, name);
+            }
+        });
+    };
     /**
      * todo 创建物体图层
      */
-    const createLayers = () => {
-        console.log(ms);
+    const createLayers = async () => {
+        const json = ms.toJSON();
+        const name = '新物体';
+        const layer = {
+            width: get(json, 'geometries[0].width', 0),
+            height: get(json, 'geometries[0].height', 0),
+            depth: get(json, 'geometries[0].depth', 0),
+            Mesh: {
+                rotation: {
+                    x: ms.rotation.x,
+                },
+                position: {
+                    x: get(ms, 'position.x', 0),
+                    y: get(ms, 'position.y', 0),
+                    z: get(ms, 'position.z', 0),
+                },
+            } as Mesh,
+            geometryType: 'BoxGeometry',
+            type: 'geometry',
+            name: name,
+            label: name,
+            id: Date.now(),
+            $isEdit: false,
+        } as Layer;
+        store.addLayer(layer);
+        setLayerActiveId(layer.id, getName(layer));
     };
     const eventsMap = {
         dblclick(object) {
