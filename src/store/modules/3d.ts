@@ -1,6 +1,6 @@
 import tools, { toolsActiveType } from './3d/tools';
 import attrs, { AttrsItem, AttrsItemChild } from './3d/attrs';
-import assets from './assets/index';
+import assets, { fontsAssets, FontsAssetsType } from './assets/index';
 import { GeometryType } from '@/store/modules/3d/basisAttrs';
 const config = use3DConfig();
 
@@ -61,6 +61,10 @@ export type Layer = {
     closed?: boolean;
     wireframe?: boolean;
     paths?: Array<Array<[number, number]> | Array<number> | number>;
+    text?: string;
+    fontName?: FontsAssetsType;
+    fontUrl?: string;
+    size?: number;
 };
 export interface Store3Dstate {
     [key: string]: any;
@@ -73,6 +77,7 @@ export interface Store3Dstate {
     config: typeof config;
     attrs: typeof attrs;
     assets: typeof assets;
+    fontsAssets: typeof fontsAssets;
 }
 export type LayersGettersItem = Layer & { tool: ToolItem };
 export interface Store3DGetters {
@@ -86,6 +91,11 @@ export interface Store3DGetters {
     /// 选择工具是否为平面
     isToolPlane(): boolean;
     isToolSelect(): boolean;
+    fontNameOptions(): Array<{
+        [key: string]: any;
+        label: string;
+        value: string;
+    }>;
 }
 export interface Store3DActions {
     [key: string]: any;
@@ -105,6 +115,7 @@ const useStore3d = defineStore<
         return {
             attrs,
             assets,
+            fontsAssets,
             config,
             toolsActive: 'select',
             layerActiveId: null,
@@ -132,35 +143,37 @@ const useStore3d = defineStore<
                 //         ],
                 //     ],
                 // },
-                // {
-                //     label: '物体2',
-                //     type: 'geometry',
-                //     geometryType: 'CapsuleGeometry',
-                //     width: 100,
-                //     height: 100,
-                //     depth: 100,
-                //     radius:100,
-                //     capSegments:17,
-                //     radialSegments:83,
-                //     id: 2,
-                //     Mesh:{
-                //         position:{
-                //             x:50,
-                //             y:50,
-                //         }
-                //     },
-                //     paths: [
-                //         [
-                //             -1, -1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1,
-                //             1, 1, -1, 1, 1, 1, 1, -1, 1, 1,
-                //         ],
-                //         [
-                //             2, 1, 0, 0, 3, 2, 0, 4, 7, 7, 3, 0, 0, 1, 5, 5, 4,
-                //             0, 1, 2, 6, 6, 5, 1, 2, 3, 7, 7, 6, 2, 4, 5, 6, 6,
-                //             7, 4,
-                //         ],
-                //     ],
-                // },
+                {
+                    label: '物体2',
+                    type: 'geometry',
+                    text: '智加科技',
+                    fontName: '中文字体',
+                    geometryType: 'TextGeometry',
+                    width: 100,
+                    height: 100,
+                    depth: 100,
+                    radius: 100,
+                    capSegments: 17,
+                    radialSegments: 83,
+                    id: 2,
+                    Mesh: {
+                        position: {
+                            x: 50,
+                            y: 50,
+                        },
+                    },
+                    paths: [
+                        [
+                            -1, -1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1,
+                            1, 1, -1, 1, 1, 1, 1, -1, 1, 1,
+                        ],
+                        [
+                            2, 1, 0, 0, 3, 2, 0, 4, 7, 7, 3, 0, 0, 1, 5, 5, 4,
+                            0, 1, 2, 6, 6, 5, 1, 2, 3, 7, 7, 6, 2, 4, 5, 6, 6,
+                            7, 4,
+                        ],
+                    ],
+                },
             ],
         } as Store3Dstate;
     },
@@ -191,6 +204,9 @@ const useStore3d = defineStore<
             return this.layers.map<any>((e) => {
                 e.name = typeof e.name === 'string' ? e.name : e.label;
                 e.tool = this.toolsFlatMap[e.type as string];
+                e.fontUrl = (this.fontsAssets as any)[
+                    e.fontName as any
+                ] as string;
                 return e;
             });
         },
@@ -209,6 +225,14 @@ const useStore3d = defineStore<
                 this.layersGetters.find(
                     (e) => e.id === this.layerActiveIdCache
                 )) as LayersGettersItem;
+        },
+        fontNameOptions() {
+            return Object.entries(this.fontsAssets).map(([label]) => {
+                return {
+                    label,
+                    value: label,
+                };
+            });
         },
     },
     actions: {

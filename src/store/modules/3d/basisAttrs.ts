@@ -8,6 +8,9 @@ import { BufferGeometry } from 'three/src/core/BufferGeometry';
 import { Layer } from '@/store/modules/3d';
 import { BaseThreeClass } from 'naive-ui';
 import BasisAttrsPathsPreview from '@/views/scene/components/BasisAttrsPathsPreview.vue';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+import useWatchStore from '@/utils/watchStore';
+const downloadFontsMap = new Map<string, boolean>();
 const createValue = (keyPath: string, defaultValue: any = 0) => {
     return computed({
         get() {
@@ -21,6 +24,24 @@ const createValue = (keyPath: string, defaultValue: any = 0) => {
             _set(window.store.store3d.layerActiveGetters, keyPath, v);
         },
     });
+};
+const downloadFonts = async (
+    three: BaseThreeClass,
+    layer: Layer,
+    fontName: string
+) => {
+    if (!three.fonts.get(fontName)) {
+        if (downloadFontsMap.has(fontName)) {
+            await new Promise((resolve) => {
+                setTimeout(resolve);
+            });
+            await downloadFonts(three, layer, fontName);
+        } else {
+            downloadFontsMap.set(fontName, true);
+            await three.downloadFonts(layer.fontUrl as string, fontName);
+            downloadFontsMap.delete(fontName);
+        }
+    }
 };
 export const optionsGeometry = [
     {
@@ -348,6 +369,31 @@ export const optionsGeometry = [
             );
         },
     },
+    {
+        label: 'TextGeometry',
+        value: 'TextGeometry',
+        name: '文字模型',
+        async box(three: BaseThreeClass, layer: Layer) {
+            const fontName =
+                typeof layer.fontName === 'string'
+                    ? layer.fontName
+                    : '智加科技';
+            await downloadFonts(three, layer, fontName);
+            return new TextGeometry(
+                typeof layer.text === 'string' ? layer.text : '智加科技',
+                {
+                    font: three.fonts.get(fontName)?.font as any,
+                    size: layer.size,
+                    height: layer.height,
+                    curveSegments: layer.curveSegments,
+                    bevelEnabled: layer.bevelEnabled,
+                    bevelThickness: layer.bevelThickness,
+                    bevelSize: layer.bevelSize,
+                    bevelSegments: layer.bevelSegments,
+                }
+            );
+        },
+    },
 ] as const;
 export type OptionsGeometryItemType = Omit<
     (typeof optionsGeometry)[number],
@@ -446,6 +492,15 @@ export const filterMap = {
         'q',
     ],
     TubeGeometry: ['radius', 'radialSegments', 'tubularSegments', 'closed'],
+    TextGeometry: [
+        'size',
+        'height',
+        'curveSegments',
+        'bevelEnabled',
+        'bevelThickness',
+        'bevelSize',
+        'bevelSegments',
+    ],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>
@@ -482,6 +537,26 @@ export default [
                     },
                 } as AttrsItemChildConfig,
             },
+            {
+                path: 'fontName',
+                defaultValue: 'BoxGeometry',
+                config: {
+                    type: 'select',
+                    cursorGj: null as unknown,
+                    props: {
+                        filterable: true,
+                        options: (function () {
+                            const opts = ref<any>([]);
+                            const store = useWatchStore();
+                            watchEffect(() => {
+                                opts.value =
+                                    store.value?.store3d?.fontNameOptions;
+                            });
+                            return opts;
+                        })(),
+                    },
+                } as AttrsItemChildConfig,
+            },
             { path: 'radius', defaultValue: 1 },
             { path: 'length', defaultValue: 1 },
             { path: 'capSegments', defaultValue: 4 },
@@ -508,6 +583,7 @@ export default [
             { path: 'tubularSegments', defaultValue: 48 },
             { path: 'p', defaultValue: 2 },
             { path: 'q', defaultValue: 3 },
+            { path: 'size', defaultValue: 3 },
             {
                 path: 'closed',
                 config: { type: 'switch' },

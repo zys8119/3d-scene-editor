@@ -47,9 +47,9 @@ class Redraw {
             opacity,
         };
     }
-    generateGeometry(layer: Layer): BufferGeometry {
+    async generateGeometry(layer: Layer) {
         const geometryType = layer.geometryType || 'BoxGeometry';
-        const geometry = (
+        const geometry = await (
             optionsGeometry.find(
                 (e) => e.value === geometryType
             ) as unknown as OptionsGeometryItemType
@@ -70,7 +70,7 @@ class Redraw {
         });
         await Promise.all(
             store.layers.map(async (layer) => {
-                let box: BufferGeometry = this.generateGeometry(layer);
+                let box: BufferGeometry = await this.generateGeometry(layer);
                 const material = new THREE.MeshLambertMaterial();
                 material.needsUpdate = true;
                 const mesh = new THREE.Mesh(box as any, material);
@@ -82,7 +82,7 @@ class Redraw {
                 scene.add(mesh);
                 const watchReset = async () => {
                     mesh.geometry.dispose();
-                    box = this.generateGeometry(layer);
+                    box = await this.generateGeometry(layer);
                     mesh.geometry = box;
                     mesh.castShadow = get(layer, 'Mesh.castShadow', true);
                     mesh.receiveShadow = get(layer, 'Mesh.receiveShadow', true);

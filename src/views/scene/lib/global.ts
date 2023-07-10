@@ -235,7 +235,6 @@ export function use3DGlobalInit(three: BaseThreeClass) {
     const setLayerActiveId = (id: any, name: string) => {
         requestAnimationFrame(() => {
             if (scene.getObjectByName(name)) {
-                console.log(111);
                 store.setLayerActiveId(id, true);
             } else {
                 setLayerActiveId(id, name);
@@ -251,7 +250,9 @@ export function use3DGlobalInit(three: BaseThreeClass) {
         const layer = {
             width: get(json, 'geometries[0].width', 0),
             height: get(json, 'geometries[0].height', 0),
-            depth: get(json, 'geometries[0].depth', 0),
+            depth: get(json, 'geometries[0].depth', 1),
+            radiusBottom: get(json, 'geometries[0].radiusBottom', 1),
+            radiusTop: get(json, 'geometries[0].radiusTop', 1),
             Mesh: {
                 rotation: {
                     x: ms.rotation.x,
@@ -269,6 +270,10 @@ export function use3DGlobalInit(three: BaseThreeClass) {
             id: Date.now(),
             $isEdit: false,
         } as Layer;
+        if (ms.name === 'circle') {
+            layer.geometryType = 'CylinderGeometry';
+            layer.Mesh.rotation.x = 0;
+        }
         store.addLayer(layer);
         setLayerActiveId(layer.id, getName(layer));
     };
@@ -288,6 +293,7 @@ export function use3DGlobalInit(three: BaseThreeClass) {
         mousedown(object, ints, { point }) {
             if (point) {
                 if (!store.isToolSelect) {
+                    ms.name = store.toolsActive as any;
                     ms.geometry = new THREE.BoxGeometry(
                         boxW - 1,
                         boxH - 1,
@@ -325,11 +331,25 @@ export function use3DGlobalInit(three: BaseThreeClass) {
                                 msY + offsetH * 0.5,
                                 msZ + offsetZ * 0.5
                             );
-                            ms.geometry = new THREE.BoxGeometry(
-                                Math.abs(boxW + offsetW),
-                                Math.abs(boxH + offsetZ),
-                                boxD
-                            );
+                            if (store.toolsActive === 'circle') {
+                                const radius =
+                                    Math.max(
+                                        Math.abs(boxW + offsetW),
+                                        Math.abs(boxH + offsetZ)
+                                    ) / 2;
+                                ms.geometry = new THREE.CylinderGeometry(
+                                    radius,
+                                    radius,
+                                    boxD
+                                ) as any;
+                                ms.rotation.x = 0;
+                            } else {
+                                ms.geometry = new THREE.BoxGeometry(
+                                    Math.abs(boxW + offsetW),
+                                    Math.abs(boxH + offsetZ),
+                                    boxD
+                                );
+                            }
                         } else {
                             ms.rotation.x = 0;
                             const depth = Math.abs(offsetZ);
