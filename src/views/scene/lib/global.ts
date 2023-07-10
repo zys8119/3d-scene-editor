@@ -274,6 +274,12 @@ export function use3DGlobalInit(three: BaseThreeClass) {
             layer.geometryType = 'CylinderGeometry';
             layer.Mesh.rotation.x = 0;
         }
+        if (ms.name === 'text') {
+            layer.geometryType = 'TextGeometry';
+            layer.text = '智加科技';
+            layer.fontName = '中文字体' as any;
+            layer.Mesh.rotation.x = 0;
+        }
         store.addLayer(layer);
         setLayerActiveId(layer.id, getName(layer));
     };

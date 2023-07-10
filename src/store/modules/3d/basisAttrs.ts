@@ -385,7 +385,7 @@ export const optionsGeometry = [
                 {
                     font: three.fonts.get(fontName)?.font as any,
                     size: layer.size,
-                    height: layer.height,
+                    height: layer.depth,
                     curveSegments: layer.curveSegments,
                     bevelEnabled: layer.bevelEnabled,
                     bevelThickness: layer.bevelThickness,
@@ -495,12 +495,14 @@ export const filterMap = {
     TubeGeometry: ['radius', 'radialSegments', 'tubularSegments', 'closed'],
     TextGeometry: [
         'size',
-        'height',
+        'depth',
         'curveSegments',
         'bevelEnabled',
         'bevelThickness',
         'bevelSize',
         'bevelSegments',
+        'text',
+        'fontName',
     ],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
@@ -568,7 +570,9 @@ export default [
                 path: 'text',
                 config: {
                     type: 'input',
+                    cursorGj: null as unknown,
                 },
+                defaultValue: '',
             },
             { path: 'radius', defaultValue: 1 },
             { path: 'length', defaultValue: 1 },
