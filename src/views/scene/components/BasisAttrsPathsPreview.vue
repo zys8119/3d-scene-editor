@@ -111,7 +111,7 @@ const init = async () => {
             const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
             ctx.fillStyle = '#ffff';
             paths.value.forEach((item: any, key) => {
-                if (typeof item[0] === 'string') {
+                if (typeof item[0] === 'number') {
                     if (key === 0) {
                         ctx.beginPath();
                         ctx.moveTo(item[0], item[1]);
