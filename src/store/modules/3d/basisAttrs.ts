@@ -200,6 +200,9 @@ export const optionsGeometry = [
         box(three: BaseThreeClass, layer: Layer) {
             const points: any = [];
             layer.paths?.forEach((e: any) => {
+                if (typeof e[0] === 'number') {
+                    return points.push(new three.THREE.Vector2(e[0], e[1]));
+                }
                 e.forEach(([x, y]: [number, number]) => {
                     points.push(new three.THREE.Vector2(x, y));
                 });
@@ -517,7 +520,7 @@ export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
 export default [
     {
         title: 'Basis',
-        show: false,
+        show: true,
         filter() {
             return (
                 !!this.layerActiveGetters &&

@@ -245,7 +245,7 @@ export const textureField = [
 export default [
     {
         title: 'Material',
-        show: true,
+        show: false,
         filter() {
             return (
                 !!this.layerActiveGetters &&

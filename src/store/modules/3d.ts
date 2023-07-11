@@ -153,8 +153,8 @@ const useStore3d = defineStore<
                     type: 'geometry',
                     text: '智加科技',
                     fontName: '中文字体',
-                    geometryType: 'BoxGeometry',
-                    materialType: 'MeshStandardMaterial',
+                    geometryType: 'LatheGeometry',
+                    materialType: 'MeshBasicMaterial',
                     width: 100,
                     height: 100,
                     depth: 100,
@@ -168,6 +168,11 @@ const useStore3d = defineStore<
                             y: 50,
                         },
                     },
+                    paths: [
+                        [0, -500],
+                        [500, 0],
+                        [0, 500],
+                    ],
                 },
             ],
         } as Store3Dstate;

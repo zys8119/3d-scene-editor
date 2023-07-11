@@ -175,14 +175,14 @@ class Redraw {
                         flatShading: get(layer, 'Material.flatShading', false),
                         fog: get(layer, 'Material.fog', true),
                         wireframe: get(layer, 'Material.wireframe', false),
+                        emissive: new THREE.Color(
+                            this.parseColor(
+                                get(layer, 'Material.emissive', '#000000')
+                            ).color
+                        ),
+                        transparent: true,
+                        needsUpdate: true,
                     });
-                    material.emissive = new THREE.Color(
-                        this.parseColor(
-                            get(layer, 'Material.emissive', '#000000')
-                        ).color
-                    );
-                    material.transparent = true;
-                    material.needsUpdate = false;
                     const updateTexture = async (path: string) => {
                         const materialMap = get(layer, path);
                         const keyName: string = (/(?:\.(.*)$)/.exec(path) ||

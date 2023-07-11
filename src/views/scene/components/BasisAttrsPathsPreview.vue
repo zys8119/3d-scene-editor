@@ -30,17 +30,22 @@ useCssVars(() => {
  * @param matrix
  */
 function calculateMaxArea(matrix: Array<[number, number]>) {
-    const paths = matrix.flat();
+    const paths = typeof matrix[0]?.[0] === 'number' ? matrix : matrix.flat();
     let minX = 0;
     let maxX = 0;
     let minY = 0;
     let maxY = 0;
-    paths.forEach(([x, y]: any) => {
-        minX = Math.min(minX, x);
-        maxX = Math.max(maxX, x);
-        minY = Math.min(minY, y);
-        maxY = Math.max(maxY, y);
-    });
+    try {
+        paths.forEach(([x, y]: any) => {
+            minX = Math.min(minX, x);
+            maxX = Math.max(maxX, x);
+            minY = Math.min(minY, y);
+            maxY = Math.max(maxY, y);
+        });
+    } catch (e) {
+        // err
+    }
+
     return {
         area: (maxX - minX) * (maxY - minY),
         width: maxX - minX,
@@ -70,8 +75,8 @@ const init = async () => {
             canvas.width = width.value;
             canvas.height = height.value;
         } else {
-            canvas.width = pathsInfo.value.width;
-            canvas.height = pathsInfo.value.height;
+            canvas.width = Math.ceil(pathsInfo.value.width);
+            canvas.height = Math.ceil(pathsInfo.value.height);
         }
         const p = new PaperScope();
         p.setup(canvasRef.value);
@@ -105,15 +110,24 @@ const init = async () => {
         } else {
             const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
             ctx.fillStyle = '#ffff';
-            paths.value.forEach((item) => {
-                item.forEach(([x, y], k) => {
-                    if (k === 0) {
+            paths.value.forEach((item: any, key) => {
+                if (typeof item[0] === 'string') {
+                    if (key === 0) {
                         ctx.beginPath();
-                        ctx.moveTo(x, y);
+                        ctx.moveTo(item[0], item[1]);
                     } else {
-                        ctx.lineTo(x, y);
+                        ctx.lineTo(item[0], item[1]);
                     }
-                });
+                } else {
+                    item.forEach(([x, y], k) => {
+                        if (k === 0) {
+                            ctx.beginPath();
+                            ctx.moveTo(x, y);
+                        } else {
+                            ctx.lineTo(x, y);
+                        }
+                    });
+                }
             });
             ctx.fill();
         }
