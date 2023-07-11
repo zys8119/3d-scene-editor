@@ -1,7 +1,7 @@
 import { Attrs, AttrsItemChildConfig } from '@/store/modules/3d/attrs';
 import { get as _get, set as _set, merge as _merge, get } from 'lodash';
-import { BufferLight } from 'three/src/core/BufferLight';
 import { BaseThreeClass } from 'naive-ui';
+import { Light } from 'three';
 const config = use3DConfig();
 export const parseColor = (color: string) => {
     let opacity = 1;
@@ -36,7 +36,51 @@ export const optionsLight = [
         value: 'AmbientLight',
         name: '环境光',
         box({ THREE }: BaseThreeClass) {
-            return new THREE.AmbientLight(0x404040, 5);
+            const light = new THREE.AmbientLight(
+                new THREE.Color(
+                    parseColor(_get(config.value.global.light, 'color')).color
+                ),
+                _get(config.value.global.light, 'intensity')
+            );
+            return light;
+        },
+    },
+    {
+        label: 'AmbientLightProbe',
+        value: 'AmbientLightProbe',
+        name: '环境光探针',
+        box({ THREE }: BaseThreeClass) {
+            const light = new THREE.AmbientLightProbe(
+                new THREE.Color(
+                    parseColor(_get(config.value.global.light, 'color')).color
+                ),
+                _get(config.value.global.light, 'intensity')
+            );
+            return light;
+        },
+    },
+    {
+        label: 'HemisphereLight',
+        value: 'HemisphereLight',
+        name: '半球光',
+        box({ THREE }: BaseThreeClass) {
+            const light = new THREE.HemisphereLight(
+                new THREE.Color(
+                    parseColor(_get(config.value.global.light, 'color')).color
+                ),
+                new THREE.Color(
+                    parseColor(
+                        _get(config.value.global.light, 'groundColor')
+                    ).color
+                ),
+                _get(config.value.global.light, 'intensity')
+            );
+            light.position.set(
+                get(config.value.global.light, 'position.x', 0),
+                get(config.value.global.light, 'position.y', 0),
+                get(config.value.global.light, 'position.z', 0)
+            );
+            return light;
         },
     },
     {
@@ -50,7 +94,6 @@ export const optionsLight = [
                 ),
                 _get(config.value.global.light, 'intensity')
             );
-            light.target.position.set(-0, -0, -0);
             const d = 1000;
             light.shadow.camera.left = -d;
             light.shadow.camera.right = d;
@@ -71,19 +114,130 @@ export const optionsLight = [
             return light;
         },
     },
+    {
+        label: 'HemisphereLightProbe',
+        value: 'HemisphereLightProbe',
+        name: '半球光探针',
+        box({ THREE }: BaseThreeClass) {
+            const light = new THREE.HemisphereLightProbe(
+                new THREE.Color(
+                    parseColor(_get(config.value.global.light, 'color')).color
+                ),
+                new THREE.Color(
+                    parseColor(
+                        _get(config.value.global.light, 'groundColor')
+                    ).color
+                ),
+                _get(config.value.global.light, 'intensity')
+            );
+            return light;
+        },
+    },
+    {
+        label: 'Light',
+        value: 'Light',
+        name: '光源Light',
+        box({ THREE }: BaseThreeClass) {
+            const light = new THREE.Light(
+                new THREE.Color(
+                    parseColor(_get(config.value.global.light, 'color')).color
+                ) as any,
+                _get(config.value.global.light, 'intensity')
+            );
+            return light;
+        },
+    },
+    {
+        label: 'PointLight',
+        value: 'PointLight',
+        name: '点光源',
+        box({ THREE }: BaseThreeClass) {
+            const light = new THREE.PointLight(
+                new THREE.Color(
+                    parseColor(_get(config.value.global.light, 'color')).color
+                ) as any,
+                _get(config.value.global.light, 'intensity'),
+                _get(config.value.global.light, 'distance', 0),
+                _get(config.value.global.light, 'decay', 2)
+            );
+            light.position.set(
+                get(config.value.global.light, 'position.x', 0),
+                get(config.value.global.light, 'position.y', 0),
+                get(config.value.global.light, 'position.z', 0)
+            );
+            return light;
+        },
+    },
+    {
+        label: 'RectAreaLight',
+        value: 'RectAreaLight',
+        name: '平面光光源',
+        box({ THREE }: BaseThreeClass) {
+            const light = new THREE.RectAreaLight(
+                new THREE.Color(
+                    parseColor(_get(config.value.global.light, 'color')).color
+                ) as any,
+                _get(config.value.global.light, 'intensity'),
+                _get(config.value.global.light, 'width', 2),
+                _get(config.value.global.light, 'height', 2)
+            );
+            light.position.set(
+                get(config.value.global.light, 'position.x', 0),
+                get(config.value.global.light, 'position.y', 0),
+                get(config.value.global.light, 'position.z', 0)
+            );
+
+            light.lookAt(
+                get(config.value.global.light, 'lookAt.x', 0),
+                get(config.value.global.light, 'lookAt.y', 0),
+                get(config.value.global.light, 'lookAt.z', 0)
+            );
+            return light;
+        },
+    },
+    {
+        label: 'SpotLight',
+        value: 'SpotLight',
+        name: '聚光灯',
+        box({ THREE }: BaseThreeClass) {
+            const light = new THREE.SpotLight(
+                new THREE.Color(
+                    parseColor(_get(config.value.global.light, 'color')).color
+                ) as any,
+                _get(config.value.global.light, 'intensity'),
+                _get(config.value.global.light, 'distance', 0),
+                _get(config.value.global.light, 'angle', Math.PI / 3),
+                _get(config.value.global.light, 'penumbra', 0),
+                _get(config.value.global.light, 'decay', 2)
+            );
+            light.position.set(
+                get(config.value.global.light, 'position.x', 0),
+                get(config.value.global.light, 'position.y', 0),
+                get(config.value.global.light, 'position.z', 0)
+            );
+            return light;
+        },
+    },
 ] as const;
 export type OptionsLightItemType = Omit<
     (typeof optionsLight)[number],
     'box'
 > & {
-    box(three: BaseThreeClass): BufferLight;
+    box(three: BaseThreeClass): Light;
 };
 export type LightType = OptionsLightItemType extends {
     value: infer A;
 }
     ? A
     : string;
-export const filterMap = {} as Record<LightType, string[]>;
+export const filterMap = {
+    DirectionalLight: ['x', 'y', 'z'],
+    PointLight: ['x', 'y', 'z', 'distance', 'decay'],
+    SpotLight: ['x', 'y', 'z', 'distance', 'decay', 'angle', 'penumbra'],
+    HemisphereLight: ['groundColor', 'x', 'y', 'z'],
+    HemisphereLightProbe: ['groundColor'],
+    RectAreaLight: ['width', 'height', 'lookAt.x', 'lookAt.y', 'lookAt.z'],
+} as Record<LightType, string[]>;
 export const fieldsLightTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>
 >((a, [type, fields]) => {
@@ -95,7 +249,7 @@ export const fieldsLightTypeMap = Object.entries(filterMap).reduce<
 }, {});
 export type OptionsLightMapType = Record<LightType, OptionsLightItemType>;
 export const optionsLightMap = optionsLight.reduce<OptionsLightMapType>(
-    (a, b) => {
+    (a: any, b: any) => {
         a[b.label] = b;
         return a;
     },
@@ -161,6 +315,14 @@ export default [
                 defaultValue: '#ffffff',
             },
             {
+                label: 'groundColor',
+                path: 'light.groundColor',
+                config: {
+                    type: 'color',
+                },
+                defaultValue: '#ffffff',
+            },
+            {
                 label: 'intensity',
                 path: 'light.intensity',
                 config: {
@@ -171,15 +333,38 @@ export default [
                 },
                 defaultValue: 1,
             },
+            { label: 'x', path: 'light.position.x', defaultValue: 1 },
+            { label: 'y', path: 'light.position.y', defaultValue: 1 },
+            { label: 'z', path: 'light.position.z', defaultValue: 1 },
+            { label: 'distance', path: 'light.distance', defaultValue: 0 },
+            { label: 'decay', path: 'light.decay', defaultValue: 2 },
+            { label: 'width', path: 'light.width', defaultValue: 100 },
+            { label: 'height', path: 'light.height', defaultValue: 100 },
+            { label: 'lookAt.x', path: 'lookAt.x', defaultValue: 0 },
+            { label: 'lookAt.y', path: 'lookAt.y', defaultValue: 0 },
+            { label: 'lookAt.z', path: 'lookAt.z', defaultValue: 0 },
+            {
+                label: 'angle',
+                path: 'angle',
+                defaultValue: Math.PI / 3,
+                config: {
+                    cursorGj: 0.001,
+                    props: {
+                        step: 0.01,
+                        min: 0,
+                        max: 2 * Math.PI,
+                    },
+                },
+            },
+            { label: 'penumbra', path: 'penumbra', defaultValue: 0 },
         ].map((label: any) => {
             const isObject =
                 Object.prototype.toString.call(label) === '[object Object]';
             const _label = isObject ? label.path : label;
             const defaultValue = isObject ? label.defaultValue : 0;
+            const labelStr = isObject ? label.label || _label : _label;
             return {
-                label: isObject
-                    ? label.label || _label
-                    : _label.replace(/^./, (m: string) => m.toUpperCase()),
+                label: labelStr.replace(/^./, (m: string) => m.toUpperCase()),
                 ...(label?.base || {}),
                 filter() {
                     if (
@@ -188,13 +373,13 @@ export default [
                         return label?.base?.filter?.call?.(this);
                     }
                     if (
-                        fieldsLightTypeMap[_label] &&
-                        fieldsLightTypeMap[_label].length > 0
+                        fieldsLightTypeMap[labelStr] &&
+                        fieldsLightTypeMap[labelStr].length > 0
                     ) {
                         const LightType =
-                            this.layerActiveGetters.LightType ||
+                            (config.value.global.light.type as LightType) ||
                             'DirectionalLight';
-                        return fieldsLightTypeMap[_label].includes(LightType);
+                        return fieldsLightTypeMap[labelStr].includes(LightType);
                     }
                     return true;
                 },

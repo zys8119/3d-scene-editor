@@ -161,7 +161,7 @@ const useStore3d = defineStore<
                     id: 2,
                     Mesh: {
                         position: {
-                            x: 50,
+                            x: -100,
                             y: 50,
                         },
                     },

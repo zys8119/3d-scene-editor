@@ -109,6 +109,8 @@ export function use3DGlobalInit(
     camera.scale.y = config.value.camera.scale.y;
     camera.scale.z = config.value.camera.scale.z;
     camera.zoom = config.value.camera.zoom;
+    const cameraHelper = new THREE.CameraHelper(camera);
+    scene.add(cameraHelper);
     // 创建网格
     const createGrid = (bool: boolean) => {
         const gridSize = 1; // 网格大小
@@ -146,21 +148,34 @@ export function use3DGlobalInit(
     const createLight = async () => {
         // 灯光
         const lightName = 'light';
+        const lightCache = scene.getObjectByName(lightName);
+        if (lightCache) {
+            scene.remove(lightCache);
+        }
         const light =
             optionsLightMap[config.value.global.light.type as LightType].box(
                 three
             );
         light.name = lightName;
-        const lightCache = scene.getObjectByName(lightName);
-        if (lightCache) {
-            scene.remove(lightCache);
+        light.visible = config.value.global.light.visible;
+        scene.add(light as any);
+        // 灯光帮助
+        const lightHelperName = 'lightHelper';
+        const lightHelperCache = scene.getObjectByName(lightHelperName);
+        if (lightHelperCache) {
+            scene.remove(lightHelperCache);
         }
-        scene.add(light);
+        if (['DirectionalLight'].includes(config.value.global.light.type)) {
+            const lightHelper = new THREE.DirectionalLightHelper(light as any);
+            lightHelper.name = lightHelperName;
+            lightHelper.visible = config.value.global.lightHelper.visible;
+            scene.add(lightHelper);
+        }
     };
-    const watchEffectCallBack = async () => {
+    const watchEffectCallBack = () => {
         //todo 灯光配置
         if (config.value.global.light.type) {
-            await createLight();
+            createLight();
         }
         //todo 相机配置
         camera.scale.set(
@@ -179,6 +194,7 @@ export function use3DGlobalInit(
             config.value.camera.z
         );
         camera.zoom = config.value.camera.zoom;
+        cameraHelper.visible = config.value.global.cameraHelper.visible;
         //todo 网格配置
         gridMeshs.forEach((gridM, k) => {
             gridM.rotation.set(
