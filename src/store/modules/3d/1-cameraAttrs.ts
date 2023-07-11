@@ -44,6 +44,7 @@ const attrs = [
                                 type: 'number',
                                 cursorGj: 0.05,
                                 props: {
+                                    disabled: true,
                                     value: computed({
                                         get() {
                                             return _get(config.value, label, 0);

@@ -1,4 +1,25 @@
+import { LightType } from '@/store/modules/3d/0-globalAttrs';
 const config = {
+    global: {
+        light: {
+            visible: true,
+            type: 'DirectionalLight' as LightType,
+            position: {
+                x: 1000,
+                y: 1000,
+                z: 1000,
+            },
+            color: '#ffffff',
+            intensity: 1,
+            castShadow: true,
+        },
+        lightHelper: {
+            visible: false,
+        },
+        cameraHelper: {
+            visible: false,
+        },
+    } as any,
     // 相机配置
     camera: {
         x: 400,

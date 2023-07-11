@@ -8,6 +8,7 @@
         <n-three
             v-model:initialization-data="initializationData"
             :stats="initializationData.statsShow"
+            :light="false"
             @load="load"
             class="bg-#d2d2d2"
             :near="0.5"

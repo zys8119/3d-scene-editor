@@ -1,10 +1,11 @@
-import { CameraHelper, DirectionalLightHelper, Mesh, Object3D } from 'three';
+import { Mesh, Object3D } from 'three';
 import { BaseThreeClass } from 'naive-ui';
 import useStore3d, { Layer } from '@/store/modules/3d';
 import { Intersection } from 'three/src/core/Raycaster';
 import { Vector3 } from 'three/src/math/Vector3';
 import { Vector2 } from 'three/src/math/Vector2';
 import { get } from 'lodash';
+import { LightType, optionsLightMap } from '@/store/modules/3d/0-globalAttrs';
 const config = use3DConfig();
 const { Shift } = useMagicKeys({
     onEventFired(e) {
@@ -108,14 +109,6 @@ export function use3DGlobalInit(
     camera.scale.y = config.value.camera.scale.y;
     camera.scale.z = config.value.camera.scale.z;
     camera.zoom = config.value.camera.zoom;
-    // 关闭灯光帮助
-    const lightHelper: DirectionalLightHelper =
-        three.lightHelper as unknown as DirectionalLightHelper;
-    lightHelper.visible = false;
-    // 关闭相机帮助
-    const cameraHelper: CameraHelper =
-        three.cameraHelper as unknown as CameraHelper;
-    cameraHelper.visible = false;
     // 创建网格
     const createGrid = (bool: boolean) => {
         const gridSize = 1; // 网格大小
@@ -150,6 +143,56 @@ export function use3DGlobalInit(
         // 反向
         createGrid(false),
     ];
+    const createLight = async () => {
+        // 灯光
+        const lightName = 'light';
+        const light =
+            optionsLightMap[config.value.global.light.type as LightType].box(
+                three
+            );
+        light.name = lightName;
+        const lightCache = scene.getObjectByName(lightName);
+        if (lightCache) {
+            scene.remove(lightCache);
+        }
+        scene.add(light);
+    };
+    const watchEffectCallBack = async () => {
+        //todo 灯光配置
+        if (config.value.global.light.type) {
+            await createLight();
+        }
+        //todo 相机配置
+        camera.scale.set(
+            config.value.camera.scale.x,
+            config.value.camera.scale.y,
+            config.value.camera.scale.z
+        );
+        camera.rotation.set(
+            config.value.camera.rotation.x,
+            config.value.camera.rotation.y,
+            config.value.camera.rotation.z
+        );
+        camera.position.set(
+            config.value.camera.x,
+            config.value.camera.y,
+            config.value.camera.z
+        );
+        camera.zoom = config.value.camera.zoom;
+        //todo 网格配置
+        gridMeshs.forEach((gridM, k) => {
+            gridM.rotation.set(
+                k === 0
+                    ? config.value.grid.x
+                    : Math.PI * 2 - config.value.grid.x,
+                config.value.grid.y,
+                config.value.grid.z
+            );
+        });
+        //todo 转换配置
+        transform.setMode(config.value.transform.mode || transform.getMode());
+        config.value.transform.mode = transform.getMode();
+    };
 
     // 控制器
     controls.addEventListener('change', () => {
@@ -175,36 +218,8 @@ export function use3DGlobalInit(
             controls.rotateSpeed = 1;
         }
     });
-    watchEffect(() => {
-        camera.scale.set(
-            config.value.camera.scale.x,
-            config.value.camera.scale.y,
-            config.value.camera.scale.z
-        );
-        camera.rotation.set(
-            config.value.camera.rotation.x,
-            config.value.camera.rotation.y,
-            config.value.camera.rotation.z
-        );
-        camera.position.set(
-            config.value.camera.x,
-            config.value.camera.y,
-            config.value.camera.z
-        );
-        camera.zoom = config.value.camera.zoom;
-        gridMeshs.forEach((gridM, k) => {
-            gridM.rotation.set(
-                k === 0
-                    ? config.value.grid.x
-                    : Math.PI * 2 - config.value.grid.x,
-                config.value.grid.y,
-                config.value.grid.z
-            );
-        });
 
-        transform.setMode(config.value.transform.mode || transform.getMode());
-        config.value.transform.mode = transform.getMode();
-    });
+    watchEffect(watchEffectCallBack);
     // 事件注册
     // todo 鼠标创建几何体配置
     const boxW = 1;
@@ -328,7 +343,7 @@ export function use3DGlobalInit(
                 }
             }
             if (!object) {
-                store.setLayerActiveId(null, true);
+                // store.setLayerActiveId(null, true);
             }
         },
         mouseup() {

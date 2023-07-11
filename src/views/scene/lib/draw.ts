@@ -273,7 +273,7 @@ class Redraw {
                 this.transform.detach();
             }
 
-            this.transform.visible = store.toolsActive !== 'play';
+            // this.transform.visible = store.toolsActive !== 'play';
         });
     }
 }
