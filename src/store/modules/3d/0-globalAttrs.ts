@@ -236,7 +236,16 @@ export const filterMap = {
     SpotLight: ['x', 'y', 'z', 'distance', 'decay', 'angle', 'penumbra'],
     HemisphereLight: ['groundColor', 'x', 'y', 'z'],
     HemisphereLightProbe: ['groundColor'],
-    RectAreaLight: ['width', 'height', 'lookAt.x', 'lookAt.y', 'lookAt.z'],
+    RectAreaLight: [
+        'width',
+        'height',
+        'lookAt.x',
+        'lookAt.y',
+        'lookAt.z',
+        'x',
+        'y',
+        'z',
+    ],
 } as Record<LightType, string[]>;
 export const fieldsLightTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>
@@ -258,7 +267,7 @@ export const optionsLightMap = optionsLight.reduce<OptionsLightMapType>(
 export default [
     {
         title: 'Global',
-        show: true,
+        show: false,
         child: [
             {
                 path: 'light.type',

@@ -3,7 +3,10 @@ import useStore3d, { Layer } from '@/store/modules/3d';
 import { get, set } from 'lodash';
 import { Object3D } from 'three';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls';
-import { textureField } from '@/store/modules/3d/materialAttrs';
+import {
+    optionsMaterial,
+    textureField,
+} from '@/store/modules/3d/materialAttrs';
 import { BufferGeometry } from 'three/src/core/BufferGeometry';
 import {
     optionsGeometry,
@@ -62,6 +65,16 @@ class Redraw {
         }
         return geometry;
     }
+    async generateMaterial(layer: Layer) {
+        const materialType = layer.materialType || 'MeshLambertMaterial';
+        const material: any = await (
+            optionsMaterial.find(
+                (e) => e.value === materialType
+            ) as unknown as OptionsGeometryItemType
+        ).box(this.three, layer);
+        material.needsUpdate = true;
+        return material;
+    }
     async update() {
         const { THREE, scene } = this.three;
         // 清除绘制场景
@@ -71,9 +84,8 @@ class Redraw {
         await Promise.all(
             store.layers.map(async (layer) => {
                 let box: BufferGeometry = await this.generateGeometry(layer);
-                const material = new THREE.MeshLambertMaterial();
-                material.needsUpdate = true;
-                const mesh = new THREE.Mesh(box as any, material);
+                let material: any = await this.generateMaterial(layer);
+                const mesh = new THREE.Mesh(box as any, material as any);
                 mesh.name = this.getName(layer);
                 const objectCache = scene.getObjectByName(mesh.name);
                 if (objectCache) {
@@ -82,6 +94,8 @@ class Redraw {
                 scene.add(mesh);
                 const watchReset = async () => {
                     mesh.geometry.dispose();
+                    material = await this.generateMaterial(layer);
+                    mesh.material = material as any;
                     box = await this.generateGeometry(layer);
                     mesh.geometry = box;
                     mesh.castShadow = get(layer, 'Mesh.castShadow', true);
@@ -102,6 +116,7 @@ class Redraw {
                         get(layer, 'Mesh.scale.y', 1),
                         get(layer, 'Mesh.scale.z', 1)
                     );
+                    //todo 材料配置
                     const materialColor = this.parseColor(
                         get(layer, 'Material.color', '#5f5f5f')
                     );

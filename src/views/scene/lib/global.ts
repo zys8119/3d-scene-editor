@@ -6,6 +6,9 @@ import { Vector3 } from 'three/src/math/Vector3';
 import { Vector2 } from 'three/src/math/Vector2';
 import { get } from 'lodash';
 import { LightType, optionsLightMap } from '@/store/modules/3d/0-globalAttrs';
+import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js';
+import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js';
+
 const config = use3DConfig();
 const { Shift } = useMagicKeys({
     onEventFired(e) {
@@ -96,6 +99,7 @@ export function use3DGlobalInit(
     options: GlobalOptions = {} as GlobalOptions
 ) {
     const { THREE, scene, controls, camera } = three;
+    RectAreaLightUniformsLib.init();
     // 初始化变形设置
     const transform = ((three as any).transform = three.transformControls());
     // 相机设置
@@ -170,6 +174,18 @@ export function use3DGlobalInit(
             lightHelper.name = lightHelperName;
             lightHelper.visible = config.value.global.lightHelper.visible;
             scene.add(lightHelper);
+        }
+        // 平面灯光帮助
+        const rectAreaLightHelperName = 'rectAreaLightHelper';
+        const rectAreaLightHelperCache = scene.getObjectByName(
+            rectAreaLightHelperName
+        );
+        if (rectAreaLightHelperCache) {
+            scene.remove(rectAreaLightHelperCache);
+        }
+        if (['RectAreaLight'].includes(config.value.global.light.type)) {
+            const rectLightHelper = new RectAreaLightHelper(light as any);
+            scene.add(rectLightHelper as any);
         }
     };
     const watchEffectCallBack = () => {
@@ -303,6 +319,7 @@ export function use3DGlobalInit(
             } as Mesh,
             geometryType: 'BoxGeometry',
             type: 'geometry',
+            materialType: 'MeshLambertMaterial',
             name: name,
             label: name,
             id: Date.now(),

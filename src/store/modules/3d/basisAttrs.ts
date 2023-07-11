@@ -517,7 +517,7 @@ export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
 export default [
     {
         title: 'Basis',
-        show: true,
+        show: false,
         filter() {
             return (
                 !!this.layerActiveGetters &&

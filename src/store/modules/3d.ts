@@ -2,6 +2,7 @@ import tools, { toolsActiveType } from './3d/tools';
 import attrs, { AttrsItem, AttrsItemChild } from './3d/attrs';
 import assets, { fontsAssets, FontsAssetsType } from './assets/index';
 import { GeometryType } from '@/store/modules/3d/basisAttrs';
+import { MaterialType } from '@/store/modules/3d/materialAttrs';
 const config = use3DConfig();
 
 export type ToolItemType<T> = T extends (infer R extends (typeof tools)[0])[]
@@ -17,6 +18,7 @@ export type Layer = {
     $isEdit?: boolean;
     type: ToolsActiveType;
     geometryType: LayerGeometryType;
+    materialType: MaterialType;
     id: any;
     name?: string;
     label: string;
@@ -122,7 +124,7 @@ const useStore3d = defineStore<
             config,
             toolsActive: 'select',
             layerActiveId: null,
-            layerActiveIdCache: null,
+            layerActiveIdCache: 2,
             tools,
             layerBaseName: 'RedrawObject3D',
             layers: [
@@ -151,7 +153,8 @@ const useStore3d = defineStore<
                     type: 'geometry',
                     text: '智加科技',
                     fontName: '中文字体',
-                    geometryType: 'TextGeometry',
+                    geometryType: 'BoxGeometry',
+                    materialType: 'MeshStandardMaterial',
                     width: 100,
                     height: 100,
                     depth: 100,
@@ -165,17 +168,6 @@ const useStore3d = defineStore<
                             y: 50,
                         },
                     },
-                    paths: [
-                        [
-                            -1, -1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1,
-                            1, 1, -1, 1, 1, 1, 1, -1, 1, 1,
-                        ],
-                        [
-                            2, 1, 0, 0, 3, 2, 0, 4, 7, 7, 3, 0, 0, 1, 5, 5, 4,
-                            0, 1, 2, 6, 6, 5, 1, 2, 3, 7, 7, 6, 2, 4, 5, 6, 6,
-                            7, 4,
-                        ],
-                    ],
                 },
             ],
         } as Store3Dstate;
