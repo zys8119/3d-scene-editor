@@ -1,10 +1,9 @@
-import { Mesh, Object3D } from 'three';
+import { Object3D } from 'three';
 import { BaseThreeClass } from 'naive-ui';
-import useStore3d, { Layer } from '@/store/modules/3d';
+import useStore3d from '@/store/modules/3d';
 import { Intersection } from 'three/src/core/Raycaster';
 import { Vector3 } from 'three/src/math/Vector3';
 import { Vector2 } from 'three/src/math/Vector2';
-import { get } from 'lodash';
 import { LightType, optionsLightMap } from '@/store/modules/3d/0-globalAttrs';
 import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js';
 import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js';
@@ -16,9 +15,6 @@ const { Shift } = useMagicKeys({
     },
 });
 const store = useStore3d();
-export const getName = (layer: Layer) => {
-    return `${store.layerBaseName}-${layer.id}-${layer.name}`;
-};
 export const parseName = (name: string) => {
     const [layerBaseName, layerId, layerName] = name.split('-');
     return {
@@ -286,58 +282,7 @@ export function use3DGlobalInit(
     mousePosMesh.rotateX(Math.PI * 0.5);
     mousePosMesh.visible = false;
     scene.add(mousePosMesh);
-    const setLayerActiveId = (id: any, name: string) => {
-        requestAnimationFrame(() => {
-            if (scene.getObjectByName(name)) {
-                store.setLayerActiveId(id, true);
-            } else {
-                setLayerActiveId(id, name);
-            }
-        });
-    };
-    /**
-     * todo 创建物体图层
-     */
-    const createLayers = async () => {
-        const json = ms.toJSON();
-        const name = '新物体';
-        const layer = {
-            width: get(json, 'geometries[0].width', 0),
-            height: get(json, 'geometries[0].height', 0),
-            depth: get(json, 'geometries[0].depth', 1),
-            radiusBottom: get(json, 'geometries[0].radiusBottom', 1),
-            radiusTop: get(json, 'geometries[0].radiusTop', 1),
-            Mesh: {
-                rotation: {
-                    x: ms.rotation.x,
-                },
-                position: {
-                    x: get(ms, 'position.x', 0),
-                    y: get(ms, 'position.y', 0),
-                    z: get(ms, 'position.z', 0),
-                },
-            } as Mesh,
-            geometryType: 'BoxGeometry',
-            type: 'geometry',
-            materialType: 'MeshLambertMaterial',
-            name: name,
-            label: name,
-            id: Date.now(),
-            $isEdit: false,
-        } as Layer;
-        if (ms.name === 'circle') {
-            layer.geometryType = 'CylinderGeometry';
-            layer.Mesh.rotation.x = 0;
-        }
-        if (ms.name === 'text') {
-            layer.geometryType = 'TextGeometry';
-            layer.text = '智加科技';
-            layer.fontName = '中文字体' as any;
-            layer.Mesh.rotation.x = 0;
-        }
-        store.addLayer(layer);
-        setLayerActiveId(layer.id, getName(layer));
-    };
+
     const eventsMap = {
         dblclick(object) {
             if (object) {
@@ -386,7 +331,7 @@ export function use3DGlobalInit(
                 msZ = 0;
                 store.setToolActive('select');
                 if (ms.visible) {
-                    createLayers();
+                    $data.createLayers(ms as any);
                 }
                 ms.visible = false;
             }

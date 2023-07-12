@@ -98,6 +98,11 @@ export default defineConfig({
             resolveAliasName: '@/api/apis',
             dir: 'src/api/apis',
         }),
+        AutoApi({
+            resolveAliasName: '@/data',
+            dir: 'src/data',
+            name: '$data',
+        }),
     ],
     resolve: {
         alias: {

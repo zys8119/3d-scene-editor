@@ -44,7 +44,7 @@ import { Ref } from 'vue';
 import { BaseThreeClass } from 'naive-ui';
 import { Object3D } from 'three';
 import useStore3d from '@/store/modules/3d';
-const thresInstance = ref() as Ref<BaseThreeClass>;
+const thresInstance = $data.provideConfig().three;
 const initializationData = use3DConfig();
 const store = useStore3d();
 const threeRef = ref();
@@ -81,8 +81,10 @@ const menusType = ref<typeof menusMap extends Ref<infer T> ? keyof T : never>();
 const menus = computed(
     () => (menusMap.value as any)[menusType.value as any] || []
 );
+
 const load = async (three: BaseThreeClass) => {
     thresInstance.value = three;
+
     // 全局初始化
     use3DGlobalInit(three, {
         objectRightButtonCallback(object, event) {

@@ -22,6 +22,11 @@
 </template>
 
 <script setup lang="ts">
+const { destroy } = defineProps<{
+    destroy: () => void;
+}>();
+const { three } = $data.provideConfig();
+import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js';
 const list = ref([
     {
         title: 'Video',
@@ -61,10 +66,39 @@ const list = ref([
         msg: 'SVG',
         icon: '<svg t="1689143030052" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5244" width="200" height="200"><path d="M37.856 947.584l287.936-272.096 43.968 46.528-287.936 272.096z" fill="#2A2A3B" p-id="5245"></path><path d="M411.84 763.2a128 128 0 1 1 128-128 128 128 0 0 1-128 128z m0-192a64 64 0 1 0 64 64 64 64 0 0 0-64-64zM731.84 538.88a256 256 0 0 1-181.12-436.8L638.08 13.76l362.88 362.24-88.32 88a256 256 0 0 1-180.8 74.88zM640 104.32L596.16 147.2a192 192 0 0 0-56.64 136 192 192 0 0 0 328 135.68l42.88-42.88z" fill="#2A2A3B" p-id="5246"></path><path d="M23.04 1010.24l70.72-619.2 302.4-168 31.04 56-273.6 152-57.28 500.8 547.84-101.12 89.6-239.04 59.84 22.72-102.4 272.96L23.04 1010.24z" fill="#2A2A3B" p-id="5247"></path></svg>',
         async rule(file: File) {
-            return /svg/.test(file.type);
+            return /image\/svg\+xml/.test(file.type);
         },
-        async change(file: File, config: any) {
-            console.log(file, config.title);
+        async change(file: File) {
+            const url = URL.createObjectURL(file);
+            const loader = new SVGLoader();
+            const { paths } = await loader.loadAsync(url);
+            const group = new three.value.THREE.Group();
+            for (let i = 0; i < paths.length; i++) {
+                const path = paths[i];
+
+                const material = new three.value.THREE.MeshBasicMaterial({
+                    color: path.color,
+                    side: three.value.THREE.DoubleSide,
+                    depthWrite: false,
+                });
+
+                const shapes = SVGLoader.createShapes(path);
+
+                for (let j = 0; j < shapes.length; j++) {
+                    const shape = shapes[j];
+                    group.position.set(
+                        -shape.getPoint(0).x,
+                        -shape.getPoint(0).y,
+                        0
+                    );
+                    const geometry = new three.value.THREE.ShapeGeometry(shape);
+                    const mesh = new three.value.THREE.Mesh(geometry, material);
+                    group.add(mesh);
+                }
+            }
+            three.value.scene.add(group);
+            $data.createLayers(group as any);
+            destroy();
         },
     },
     {
@@ -92,12 +126,17 @@ const list = ref([
 ]);
 const change = async (ev: Event & { target: HTMLInputElement }) => {
     const file = ev.target.files?.[0] as File;
+    let isBreak = false;
     for (let i = 0; i < list.value.length; i++) {
         const item = list.value[i];
         if (await item.rule(file)) {
             await item.change(file, item);
+            isBreak = true;
             break;
         }
+    }
+    if (!isBreak) {
+        window.$message.error(`文件【${file.name}】无法解析，请上传正确的文件`);
     }
     ev.target.value = '';
 };

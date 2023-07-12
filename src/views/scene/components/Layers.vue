@@ -142,12 +142,15 @@ const layersFooter = ref([
     {
         title: 'Library',
         click() {
-            window.$dialog.create({
+            const { destroy } = window.$dialog.create({
                 content: () =>
                     h(
                         defineAsyncComponent({
                             loader: () => import('./dialog/Library.vue'),
-                        })
+                        }),
+                        {
+                            destroy,
+                        }
                     ),
                 class: 'editor-dialog !w-800px',
                 showIcon: false,
@@ -157,12 +160,15 @@ const layersFooter = ref([
     {
         title: 'Import',
         click() {
-            window.$dialog.create({
+            const { destroy } = window.$dialog.create({
                 content: () =>
                     h(
                         defineAsyncComponent({
                             loader: () => import('./dialog/Import.vue'),
-                        })
+                        }),
+                        {
+                            destroy,
+                        }
                     ),
                 class: 'editor-dialog !w-800px',
                 showIcon: false,
