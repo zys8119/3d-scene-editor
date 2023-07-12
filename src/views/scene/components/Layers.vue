@@ -154,7 +154,21 @@ const layersFooter = ref([
             });
         },
     },
-    { title: 'Import' },
+    {
+        title: 'Import',
+        click() {
+            window.$dialog.create({
+                content: () =>
+                    h(
+                        defineAsyncComponent({
+                            loader: () => import('./dialog/Import.vue'),
+                        })
+                    ),
+                class: 'editor-dialog !w-800px',
+                showIcon: false,
+            });
+        },
+    },
     { title: 'Help & Feedback' },
 ]);
 const layerClick = (layer: LayersGettersItem) => {
