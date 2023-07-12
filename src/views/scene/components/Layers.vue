@@ -166,6 +166,7 @@ const layersFooter = ref([
                     ),
                 class: 'editor-dialog !w-800px',
                 showIcon: false,
+                closable: false,
             });
         },
     },
