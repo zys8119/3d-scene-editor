@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-const { destroy } = defineProps<{
+const props = defineProps<{
     destroy: () => void;
 }>();
 const { three } = $data.provideConfig();
@@ -98,7 +98,7 @@ const list = ref([
             }
             three.value.scene.add(group);
             $data.createLayers(group as any);
-            destroy();
+            props.destroy();
         },
     },
     {
