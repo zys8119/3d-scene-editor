@@ -4,6 +4,8 @@ if (!window.ResizeObserver) install();
 import type { PageMap as PageMapType } from '@/typings';
 
 import { name, version } from '../package.json';
+import { MessageApiInjection } from 'naive-ui/lib/message/src/MessageProvider';
+import { DialogApiInjection } from 'naive-ui/lib/dialog/src/DialogProvider';
 /** 打印版本信息 */
 console.log(
     `%c${name} v${version}`,
@@ -17,5 +19,9 @@ declare global {
     interface Window {
         $modeConfig: string;
         $draw3dSceneEditorObject3DClick: boolean;
+        $message: MessageApiInjection;
+        $dialog: DialogApiInjection;
     }
+    const $message: MessageApiInjection;
+    const $dialog: DialogApiInjection;
 }

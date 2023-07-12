@@ -18,7 +18,7 @@ import apis from '@/api/apis/index';
 
 import { App } from 'vue';
 import { createDiscreteApi } from 'naive-ui';
-const { message } = createDiscreteApi(['message']);
+const { message, dialog } = createDiscreteApi(['message', 'dialog']);
 
 export const api = {
     sass: {
@@ -67,6 +67,7 @@ declare module '@vue/runtime-core' {
         api: typeof api;
         $apis: typeof apis;
         $message: typeof message;
+        $dialog: typeof dialog;
     }
 }
 
@@ -75,8 +76,10 @@ export default {
         app.config.globalProperties.api = api;
         app.config.globalProperties.$apis = apis;
         app.config.globalProperties.$message = message;
+        app.config.globalProperties.$dialog = dialog;
         window.api = api;
         window.$apis = apis;
         window.$message = message;
+        window.$dialog = dialog;
     },
 };

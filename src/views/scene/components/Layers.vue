@@ -99,6 +99,11 @@
                 align="center"
                 v-for="(item, key) in layersFooter"
                 :key="key"
+                @click="
+                    typeof item.click === 'function'
+                        ? item.click(item)
+                        : () => void 0
+                "
             >
                 <div
                     v-if="item.icon"
@@ -134,7 +139,21 @@ const layers = computed(() => {
     );
 });
 const layersFooter = ref([
-    { title: 'Library' },
+    {
+        title: 'Library',
+        click() {
+            window.$dialog.create({
+                content: () =>
+                    h(
+                        defineAsyncComponent({
+                            loader: () => import('./dialog/Library.vue'),
+                        })
+                    ),
+                class: 'editor-dialog !w-800px',
+                showIcon: false,
+            });
+        },
+    },
     { title: 'Import' },
     { title: 'Help & Feedback' },
 ]);
