@@ -83,7 +83,6 @@ const loadVideo = async (url: any) => {
         video.onerror = () => {
             resolve(video);
         };
-        video.hidden = true;
         document.body.appendChild(video);
     });
 };
