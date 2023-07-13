@@ -78,7 +78,6 @@ const loadVideo = async (url: any) => {
             video.srcObject = url;
         }
         video.onload = () => {
-            console.log(video);
             resolve(video);
         };
         video.onerror = () => {
