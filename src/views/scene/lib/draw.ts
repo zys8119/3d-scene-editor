@@ -181,20 +181,6 @@ class Redraw {
                 if (isModel) {
                     await this.setMeshName(box, layer);
                     watchReset = async () => {
-                        await this.setMeshBaseInfo(box, layer);
-                        box.traverse(async (object: any) => {
-                            object.castShadow = get(
-                                layer,
-                                'Mesh.castShadow',
-                                true
-                            );
-                            object.receiveShadow = get(
-                                layer,
-                                'Mesh.receiveShadow',
-                                true
-                            );
-                            object.visible = get(layer, 'visible', true);
-                        });
                         if (layer.customMaterial) {
                             box.traverse(async (object: any) => {
                                 material = await this.generateMaterial(layer);
@@ -206,6 +192,10 @@ class Redraw {
                             box = await this.generateGeometry(layer);
                             await this.setMeshName(box, layer);
                         }
+                        box.traverse(async (object: any) => {
+                            await this.setMeshBaseInfo(object, layer);
+                        });
+                        await this.setMeshBaseInfo(box, layer);
                     };
                 } else {
                     const mesh = new THREE.Mesh(box as any, material as any);

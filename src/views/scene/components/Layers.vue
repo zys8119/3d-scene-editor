@@ -23,24 +23,23 @@
                             item.id === store.layerActiveId ||
                             item.id === store.layerActiveIdCache,
                     }"
+                    @click="layerClick(item)"
                     @mouseenter="$store.store3d.setLayerActiveId(item.id)"
                     @mouseleave="$store.store3d.setLayerActiveId(null)"
                 >
                     <div
                         v-html="item.tool.icon"
                         class="w-20px h-20px flex justify-center items-center"
-                        @click="layerClick(item)"
                     ></div>
                     <layers-label-3d
                         class="w-100% min-h-19px"
                         :item="item"
-                        @click="layerClick(item)"
                     ></layers-label-3d>
                     <div class="flex justify-end items-center">
                         <div
                             class="w-20px h-20px"
                             v-if="item.visible"
-                            @click="item.visible = false"
+                            @click.stop="item.visible = false"
                         >
                             <svg
                                 t="1689025401856"
@@ -65,7 +64,7 @@
                         <div
                             class="w-20px h-20px"
                             v-else
-                            @click="item.visible = true"
+                            @click.stop="item.visible = true"
                         >
                             <svg
                                 t="1689025640277"

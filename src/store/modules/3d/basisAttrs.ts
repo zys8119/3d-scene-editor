@@ -275,20 +275,16 @@ export const optionsGeometry = [
         value: 'ShapeGeometry',
         name: '形状缓冲几何体',
         box(three: BaseThreeClass, layer: Layer) {
-            try {
-                const isObject =
-                    Object.prototype.toString.call(layer.paths) ===
-                    '[object Object]';
-                const heartShape = isObject
-                    ? layer.paths
-                    : new three.THREE.Shape((layer.paths || []) as any);
-                return new three.THREE.ShapeGeometry(
-                    heartShape,
-                    layer.curveSegments
-                );
-            } catch (e) {
-                console.log(e.message);
-            }
+            const isObject =
+                Object.prototype.toString.call(layer.paths) ===
+                '[object Object]';
+            const heartShape = isObject
+                ? layer.paths
+                : new three.THREE.Shape((layer.paths || []) as any);
+            return new three.THREE.ShapeGeometry(
+                heartShape,
+                layer.curveSegments
+            );
         },
     },
     {
@@ -414,7 +410,6 @@ export const optionsGeometry = [
             const loader = new SVGLoader();
             const { paths } = await loader.loadAsync(layer.modelUrl as string);
             const group = new THREE.Group();
-
             for (let i = 0; i < paths.length; i++) {
                 const path = paths[i];
 
@@ -428,8 +423,12 @@ export const optionsGeometry = [
 
                 for (let j = 0; j < shapes.length; j++) {
                     const shape = shapes[j];
-                    const geometry = new THREE.ShapeGeometry(shape);
+                    const geometry = new THREE.ShapeGeometry(shape as any);
                     const mesh = new THREE.Mesh(geometry, material);
+                    mesh.name = $data.getName({
+                        name: layer.name as string,
+                        id: layer.id,
+                    });
                     group.add(mesh);
                 }
             }

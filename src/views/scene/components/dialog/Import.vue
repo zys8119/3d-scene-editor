@@ -22,20 +22,107 @@
 </template>
 
 <script setup lang="ts">
+import { Layer } from '@/store/modules/3d';
+import { merge } from 'lodash';
+
 const props = defineProps<{
     destroy: () => void;
 }>();
 const { three } = $data.provideConfig();
+const uploadFile = async (
+    file: File,
+    isBlobUrl?: boolean,
+    isBlob?: boolean
+) => {
+    return new Promise<any>((resolve) => {
+        if (isBlobUrl) {
+            return resolve(URL.createObjectURL(file));
+        } else {
+            const fr = new FileReader();
+            fr.onload = (ev) => {
+                if (isBlob) {
+                    resolve(new Blob([ev.target?.result as any]).stream());
+                    return;
+                }
+                resolve(ev.target?.result);
+            };
+            fr.onerror = () => {
+                resolve('');
+            };
+            if (isBlob) {
+                fr.readAsArrayBuffer(file);
+            } else {
+                fr.readAsDataURL(file);
+            }
+        }
+    });
+};
+const loadImage = async (url: string) => {
+    return new Promise<HTMLImageElement>((resolve) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = () => {
+            resolve(img);
+        };
+        img.onerror = () => {
+            resolve(img);
+        };
+    });
+};
+const loadVideo = async (url: any) => {
+    return new Promise<HTMLVideoElement>((resolve) => {
+        const video = document.createElement('video');
+        if (typeof url === 'string') {
+            video.src = url;
+        } else {
+            video.srcObject = url;
+        }
+        video.onload = () => {
+            console.log(video);
+            resolve(video);
+        };
+        video.onerror = () => {
+            resolve(video);
+        };
+        video.hidden = true;
+        document.body.appendChild(video);
+    });
+};
+const loadModel = async (extendCallBack?: (layer: Layer) => void) => {
+    const g = new three.value.THREE.BoxGeometry(100, 100, 100);
+    const m = new three.value.THREE.MeshBasicMaterial();
+    const ms = new three.value.THREE.Mesh(g, m);
+    await $data.createLayers(ms as any, extendCallBack);
+    props.destroy();
+};
 const list = ref([
     {
         title: 'Video',
         msg: 'MP4, GIF',
         icon: '<svg t="1689142992704" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4031" width="200" height="200"><path d="M864.5 516.2c-2.4-4.1-6.2-6.9-10.4-8.3L286.4 159c-8.9-5-20.3-2-25.5 6.6-2.1 3.6-2.8 7.5-2.3 11.3v697.5c-0.5 3.8 0.2 7.8 2.3 11.3 5.2 8.7 16.6 11.6 25.5 6.6l567.7-349c4.2-1.3 8-4.2 10.4-8.3 1.7-3 2.5-6.3 2.4-9.5 0.1-3-0.7-6.3-2.4-9.3z m-569-308.8l517.6 318.3L295.5 844V207.4z" p-id="4032"></path></svg>',
         async rule(file: File) {
-            return /Video/.test(file.type);
+            return /video/.test(file.type);
         },
-        async change(file: File, config: any) {
-            console.log(file, config.title);
+        async change(file: File) {
+            try {
+                const url = await uploadFile(file);
+                const video = await loadVideo(url);
+                console.log(video);
+                await loadModel(async (layer) => {
+                    const texture = new three.value.THREE.VideoTexture(video);
+                    merge(layer, {
+                        width: video.width < 1000 ? video.width : 1000,
+                        height: video.height < 1000 ? video.height : 1000,
+                        depth: 2,
+                        Material: {
+                            color: '#ffffff',
+                            map: texture,
+                        },
+                    } as Layer);
+                });
+            } catch (e) {
+                console.log(e);
+            }
         },
     },
     {
@@ -68,16 +155,12 @@ const list = ref([
             return /image\/svg\+xml/.test(file.type);
         },
         async change(file: File) {
-            const url = URL.createObjectURL(file);
-            const g = new three.value.THREE.BoxGeometry(100, 100, 100);
-            const m = new three.value.THREE.MeshBasicMaterial();
-            const ms = new three.value.THREE.Mesh(g, m);
-            await $data.createLayers(ms as any, (layer) => {
+            const url = await uploadFile(file);
+            await loadModel((layer) => {
                 layer.geometryType = 'SVG';
                 layer.modelUrl = url;
-                layer.customMaterial;
+                layer.customMaterial = false;
             });
-            props.destroy();
         },
     },
     {
@@ -87,8 +170,20 @@ const list = ref([
         async rule(file: File) {
             return /image/.test(file.type);
         },
-        async change(file: File, config: any) {
-            console.log(file, config.title);
+        async change(file: File) {
+            const url = await uploadFile(file);
+            const img = await loadImage(url);
+            await loadModel((layer) => {
+                merge(layer, {
+                    width: img.width < 1000 ? img.width : 1000,
+                    height: img.height < 1000 ? img.height : 1000,
+                    depth: 2,
+                    Material: {
+                        color: '#ffffff',
+                        map: url,
+                    },
+                } as Layer);
+            });
         },
     },
     {

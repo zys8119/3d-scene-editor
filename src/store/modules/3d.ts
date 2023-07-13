@@ -128,7 +128,7 @@ const useStore3d = defineStore<
             layerActiveId: null,
             layerActiveIdCache: null,
             tools,
-            layerBaseName: 'RedrawObject3D',
+            layerBaseName: $data.provideConfig().layerBaseName,
             layers: [
                 // {
                 //     label: '物体1',
