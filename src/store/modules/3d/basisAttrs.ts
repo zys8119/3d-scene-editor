@@ -11,6 +11,7 @@ import BasisAttrsPathsPreview from '@/views/scene/components/BasisAttrsPathsPrev
 import FontsAssetsPanel from '@/views/scene/components/FontsAssetsPanel.vue';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import useWatchStore from '@/utils/watchStore';
+import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 const downloadFontsMap = new Map<string, boolean>();
 const createValue = (keyPath: string, defaultValue: any = 0) => {
     return computed({
@@ -274,13 +275,20 @@ export const optionsGeometry = [
         value: 'ShapeGeometry',
         name: '形状缓冲几何体',
         box(three: BaseThreeClass, layer: Layer) {
-            const heartShape = new three.THREE.Shape(
-                (layer.paths || []) as any
-            );
-            return new three.THREE.ShapeGeometry(
-                heartShape,
-                layer.curveSegments
-            );
+            try {
+                const isObject =
+                    Object.prototype.toString.call(layer.paths) ===
+                    '[object Object]';
+                const heartShape = isObject
+                    ? layer.paths
+                    : new three.THREE.Shape((layer.paths || []) as any);
+                return new three.THREE.ShapeGeometry(
+                    heartShape,
+                    layer.curveSegments
+                );
+            } catch (e) {
+                console.log(e.message);
+            }
         },
     },
     {
@@ -398,6 +406,36 @@ export const optionsGeometry = [
             );
         },
     },
+    {
+        label: 'SVG',
+        value: 'SVG',
+        name: 'SVG',
+        async box({ THREE }: BaseThreeClass, layer: Layer) {
+            const loader = new SVGLoader();
+            const { paths } = await loader.loadAsync(layer.modelUrl as string);
+            const group = new THREE.Group();
+
+            for (let i = 0; i < paths.length; i++) {
+                const path = paths[i];
+
+                const material = new THREE.MeshBasicMaterial({
+                    color: path.color as any,
+                    side: THREE.DoubleSide,
+                    depthWrite: false,
+                });
+
+                const shapes = SVGLoader.createShapes(path);
+
+                for (let j = 0; j < shapes.length; j++) {
+                    const shape = shapes[j];
+                    const geometry = new THREE.ShapeGeometry(shape);
+                    const mesh = new THREE.Mesh(geometry, material);
+                    group.add(mesh);
+                }
+            }
+            return group;
+        },
+    },
 ] as const;
 export type OptionsGeometryItemType = Omit<
     (typeof optionsGeometry)[number],
@@ -507,6 +545,7 @@ export const filterMap = {
         'text',
         'fontName',
     ],
+    SVG: ['customMaterial'],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>
@@ -718,9 +757,39 @@ export default [
             { path: 'Mesh.rotation.x' },
             { path: 'Mesh.rotation.y' },
             { path: 'Mesh.rotation.z' },
-            { path: 'Mesh.scale.x' },
-            { path: 'Mesh.scale.y' },
-            { path: 'Mesh.scale.z' },
+            {
+                path: 'Mesh.scale.x',
+                config: {
+                    cursorGj: 0.001,
+                    props: {
+                        step: 0.01,
+                        min: 0,
+                        max: Infinity,
+                    },
+                },
+            },
+            {
+                path: 'Mesh.scale.y',
+                config: {
+                    cursorGj: 0.001,
+                    props: {
+                        step: 0.01,
+                        min: 0,
+                        max: Infinity,
+                    },
+                },
+            },
+            {
+                path: 'Mesh.scale.z',
+                config: {
+                    cursorGj: 0.001,
+                    props: {
+                        step: 0.01,
+                        min: 0,
+                        max: Infinity,
+                    },
+                },
+            },
             {
                 path: 'Mesh.castShadow',
                 config: { type: 'switch' },
@@ -735,6 +804,11 @@ export default [
                 path: 'visible',
                 config: { type: 'switch' },
                 defaultValue: true,
+            },
+            {
+                path: 'customMaterial',
+                config: { type: 'switch' },
+                defaultValue: false,
             },
         ].map((label: any) => {
             const isObject =

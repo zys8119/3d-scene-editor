@@ -63,11 +63,13 @@ export type Layer = {
     closed?: boolean;
     wireframe?: boolean;
     visible?: boolean;
-    paths?: Array<Array<[number, number]> | Array<number> | number>;
+    paths?: Array<Array<[number, number]> | Array<number> | number> | any;
     text?: string;
     fontName?: FontsAssetsType;
     fontUrl?: string;
     size?: number;
+    modelUrl?: string;
+    customMaterial?: boolean;
 };
 export interface Store3Dstate {
     [key: string]: any;
@@ -124,7 +126,7 @@ const useStore3d = defineStore<
             config,
             toolsActive: 'select',
             layerActiveId: null,
-            layerActiveIdCache: 2,
+            layerActiveIdCache: null,
             tools,
             layerBaseName: 'RedrawObject3D',
             layers: [
@@ -148,32 +150,32 @@ const useStore3d = defineStore<
                 //         ],
                 //     ],
                 // },
-                {
-                    label: '物体2',
-                    type: 'geometry',
-                    text: '智加科技',
-                    fontName: '中文字体',
-                    geometryType: 'LatheGeometry',
-                    materialType: 'MeshBasicMaterial',
-                    width: 100,
-                    height: 100,
-                    depth: 100,
-                    radius: 100,
-                    capSegments: 17,
-                    radialSegments: 83,
-                    id: 2,
-                    Mesh: {
-                        position: {
-                            x: -100,
-                            y: 50,
-                        },
-                    },
-                    paths: [
-                        [0, 0],
-                        [100, 250],
-                        [0, 500],
-                    ],
-                },
+                // {
+                //     label: '物体2',
+                //     type: 'geometry',
+                //     text: '智加科技',
+                //     fontName: '中文字体',
+                //     geometryType: 'LatheGeometry',
+                //     materialType: 'MeshBasicMaterial',
+                //     width: 100,
+                //     height: 100,
+                //     depth: 100,
+                //     radius: 100,
+                //     capSegments: 17,
+                //     radialSegments: 83,
+                //     id: 2,
+                //     Mesh: {
+                //         position: {
+                //             x: -100,
+                //             y: 50,
+                //         },
+                //     },
+                //     paths: [
+                //         [0, 0],
+                //         [100, 250],
+                //         [0, 500],
+                //     ],
+                // },
             ],
         } as Store3Dstate;
     },

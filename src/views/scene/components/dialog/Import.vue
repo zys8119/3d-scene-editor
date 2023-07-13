@@ -26,7 +26,6 @@ const props = defineProps<{
     destroy: () => void;
 }>();
 const { three } = $data.provideConfig();
-import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js';
 const list = ref([
     {
         title: 'Video',
@@ -70,34 +69,14 @@ const list = ref([
         },
         async change(file: File) {
             const url = URL.createObjectURL(file);
-            const loader = new SVGLoader();
-            const { paths } = await loader.loadAsync(url);
-            const group = new three.value.THREE.Group();
-            for (let i = 0; i < paths.length; i++) {
-                const path = paths[i];
-
-                const material = new three.value.THREE.MeshBasicMaterial({
-                    color: path.color,
-                    side: three.value.THREE.DoubleSide,
-                    depthWrite: false,
-                });
-
-                const shapes = SVGLoader.createShapes(path);
-
-                for (let j = 0; j < shapes.length; j++) {
-                    const shape = shapes[j];
-                    group.position.set(
-                        -shape.getPoint(0).x,
-                        -shape.getPoint(0).y,
-                        0
-                    );
-                    const geometry = new three.value.THREE.ShapeGeometry(shape);
-                    const mesh = new three.value.THREE.Mesh(geometry, material);
-                    group.add(mesh);
-                }
-            }
-            three.value.scene.add(group);
-            $data.createLayers(group as any);
+            const g = new three.value.THREE.BoxGeometry(100, 100, 100);
+            const m = new three.value.THREE.MeshBasicMaterial();
+            const ms = new three.value.THREE.Mesh(g, m);
+            await $data.createLayers(ms as any, (layer) => {
+                layer.geometryType = 'SVG';
+                layer.modelUrl = url;
+                layer.customMaterial;
+            });
             props.destroy();
         },
     },

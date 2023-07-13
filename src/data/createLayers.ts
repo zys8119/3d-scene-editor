@@ -19,7 +19,10 @@ const setLayerActiveId = (id: any, name: string) => {
 /**
  * todo 创建物体图层
  */
-const createLayers = async (ms: Object3D) => {
+const createLayers = async (
+    ms: Object3D,
+    extendCallBack?: (layer: Layer) => void
+) => {
     const json = ms.toJSON();
     const name = '新物体';
     const layer = {
@@ -56,6 +59,7 @@ const createLayers = async (ms: Object3D) => {
         layer.fontName = '中文字体' as any;
         layer.Mesh.rotation.x = 0;
     }
+    await extendCallBack?.(layer);
     window.store.store3d.addLayer(layer);
     setLayerActiveId(layer.id, getName(layer));
 };

@@ -75,149 +75,159 @@ class Redraw {
         material.needsUpdate = true;
         return material;
     }
+    async setMeshName(mesh: any, layer: Layer) {
+        mesh.name = this.getName(layer);
+        const objectCache = this.three.scene.getObjectByName(mesh.name);
+        if (objectCache) {
+            this.three.scene.remove(objectCache);
+        }
+        this.three.scene.add(mesh);
+    }
+    async setMeshBaseInfo(mesh: any, layer: Layer) {
+        mesh.castShadow = get(layer, 'Mesh.castShadow', true);
+        mesh.receiveShadow = get(layer, 'Mesh.receiveShadow', true);
+        mesh.visible = get(layer, 'visible', true);
+        mesh.position.set(
+            get(layer, 'Mesh.position.x', 0),
+            get(layer, 'Mesh.position.y', 0),
+            get(layer, 'Mesh.position.z', 0)
+        );
+        mesh.rotation.set(
+            get(layer, 'Mesh.rotation.x', 0),
+            get(layer, 'Mesh.rotation.y', 0),
+            get(layer, 'Mesh.rotation.z', 0)
+        );
+        mesh.scale.set(
+            get(layer, 'Mesh.scale.x', 1),
+            get(layer, 'Mesh.scale.y', 1),
+            get(layer, 'Mesh.scale.z', 1)
+        );
+    }
+    async setMeshMaterial(material: any, layer: Layer) {
+        //todo 材料配置
+        const materialColor = this.parseColor(
+            get(layer, 'Material.color', '#5f5f5f')
+        );
+        material.color = new this.three.THREE.Color(materialColor.color);
+        material.opacity = materialColor.opacity;
+        material.needsUpdate = true;
+        material.setValues({
+            aoMapIntensity: get(layer, 'Material.aoMapIntensity', 1),
+            bumpScale: get(layer, 'Material.bumpScale', 1),
+            combine: get(layer, 'Material.combine', 1),
+            displacementScale: get(layer, 'Material.displacementScale', 1),
+            displacementBias: get(layer, 'Material.displacementScale', 0),
+            emissiveIntensity: get(layer, 'Material.emissiveIntensity', 1),
+            lightMapIntensity: get(layer, 'Material.lightMapIntensity', 1),
+            reflectivity: get(layer, 'Material.reflectivity', 1),
+            wireframeLinewidth: get(layer, 'Material.wireframeLinewidth', 1),
+            refractionRatio: get(layer, 'Material.refractionRatio', 0.98),
+            wireframeLinecap: get(layer, 'Material.wireframeLinecap', 'round'),
+            wireframeLinejoin: get(
+                layer,
+                'Material.wireframeLinejoin',
+                'round'
+            ),
+            flatShading: get(layer, 'Material.flatShading', false),
+            fog: get(layer, 'Material.fog', true),
+            wireframe: get(layer, 'Material.wireframe', false),
+            emissive: new this.three.THREE.Color(
+                this.parseColor(
+                    get(layer, 'Material.emissive', '#000000')
+                ).color
+            ),
+            transparent: true,
+            needsUpdate: true,
+        });
+        const updateTexture = async (path: string) => {
+            const materialMap = get(layer, path);
+            const keyName: string = (/(?:\.(.*)$)/.exec(path) || [])[1];
+            if (typeof materialMap === 'string') {
+                if (
+                    (material as any)[keyName as any]?.image.src !== materialMap
+                ) {
+                    material.needsUpdate = true;
+                    const texture = new this.three.THREE.TextureLoader().load(
+                        materialMap
+                    );
+                    material.setValues({
+                        [keyName]: texture,
+                    });
+                }
+            } else {
+                material.needsUpdate = true;
+                material.setValues({
+                    [keyName]: null,
+                });
+            }
+        };
+        // 更新贴图
+        textureField.forEach((keyName) => {
+            updateTexture(`Material.${keyName}`);
+        });
+    }
     async update() {
-        const { THREE, scene } = this.three;
+        const { THREE } = this.three;
         // 清除绘制场景
         this.drawWatchCache.forEach((e) => {
             e?.();
         });
         await Promise.all(
             store.layers.map(async (layer) => {
-                let box: BufferGeometry = await this.generateGeometry(layer);
+                let watchReset = null;
+                const isModel = typeof layer.modelUrl === 'string';
+                let box: any = await this.generateGeometry(layer);
                 let material: any = await this.generateMaterial(layer);
-                const mesh = new THREE.Mesh(box as any, material as any);
-                mesh.name = this.getName(layer);
-                const objectCache = scene.getObjectByName(mesh.name);
-                if (objectCache) {
-                    scene.remove(objectCache);
-                }
-                scene.add(mesh);
-                const watchReset = async () => {
-                    mesh.geometry.dispose();
-                    material = await this.generateMaterial(layer);
-                    mesh.material = material as any;
-                    box = await this.generateGeometry(layer);
-                    mesh.geometry = box;
-                    mesh.castShadow = get(layer, 'Mesh.castShadow', true);
-                    mesh.receiveShadow = get(layer, 'Mesh.receiveShadow', true);
-                    mesh.visible = get(layer, 'visible', true);
-                    mesh.position.set(
-                        get(layer, 'Mesh.position.x', 0),
-                        get(layer, 'Mesh.position.y', 0),
-                        get(layer, 'Mesh.position.z', 0)
-                    );
-                    mesh.rotation.set(
-                        get(layer, 'Mesh.rotation.x', 0),
-                        get(layer, 'Mesh.rotation.y', 0),
-                        get(layer, 'Mesh.rotation.z', 0)
-                    );
-                    mesh.scale.set(
-                        get(layer, 'Mesh.scale.x', 1),
-                        get(layer, 'Mesh.scale.y', 1),
-                        get(layer, 'Mesh.scale.z', 1)
-                    );
-                    //todo 材料配置
-                    const materialColor = this.parseColor(
-                        get(layer, 'Material.color', '#5f5f5f')
-                    );
-                    material.color = new THREE.Color(materialColor.color);
-                    material.opacity = materialColor.opacity;
-                    material.needsUpdate = true;
-                    material.setValues({
-                        aoMapIntensity: get(
-                            layer,
-                            'Material.aoMapIntensity',
-                            1
-                        ),
-                        bumpScale: get(layer, 'Material.bumpScale', 1),
-                        combine: get(layer, 'Material.combine', 1),
-                        displacementScale: get(
-                            layer,
-                            'Material.displacementScale',
-                            1
-                        ),
-                        displacementBias: get(
-                            layer,
-                            'Material.displacementScale',
-                            0
-                        ),
-                        emissiveIntensity: get(
-                            layer,
-                            'Material.emissiveIntensity',
-                            1
-                        ),
-                        lightMapIntensity: get(
-                            layer,
-                            'Material.lightMapIntensity',
-                            1
-                        ),
-                        reflectivity: get(layer, 'Material.reflectivity', 1),
-                        wireframeLinewidth: get(
-                            layer,
-                            'Material.wireframeLinewidth',
-                            1
-                        ),
-                        refractionRatio: get(
-                            layer,
-                            'Material.refractionRatio',
-                            0.98
-                        ),
-                        wireframeLinecap: get(
-                            layer,
-                            'Material.wireframeLinecap',
-                            'round'
-                        ),
-                        wireframeLinejoin: get(
-                            layer,
-                            'Material.wireframeLinejoin',
-                            'round'
-                        ),
-                        flatShading: get(layer, 'Material.flatShading', false),
-                        fog: get(layer, 'Material.fog', true),
-                        wireframe: get(layer, 'Material.wireframe', false),
-                        emissive: new THREE.Color(
-                            this.parseColor(
-                                get(layer, 'Material.emissive', '#000000')
-                            ).color
-                        ),
-                        transparent: true,
-                        needsUpdate: true,
-                    });
-                    const updateTexture = async (path: string) => {
-                        const materialMap = get(layer, path);
-                        const keyName: string = (/(?:\.(.*)$)/.exec(path) ||
-                            [])[1];
-                        if (typeof materialMap === 'string') {
-                            if (
-                                (material as any)[keyName as any]?.image.src !==
-                                materialMap
-                            ) {
-                                material.needsUpdate = true;
-                                const texture = new THREE.TextureLoader().load(
-                                    materialMap
-                                );
-                                material.setValues({
-                                    [keyName]: texture,
-                                });
-                            }
-                        } else {
-                            material.needsUpdate = true;
-                            material.setValues({
-                                [keyName]: null,
+                if (isModel) {
+                    await this.setMeshName(box, layer);
+                    watchReset = async () => {
+                        await this.setMeshBaseInfo(box, layer);
+                        box.traverse(async (object: any) => {
+                            object.castShadow = get(
+                                layer,
+                                'Mesh.castShadow',
+                                true
+                            );
+                            object.receiveShadow = get(
+                                layer,
+                                'Mesh.receiveShadow',
+                                true
+                            );
+                            object.visible = get(layer, 'visible', true);
+                        });
+                        if (layer.customMaterial) {
+                            box.traverse(async (object: any) => {
+                                material = await this.generateMaterial(layer);
+                                object.material = material as any;
+                                await this.setMeshMaterial(material, layer);
                             });
+                        } else {
+                            await this.setMeshBaseInfo(box, layer);
+                            box = await this.generateGeometry(layer);
+                            await this.setMeshName(box, layer);
                         }
                     };
-                    // 更新贴图
-                    textureField.forEach((keyName) => {
-                        updateTexture(`Material.${keyName}`);
-                    });
-                };
+                } else {
+                    const mesh = new THREE.Mesh(box as any, material as any);
+                    await this.setMeshName(mesh, layer);
+                    watchReset = async () => {
+                        mesh.geometry.dispose();
+                        material = await this.generateMaterial(layer);
+                        mesh.material = material as any;
+                        box = await this.generateGeometry(layer);
+                        mesh.geometry = box;
+                        await this.setMeshBaseInfo(mesh, layer);
+                        await this.setMeshMaterial(material, layer);
+                    };
+                }
                 watchReset();
                 this.drawWatchCache.push(
                     watch(layer, watchReset, { deep: true })
                 );
             })
-        );
+        ).catch((e) => {
+            console.log('draw-update', e);
+        });
     }
     public layersLeng = store.layers.length;
     public drawWatchCache: any[] = [];

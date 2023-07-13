@@ -12,7 +12,12 @@ import useStore3d from '@/store/modules/3d';
 import { PaperScope, Color } from 'paper';
 
 const store = useStore3d();
-const paths = computed(() => store.layerActiveGetters?.paths || []);
+const paths = computed(() => {
+    return Object.prototype.toString.call(store.layerActiveGetters?.paths) ===
+        '[object Array]'
+        ? store.layerActiveGetters?.paths
+        : [];
+});
 const canvasRef = ref<HTMLCanvasElement>() as Ref<HTMLCanvasElement>;
 const props = defineProps<{
     edit: boolean;
