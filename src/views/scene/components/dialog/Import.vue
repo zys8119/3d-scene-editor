@@ -23,7 +23,6 @@
 
 <script setup lang="ts">
 import { Layer } from '@/store/modules/3d';
-import { merge } from 'lodash';
 
 const props = defineProps<{
     destroy: () => void;
