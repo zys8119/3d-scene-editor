@@ -10,8 +10,9 @@
             object-fit="cover"
             :src="src"
         />
+        <div v-if="typeof src === 'object'" class="bg-#ccc w-100% h-100%"></div>
         <span
-            v-if="typeof src === 'string'"
+            v-if="typeof src === 'string' || typeof src === 'object'"
             @click.stop="delMap"
             class="absolute top-2px right-2px w-15px h-15px b-rd-10px overflow-hidden bg-#fff flex justify-center items-center opacity-10% hover:opacity-100% cursor-pointer"
         >

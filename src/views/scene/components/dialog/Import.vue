@@ -72,21 +72,33 @@ const loadImage = async (url: string) => {
 const loadVideo = async (url: any) => {
     return new Promise<HTMLVideoElement>((resolve) => {
         const video = document.createElement('video');
-        if (typeof url === 'string') {
-            video.src = url;
-        } else {
-            video.srcObject = url;
-        }
+        document.body.appendChild(video);
+        video.onloadeddata = () => {
+            resolve(video);
+        };
         video.onload = () => {
             resolve(video);
         };
         video.onerror = () => {
             resolve(video);
         };
-        document.body.appendChild(video);
+        if (typeof url === 'string') {
+            video.src = url;
+        } else {
+            video.srcObject = url;
+        }
+        video.muted = true;
+        video.autoplay = true;
+        video.loop = true;
+        video.width = 0;
+        video.height = 0;
+        video.hidden = true;
+        video.play();
     });
 };
-const loadModel = async (extendCallBack?: (layer: Layer) => void) => {
+const loadModel = async (
+    extendCallBack?: (layer: Layer) => void | Layer | Promise<Layer>
+) => {
     const g = new three.value.THREE.BoxGeometry(100, 100, 100);
     const m = new three.value.THREE.MeshBasicMaterial();
     const ms = new three.value.THREE.Mesh(g, m);
@@ -105,18 +117,25 @@ const list = ref([
             try {
                 const url = await uploadFile(file);
                 const video = await loadVideo(url);
-                console.log(video);
-                await loadModel(async (layer) => {
+                await loadModel(async () => {
                     const texture = new three.value.THREE.VideoTexture(video);
-                    merge(layer, {
-                        width: video.width < 1000 ? video.width : 1000,
-                        height: video.height < 1000 ? video.height : 1000,
+                    texture.minFilter = three.value.THREE.LinearFilter;
+                    texture.magFilter = three.value.THREE.LinearFilter;
+                    return {
+                        width:
+                            video.width > 0 && video.width < 1000
+                                ? video.width
+                                : 1000,
+                        height:
+                            video.height > 0 && video.height < 1000
+                                ? video.height
+                                : 1000,
                         depth: 2,
                         Material: {
-                            color: '#ffffff',
+                            color: 0xffffff,
                             map: texture,
                         },
-                    } as Layer);
+                    } as Layer;
                 });
             } catch (e) {
                 console.log(e);
@@ -171,16 +190,17 @@ const list = ref([
         async change(file: File) {
             const url = await uploadFile(file);
             const img = await loadImage(url);
-            await loadModel((layer) => {
-                merge(layer, {
-                    width: img.width < 1000 ? img.width : 1000,
-                    height: img.height < 1000 ? img.height : 1000,
+            await loadModel(() => {
+                return {
+                    width: img.width > 0 && img.width < 1000 ? img.width : 1000,
+                    height:
+                        img.height > 0 && img.height < 1000 ? img.height : 1000,
                     depth: 2,
                     Material: {
                         color: '#ffffff',
                         map: url,
                     },
-                } as Layer);
+                } as Layer;
             });
         },
     },

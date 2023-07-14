@@ -157,7 +157,7 @@ class Redraw {
             } else {
                 material.needsUpdate = true;
                 material.setValues({
-                    [keyName]: null,
+                    [keyName]: materialMap || null,
                 });
             }
         };

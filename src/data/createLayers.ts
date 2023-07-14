@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get, merge } from 'lodash';
 import { Mesh, Object3D } from 'three';
 import { Layer } from '@/store/modules/3d';
 import provideConfig from './provideConfig';
@@ -21,11 +21,11 @@ const setLayerActiveId = (id: any, name: string) => {
  */
 const createLayers = async (
     ms: Object3D,
-    extendCallBack?: (layer: Layer) => void
+    extendCallBack?: (layer: Layer) => void | Layer | Promise<Layer>
 ) => {
     const json = ms.toJSON();
     const name = '新物体';
-    const layer = {
+    let layer = {
         width: get(json, 'geometries[0].width', 0),
         height: get(json, 'geometries[0].height', 0),
         depth: get(json, 'geometries[0].depth', 1),
@@ -59,7 +59,7 @@ const createLayers = async (
         layer.fontName = '中文字体' as any;
         layer.Mesh.rotation.x = 0;
     }
-    await extendCallBack?.(layer);
+    layer = merge(layer, (await extendCallBack?.(layer)) || {});
     window.store.store3d.addLayer(layer);
     setLayerActiveId(layer.id, getName(layer));
 };
