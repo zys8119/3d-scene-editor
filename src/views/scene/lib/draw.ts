@@ -144,7 +144,8 @@ class Redraw {
             const keyName: string = (/(?:\.(.*)$)/.exec(path) || [])[1];
             if (typeof materialMap === 'string') {
                 if (
-                    (material as any)[keyName as any]?.image.src !== materialMap
+                    (material as any)[keyName as any]?.image?.src !==
+                    materialMap
                 ) {
                     material.needsUpdate = true;
                     const texture = new this.three.THREE.TextureLoader().load(
@@ -190,7 +191,9 @@ class Redraw {
                         } else {
                             await this.setMeshBaseInfo(box, layer);
                             box = await this.generateGeometry(layer);
-                            await this.setMeshName(box, layer);
+                            if (layer.geometryType === 'SVG') {
+                                await this.setMeshName(box, layer);
+                            }
                         }
                         box.traverse(async (object: any) => {
                             await this.setMeshBaseInfo(object, layer);
@@ -202,7 +205,6 @@ class Redraw {
                     await this.setMeshName(mesh, layer);
                     watchReset = async () => {
                         mesh.geometry.dispose();
-                        material = await this.generateMaterial(layer);
                         mesh.material = material as any;
                         box = await this.generateGeometry(layer);
                         mesh.geometry = box;

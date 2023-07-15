@@ -131,7 +131,7 @@ const list = ref([
                                 : 1000,
                         depth: 2,
                         Material: {
-                            color: 0xffffff,
+                            color: '#ffffff',
                             map: texture,
                         },
                     } as Layer;
@@ -148,8 +148,20 @@ const list = ref([
         async rule(file: File) {
             return /\.(glb|obj|dtl|gltf)$/.test(file.name);
         },
-        async change(file: File, config: any) {
-            console.log(file, config.title);
+        async change(file: File) {
+            const url = await uploadFile(file);
+            await loadModel((layer) => {
+                layer.geometryType = '3DModel';
+                layer.modelUrl = url;
+                layer.Mesh = {
+                    scale: {
+                        x: 100,
+                        y: 100,
+                        z: 100,
+                    },
+                };
+                layer.customMaterial = false;
+            });
         },
     },
     {

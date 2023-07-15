@@ -12,6 +12,7 @@ import FontsAssetsPanel from '@/views/scene/components/FontsAssetsPanel.vue';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import useWatchStore from '@/utils/watchStore';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 const downloadFontsMap = new Map<string, boolean>();
 const createValue = (keyPath: string, defaultValue: any = 0) => {
     return computed({
@@ -433,6 +434,16 @@ export const optionsGeometry = [
                 }
             }
             return group;
+        },
+    },
+    {
+        label: '3DModel',
+        value: '3DModel',
+        name: '3DModel',
+        async box(three: BaseThreeClass, layer: Layer) {
+            const loader = new GLTFLoader();
+            const model = await loader.loadAsync(layer.modelUrl as string);
+            return model.scene;
         },
     },
 ] as const;
