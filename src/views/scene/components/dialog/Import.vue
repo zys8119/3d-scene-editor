@@ -110,7 +110,7 @@ const list = ref([
         msg: 'MP4, GIF',
         icon: '<svg t="1689142992704" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4031" width="200" height="200"><path d="M864.5 516.2c-2.4-4.1-6.2-6.9-10.4-8.3L286.4 159c-8.9-5-20.3-2-25.5 6.6-2.1 3.6-2.8 7.5-2.3 11.3v697.5c-0.5 3.8 0.2 7.8 2.3 11.3 5.2 8.7 16.6 11.6 25.5 6.6l567.7-349c4.2-1.3 8-4.2 10.4-8.3 1.7-3 2.5-6.3 2.4-9.5 0.1-3-0.7-6.3-2.4-9.3z m-569-308.8l517.6 318.3L295.5 844V207.4z" p-id="4032"></path></svg>',
         async rule(file: File) {
-            return /video/.test(file.type);
+            return /video|image\/gif/.test(file.type);
         },
         async change(file: File) {
             try {
