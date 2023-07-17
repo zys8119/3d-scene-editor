@@ -69,6 +69,7 @@ export type Layer = {
     fontUrl?: string;
     size?: number;
     modelUrl?: string;
+    modelFileName?: string;
     customMaterial?: boolean;
 };
 export interface Store3Dstate {
