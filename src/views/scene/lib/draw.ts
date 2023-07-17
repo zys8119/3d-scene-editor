@@ -83,25 +83,31 @@ class Redraw {
         }
         this.three.scene.add(mesh);
     }
-    async setMeshBaseInfo(mesh: any, layer: Layer) {
-        mesh.castShadow = get(layer, 'Mesh.castShadow', true);
-        mesh.receiveShadow = get(layer, 'Mesh.receiveShadow', true);
-        mesh.visible = get(layer, 'visible', true);
-        mesh.position.set(
-            get(layer, 'Mesh.position.x', 0),
-            get(layer, 'Mesh.position.y', 0),
-            get(layer, 'Mesh.position.z', 0)
-        );
-        mesh.rotation.set(
-            get(layer, 'Mesh.rotation.x', 0),
-            get(layer, 'Mesh.rotation.y', 0),
-            get(layer, 'Mesh.rotation.z', 0)
-        );
-        mesh.scale.set(
-            get(layer, 'Mesh.scale.x', 1),
-            get(layer, 'Mesh.scale.y', 1),
-            get(layer, 'Mesh.scale.z', 1)
-        );
+    async setMeshBaseInfo(mesh: any, layer: Layer, isTraverse?: boolean) {
+        const name = this.getName(layer);
+        const objectCache = isTraverse
+            ? mesh
+            : this.three.scene.getObjectByName(name);
+        if (objectCache) {
+            objectCache.castShadow = get(layer, 'Mesh.castShadow', true);
+            objectCache.receiveShadow = get(layer, 'Mesh.receiveShadow', true);
+            objectCache.visible = get(layer, 'visible', true);
+            objectCache.position.set(
+                get(layer, 'Mesh.position.x', 0),
+                get(layer, 'Mesh.position.y', 0),
+                get(layer, 'Mesh.position.z', 0)
+            );
+            objectCache.rotation.set(
+                get(layer, 'Mesh.rotation.x', 0),
+                get(layer, 'Mesh.rotation.y', 0),
+                get(layer, 'Mesh.rotation.z', 0)
+            );
+            objectCache.scale.set(
+                get(layer, 'Mesh.scale.x', 1),
+                get(layer, 'Mesh.scale.y', 1),
+                get(layer, 'Mesh.scale.z', 1)
+            );
+        }
     }
     async setMeshMaterial(material: any, layer: Layer) {
         //todo 材料配置
@@ -196,7 +202,7 @@ class Redraw {
                             }
                         }
                         box.traverse(async (object: any) => {
-                            await this.setMeshBaseInfo(object, layer);
+                            await this.setMeshBaseInfo(object, layer, true);
                         });
                         await this.setMeshBaseInfo(box, layer);
                     };
