@@ -457,6 +457,52 @@ export const optionsGeometry = [
             }
         },
     },
+    {
+        label: 'map',
+        value: 'map',
+        name: '地图',
+        async box(three: BaseThreeClass, layer: Layer) {
+            const json = await fetch(layer.modelUrl as string).then((e) =>
+                e.json()
+            );
+            const group = new three.THREE.Scene();
+            json.features.forEach((e: any) => {
+                e.geometry.coordinates.forEach((e: any) => {
+                    e.forEach((item: any) => {
+                        const shape = new three.THREE.Shape();
+                        item.forEach(([x, y]: number[], k: number) => {
+                            if (k === 0) {
+                                shape.moveTo(x, y);
+                            } else {
+                                shape.lineTo(x, y);
+                            }
+                        });
+
+                        const geometry = new three.THREE.ExtrudeGeometry(
+                            shape,
+                            {
+                                // steps: 2,
+                                depth: 0.1,
+                                // bevelEnabled: true,
+                                bevelThickness: 1,
+                                bevelSize: 0,
+                                bevelOffset: 0,
+                                bevelSegments: 1,
+                            }
+                        );
+                        const material = new three.THREE.MeshLambertMaterial({
+                            color: 0x00ff00,
+                        });
+                        const ms = new three.THREE.Mesh(geometry, material);
+                        ms.scale.set(50, 50, 50);
+                        group.add(ms);
+                    });
+                });
+            });
+
+            return group;
+        },
+    },
 ] as const;
 export type OptionsGeometryItemType = Omit<
     (typeof optionsGeometry)[number],
