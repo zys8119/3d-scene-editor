@@ -34,10 +34,6 @@
         "build": "tsup src/*.ts --format cjs,esm --dts --splitting --clean && esno scripts/postbuild.ts",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "repository": {
-        "type": "git",
-        "url": "https://gitlab.zhijiasoft.com/vue3-base-framework/wp-utils.git"
-    },
     "keywords": [],
     "author": "",
     "license": "ISC",

@@ -3,7 +3,6 @@
     "version": "1.0.12",
     "description": "proprocessor for object",
     "main": "./src/index.ts",
-    "repository": "https://gitlab.zhijiasoft.com/vue3-base-framework/wp-preprocessor",
     "author": "Jooies",
     "license": "MIT",
     "scripts": {

@@ -7,10 +7,6 @@
         "build": "tsc",
         "release": "tsc && release-it"
     },
-    "repository": {
-        "type": "git",
-        "url": "https://gitlab.zhijiasoft.com/vue3-base-framework/vite-plugin-fz"
-    },
     "keywords": [
         "fz",
         "css"
