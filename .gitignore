@@ -16,3 +16,4 @@ coverage
 /auto-route.ts
 /pnpm-lock.yaml
 !/packages/**/dist
+*.lock
