@@ -41,12 +41,12 @@ const list = ref([
     },
     {
         name: 'wisdom-naive',
-        component: 'https://wisdom-naive.zhijiasoft.com/',
+        component: '',
         isActive: false,
     },
     {
         name: '智加文档',
-        component: 'https://zjdoc.zhijiasoft.com/',
+        component: '',
         isActive: false,
     },
 ]);

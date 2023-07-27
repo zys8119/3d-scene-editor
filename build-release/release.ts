@@ -75,7 +75,7 @@ const ncol = require('ncol');
         }).compile();
         const descriptionInit = async (
             config: Config,
-            result: string = '',
+            result = '',
             isOutHelp = true
         ) => {
             const reg = /(;|；)$/;
@@ -139,7 +139,7 @@ const ncol = require('ncol');
         ncol.info('正在打包并发布中, 请稍后...');
         const releasesVm = new Releases({
             token,
-            host: 'https://gitlab.zhijiasoft.com',
+            host: '',
             baseURL: '/apis/v4',
             projectName: ProjectName,
         });

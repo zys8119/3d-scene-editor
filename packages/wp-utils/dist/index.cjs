@@ -292,7 +292,7 @@ var utils_default = {
   viewPdfFile(path, api, name, isCurrentWindow) {
     if (!path)
       return;
-    const url = `https://pdf-viewer.zhijiasoft.com/static/v3/#/viewer?path=${path}&api=${api}&name=${name}`;
+    const url = `/static/v3/#/viewer?path=${path}&api=${api}&name=${name}`;
     if (this.getOsType() === 1 && (this.getBrowserType() === 4 || this.getBrowserType() === 5))
       window.open(path);
     else {
