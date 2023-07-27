@@ -14,6 +14,7 @@ import useWatchStore from '@/utils/watchStore';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import { geoMercator } from 'd3-geo';
 const downloadFontsMap = new Map<string, boolean>();
 const createValue = (keyPath: string, defaultValue: any = 0) => {
     return computed({
@@ -458,19 +459,33 @@ export const optionsGeometry = [
         },
     },
     {
-        label: 'map',
-        value: 'map',
+        label: 'Map',
+        value: 'Map',
         name: '地图',
         async box(three: BaseThreeClass, layer: Layer) {
+            const projection = geoMercator();
             const json = await fetch(layer.modelUrl as string).then((e) =>
                 e.json()
             );
-            const group = new three.THREE.Scene();
+            projection
+                // 地图中心位置
+                .center(
+                    _get(
+                        json,
+                        'features[0].properties.center',
+                        [121.539698, 29.874452]
+                    )
+                )
+                // 地图缩放
+                .scale(layer.size as any)
+                .translate([0, 0]);
+            const group = new three.THREE.Group();
             json.features.forEach((e: any) => {
                 e.geometry.coordinates.forEach((e: any) => {
                     e.forEach((item: any) => {
                         const shape = new three.THREE.Shape();
-                        item.forEach(([x, y]: number[], k: number) => {
+                        item.forEach((it: number[], k: number) => {
+                            const [x, y] = projection(it as any) as any;
                             if (k === 0) {
                                 shape.moveTo(x, y);
                             } else {
@@ -482,7 +497,7 @@ export const optionsGeometry = [
                             shape,
                             {
                                 // steps: 2,
-                                depth: 0.1,
+                                depth: 0.01,
                                 // bevelEnabled: true,
                                 bevelThickness: 1,
                                 bevelSize: 0,
@@ -490,16 +505,17 @@ export const optionsGeometry = [
                                 bevelSegments: 1,
                             }
                         );
-                        const material = new three.THREE.MeshLambertMaterial({
-                            color: 0x00ff00,
+                        const material = new three.THREE.MeshBasicMaterial({});
+                        material.needsUpdate = true;
+                        const mesh = new three.THREE.Mesh(geometry, material);
+                        mesh.name = $data.getName({
+                            name: layer.name as string,
+                            id: layer.id,
                         });
-                        const ms = new three.THREE.Mesh(geometry, material);
-                        ms.scale.set(50, 50, 50);
-                        group.add(ms);
+                        group.add(mesh);
                     });
                 });
             });
-
             return group;
         },
     },
@@ -613,6 +629,7 @@ export const filterMap = {
         'fontName',
     ],
     SVG: ['customMaterial'],
+    Map: ['customMaterial', 'size', 'modelUrl'],
 } as Record<GeometryType, string[]>;
 export const fieldsGeometryTypeMap = Object.entries(filterMap).reduce<
     Record<string, string[]>
@@ -821,9 +838,39 @@ export default [
             { path: 'Mesh.position.x' },
             { path: 'Mesh.position.y' },
             { path: 'Mesh.position.z' },
-            { path: 'Mesh.rotation.x' },
-            { path: 'Mesh.rotation.y' },
-            { path: 'Mesh.rotation.z' },
+            {
+                path: 'Mesh.rotation.x',
+                config: {
+                    cursorGj: 0.001,
+                    props: {
+                        step: 0.01,
+                        min: 0,
+                        max: 2 * Math.PI,
+                    },
+                },
+            },
+            {
+                path: 'Mesh.rotation.y',
+                config: {
+                    cursorGj: 0.001,
+                    props: {
+                        step: 0.01,
+                        min: 0,
+                        max: 2 * Math.PI,
+                    },
+                },
+            },
+            {
+                path: 'Mesh.rotation.z',
+                config: {
+                    cursorGj: 0.001,
+                    props: {
+                        step: 0.01,
+                        min: 0,
+                        max: 2 * Math.PI,
+                    },
+                },
+            },
             {
                 path: 'Mesh.scale.x',
                 config: {
@@ -876,6 +923,10 @@ export default [
                 path: 'customMaterial',
                 config: { type: 'switch' },
                 defaultValue: false,
+            },
+            {
+                path: 'modelUrl',
+                config: { type: 'input' },
             },
         ].map((label: any) => {
             const isObject =

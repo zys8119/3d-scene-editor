@@ -23,7 +23,6 @@
 
 <script setup lang="ts">
 import { Layer } from '@/store/modules/3d';
-
 const props = defineProps<{
     destroy: () => void;
 }>();
@@ -226,6 +225,23 @@ const list = ref([
         },
         async change(file: File, config: any) {
             console.log(file, config.title);
+        },
+    },
+    {
+        title: '地图Json',
+        msg: '.json',
+        icon: '<svg t="1689143223103" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12642" width="200" height="200"><path d="M909.824 272.128L525.824 51.2a30.72 30.72 0 0 0-30.72 0l-384 221.696a30.72 30.72 0 0 0-15.36 25.6V742.4a30.72 30.72 0 0 0 15.36 25.6l384 221.696a30.72 30.72 0 0 0 30.72 0l384-221.696a30.72 30.72 0 0 0 15.36-25.6V298.752a30.72 30.72 0 0 0-15.36-26.624zM510.464 112.64l329.728 190.464-329.728 190.208-329.728-190.208z m-353.28 236.032L484.864 537.6v376.064L157.184 724.48z m378.88 564.992V537.6l327.68-189.184V724.48z" p-id="12643"></path><path d="M417.28 594.944l-172.032-99.328a25.6 25.6 0 0 0-25.6 44.288L391.68 640a25.6 25.6 0 0 0 25.6-44.288z" p-id="12644"></path></svg>',
+        async rule(file: File) {
+            return /json/.test(file.type);
+        },
+        async change(file: File) {
+            const url = await uploadFile(file);
+            await loadModel((layer) => {
+                layer.geometryType = 'Map';
+                layer.modelUrl = url;
+                layer.modelFileName = file.name;
+                layer.customMaterial = false;
+            });
         },
     },
 ]);

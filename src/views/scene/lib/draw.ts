@@ -197,7 +197,7 @@ class Redraw {
                         } else {
                             await this.setMeshBaseInfo(box, layer);
                             box = await this.generateGeometry(layer);
-                            if (layer.geometryType === 'SVG') {
+                            if (['SVG', 'Map'].includes(layer.geometryType)) {
                                 await this.setMeshName(box, layer);
                             }
                         }
