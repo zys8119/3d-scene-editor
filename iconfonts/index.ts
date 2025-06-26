@@ -6,9 +6,9 @@ import fs from 'fs-extra';
 
 (async () => {
     const config = {
-        username: '15372612690',
-        password: 'zj123456789',
-        pid: '3927693',
+        username: '',
+        password: '',
+        pid: '',
     } as {
         username: string;
         password: string;
