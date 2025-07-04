@@ -79,6 +79,7 @@ declare global {
     const onStartTyping: typeof import('@vueuse/core')['onStartTyping'];
     const onUnmounted: typeof import('vue')['onUnmounted'];
     const onUpdated: typeof import('vue')['onUpdated'];
+    const onWatcherCleanup: typeof import('vue')['onWatcherCleanup'];
     const parseName: typeof import('./src/views/scene/lib/global')['parseName'];
     const pausableWatch: typeof import('@vueuse/core')['pausableWatch'];
     const preprocessor: typeof import('wp-preprocessor')['preprocessor'];
@@ -193,6 +194,7 @@ declare global {
     const useFullscreen: typeof import('@vueuse/core')['useFullscreen'];
     const useGamepad: typeof import('@vueuse/core')['useGamepad'];
     const useGeolocation: typeof import('@vueuse/core')['useGeolocation'];
+    const useId: typeof import('vue')['useId'];
     const useIdle: typeof import('@vueuse/core')['useIdle'];
     const useImage: typeof import('@vueuse/core')['useImage'];
     const useInfiniteScroll: typeof import('@vueuse/core')['useInfiniteScroll'];
@@ -209,6 +211,7 @@ declare global {
     const useMediaQuery: typeof import('@vueuse/core')['useMediaQuery'];
     const useMemoize: typeof import('@vueuse/core')['useMemoize'];
     const useMemory: typeof import('@vueuse/core')['useMemory'];
+    const useModel: typeof import('vue')['useModel'];
     const useMounted: typeof import('@vueuse/core')['useMounted'];
     const useMouse: typeof import('@vueuse/core')['useMouse'];
     const useMouseInElement: typeof import('@vueuse/core')['useMouseInElement'];
@@ -254,6 +257,7 @@ declare global {
     const useStyleTag: typeof import('@vueuse/core')['useStyleTag'];
     const useSupported: typeof import('@vueuse/core')['useSupported'];
     const useSwipe: typeof import('@vueuse/core')['useSwipe'];
+    const useTemplateRef: typeof import('vue')['useTemplateRef'];
     const useTemplateRefsList: typeof import('@vueuse/core')['useTemplateRefsList'];
     const useTextDirection: typeof import('@vueuse/core')['useTextDirection'];
     const useTextSelection: typeof import('@vueuse/core')['useTextSelection'];
@@ -307,9 +311,27 @@ declare global {
         Component,
         ComponentPublicInstance,
         ComputedRef,
+        DirectiveBinding,
+        ExtractDefaultPropTypes,
+        ExtractPropTypes,
+        ExtractPublicPropTypes,
         InjectionKey,
         PropType,
         Ref,
+        MaybeRef,
+        MaybeRefOrGetter,
         VNode,
+        WritableComputedRef,
     } from 'vue';
+    import('vue');
+    // @ts-ignore
+    export type { Use3DConfigType } from './src/views/scene/lib/config';
+    import('./src/views/scene/lib/config');
+    // @ts-ignore
+    export type {
+        Object3DEventListener,
+        Object3DEventMapType,
+        GlobalOptions,
+    } from './src/views/scene/lib/global';
+    import('./src/views/scene/lib/global');
 }

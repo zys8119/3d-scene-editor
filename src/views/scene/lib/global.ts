@@ -10,9 +10,9 @@ import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLigh
 
 const config = use3DConfig();
 const { Shift } = useMagicKeys({
-    onEventFired(e) {
-        console.log(e.code);
-    },
+    // onEventFired(e) {
+    //     console.log(e.code);
+    // },
 });
 const store = useStore3d();
 export const parseName = (name: string) => {

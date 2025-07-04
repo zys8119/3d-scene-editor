@@ -1,8 +1,17 @@
 <template>
     <div
-        class="BasisAttrsPathsPreview w-$width h-$height bg-#191a1d b-rd-5px overflow-hidden flex justify-center items-center"
+        class="BasisAttrsPathsPreview w-$width bg-#191a1d b-rd-5px overflow-hidden flex justify-center items-center flex-col"
     >
-        <canvas ref="canvasRef" :style="canvasStyle"></canvas>
+        <div v-if="edit" class="w-100% h-500px abs-r">
+            <editor
+                :modelValue="
+                    JSON.stringify(get(store, 'layerActiveGetters.paths', []))
+                "
+                @update:modelValue="change"
+                language="json"
+            ></editor>
+        </div>
+        <canvas ref="canvasRef" v-else :style="canvasStyle"></canvas>
     </div>
 </template>
 
@@ -10,6 +19,8 @@
 import { Ref } from 'vue';
 import useStore3d from '@/store/modules/3d';
 import { PaperScope, Color } from 'paper';
+import { get, set } from 'lodash';
+import editor from './editor.vue';
 
 const store = useStore3d();
 const paths = computed(() => {
@@ -18,6 +29,14 @@ const paths = computed(() => {
         ? store.layerActiveGetters?.paths
         : [];
 });
+const change = (value: any) => {
+    try {
+        console.log(value);
+        set(store, 'layerActiveGetters.paths', JSON.parse(value));
+    } catch (error) {
+        console.log(error);
+    }
+};
 const canvasRef = ref<HTMLCanvasElement>() as Ref<HTMLCanvasElement>;
 const props = defineProps<{
     edit: boolean;
