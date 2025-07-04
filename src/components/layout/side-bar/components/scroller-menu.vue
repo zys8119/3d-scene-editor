@@ -41,6 +41,7 @@ const activeMenu = computed(() => {
             }
         }
     }
+    return '';
 });
 
 const onMenuClick = (key: string, record: SystemRouteRow) => {
@@ -53,6 +54,7 @@ const onMenuClick = (key: string, record: SystemRouteRow) => {
 <style lang="less" scoped>
 .scrollbar {
     height: calc(100vh - var(--logo-height)) !important;
+
     :deep(.n-menu .n-menu-item) {
         margin-top: 0;
         margin-bottom: 5px;

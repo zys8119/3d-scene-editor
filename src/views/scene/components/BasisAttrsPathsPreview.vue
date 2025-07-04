@@ -159,7 +159,7 @@ const init = async () => {
 };
 onMounted(init);
 watchEffect(async () => {
-    if (paths) {
+    if (paths.value) {
         await init();
     }
 });
