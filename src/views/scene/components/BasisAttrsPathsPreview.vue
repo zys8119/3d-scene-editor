@@ -5,7 +5,11 @@
         <div v-if="edit" class="w-100% h-500px abs-r">
             <editor
                 :modelValue="
-                    JSON.stringify(get(store, 'layerActiveGetters.paths', []))
+                    JSON.stringify(
+                        get(store, 'layerActiveGetters.paths', []),
+                        null,
+                        4
+                    )
                 "
                 @update:modelValue="change"
                 language="json"
