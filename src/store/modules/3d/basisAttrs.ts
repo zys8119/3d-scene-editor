@@ -154,25 +154,27 @@ export const optionsGeometry = [
         name: '挤压缓冲几何体',
         box(three: BaseThreeClass, layer: Layer) {
             const shape = new three.THREE.Shape();
-            if (
-                Object.prototype.toString.call(layer.paths) === '[object Array]'
-            ) {
-                layer.paths?.forEach((item: any) => {
-                    item.forEach(([x, y]: any, k: number) => {
-                        if (k === 0) {
-                            shape.moveTo(x, y);
-                        } else {
-                            shape.lineTo(x, y);
-                        }
-                    });
-                });
-            } else {
-                shape.moveTo(0, 0);
-                shape.lineTo(0, layer.width as number);
-                shape.lineTo(layer.length as number, layer.width as number);
-                shape.lineTo(layer.length as number, 0);
-                shape.lineTo(0, 0);
+            try {
+                if (
+                    Object.prototype.toString.call(layer.paths) ===
+                    '[object Array]'
+                ) {
+                    shape.setFromPoints(
+                        layer.paths?.map(
+                            (e: any) => new three.THREE.Vector2(...e)
+                        )
+                    );
+                } else {
+                    shape.moveTo(0, 0);
+                    shape.lineTo(0, layer.width as number);
+                    shape.lineTo(layer.length as number, layer.width as number);
+                    shape.lineTo(layer.length as number, 0);
+                    shape.lineTo(0, 0);
+                }
+            } catch (error) {
+                //err
             }
+
             const extrudeSettings = {
                 steps: layer.steps,
                 depth: layer.depth,
